@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.ui.eattrpropseditor.definition">
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.ui.enumpropseditor.internal.EnumPropsEditor"
+            id="org.polarsys.reqcycle.ui.enumpropseditor.EnumPropetiesEditor"
+            name="Enum Properties Editor"
+            type="java.lang.Enum">
+      </eAttrPropsEditor>
+   </extension>
+
+</plugin>

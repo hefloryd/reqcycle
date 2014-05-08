@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.repository.connector.connectorCore">
+      <connectorCore
+            class="org.polarsys.reqcycle.repository.connector.rmf.RMFConnector"
+            icon="icons/ReqIF.png"
+            id="org.polarsys.reqcycle.repository.connector.rmf.connectorCore"
+            name="ReqIF">
+      </connectorCore>
+   </extension>
+</plugin>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.ui.eattrpropseditor.definition">
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.ui.datepropseditor.internal.CalendarPropsEditor"
+            id="org.polarsys.reqcycle.ui.datepropseditor.CalendarPropsEditor"
+            name="Calendar Properties Editor"
+            type="java.util.Calendar">
+      </eAttrPropsEditor>
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.ui.datepropseditor.internal.DatePropsEditor"
+            id="org.polarsys.reqcycle.ui.datepropseditor.DatePropsEditor"
+            name="Date Properties Editor"
+            type="java.util.Date">
+      </eAttrPropsEditor>
+   </extension>
+
+</plugin>

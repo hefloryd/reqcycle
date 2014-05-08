@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="types" name="Types" schema="schema/types.exsd"/>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.reqcycle.types.impl.TypesManager"
+            interface="org.polarsys.reqcycle.types.ITypesManager"
+            priority="1">
+      </binding>
+      <binding
+            impl="org.polarsys.reqcycle.types.impl.CachedTypeChecker"
+            interface="org.polarsys.reqcycle.types.ICachedTypedChecker">
+      </binding>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.types.types">
+      <type
+            checker="org.polarsys.reqcycle.types.impl.AnyElementChecker"
+            icon="icons/any.gif"
+            id="org.polarsys.reqcycle.types.any"
+            label="Every Reachable element">
+      </type>
+   </extension>
+</plugin>

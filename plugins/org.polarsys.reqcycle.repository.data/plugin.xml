@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DataModel -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/DataModel"
+            class="DataModel.DataModelPackage"
+            genModel="model/RequirementSourceData.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated DataModel -->
+      <factory
+            uri="http://www.eclipse.org/ReqCycle/DataModel"
+            class="DataModel.provider.DataModelItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RequirementSourceConf -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/RequirementSourceConf"
+            class="RequirementSourceConf.RequirementSourceConfPackage"
+            genModel="model/RequirementSourceConf.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated RequirementSourceConf -->
+      <factory
+            uri="http://www.eclipse.org/ReqCycle/RequirementSourceConf"
+            class="RequirementSourceConf.provider.RequirementSourceConfItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MappingModel -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/MappingModel"
+            class="MappingModel.MappingModelPackage"
+            genModel="model/MappingModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated MappingModel -->
+      <factory
+            uri="http://www.eclipse.org/ReqCycle/MappingModel"
+            class="MappingModel.provider.MappingModelItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.reqcycle.repository.data.impl.DataManagerImpl"
+            interface="org.polarsys.reqcycle.repository.data.IDataManager">
+      </binding>
+      <binding
+            impl="org.polarsys.reqcycle.repository.data.impl.DataModelManagerImpl"
+            interface="org.polarsys.reqcycle.repository.data.IDataModelManager">
+      </binding>
+      <binding
+            impl="org.polarsys.reqcycle.repository.data.impl.ConfResourceSet"
+            interface="org.eclipse.emf.ecore.resource.ResourceSet"
+            name="confResourceSet"
+            priority="20">
+      </binding>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.types.types">
+      <type
+            checker="org.polarsys.reqcycle.repository.data.types.ReqcycleTypeChecker"
+            icon="icons/CurrentRequirement.gif"
+            id="org.polarsys.reqcycle.repository.data.type1"
+            label="Requirement">
+      </type>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.uri.reachableHandler">
+      <objectHandler
+            handler="org.polarsys.reqcycle.repository.data.reachables.ConfReachableHandler"
+            priority="10">
+      </objectHandler>
+      <reachableHandler
+            handler="org.polarsys.reqcycle.repository.data.reachables.ConfReachableHandler"
+            priority="10">
+      </reachableHandler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <wizard
+            class="org.polarsys.reqcycle.repository.data.ImportDataModel"
+            id="org.polarsys.reqcycle.repository.data.types.import"
+            name="Import Data Model">
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RequirementSourceData -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/RequirementSourceData"
+            class="RequirementSourceData.RequirementSourceDataPackage"
+            genModel="model/RequirementSourceData.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RequirementSourceData -->
+      <parser
+            type="requirementsourcedata"
+            class="RequirementSourceData.util.RequirementSourceDataResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated RequirementSourceData -->
+      <factory
+            uri="http://www.eclipse.org/ReqCycle/RequirementSourceData"
+            class="RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Scopes -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/Scopes"
+            class="Scopes.ScopesPackage"
+            genModel="model/Scopes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ScopeConf -->
+      <package
+            uri="http://www.eclipse.org/ReqCycle/ScopeConf"
+            class="ScopeConf.ScopeConfPackage"
+            genModel="model/ScopeConf.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated ScopeConf -->
+      <factory
+            uri="http://www.eclipse.org/ReqCycle/ScopeConf"
+            class="ScopeConf.provider.ScopeConfItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+      <factory
+            class="org.polarsys.reqcycle.repository.data.DataModelAdapterFactory"
+            uri="http://www.eclipse.org/emf/2002/Ecore"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IItemLabelProvider"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.polarsys.reqcycle.utils.configuration.impl.EMFConfResourceFactory"
+            type="reqcycle">
+      </parser>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.types.ui.typeEntry">
+      <type
+            class="org.polarsys.reqcycle.repository.data.types.IDataModel"
+            entry="org.polarsys.reqcycle.repository.data.DataModelEntryProvider">
+      </type>
+      <type
+            class="org.polarsys.reqcycle.repository.data.types.IRequirementType"
+            entry="org.polarsys.reqcycle.repository.data.RequirementTypeEntryProvider">
+      </type>
+      <type
+            class="ScopeConf.Scope"
+            entry="org.polarsys.reqcycle.repository.data.ScopeEntryProvider">
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.polarsys.reqcycle.repository.data.types.IDataModel"
+            class="org.polarsys.reqcycle.repository.data.util.DataTypesAdapterFactory">
+         <adapter
+               type="java.lang.String">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="ScopeConf.Scope"
+            class="org.polarsys.reqcycle.repository.data.util.DataTypesAdapterFactory">
+         <adapter
+               type="java.lang.String">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="org.polarsys.reqcycle.repository.data.types.IRequirementType"
+            class="org.polarsys.reqcycle.repository.data.util.DataTypesAdapterFactory">
+         <adapter
+               type="java.lang.String">
+         </adapter>
+      </factory>
+   </extension>
+
+</plugin>

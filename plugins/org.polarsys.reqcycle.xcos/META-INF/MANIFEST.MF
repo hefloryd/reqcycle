@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xcos
+Bundle-SymbolicName: org.polarsys.reqcycle.xcos;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.polarsys.reqcycle.xcos.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.polarsys.reqcycle.uri,
+ org.eclipse.core.resources;bundle-version="3.8.1",
+ org.polarsys.reqcycle.types;bundle-version="1.0.0",
+ org.polarsys.reqcycle.utils.inject
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.polarsys.reqcycle.xcos.model

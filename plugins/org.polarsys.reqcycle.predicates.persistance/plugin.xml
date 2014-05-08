@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated predicatesconf -->
+      <package
+            uri="http://www.eclipse.org/reqcycle/predicates/persistance/1.0"
+            class="org.polarsys.reqcycle.predicates.persistance.PredicatesConfPackage"
+            genModel="model/predicatesconf.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated predicatesconf -->
+      <parser
+            type="predicatesconf"
+            class="org.polarsys.reqcycle.predicates.persistance.util.PredicatesConfResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.reqcycle.predicates.persistance.util.PredicatesConfManager"
+            interface="org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager">
+      </binding>
+   </extension>
+</plugin>

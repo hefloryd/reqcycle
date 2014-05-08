@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.uri.reachableHandler">
+      <reachableHandler
+            handler="org.polarsys.reqcycle.xcos.handlers.XcosReachableHandler">
+      </reachableHandler>
+      <objectHandler
+            handler="org.polarsys.reqcycle.xcos.handlers.XcosObjectHandler">
+      </objectHandler>
+   </extension>
+
+</plugin>

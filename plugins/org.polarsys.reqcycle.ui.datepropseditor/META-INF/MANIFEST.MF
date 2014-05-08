@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Datepropseditor
+Bundle-SymbolicName: org.polarsys.reqcycle.ui.datepropseditor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.polarsys.reqcycle.ui.datepropseditor.DatePropsEditorPlugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.polarsys.reqcycle.ui.eattrpropseditor
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

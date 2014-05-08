@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.traceability.builder.traceabilityAnalyser">
+      <Analyser
+            description="analyse UML and SysML files to detect : satisfy, trace, copy, derive, verify, and allocate"
+            label="UML and SysML Analyser"
+            visitor="org.polarsys.reqcycle.emf.traceability.sysml.handler.SysMLTraceabilityVisitor">
+      </Analyser>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.types.types">
+      <type
+            checker="org.polarsys.reqcycle.emf.traceability.sysml.types.SysMLTypeChecker"
+            icon="icons/category_sysml.gif"
+            id="org.polarsys.reqcycle.emf.traceability.sysml"
+            label="SysML Element"
+            subTypeOf="org.polarsys.reqcycle.emf.type">
+      </type>
+      <type
+            checker="org.polarsys.reqcycle.emf.traceability.sysml.types.UMLTypeChecker"
+            icon="icons/category_uml.gif"
+            id="org.polarsys.reqcycle.emf.traceability.uml"
+            label="UML Element"
+            subTypeOf="org.polarsys.reqcycle.emf.type">
+      </type>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.types.ttypes">
+      <ttype
+            provider="org.polarsys.reqcycle.emf.traceability.sysml.types.traceability.SysMLTTypeProvider"
+            theClass="org.polarsys.reqcycle.emf.traceability.sysml.SysMLTType">
+      </ttype>
+   </extension>
+
+</plugin>

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: XCos Traceability
+Bundle-SymbolicName: org.polarsys.reqcycle.xcos.traceability;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.polarsys.reqcycle.xcos.traceability.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.8.100",
+ org.polarsys.reqcycle.uri;bundle-version="1.0.0",
+ org.polarsys.reqcycle.traceability.builder,
+ com.google.guava,
+ org.eclipse.emf.common,
+ org.polarsys.reqcycle.traceability.types
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.inject,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.resource,
+ org.polarsys.reqcycle.emf.types,
+ org.polarsys.reqcycle.xcos.model

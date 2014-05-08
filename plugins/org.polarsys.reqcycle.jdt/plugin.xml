@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.uri.reachableHandler">
+      <reachableHandler
+            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler">
+      </reachableHandler>
+      <objectHandler
+            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler"></objectHandler>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.types.types">
+      <type
+            checker="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler"
+            icon="icons/java.gif"
+            id="org.polarsys.reqcycle.jdt.type"
+            label="Java Element">
+      </type>
+      <type
+            checker="org.polarsys.reqcycle.jdt.types.MethodChecker"
+            icon="icons/jmeth_obj.gif"
+            id="org.polarsys.reqcycle.jdt.type.method"
+            label="Java Method"
+            subTypeOf="org.polarsys.reqcycle.jdt.type">
+      </type>
+   </extension>
+
+</plugin>

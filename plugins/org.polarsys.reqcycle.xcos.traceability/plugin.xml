@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.traceability.builder.traceabilityAnalyser">
+      <Analyser
+            label="Xcos Traceability analyzer"
+            visitor="org.polarsys.reqcycle.xcos.traceability.visitor.XcosTraceabilityVisitor">
+      </Analyser>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.types.ttypes">
+      <ttype
+            provider="org.polarsys.reqcycle.xcos.traceability.types.XcosTTypeProvider">
+      </ttype>
+   </extension>
+
+</plugin>
