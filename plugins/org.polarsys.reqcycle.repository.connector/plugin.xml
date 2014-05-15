@@ -12,7 +12,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MappingModel -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/MappingModel"
+            uri="http://www.polarsys.org/ReqCycle/MappingModel"
             class="MappingModel.MappingModelPackage"
             genModel="model/MappingModel.genmodel"/>
    </extension>
@@ -20,7 +20,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated RequirementSourceConf -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/RequirementSourceConf"
+            uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
             class="RequirementSourceConf.RequirementSourceConfPackage"
             genModel="model/RequirementSourceConf.genmodel"/>
    </extension>

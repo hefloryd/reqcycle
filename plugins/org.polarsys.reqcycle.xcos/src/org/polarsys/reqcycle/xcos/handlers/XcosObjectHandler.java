@@ -74,10 +74,11 @@ public class XcosObjectHandler implements IObjectHandler {
 				return true;
 			}
 		}
-		if (object instanceof Resource) {
-			return true;
+		// -RF- TODO to fix - bad test
+		/*if (object instanceof Resource) {
+			// -RF- to fix return true;
 			
-		}
+		}*/
 		return (object instanceof XcosElement);
 	}
 

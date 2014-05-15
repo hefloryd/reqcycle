@@ -75,7 +75,10 @@ public class CreateRelationCommand implements Command {
 		ITraceabilityStorage traceaStorage = provider.getStorage(traceaUri);
 		ITraceabilityStorage attributeStorage = provider.getStorage(attributeURI);
 		try {
-			Reachable container = manager.getHandlerFromObject(traceaFile).getFromObject(traceaFile).getReachable(traceaFile);
+			Reachable container = manager.
+					getHandlerFromObject(traceaFile).
+						getFromObject(traceaFile).
+							getReachable(traceaFile);
 			Object id = new Object[]{ container, getNextId() };
 			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable(id);
 			traceaStorage.startTransaction();

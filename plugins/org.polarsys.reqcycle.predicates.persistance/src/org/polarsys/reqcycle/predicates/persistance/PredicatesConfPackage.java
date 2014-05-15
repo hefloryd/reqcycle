@@ -50,7 +50,7 @@ public interface PredicatesConfPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/reqcycle/predicates/persistance/1.0";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/predicates/persistance/1.0";
 
 	/**
 	 * The package namespace name.

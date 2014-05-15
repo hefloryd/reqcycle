@@ -17,12 +17,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
+import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.profile.standard.Trace;
 import org.polarsys.reqcycle.emf.traceability.sysml.types.traceability.SysMLTTypeProvider;
 import org.polarsys.reqcycle.traceability.builder.ITraceabilityBuilder.IBuilderCallBack;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.uri.visitors.IVisitor;
-import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.profile.l2.Trace;
 
 public class SysMLTraceabilityVisitor implements IVisitor {
 

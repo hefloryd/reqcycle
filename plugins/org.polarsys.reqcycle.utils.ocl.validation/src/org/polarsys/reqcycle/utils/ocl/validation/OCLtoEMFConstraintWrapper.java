@@ -54,7 +54,7 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 			String message = String.format("Object %s does not comply with constraint %s", target.toString(), getDescriptor().getName()); //$NON-NLS-1$
 			OpaqueExpression specification = constraint.getSpecification();
 			if(specification instanceof ExpressionInOCL) {
-				OCLExpression messageExpression = ((ExpressionInOCL)specification).getMessageExpression();
+				OCLExpression messageExpression = ((ExpressionInOCL)specification).getBodyExpression();
 				ExpressionInOCL messageQuery = null;
 				if(messageExpression instanceof ExpressionInOCL) {
 					messageQuery = (ExpressionInOCL)messageExpression;

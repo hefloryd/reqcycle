@@ -51,7 +51,7 @@ public interface MappingModelPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/ReqCycle/MappingModel";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/MappingModel";
 
 	/**
 	 * The package namespace name.

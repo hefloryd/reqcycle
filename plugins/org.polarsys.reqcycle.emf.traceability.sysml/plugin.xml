@@ -29,8 +29,7 @@
    <extension
          point="org.polarsys.reqcycle.traceability.types.ttypes">
       <ttype
-            provider="org.polarsys.reqcycle.emf.traceability.sysml.types.traceability.SysMLTTypeProvider"
-            theClass="org.polarsys.reqcycle.emf.traceability.sysml.SysMLTType">
+            provider="org.polarsys.reqcycle.emf.traceability.sysml.types.traceability.SysMLTTypeProvider">
       </ttype>
    </extension>
 

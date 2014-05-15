@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated predicates -->
       <package
-            uri="http://www.eclipse.org/reqcycle/predicates/1.0"
+            uri="http://www.polarsys.org/ReqCycle/predicates/1.0"
             class="org.polarsys.reqcycle.predicates.core.PredicatesPackage"
             genModel="model/predicates.genmodel"/>
    </extension>

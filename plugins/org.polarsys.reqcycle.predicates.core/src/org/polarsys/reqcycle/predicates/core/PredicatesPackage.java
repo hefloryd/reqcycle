@@ -54,7 +54,7 @@ public interface PredicatesPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/reqcycle/predicates/1.0";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/predicates/1.0";
 
 	/**
 	 * The package namespace name.

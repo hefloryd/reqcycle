@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated predicates -->
       <factory
-            uri="http://www.eclipse.org/reqcycle/predicates/1.0"
+            uri="http://www.polarsys.org/ReqCycle/predicates/1.0"
             class="org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

@@ -48,7 +48,7 @@ public interface RequirementSourceDataPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/ReqCycle/RequirementSourceData";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/RequirementSourceData";
 
 	/**
 	 * The package namespace name.

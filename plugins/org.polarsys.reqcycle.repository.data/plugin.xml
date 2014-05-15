@@ -8,7 +8,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated DataModel -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/DataModel"
+            uri="http://www.polarsys.org/ReqCycle/DataModel"
             class="DataModel.DataModelPackage"
             genModel="model/RequirementSourceData.genmodel"/>
    </extension>
@@ -16,7 +16,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated DataModel -->
       <factory
-            uri="http://www.eclipse.org/ReqCycle/DataModel"
+            uri="http://www.polarsys.org/ReqCycle/DataModel"
             class="DataModel.provider.DataModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -29,7 +29,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated RequirementSourceConf -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/RequirementSourceConf"
+            uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
             class="RequirementSourceConf.RequirementSourceConfPackage"
             genModel="model/RequirementSourceConf.genmodel"/>
    </extension>
@@ -37,7 +37,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated RequirementSourceConf -->
       <factory
-            uri="http://www.eclipse.org/ReqCycle/RequirementSourceConf"
+            uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
             class="RequirementSourceConf.provider.RequirementSourceConfItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -50,7 +50,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MappingModel -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/MappingModel"
+            uri="http://www.polarsys.org/ReqCycle/MappingModel"
             class="MappingModel.MappingModelPackage"
             genModel="model/MappingModel.genmodel"/>
    </extension>
@@ -58,7 +58,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated MappingModel -->
       <factory
-            uri="http://www.eclipse.org/ReqCycle/MappingModel"
+            uri="http://www.polarsys.org/ReqCycle/MappingModel"
             class="MappingModel.provider.MappingModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -116,7 +116,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated RequirementSourceData -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/RequirementSourceData"
+            uri="http://www.polarsys.org/ReqCycle/RequirementSourceData"
             class="RequirementSourceData.RequirementSourceDataPackage"
             genModel="model/RequirementSourceData.genmodel"/>
    </extension>
@@ -131,7 +131,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated RequirementSourceData -->
       <factory
-            uri="http://www.eclipse.org/ReqCycle/RequirementSourceData"
+            uri="http://www.polarsys.org/ReqCycle/RequirementSourceData"
             class="RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -143,7 +143,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Scopes -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/Scopes"
+            uri="http://www.polarsys.org/ReqCycle/Scopes"
             class="Scopes.ScopesPackage"
             genModel="model/Scopes.genmodel"/>
    </extension>
@@ -151,7 +151,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated ScopeConf -->
       <package
-            uri="http://www.eclipse.org/ReqCycle/ScopeConf"
+            uri="http://www.polarsys.org/ReqCycle/ScopeConf"
             class="ScopeConf.ScopeConfPackage"
             genModel="model/ScopeConf.genmodel"/>
    </extension>
@@ -159,7 +159,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated ScopeConf -->
       <factory
-            uri="http://www.eclipse.org/ReqCycle/ScopeConf"
+            uri="http://www.polarsys.org/ReqCycle/ScopeConf"
             class="ScopeConf.provider.ScopeConfItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

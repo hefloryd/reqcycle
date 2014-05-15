@@ -51,7 +51,7 @@ public interface RequirementSourceConfPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/ReqCycle/RequirementSourceConf";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/RequirementSourceConf";
 
 	/**
 	 * The package namespace name.

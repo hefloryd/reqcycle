@@ -1,11 +1,12 @@
 /*******************************************************************************
- * * Copyright (c) 2013 AtoS
- * * All rights reserved. This program and the accompanying materials
- * * are made available under the terms of the Eclipse Public License v1.0
- * * which accompanies this distribution, and is available at
- * * http://www.eclipse.org/legal/epl-v10.html *
- * * Contributors:
- * * Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ * Copyright (c) 2013-2014 AtoS and others
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ * Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ * Raphael Faudou (Samares Engineering) - fixed imports for LUNA
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.util;
 
@@ -29,16 +30,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.polarsys.reqcycle.repository.data.IDataManager;
-import org.polarsys.reqcycle.traceability.model.Link;
-import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.team.svn.core.connector.ISVNConnector;
-import org.eclipse.team.svn.core.connector.ISVNConnector.Depth;
 import org.eclipse.team.svn.core.connector.ISVNProgressMonitor;
 import org.eclipse.team.svn.core.connector.SVNChangeStatus;
 import org.eclipse.team.svn.core.connector.SVNConnectorException;
+import org.eclipse.team.svn.core.connector.SVNDepth;
 import org.eclipse.team.svn.core.connector.SVNEntryReference;
 import org.eclipse.team.svn.core.connector.SVNEntryRevisionReference;
 import org.eclipse.team.svn.core.connector.SVNRevision;
@@ -46,6 +43,10 @@ import org.eclipse.team.svn.core.extension.CoreExtensionsManager;
 import org.eclipse.team.svn.core.extension.factory.ISVNConnectorFactory;
 import org.eclipse.team.svn.core.operation.SVNNullProgressMonitor;
 import org.eclipse.team.svn.core.utility.SVNUtility;
+import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.traceability.model.Link;
+import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import RequirementSourceConf.RequirementSource;
 import RequirementSourceData.AbstractElement;
@@ -53,46 +54,50 @@ import RequirementSourceData.RequirementsContainer;
 import RequirementSourceData.Section;
 
 /**
- * The Class SVNUtils
- * FIXME : Replace by two svn plugin, one for traceability and the other for requirements
+ * The Class SVNUtils FIXME : Replace by two svn plugin, one for traceability
+ * and the other for requirements
  */
 public class SVNUtils {
 
 	/** The svn connector factory. */
-	static ISVNConnectorFactory svnConnectorFactory = CoreExtensionsManager.instance().getSVNConnectorFactory();
+	static ISVNConnectorFactory svnConnectorFactory = CoreExtensionsManager
+			.instance().getSVNConnectorFactory();
 
 	/** The data manager. */
 	static IDataManager dataManager = ZigguratInject.make(IDataManager.class);
 
 	/** The storage provider. */
-	static IStorageProvider provider = ZigguratInject.make(IStorageProvider.class);
+	static IStorageProvider provider = ZigguratInject
+			.make(IStorageProvider.class);
 
 	/**
 	 * Commits
 	 * 
 	 * @param path
-	 *        the element to commit path
+	 *            the element to commit path
 	 * @param message
-	 *        the commit message
+	 *            the commit message
 	 * @param depth
-	 *        the commit depth
+	 *            the commit depth
 	 * @param options
-	 *        the commit options
-	 * @return long[] commit result
+	 *            the commit options
+	 * @return void
 	 * @throws SVNConnectorException
-	 *         the SVN connector exception
+	 *             the SVN connector exception
 	 */
-	public static long[] commit(String path, String message, int depth, long options) throws SVNConnectorException {
-		final ISVNConnector connector = svnConnectorFactory.newInstance();
-		long[] l = connector.commit(new String[]{ path }, message, null, depth, options, null, new SVNNullProgressMonitor());
-		return l;
+	public static void commit(String path, String message, int depth,
+			long options) throws SVNConnectorException {
+		final ISVNConnector connector = svnConnectorFactory.createConnector();
+		connector.commit(new String[] { path }, message, null, depth, options,
+				null, new SVNNullProgressMonitor());
+
 	}
 
 	/**
 	 * Gets the resource SVN info.
 	 * 
 	 * @param resource
-	 *        the resource
+	 *            the resource
 	 * @return the SVN info
 	 */
 	public static SVNChangeStatus getSVNInfo(IResource resource) {
@@ -103,22 +108,25 @@ public class SVNUtils {
 	 * Gets the input stream from svn file url.
 	 * 
 	 * @param SVNFileUrl
-	 *        the SVN file url
+	 *            the SVN file url
 	 * @param revision
-	 *        the svn revision
+	 *            the svn revision
 	 * @return the input stream from svn file url
 	 * @throws SVNConnectorException
 	 */
-	public static InputStream getInputStreamFromSVNFileUrl(String SVNFileUrl, SVNRevision revision) throws SVNConnectorException {
-		final SVNEntryRevisionReference reference = new SVNEntryRevisionReference(new SVNEntryReference(SVNFileUrl), revision);
+	public static InputStream getInputStreamFromSVNFileUrl(String SVNFileUrl,
+			SVNRevision revision) throws SVNConnectorException {
+		final SVNEntryRevisionReference reference = new SVNEntryRevisionReference(
+				new SVNEntryReference(SVNFileUrl), revision);
 
-		final ISVNConnector connector = svnConnectorFactory.newInstance();
+		final ISVNConnector connector = svnConnectorFactory.createConnector();
 
 		boolean referenceAvailable = true;
 
-		SVNUtility.info(connector, reference, ISVNConnector.Depth.EMPTY, new SVNNullProgressMonitor());
+		SVNUtility.info(connector, reference, SVNDepth.EMPTY,
+				new SVNNullProgressMonitor());
 
-		if(referenceAvailable) {
+		if (referenceAvailable) {
 			PipedInputStream in = new PipedInputStream(10240);
 			try {
 				final PipedOutputStream out = new PipedOutputStream(in);
@@ -127,7 +135,8 @@ public class SVNUtils {
 					@Override
 					public void run() {
 						try {
-							connector.streamFileContent(reference, 10240, out, new SVNNullProgressMonitor());
+							connector.streamFileContent(reference, 10240, out,
+									new SVNNullProgressMonitor());
 						} catch (SVNConnectorException e) {
 							e.printStackTrace();
 						}
@@ -150,16 +159,18 @@ public class SVNUtils {
 	 * Synchronize svn requirement source.
 	 * 
 	 * @param source
-	 *        the requirement source to synchronize
+	 *            the requirement source to synchronize
+	 * @return
 	 * @return the long[]
 	 * @throws SVNConnectorException
-	 *         the sVN connector exception
+	 *             the sVN connector exception
 	 * @throws IOException
-	 *         Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static long[] synchronizeSVNSource(RequirementSource source) throws SVNConnectorException, IOException {
+	public static void synchronizeSVNSource(RequirementSource source)
+			throws SVNConnectorException, IOException {
 		Resource mainResource = source.getContents().eResource();
-		if(mainResource == null) {
+		if (mainResource == null) {
 			// TODO : Exception
 			throw new IOException("Resource not found");
 		}
@@ -167,59 +178,77 @@ public class SVNUtils {
 
 		IFile file = WorkspaceSynchronizer.getFile(mainResource);
 		SVNChangeStatus svnInfo = SVNUtils.getSVNInfo(file);
-		if(svnInfo == null) {
-			throw new SVNConnectorException(file.getLocation() + " must be shared.");
+		if (svnInfo == null) {
+			throw new SVNConnectorException(file.getLocation()
+					+ " must be shared.");
 		}
 
-		Resource wResource = getSVNRevisionResource(svnInfo, SVNRevision.WORKING, rs);
-		Resource hResource = getSVNRevisionResource(svnInfo, SVNRevision.HEAD, rs);
+		Resource wResource = getSVNRevisionResource(svnInfo,
+				SVNRevision.WORKING, rs);
+		Resource hResource = getSVNRevisionResource(svnInfo, SVNRevision.HEAD,
+				rs);
 
 		RequirementsContainer wRC = getFirstReqContainer(wResource);
 		RequirementsContainer hRC = getFirstReqContainer(hResource);
 
 		Resource resource = hRC.eResource();
-		//get new element 
-		Collection<AbstractElement> difference = getNewElement(resource, wRC.getRequirements());
+		// get new element
+		Collection<AbstractElement> difference = getNewElement(resource,
+				wRC.getRequirements());
 
 		Resource wresource = wRC.eResource();
-		Collection<AbstractElement> differenceFromSVN = getNewElement(wresource, hRC.getRequirements());
+		Collection<AbstractElement> differenceFromSVN = getNewElement(
+				wresource, hRC.getRequirements());
 
-		revert(file.getLocationURI().getPath(), Depth.infinityOrFiles(false), null, new SVNNullProgressMonitor());
-		update(new String[]{ file.getLocationURI().getPath() }, SVNRevision.HEAD, Depth.infinityOrFiles(false), ISVNConnector.Options.NONE, new SVNNullProgressMonitor());
+		revert(file.getLocationURI().getPath(),
+				SVNDepth.infinityOrFiles(false), null,
+				new SVNNullProgressMonitor());
+		update(new String[] { file.getLocationURI().getPath() },
+				SVNRevision.HEAD, SVNDepth.infinityOrFiles(false),
+				ISVNConnector.Options.NONE, new SVNNullProgressMonitor());
 
 		mainResource.unload();
 
 		mainResource.load(null);
 
-		if(difference != null && !difference.isEmpty()) {
+		if (difference != null && !difference.isEmpty()) {
 			moveElementToSource(mainResource, difference);
 			dataManager.save();
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Synchronize Requirement Source", differenceFromSVN.size() + difference.size() + " elements have been synchronized\n" + differenceFromSVN.size() + " imported\n" + difference.size() + " exported");
+			MessageDialog.openInformation(
+					Display.getDefault().getActiveShell(),
+					"Synchronize Requirement Source", differenceFromSVN.size()
+							+ difference.size()
+							+ " elements have been synchronized\n"
+							+ differenceFromSVN.size() + " imported\n"
+							+ difference.size() + " exported");
 		}
 
-		return commit(file.getLocationURI().getPath(), "ReqCycle Commit", Depth.infinityOrFiles(false), ISVNConnector.Options.FORCE);
+		commit(file.getLocationURI().getPath(), "ReqCycle Commit",
+				SVNDepth.infinityOrFiles(false), ISVNConnector.Options.FORCE);
 	}
 
 	/**
 	 * Moves elements to the given resource if it doesn't already contain them.
 	 * 
 	 * @param mainResource
-	 *        the main resource where elements are moved
+	 *            the main resource where elements are moved
 	 * @param elements
-	 *        the elements
+	 *            the elements
 	 */
-	protected static void moveElementToSource(Resource mainResource, Collection<AbstractElement> elements) {
-		for(AbstractElement abstractElement : elements) {
+	protected static void moveElementToSource(Resource mainResource,
+			Collection<AbstractElement> elements) {
+		for (AbstractElement abstractElement : elements) {
 			EObject container = abstractElement.eContainer();
 			Resource resource = abstractElement.eResource();
-			if(container != null && resource != null) {
+			if (container != null && resource != null) {
 				String fragment = resource.getURIFragment(container);
-				if(fragment != null && !fragment.isEmpty()) {
+				if (fragment != null && !fragment.isEmpty()) {
 					EObject eobj = mainResource.getEObject(fragment);
-					if(eobj instanceof Section) {
-						((Section)eobj).getChildren().add(abstractElement);
-					} else if(eobj instanceof RequirementsContainer) {
-						((RequirementsContainer)eobj).getRequirements().add(abstractElement);
+					if (eobj instanceof Section) {
+						((Section) eobj).getChildren().add(abstractElement);
+					} else if (eobj instanceof RequirementsContainer) {
+						((RequirementsContainer) eobj).getRequirements().add(
+								abstractElement);
 					}
 				}
 			}
@@ -230,20 +259,22 @@ public class SVNUtils {
 	 * Gets the element not contained in the resource.
 	 * 
 	 * @param resource
-	 *        the resource
+	 *            the resource
 	 * @param elements
-	 *        the elements
+	 *            the elements
 	 * @return elements not found in the resource
 	 */
-	protected static Collection<AbstractElement> getNewElement(Resource resource, Collection<AbstractElement> elements) {
+	protected static Collection<AbstractElement> getNewElement(
+			Resource resource, Collection<AbstractElement> elements) {
 		Collection<AbstractElement> result = new ArrayList<AbstractElement>();
-		for(AbstractElement abstractElement : elements) {
+		for (AbstractElement abstractElement : elements) {
 			Resource r = abstractElement.eResource();
 			String fragment = r.getURIFragment(abstractElement);
-			if(resource.getEObject(fragment) == null) {
+			if (resource.getEObject(fragment) == null) {
 				result.add(abstractElement);
-			} else if(abstractElement instanceof Section) {
-				result.addAll(getNewElement(resource, ((Section)abstractElement).getChildren()));
+			} else if (abstractElement instanceof Section) {
+				result.addAll(getNewElement(resource,
+						((Section) abstractElement).getChildren()));
 			}
 		}
 		return result;
@@ -253,15 +284,16 @@ public class SVNUtils {
 	 * Gets the first requirements container.
 	 * 
 	 * @param resource
-	 *        the resource
+	 *            the resource
 	 * @return the first requirement container
 	 */
-	protected static RequirementsContainer getFirstReqContainer(Resource resource) {
+	protected static RequirementsContainer getFirstReqContainer(
+			Resource resource) {
 		EList<EObject> contents = resource.getContents();
-		if(contents != null && contents.size() > 0) {
-			for(EObject eObject : contents) {
-				if(eObject instanceof RequirementsContainer) {
-					return (RequirementsContainer)eObject;
+		if (contents != null && contents.size() > 0) {
+			for (EObject eObject : contents) {
+				if (eObject instanceof RequirementsContainer) {
+					return (RequirementsContainer) eObject;
 				}
 			}
 		}
@@ -272,22 +304,26 @@ public class SVNUtils {
 	 * Gets the SVN revision resource.
 	 * 
 	 * @param svnChangeStatus
-	 *        the svn change status
+	 *            the svn change status
 	 * @param svnRevision
-	 *        the svn revision to get
+	 *            the svn revision to get
 	 * @param rs
-	 *        the resource set containing the newly created resource
+	 *            the resource set containing the newly created resource
 	 * @return the SVN revision resource
 	 * @throws IOException
-	 *         Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred.
 	 * @throws SVNConnectorException
 	 */
-	public static Resource getSVNRevisionResource(SVNChangeStatus svnChangeStatus, SVNRevision svnRevision, ResourceSet rs) throws IOException, SVNConnectorException {
-		InputStream inputStreamWorking = SVNUtils.getInputStreamFromSVNFileUrl(svnChangeStatus.path, svnRevision);
-		if(inputStreamWorking == null) {
+	public static Resource getSVNRevisionResource(
+			SVNChangeStatus svnChangeStatus, SVNRevision svnRevision,
+			ResourceSet rs) throws IOException, SVNConnectorException {
+		InputStream inputStreamWorking = SVNUtils.getInputStreamFromSVNFileUrl(
+				svnChangeStatus.path, svnRevision);
+		if (inputStreamWorking == null) {
 			return null;
 		}
-		Resource resource = rs.createResource(URI.createURI(svnChangeStatus.url + "." + svnRevision.toString()));
+		Resource resource = rs.createResource(URI.createURI(svnChangeStatus.url
+				+ "." + svnRevision.toString()));
 		resource.load(inputStreamWorking, Collections.emptyMap());
 		return resource;
 	}
@@ -296,18 +332,20 @@ public class SVNUtils {
 	 * Synchronize svn traceability.
 	 * 
 	 * @param source
-	 *        the source
+	 *            the source
+	 * @return
 	 * @return the long[]
 	 * @throws IOException
-	 *         Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred.
 	 * @throws SVNConnectorException
-	 *         the sVN connector exception
+	 *             the sVN connector exception
 	 */
-	public static long[] synchronizeSVNTraceability(RequirementSource source) throws IOException, SVNConnectorException {
+	public static void synchronizeSVNTraceability(RequirementSource source)
+			throws IOException, SVNConnectorException {
 
 		Resource resource = source.getContents().eResource();
-		if(resource == null) {
-			//TODO Exception
+		if (resource == null) {
+			// TODO Exception
 			throw new IOException("Resource not found.");
 		}
 
@@ -319,75 +357,92 @@ public class SVNUtils {
 
 		IFile rdfFile = t.getFile();
 
-		if(rdfFile == null) {
-			throw new IOException("Traceability file not found. The traceability file must be at the same project as the Requirement Source file.");
+		if (rdfFile == null) {
+			throw new IOException(
+					"Traceability file not found. The traceability file must be at the same project as the Requirement Source file.");
 		}
 
 		Iterable<Link> links = t.getTraceabilityLinks(project);
 		SVNChangeStatus info = getSVNInfo(rdfFile);
 
-		if(info == null) {
-			//TODO : Exception
-			//Not shared
-			throw new SVNConnectorException(rdfFile.getLocation() + " must be shared.");
+		if (info == null) {
+			// TODO : Exception
+			// Not shared
+			throw new SVNConnectorException(rdfFile.getLocation()
+					+ " must be shared.");
 		}
 
-		final InputStream inputStreamHead = SVNUtils.getInputStreamFromSVNFileUrl(info.path, SVNRevision.HEAD);
+		final InputStream inputStreamHead = SVNUtils
+				.getInputStreamFromSVNFileUrl(info.path, SVNRevision.HEAD);
 		Iterable<Link> svnLinks = t.getTraceabilityLinks(inputStreamHead);
 
-		//Links from "links" variable unfound in "svnLinks"
+		// Links from "links" variable unfound in "svnLinks"
 		Collection<Link> newLinks = getNewLinks(svnLinks, links);
 		Collection<Link> svnNewLinks = getNewLinks(links, svnLinks);
 
-		revert(rdfFile.getLocationURI().getPath(), Depth.infinityOrFiles(false), null, new SVNNullProgressMonitor());
-		update(new String[]{ rdfFile.getLocationURI().getPath() }, SVNRevision.HEAD, Depth.infinityOrFiles(false), ISVNConnector.Options.NONE, new SVNNullProgressMonitor());
+		revert(rdfFile.getLocationURI().getPath(),
+				SVNDepth.infinityOrFiles(false), null,
+				new SVNNullProgressMonitor());
+		update(new String[] { rdfFile.getLocationURI().getPath() },
+				SVNRevision.HEAD, SVNDepth.infinityOrFiles(false),
+				ISVNConnector.Options.NONE, new SVNNullProgressMonitor());
 
-
-		if(newLinks != null && !newLinks.isEmpty()) {
+		if (newLinks != null && !newLinks.isEmpty()) {
 			t.addNewLinks(rdfFile, newLinks);
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Synchronize Traceability", svnNewLinks.size() + newLinks.size() + " links have been synchronized\n" + svnNewLinks.size() + " imported\n" + newLinks.size() + " exported");
+			MessageDialog.openInformation(
+					Display.getDefault().getActiveShell(),
+					"Synchronize Traceability",
+					svnNewLinks.size() + newLinks.size()
+							+ " links have been synchronized\n"
+							+ svnNewLinks.size() + " imported\n"
+							+ newLinks.size() + " exported");
 		}
-		return commit(rdfFile.getLocationURI().getPath(), "Traceability Commit", Depth.infinityOrFiles(false), ISVNConnector.Options.NONE);
+		commit(rdfFile.getLocationURI().getPath(), "Traceability Commit",
+				SVNDepth.infinityOrFiles(false), ISVNConnector.Options.NONE);
 	}
 
-	public static void revert(String path, int depth, String[] changelistNames, ISVNProgressMonitor monitor) throws SVNConnectorException {
-		ISVNConnector svnConnector = svnConnectorFactory.newInstance();
+	public static void revert(String path, int depth, String[] changelistNames,
+			ISVNProgressMonitor monitor) throws SVNConnectorException {
+		ISVNConnector svnConnector = svnConnectorFactory.createConnector();
 		svnConnector.revert(path, depth, changelistNames, monitor);
 	}
 
-	public static long[] update(String[] path, SVNRevision revision, int depth, long options, ISVNProgressMonitor monitor) throws SVNConnectorException {
-		ISVNConnector svnConnector = svnConnectorFactory.newInstance();
-		long[] result = svnConnector.update(path, revision, depth, options, monitor);
+	public static long[] update(String[] path, SVNRevision revision, int depth,
+			long options, ISVNProgressMonitor monitor)
+			throws SVNConnectorException {
+		ISVNConnector svnConnector = svnConnectorFactory.createConnector();
+		long[] result = svnConnector.update(path, revision, depth, options,
+				monitor);
 		return result;
 	}
-
 
 	/**
 	 * Gets the new links.
 	 * 
 	 * @param links
-	 *        the links
+	 *            the links
 	 * @param svnLinks
-	 *        the svn links
+	 *            the svn links
 	 * @return the new links
 	 */
-	private static Collection<Link> getNewLinks(Iterable<Link> links, Iterable<Link> svnLinks) {
+	private static Collection<Link> getNewLinks(Iterable<Link> links,
+			Iterable<Link> svnLinks) {
 
 		Map<String, Link> idToLinks = new HashMap<String, Link>();
 		Collection<Link> newLinks = new ArrayList<Link>();
 
-		for(Link link : links) {
+		for (Link link : links) {
 			String schemeSpecificPart = link.getId().getFragment();
-			if(!idToLinks.containsKey(schemeSpecificPart)) {
+			if (!idToLinks.containsKey(schemeSpecificPart)) {
 				idToLinks.put(schemeSpecificPart, link);
 			} else {
-				//FIXME : Exception
+				// FIXME : Exception
 			}
 		}
 
-		for(Link link : svnLinks) {
+		for (Link link : svnLinks) {
 			String schemeSpecificPart = link.getId().getFragment();
-			if(!idToLinks.containsKey(schemeSpecificPart)) {
+			if (!idToLinks.containsKey(schemeSpecificPart)) {
 				newLinks.add(link);
 			}
 		}

@@ -29,6 +29,7 @@ import com.google.common.base.Predicates;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -36,9 +37,19 @@ public class ExtenderManager {
 
 	private static String EXT_EXTENDER_NAME = "reachableExtender";
 	private static List<IReachableExtender> allRegistered = getAllRegistered();
-	Cache<Pair, Iterable<IReachableExtender>> cache = CacheBuilder.newBuilder()
+	//private PairCacheLoader cacheLoader = new PairCacheLoader();
+	/*LoadingCache<Pair, String> c1 = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.MINUTES)
+			.build(	new CacheLoader<Pair, String>() {
+				@Override
+				public String load(Pair pair) {
+					return "coucou";
+				}
+			});*/
+
+	LoadingCache<Pair, Iterable<IReachableExtender>> cache = CacheBuilder.newBuilder()
+	//Cache  cache = CacheBuilder.newBuilder()
 			.expireAfterAccess(10, TimeUnit.MINUTES)
-			.build(new CacheLoader<Pair, Iterable<IReachableExtender>>() {
+			.build(	new CacheLoader<Pair, Iterable<IReachableExtender>>() {
 
 				@Override
 				public Iterable<IReachableExtender> load(final Pair pair)
@@ -53,6 +64,7 @@ public class ExtenderManager {
 
 				}
 			});
+	
 
 	/**
 	 * Returns a list of extenders, can be empty not null
@@ -67,9 +79,12 @@ public class ExtenderManager {
 		pair.uri = uri;
 		pair.originalObject = originalObject;
 		
-		// -RFU-to fix
+		// TODO -RF-to fix cache.get
 		try {
-			return cache.get(pair);
+			
+			//return c1.get(pair);
+			return cache.get(pair); 
+			
 		 } catch (ExecutionException e) {
 			return Lists.newArrayList();
 		}
@@ -95,6 +110,24 @@ public class ExtenderManager {
 			return Objects.hashCode(this.originalObject, this.uri);
 		}
 
+	}
+	
+	private class PairCacheLoader extends CacheLoader<Pair, Iterable<IReachableExtender>> {
+
+
+		@Override
+		public Iterable<IReachableExtender> load(final Pair pair) throws Exception {
+			// TODO Auto-generated method stub
+			return Iterables.filter(allRegistered,
+					new Predicate<IReachableExtender>() {
+						public boolean apply(IReachableExtender ext) {
+							return ext.handles(pair.uri,
+									pair.originalObject);
+						}
+					});
+
+		
+		}
 	}
 
 	private static List<IReachableExtender> getAllRegistered() {

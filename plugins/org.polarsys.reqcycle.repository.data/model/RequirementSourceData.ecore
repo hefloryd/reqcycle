@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RequirementSourceData" nsURI="http://www.eclipse.org/ReqCycle/RequirementSourceData"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RequirementSourceData" nsURI="http://www.polarsys.org/ReqCycle/RequirementSourceData"
     nsPrefix="RequirementSourceData">
   <eClassifiers xsi:type="ecore:EClass" name="AbstractElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

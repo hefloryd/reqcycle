@@ -19,5 +19,4 @@ Export-Package: org.polarsys.reqcycle.uri,
  org.polarsys.reqcycle.uri.utils,
  org.polarsys.reqcycle.uri.visitors
 Import-Package: com.google.common.cache;version="10.0.1",
- javax.annotation;version="1.0.0",
  javax.inject;version="1.0.0"

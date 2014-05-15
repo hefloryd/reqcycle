@@ -1,12 +1,13 @@
 /*******************************************************************************
- * * Copyright (c) 2013,2014 AtoS and others
- * * All rights reserved. This program and the accompanying materials
- * * are made available under the terms of the Eclipse Public License v1.0
- * * which accompanies this distribution, and is available at
- * * http://www.eclipse.org/legal/epl-v10.html *
- * * Contributors:
- * * Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
- * * Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage more types 
+ * Copyright (c) 2013,2014 AtoS and others
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ * Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
+ * Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage more types
+ * and adapted imports for LUNA compliance
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.utils;
 
@@ -29,14 +30,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
@@ -90,7 +91,7 @@ public class OCLUtilities {
 		return xtextResource;
 	}
 
-	public static Collection<DefOperationCS> getOperations(BaseResource resource) {
+	public static Collection<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS> getOperations(BaseResource resource) {
 		Collection<DefOperationCS> result = Lists.newArrayList();
 		EList<EObject> contents = resource.getContents();
 		if(contents.size() == 1) {

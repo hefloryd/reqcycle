@@ -51,7 +51,7 @@ public interface ScopeConfPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/ReqCycle/ScopeConf";
+	String eNS_URI = "http://www.polarsys.org/ReqCycle/ScopeConf";
 
 	/**
 	 * The package namespace name.
