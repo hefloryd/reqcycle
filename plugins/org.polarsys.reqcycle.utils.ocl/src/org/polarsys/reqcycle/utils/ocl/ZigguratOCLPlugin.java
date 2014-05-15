@@ -1,11 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2013 AtoS
+ *  Copyright (c) 2013, 2014 AtoS and others
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
+ *    Raphael Faudou (Samares Engineering) - adapted code for Luna compliance
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.utils.ocl;
@@ -81,8 +82,13 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	private static void compileOperation(OCLEvaluator evaluator, DefOperationCS operationCS) throws Exception {
 		org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS classifierContextDecl = operationCS.getClassifierContextDecl();
 		Element pivot = classifierContextDecl.getPivot();
+		
 		String classifierString = pivot.toString();
+		
 		String[] split = classifierString.split("::");
+		// -RF- transformed to lower case first part as "toString" returns prefix in upper case in Luna.
+		split[0] = split[0].toLowerCase();
+		
 		EClassifier classifier = evaluator.lookupEClassifier(Arrays.asList(split));
 		String[] defNameExpression = operationCS.toString().split("def:", 0);
 		String defExpression = defNameExpression[1];
