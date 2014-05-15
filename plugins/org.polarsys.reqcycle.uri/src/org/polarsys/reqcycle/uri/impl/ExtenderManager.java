@@ -1,11 +1,12 @@
 /*******************************************************************************
- * * Copyright (c) 2013 AtoS
- * * All rights reserved. This program and the accompanying materials
- * * are made available under the terms of the Eclipse Public License v1.0
- * * which accompanies this distribution, and is available at
- * * http://www.eclipse.org/legal/epl-v10.html *
- * * Contributors:
- * * Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
+ * Copyright (c) 2013-2014 AtoS and others
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ * Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
+ * Raphael Faudou (Samares Engineering) - updated cache type from Cache to LoadingCache
  *******************************************************************************/
 package org.polarsys.reqcycle.uri.impl;
 
@@ -26,7 +27,6 @@ import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -35,19 +35,11 @@ import com.google.common.collect.Lists;
 
 public class ExtenderManager {
 
+
 	private static String EXT_EXTENDER_NAME = "reachableExtender";
 	private static List<IReachableExtender> allRegistered = getAllRegistered();
-	//private PairCacheLoader cacheLoader = new PairCacheLoader();
-	/*LoadingCache<Pair, String> c1 = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.MINUTES)
-			.build(	new CacheLoader<Pair, String>() {
-				@Override
-				public String load(Pair pair) {
-					return "coucou";
-				}
-			});*/
 
 	LoadingCache<Pair, Iterable<IReachableExtender>> cache = CacheBuilder.newBuilder()
-	//Cache  cache = CacheBuilder.newBuilder()
 			.expireAfterAccess(10, TimeUnit.MINUTES)
 			.build(	new CacheLoader<Pair, Iterable<IReachableExtender>>() {
 
@@ -79,10 +71,8 @@ public class ExtenderManager {
 		pair.uri = uri;
 		pair.originalObject = originalObject;
 		
-		// TODO -RF-to fix cache.get
 		try {
 			
-			//return c1.get(pair);
 			return cache.get(pair); 
 			
 		 } catch (ExecutionException e) {
@@ -112,23 +102,6 @@ public class ExtenderManager {
 
 	}
 	
-	private class PairCacheLoader extends CacheLoader<Pair, Iterable<IReachableExtender>> {
-
-
-		@Override
-		public Iterable<IReachableExtender> load(final Pair pair) throws Exception {
-			// TODO Auto-generated method stub
-			return Iterables.filter(allRegistered,
-					new Predicate<IReachableExtender>() {
-						public boolean apply(IReachableExtender ext) {
-							return ext.handles(pair.uri,
-									pair.originalObject);
-						}
-					});
-
-		
-		}
-	}
 
 	private static List<IReachableExtender> getAllRegistered() {
 		return Lists.newArrayList(Iterables.filter(Iterables.transform(Arrays

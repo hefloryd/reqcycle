@@ -1,21 +1,18 @@
 /*******************************************************************************
- * * Copyright (c) 2013 AtoS
- * * All rights reserved. This program and the accompanying materials
- * * are made available under the terms of the Eclipse Public License v1.0
- * * which accompanies this distribution, and is available at
- * * http://www.eclipse.org/legal/epl-v10.html *
- * * Contributors:
- * * Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
+ *  Copyright (c) 2013 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
  *******************************************************************************/
 package org.polarsys.reqcycle.dnd;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -59,8 +56,7 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 	@Override
 	public boolean run(Object source, Object target) {
 		Reachable targetReachable = null;
-		List<Reachable> sourceReachables = new ArrayList<Reachable>();
-
+	
 		if(source instanceof byte[] && isEObject(target)) {
 			EObject targetEObj = getEObject(target);
 			IFile file = WorkspaceSynchronizer.getFile(targetEObj.eResource());
