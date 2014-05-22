@@ -1,11 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2013 AtoS
+ *  Copyright (c) 2013, 2014 AtoS and others
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
+ *    Raphael Faudou (Samares Engineering) - limited OCL compilation to startup and refresh only
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.traceability.visitor;
@@ -40,6 +41,10 @@ import org.eclipse.ui.statushandlers.StatusManager;
 public class OCLTraceabilityVisitor implements IVisitor {
 
 	private OCLEvaluator evaluator;
+	
+	// -RF- only one initialization at startup (static)
+	//private static IStatus initializationStatus = null;
+	
 
 	@Override
 	public void start(IAdaptable adaptable) {
@@ -53,6 +58,9 @@ public class OCLTraceabilityVisitor implements IVisitor {
 			URI uri = resource.getURI();
 			if(uri != null && uri.fileExtension() != null && uri.fileExtension().equals("uml")) {
 				IStatus initializationStatus = initializeOCLEvaluator(uri);
+				/*if (initializationStatus == null) 
+					initializationStatus = initializeOCLEvaluator(uri);*/
+				
 				if(!initializationStatus.isOK()) {
 					StatusManager.getManager().handle(initializationStatus, StatusManager.LOG);
 					return false;
@@ -72,17 +80,28 @@ public class OCLTraceabilityVisitor implements IVisitor {
 		while(allContents.hasNext()) {
 			EObject eObject = allContents.next();	
 			EOperation operation = evaluator.getCompiledOperation("getLinkTypes", eObject); //$NON-NLS-1$
-			if(operation != null) {
-				Object result = evaluator.evaluateOperation(operation, eObject, new Object[0]);
-				if(result instanceof Collection<?>) {
-					for(Object o : (Collection<?>)result) {
-						if(o instanceof String) {
-							computeTraceability((String)o, eObject, callback);
-						}
+			evaluateOperationOnEObject(callback, eObject, operation);
+			
+			//FIXME -RF- allow management of several linkTypes operations. prototype. Can accept up to 20 OCL definitions of link types 
+			for(int i=1;i<=20;i++) {
+			    operation = evaluator.getCompiledOperation("getLinkTypes"+i, eObject); //$NON-NLS-1$
+				evaluateOperationOnEObject(callback, eObject, operation);
+			}
+		}
+	}
+
+	private void evaluateOperationOnEObject(IBuilderCallBack callback,
+			EObject eObject, EOperation operation) {
+		if(operation != null) {
+			Object result = evaluator.evaluateOperation(operation, eObject, new Object[0]);
+			if(result instanceof Collection<?>) {
+				for(Object o : (Collection<?>)result) {
+					if(o instanceof String) {
+						computeTraceability((String)o, eObject, callback);
 					}
-				} else if(result instanceof String) {
-					computeTraceability((String)result, eObject, callback);
 				}
+			} else if(result instanceof String) {
+				computeTraceability((String)result, eObject, callback);
 			}
 		}
 	}
