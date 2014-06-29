@@ -9,4 +9,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.utils.collect,
- org.polarsys.reqcycle.utils.collect.exceptions
+ org.polarsys.reqcycle.utils.collect.collectors,
+ org.polarsys.reqcycle.utils.collect.exceptions,
+ org.polarsys.reqcycle.utils.collect.yieldadapters
