@@ -80,6 +80,12 @@ public class EMFReachableObject implements ReachableObject {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
+		if (EObject.class.equals(adapter)) {
+			if (t.getFragment() != null && t.getFragment().length() > 0) {
+				Resource r = (Resource) getAdapter(Resource.class);
+				return r.getEObject(t.getFragment());
+			}
+		}
 		if (IMarker.class.equals(adapter)) {
 			final IFile f = (IFile) getAdapter(IFile.class);
 			if (f != null) {
