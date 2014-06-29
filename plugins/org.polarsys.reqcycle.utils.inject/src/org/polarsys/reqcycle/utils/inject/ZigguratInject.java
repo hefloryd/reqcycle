@@ -22,52 +22,40 @@ import org.eclipse.e4.core.di.InjectorFactory;
 import org.eclipse.e4.core.internal.contexts.ContextObjectSupplier;
 import org.eclipse.e4.core.services.contributions.IContributionFactory;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 @SuppressWarnings("restriction")
-public class ZigguratInject extends AbstractUIPlugin {
+public class ZigguratInject implements BundleActivator {
+
+	private static BundleContext context;
 
 	public static final String PLUGIN_ID = "org.polarsys.reqcycle.utils.inject"; //$NON-NLS-1$
-
-	// The shared instance
-	private static ZigguratInject plugin;
+	
+	static BundleContext getContext() {
+		return context;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
+	public void start(BundleContext bundleContext) throws Exception {
+		ZigguratInject.context = bundleContext;
 		BindingManager.registerBindings();
-		plugin = this;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
-	}
-
-	/**
-	 * Returns the shared instance
-	 * 
-	 * @return the shared instance
-	 */
-	public static ZigguratInject getDefault() {
-		return plugin;
+	public void stop(BundleContext bundleContext) throws Exception {
+		ZigguratInject.context = null;
 	}
 
 	/**
