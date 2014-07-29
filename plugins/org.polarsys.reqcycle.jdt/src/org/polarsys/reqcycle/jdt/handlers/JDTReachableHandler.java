@@ -17,6 +17,7 @@ import org.polarsys.reqcycle.jdt.utils.JDTUtils;
 import org.polarsys.reqcycle.types.ITypeChecker;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -69,6 +70,11 @@ public class JDTReachableHandler implements IReachableHandler, IObjectHandler,
 	@Override
 	public boolean apply(Reachable reachable) {
 		return handlesReachable(reachable);
+	}
+
+	@Override
+	public ProxyResolver getProxyResolver() {
+		return null; // No proxy resolver available
 	}
 
 }

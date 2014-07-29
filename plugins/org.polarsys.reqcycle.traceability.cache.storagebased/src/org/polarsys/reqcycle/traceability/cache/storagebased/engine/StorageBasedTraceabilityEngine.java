@@ -280,6 +280,7 @@ public class StorageBasedTraceabilityEngine extends
 	@Override
 	public void startBuild(Reachable reachable) {
 		storage.startTransaction();
+		storage.clearInContainer(reachable);
 		super.startBuild(reachable);
 	}
 

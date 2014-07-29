@@ -21,6 +21,7 @@ import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.exceptions.VisitableException;
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.uri.visitors.IVisitable;
@@ -46,6 +47,12 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 			if (h != null) {
 				ReachableObject object = h.getFromReachable(t);
 				if (object != null) {
+					// A proxy resolver will be used if available
+					final ProxyResolver proxyResolver = h.getProxyResolver();
+					if(proxyResolver != null) {
+						callBack = new ProxyResolutionBuilderCallbackWrapper(callBack, proxyResolver);
+					}
+					
 					Reachable reachable = object.getReachable(null);
 					if (forceBuild || callBack.needsBuild(reachable)) {
 						if (Activator.getDefault().isDebugging()) {
@@ -61,6 +68,8 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 							ZigguratInject.inject(visitor);
 							visitable.accept(visitor);
 							visitable.dispose();
+							// Proxy resolver MUST be disposed
+							proxyResolver.dispose();
 							callBack.endBuild(reachable);
 							listener.notifyChanged(reachable);
 							if (Activator.getDefault().isDebugging()) {

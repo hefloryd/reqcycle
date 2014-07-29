@@ -13,6 +13,7 @@ import java.net.URI;
 
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 
@@ -39,6 +40,11 @@ public class StandardTypeHandler implements IObjectHandler, IReachableHandler {
 	@Override
 	public boolean handlesReachable(Reachable t) {
 		return StandardUtils.SCHEME.equals(t.getScheme());
+	}
+
+	@Override
+	public ProxyResolver getProxyResolver() {
+		return null; // No proxy resolver available
 	}
 
 }
