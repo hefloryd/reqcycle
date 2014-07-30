@@ -15,14 +15,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.AbstractElement;
-import RequirementSourceData.Requirement;
-import RequirementSourceData.RequirementsContainer;
-import RequirementSourceData.Section;
-
 
 public interface IDataManager {
 
@@ -30,12 +28,13 @@ public interface IDataManager {
 	 * Creates a requirement source.
 	 * 
 	 * @param name
-	 *        the requirement source name
+	 *            the requirement source name
 	 * @param connectorId
-	 *        the requirement source connector id
+	 *            the requirement source connector id
 	 * @return the requirement source
 	 */
-	public RequirementSource createRequirementSource(String name, String connectorId);
+	public RequirementSource createRequirementSource(String name,
+			String connectorId);
 
 	/**
 	 * Creates an empty requirement source.
@@ -55,7 +54,7 @@ public interface IDataManager {
 	 * Adds a newly created repository to repositories list
 	 * 
 	 * @param requirementSource
-	 *        the repository to add
+	 *            the repository to add
 	 */
 	public void addRequirementSource(final RequirementSource requirementSource);
 
@@ -64,17 +63,18 @@ public interface IDataManager {
 	 * 
 	 * @param requirementSource
 	 */
-	public void removeRequirementSource(final RequirementSource requirementSource, boolean removeFromWS);
+	public void removeRequirementSource(
+			final RequirementSource requirementSource, boolean removeFromWS);
 
 	/**
 	 * Creates a section.
 	 * 
 	 * @param id
-	 *        the section id
+	 *            the section id
 	 * @param name
-	 *        the section name
+	 *            the section name
 	 * @param uri
-	 *        the section uri
+	 *            the section uri
 	 * @return the section
 	 */
 	public Section createSection(String id, String name, String uri);
@@ -83,9 +83,9 @@ public interface IDataManager {
 	 * Gets an existing repository
 	 * 
 	 * @param kind
-	 *        the repository kind
+	 *            the repository kind
 	 * @param urlString
-	 *        the repository url
+	 *            the repository url
 	 * @return
 	 */
 	public RequirementSource getRequirementSource(String kind, String urlString);
@@ -94,7 +94,7 @@ public interface IDataManager {
 	 * Gets repositories for a connector Id
 	 * 
 	 * @param connectorId
-	 *        the connector Id
+	 *            the connector Id
 	 * @return Set of repositories
 	 */
 	public Set<RequirementSource> getRequirementSources(String connectorId);
@@ -117,7 +117,7 @@ public interface IDataManager {
 	 * Removes a connector repositories
 	 * 
 	 * @param connectorId
-	 *        the connector id
+	 *            the connector id
 	 */
 	public void removeRequirementSources(String connectorId);
 
@@ -125,7 +125,7 @@ public interface IDataManager {
 	 * Save the Data Model
 	 * 
 	 * @throws IOException
-	 *         Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public void save() throws IOException;
 
@@ -133,9 +133,9 @@ public interface IDataManager {
 	 * Notify change.
 	 * 
 	 * @param event
-	 *        the event
+	 *            the event
 	 * @param data
-	 *        the data
+	 *            the data
 	 */
 	public void notifyChange(String event, Object data);
 
@@ -143,47 +143,50 @@ public interface IDataManager {
 	 * Adds the attribute to the given element.
 	 * 
 	 * @param element
-	 *        the element
+	 *            the element
 	 * @param attribute
-	 *        the attribute to add
+	 *            the attribute to add
 	 * @param value
-	 *        the value to set
+	 *            the value to set
 	 */
-	public void addAttribute(AbstractElement element, IAttribute attribute, Object value);
+	public void addAttribute(AbstractElement element, IAttribute attribute,
+			Object value);
 
 	/**
 	 * Adds the elements to the requirement source.
 	 * 
 	 * @param source
-	 *        the requirement source
+	 *            the requirement source
 	 * @param elements
-	 *        the elements to add
+	 *            the elements to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToSource(RequirementSource source, AbstractElement... elements);
-
+	public boolean addElementsToSource(RequirementSource source,
+			AbstractElement... elements);
 
 	/**
 	 * Adds an element to a section.
 	 * 
 	 * @param section
-	 *        the section
+	 *            the section
 	 * @param element
-	 *        the element to add
+	 *            the element to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToSection(Section section, AbstractElement... element);
+	public boolean addElementsToSection(Section section,
+			AbstractElement... element);
 
 	/**
 	 * Adds an element to a requirement.
 	 * 
 	 * @param requirement
-	 *        the requirement
+	 *            the requirement
 	 * @param element
-	 *        the element to add
+	 *            the element to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToRequirement(Requirement requirement, AbstractElement... element);
+	public boolean addElementsToRequirement(Requirement requirement,
+			AbstractElement... element);
 
 	public void load();
 

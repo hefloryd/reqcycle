@@ -12,7 +12,7 @@ package org.polarsys.reqcycle.repository.data.types;
 
 import java.util.Collection;
 
-import RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 
 /**
  * The Interface RequirementType.
@@ -37,7 +37,7 @@ public interface IRequirementType {
 	 * Adds the attribute type.
 	 * 
 	 * @param type
-	 *        the attribute type
+	 *            the attribute type
 	 */
 	public void addAttributeType(IAttribute type);
 

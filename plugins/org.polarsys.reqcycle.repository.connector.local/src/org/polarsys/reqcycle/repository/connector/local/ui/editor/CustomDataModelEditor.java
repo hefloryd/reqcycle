@@ -36,11 +36,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.polarsys.reqcycle.core.ILogger;
-import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.CustomDataModelItemProviderAdapterFactory;
-import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.RequirementSourceItemProviderAdapterFactory;
-import org.polarsys.reqcycle.repository.data.IDataManager;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.ControlAdapter;
@@ -54,8 +49,13 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.polarsys.reqcycle.core.ILogger;
+import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.CustomDataModelItemProviderAdapterFactory;
+import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.RequirementSourceItemProviderAdapterFactory;
+import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-import RequirementSourceConf.RequirementSource;
 import RequirementSourceData.presentation.RequirementSourceDataEditor;
 import RequirementSourceData.presentation.RequirementSourceDataEditorPlugin;
 

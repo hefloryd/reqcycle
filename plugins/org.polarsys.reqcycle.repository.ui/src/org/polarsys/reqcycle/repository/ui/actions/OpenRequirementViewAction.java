@@ -21,11 +21,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.polarsys.reqcycle.core.ILogger;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
 import org.polarsys.reqcycle.repository.ui.views.RequirementView;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
 
 public class OpenRequirementViewAction extends Action {
 

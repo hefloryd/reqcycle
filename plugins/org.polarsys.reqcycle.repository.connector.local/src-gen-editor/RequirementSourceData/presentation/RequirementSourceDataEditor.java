@@ -127,8 +127,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-
-import RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory;
 
 
 /**

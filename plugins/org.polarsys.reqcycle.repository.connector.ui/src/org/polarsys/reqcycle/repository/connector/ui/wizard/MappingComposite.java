@@ -30,11 +30,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
-import org.polarsys.reqcycle.repository.connector.ui.Activator;
-import org.polarsys.reqcycle.repository.data.types.IAttribute;
-import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
-import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.repository.data.util.DataUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,6 +38,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.polarsys.reqcycle.repository.connector.ui.Activator;
+import org.polarsys.reqcycle.repository.data.types.IAttribute;
+import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
+import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.util.DataUtil;
 
 
 public abstract class MappingComposite extends Composite {

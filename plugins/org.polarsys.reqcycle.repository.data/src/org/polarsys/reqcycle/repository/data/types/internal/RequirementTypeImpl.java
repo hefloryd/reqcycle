@@ -18,13 +18,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-
-import RequirementSourceData.Requirement;
-import RequirementSourceData.RequirementSourceDataPackage;
-
 
 public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 
@@ -37,8 +35,9 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	public RequirementTypeImpl(String name, IDataModel dataModel) {
 		eClass = EcoreFactory.eINSTANCE.createEClass();
 		eClass.setName(name);
-		eClass.getESuperTypes().add(RequirementSourceDataPackage.Literals.REQUIREMENT);
-		for(EAttribute eAttribute : eClass.getEAllAttributes()) {
+		eClass.getESuperTypes().add(
+				RequirementSourceDataPackage.Literals.REQUIREMENT);
+		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
 			attributes.add(new AttributeImpl(eAttribute));
 		}
 		this.dataModel = dataModel;
@@ -46,7 +45,7 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 
 	public RequirementTypeImpl(EClass eClass, IDataModel dataModel) {
 		this.eClass = eClass;
-		for(EAttribute attribute : eClass.getEAllAttributes()) {
+		for (EAttribute attribute : eClass.getEAllAttributes()) {
 			attributes.add(new AttributeImpl(attribute));
 		}
 		this.dataModel = dataModel;
@@ -55,10 +54,11 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	@Override
 	public void addAttributeType(IAttribute attributeType) {
 		EAttribute eAttribute = null;
-		if(attributeType instanceof IAdaptable) {
-			eAttribute = (EAttribute)((IAdaptable)attributeType).getAdapter(EAttribute.class);
+		if (attributeType instanceof IAdaptable) {
+			eAttribute = (EAttribute) ((IAdaptable) attributeType)
+					.getAdapter(EAttribute.class);
 		}
-		if(eAttribute != null) {
+		if (eAttribute != null) {
 			attributes.add(attributeType);
 			eClass.getEStructuralFeatures().add(eAttribute);
 		}
@@ -88,8 +88,8 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	@Override
 	public Requirement createInstance() {
 		EPackage ePackage = eClass.getEPackage();
-		if(ePackage != null) {
-			return (Requirement)ePackage.getEFactoryInstance().create(eClass);
+		if (ePackage != null) {
+			return (Requirement) ePackage.getEFactoryInstance().create(eClass);
 		}
 		return null;
 	}
@@ -97,7 +97,7 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(adapter == EClass.class) {
+		if (adapter == EClass.class) {
 			return eClass;
 		}
 		return null;

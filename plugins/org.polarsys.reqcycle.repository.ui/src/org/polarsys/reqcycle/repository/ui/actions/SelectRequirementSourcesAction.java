@@ -19,13 +19,12 @@ import javax.inject.Inject;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.window.Window;
-import org.polarsys.reqcycle.repository.data.IDataManager;
-import org.polarsys.reqcycle.ui.components.dialogs.CheckBoxInputDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-
-import RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.ui.components.dialogs.CheckBoxInputDialog;
 
 public class SelectRequirementSourcesAction extends Action {
 

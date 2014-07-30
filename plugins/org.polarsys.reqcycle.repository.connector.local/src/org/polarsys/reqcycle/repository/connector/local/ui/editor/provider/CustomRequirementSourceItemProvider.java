@@ -16,14 +16,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceItemProvider;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceConf.RequirementSourceConfPackage;
-import RequirementSourceConf.provider.RequirementSourceItemProvider;
-import RequirementSourceData.RequirementSourceDataFactory;
-import RequirementSourceData.Section;
 
 
 /**

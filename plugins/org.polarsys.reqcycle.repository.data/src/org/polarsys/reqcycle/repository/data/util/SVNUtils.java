@@ -44,14 +44,13 @@ import org.eclipse.team.svn.core.extension.factory.ISVNConnectorFactory;
 import org.eclipse.team.svn.core.operation.SVNNullProgressMonitor;
 import org.eclipse.team.svn.core.utility.SVNUtility;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.traceability.model.Link;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.AbstractElement;
-import RequirementSourceData.RequirementsContainer;
-import RequirementSourceData.Section;
 
 /**
  * The Class SVNUtils FIXME : Replace by two svn plugin, one for traceability

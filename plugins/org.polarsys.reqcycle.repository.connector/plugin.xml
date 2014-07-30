@@ -9,21 +9,7 @@
          interface="org.polarsys.reqcycle.repository.connector.IConnectorManager">
    </binding>
 </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated MappingModel -->
-      <package
-            uri="http://www.polarsys.org/ReqCycle/MappingModel"
-            class="MappingModel.MappingModelPackage"
-            genModel="model/MappingModel.genmodel"/>
-   </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RequirementSourceConf -->
-      <package
-            uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
-            class="RequirementSourceConf.RequirementSourceConfPackage"
-            genModel="model/RequirementSourceConf.genmodel"/>
-   </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated RequirementSourceConf -->

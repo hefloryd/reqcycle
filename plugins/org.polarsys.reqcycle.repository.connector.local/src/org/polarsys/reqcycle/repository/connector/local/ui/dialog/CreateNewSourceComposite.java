@@ -26,9 +26,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -36,9 +33,10 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
-import ScopeConf.Scope;
-
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class CreateNewSourceComposite extends Composite {
 
@@ -76,34 +74,39 @@ public class CreateNewSourceComposite extends Composite {
 	}
 
 	protected void hookListeners() {
-		cvDataModel.addSelectionChangedListener(new ISelectionChangedListener() {
+		cvDataModel
+				.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				cvScope.setInput(Collections.emptyList());
-				cScope.setEnabled(false);
-				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					if(obj instanceof IDataModel) {
-						cScope.setEnabled(true);
-						cvScope.setInput(dataModelManager.getScopes((IDataModel)obj));
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						cvScope.setInput(Collections.emptyList());
+						cScope.setEnabled(false);
+						ISelection selection = event.getSelection();
+						if (selection instanceof IStructuredSelection) {
+							Object obj = ((IStructuredSelection) selection)
+									.getFirstElement();
+							if (obj instanceof IDataModel) {
+								cScope.setEnabled(true);
+								cvScope.setInput(dataModelManager
+										.getScopes((IDataModel) obj));
+							}
+						}
+						cvScope.refresh();
 					}
-				}
-				cvScope.refresh();
-			}
-		});
+				});
 
 	}
 
 	protected void createNewComposite(Composite compositeMain) {
-		//		btnNewSource = new Button(compositeMain, SWT.RADIO);
-		//		btnNewSource.setText("Create a new Requirement Source :");
-		//		btnNewSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		// btnNewSource = new Button(compositeMain, SWT.RADIO);
+		// btnNewSource.setText("Create a new Requirement Source :");
+		// btnNewSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+		// false));
 
 		compositeNewSource = new Composite(compositeMain, SWT.NONE);
 		compositeNewSource.setLayout(new GridLayout(2, false));
-		compositeNewSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		compositeNewSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				true));
 
 		Label lblName = new Label(compositeNewSource, SWT.NONE);
 		lblName.setText("Name :");
@@ -113,7 +116,8 @@ public class CreateNewSourceComposite extends Composite {
 		txtName.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		Label lblDataModel = new Label(compositeNewSource, SWT.NONE);
-		lblDataModel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		lblDataModel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+				false));
 		lblDataModel.setText("Data Model :");
 
 		cvDataModel = new ComboViewer(compositeNewSource);
@@ -124,8 +128,8 @@ public class CreateNewSourceComposite extends Composite {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IDataModel) {
-					return ((IDataModel)element).getName();
+				if (element instanceof IDataModel) {
+					return ((IDataModel) element).getName();
 
 				}
 				return super.getText(element);
@@ -146,17 +150,18 @@ public class CreateNewSourceComposite extends Composite {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof Scope) {
-					return ((Scope)element).getName();
+				if (element instanceof Scope) {
+					return ((Scope) element).getName();
 				}
 				return super.getText(element);
 			}
 		});
 
-		//		Label lblSeparator = new Label(compositeMain, SWT.SEPARATOR | SWT.HORIZONTAL);
-		//		lblSeparator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		// Label lblSeparator = new Label(compositeMain, SWT.SEPARATOR |
+		// SWT.HORIZONTAL);
+		// lblSeparator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+		// false));
 	}
-
 
 	public static class Bean {
 
@@ -197,23 +202,32 @@ public class CreateNewSourceComposite extends Composite {
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeTextTxtNameObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtName);
-		IObservableValue sourceNameBeanObserveValue = PojoProperties.value("sourceName").observe(bean);
-		bindingContext.bindValue(observeTextTxtNameObserveWidget, sourceNameBeanObserveValue, null, null);
+		IObservableValue observeTextTxtNameObserveWidget = WidgetProperties
+				.text(SWT.Modify).observe(txtName);
+		IObservableValue sourceNameBeanObserveValue = PojoProperties.value(
+				"sourceName").observe(bean);
+		bindingContext.bindValue(observeTextTxtNameObserveWidget,
+				sourceNameBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties.singleSelection().observe(cvDataModel);
-		IObservableValue dataModelBeanObserveValue = PojoProperties.value("dataModel").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvDataModel, dataModelBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties
+				.singleSelection().observe(cvDataModel);
+		IObservableValue dataModelBeanObserveValue = PojoProperties.value(
+				"dataModel").observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvDataModel,
+				dataModelBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionCvScope = ViewerProperties.singleSelection().observe(cvScope);
-		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvScope, scopeBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvScope = ViewerProperties
+				.singleSelection().observe(cvScope);
+		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope")
+				.observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvScope,
+				scopeBeanObserveValue, null, null);
 		//
 		return bindingContext;
 	}
 
 	public void init(String name) {
-		if(txtName != null && name != null) {
+		if (txtName != null && name != null) {
 			txtName.setText(name);
 		}
 	}

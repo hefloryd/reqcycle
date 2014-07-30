@@ -15,10 +15,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.action.Action;
-import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
 
 public class SelectPredicatesFiltersAction extends Action {
 

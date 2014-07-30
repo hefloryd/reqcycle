@@ -20,11 +20,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.AbstractElement;
-import RequirementSourceData.Section;
-import RequirementSourceData.SimpleRequirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicates;
@@ -39,12 +38,13 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
-		if(inputElement instanceof Collection) {
-			Iterator<?> iter = ((Collection<?>)inputElement).iterator();
-			if(iter.hasNext()) {
+		if (inputElement instanceof Collection) {
+			Iterator<?> iter = ((Collection<?>) inputElement).iterator();
+			if (iter.hasNext()) {
 				Object obj = iter.next();
-				if(obj instanceof DummyInput) {
-					return ArrayContentProvider.getInstance().getElements(inputElement);
+				if (obj instanceof DummyInput) {
+					return ArrayContentProvider.getInstance().getElements(
+							inputElement);
 				}
 			}
 		}
@@ -53,47 +53,53 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 
 	@Override
 	public Object[] getChildren(final Object object) {
-		if(object instanceof DummyInput) {
-			Object[] children = Collections2.transform(((DummyInput)object).getInput(), new Function<RequirementSource, DummyObject>() {
+		if (object instanceof DummyInput) {
+			Object[] children = Collections2.transform(
+					((DummyInput) object).getInput(),
+					new Function<RequirementSource, DummyObject>() {
 
-				@Override
-				public DummyObject apply(RequirementSource reqSource) {
-					return new DummyObject(((DummyInput)object).getPredicate(), reqSource);
-				};
-			}).toArray();
+						@Override
+						public DummyObject apply(RequirementSource reqSource) {
+							return new DummyObject(((DummyInput) object)
+									.getPredicate(), reqSource);
+						};
+					}).toArray();
 			return children;
 		}
-		if(object instanceof DummyObject) {
-			final DummyObject dummyObject = (DummyObject)object;
+		if (object instanceof DummyObject) {
+			final DummyObject dummyObject = (DummyObject) object;
 			EObject obj = dummyObject.getEobj();
 			Collection<AbstractElement> elements = Collections.emptyList();
-			if(obj instanceof RequirementSource) {
-				elements = ((RequirementSource)obj).getRequirements();
+			if (obj instanceof RequirementSource) {
+				elements = ((RequirementSource) obj).getRequirements();
 			}
-			if(obj instanceof Section) {
-				elements = ((Section)obj).getChildren();
+			if (obj instanceof Section) {
+				elements = ((Section) obj).getChildren();
 			}
 
-			Collection<DummyObject> transform = Collections2.transform(elements, new Function<EObject, DummyObject>() {
+			Collection<DummyObject> transform = Collections2.transform(
+					elements, new Function<EObject, DummyObject>() {
 
-				@Override
-				public DummyObject apply(EObject eObj) {
-					IPredicate predicate = dummyObject.getPredicate();
-					DummyObject dObj = new DummyObject(predicate, eObj);
-					if(dObj.getEobj() instanceof Section && !(dObj.getEobj() instanceof SimpleRequirement)) {
-						return dObj; // do not use predicate filter for
-										// sections which are not
-										// requirements
-					}
-					if(predicate != null) {
-						return predicate.match(eObj) ? dObj : null;
-					} else {
-						return dObj;
-					}
-				}
-			});
+						@Override
+						public DummyObject apply(EObject eObj) {
+							IPredicate predicate = dummyObject.getPredicate();
+							DummyObject dObj = new DummyObject(predicate, eObj);
+							if (dObj.getEobj() instanceof Section
+									&& !(dObj.getEobj() instanceof SimpleRequirement)) {
+								return dObj; // do not use predicate filter for
+												// sections which are not
+												// requirements
+							}
+							if (predicate != null) {
+								return predicate.match(eObj) ? dObj : null;
+							} else {
+								return dObj;
+							}
+						}
+					});
 
-			Iterable<DummyObject> result = Iterables.filter(transform, Predicates.notNull());
+			Iterable<DummyObject> result = Iterables.filter(transform,
+					Predicates.notNull());
 			return Iterables.toArray(result, DummyObject.class);
 		}
 		return super.getChildren(object);
@@ -101,25 +107,25 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 
 	@Override
 	public Object getParent(Object object) {
-		if(object instanceof DummyInput) {
+		if (object instanceof DummyInput) {
 			return null;
-		} else if(object instanceof DummyObject) {
-			return super.getParent(((DummyObject)object).getEobj());
+		} else if (object instanceof DummyObject) {
+			return super.getParent(((DummyObject) object).getEobj());
 		}
 		return super.getParent(object);
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
-		if(object instanceof DummyInput) {
+		if (object instanceof DummyInput) {
 			return true;
-		} else if(object instanceof DummyObject) {
-			EObject eobj = ((DummyObject)object).getEobj();
-			if(eobj instanceof RequirementSource) {
-				return !((RequirementSource)eobj).getRequirements().isEmpty();
+		} else if (object instanceof DummyObject) {
+			EObject eobj = ((DummyObject) object).getEobj();
+			if (eobj instanceof RequirementSource) {
+				return !((RequirementSource) eobj).getRequirements().isEmpty();
 			}
-			if(eobj instanceof Section) {
-				return !((Section)eobj).getChildren().isEmpty();
+			if (eobj instanceof Section) {
+				return !((Section) eobj).getChildren().isEmpty();
 			}
 			return false;
 		}
@@ -183,10 +189,10 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 		@SuppressWarnings("rawtypes")
 		@Override
 		public Object getAdapter(Class adapter) {
-			if(adapter == null) {
+			if (adapter == null) {
 				return null;
 			}
-			if(adapter.isInstance(this.eobj)) {
+			if (adapter.isInstance(this.eobj)) {
 				return this.eobj;
 			}
 			return null;

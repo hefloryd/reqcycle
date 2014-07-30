@@ -13,12 +13,12 @@ package org.polarsys.reqcycle.repository.connector.ui.providers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
-import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
+import org.polarsys.reqcycle.repository.connector.IConnector;
 
 /**
  * Connector Label Provider

@@ -12,10 +12,10 @@ package org.polarsys.reqcycle.repository.ui.actions;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.polarsys.reqcycle.repository.ui.wizard.NewRequirementSourceWizard;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.polarsys.reqcycle.repository.ui.wizard.NewRequirementSourceWizard;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
  * Action to create a new requirement source

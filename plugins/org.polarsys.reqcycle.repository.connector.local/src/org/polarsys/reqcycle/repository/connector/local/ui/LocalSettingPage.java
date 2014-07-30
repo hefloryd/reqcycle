@@ -29,9 +29,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
-import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -45,8 +42,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-
-import ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class LocalSettingPage extends WizardPage implements Listener {
 
@@ -79,7 +78,8 @@ public class LocalSettingPage extends WizardPage implements Listener {
 	public void createControl(Composite parent) {
 		Composite compositeMain = new Composite(parent, SWT.NONE);
 		compositeMain.setLayout(new GridLayout(3, false));
-		compositeMain.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		compositeMain
+				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(compositeMain);
 
 		Label lblDataModel = new Label(compositeMain, SWT.NONE);
@@ -87,14 +87,15 @@ public class LocalSettingPage extends WizardPage implements Listener {
 
 		cvDataModel = new ComboViewer(compositeMain);
 		cDataModel = cvDataModel.getCombo();
-		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 2, 1));
 		cvDataModel.setContentProvider(ArrayContentProvider.getInstance());
 		cvDataModel.setLabelProvider(new LabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IDataModel) {
-					return ((IDataModel)element).getName();
+				if (element instanceof IDataModel) {
+					return ((IDataModel) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -106,15 +107,16 @@ public class LocalSettingPage extends WizardPage implements Listener {
 
 		cvScope = new ComboViewer(compositeMain);
 		cScope = cvScope.getCombo();
-		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2,
+				1));
 		cScope.setEnabled(false);
 		cvScope.setContentProvider(ArrayContentProvider.getInstance());
 		cvScope.setLabelProvider(new LabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof Scope) {
-					return ((Scope)element).getName();
+				if (element instanceof Scope) {
+					return ((Scope) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -124,7 +126,8 @@ public class LocalSettingPage extends WizardPage implements Listener {
 		lblDestination.setText("Destination File :");
 
 		txtDestination = new Text(compositeMain, SWT.BORDER);
-		txtDestination.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+		txtDestination.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 1, 1));
 
 		btnBrowse = new Button(compositeMain, SWT.PUSH);
 		btnBrowse.setText("Browse");
@@ -136,32 +139,35 @@ public class LocalSettingPage extends WizardPage implements Listener {
 
 	protected void hookListeners() {
 
-		cvDataModel.addSelectionChangedListener(new ISelectionChangedListener() {
+		cvDataModel
+				.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				cvScope.setInput(Collections.emptyList());
-				cScope.setEnabled(false);
-				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					if(obj instanceof IDataModel) {
-						cScope.setEnabled(true);
-						cvScope.setInput(dataModelManager.getScopes((IDataModel)obj));
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						cvScope.setInput(Collections.emptyList());
+						cScope.setEnabled(false);
+						ISelection selection = event.getSelection();
+						if (selection instanceof IStructuredSelection) {
+							Object obj = ((IStructuredSelection) selection)
+									.getFirstElement();
+							if (obj instanceof IDataModel) {
+								cScope.setEnabled(true);
+								cvScope.setInput(dataModelManager
+										.getScopes((IDataModel) obj));
+							}
+						}
+						cvScope.refresh();
 					}
-				}
-				cvScope.refresh();
-			}
-		});
+				});
 
 		btnBrowse.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				SaveAsDialog dialog = new SaveAsDialog(getShell());
-				if(Window.OK == dialog.open()) {
+				if (Window.OK == dialog.open()) {
 					IPath result = dialog.getResult();
-					if(!"reqcycle".equals(result.getFileExtension())) {
+					if (!"reqcycle".equals(result.getFileExtension())) {
 						result = result.addFileExtension("reqcycle");
 					}
 					txtDestination.setText(result.toString());
@@ -216,17 +222,26 @@ public class LocalSettingPage extends WizardPage implements Listener {
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties.singleSelection().observe(cvDataModel);
-		IObservableValue dataModelBeanObserveValue = PojoProperties.value("dataModel").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvDataModel, dataModelBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties
+				.singleSelection().observe(cvDataModel);
+		IObservableValue dataModelBeanObserveValue = PojoProperties.value(
+				"dataModel").observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvDataModel,
+				dataModelBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionCvScope = ViewerProperties.singleSelection().observe(cvScope);
-		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvScope, scopeBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvScope = ViewerProperties
+				.singleSelection().observe(cvScope);
+		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope")
+				.observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvScope,
+				scopeBeanObserveValue, null, null);
 		//
-		IObservableValue observeTextTxtDestinationObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtDestination);
-		IObservableValue destinationBeanObserveValue = PojoProperties.value("destination").observe(bean);
-		bindingContext.bindValue(observeTextTxtDestinationObserveWidget, destinationBeanObserveValue, null, null);
+		IObservableValue observeTextTxtDestinationObserveWidget = WidgetProperties
+				.text(SWT.Modify).observe(txtDestination);
+		IObservableValue destinationBeanObserveValue = PojoProperties.value(
+				"destination").observe(bean);
+		bindingContext.bindValue(observeTextTxtDestinationObserveWidget,
+				destinationBeanObserveValue, null, null);
 		//
 		return bindingContext;
 	}
@@ -236,22 +251,22 @@ public class LocalSettingPage extends WizardPage implements Listener {
 		StringBuffer error = new StringBuffer();
 		boolean result = true;
 
-		if(bean.getDataModel() == null) {
+		if (bean.getDataModel() == null) {
 			error.append("Choose a Data Model\n");
 			result = false;
 		}
 
-		if(bean.getScope() == null) {
+		if (bean.getScope() == null) {
 			error.append("Choose a Scope\n");
 			result = false;
 		}
 
-		if(bean.getDestination() == null || bean.getDestination().isEmpty()) {
+		if (bean.getDestination() == null || bean.getDestination().isEmpty()) {
 			error.append("Choose a destination file for a Copy Import Mode");
 			result = false;
 		}
 
-		if(!result) {
+		if (!result) {
 			setErrorMessage(error.toString());
 		} else {
 			setErrorMessage(null);

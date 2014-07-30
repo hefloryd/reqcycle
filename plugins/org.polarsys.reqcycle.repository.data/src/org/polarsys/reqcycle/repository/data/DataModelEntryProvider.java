@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data;
 
+import org.eclipse.swt.widgets.Composite;
 import org.polarsys.reqcycle.repository.data.util.EntryUtil;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Entry;
 import org.polarsys.reqcycle.traceability.types.ui.IEntryCompositeProvider;
 import org.polarsys.reqcycle.types.IType.FieldDescriptor;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-import org.eclipse.swt.widgets.Composite;
 
 
 public class DataModelEntryProvider implements IEntryCompositeProvider {

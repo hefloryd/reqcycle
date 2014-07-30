@@ -1,10 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.reqcycle.repository.data;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: org.polarsys.reqcycle.repository.data.Activator
+Bundle-Activator: org.polarsys.reqcycle.repository.data.ScopeConf.provider.ScopeConfEditPlugin$Implementation
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
@@ -36,26 +38,22 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: MappingModel,
- MappingModel.impl,
- MappingModel.provider,
- MappingModel.util,
- RequirementSourceData,
- RequirementSourceData.impl,
- RequirementSourceData.provider,
- RequirementSourceData.util,
- RequirementSourceConf,
- RequirementSourceConf.impl,
- RequirementSourceConf.provider,
- RequirementSourceConf.util,
- org.polarsys.reqcycle.repository.data,
- org.polarsys.reqcycle.repository.data.impl,
+Export-Package: org.polarsys.reqcycle.repository.data,
+ org.polarsys.reqcycle.repository.data.MappingModel,
+ org.polarsys.reqcycle.repository.data.MappingModel.provider,
+ org.polarsys.reqcycle.repository.data.MappingModel.util,
+ org.polarsys.reqcycle.repository.data.RequirementSourceConf,
+ org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider,
+ org.polarsys.reqcycle.repository.data.RequirementSourceConf.util,
+ org.polarsys.reqcycle.repository.data.RequirementSourceData,
+ org.polarsys.reqcycle.repository.data.RequirementSourceData.provider,
+ org.polarsys.reqcycle.repository.data.RequirementSourceData.util,
+ org.polarsys.reqcycle.repository.data.ScopeConf,
+ org.polarsys.reqcycle.repository.data.ScopeConf.provider,
+ org.polarsys.reqcycle.repository.data.ScopeConf.util,
+ org.polarsys.reqcycle.repository.data.reachables,
  org.polarsys.reqcycle.repository.data.types,
- org.polarsys.reqcycle.repository.data.types.internal;x-internal:=true,
- org.polarsys.reqcycle.repository.data.util,
- ScopeConf,
- ScopeConf.impl,
- ScopeConf.provider,
- ScopeConf.util
+ org.polarsys.reqcycle.repository.data.types.internal,
+ org.polarsys.reqcycle.repository.data.util
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject;version="1.0.0"

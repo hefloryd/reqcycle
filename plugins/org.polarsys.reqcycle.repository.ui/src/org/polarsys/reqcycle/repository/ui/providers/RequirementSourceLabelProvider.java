@@ -17,16 +17,15 @@ package org.polarsys.reqcycle.repository.ui.providers;
 import javax.inject.Inject;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.graphics.Image;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.ui.providers.ConnectorLabelProvider;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
 import org.polarsys.reqcycle.repository.ui.Activator;
 import org.polarsys.reqcycle.repository.ui.Messages;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-import org.eclipse.swt.graphics.Image;
-
-import RequirementSourceConf.RequirementSource;
 
 public class RequirementSourceLabelProvider extends LabelProvider {
 

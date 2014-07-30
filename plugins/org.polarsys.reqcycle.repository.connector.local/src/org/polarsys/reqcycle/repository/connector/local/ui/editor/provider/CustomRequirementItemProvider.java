@@ -24,17 +24,16 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementItemProvider;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.AbstractElement;
-import RequirementSourceData.Requirement;
-import RequirementSourceData.RequirementSourceDataFactory;
-import RequirementSourceData.RequirementSourceDataPackage;
-import RequirementSourceData.RequirementsContainer;
-import RequirementSourceData.provider.RequirementItemProvider;
-import ScopeConf.Scope;
 
 /**
  * The Class CustomRequirementItemProvider.
