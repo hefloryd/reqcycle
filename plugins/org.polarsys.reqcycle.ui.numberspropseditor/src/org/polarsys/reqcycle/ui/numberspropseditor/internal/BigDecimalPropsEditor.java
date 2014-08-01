@@ -20,7 +20,7 @@ public class BigDecimalPropsEditor extends AbstractPropsEditor<BigDecimal> {
 
 	@Override
 	protected AbstractPropsEditorComponent<BigDecimal> initAndGetComponent() {
-		return new BigDecimalPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new BigDecimalPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

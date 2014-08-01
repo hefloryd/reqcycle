@@ -17,19 +17,18 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Boolean Equal Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Boolean Equal Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> implements BooleanEqualPredicate {
+public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean>
+		implements BooleanEqualPredicate {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -38,8 +37,7 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -49,9 +47,8 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -61,9 +58,8 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -72,4 +68,10 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 		super.setExpectedObject(newExpectedObject);
 	}
 
-} //BooleanEqualPredicateImpl
+	/*
+	 * @Override public String getDisplayName() { if (this.getExpectedObject()
+	 * == null) { return super.getDisplayName(); } else { return
+	 * this.getExpectedObject().toString(); } }
+	 */
+
+} // BooleanEqualPredicateImpl

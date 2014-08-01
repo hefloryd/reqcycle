@@ -18,7 +18,7 @@ public class BooleanPropsEditor extends AbstractPropsEditor<Boolean> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Boolean> initAndGetComponent() {
-		return new BooleanPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new BooleanPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

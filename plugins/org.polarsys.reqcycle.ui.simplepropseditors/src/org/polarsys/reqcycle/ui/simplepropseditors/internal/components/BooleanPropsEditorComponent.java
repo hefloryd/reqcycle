@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.simplepropseditors.internal.components;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,16 +18,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 
 public class BooleanPropsEditorComponent extends AbstractPropsEditorComponent<Boolean> {
 
-	public BooleanPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public BooleanPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(Boolean.class, parent, style);
 		setLayout(new GridLayout(2, false));
 
 		Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblName.setText(attribute.getName());
+		lblName.setText(attributeName);
 
 		Composite buttonsComposite = new Composite(this, SWT.NONE);
 		buttonsComposite.setLayoutData(new GridData(SWT.CENTER, SWT.FILL, true, false, 1, 1));

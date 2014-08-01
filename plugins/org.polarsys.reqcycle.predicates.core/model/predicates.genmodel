@@ -71,5 +71,34 @@
     </genClasses>
     <genClasses image="false" ecoreClass="predicates.ecore#//IEAttrPredicate"/>
     <genClasses image="false" ecoreClass="predicates.ecore#//IEClassifierPredicate"/>
+    <genClasses ecoreClass="predicates.ecore#//TruePredicate"/>
+    <genClasses ecoreClass="predicates.ecore#//OperationPredicate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//OperationPredicate/operationName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference predicates.ecore#//OperationPredicate/parameters"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="predicates.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//Parameter/name"/>
+      <genOperations ecoreOperation="predicates.ecore#//Parameter/getObjectValue"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//IntParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//IntParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//BooleanParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//BooleanParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//StringParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//StringParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//EObjectParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference predicates.ecore#//EObjectParameter/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="predicates.ecore#//IPredicateContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference predicates.ecore#//IPredicateContainer/resultPredicate"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//IsTypeOfPredicate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//IsTypeOfPredicate/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predicates.ecore#//IsTypeOfPredicate/isStrictTypeOf"/>
+    </genClasses>
+    <genClasses ecoreClass="predicates.ecore#//IsNullPredicate"/>
   </genPackages>
 </genmodel:GenModel>

@@ -10,7 +10,8 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.eattrpropseditor.api;
 
-import org.eclipse.emf.ecore.EAttribute;
+import java.util.Collection;
+
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -23,12 +24,6 @@ import org.eclipse.swt.widgets.Composite;
 public interface IEAttrPropsEditor<T> {
 
 	/**
-	 * @param attribute
-	 *        - The attribute for which the editor will be used.
-	 */
-	void setEAttribute(final EAttribute attribute);
-
-	/**
 	 * @return The UI component that represents the editor.
 	 */
 	Composite getEditor();
@@ -38,6 +33,12 @@ public interface IEAttrPropsEditor<T> {
 	 */
 	T getValue();
 
+	
+	/**
+	 * Sets the initial value of the editor.
+	 */
+	void setInitialValue(Object object);
+	
 	/**
 	 * @return <code>true</code> if the edition is valid, <code>false</code> otherwise.
 	 */
@@ -66,4 +67,12 @@ public interface IEAttrPropsEditor<T> {
 	 * @param style
 	 */
 	void setStyle(final int style);
+	
+	String getAttributeName ();
+	
+	void setAttributeName (String name);
+	
+	Collection<Object> getPossibleValues ();
+	
+	void setPossibleValues (Collection<Object> values);
 }

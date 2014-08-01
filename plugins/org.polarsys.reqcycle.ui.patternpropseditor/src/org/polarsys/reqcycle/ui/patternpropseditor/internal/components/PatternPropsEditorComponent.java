@@ -13,16 +13,15 @@ package org.polarsys.reqcycle.ui.patternpropseditor.internal.components;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 import org.eclipse.swt.widgets.Composite;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 
 public class PatternPropsEditorComponent extends AbstractPropsTextEditorComponent<Pattern> {
 
 	private String errorMessage;
 
-	public PatternPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public PatternPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(attributeName, Pattern.class, parent, style);
 	}
 
 	@Override

@@ -23,14 +23,13 @@ import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implements StringIntoPredicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringIntoPredicateImpl() {
@@ -39,7 +38,6 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,7 +49,6 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific type known in this context.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,12 +60,11 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific element type known in this context.
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<String> getAllowedEntries() {
-		if(allowedEntries == null) {
+		if (allowedEntries == null) {
 			allowedEntries = new EDataTypeUniqueEList<String>(String.class, this, PredicatesPackage.STRING_INTO_PREDICATE__ALLOWED_ENTRIES);
 		}
 		return allowedEntries;

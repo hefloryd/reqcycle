@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.google.guava;bundle-version="11.0.2"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.utils.iterators.collectors,
  org.polarsys.reqcycle.utils.iterators.exceptions,
  org.polarsys.reqcycle.utils.iterators.factories,

@@ -260,7 +260,7 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 		try {
 			final URI kindUri = KindStorageHelper.getURI(kind.getId());
 			final URI sourceUri = ReachablesStorageHelper.getURI(source);
-			final URI containerUri = ReachablesStorageHelper.getURI(container);
+			final URI containerUri = container != null ? ReachablesStorageHelper.getURI(container) : null;
 			final Collection<Value> targetValues = Collections2.transform(Arrays.asList(targets),
 					new Reachable2StorageURIFunction<Value>());
 

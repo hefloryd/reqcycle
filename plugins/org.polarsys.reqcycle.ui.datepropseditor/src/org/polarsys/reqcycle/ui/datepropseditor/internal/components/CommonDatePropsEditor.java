@@ -45,7 +45,7 @@ class CommonDatePropsEditor extends Composite {
 
 	private ComboViewer comboViewer;
 
-	CommonDatePropsEditor(EAttribute attribute, Composite parent, int style) {
+	CommonDatePropsEditor(String attributeName, Composite parent, int style) {
 
 		super(parent, style);
 		setLayout(new GridLayout(3, false));
@@ -54,7 +54,7 @@ class CommonDatePropsEditor extends Composite {
 
 		Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblName.setText(attribute.getName());
+		lblName.setText(attributeName);
 
 		final Composite calendarAndTimeComposite = new Composite(this, SWT.NONE);
 		calendarAndTimeComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));

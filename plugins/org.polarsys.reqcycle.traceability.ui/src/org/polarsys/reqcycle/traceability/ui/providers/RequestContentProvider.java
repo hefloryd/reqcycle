@@ -200,7 +200,7 @@ public class RequestContentProvider extends DeferredContentProvider implements
 	}
 
 	@Override
-	public void hasChanged(final Reachable reachable) {
+	public void hasChanged(final Reachable[] reachable) {
 		Display.getDefault().syncExec(new Runnable() {
 
 			@Override

@@ -12,21 +12,20 @@ package org.polarsys.reqcycle.ui.datepropseditor.internal.components;
 
 import java.util.Calendar;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 
 public class CalendarPropsEditorComponent extends AbstractPropsEditorComponent<Calendar> {
 
 	private final CommonDatePropsEditor commonDatePropsEditor;
 
-	public CalendarPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public CalendarPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(Calendar.class, parent, style);
 		setLayout(new GridLayout(1, false));
-		this.commonDatePropsEditor = new CommonDatePropsEditor(attribute, this, getStyle());
+		this.commonDatePropsEditor = new CommonDatePropsEditor(attributeName, this, getStyle());
 		this.commonDatePropsEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 	}
 

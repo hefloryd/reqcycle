@@ -20,7 +20,7 @@ public class CalendarPropsEditor extends AbstractPropsEditor<Calendar> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Calendar> initAndGetComponent() {
-		return new CalendarPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new CalendarPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

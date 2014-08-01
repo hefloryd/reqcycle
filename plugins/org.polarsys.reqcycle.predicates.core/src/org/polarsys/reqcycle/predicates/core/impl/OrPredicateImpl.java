@@ -21,14 +21,13 @@ import org.polarsys.reqcycle.predicates.core.api.OrPredicate;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Or Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class OrPredicateImpl extends CompositePredicateImpl implements OrPredicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OrPredicateImpl() {
@@ -37,7 +36,6 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

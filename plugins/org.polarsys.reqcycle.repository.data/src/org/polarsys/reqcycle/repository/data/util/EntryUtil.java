@@ -27,14 +27,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.polarsys.reqcycle.repository.data.Activator;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Entry;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationFactory;
-import org.polarsys.reqcycle.types.IType.FieldDescriptor;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /*
@@ -45,16 +43,15 @@ public class EntryUtil {
 	static IDataModelManager dataModelManager = ZigguratInject
 			.make(IDataModelManager.class);
 
-	private static final String AN_ENTRY = "entry";
+	public static final String AN_ENTRY = "entry";
 
 	private static final String CLEAR_IMG_PATH = "/icons/delete.gif";
 
-	public static Entry createComboViewer(Composite parent, FieldDescriptor fd,
-			Object input) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayout(new GridLayout(2, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-
+	public static ComboViewer createComboViewer(Composite composite,
+			String attributeName, Object input) {
+		composite.setLayout(new GridLayout(3, false));
+		Label label = new Label(composite, SWT.None);
+		label.setText(attributeName);
 		final ComboViewer comboViewer = new ComboViewer(composite);
 		Combo combo = comboViewer.getCombo();
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -77,9 +74,6 @@ public class EntryUtil {
 		comboViewer.setContentProvider(new ArrayContentProvider());
 		comboViewer.setInput(input);
 
-		final Entry entry = TypeconfigurationFactory.eINSTANCE.createEntry();
-		entry.setName(fd.name);
-		comboViewer.setData(AN_ENTRY, entry);
 		comboViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -92,18 +86,18 @@ public class EntryUtil {
 							if (firstElement instanceof IDataModel
 									|| firstElement instanceof IRequirementType
 									|| firstElement instanceof Scope) {
-								entry.setValue(labelProvider
-										.getText(firstElement));
+								comboViewer.setData(AN_ENTRY,
+										labelProvider.getText(firstElement));
 							} else {
-								entry.setValue(null);
+								comboViewer.setData(AN_ENTRY, null);
 							}
 						}
 					}
 				});
 
 		Button clearCombo = new Button(composite, SWT.PUSH);
-		clearCombo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
-				false));
+		clearCombo
+				.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
 		clearCombo.setImage(Activator.getImageDescriptor(CLEAR_IMG_PATH)
 				.createImage());
 		clearCombo.addSelectionListener(new SelectionAdapter() {
@@ -115,7 +109,6 @@ public class EntryUtil {
 				}
 			}
 		});
-
-		return entry;
+		return comboViewer;
 	}
 }

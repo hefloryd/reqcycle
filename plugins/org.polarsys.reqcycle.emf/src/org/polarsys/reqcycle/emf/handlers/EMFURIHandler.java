@@ -38,7 +38,6 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 	@Override
 	public ReachableObject getFromReachable(final Reachable t) {
 		EMFReachableObject emfReachableObject = doGetReachableObject(t);
-		ZigguratInject.inject(emfReachableObject);
 		return emfReachableObject;
 	}
 

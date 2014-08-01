@@ -18,7 +18,7 @@ public class LongPropsEditor extends AbstractPropsEditor<Long> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Long> initAndGetComponent() {
-		return new LongPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new LongPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

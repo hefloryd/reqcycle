@@ -12,64 +12,36 @@
  */
 package org.polarsys.reqcycle.predicates.core.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>IE Attr Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>IE Attr Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl#getDisplayName <em>Display Name</em>}</li>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl#getTypedElement <em>Typed Element</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl#getTypedElement <em>Typed Element</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container implements IEAttrPredicate {
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
+public class IEAttrPredicateImpl extends IPredicateContainerImpl implements
+		IEAttrPredicate {
 
 	/**
 	 * The cached value of the '{@link #getTypedElement() <em>Typed Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTypedElement()
 	 * @generated
 	 * @ordered
@@ -77,9 +49,7 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	protected EAttribute typedElement;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IEAttrPredicateImpl() {
@@ -87,9 +57,7 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -98,40 +66,16 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IE_ATTR_PREDICATE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
+	@Override
 	public EAttribute getTypedElement() {
-		if(typedElement != null && ((EObject)typedElement).eIsProxy()) {
+		if (typedElement != null && ((EObject)typedElement).eIsProxy()) {
 			InternalEObject oldTypedElement = (InternalEObject)typedElement;
 			typedElement = (EAttribute)eResolveProxy(oldTypedElement);
-			if(typedElement != oldTypedElement) {
-				if(eNotificationRequired())
+			if (typedElement != oldTypedElement) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT, oldTypedElement, typedElement));
 			}
 		}
@@ -139,9 +83,7 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute basicGetTypedElement() {
@@ -149,25 +91,16 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypedElement(EAttribute newTypedElement) {
 		EAttribute oldTypedElement = typedElement;
 		typedElement = newTypedElement;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT, oldTypedElement, typedElement));
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public abstract boolean match(Object input);
 
 	/**
 	 * @param eObj
@@ -175,13 +108,19 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	 */
 	protected Object getInputValueFromEObject(final Object eObj) {
 		assertIsEObject(eObj);
-		Object value = ((EObject)eObj).eGet(get(getTypedElement(), (EObject)eObj));
+		EAttribute aTypedElement = getTypedElement();
+		if (aTypedElement == null) {
+			return null;
+		}
+		Object value = ((EObject) eObj)
+				.eGet(get(aTypedElement, (EObject) eObj));
 		return value;
 	}
 
-	private EStructuralFeature get(EStructuralFeature typedElement2, EObject eObj) {
-		for(EStructuralFeature f : eObj.eClass().getEAllStructuralFeatures()) {
-			if(EcoreUtil.equals(f, typedElement2)) {
+	private EStructuralFeature get(EStructuralFeature typedElement2,
+			EObject eObj) {
+		for (EStructuralFeature f : eObj.eClass().getEAllStructuralFeatures()) {
+			if (EcoreUtil.equals(f, typedElement2)) {
 				return f;
 			}
 		}
@@ -189,116 +128,83 @@ public abstract class IEAttrPredicateImpl extends MinimalEObjectImpl.Container i
 	}
 
 	protected void assertIsEObject(final Object input) {
-		if(!(input instanceof EObject)) {
-			throw new IllegalArgumentException("The input must be of type 'EObject'.");
+		if (!(input instanceof EObject)) {
+			throw new IllegalArgumentException(
+					"The input must be of type 'EObject'.");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__DISPLAY_NAME:
-			return getDisplayName();
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			if(resolve)
-				return getTypedElement();
-			return basicGetTypedElement();
+		switch (featureID) {
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				if (resolve) return getTypedElement();
+				return basicGetTypedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__DISPLAY_NAME:
-			setDisplayName((String)newValue);
-			return;
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			setTypedElement((EAttribute)newValue);
-			return;
+		switch (featureID) {
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				setTypedElement((EAttribute)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__DISPLAY_NAME:
-			setDisplayName(DISPLAY_NAME_EDEFAULT);
-			return;
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			setTypedElement((EAttribute)null);
-			return;
+		switch (featureID) {
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				setTypedElement((EAttribute)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__DISPLAY_NAME:
-			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			return typedElement != null;
+		switch (featureID) {
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				return typedElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated not
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch(operationID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE___MATCH__OBJECT:
-			return match(arguments.get(0));
+	public boolean match(Object input) {
+		if (input instanceof EObject) {
+			EObject eobject = (EObject) input;
+			EAttribute a = getTypedElement();
+			if (a != null && getResultPredicate() != null) {
+				Object result = eobject.eGet(a);
+				return getResultPredicate().match(result);
+			}
 		}
-		return super.eInvoke(operationID, arguments);
+		return false;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if(eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (displayName: ");
-		result.append(displayName);
-		result.append(')');
-		return result.toString();
-	}
-
-} //IEAttrPredicateImpl
+} // IEAttrPredicateImpl

@@ -40,7 +40,6 @@ import org.polarsys.reqcycle.predicates.core.util.PredicatesAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -49,7 +48,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -58,7 +56,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -67,7 +64,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -76,7 +72,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PredicatesItemProviderAdapterFactory() {
@@ -93,7 +88,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringEqualPredicateItemProvider stringEqualPredicateItemProvider;
@@ -102,12 +96,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createStringEqualPredicateAdapter() {
-		if(stringEqualPredicateItemProvider == null) {
+		if (stringEqualPredicateItemProvider == null) {
 			stringEqualPredicateItemProvider = new StringEqualPredicateItemProvider(this);
 		}
 
@@ -118,7 +111,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DateEqualPredicateItemProvider dateEqualPredicateItemProvider;
@@ -127,12 +119,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDateEqualPredicateAdapter() {
-		if(dateEqualPredicateItemProvider == null) {
+		if (dateEqualPredicateItemProvider == null) {
 			dateEqualPredicateItemProvider = new DateEqualPredicateItemProvider(this);
 		}
 
@@ -143,7 +134,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumEqualPredicateItemProvider enumEqualPredicateItemProvider;
@@ -152,12 +142,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createEnumEqualPredicateAdapter() {
-		if(enumEqualPredicateItemProvider == null) {
+		if (enumEqualPredicateItemProvider == null) {
 			enumEqualPredicateItemProvider = new EnumEqualPredicateItemProvider(this);
 		}
 
@@ -168,7 +157,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BooleanEqualPredicateItemProvider booleanEqualPredicateItemProvider;
@@ -177,12 +165,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createBooleanEqualPredicateAdapter() {
-		if(booleanEqualPredicateItemProvider == null) {
+		if (booleanEqualPredicateItemProvider == null) {
 			booleanEqualPredicateItemProvider = new BooleanEqualPredicateItemProvider(this);
 		}
 
@@ -193,7 +180,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainsPatternPredicateItemProvider containsPatternPredicateItemProvider;
@@ -202,12 +188,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createContainsPatternPredicateAdapter() {
-		if(containsPatternPredicateItemProvider == null) {
+		if (containsPatternPredicateItemProvider == null) {
 			containsPatternPredicateItemProvider = new ContainsPatternPredicateItemProvider(this);
 		}
 
@@ -218,7 +203,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringIntoPredicateItemProvider stringIntoPredicateItemProvider;
@@ -227,12 +211,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createStringIntoPredicateAdapter() {
-		if(stringIntoPredicateItemProvider == null) {
+		if (stringIntoPredicateItemProvider == null) {
 			stringIntoPredicateItemProvider = new StringIntoPredicateItemProvider(this);
 		}
 
@@ -243,7 +226,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumIntoPredicateItemProvider enumIntoPredicateItemProvider;
@@ -252,12 +234,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createEnumIntoPredicateAdapter() {
-		if(enumIntoPredicateItemProvider == null) {
+		if (enumIntoPredicateItemProvider == null) {
 			enumIntoPredicateItemProvider = new EnumIntoPredicateItemProvider(this);
 		}
 
@@ -268,7 +249,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.AndPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AndPredicateItemProvider andPredicateItemProvider;
@@ -277,12 +257,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.AndPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAndPredicateAdapter() {
-		if(andPredicateItemProvider == null) {
+		if (andPredicateItemProvider == null) {
 			andPredicateItemProvider = new AndPredicateItemProvider(this);
 		}
 
@@ -293,7 +272,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.OrPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OrPredicateItemProvider orPredicateItemProvider;
@@ -302,12 +280,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.OrPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createOrPredicateAdapter() {
-		if(orPredicateItemProvider == null) {
+		if (orPredicateItemProvider == null) {
 			orPredicateItemProvider = new OrPredicateItemProvider(this);
 		}
 
@@ -318,7 +295,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.CompareNumberPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CompareNumberPredicateItemProvider compareNumberPredicateItemProvider;
@@ -327,12 +303,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.CompareNumberPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createCompareNumberPredicateAdapter() {
-		if(compareNumberPredicateItemProvider == null) {
+		if (compareNumberPredicateItemProvider == null) {
 			compareNumberPredicateItemProvider = new CompareNumberPredicateItemProvider(this);
 		}
 
@@ -340,10 +315,216 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IEAttrPredicateItemProvider ieAttrPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIEAttrPredicateAdapter() {
+		if (ieAttrPredicateItemProvider == null) {
+			ieAttrPredicateItemProvider = new IEAttrPredicateItemProvider(this);
+		}
+
+		return ieAttrPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.TruePredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TruePredicateItemProvider truePredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.TruePredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTruePredicateAdapter() {
+		if (truePredicateItemProvider == null) {
+			truePredicateItemProvider = new TruePredicateItemProvider(this);
+		}
+
+		return truePredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationPredicateItemProvider operationPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationPredicateAdapter() {
+		if (operationPredicateItemProvider == null) {
+			operationPredicateItemProvider = new OperationPredicateItemProvider(this);
+		}
+
+		return operationPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.IntParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IntParameterItemProvider intParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.IntParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIntParameterAdapter() {
+		if (intParameterItemProvider == null) {
+			intParameterItemProvider = new IntParameterItemProvider(this);
+		}
+
+		return intParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.BooleanParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BooleanParameterItemProvider booleanParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.BooleanParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBooleanParameterAdapter() {
+		if (booleanParameterItemProvider == null) {
+			booleanParameterItemProvider = new BooleanParameterItemProvider(this);
+		}
+
+		return booleanParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.StringParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringParameterItemProvider stringParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.StringParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringParameterAdapter() {
+		if (stringParameterItemProvider == null) {
+			stringParameterItemProvider = new StringParameterItemProvider(this);
+		}
+
+		return stringParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.EObjectParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EObjectParameterItemProvider eObjectParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.EObjectParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectParameterAdapter() {
+		if (eObjectParameterItemProvider == null) {
+			eObjectParameterItemProvider = new EObjectParameterItemProvider(this);
+		}
+
+		return eObjectParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IsTypeOfPredicateItemProvider isTypeOfPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIsTypeOfPredicateAdapter() {
+		if (isTypeOfPredicateItemProvider == null) {
+			isTypeOfPredicateItemProvider = new IsTypeOfPredicateItemProvider(this);
+		}
+
+		return isTypeOfPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.IsNullPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IsNullPredicateItemProvider isNullPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.IsNullPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIsNullPredicateAdapter() {
+		if (isNullPredicateItemProvider == null) {
+			isNullPredicateItemProvider = new IsNullPredicateItemProvider(this);
+		}
+
+		return isNullPredicateItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.predicates.core.api.NotPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotPredicateItemProvider notPredicateItemProvider;
@@ -352,12 +533,11 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This creates an adapter for a {@link org.polarsys.reqcycle.predicates.core.api.NotPredicate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createNotPredicateAdapter() {
-		if(notPredicateItemProvider == null) {
+		if (notPredicateItemProvider == null) {
 			notPredicateItemProvider = new NotPredicateItemProvider(this);
 		}
 
@@ -368,7 +548,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -379,7 +558,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -389,7 +567,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -401,7 +578,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -412,14 +588,13 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if(isFactoryForType(type)) {
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if(!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -431,7 +606,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -442,7 +616,6 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -453,47 +626,43 @@ public class PredicatesItemProviderAdapterFactory extends PredicatesAdapterFacto
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if(parentAdapterFactory != null) {
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if(stringEqualPredicateItemProvider != null)
-			stringEqualPredicateItemProvider.dispose();
-		if(dateEqualPredicateItemProvider != null)
-			dateEqualPredicateItemProvider.dispose();
-		if(enumEqualPredicateItemProvider != null)
-			enumEqualPredicateItemProvider.dispose();
-		if(booleanEqualPredicateItemProvider != null)
-			booleanEqualPredicateItemProvider.dispose();
-		if(containsPatternPredicateItemProvider != null)
-			containsPatternPredicateItemProvider.dispose();
-		if(stringIntoPredicateItemProvider != null)
-			stringIntoPredicateItemProvider.dispose();
-		if(enumIntoPredicateItemProvider != null)
-			enumIntoPredicateItemProvider.dispose();
-		if(andPredicateItemProvider != null)
-			andPredicateItemProvider.dispose();
-		if(orPredicateItemProvider != null)
-			orPredicateItemProvider.dispose();
-		if(notPredicateItemProvider != null)
-			notPredicateItemProvider.dispose();
-		if(compareNumberPredicateItemProvider != null)
-			compareNumberPredicateItemProvider.dispose();
+		if (stringEqualPredicateItemProvider != null) stringEqualPredicateItemProvider.dispose();
+		if (dateEqualPredicateItemProvider != null) dateEqualPredicateItemProvider.dispose();
+		if (enumEqualPredicateItemProvider != null) enumEqualPredicateItemProvider.dispose();
+		if (booleanEqualPredicateItemProvider != null) booleanEqualPredicateItemProvider.dispose();
+		if (containsPatternPredicateItemProvider != null) containsPatternPredicateItemProvider.dispose();
+		if (stringIntoPredicateItemProvider != null) stringIntoPredicateItemProvider.dispose();
+		if (enumIntoPredicateItemProvider != null) enumIntoPredicateItemProvider.dispose();
+		if (andPredicateItemProvider != null) andPredicateItemProvider.dispose();
+		if (orPredicateItemProvider != null) orPredicateItemProvider.dispose();
+		if (notPredicateItemProvider != null) notPredicateItemProvider.dispose();
+		if (compareNumberPredicateItemProvider != null) compareNumberPredicateItemProvider.dispose();
+		if (ieAttrPredicateItemProvider != null) ieAttrPredicateItemProvider.dispose();
+		if (truePredicateItemProvider != null) truePredicateItemProvider.dispose();
+		if (operationPredicateItemProvider != null) operationPredicateItemProvider.dispose();
+		if (intParameterItemProvider != null) intParameterItemProvider.dispose();
+		if (booleanParameterItemProvider != null) booleanParameterItemProvider.dispose();
+		if (stringParameterItemProvider != null) stringParameterItemProvider.dispose();
+		if (eObjectParameterItemProvider != null) eObjectParameterItemProvider.dispose();
+		if (isTypeOfPredicateItemProvider != null) isTypeOfPredicateItemProvider.dispose();
+		if (isNullPredicateItemProvider != null) isNullPredicateItemProvider.dispose();
 	}
 
 }

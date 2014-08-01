@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+          <navigatorContent
+            activeByDefault="true"
+            id="org.polarsys.reqcycle.dnd.sirius.navigatorContent"
+            name="Drop On Sirius"
+            priority="normal">
+         <dropAssistant
+               class="org.polarsys.reqcycle.sirius.dnd.SiriusDropAdapterAssistant"
+               id="org.polarsys.reqcycle.dnd.sirius.dropAssistant">
+            <possibleDropTargets>
+               <or>
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
+                  </instanceof>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt></or></possibleDropTargets>
+         </dropAssistant>
+         <triggerPoints>
+            <or></or>
+         </triggerPoints>
+          </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="org.eclipse.sirius.ui.tools.views.model.explorer">
+         <includes>
+            <contentExtension
+                  isRoot="false"
+                  pattern="org.polarsys.reqcycle.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+
+</plugin>

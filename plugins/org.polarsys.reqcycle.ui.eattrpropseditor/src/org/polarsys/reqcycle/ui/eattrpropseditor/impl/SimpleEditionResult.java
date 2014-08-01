@@ -14,18 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.IEditionResult;
 
 public class SimpleEditionResult implements IEditionResult {
 
 	private final EObject editObject;
 
-	private final Map<EStructuralFeature, Object> editedEntries;
+	private final Map<String, Object> editedEntries;
 
 	public SimpleEditionResult(final EObject eObject) {
 		this.editObject = eObject;
-		this.editedEntries = new HashMap<EStructuralFeature, Object>();
+		this.editedEntries = new HashMap<String, Object>();
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public class SimpleEditionResult implements IEditionResult {
 	}
 
 	@Override
-	public Map<EStructuralFeature, Object> getEditedEntries() {
+	public Map<String, Object> getEditedEntries() {
 		return this.editedEntries;
 	}
 

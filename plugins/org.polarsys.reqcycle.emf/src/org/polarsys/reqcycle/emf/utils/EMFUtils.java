@@ -52,6 +52,9 @@ public class EMFUtils {
 	}
 
 	public static Reachable getReachable(EObject eobject) {
+		if (eobject == null){
+			return null;
+		}
 		try {
 			IReachableCreator creator = ZigguratInject
 					.make(IReachableCreator.class);

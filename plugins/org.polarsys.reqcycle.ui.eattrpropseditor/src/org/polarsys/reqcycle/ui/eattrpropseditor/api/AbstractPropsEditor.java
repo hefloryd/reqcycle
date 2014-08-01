@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.eattrpropseditor.api;
 
-import org.eclipse.emf.ecore.EAttribute;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -23,28 +25,21 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class AbstractPropsEditor<T> implements IEAttrPropsEditor<T> {
 
-	private EAttribute eAttribute;
-
 	private Composite container;
 
 	private int style;
 
 	private AbstractPropsEditorComponent<T> component;
+	
+	private String attributeName;
+	
+	Collection<Object> values = Collections.emptyList();
 
 	/**
 	 * @return The instance of UI component (Composite) that represents the editor that is to be used for properties
 	 *         edition.
 	 */
 	abstract protected AbstractPropsEditorComponent<T> initAndGetComponent();
-
-	@Override
-	public void setEAttribute(EAttribute attribute) {
-		this.eAttribute = attribute;
-	}
-
-	protected EAttribute getEAttribute() {
-		return this.eAttribute;
-	}
 
 	@Override
 	public Composite getEditor() {
@@ -62,6 +57,11 @@ public abstract class AbstractPropsEditor<T> implements IEAttrPropsEditor<T> {
 		return this.component.getValue();
 	}
 
+	@Override
+	public void setInitialValue(Object object) {
+		this.component.setInitialValue(object);
+	}
+	
 	@Override
 	public Composite getContainer() {
 		return this.container;
@@ -81,5 +81,24 @@ public abstract class AbstractPropsEditor<T> implements IEAttrPropsEditor<T> {
 	public void setStyle(int style) {
 		this.style = style;
 	}
+	
+	@Override
+	public String getAttributeName() {
+		return attributeName;
+	}
 
+	@Override
+	public void setAttributeName(String name) {
+		this.attributeName = name;
+	}
+	
+	@Override
+	public Collection<Object> getPossibleValues() {
+		return values;
+	}
+	
+	@Override
+	public void setPossibleValues(Collection<Object> values) {
+		this.values = values;
+	}
 }

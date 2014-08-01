@@ -22,10 +22,10 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class SesameStorageProvider implements IStorageProvider {
 	@Inject
-	private IEventBroker broker;
+	protected IEventBroker broker;
 
 	@Inject
-	private SesameRepositoryHolder repositoryHolder;
+	protected SesameRepositoryHolder repositoryHolder;
 
 	public SesameStorageProvider() {
 		super();

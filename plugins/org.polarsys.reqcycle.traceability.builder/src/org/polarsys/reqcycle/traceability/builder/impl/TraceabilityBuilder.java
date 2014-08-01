@@ -69,9 +69,11 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 							visitable.accept(visitor);
 							visitable.dispose();
 							// Proxy resolver MUST be disposed
-							proxyResolver.dispose();
+							if(proxyResolver != null) {
+								proxyResolver.dispose();
+							}
 							callBack.endBuild(reachable);
-							listener.notifyChanged(reachable);
+							listener.notifyChanged(new Reachable[]{reachable});
 							if (Activator.getDefault().isDebugging()) {
 								logger.trace(String.format(
 										"build for %s ended", t.toString()));

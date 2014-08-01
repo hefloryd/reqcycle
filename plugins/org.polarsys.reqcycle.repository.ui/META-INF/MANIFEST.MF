@@ -30,7 +30,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.eclipse.emf.workspace;bundle-version="1.5.1"
+ org.eclipse.emf.workspace;bundle-version="1.5.1",
+ org.eclipse.ui.navigator;bundle-version="3.5.400"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0",
@@ -39,4 +40,6 @@ Import-Package: javax.inject;version="1.0.0",
  org.polarsys.reqcycle.uri,
  org.polarsys.reqcycle.uri.exceptions,
  org.polarsys.reqcycle.uri.model
-Export-Package: org.polarsys.reqcycle.repository.ui.actions
+Export-Package: org.polarsys.reqcycle.repository.ui.actions,
+ org.polarsys.reqcycle.repository.ui.navigator,
+ org.polarsys.reqcycle.repository.ui.views

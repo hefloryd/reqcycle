@@ -20,7 +20,7 @@ public class DatePropsEditor extends AbstractPropsEditor<Date> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Date> initAndGetComponent() {
-		return new DatePropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new DatePropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

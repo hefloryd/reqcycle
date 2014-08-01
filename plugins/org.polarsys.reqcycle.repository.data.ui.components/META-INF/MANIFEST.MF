@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Components
+Bundle-SymbolicName: org.polarsys.reqcycle.repository.data.ui.components;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.polarsys.reqcycle.repository.data.ui.components.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.polarsys.reqcycle.repository.data.ui;bundle-version="1.0.0",
+ org.polarsys.reqcycle.repository.data;bundle-version="1.0.0",
+ org.polarsys.reqcycle.ui.eattrpropseditor;bundle-version="1.0.0",
+ org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

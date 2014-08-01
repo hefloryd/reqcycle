@@ -10,13 +10,12 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.simplepropseditors.internal.components;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.swt.widgets.Composite;
 
 public class StringPropsEditorComponent extends CharSequencePropsEditorComponent {
 
-	public StringPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public StringPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(attributeName, parent, style);
 	}
 
 	@Override

@@ -9,18 +9,65 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.model.scopes;
 
-import javax.inject.Inject;
+import java.util.Set;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.utils.ReachableUtils;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
+import com.google.common.collect.Sets;
+
 public class Scopes {
+	static Set<Reachable> WORKSPACE_REACHABLES = null ;
+	static {
+		ResourceVisitor visitor = getVisitor();
+		WORKSPACE_REACHABLES = Sets.newHashSet(visitor.getResult().getReachables());
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
+			
+			@Override
+			public void resourceChanged(IResourceChangeEvent event) {
+				try {
+					event.getDelta().accept(new IResourceDeltaVisitor() {
+						
+						@Override
+						public boolean visit(IResourceDelta delta) throws CoreException {
+							if (delta.getKind() == IResourceDelta.ADDED){
+								WORKSPACE_REACHABLES.add(ReachableUtils.getReachable(delta.getResource()));
+							}
+							else if (delta.getKind() == IResourceDelta.REMOVED){
+								WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
+							}
+							return true;
+						}
+					});
+				} catch (CoreException e) {
+					// reinit the reachables in error case
+					ResourceVisitor visitor = getVisitor();
+					WORKSPACE_REACHABLES = Sets.newHashSet(visitor.getResult().getReachables());
+				}
+			}
+		});
+	}
+
+	private static ResourceVisitor getVisitor() {
+		ResourceVisitor visitor = new ResourceVisitor();
+		ZigguratInject.inject(visitor);
+		try {
+			ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		return visitor;
+	}
+	
 	public static IScope getProjectScope(IResource r) {
 		ResourceVisitor visitor = new ResourceVisitor();
 		ZigguratInject.inject(visitor);
@@ -44,19 +91,10 @@ public class Scopes {
 	}
 
 	public static IScope getWorkspaceScope() {
-		ResourceVisitor visitor = new ResourceVisitor();
-		ZigguratInject.inject(visitor);
-		try {
-			ResourcesPlugin.getWorkspace().getRoot().accept(visitor);
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-		return visitor.getResult();
+		return new ResourceScope(WORKSPACE_REACHABLES);
 	}
 
 	private static class ResourceVisitor implements IResourceVisitor {
-		@Inject
-		IReachableManager manager;
 		CompositeScope scope = new CompositeScope();
 
 		@Override

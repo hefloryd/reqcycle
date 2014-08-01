@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.eattrpropseditor.api;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -25,7 +24,7 @@ public abstract class AbstractPropsEditorComponent<T> extends Composite {
 
 	private T value;
 
-	public AbstractPropsEditorComponent(final EAttribute attribute, final Composite parent, final int style) {
+	public AbstractPropsEditorComponent(Class<T> type, final Composite parent, final int style) {
 		super(parent, style);
 	}
 
@@ -45,6 +44,10 @@ public abstract class AbstractPropsEditorComponent<T> extends Composite {
 		this.value = value;
 	}
 
+	public void setInitialValue(Object object) {
+		return;
+	}
+	
 	/**
 	 * @return <code>true</code> if the edited text value is valid according to the type that this editor supports, <code>false</code> otherwise.
 	 */

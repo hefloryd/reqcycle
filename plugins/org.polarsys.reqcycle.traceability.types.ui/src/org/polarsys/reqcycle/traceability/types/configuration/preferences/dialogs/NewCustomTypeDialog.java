@@ -9,25 +9,21 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Entry;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationFactory;
-import org.polarsys.reqcycle.traceability.types.ui.ExtensionPointReader;
-import org.polarsys.reqcycle.traceability.types.ui.IEntryCompositeProvider;
-import org.polarsys.reqcycle.types.IType;
-import org.polarsys.reqcycle.types.IType.FieldDescriptor;
-import org.polarsys.reqcycle.types.ITypesManager;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -36,6 +32,19 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Entry;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationFactory;
+import org.polarsys.reqcycle.types.IType;
+import org.polarsys.reqcycle.types.IType.FieldDescriptor;
+import org.polarsys.reqcycle.types.IType.FieldURIDescriptor;
+import org.polarsys.reqcycle.types.ITypesManager;
+import org.polarsys.reqcycle.ui.eattrpropseditor.EAttrPropsEditorPlugin;
+import org.polarsys.reqcycle.ui.eattrpropseditor.GenericEAttrPropsEditor;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.IEAttrPropsEditor;
+
+import com.google.common.collect.Lists;
 
 public class NewCustomTypeDialog extends TitleAreaDialog {
 
@@ -44,7 +53,7 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 	@Inject
 	ITypesManager manager;
 	private IType injectedJavaType;
-	ExtensionPointReader epr = new ExtensionPointReader();
+	private List<GenericEAttrPropsEditor> editors = Lists.newArrayList();
 
 	/**
 	 * Create the dialog.
@@ -104,14 +113,14 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 
 		ScrolledComposite scrolledComposite = new ScrolledComposite(
 				grpParameters, SWT.BORDER | SWT.V_SCROLL);
-		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true,
 				true, 1, 1));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
 		Composite composite = new Composite(scrolledComposite, SWT.NONE);
-		composite.setLayout(new GridLayout(2, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		composite.setLayout(new GridLayout(1,false));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
 		createEntries(composite);
 
@@ -124,22 +133,17 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 
 	private void createEntries(Composite composite) {
 		for (IType.FieldDescriptor d : injectedJavaType.getDescriptors()) {
-			IEntryCompositeProvider entryProvider = epr.getEntryCompositeProvider(d);
-			
-			if(entryProvider != null) {
-				createLabel(composite, d);
-				Entry entry = entryProvider.createEntryComposite(composite, SWT.NONE, d);
-				// -RFU- check that entry is not null!
-				if (entry != null) 
-					newCustomType.getEntries().add(entry);
+			GenericEAttrPropsEditor editor = new GenericEAttrPropsEditor(composite, SWT.None);
+			if (d instanceof FieldURIDescriptor){
+				FieldURIDescriptor desc = (FieldURIDescriptor) d ;
+				editor.init(d.name, desc.realType,Collections.emptyList());
 			}
+			else {
+				editor.init(d.name, d.type,Collections.emptyList());
+			}
+			editor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+			editors.add(editor);
 		}
-	}
-
-	private void createLabel(Composite composite, FieldDescriptor d) {
-		Label lblNewLabel = new Label(composite, SWT.NONE);
-		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblNewLabel.setText(getName(d) + " :");
 	}
 
 	protected String getName(IType.FieldDescriptor d) {
@@ -195,6 +199,12 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 				|| newCustomType.getTypeId().length() == 0) {
 			setErrorMessage("Please set a name");
 			return;
+		}
+		for (GenericEAttrPropsEditor a : editors){
+			Entry entry = TypeconfigurationFactory.eINSTANCE.createEntry();
+			entry.setName(a.getAttributeName());
+			entry.setValue(a.getEnteredValue());
+			newCustomType.getEntries().add(entry);
 		}
 		super.okPressed();
 	}

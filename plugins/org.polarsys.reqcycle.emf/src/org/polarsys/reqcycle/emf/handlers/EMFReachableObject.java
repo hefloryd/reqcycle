@@ -12,8 +12,6 @@ package org.polarsys.reqcycle.emf.handlers;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -38,8 +36,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class EMFReachableObject implements ReachableObject {
 	private final Reachable t;
-	@Inject
-	ILogger logger;
+	ILogger logger = ZigguratInject.make(ILogger.class);
 
 	public EMFReachableObject(Reachable t) {
 		this.t = t;
@@ -49,7 +46,6 @@ public class EMFReachableObject implements ReachableObject {
 	public IVisitable getVisitable() throws VisitableException {
 		try {
 			EMFVisitable emfVisitable = doGetVisitable(EMFUtils.getEMFURI(t));
-			ZigguratInject.inject(emfVisitable);
 			return emfVisitable;
 		} catch (RuntimeException e) {
 			if (Activator.getDefault().isDebugging()) {

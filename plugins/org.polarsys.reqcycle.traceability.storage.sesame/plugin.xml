@@ -11,6 +11,28 @@
             impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.SesameRepositoryHolder"
             interface="org.polarsys.reqcycle.traceability.storage.sesame.storage.SesameRepositoryHolder">
       </binding>
+      <binding
+            impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.RDFSesameTraceabilityStorage"
+            interface="org.polarsys.reqcycle.traceability.storage.IStorageProvider"
+            name="RDF">
+      </binding>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.uri.reachableHandler">
+      <objectHandler
+            handler="org.polarsys.reqcycle.traceability.storage.sesame.reachable.SesameHandler"
+            priority="10">
+      </objectHandler>
+      <reachableHandler
+            handler="org.polarsys.reqcycle.traceability.storage.sesame.reachable.SesameHandler">
+      </reachableHandler>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.builder.traceabilityAnalyser">
+      <Analyser
+            label="RDF Traceability"
+            visitor="org.polarsys.reqcycle.traceability.storage.sesame.reachable.TraceabilityVisitor">
+      </Analyser>
    </extension>
 
 </plugin>

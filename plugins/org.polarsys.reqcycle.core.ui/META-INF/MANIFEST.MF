@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.core.services
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.polarsys.reqcycle.core.ui.dialogs

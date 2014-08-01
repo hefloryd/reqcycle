@@ -12,28 +12,36 @@
  */
 package org.polarsys.reqcycle.predicates.core;
 
+import java.lang.CharSequence;
 import java.util.regex.Pattern;
-
 import org.eclipse.emf.ecore.EFactory;
 import org.polarsys.reqcycle.predicates.core.api.AndPredicate;
 import org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate;
+import org.polarsys.reqcycle.predicates.core.api.BooleanParameter;
 import org.polarsys.reqcycle.predicates.core.api.CompareNumberPredicate;
 import org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate;
 import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
+import org.polarsys.reqcycle.predicates.core.api.EObjectParameter;
 import org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IntParameter;
+import org.polarsys.reqcycle.predicates.core.api.IsNullPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate;
 import org.polarsys.reqcycle.predicates.core.api.NotPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OPERATOR;
+import org.polarsys.reqcycle.predicates.core.api.OperationPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
+import org.polarsys.reqcycle.predicates.core.api.StringParameter;
+import org.polarsys.reqcycle.predicates.core.api.TruePredicate;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage
  * @generated
  */
@@ -43,7 +51,6 @@ public interface PredicatesFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	PredicatesFactory eINSTANCE = org.polarsys.reqcycle.predicates.core.impl.PredicatesFactoryImpl.init();
@@ -52,7 +59,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>String Equal Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>String Equal Predicate</em>'.
 	 * @generated
 	 */
@@ -62,7 +68,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Date Equal Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Date Equal Predicate</em>'.
 	 * @generated
 	 */
@@ -72,7 +77,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Enum Equal Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Enum Equal Predicate</em>'.
 	 * @generated
 	 */
@@ -82,7 +86,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Boolean Equal Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Boolean Equal Predicate</em>'.
 	 * @generated
 	 */
@@ -92,7 +95,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Contains Pattern Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Contains Pattern Predicate</em>'.
 	 * @generated
 	 */
@@ -102,7 +104,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>String Into Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>String Into Predicate</em>'.
 	 * @generated
 	 */
@@ -112,7 +113,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Enum Into Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Enum Into Predicate</em>'.
 	 * @generated
 	 */
@@ -122,7 +122,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>And Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>And Predicate</em>'.
 	 * @generated
 	 */
@@ -132,7 +131,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Or Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Or Predicate</em>'.
 	 * @generated
 	 */
@@ -142,17 +140,96 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a new object of class '<em>Compare Number Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Compare Number Predicate</em>'.
 	 * @generated
 	 */
 	CompareNumberPredicate createCompareNumberPredicate();
 
 	/**
+	 * Returns a new object of class '<em>IE Attr Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>IE Attr Predicate</em>'.
+	 * @generated
+	 */
+	IEAttrPredicate createIEAttrPredicate();
+
+	/**
+	 * Returns a new object of class '<em>True Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>True Predicate</em>'.
+	 * @generated
+	 */
+	TruePredicate createTruePredicate();
+
+	/**
+	 * Returns a new object of class '<em>Operation Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Predicate</em>'.
+	 * @generated
+	 */
+	OperationPredicate createOperationPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Int Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Int Parameter</em>'.
+	 * @generated
+	 */
+	IntParameter createIntParameter();
+
+	/**
+	 * Returns a new object of class '<em>Boolean Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean Parameter</em>'.
+	 * @generated
+	 */
+	BooleanParameter createBooleanParameter();
+
+	/**
+	 * Returns a new object of class '<em>String Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Parameter</em>'.
+	 * @generated
+	 */
+	StringParameter createStringParameter();
+
+	/**
+	 * Returns a new object of class '<em>EObject Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EObject Parameter</em>'.
+	 * @generated
+	 */
+	EObjectParameter createEObjectParameter();
+
+	/**
+	 * Returns a new object of class '<em>Is Type Of Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Is Type Of Predicate</em>'.
+	 * @generated
+	 */
+	IsTypeOfPredicate createIsTypeOfPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Is Null Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Is Null Predicate</em>'.
+	 * @generated
+	 */
+	IsNullPredicate createIsNullPredicate();
+
+	/**
 	 * Returns a new object of class '<em>Not Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Not Predicate</em>'.
 	 * @generated
 	 */
@@ -162,9 +239,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns an instance of data type '<em>OPERATOR</em>' corresponding the given literal.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *        a literal of the data type.
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
@@ -174,9 +249,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a literal representation of an instance of data type '<em>OPERATOR</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *        an instance value of the data type.
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
@@ -186,9 +259,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns an instance of data type '<em>Pattern</em>' corresponding the given literal.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *        a literal of the data type.
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
@@ -198,9 +269,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a literal representation of an instance of data type '<em>Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *        an instance value of the data type.
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
@@ -210,9 +279,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns an instance of data type '<em>Char Sequence</em>' corresponding the given literal.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *        a literal of the data type.
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
@@ -222,9 +289,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a literal representation of an instance of data type '<em>Char Sequence</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *        an instance value of the data type.
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
@@ -234,9 +299,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns an instance of data type '<em>Number</em>' corresponding the given literal.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *        a literal of the data type.
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
@@ -246,9 +309,7 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns a literal representation of an instance of data type '<em>Number</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *        an instance value of the data type.
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
@@ -258,7 +319,6 @@ public interface PredicatesFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

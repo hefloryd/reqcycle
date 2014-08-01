@@ -20,20 +20,18 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Enum Into Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Enum Into Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements EnumIntoPredicate {
+public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements
+		EnumIntoPredicate {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EnumIntoPredicateImpl() {
@@ -41,9 +39,7 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,9 +48,8 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -64,15 +59,14 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific element type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific element type known in this context.
 	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<String> getAllowedEntries() {
-		if(allowedEntries == null) {
+		if (allowedEntries == null) {
 			allowedEntries = new EDataTypeUniqueEList<String>(String.class, this, PredicatesPackage.ENUM_INTO_PREDICATE__ALLOWED_ENTRIES);
 		}
 		return allowedEntries;
@@ -80,11 +74,11 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 
 	@Override
 	public boolean match(Object input) {
-		Object inputValue = this.getInputValueFromEObject(input);
-		if(inputValue instanceof EEnumLiteral) {
-			return getAllowedEntries().contains(((EEnumLiteral)inputValue).getLiteral());
+		if (input instanceof EEnumLiteral) {
+			return getAllowedEntries().contains(
+					((EEnumLiteral) input).getLiteral());
 		}
 		return false;
 	}
 
-} //EnumIntoPredicateImpl
+} // EnumIntoPredicateImpl
