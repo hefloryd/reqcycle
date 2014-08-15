@@ -10,15 +10,19 @@
 package org.polarsys.reqcycle.emf.ui;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.polarsys.reqcycle.emf.Activator;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.services.IReachableExtender;
@@ -70,6 +74,17 @@ public class EMFEditExtender implements IReachableExtender {
 
 	public static String getLabel(Reachable r) {
 		String result = r.get(EMF_EDIT_LABEL);
+		if (result == null){
+			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
+			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
+			EObject e = set.getEObject(emfuri, true);
+			try {
+				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(emfuri.toString()), e));
+			} catch (URISyntaxException e1) {
+				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, e1.getMessage(), e1));
+			}
+		}
+		result = r.get(EMF_EDIT_LABEL);
 		if (result != null && result.length() > 0) {
 			return result;
 		}
@@ -78,6 +93,17 @@ public class EMFEditExtender implements IReachableExtender {
 
 	public static Image getImage(Reachable r) {
 		String s = r.get(EMF_EDIT_ECLASS);
+		if (s == null){
+			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
+			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
+			EObject e = set.getEObject(emfuri, true);
+			try {
+				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(emfuri.toString()), e));
+			} catch (URISyntaxException e1) {
+				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, e1.getMessage(), e1));
+			}
+		}
+		s = r.get(EMF_EDIT_ECLASS);
 		if (s != null) {
 			String[] tab = s.split("#");
 			if (tab.length == 2) {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ /*******************************************************************************
+  * Copyright (c) 2013 AtoS
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html *
+  * Contributors:
+  * Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation
+  *******************************************************************************/
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ReachableLink -->
+      <package
+            uri="http://www.polarsys.org/reqcycle/1.0/tracea"
+            class="org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTraceabilityPackage"
+            genModel="model/ReachableLink.genmodel"/>
+   </extension>
+   
+   <extension
+      point="org.polarsys.reqcycle.utils.inject.binding">
+   <binding
+         impl="org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.RequestManager"
+         interface="org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.IRequestManager">
+   </binding>
+</extension>
+   <extension
+         point="org.eclipse.emf.ecore.protocol_parser">
+      <parser
+            class="org.polarsys.reqcycle.traceability.emf.protocol.TraceaProtocolFactory"
+            protocolName="tracea">
+      </parser>
+   </extension>
+
+</plugin>

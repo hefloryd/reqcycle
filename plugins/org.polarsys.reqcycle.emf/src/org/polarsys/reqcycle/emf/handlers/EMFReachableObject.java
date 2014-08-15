@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *  Copyright (c) 2013 AtoS
  *  All rights reserved. This program and the accompanying materials
@@ -11,6 +12,8 @@ package org.polarsys.reqcycle.emf.handlers;
 
 import java.util.Collections;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -36,7 +39,8 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class EMFReachableObject implements ReachableObject {
 	private final Reachable t;
-	ILogger logger = ZigguratInject.make(ILogger.class);
+	@Inject
+	ILogger logger;
 
 	public EMFReachableObject(Reachable t) {
 		this.t = t;
@@ -46,6 +50,7 @@ public class EMFReachableObject implements ReachableObject {
 	public IVisitable getVisitable() throws VisitableException {
 		try {
 			EMFVisitable emfVisitable = doGetVisitable(EMFUtils.getEMFURI(t));
+			ZigguratInject.inject(emfVisitable);
 			return emfVisitable;
 		} catch (RuntimeException e) {
 			if (Activator.getDefault().isDebugging()) {
@@ -76,6 +81,12 @@ public class EMFReachableObject implements ReachableObject {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
+		if (EObject.class.equals(adapter)) {
+			if (t.getFragment() != null && t.getFragment().length() > 0) {
+				Resource r = (Resource) getAdapter(Resource.class);
+				return r.getEObject(t.getFragment());
+			}
+		}
 		if (IMarker.class.equals(adapter)) {
 			final IFile f = (IFile) getAdapter(IFile.class);
 			if (f != null) {
@@ -237,4 +248,5 @@ public class EMFReachableObject implements ReachableObject {
 		}
 		return null;
 	}
+
 }

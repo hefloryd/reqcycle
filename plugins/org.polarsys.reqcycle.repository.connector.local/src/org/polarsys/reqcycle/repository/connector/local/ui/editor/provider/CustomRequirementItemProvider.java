@@ -133,6 +133,9 @@ public class CustomRequirementItemProvider extends RequirementItemProvider {
 				return null;
 			}
 			RequirementSource source = rc.getRequirementSource();
+			if (source == null) {
+				return null;
+			}
 			return source.getDefaultScope();
 		}
 		return null;
