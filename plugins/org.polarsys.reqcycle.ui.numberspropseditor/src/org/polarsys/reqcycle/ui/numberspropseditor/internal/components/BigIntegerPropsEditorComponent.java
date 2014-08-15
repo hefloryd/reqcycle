@@ -12,16 +12,15 @@ package org.polarsys.reqcycle.ui.numberspropseditor.internal.components;
 
 import java.math.BigInteger;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 import org.eclipse.swt.widgets.Composite;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 
 public class BigIntegerPropsEditorComponent extends AbstractPropsTextEditorComponent<BigInteger> {
 
 	private String errorMessage;
 
-	public BigIntegerPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public BigIntegerPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(attributeName, BigInteger.class, parent, style);
 	}
 
 	@Override

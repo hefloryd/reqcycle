@@ -18,7 +18,7 @@ public class FloatPropsEditor extends AbstractPropsEditor<Float> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Float> initAndGetComponent() {
-		return new FloatPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new FloatPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

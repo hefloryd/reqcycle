@@ -27,12 +27,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.window.Window;
-import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.repository.data.ui.Activator;
-import org.polarsys.reqcycle.repository.data.ui.dialog.NameDialog;
-import org.polarsys.reqcycle.repository.data.ui.preference.PreferenceUiUtil;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -48,6 +42,12 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.repository.data.ui.Activator;
+import org.polarsys.reqcycle.repository.data.ui.dialog.NameDialog;
+import org.polarsys.reqcycle.repository.data.ui.preference.PreferenceUiUtil;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 
 public class DataModelsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Listener {

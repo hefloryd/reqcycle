@@ -14,9 +14,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.polarsys.reqcycle.emf.utils.EMFProxyResolver;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -36,7 +38,6 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 	@Override
 	public ReachableObject getFromReachable(final Reachable t) {
 		EMFReachableObject emfReachableObject = doGetReachableObject(t);
-		ZigguratInject.inject(emfReachableObject);
 		return emfReachableObject;
 	}
 
@@ -93,5 +94,10 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 			ZigguratInject.inject(result);
 		}
 		return result;
+	}
+
+	@Override
+	public ProxyResolver getProxyResolver() {
+		return new EMFProxyResolver();
 	}
 }

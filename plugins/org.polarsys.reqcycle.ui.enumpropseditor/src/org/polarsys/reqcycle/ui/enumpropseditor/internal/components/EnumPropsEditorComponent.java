@@ -10,33 +10,33 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.enumpropseditor.internal.components;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EEnum;
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 
-public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum<?>> {
+public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum> {
 
 	private ComboViewer comboViewer;
 
-	public EnumPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
+	public EnumPropsEditorComponent(String attributeName, Composite parent, int style, Collection<Object> possibleValues) {
 
-		super(attribute, parent, style);
+		super(Enum.class, parent, style);
 		setLayout(new GridLayout(2, false));
 
 		Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblName.setText(attribute.getName());
+		lblName.setText(attributeName);
 
 		comboViewer = new ComboViewer(this, SWT.READ_ONLY);
 		Combo combo = comboViewer.getCombo();
@@ -52,8 +52,7 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum<
 				return super.getText(element);
 			}
 		});
-		final EEnum eEnum = (EEnum)attribute.getEType();
-		comboViewer.setInput(eEnum.getELiterals().toArray());
+		comboViewer.setInput(possibleValues);
 	}
 
 	@Override
@@ -61,4 +60,6 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum<
 		final IStructuredSelection selectedLiteral = (IStructuredSelection)((IStructuredSelection)comboViewer.getSelection()).getFirstElement();
 		return selectedLiteral != null;
 	}
+	
+	
 }

@@ -40,5 +40,5 @@ public interface IReachableListenerManager {
 	 * 
 	 * @param r
 	 */
-	void notifyChanged(Reachable r);
+	void notifyChanged(Reachable[] r);
 }

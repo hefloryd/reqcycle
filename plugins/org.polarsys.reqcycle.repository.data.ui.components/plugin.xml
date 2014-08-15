@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.ui.eattrpropseditor.definition">
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.repository.data.ui.components.DataModelEntryProvider"
+            id="org.polarsys.reqcycle.repository.data.ui.components.datamodel"
+            name="Data Model Editor"
+            type="org.polarsys.reqcycle.repository.data.types.IDataModel">
+      </eAttrPropsEditor>
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.repository.data.ui.components.ScopeEntryProvider"
+            id="org.polarsys.reqcycle.repository.data.ui.components.scope"
+            name="Scope Editor"
+            type="org.polarsys.reqcycle.repository.data.ScopeConf.Scope">
+      </eAttrPropsEditor>
+      <eAttrPropsEditor
+            class="org.polarsys.reqcycle.repository.data.ui.components.RequirementTypeEntryProvider"
+            id="org.polarsys.reqcycle.repository.data.ui.components.reqType"
+            name="Requirement Type Editor"
+            type="org.polarsys.reqcycle.repository.data.types.IRequirementType">
+      </eAttrPropsEditor>
+   </extension>
+
+</plugin>

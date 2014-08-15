@@ -12,8 +12,7 @@ package org.polarsys.reqcycle.repository.connector.local;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
-import RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 
 public class EditRequirementsPropertyTester extends PropertyTester {

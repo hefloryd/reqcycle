@@ -10,13 +10,13 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.rmf.ui;
 
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.jface.viewers.ComboViewer;
 
 
 public class ScopeSelectionComposite extends Composite {

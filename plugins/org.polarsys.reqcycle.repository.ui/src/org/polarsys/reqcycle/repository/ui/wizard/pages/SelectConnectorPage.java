@@ -25,12 +25,6 @@ import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.wizard.WizardPage;
-import org.polarsys.reqcycle.core.ILogger;
-import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
-import org.polarsys.reqcycle.repository.connector.IConnector;
-import org.polarsys.reqcycle.repository.connector.IConnectorManager;
-import org.polarsys.reqcycle.repository.connector.ui.providers.ConnectorLabelProvider;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -39,6 +33,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.polarsys.reqcycle.core.ILogger;
+import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
+import org.polarsys.reqcycle.repository.connector.IConnector;
+import org.polarsys.reqcycle.repository.connector.IConnectorManager;
+import org.polarsys.reqcycle.repository.connector.ui.providers.ConnectorLabelProvider;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 
 public class SelectConnectorPage extends WizardPage {
 

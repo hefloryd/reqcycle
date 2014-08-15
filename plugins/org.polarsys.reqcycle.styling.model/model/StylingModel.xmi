@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<styling:StylingModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:styling="http://www.polarsys.org/ReqCycle/styling/1.0"
+    xsi:schemaLocation="http://www.polarsys.org/ReqCycle/styling/1.0 styling.ecore">
+  <styles xsi:type="styling:StylingPredicate">
+    <segments>
+      <style
+          color="">
+        <appliedFonts>ITALIC</appliedFonts>
+        <appliedFonts>BOLD</appliedFonts>
+        <appliedFonts>UNDERLINE</appliedFonts>
+        <appliedFonts>STRIKE</appliedFonts>
+      </style>
+    </segments>
+    <segments>
+      <style
+          color="">
+        <appliedFonts>BOLD</appliedFonts>
+      </style>
+    </segments>
+    <segments/>
+    <icon/>
+  </styles>
+  <styles xsi:type="styling:Default">
+    <segments/>
+    <segments/>
+  </styles>
+</styling:StylingModel>

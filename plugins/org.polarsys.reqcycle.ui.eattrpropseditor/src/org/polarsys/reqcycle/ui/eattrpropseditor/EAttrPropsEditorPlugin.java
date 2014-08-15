@@ -11,22 +11,22 @@
 package org.polarsys.reqcycle.ui.eattrpropseditor;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.apache.commons.lang.ClassUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.InvalidRegistryObjectException;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.IEAttrPropsEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.IEAttrPropsEditor;
 
 public class EAttrPropsEditorPlugin implements BundleActivator {
 
@@ -34,7 +34,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 
 	private static BundleContext context;
 
-	private static Map<String, IEAttrPropsEditor<?>> eAttrEditorManager = new TreeMap<String, IEAttrPropsEditor<?>>();
+	private static Map<Class<?>, IEAttrPropsEditor<?>> eAttrEditorManager = new HashMap<Class<?>, IEAttrPropsEditor<?>>();
 
 	static BundleContext getContext() {
 		return context;
@@ -54,7 +54,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 		final IConfigurationElement[] elements = registry.getConfigurationElementsFor(PLUGIN_ID, "definition");
 		for(final IConfigurationElement e : elements) {
 			try {
-				final String type = e.getAttribute("type");
+				final Class<?> type = Platform.getBundle(e.getContributor().getName()).loadClass(e.getAttribute("type"));
 				final Object obj = e.createExecutableExtension("class");
 				if(obj instanceof IEAttrPropsEditor) {
 					eAttrEditorManager.put(type, (IEAttrPropsEditor<?>)obj);
@@ -64,6 +64,12 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 			} catch (CoreException e1) {
 				// TODO: log
 				e1.printStackTrace(System.err);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidRegistryObjectException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 		eAttrEditorManager = Collections.unmodifiableMap(eAttrEditorManager);
@@ -75,7 +81,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	 * @return The Map of available {@link IEAttrPropsEditor} editors. The map's key represents the type that an editor
 	 *         supports, and the value represents the instance of the editor itself.
 	 */
-	public static Map<String, IEAttrPropsEditor<?>> getEAttrEditorManager() {
+	public static Map<Class<?>, IEAttrPropsEditor<?>> getEAttrEditorManager() {
 		return eAttrEditorManager;
 	}
 
@@ -91,22 +97,22 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	 * @param style
 	 * @return The appropriate instance of {@link IEAttrPropsEditor} to use.
 	 */
-	public static IEAttrPropsEditor<?> getStructuralFeatureEditor(final EAttribute eAttr, final String javaClassTypeName, Composite container, int style) {
+	public static IEAttrPropsEditor<?> getStructuralFeatureEditor(String attributeName, Class type,Composite container, int style) {
 
-		String editorType = null;
-		if(javaClassTypeName != null) {
-			editorType = javaClassTypeName;
-		} else {
-			final EClassifier eType = eAttr.getEType();
-			editorType = getEditorType(eType);
-		}
+//		String editorType = null;
+//		if(javaClassTypeName != null) {
+//			editorType = javaClassTypeName;
+//		} else {
+//			final EClassifier eType = eAttr.getEType();
+//			editorType = getEditorType(eType);
+//		}
 
-		IEAttrPropsEditor<?> editor = getEditorByTypeInstance(editorType);
+		IEAttrPropsEditor<?> editor = getEditorByTypeInstance(type);
 
 		if(editor != null) {
 			editor.setContainer(container);
 			editor.setStyle(style);
-			editor.setEAttribute(eAttr);
+			editor.setAttributeName(attributeName);
 			return editor;
 		} else {
 			throw new UnsupportedOperationException("Unsupported type. No editor found ...");
@@ -137,25 +143,21 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 		return editorType;
 	}
 
-	private static IEAttrPropsEditor<?> getEditorByTypeInstance(final String type) {
+	private static IEAttrPropsEditor<?> getEditorByTypeInstance(Class<?> initialClass) {
 		try {
-			final Class<?> initialClass = Class.forName(type);
 			Class<?> nearestClass = null;
-			for(final String currentSupportedType : getEAttrEditorManager().keySet()) {
-				final Class<?> currentSupportedClass = Class.forName(currentSupportedType);
+			for(final Class<?> currentSupportedClass : getEAttrEditorManager().keySet()) {
 				if(currentSupportedClass.isAssignableFrom(initialClass)) {
 					if(nearestClass == null || (nearestClass.isAssignableFrom(currentSupportedClass))) {
 						nearestClass = currentSupportedClass;
 					}
-					if(nearestClass.getName().equals(type))
+					if(nearestClass.equals(initialClass))
 						break;
 				}
 			}
 			if(nearestClass != null) {
-				return getEAttrEditorManager().get(nearestClass.getName());
+				return getEAttrEditorManager().get(nearestClass);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace(System.err); // XXX Change or remove
 		} catch (NullPointerException e) {
 			e.printStackTrace(System.err); // XXX Change or remove
 		}

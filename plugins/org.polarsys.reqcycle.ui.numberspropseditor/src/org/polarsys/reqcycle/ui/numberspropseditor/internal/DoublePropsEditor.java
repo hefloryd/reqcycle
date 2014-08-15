@@ -18,7 +18,7 @@ public class DoublePropsEditor extends AbstractPropsEditor<Double> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Double> initAndGetComponent() {
-		return new DoublePropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new DoublePropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

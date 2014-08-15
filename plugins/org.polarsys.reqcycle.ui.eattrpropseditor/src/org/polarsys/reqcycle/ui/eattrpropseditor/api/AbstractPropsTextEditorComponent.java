@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.eattrpropseditor.api;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.swt.SWT;
@@ -41,16 +40,16 @@ public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsE
 
 	private String currentTextValue;
 
-	public AbstractPropsTextEditorComponent(final EAttribute attribute, final Composite parent, final int style) {
+	public AbstractPropsTextEditorComponent(String attributeName, Class<T> type, final Composite parent, final int style) {
 
-		super(attribute, parent, style);
+		super(type, parent, style);
 		GridLayout gridLayout = new GridLayout(2, false);
 		gridLayout.marginRight = 10;
 		setLayout(gridLayout);
 
 		Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblName.setText(attribute.getName());
+		lblName.setText(attributeName);
 
 		text = new Text(this, SWT.BORDER);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -85,9 +84,17 @@ public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsE
 
 	@Override
 	public boolean isValid() {
-		return isTextValid(currentTextValue);
+		if(currentTextValue !=null) {
+			return isTextValid(currentTextValue);
+		}
+		return false;
 	}
-
+	
+	@Override
+	public void setInitialValue(Object object) {
+			text.setText(object.toString());
+	}
+	
 	/**
 	 * @param textValue
 	 *        - The current text value entered into the {@link Text} widget.

@@ -12,6 +12,8 @@ package org.polarsys.reqcycle.repository.data;
 
 import java.util.Collection;
 
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
@@ -19,14 +21,10 @@ import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 
-import RequirementSourceData.AbstractElement;
-import ScopeConf.Scope;
-
 /**
  * The Interface IDataModelManager.
  */
 public interface IDataModelManager {
-
 
 	/** The Constant MODEL_NS_URI. */
 	static final String MODEL_NS_URI = "http://www.polarsys.org/ReqCycle/CustomDataModels";
@@ -45,7 +43,7 @@ public interface IDataModelManager {
 	 * Adds the data model.
 	 * 
 	 * @param dataModel
-	 *        the data model to add
+	 *            the data model to add
 	 */
 	public void addDataModel(IDataModel dataModel);
 
@@ -53,7 +51,7 @@ public interface IDataModelManager {
 	 * Creates the data model.
 	 * 
 	 * @param name
-	 *        the data model name
+	 *            the data model name
 	 * @return the Data Model
 	 */
 	public IDataModel createDataModel(String name);
@@ -62,9 +60,9 @@ public interface IDataModelManager {
 	 * Creates a scope.
 	 * 
 	 * @param name
-	 *        the scope name
+	 *            the scope name
 	 * @param dataModel
-	 *        the scope data model
+	 *            the scope data model
 	 * @return the scope
 	 */
 	public Scope createScope(String name, IDataModel dataModel);
@@ -73,29 +71,31 @@ public interface IDataModelManager {
 	 * Adds the requirement types to a Data Model.
 	 * 
 	 * @param dataModel
-	 *        the data model container
+	 *            the data model container
 	 * @param dataTypes
-	 *        the data types to add
+	 *            the data types to add
 	 */
-	public void addRequirementTypes(IDataModel dataModel, IRequirementType... dataTypes);
+	public void addRequirementTypes(IDataModel dataModel,
+			IRequirementType... dataTypes);
 
 	/**
 	 * Adds the enumeration types to a Data Model.
 	 * 
 	 * @param dataModel
-	 *        the data model container
+	 *            the data model container
 	 * @param enumerationTypes
-	 *        the enumeration types to add
+	 *            the enumeration types to add
 	 */
-	public void addEnumerationTypes(IDataModel dataModel, IEnumerationType... enumerationTypes);
+	public void addEnumerationTypes(IDataModel dataModel,
+			IEnumerationType... enumerationTypes);
 
 	/**
 	 * Adds the scopes to a Data Model.
 	 * 
 	 * @param dataModel
-	 *        the data model container
+	 *            the data model container
 	 * @param scopes
-	 *        the scopes to add
+	 *            the scopes to add
 	 */
 	public void addScopes(IDataModel dataModel, Scope... scopes);
 
@@ -103,7 +103,7 @@ public interface IDataModelManager {
 	 * Gets the data model.
 	 * 
 	 * @param name
-	 *        the data model name
+	 *            the data model name
 	 * @return the data model
 	 */
 	public IDataModel getDataModel(String name);
@@ -112,7 +112,7 @@ public interface IDataModelManager {
 	 * Gets the data model.
 	 * 
 	 * @param uri
-	 *        the data model URI
+	 *            the data model URI
 	 * @return data models
 	 */
 	public Collection<IDataModel> getDataModelByURI(String uri);
@@ -142,9 +142,9 @@ public interface IDataModelManager {
 	 * Gets the scope.
 	 * 
 	 * @param name
-	 *        the scope name
+	 *            the scope name
 	 * @param dataModel
-	 *        the scope data model
+	 *            the scope data model
 	 * @return the scope with the given name
 	 */
 	public Scope getScope(String name, IDataModel dataModel);
@@ -153,7 +153,7 @@ public interface IDataModelManager {
 	 * Gets the scopes.
 	 * 
 	 * @param dataModel
-	 *        the scopes data model
+	 *            the scopes data model
 	 * @return the scopes
 	 */
 	public Collection<Scope> getScopes(IDataModel dataModel);
@@ -165,30 +165,31 @@ public interface IDataModelManager {
 	 */
 	public Collection<Scope> getAllScopes();
 
-	//	/**
-	//	 * Creates the instance.
-	//	 * 
-	//	 * @param requirementType
-	//	 *        the requirement type
-	//	 * @return the e object
-	//	 */
-	//	public EObject createInstance(IRequirementType requirementType);
+	// /**
+	// * Creates the instance.
+	// *
+	// * @param requirementType
+	// * the requirement type
+	// * @return the e object
+	// */
+	// public EObject createInstance(IRequirementType requirementType);
 
 	/**
 	 * Creates requirement type.
 	 * 
 	 * @param name
-	 *        the requirement type name
+	 *            the requirement type name
 	 * @param selectedModel
 	 * @return the requirement type
 	 */
-	public IRequirementType createRequirementType(String name, IDataModel selectedModel);
+	public IRequirementType createRequirementType(String name,
+			IDataModel selectedModel);
 
 	/**
 	 * Creates the enumeration type.
 	 * 
 	 * @param name
-	 *        the enumeration type name
+	 *            the enumeration type name
 	 * @return the enumeration type
 	 */
 	public IEnumerationType createEnumerationType(String name);
@@ -197,7 +198,7 @@ public interface IDataModelManager {
 	 * Creates enumerator.
 	 * 
 	 * @param name
-	 *        the enumerator name
+	 *            the enumerator name
 	 * @return the enumerator
 	 */
 	public IEnumerator createEnumerator(String name);
@@ -206,9 +207,9 @@ public interface IDataModelManager {
 	 * Creates attribute.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param type
-	 *        the Attribute type
+	 *            the Attribute type
 	 * @return the attribute
 	 */
 	public IAttribute createAttribute(String name, IAttributeType type);
@@ -217,9 +218,9 @@ public interface IDataModelManager {
 	 * Creates attribute.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param type
-	 *        the Enumeration type
+	 *            the Enumeration type
 	 * @return the attribute
 	 */
 	public IAttribute createAttribute(String name, IEnumerationType type);
@@ -228,7 +229,7 @@ public interface IDataModelManager {
 	 * Checks if the given data model is used.
 	 * 
 	 * @param dataModel
-	 *        the data model
+	 *            the data model
 	 * @return true id its used
 	 */
 	public boolean isDataModelUsed(IDataModel dataModel);

@@ -17,7 +17,7 @@ public class StringPropsEditor extends CharSequencePropsEditor {
 
 	@Override
 	protected AbstractPropsEditorComponent<CharSequence> initAndGetComponent() {
-		return new StringPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new StringPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

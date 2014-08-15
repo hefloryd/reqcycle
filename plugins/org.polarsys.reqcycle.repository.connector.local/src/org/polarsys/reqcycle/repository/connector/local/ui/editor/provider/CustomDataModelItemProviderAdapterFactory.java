@@ -11,8 +11,7 @@
 package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 
 import org.eclipse.emf.common.notify.Adapter;
-
-import RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory;
 
 
 public class CustomDataModelItemProviderAdapterFactory extends RequirementSourceDataItemProviderAdapterFactory {

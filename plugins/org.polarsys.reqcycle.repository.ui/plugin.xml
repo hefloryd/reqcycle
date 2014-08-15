@@ -38,8 +38,113 @@
         point="org.eclipse.ui.importWizards">
      <wizard
            class="org.polarsys.reqcycle.repository.ui.wizard.NewRequirementSourceWizard"
-           id="org.polarsys.reqcycle.repository.ui.wizard1org.polarsys.reqcycle.repository.NewRequirementSource"
+           id="org.polarsys.reqcycle.repository.NewRequirementSourceWizard"
            name="Create New Requirement Source">
      </wizard>
   </extension>
+  <extension
+        point="org.eclipse.ui.navigator.navigatorContent">
+     <navigatorContent
+           contentProvider="org.polarsys.reqcycle.repository.ui.providers.ParentBeanContentProvider"
+           id="org.polarsys.reqcycle.repository.ui.requirementNavigatorContent"
+           labelProvider="org.polarsys.reqcycle.repository.ui.providers.ParentBeanLabelProvider"
+           name="RequirementNavigatorContent"
+           priority="normal">
+        <triggerPoints>
+           <instanceof
+                 value="org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot">
+           </instanceof></triggerPoints>
+     </navigatorContent>
+  </extension>
+  <extension
+        point="org.eclipse.ui.navigator.viewer">
+     <viewer
+           viewerId="org.polarsys.reqcycle.repository.ui.views.requirements">
+     </viewer>
+     <viewerContentBinding
+           viewerId="org.polarsys.reqcycle.repository.ui.views.requirements">
+        <includes>
+           <contentExtension
+                 isRoot="true"
+                 pattern="org.polarsys.reqcycle.repository.ui.*">
+           </contentExtension>
+        </includes>
+     </viewerContentBinding>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <!--<menuContribution
+           allPopups="false"
+           locationURI="toolbar:org.polarsys.reqcycle.repository.ui.views.requirements">
+        <command
+              commandId="org.eclipse.ui.newWizard"
+              icon="icons/delete.gif"
+              label="Select Requirement Sources"
+              style="push"
+              tooltip="Select requirement sources to filter">
+        </command>
+     </menuContribution>-->
+     <menuContribution
+           allPopups="false"
+           locationURI="toolbar:org.polarsys.reqcycle.repository.ui.views.requirements">
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
+              icon="icons/editFilterList.png"
+              label="Select Predicates Filters"
+              style="push"
+              tooltip="Select predicates to use for filtering">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
+              icon="icons/class_hi.gif"
+              label="Order requirements by Predicates"
+              style="push"
+              tooltip="Order requirements by Predicates">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
+              icon="icons/editRepoList.png"
+              label="Select Requirement Sources"
+              style="push"
+              tooltip="Select requirement sources to filter">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
+              icon="icons/newView.gif"
+              label="New Instance"
+              style="push">
+        </command>
+     </menuContribution>
+  </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
+           name="Select Predicates Filters">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
+           name="Order requirements by Predicates">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
+           name="Select Requirement Sources">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
+           name="New Instance">
+     </command>
+  </extension>
+  <!--<extension
+        point="org.eclipse.ui.perspectives">
+     <perspective
+           class="org.polarsys.reqcycle.repository.ui.toolbar.RequirementPerspective"
+           id="org.polarsys.reqcycle.repository.ui.toolbar.requirementPerspective"
+           name="Requirement Perspective">
+     </perspective>
+  </extension>-->
 </plugin>

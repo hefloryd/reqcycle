@@ -19,7 +19,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.traceability,
  org.polarsys.reqcycle.traceability.engine,
  org.polarsys.reqcycle.traceability.exceptions,
+ org.polarsys.reqcycle.traceability.extenders,
  org.polarsys.reqcycle.traceability.model,
  org.polarsys.reqcycle.traceability.model.scopes,
  org.polarsys.reqcycle.traceability.predicates,
  org.polarsys.reqcycle.traceability.utils
+Import-Package: org.apache.commons.codec.binary;version="1.3.0"

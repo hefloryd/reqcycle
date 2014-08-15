@@ -17,6 +17,6 @@ public interface IReachableListener {
 	 * 
 	 * @param reachable
 	 */
-	void hasChanged(Reachable reachable);
+	void hasChanged(Reachable[] reachable);
 
 }

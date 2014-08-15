@@ -12,8 +12,8 @@
  */
 package org.polarsys.reqcycle.predicates.core.impl;
 
+import java.lang.CharSequence;
 import java.util.regex.Pattern;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -28,29 +28,38 @@ import org.polarsys.reqcycle.predicates.core.PredicatesFactory;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.AndPredicate;
 import org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate;
+import org.polarsys.reqcycle.predicates.core.api.BooleanParameter;
 import org.polarsys.reqcycle.predicates.core.api.CompareNumberPredicate;
 import org.polarsys.reqcycle.predicates.core.api.CompositePredicate;
 import org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate;
 import org.polarsys.reqcycle.predicates.core.api.CustomPredicate;
 import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
+import org.polarsys.reqcycle.predicates.core.api.EObjectParameter;
 import org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate;
 import org.polarsys.reqcycle.predicates.core.api.EqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IPredicateContainer;
 import org.polarsys.reqcycle.predicates.core.api.ITypedPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IntParameter;
 import org.polarsys.reqcycle.predicates.core.api.IntoPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IsNullPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate;
 import org.polarsys.reqcycle.predicates.core.api.NotPredicate;
+import org.polarsys.reqcycle.predicates.core.api.OperationPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OrPredicate;
+import org.polarsys.reqcycle.predicates.core.api.Parameter;
 import org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
+import org.polarsys.reqcycle.predicates.core.api.StringParameter;
+import org.polarsys.reqcycle.predicates.core.api.TruePredicate;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPackage {
@@ -58,7 +67,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass iPredicateEClass = null;
@@ -66,7 +74,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass compositePredicateEClass = null;
@@ -74,7 +81,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass customPredicateEClass = null;
@@ -82,7 +88,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass equalPredicateEClass = null;
@@ -90,7 +95,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stringEqualPredicateEClass = null;
@@ -98,7 +102,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass dateEqualPredicateEClass = null;
@@ -106,7 +109,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass enumEqualPredicateEClass = null;
@@ -114,7 +116,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass booleanEqualPredicateEClass = null;
@@ -122,7 +123,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass containsPatternPredicateEClass = null;
@@ -130,7 +130,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass intoPredicateEClass = null;
@@ -138,7 +137,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stringIntoPredicateEClass = null;
@@ -146,7 +144,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass enumIntoPredicateEClass = null;
@@ -154,7 +151,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass andPredicateEClass = null;
@@ -162,7 +158,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass orPredicateEClass = null;
@@ -170,7 +165,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass compareNumberPredicateEClass = null;
@@ -178,7 +172,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass iTypedPredicateEClass = null;
@@ -186,7 +179,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ieAttrPredicateEClass = null;
@@ -194,7 +186,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ieClassifierPredicateEClass = null;
@@ -202,7 +193,76 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	private EClass truePredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operationPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass intParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass booleanParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eObjectParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iPredicateContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass isTypeOfPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass isNullPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass notPredicateEClass = null;
@@ -210,7 +270,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum operatorEEnum = null;
@@ -218,7 +277,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType patternEDataType = null;
@@ -226,7 +284,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType charSequenceEDataType = null;
@@ -234,19 +291,19 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType numberEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#eNS_URI
 	 * @see #init()
@@ -259,7 +316,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -267,18 +323,16 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link PredicatesPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link PredicatesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static PredicatesPackage init() {
-		if(isInited)
-			return (PredicatesPackage)EPackage.Registry.INSTANCE.getEPackage(PredicatesPackage.eNS_URI);
+		if (isInited) return (PredicatesPackage)EPackage.Registry.INSTANCE.getEPackage(PredicatesPackage.eNS_URI);
 
 		// Obtain or create and register package
 		PredicatesPackageImpl thePredicatesPackage = (PredicatesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PredicatesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PredicatesPackageImpl());
@@ -294,7 +348,7 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		// Mark meta-data to indicate it can't be changed
 		thePredicatesPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PredicatesPackage.eNS_URI, thePredicatesPackage);
 		return thePredicatesPackage;
@@ -303,7 +357,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIPredicate() {
@@ -313,7 +366,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIPredicate_DisplayName() {
@@ -323,7 +375,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getIPredicate__Match__Object() {
@@ -333,7 +384,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCompositePredicate() {
@@ -343,7 +393,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCompositePredicate_Predicates() {
@@ -353,7 +402,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCustomPredicate() {
@@ -363,7 +411,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEqualPredicate() {
@@ -373,7 +420,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEqualPredicate_Input() {
@@ -383,7 +429,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEqualPredicate_ExpectedObject() {
@@ -393,7 +438,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStringEqualPredicate() {
@@ -403,7 +447,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDateEqualPredicate() {
@@ -413,7 +456,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEnumEqualPredicate() {
@@ -423,7 +465,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getBooleanEqualPredicate() {
@@ -433,7 +474,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getContainsPatternPredicate() {
@@ -443,7 +483,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getContainsPatternPredicate_Input() {
@@ -453,7 +492,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getContainsPatternPredicate_ExpectedPattern() {
@@ -463,7 +501,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIntoPredicate() {
@@ -473,7 +510,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIntoPredicate_Input() {
@@ -483,7 +519,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIntoPredicate_AllowedEntries() {
@@ -493,7 +528,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStringIntoPredicate() {
@@ -503,7 +537,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEnumIntoPredicate() {
@@ -513,7 +546,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAndPredicate() {
@@ -523,7 +555,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOrPredicate() {
@@ -533,7 +564,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCompareNumberPredicate() {
@@ -543,7 +573,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCompareNumberPredicate_Input() {
@@ -553,7 +582,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCompareNumberPredicate_ExpectedValue() {
@@ -563,7 +591,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCompareNumberPredicate_Operator() {
@@ -573,7 +600,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getITypedPredicate() {
@@ -583,7 +609,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getITypedPredicate_TypedElement() {
@@ -593,7 +618,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIEAttrPredicate() {
@@ -603,7 +627,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIEClassifierPredicate() {
@@ -613,7 +636,195 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EClass getTruePredicate() {
+		return truePredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperationPredicate() {
+		return operationPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperationPredicate_OperationName() {
+		return (EAttribute)operationPredicateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperationPredicate_Parameters() {
+		return (EReference)operationPredicateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameter() {
+		return parameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameter_Name() {
+		return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getParameter__GetObjectValue() {
+		return parameterEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIntParameter() {
+		return intParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntParameter_Value() {
+		return (EAttribute)intParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBooleanParameter() {
+		return booleanParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBooleanParameter_Value() {
+		return (EAttribute)booleanParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringParameter() {
+		return stringParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringParameter_Value() {
+		return (EAttribute)stringParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEObjectParameter() {
+		return eObjectParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEObjectParameter_Value() {
+		return (EReference)eObjectParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIPredicateContainer() {
+		return iPredicateContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIPredicateContainer_ResultPredicate() {
+		return (EReference)iPredicateContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIsTypeOfPredicate() {
+		return isTypeOfPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsTypeOfPredicate_Type() {
+		return (EAttribute)isTypeOfPredicateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsTypeOfPredicate_IsStrictTypeOf() {
+		return (EAttribute)isTypeOfPredicateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIsNullPredicate() {
+		return isNullPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getNotPredicate() {
@@ -623,7 +834,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getOPERATOR() {
@@ -633,7 +843,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getPattern() {
@@ -643,7 +852,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getCharSequence() {
@@ -653,7 +861,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getNumber() {
@@ -663,7 +870,6 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PredicatesFactory getPredicatesFactory() {
@@ -673,22 +879,19 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -743,6 +946,37 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 
 		ieClassifierPredicateEClass = createEClass(IE_CLASSIFIER_PREDICATE);
 
+		truePredicateEClass = createEClass(TRUE_PREDICATE);
+
+		operationPredicateEClass = createEClass(OPERATION_PREDICATE);
+		createEAttribute(operationPredicateEClass, OPERATION_PREDICATE__OPERATION_NAME);
+		createEReference(operationPredicateEClass, OPERATION_PREDICATE__PARAMETERS);
+
+		parameterEClass = createEClass(PARAMETER);
+		createEAttribute(parameterEClass, PARAMETER__NAME);
+		createEOperation(parameterEClass, PARAMETER___GET_OBJECT_VALUE);
+
+		intParameterEClass = createEClass(INT_PARAMETER);
+		createEAttribute(intParameterEClass, INT_PARAMETER__VALUE);
+
+		booleanParameterEClass = createEClass(BOOLEAN_PARAMETER);
+		createEAttribute(booleanParameterEClass, BOOLEAN_PARAMETER__VALUE);
+
+		stringParameterEClass = createEClass(STRING_PARAMETER);
+		createEAttribute(stringParameterEClass, STRING_PARAMETER__VALUE);
+
+		eObjectParameterEClass = createEClass(EOBJECT_PARAMETER);
+		createEReference(eObjectParameterEClass, EOBJECT_PARAMETER__VALUE);
+
+		iPredicateContainerEClass = createEClass(IPREDICATE_CONTAINER);
+		createEReference(iPredicateContainerEClass, IPREDICATE_CONTAINER__RESULT_PREDICATE);
+
+		isTypeOfPredicateEClass = createEClass(IS_TYPE_OF_PREDICATE);
+		createEAttribute(isTypeOfPredicateEClass, IS_TYPE_OF_PREDICATE__TYPE);
+		createEAttribute(isTypeOfPredicateEClass, IS_TYPE_OF_PREDICATE__IS_STRICT_TYPE_OF);
+
+		isNullPredicateEClass = createEClass(IS_NULL_PREDICATE);
+
 		// Create enums
 		operatorEEnum = createEEnum(OPERATOR);
 
@@ -755,22 +989,19 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -789,8 +1020,8 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 
 		// Add supertypes to classes
 		compositePredicateEClass.getESuperTypes().add(this.getIPredicate());
-		customPredicateEClass.getESuperTypes().add(this.getIEAttrPredicate());
-		equalPredicateEClass.getESuperTypes().add(this.getIEAttrPredicate());
+		customPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		equalPredicateEClass.getESuperTypes().add(this.getIPredicate());
 		g1 = createEGenericType(this.getEqualPredicate());
 		EGenericType g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
@@ -807,8 +1038,8 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		g2 = createEGenericType(ecorePackage.getEBooleanObject());
 		g1.getETypeArguments().add(g2);
 		booleanEqualPredicateEClass.getEGenericSuperTypes().add(g1);
-		containsPatternPredicateEClass.getESuperTypes().add(this.getIEAttrPredicate());
-		intoPredicateEClass.getESuperTypes().add(this.getIEAttrPredicate());
+		containsPatternPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		intoPredicateEClass.getESuperTypes().add(this.getIPredicate());
 		g1 = createEGenericType(this.getIntoPredicate());
 		g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
@@ -820,8 +1051,8 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		andPredicateEClass.getESuperTypes().add(this.getCompositePredicate());
 		orPredicateEClass.getESuperTypes().add(this.getCompositePredicate());
 		notPredicateEClass.getESuperTypes().add(this.getCompositePredicate());
-		compareNumberPredicateEClass.getESuperTypes().add(this.getIEAttrPredicate());
-		iTypedPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		compareNumberPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		iTypedPredicateEClass.getESuperTypes().add(this.getIPredicateContainer());
 		g1 = createEGenericType(this.getITypedPredicate());
 		g2 = createEGenericType(ecorePackage.getEAttribute());
 		g1.getETypeArguments().add(g2);
@@ -830,6 +1061,15 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		g2 = createEGenericType(ecorePackage.getEClassifier());
 		g1.getETypeArguments().add(g2);
 		ieClassifierPredicateEClass.getEGenericSuperTypes().add(g1);
+		truePredicateEClass.getESuperTypes().add(this.getIPredicate());
+		operationPredicateEClass.getESuperTypes().add(this.getIPredicateContainer());
+		intParameterEClass.getESuperTypes().add(this.getParameter());
+		booleanParameterEClass.getESuperTypes().add(this.getParameter());
+		stringParameterEClass.getESuperTypes().add(this.getParameter());
+		eObjectParameterEClass.getESuperTypes().add(this.getParameter());
+		iPredicateContainerEClass.getESuperTypes().add(this.getIPredicate());
+		isTypeOfPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		isNullPredicateEClass.getESuperTypes().add(this.getIPredicate());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iPredicateEClass, IPredicate.class, "IPredicate", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -886,9 +1126,41 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		g1 = createEGenericType(iTypedPredicateEClass_T);
 		initEReference(getITypedPredicate_TypedElement(), g1, null, "typedElement", null, 0, 1, ITypedPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(ieAttrPredicateEClass, IEAttrPredicate.class, "IEAttrPredicate", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ieAttrPredicateEClass, IEAttrPredicate.class, "IEAttrPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(ieClassifierPredicateEClass, IEClassifierPredicate.class, "IEClassifierPredicate", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(truePredicateEClass, TruePredicate.class, "TruePredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(operationPredicateEClass, OperationPredicate.class, "OperationPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOperationPredicate_OperationName(), ecorePackage.getEString(), "operationName", null, 0, 1, OperationPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationPredicate_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, OperationPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getParameter__GetObjectValue(), ecorePackage.getEJavaObject(), "getObjectValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(intParameterEClass, IntParameter.class, "IntParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntParameter_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(booleanParameterEClass, BooleanParameter.class, "BooleanParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBooleanParameter_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BooleanParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringParameterEClass, StringParameter.class, "StringParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringParameter_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eObjectParameterEClass, EObjectParameter.class, "EObjectParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEObjectParameter_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, EObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPredicateContainerEClass, IPredicateContainer.class, "IPredicateContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIPredicateContainer_ResultPredicate(), this.getIPredicate(), null, "resultPredicate", null, 0, 1, IPredicateContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(isTypeOfPredicateEClass, IsTypeOfPredicate.class, "IsTypeOfPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIsTypeOfPredicate_Type(), ecorePackage.getEJavaObject(), "type", null, 0, 1, IsTypeOfPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIsTypeOfPredicate_IsStrictTypeOf(), ecorePackage.getEBoolean(), "isStrictTypeOf", null, 0, 1, IsTypeOfPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(isNullPredicateEClass, IsNullPredicate.class, "IsNullPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(operatorEEnum, org.polarsys.reqcycle.predicates.core.api.OPERATOR.class, "OPERATOR");
@@ -922,60 +1194,128 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	 * Initializes the annotations for <b>www.eclipse.org/reqcycle/predicates/userInput</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createUserInputAnnotations() {
-		String source = "www.eclipse.org/reqcycle/predicates/userInput";
-		addAnnotation(equalPredicateEClass, source, new String[]{});
-		addAnnotation(containsPatternPredicateEClass, source, new String[]{});
-		addAnnotation(intoPredicateEClass, source, new String[]{});
-		addAnnotation(compareNumberPredicateEClass, source, new String[]{});
-		addAnnotation(getCompareNumberPredicate_Operator(), source, new String[]{});
+		String source = "www.eclipse.org/reqcycle/predicates/userInput";	
+		addAnnotation
+		  (equalPredicateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (containsPatternPredicateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (intoPredicateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (compareNumberPredicateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getCompareNumberPredicate_Operator(), 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 	/**
 	 * Initializes the annotations for <b>www.eclipse.org/reqcycle/predicates/specificUserInput</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createSpecificUserInputAnnotations() {
-		String source = "www.eclipse.org/reqcycle/predicates/specificUserInput";
-		addAnnotation(getEqualPredicate_ExpectedObject(), source, new String[]{});
-		addAnnotation(getContainsPatternPredicate_ExpectedPattern(), source, new String[]{});
-		addAnnotation(getIntoPredicate_AllowedEntries(), source, new String[]{});
-		addAnnotation(getCompareNumberPredicate_ExpectedValue(), source, new String[]{});
+		String source = "www.eclipse.org/reqcycle/predicates/specificUserInput";	
+		addAnnotation
+		  (getEqualPredicate_ExpectedObject(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getContainsPatternPredicate_ExpectedPattern(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getIntoPredicate_AllowedEntries(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getCompareNumberPredicate_ExpectedValue(), 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 	/**
 	 * Initializes the annotations for <b>www.eclipse.org/reqcycle/predicates/input_javaclass_type</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createInput_javaclass_typeAnnotations() {
-		String source = "www.eclipse.org/reqcycle/predicates/input_javaclass_type";
-		addAnnotation(stringEqualPredicateEClass, source, new String[]{ "inputType", "java.lang.String" });
-		addAnnotation(dateEqualPredicateEClass, source, new String[]{ "inputType", "java.util.Date" });
-		addAnnotation(enumEqualPredicateEClass, source, new String[]{ "inputType", "org.eclipse.emf.common.util.Enumerator" });
-		addAnnotation(booleanEqualPredicateEClass, source, new String[]{ "inputType", "java.lang.Boolean" });
-		addAnnotation(stringIntoPredicateEClass, source, new String[]{ "inputType", "java.util.Collection", "objectType", "java.lang.String" });
-		addAnnotation(enumIntoPredicateEClass, source, new String[]{ "inputType", "java.util.Collection", "objectType", "java.lang.String" });
+		String source = "www.eclipse.org/reqcycle/predicates/input_javaclass_type";	
+		addAnnotation
+		  (stringEqualPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "java.lang.String"
+		   });	
+		addAnnotation
+		  (dateEqualPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "java.util.Date"
+		   });	
+		addAnnotation
+		  (enumEqualPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "org.eclipse.emf.common.util.Enumerator"
+		   });	
+		addAnnotation
+		  (booleanEqualPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "java.lang.Boolean"
+		   });	
+		addAnnotation
+		  (stringIntoPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "java.util.Collection",
+			 "objectType", "java.lang.String"
+		   });	
+		addAnnotation
+		  (enumIntoPredicateEClass, 
+		   source, 
+		   new String[] {
+			 "inputType", "java.util.Collection",
+			 "objectType", "java.lang.String"
+		   });
 	}
 
 	/**
 	 * Initializes the annotations for <b>www.eclipse.org/reqcycle/predicates/adaptInput</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createAdaptInputAnnotations() {
-		String source = "www.eclipse.org/reqcycle/predicates/adaptInput";
-		addAnnotation(getContainsPatternPredicate_ExpectedPattern(), source, new String[]{});
+		String source = "www.eclipse.org/reqcycle/predicates/adaptInput";	
+		addAnnotation
+		  (getContainsPatternPredicate_ExpectedPattern(), 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 } //PredicatesPackageImpl

@@ -69,7 +69,6 @@ public class TraceabilityTableView extends ViewPart {
 	protected ITraceabilityEngine engine;
 
 	@Inject
-	@Named("RDF")
 	protected IStorageProvider provider;
 
 	@Inject

@@ -17,19 +17,18 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>String Equal Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>String Equal Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class StringEqualPredicateImpl extends EqualPredicateImpl<String> implements StringEqualPredicate {
+public class StringEqualPredicateImpl extends EqualPredicateImpl<String>
+		implements StringEqualPredicate {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -38,8 +37,7 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -49,9 +47,8 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -61,9 +58,8 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -74,11 +70,10 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 
 	@Override
 	public boolean match(Object input) {
-		Object val = this.getInputValueFromEObject(input);
-		if(!(val instanceof String) && val != null) {
-			val = val.toString();
+		if (input != null) {
+			return expectedObject != null && expectedObject.equals(input);
 		}
-		return expectedObject != null && expectedObject.equals(val);
+		return false;
 	}
 
-} //StringEqualPredicateImpl
+} // StringEqualPredicateImpl

@@ -97,12 +97,14 @@ public class CachedTypeChecker implements ICachedTypedChecker,
 	}
 
 	@Override
-	public void hasChanged(Reachable reachable) {
-		ReachableStruct get = cache.getIfPresent(reachable);
-		if (get != null) {
-			get.clear();
+	public void hasChanged(Reachable[] reachables) {
+		for (Reachable reachable : reachables){
+			ReachableStruct get = cache.getIfPresent(reachable);
+			if (get != null) {
+				get.clear();
+			}
+			cache.invalidate(reachable);
+			listener.removeReachableListener(this, reachable);
 		}
-		cache.invalidate(reachable);
-		listener.removeReachableListener(this, reachable);
 	}
 }

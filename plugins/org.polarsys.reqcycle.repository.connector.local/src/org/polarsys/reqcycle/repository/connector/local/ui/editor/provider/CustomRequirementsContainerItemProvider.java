@@ -20,15 +20,14 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementsContainerItemProvider;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceConf.RequirementSourceConfPackage;
-import RequirementSourceData.RequirementSourceDataFactory;
-import RequirementSourceData.RequirementSourceDataPackage;
-import RequirementSourceData.RequirementsContainer;
-import RequirementSourceData.provider.RequirementsContainerItemProvider;
 
 
 

@@ -18,7 +18,7 @@ public class CharSequencePropsEditor extends AbstractPropsEditor<CharSequence> {
 
 	@Override
 	protected AbstractPropsEditorComponent<CharSequence> initAndGetComponent() {
-		return new CharSequencePropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new CharSequencePropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

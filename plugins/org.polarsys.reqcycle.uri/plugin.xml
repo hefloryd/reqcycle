@@ -22,8 +22,7 @@
       </binding>
       <binding
             impl="org.polarsys.reqcycle.uri.impl.ReachableListenerManager"
-            interface="org.polarsys.reqcycle.uri.IReachableListenerManager"
-            priority="100">
+            interface="org.polarsys.reqcycle.uri.IReachableListenerManager">
       </binding>
    </extension>
    <extension
@@ -34,6 +33,16 @@
       <reachableHandler
             handler="org.polarsys.reqcycle.uri.impl.handlers.StandardTypeHandler">
       </reachableHandler>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="java.lang.Object"
+            class="org.polarsys.reqcycle.uri.adapters.ReachableAdapterFactory">
+         <adapter
+               type="org.polarsys.reqcycle.uri.model.Reachable">
+         </adapter>
+      </factory>
    </extension>
 
 </plugin>

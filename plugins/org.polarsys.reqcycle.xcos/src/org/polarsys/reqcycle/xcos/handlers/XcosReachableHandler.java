@@ -12,6 +12,7 @@ package org.polarsys.reqcycle.xcos.handlers;
 import static org.polarsys.reqcycle.xcos.utils.XcosUtils.XcosExtension;
 
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -36,6 +37,9 @@ public class XcosReachableHandler implements IReachableHandler {
 		return t != null && t.getPath() !=null && t.getPath().endsWith(XcosExtension);
 	}
 
-	
+	@Override
+	public ProxyResolver getProxyResolver() {
+		return null; // No proxy resolver is available.
+	}
 
 }

@@ -23,10 +23,10 @@ public class DatePropsEditorComponent extends AbstractPropsEditorComponent<Date>
 
 	private final CommonDatePropsEditor commonDatePropsEditor;
 
-	public DatePropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public DatePropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(Date.class, parent, style);
 		setLayout(new GridLayout(1, false));
-		this.commonDatePropsEditor = new CommonDatePropsEditor(attribute, this, getStyle());
+		this.commonDatePropsEditor = new CommonDatePropsEditor(attributeName, this, getStyle());
 		this.commonDatePropsEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 	}
 

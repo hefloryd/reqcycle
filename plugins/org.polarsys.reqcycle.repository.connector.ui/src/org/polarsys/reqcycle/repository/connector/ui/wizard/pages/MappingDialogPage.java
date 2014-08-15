@@ -21,13 +21,12 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.MappingComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-
-import MappingModel.MappingAttribute;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.MappingComposite;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
 
 
 public abstract class MappingDialogPage extends Dialog {

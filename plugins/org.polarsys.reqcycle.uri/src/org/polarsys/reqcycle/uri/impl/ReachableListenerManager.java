@@ -19,6 +19,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 
 @Singleton
 public class ReachableListenerManager implements IReachableListenerManager {
@@ -58,16 +59,19 @@ public class ReachableListenerManager implements IReachableListenerManager {
 	}
 
 	@Override
-	public synchronized void notifyChanged(Reachable r) {
+	public synchronized void notifyChanged(Reachable[] reachables) {
 		if (!preventReentrant) {
 			try {
 				preventReentrant = true;
-				Collection<IReachableListener> collection = mapReachableToListener
-						.get(r);
+				Collection<IReachableListener> collection = Sets.newHashSet();
+				for (Reachable r : reachables){
+					collection.addAll(mapReachableToListener
+						.get(r));
+				}
 				IReachableListener[] array = collection
 						.toArray(new IReachableListener[collection.size()]);
 				for (int i = 0; i < array.length; i++) {
-					array[i].hasChanged(r);
+					array[i].hasChanged(filter(reachables,mapListenerToReachable.get(array[i])));
 				}
 			} catch (RuntimeException e) {
 				throw e;
@@ -75,6 +79,18 @@ public class ReachableListenerManager implements IReachableListenerManager {
 				preventReentrant = false;
 			}
 		}
+	}
+
+	private Reachable[] filter(Reachable[] reachables,
+			Collection<Reachable> collection) {
+		Collection<Reachable> result = Sets.newHashSet();
+		Collection<Reachable> collection2 = Sets.newHashSet(collection);
+		for (Reachable r : reachables){
+			if (collection2.contains(r)){
+				result.add(r);
+			}
+		}
+		return result.toArray(new Reachable[]{});
 	}
 
 	@Override

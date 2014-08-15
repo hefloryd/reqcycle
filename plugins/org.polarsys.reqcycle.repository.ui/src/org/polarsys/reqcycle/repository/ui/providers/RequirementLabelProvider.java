@@ -15,9 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 
 public class RequirementLabelProvider extends LabelProvider {
 

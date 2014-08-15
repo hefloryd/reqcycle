@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.polarsys.reqcycle.repository.data/src-gen"
-    editDirectory="/org.polarsys.reqcycle.repository.data/src-edit" editorDirectory="/org.polarsys.reqcycle.repository.connector.local/src-gen-editor"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 AtoS&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html *&#xD;&#xA;Contributors:&#xD;&#xA;  Anass Radouani (AtoS) - initial API and implementation and/or initial documentation"
+    modelDirectory="/org.polarsys.reqcycle.repository.data/src-gen" editDirectory="/org.polarsys.reqcycle.repository.data/src-edit"
+    editorDirectory="/org.polarsys.reqcycle.repository.connector.local/src-gen-editor"
     modelPluginID="org.polarsys.reqcycle.repository.data" modelName="RequirementSourceData"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory=""
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     editorPluginID="org.polarsys.reqcycle.repository.connector.local" usedGenPackages="ScopeConf.genmodel#//ScopeConf"
     classNamePattern="" operationReflection="true" importOrganizing="true">
   <foreignModel>RequirementSourceData.ecore</foreignModel>
-  <genPackages prefix="RequirementSourceData" resource="XMI" disposableProviderFactory="true"
-      ecorePackage="RequirementSourceData.ecore#/">
+  <genPackages prefix="RequirementSourceData" basePackage="org.polarsys.reqcycle.repository.data"
+      resource="XMI" disposableProviderFactory="true" ecorePackage="RequirementSourceData.ecore#/">
     <genClasses image="false" ecoreClass="RequirementSourceData.ecore#//AbstractElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RequirementSourceData.ecore#//AbstractElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RequirementSourceData.ecore#//AbstractElement/text"/>

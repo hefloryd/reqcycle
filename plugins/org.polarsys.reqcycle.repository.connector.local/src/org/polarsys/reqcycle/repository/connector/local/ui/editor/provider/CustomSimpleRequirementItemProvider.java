@@ -11,9 +11,8 @@
 package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-
-import RequirementSourceData.SimpleRequirement;
-import RequirementSourceData.provider.SimpleRequirementItemProvider;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.SimpleRequirementItemProvider;
 
 
 /**

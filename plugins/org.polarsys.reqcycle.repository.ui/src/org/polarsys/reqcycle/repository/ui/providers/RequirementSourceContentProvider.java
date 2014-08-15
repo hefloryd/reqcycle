@@ -18,9 +18,8 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceConf.RequirementSource;
 
 public class RequirementSourceContentProvider implements ITreeContentProvider, IStructuredContentProvider {
 

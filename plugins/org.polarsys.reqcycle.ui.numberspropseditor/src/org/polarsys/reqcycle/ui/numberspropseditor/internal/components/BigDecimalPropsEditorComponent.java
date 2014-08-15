@@ -12,16 +12,15 @@ package org.polarsys.reqcycle.ui.numberspropseditor.internal.components;
 
 import java.math.BigDecimal;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 import org.eclipse.swt.widgets.Composite;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 
 public class BigDecimalPropsEditorComponent extends AbstractPropsTextEditorComponent<BigDecimal> {
 
 	private String errorMessage;
 
-	public BigDecimalPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public BigDecimalPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(attributeName, BigDecimal.class, parent, style);
 	}
 
 	@Override

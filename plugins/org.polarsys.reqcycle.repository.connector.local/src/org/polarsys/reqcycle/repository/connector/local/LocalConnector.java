@@ -20,12 +20,11 @@ import org.eclipse.jface.wizard.Wizard;
 import org.polarsys.reqcycle.repository.connector.local.ui.LocalSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.RequirementsContainer;
-import ScopeConf.Scope;
 
 public class LocalConnector extends Wizard implements IConnectorWizard {
 
@@ -46,7 +45,8 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public void initializeWithRequirementSource(RequirementSource requirementSource) {
+	public void initializeWithRequirementSource(
+			RequirementSource requirementSource) {
 	}
 
 	@Override
@@ -56,11 +56,14 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 			@Override
 			public RequirementSource call() throws Exception {
 				RequirementSource source = manager.createRequirementSource();
-				RequirementsContainer rc = manager.createRequirementsContainer(URI.createPlatformResourceURI(destination, true));
+				RequirementsContainer rc = manager
+						.createRequirementsContainer(URI
+								.createPlatformResourceURI(destination, true));
 				source.setContents(rc);
 				source.setDataModelURI(dataModel.getDataModelURI());
 				source.setDefaultScope(scope);
-				source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
+				source.setProperty(IRequirementSourceProperties.IS_LOCAL,
+						"true");
 				return source;
 			}
 		};
@@ -73,7 +76,7 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean performFinish() {
-		if(localSettingPage == null) {
+		if (localSettingPage == null) {
 			return false;
 		}
 		dataModel = localSettingPage.bean.getDataModel();

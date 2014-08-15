@@ -24,7 +24,7 @@ import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements DateEqualPredicate {
@@ -32,7 +32,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DateEqualPredicateImpl() {
@@ -42,7 +41,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -54,7 +52,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific type known in this context.
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +63,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific type known in this context.
-	 * 
 	 * @generated
 	 */
 	@Override

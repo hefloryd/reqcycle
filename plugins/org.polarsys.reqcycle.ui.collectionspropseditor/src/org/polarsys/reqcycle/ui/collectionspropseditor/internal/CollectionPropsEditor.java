@@ -20,7 +20,7 @@ public class CollectionPropsEditor extends AbstractPropsEditor<Collection<Object
 
 	@Override
 	protected AbstractPropsEditorComponent<Collection<Object>> initAndGetComponent() {
-		return new CollectionsPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new CollectionsPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

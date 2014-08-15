@@ -20,7 +20,7 @@ public class PatternPropsEditor extends AbstractPropsEditor<Pattern> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Pattern> initAndGetComponent() {
-		return new PatternPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new PatternPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

@@ -41,19 +41,18 @@ import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.Activator;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataTopics;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSources;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.configuration.impl.ConfigurationManagerImpl;
 import org.polarsys.reqcycle.utils.configuration.impl.EMFConfResourceFactory.EMFConfResource;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceConf.RequirementSourceConfFactory;
-import RequirementSourceConf.RequirementSources;
-import RequirementSourceData.AbstractElement;
-import RequirementSourceData.Requirement;
-import RequirementSourceData.RequirementSourceDataFactory;
-import RequirementSourceData.RequirementsContainer;
-import RequirementSourceData.Section;
-import ScopeConf.Scope;
 
 @Singleton
 public class DataManagerImpl implements IDataManager {

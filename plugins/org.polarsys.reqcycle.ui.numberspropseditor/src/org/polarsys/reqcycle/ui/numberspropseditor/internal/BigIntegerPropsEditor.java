@@ -20,6 +20,6 @@ public class BigIntegerPropsEditor extends AbstractPropsEditor<BigInteger> {
 
 	@Override
 	protected AbstractPropsEditorComponent<BigInteger> initAndGetComponent() {
-		return new BigIntegerPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new BigIntegerPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 }

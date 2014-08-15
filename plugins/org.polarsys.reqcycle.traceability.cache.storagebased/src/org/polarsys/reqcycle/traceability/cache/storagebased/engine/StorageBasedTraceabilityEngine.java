@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -47,6 +48,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import static com.google.common.collect.Iterables.filter;
 
@@ -55,12 +57,10 @@ public class StorageBasedTraceabilityEngine extends
 		AbstractCachedTraceabilityEngine {
 
 	public static final String REVISION = "revisionProperty";
-
+	private Map<Reachable, String> inMemoryRevision = Maps.newHashMap();
 	@Inject
 	ILogger logger;
-	/**
-	 * Force the {@link IStorageProvider} to be the Jena one
-	 */
+	
 	@Inject
 	IStorageProvider storageEngine;
 
@@ -225,27 +225,32 @@ public class StorageBasedTraceabilityEngine extends
 			// TODO error management
 		}
 		Reachable trimmedFragment = reachable.trimFragment();
-		Reachable fromStorage = storage
-				.getReachable(trimmedFragment.toString());
-		if (fromStorage != null) {
-			try {
-				IReachableHandler handler = manager
-						.getHandlerFromReachable(reachable);
-				ReachableObject object = handler.getFromReachable(reachable);
-				if (object != null) {
-					// NULL means the object can not identify its revision
-					// so the cache must be computed each time
-					String revisionIdentification = object
-							.getRevisionIdentification();
-					if (revisionIdentification != null) {
-						return revisionIdentification.equals(fromStorage
-								.get(REVISION));
-					}
-				}
-			} catch (IReachableHandlerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		String revisionOfObject = null;
+		try {
+			IReachableHandler handler = manager
+					.getHandlerFromReachable(reachable);
+			ReachableObject object = handler.getFromReachable(reachable);
+			if (object != null) {
+				// NULL means the object can not identify its revision
+				// so the cache must be computed each time
+				revisionOfObject = object
+						.getRevisionIdentification();
 			}
+		} catch (IReachableHandlerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String revision = inMemoryRevision.get(trimmedFragment);
+		if (revision == null){
+			Reachable fromStorage = storage
+					.getReachable(trimmedFragment.toString());
+			if (fromStorage != null) {
+				revision = fromStorage.get(REVISION);
+				inMemoryRevision.put(trimmedFragment,revision);
+			}
+		}
+		if (revision != null && revisionOfObject != null){
+			return revision.equals(revisionOfObject);
 		}
 		return false;
 	}
@@ -268,7 +273,9 @@ public class StorageBasedTraceabilityEngine extends
 				uriHandler = manager.getHandlerFromReachable(container);
 				ReachableObject object = uriHandler.getFromReachable(container);
 				if (object != null) {
-					container.put(REVISION, object.getRevisionIdentification());
+					String revision = object.getRevisionIdentification();
+					container.put(REVISION, revision);
+					inMemoryRevision.put(container, revision);
 				}
 			} catch (IReachableHandlerException e) {
 				// TODO ERROR management ?
@@ -280,6 +287,7 @@ public class StorageBasedTraceabilityEngine extends
 	@Override
 	public void startBuild(Reachable reachable) {
 		storage.startTransaction();
+		storage.clearInContainer(reachable);
 		super.startBuild(reachable);
 	}
 
@@ -287,7 +295,9 @@ public class StorageBasedTraceabilityEngine extends
 	public void endBuild(Reachable reachable) {
 		super.endBuild(reachable);
 		handleRevision(reachable);
-		storage.addUpdateProperty(reachable, REVISION, reachable.get(REVISION));
+		String revision = reachable.get(REVISION);
+		storage.addUpdateProperty(reachable, REVISION, revision);
+		inMemoryRevision.put(reachable, revision);
 		storage.commit();
 	}
 

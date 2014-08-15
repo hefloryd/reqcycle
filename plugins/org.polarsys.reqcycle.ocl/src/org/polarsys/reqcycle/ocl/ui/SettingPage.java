@@ -38,12 +38,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
-import org.polarsys.reqcycle.emf.utils.EMFUtils;
-import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
-import org.polarsys.reqcycle.ocl.ui.OCLConnector.SettingBean;
-import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -61,8 +55,13 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
-
-import ScopeConf.Scope;
+import org.polarsys.reqcycle.emf.utils.EMFUtils;
+import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
+import org.polarsys.reqcycle.ocl.ui.OCLConnector.SettingBean;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 

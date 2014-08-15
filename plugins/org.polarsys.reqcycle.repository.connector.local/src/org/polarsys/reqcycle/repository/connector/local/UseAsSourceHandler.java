@@ -28,14 +28,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.reqcycle.repository.connector.local.ui.dialog.UseAsSourceDialog;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-import org.eclipse.ui.handlers.HandlerUtil;
-
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceData.RequirementsContainer;
 
 public class UseAsSourceHandler extends AbstractHandler {
 

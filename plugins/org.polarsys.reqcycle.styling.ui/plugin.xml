@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="stylingpic" name="Styling Picture" schema="schema/stylingpic.exsd"/>
+<extension
+        point="org.eclipse.ui.navigator.navigatorContent">
+     <navigatorContent
+           appearsBefore="org.polarsys.reqcycle.repository.ui.requirementNavigatorContent"
+           contentProvider="org.polarsys.reqcycle.styling.ui.providers.StylingContentProvider"
+           id="org.polarsys.reqcycle.repository.ui.styleNavigatorContent"
+           labelProvider="org.polarsys.reqcycle.styling.ui.providers.StylingLabelProvider"
+           name="StyleNavigatorContent"
+           priority="high">
+        <triggerPoints>
+           <or>
+              <instanceof
+                    value="org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot">
+              </instanceof>
+              <instanceof
+                    value="java.lang.String">
+              </instanceof>
+           </or>
+        </triggerPoints>
+        <override
+              policy="InvokeOnlyIfSuppressedExtAlsoVisibleAndActive"
+              suppressedExtensionId="org.polarsys.reqcycle.repository.ui.requirementNavigatorContent">
+        </override>
+        <dropAssistant
+              class="org.polarsys.reqcycle.styling.ui.dnd.ReqDropAdapterAssistant"
+              id="org.polarsys.reqcycle.repository.ui.dropAssistant.dnd">
+           <possibleDropTargets>
+              <or>
+                 <instanceof
+                       value="org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement">
+                 </instanceof>
+                 <instanceof
+                       value="java.lang.Object">
+                 </instanceof>
+              </or></possibleDropTargets>
+        </dropAssistant>
+        <possibleChildren>
+           <or>
+              <adapt
+                    type="org.polarsys.reqcycle.uri.model.Reachable">
+              </adapt>
+           </or>
+        </possibleChildren>
+     </navigatorContent>
+  </extension>
+<extension
+        point="org.eclipse.ui.menus">
+     <!--<menuContribution
+           allPopups="false"
+           locationURI="toolbar:org.polarsys.reqcycle.repository.ui.views.requirements">
+        <command
+              commandId="org.eclipse.ui.newWizard"
+              icon="icons/delete.gif"
+              label="Select Requirement Sources"
+              style="push"
+              tooltip="Select requirement sources to filter">
+        </command>
+     </menuContribution>-->
+     <menuContribution
+           allPopups="false"
+           locationURI="toolbar:org.polarsys.reqcycle.repository.ui.views.requirements">
+        <command
+              commandId="org.polarsys.reqcycle.styling.ui.stylemodel"
+              icon="icons/write_obj.gif"
+              label="Change Style"
+              style="push"
+              tooltip="Select style configuration">
+        </command>
+     </menuContribution>
+  </extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         defaultHandler="org.polarsys.reqcycle.styling.ui.handler.StyleModelChooserHandler"
+         id="org.polarsys.reqcycle.styling.ui.stylemodel"
+         name="Choose Display">
+   </command>
+</extension>
+<extension
+      point="org.polarsys.reqcycle.utils.inject.binding">
+   <binding
+         impl="org.polarsys.reqcycle.styling.ui.impl.StylingManager"
+         interface="org.polarsys.reqcycle.styling.ui.IStylingManager">
+   </binding>
+</extension>
+<extension
+      point="org.polarsys.reqcycle.styling.ui.stylingpic">
+   <Picture
+         path="regIcons/smartmode_co-1.gif">
+   </Picture>
+   <Picture
+         path="regIcons/statusGreen.png">
+   </Picture>
+   <Picture
+         path="regIcons/statusGrey.png">
+   </Picture>
+   <Picture
+         path="regIcons/statusRed.png">
+   </Picture>
+   <Picture
+         path="regIcons/statusYellow.png">
+   </Picture>
+   <Picture
+         path="regIcons/add_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/delete_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/remove_correction.gif">
+   </Picture>
+   <Picture
+         path="regIcons/set_pref.png">
+   </Picture>
+   <Picture
+         path="regIcons/contents_view.gif">
+   </Picture>
+   <Picture
+         path="regIcons/bkmrk_nav.gif">
+   </Picture>
+</extension>
+</plugin>

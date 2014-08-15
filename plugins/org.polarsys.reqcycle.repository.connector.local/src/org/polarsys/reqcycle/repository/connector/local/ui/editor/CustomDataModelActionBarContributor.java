@@ -16,9 +16,9 @@ import java.util.Collections;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.polarsys.reqcycle.repository.connector.local.ui.editor.util.CustomDataModelEditorUtil;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSources;
 
-import RequirementSourceConf.RequirementSource;
-import RequirementSourceConf.RequirementSources;
 import RequirementSourceData.presentation.RequirementSourceDataActionBarContributor;
 
 /**

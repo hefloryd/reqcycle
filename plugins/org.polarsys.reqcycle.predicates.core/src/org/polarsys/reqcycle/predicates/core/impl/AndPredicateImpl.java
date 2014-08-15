@@ -21,14 +21,13 @@ import org.polarsys.reqcycle.predicates.core.api.IPredicate;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>And Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class AndPredicateImpl extends CompositePredicateImpl implements AndPredicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AndPredicateImpl() {
@@ -37,7 +36,6 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

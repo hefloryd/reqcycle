@@ -14,13 +14,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.SectionItemProvider;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import RequirementSourceData.RequirementSourceDataFactory;
-import RequirementSourceData.RequirementSourceDataPackage;
-import RequirementSourceData.Section;
-import RequirementSourceData.provider.SectionItemProvider;
 
 
 /**

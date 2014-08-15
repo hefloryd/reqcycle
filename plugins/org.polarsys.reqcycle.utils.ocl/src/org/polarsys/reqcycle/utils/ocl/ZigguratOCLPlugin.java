@@ -90,7 +90,7 @@ public class ZigguratOCLPlugin implements BundleActivator {
 		split[0] = split[0].toLowerCase();
 		
 		EClassifier classifier = evaluator.lookupEClassifier(Arrays.asList(split));
-		String[] defNameExpression = operationCS.toString().split("def:", 0);
+		String[] defNameExpression = operationCS.toString().split("def\\s*?:", 0);
 		String defExpression = defNameExpression[1];
 		try {
 			evaluator.compileOperation(defExpression, classifier);

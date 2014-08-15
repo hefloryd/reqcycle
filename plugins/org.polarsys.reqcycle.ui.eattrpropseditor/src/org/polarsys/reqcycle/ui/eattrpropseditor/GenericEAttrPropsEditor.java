@@ -10,7 +10,10 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.eattrpropseditor;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.IEAttrPropsEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -33,12 +36,12 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class GenericEAttrPropsEditor extends Composite {
 
-	private EAttribute eAttribute;
-
 	private IEAttrPropsEditor<?> propsEditor;
 
 	private Composite currentComponent;
 
+	private String attributeName;
+	
 	public GenericEAttrPropsEditor(Composite parent, int style) {
 		super(parent, style);
 		setLayout(new GridLayout(1, false));
@@ -55,24 +58,27 @@ public class GenericEAttrPropsEditor extends Composite {
 	 *        java class type, but the specified javaClassType will be used directly instead.
 	 * @see EAttrPropsEditorPlugin#getStructuralFeatureEditor(EAttribute, String, Composite, int)
 	 */
-	public void init(final EAttribute eAttribute, final String javaClassTypeName) {
-		this.eAttribute = eAttribute;
-		this.propsEditor = EAttrPropsEditorPlugin.getStructuralFeatureEditor(eAttribute, javaClassTypeName, this, getStyle());
+	public void init(final String attributeName, final Class type, Collection<Object> possibleValues) {
+		this.attributeName = attributeName;
+		this.propsEditor = EAttrPropsEditorPlugin.getStructuralFeatureEditor(attributeName, type, this, getStyle());
 		if(this.currentComponent != null) {
 			this.currentComponent.dispose();
 		}
 		if(this.propsEditor != null) {
 			this.currentComponent = this.propsEditor.getEditor();
-			this.currentComponent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+			this.currentComponent.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 			this.layout();
-		}
+			this.setSize(this.currentComponent.computeSize(SWT.DEFAULT,
+					SWT.DEFAULT));
+		}		
+		this.propsEditor.setPossibleValues(possibleValues);
 	}
 
 	/**
-	 * @return The {@link EAttribute} (not modified).
+	 * This method set the initial value.
 	 */
-	public EAttribute getEAttribute() {
-		return this.eAttribute;
+	public void setInitialValue(Object object) {
+		propsEditor.setInitialValue(object);
 	}
 
 	/**
@@ -95,4 +101,7 @@ public class GenericEAttrPropsEditor extends Composite {
 		return this.propsEditor.isValid();
 	}
 
+	public String getAttributeName() {
+		return attributeName;
+	}
 }

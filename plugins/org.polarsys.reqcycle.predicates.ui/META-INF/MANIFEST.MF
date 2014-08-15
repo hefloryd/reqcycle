@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.predicates.ui,
+ org.polarsys.reqcycle.predicates.ui.dialogs,
  org.polarsys.reqcycle.predicates.ui.presentation,
  org.polarsys.reqcycle.predicates.ui.providers,
  org.polarsys.reqcycle.predicates.ui.util
@@ -32,6 +33,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.eclipse.swt
+ org.eclipse.swt,
+ org.polarsys.reqcycle.core.ui;bundle-version="1.0.0",
+ org.polarsys.reqcycle.operations;bundle-version="1.0.0",
+ org.polarsys.reqcycle.operations.ui;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject;version="1.0.0"

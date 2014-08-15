@@ -74,6 +74,16 @@ public interface ITraceabilityStorage {
 	 */
 	Reachable getReachable(String uri);
 
+	/**
+	 * Gets all downward or upward relationships passing originating from a
+	 * reachable.
+	 * 
+	 * @param r
+	 *            The reachable.
+	 * @param direction
+	 *            {@link DIRECTION#UPWARD} ou {@link DIRECTION#DOWNWARD}.
+	 * @return
+	 */
 	Iterable<Pair<Link, Reachable>> getTraceability(Reachable r,
 			DIRECTION direction);
 
@@ -132,5 +142,14 @@ public interface ITraceabilityStorage {
 	 * @return
 	 */
 	String getProperty(Reachable reachable, String propertyName);
+
+	/**
+	 * Removes all traceability links registred for a container during previous
+	 * builds.
+	 * 
+	 * @param container
+	 *            The {@link Reachable} that represents the container.
+	 */
+	public abstract void clearInContainer(final Reachable container);
 
 }

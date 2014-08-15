@@ -198,8 +198,12 @@ public class OCLUtilities {
 	}
 
 	public static String getOperationRequiredName(IRequirementType type) {
-		StringBuilder builder = new StringBuilder("is"); //$NON-NLS-1$
 		String dataTypeName = type.getName();
+		return getOperationRequiredName(dataTypeName);
+	}
+
+	public static String getOperationRequiredName(String dataTypeName) {
+		StringBuilder builder = new StringBuilder("is"); //$NON-NLS-1$
 		builder.append(Character.toUpperCase(dataTypeName.charAt(0))).append(dataTypeName.substring(1));
 		return builder.toString();
 	}
@@ -233,13 +237,37 @@ public class OCLUtilities {
 		return false;
 	}
 
+	public static boolean isSection(OCLEvaluator evaluator, EObject eObject) {
+		EOperation eOperation = getSectionMethod(evaluator, eObject);
+		if(eOperation != null) {
+			Object result = evaluator.evaluateOperation(eOperation, eObject, new Object[0]);
+			if(result instanceof Boolean) {
+				return (Boolean)result;
+			}
+		}
+		return false;
+	}
+
+	private static EOperation getSectionMethod(OCLEvaluator evaluator,
+			EObject eObject) {
+		String operationName = OCLUtilities.getOperationRequiredName("Section");
+		EOperation eOperation = evaluator.getCompiledOperation(operationName, eObject);
+		return eOperation;
+	}
+	
 	public static Object getAttributeValue(OCLEvaluator evaluator, EObject eObject, IAttribute attribute) {
 		String operationName = OCLUtilities.getOperationRequiredName(attribute);
+		EDataType type = getDataType(attribute);
+		return getAttributeValue(evaluator, eObject, operationName,
+				type);
+	}
+
+	public static Object getAttributeValue(OCLEvaluator evaluator,
+			EObject eObject, String operationName,
+			EDataType type) {
 		EOperation eOperation = evaluator.getCompiledOperation(operationName, eObject);
 		if(eOperation != null) {
 			Object result = evaluator.evaluateOperation(eOperation, eObject, new Object[0]);
-			
-			EDataType type = getDataType(attribute);
 			
 			if(type == null) {
 				return null;
@@ -248,7 +276,7 @@ public class OCLUtilities {
 			if(type.isInstance(result)) {
 				return result;
 			} else {
-				Object converted = convertResult(result, attribute);
+				Object converted = convertResult(result, type);
 				if(type.isInstance(converted)) {
 					return converted;
 				}
@@ -259,15 +287,13 @@ public class OCLUtilities {
 
 	private static EDataType getDataType(IAttribute attribute) {
 		EDataType type = null;
-		
 		if(attribute instanceof IAdaptable) {
 			type = (EDataType)((IAdaptable)attribute).getAdapter(EDataType.class);
 		}
 		return type;
 	}
 
-	protected static Object convertResult(Object result, IAttribute attribute) {
-		EDataType type = getDataType(attribute);
+	protected static Object convertResult(Object result, EDataType type) {
 		
 		if(type == null) {
 			return null;

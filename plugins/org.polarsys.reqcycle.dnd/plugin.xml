@@ -8,5 +8,12 @@
             id="org.polarsys.reqcycle.dnd.DropRequirementDelegate">
       </action>
    </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <dragAssistant
+            class="org.polarsys.reqcycle.dnd.CommonDragAdapterAssistant"
+            viewerId="org.polarsys.reqcycle.repository.ui.views.requirements">
+      </dragAssistant>
+   </extension>
 
 </plugin>

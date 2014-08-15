@@ -14,8 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
-
-import RequirementSourceConf.provider.RequirementSourceConfItemProviderAdapterFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceConfItemProviderAdapterFactory;
 
 
 public class RequirementSourceItemProviderAdapterFactory extends RequirementSourceConfItemProviderAdapterFactory {

@@ -96,7 +96,7 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		return result;
 	}
 
-	protected void handleDrop(List<Reachable> sourceReachables, Reachable targetReachable, IResource res) {
+	public void handleDrop(List<Reachable> sourceReachables, Reachable targetReachable, IResource res) {
 		final Map<RelationCreationDescriptor, CreateRelationCommand> allCommands = RelationCommandUtils.getAllRelationCommands(sourceReachables, Collections.singletonList(targetReachable), res);
 		Iterable<RelationCreationDescriptor> upstreamToDownstreams = Iterables.filter(allCommands.keySet(), new Predicate<RelationCreationDescriptor>() {
 

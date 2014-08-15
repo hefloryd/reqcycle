@@ -23,11 +23,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-
-import ScopeConf.Scope;
 
 /**
  * The Class DataModelImpl.

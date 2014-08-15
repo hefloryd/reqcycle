@@ -11,6 +11,7 @@
 package org.polarsys.reqcycle.traceability.table.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.concurrent.Callable;
@@ -20,6 +21,8 @@ import javax.inject.Named;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -38,13 +41,17 @@ import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
 import org.polarsys.reqcycle.traceability.table.providers.TraceabilityLazyContentProvider;
 import org.polarsys.reqcycle.traceability.types.scopes.ConfigurationScope;
+import org.polarsys.reqcycle.uri.IReachableListenerManager;
+import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 public class TableController {
 
@@ -54,6 +61,9 @@ public class TableController {
 	@Inject
 	@Named("RDF")
 	protected IStorageProvider provider;
+	
+	@Inject
+	protected IReachableListenerManager listenerManager ;
 
 	@Inject
 	protected ITraceabilityEngine engine;
@@ -142,6 +152,7 @@ public class TableController {
 		ITraceabilityStorage storage = null;
 		IProject project = null;
 		try {
+			Collection<Reachable> notification = Sets.newHashSet();
 			while(links.hasNext()) {
 				TransverseLink link = links.next();
 				if(storage == null) {
@@ -151,11 +162,17 @@ public class TableController {
 				}
 				Reachable source = Iterables.get(link.getSources(), 0);
 				Reachable target = Iterables.get(link.getTargets(), 0);
-				if(storage != null)
+				if(storage != null) {
 					storage.removeUpwardRelationShip(link.getKind(), null, target, source);
+					notification.add(link.getId());
+					notification.add(source);
+					notification.add(target);
+					notification.add(link.getId().trimFragment());
+				}
 			}
 			if(storage != null) {
 				storage.commit();
+				listenerManager.notifyChanged(notification.toArray(new Reachable[]{}));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,7 +182,7 @@ public class TableController {
 			refreshViewerData();
 			IFile file = project.getFile(new Path(RDF_FILE));
 			try {
-				file.refreshLocal(0, new NullProgressMonitor());
+				file.getParent().refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 			} catch (CoreException e) {
 				//DO NOTHING
 			}

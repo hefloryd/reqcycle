@@ -20,6 +20,13 @@
             type="predicates"
             class="org.polarsys.reqcycle.predicates.core.util.PredicatesResourceFactoryImpl"/>
    </extension>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.reqcycle.predicates.core.util.PredicateEvaluator"
+            interface="org.polarsys.reqcycle.predicates.core.IPredicateEvaluator">
+      </binding>
+   </extension>
 
 
 </plugin>

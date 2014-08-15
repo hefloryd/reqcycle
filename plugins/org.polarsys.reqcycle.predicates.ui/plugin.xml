@@ -17,12 +17,13 @@
                org.eclipse.emf.edit.provider.ITreeItemContentProvider
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource
-               org.eclipse.emf.edit.provider.IItemColorProvider"/>
+               org.eclipse.emf.edit.provider.IItemColorProvider
+               org.eclipse.emf.edit.provider.IItemFontProvider"/>
    </extension>
 
-  <!-- <extension point="org.eclipse.ui.newWizards">-->
-      <!-- @generated predicates -->
-      <!--<category
+  <!--   <extension point="org.eclipse.ui.newWizards">
+       @generated predicates 
+     <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
@@ -34,7 +35,8 @@
          <description>%_UI_PredicatesModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
-   </extension>-->
+   </extension>
+   -->
 
    <extension point="org.eclipse.ui.editors">
       <!-- @generated predicates -->
@@ -91,11 +93,6 @@
      <handler
            class="org.polarsys.reqcycle.predicates.ui.handlers.OpenPredicatesEditorHandler"
            commandId="org.polarsys.reqcycle.repository.ui.commands.OpenPredicatesEditorCommand">
-           <enabledWhen>
-          <equals
-                value="false">
-          </equals>
-       </enabledWhen>
      </handler>
   </extension>
   <extension

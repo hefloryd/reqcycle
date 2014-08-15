@@ -56,24 +56,25 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 
 	private final CustomViewerComparator comparator;
 
-	public CollectionsPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
+	public CollectionsPropsEditorComponent(String attributeName, Composite parent, int style) {
 
-		super(attribute, parent, style);
+		super(null, parent, style);
 
 		final Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false, 1, 1));
-		lblName.setText(attribute.getName());
+		lblName.setText(attributeName);
+//		Class type = get 
+//		final EClassifier eType = attribute.getEType();
 
-		final EClassifier eType = attribute.getEType();
-
-		if(eType instanceof EEnum) {
-			setLayout(new GridLayout(2, false));
-			this.initTableViewerForEEnum(parent, (EEnum)eType);
-
-		} else {
+//		if(eType instanceof EEnum) {
+//			setLayout(new GridLayout(2, false));
+//			this.initTableViewerForEEnum(parent, (EEnum)eType);
+//
+//		} else {
+		// TODO deal with multi enums
 			setLayout(new GridLayout(4, false));
 			this.initSimpleTableViewer(parent);
-		}
+//		}
 
 		tableViewer.setLabelProvider(new DefaultTableLabelProvider());
 		this.comparator = new CustomViewerComparator();

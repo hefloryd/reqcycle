@@ -189,13 +189,6 @@ This Agreement is governed by the laws of the State of New York and the intellec
          unpack="false"/>
 
    <plugin
-         id="org.polarsys.reqcycle.sesame"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.polarsys.reqcycle.stub"
          download-size="0"
          install-size="0"
@@ -239,13 +232,6 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugin
          id="org.polarsys.reqcycle.traceability.storage"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.polarsys.reqcycle.traceability.storage.blueprints"
          download-size="0"
          install-size="0"
          version="0.0.0"

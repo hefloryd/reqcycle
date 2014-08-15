@@ -18,7 +18,7 @@ public class EEnumPropsEditor extends AbstractPropsEditor<String> {
 
 	@Override
 	protected AbstractPropsEditorComponent<String> initAndGetComponent() {
-		return new EEnumPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new EEnumPropsEditorComponent(getAttributeName(), getPossibleValues(), getContainer(), getStyle());
 	}
 
 }

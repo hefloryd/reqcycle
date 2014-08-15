@@ -10,16 +10,15 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ui.numberspropseditor.internal.components;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 import org.eclipse.swt.widgets.Composite;
+import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsTextEditorComponent;
 
 public class IntegerPropsEditorComponent extends AbstractPropsTextEditorComponent<Integer> {
 
 	private String errorMessage;
 
-	public IntegerPropsEditorComponent(EAttribute attribute, Composite parent, int style) {
-		super(attribute, parent, style);
+	public IntegerPropsEditorComponent(String attributeName, Composite parent, int style) {
+		super(attributeName, Integer.class, parent, style);
 	}
 
 	@Override

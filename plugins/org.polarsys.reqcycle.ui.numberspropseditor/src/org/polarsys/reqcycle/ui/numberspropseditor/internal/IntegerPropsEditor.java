@@ -18,7 +18,7 @@ public class IntegerPropsEditor extends AbstractPropsEditor<Integer> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Integer> initAndGetComponent() {
-		return new IntegerPropsEditorComponent(getEAttribute(), getContainer(), getStyle());
+		return new IntegerPropsEditorComponent(getAttributeName(), getContainer(), getStyle());
 	}
 
 }

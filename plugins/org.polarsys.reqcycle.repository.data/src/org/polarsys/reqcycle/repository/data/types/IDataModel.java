@@ -12,7 +12,7 @@ package org.polarsys.reqcycle.repository.data.types;
 
 import java.util.Collection;
 
-import ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 
 /**
  * The Interface DataModel.
@@ -30,7 +30,7 @@ public interface IDataModel {
 	 * Adds the scope to the data model.
 	 * 
 	 * @param scope
-	 *        the scope to add
+	 *            the scope to add
 	 */
 	public void addScope(Scope scope);
 
@@ -38,7 +38,7 @@ public interface IDataModel {
 	 * Adds the requirement type.
 	 * 
 	 * @param type
-	 *        the requirement type to add
+	 *            the requirement type to add
 	 */
 	public void addRequirementType(IRequirementType type);
 
@@ -46,7 +46,7 @@ public interface IDataModel {
 	 * Adds the Enumeration type.
 	 * 
 	 * @param type
-	 *        the Enumeration type to add
+	 *            the Enumeration type to add
 	 */
 	public void addEnumerationType(IEnumerationType type);
 
@@ -54,7 +54,7 @@ public interface IDataModel {
 	 * Gets the enumeration type.
 	 * 
 	 * @param name
-	 *        the enumeration type name
+	 *            the enumeration type name
 	 * @return the enumeration type
 	 */
 	public IEnumerationType getEnumerationType(String name);
@@ -63,7 +63,7 @@ public interface IDataModel {
 	 * Gets the requirement type.
 	 * 
 	 * @param name
-	 *        the requirement type name
+	 *            the requirement type name
 	 * @return the requirement type
 	 */
 	public IRequirementType getRequirementType(String name);
@@ -72,7 +72,7 @@ public interface IDataModel {
 	 * Gets the scope.
 	 * 
 	 * @param name
-	 *        the scope name
+	 *            the scope name
 	 * @return the scope
 	 */
 	public Scope getScope(String name);

@@ -30,6 +30,6 @@ public interface IEditionResult {
 	/**
 	 * @return The Map containing the edited {@link EStructuralFeature} of the <tt>EObject</tt>.
 	 */
-	Map<EStructuralFeature, Object> getEditedEntries();
+	Map<String, Object> getEditedEntries();
 
 }
