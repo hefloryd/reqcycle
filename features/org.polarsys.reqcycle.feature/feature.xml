@@ -9,12 +9,13 @@
    </description>
 
    <copyright>
-      (c) Copyright Eclipse contributors and others 2000, 2014.  All rights reserved.
-Visit http://www.eclipse.org/platform
-This product includes following third parties with associated licenses: 
-Google guava (license: http://www.apache.org/licenses/LICENSE-2.0)
-BluePrint : (license: BSD-like license, https://github.com/tinkerpop/blueprints/raw/master/LICENSE.txt)
-OpenRDF Sesame : (license: https://bitbucket.org/openrdf/sesame/raw/b21436e56ae5a0c1434117ccc5c97c7151a5fe05/core/LICENSE.txt)\
+      &lt;copyright&gt;(c) Copyright Eclipse contributors and others 2000, 2014. All
+rights reserved. Visit http://www.eclipse.org/platform This product includes
+following third parties with associated licenses: Google guava (license:
+http://www.apache.org/licenses/LICENSE-2.0) BluePrint : (license: BSD-like
+license, https://github.com/tinkerpop/blueprints/raw/master/LICENSE.txt)
+OpenRDF Sesame : (license:
+https://bitbucket.org/openrdf/sesame/raw/b21436e56ae5a0c1434117ccc5c97c7151a5fe05/core/LICENSE.txt)\
    </copyright>
 
    <license url="">
