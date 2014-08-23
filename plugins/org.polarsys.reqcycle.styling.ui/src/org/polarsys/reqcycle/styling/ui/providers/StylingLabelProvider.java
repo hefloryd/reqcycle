@@ -1,3 +1,15 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    (AtoS) - initial API and implementation and/or initial documentation
+ *    Raphael Faudou (Samares Engineering) - revereted default display of requirements 
+ *    it was before stytling model (see https://polarsys.org/bugs/show_bug.cgi?id=28)
+ *    
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.providers;
 
 import java.util.Collection;
@@ -24,6 +36,9 @@ import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.styling.model.ITopic;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
@@ -160,7 +175,8 @@ public class StylingLabelProvider implements ILabelProvider,
 			if (label == null) {
 				label = ((RequirementSource) element).getName();
 			} else {
-				label = ((RequirementSource) element).getName() + " [" + label
+				label = ((RequirementSource) element).getName() + 
+						" [" + label
 						+ "]";
 			}
 			return toT(label, theClass);
@@ -181,6 +197,20 @@ public class StylingLabelProvider implements ILabelProvider,
 				}
 				if (model.getDefault() != null) {
 					return (T) applyStyle(element, model.getDefault());
+				}
+			}
+			else {
+				// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default				
+				if (element instanceof Requirement) {
+					Requirement req = (Requirement) element;
+					String label = "id=" +req.getId() +"]["+ "text=" + req.getText() ;
+					return toT(" [ " +label+ "]", theClass);
+
+				}
+				// as Requirement extends section, requirement must be handled first (before section)
+				if (element instanceof Section) {
+					String label = (( Section) element).getId() + "][" + (( Section) element).getText();
+					return toT(" [ " +label+ "]", theClass);
 				}
 			}
 		}
