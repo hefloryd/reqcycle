@@ -85,17 +85,15 @@ public class TraceabilitySynchronizer {
 			String uri = file.getLocationURI().getPath();
 			ZigguratInject.inject(provider);
 			ITraceabilityStorage storage = provider.getStorage(uri);
-			Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage
-					.getAllTraceability(DIRECTION.DOWNWARD);
+			Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage.getAllTraceability(DIRECTION.DOWNWARD);
 
-			return Iterables.transform(allTraceabilityLinks,
-					new Function<Pair<Link, Reachable>, Link>() {
+			return Iterables.transform(allTraceabilityLinks, new Function<Pair<Link, Reachable>, Link>() {
 
-						@Override
-						public Link apply(Pair<Link, Reachable> arg0) {
-							return arg0.getFirst();
-						}
-					});
+				@Override
+				public Link apply(Pair<Link, Reachable> arg0) {
+					return arg0.getFirst();
+				}
+			});
 		}
 		return Lists.newArrayList();
 	}
@@ -110,17 +108,15 @@ public class TraceabilitySynchronizer {
 	public Iterable<Link> getTraceabilityLinks(final InputStream inputStream) {
 		// get the storage for the file path
 		ITraceabilityStorage storage = provider.getStorageReader(inputStream);
-		Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage
-				.getAllTraceability(DIRECTION.DOWNWARD);
+		Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage.getAllTraceability(DIRECTION.DOWNWARD);
 
-		return Iterables.transform(allTraceabilityLinks,
-				new Function<Pair<Link, Reachable>, Link>() {
+		return Iterables.transform(allTraceabilityLinks, new Function<Pair<Link, Reachable>, Link>() {
 
-					@Override
-					public Link apply(Pair<Link, Reachable> arg0) {
-						return arg0.getFirst();
-					}
-				});
+			@Override
+			public Link apply(Pair<Link, Reachable> arg0) {
+				return arg0.getFirst();
+			}
+		});
 	}
 
 	/**
@@ -137,19 +133,16 @@ public class TraceabilitySynchronizer {
 		ITraceabilityStorage storage = provider.getStorage(uri);
 		for (Link link : newLinks) {
 			Set<Reachable> targets = link.getTargets();
-			Reachable[] sources = link.getSources().toArray(
-					new Reachable[link.getSources().size()]);
+			Reachable[] sources = link.getSources().toArray(new Reachable[link.getSources().size()]);
 			Reachable target = null;
 			if (targets.size() > 0) {
 				target = targets.iterator().next();
 			}
-			Function<Object, Reachable> obj2RO = URIFunctions
-					.newObject2ReachableFunction();
+			Function<Object, Reachable> obj2RO = URIFunctions.newObject2ReachableFunction();
 			Reachable resourceReachable = obj2RO.apply(rdfFile);
 			System.out.println("TS::addNewKink");
 
-			storage.addOrUpdateUpwardRelationShip(link.getKind(), link.getId(),
-					resourceReachable, target, sources);
+			storage.addOrUpdateUpwardRelationShip(link.getKind(), link.getId(), resourceReachable, target, sources);
 		}
 		storage.save();
 	}

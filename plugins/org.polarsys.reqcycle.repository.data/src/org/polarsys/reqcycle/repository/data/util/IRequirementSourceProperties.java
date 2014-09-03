@@ -42,6 +42,4 @@ public interface IRequirementSourceProperties {
 	/** The Constant Traceability Remote Repository. */
 	public static final String TRACEABILITY_REPO = "traceabilityRepository";
 
-
-
 }

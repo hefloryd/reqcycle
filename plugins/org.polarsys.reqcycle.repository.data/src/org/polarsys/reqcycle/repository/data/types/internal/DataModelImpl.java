@@ -83,11 +83,9 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (classifier instanceof EClass) {
-				requirementTypes.add(new RequirementTypeImpl(
-						(EClass) classifier, this));
+				requirementTypes.add(new RequirementTypeImpl((EClass) classifier, this));
 			} else if (classifier instanceof EEnum) {
-				enumerationTypes
-						.add(new EnumerationTypeImpl((EEnum) classifier));
+				enumerationTypes.add(new EnumerationTypeImpl((EEnum) classifier));
 			}
 		}
 
@@ -157,8 +155,7 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	public void addDataModel(IDataModel dataModel) {
 		EPackage ePackage = null;
 		if (dataModel instanceof IAdaptable) {
-			ePackage = (EPackage) ((IAdaptable) dataModel)
-					.getAdapter(EPackage.class);
+			ePackage = (EPackage) ((IAdaptable) dataModel).getAdapter(EPackage.class);
 		}
 		if (ePackage != null) {
 			this.ePackage.getESubpackages().add(ePackage);
@@ -207,8 +204,7 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	public void addEnumerationType(IEnumerationType enumerationType) {
 		EEnum eEnum = null;
 		if (enumerationType instanceof IAdaptable) {
-			eEnum = (EEnum) ((IAdaptable) enumerationType)
-					.getAdapter(EEnum.class);
+			eEnum = (EEnum) ((IAdaptable) enumerationType).getAdapter(EEnum.class);
 		}
 		if (eEnum != null) {
 			ePackage.getEClassifiers().add(eEnum);

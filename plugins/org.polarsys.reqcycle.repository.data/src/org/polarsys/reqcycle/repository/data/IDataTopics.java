@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data;
 
-
 /**
  * The Interface IDataTopics.
  */

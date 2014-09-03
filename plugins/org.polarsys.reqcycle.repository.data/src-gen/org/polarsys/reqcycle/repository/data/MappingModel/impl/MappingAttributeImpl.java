@@ -22,15 +22,20 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Attribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Mapping Attribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getTargetAttribute <em>Target Attribute</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getSourceId <em>Source Id</em>}</li>
+ * <li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getTargetAttribute
+ * <em>Target Attribute</em>}</li>
+ * <li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getDescription
+ * <em>Description</em>}</li>
+ * <li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getSourceId
+ * <em>Source Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,9 +43,10 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
  */
 public class MappingAttributeImpl extends MinimalEObjectImpl.Container implements MappingAttribute {
 	/**
-	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetAttribute()
+	 * <em>Target Attribute</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTargetAttribute()
 	 * @generated
 	 * @ordered
@@ -48,9 +54,9 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected EAttribute targetAttribute;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -58,9 +64,9 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -68,9 +74,9 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSourceId() <em>Source Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSourceId() <em>Source Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceId()
 	 * @generated
 	 * @ordered
@@ -78,9 +84,9 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected static final String SOURCE_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceId() <em>Source Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceId() <em>Source Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceId()
 	 * @generated
 	 * @ordered
@@ -88,8 +94,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected String sourceId = SOURCE_ID_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MappingAttributeImpl() {
@@ -97,8 +103,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,14 +113,14 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTargetAttribute() {
 		if (targetAttribute != null && targetAttribute.eIsProxy()) {
-			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
-			targetAttribute = (EAttribute)eResolveProxy(oldTargetAttribute);
+			InternalEObject oldTargetAttribute = (InternalEObject) targetAttribute;
+			targetAttribute = (EAttribute) eResolveProxy(oldTargetAttribute);
 			if (targetAttribute != oldTargetAttribute) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
@@ -124,8 +130,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute basicGetTargetAttribute() {
@@ -133,8 +139,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetAttribute(EAttribute newTargetAttribute) {
@@ -145,8 +151,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -154,8 +160,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -166,8 +172,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceId() {
@@ -175,8 +181,8 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceId(String newSourceId) {
@@ -187,92 +193,94 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
-				if (resolve) return getTargetAttribute();
-				return basicGetTargetAttribute();
-			case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
-				return getDescription();
-			case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
-				return getSourceId();
+		case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
+			if (resolve)
+				return getTargetAttribute();
+			return basicGetTargetAttribute();
+		case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
+			return getDescription();
+		case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
+			return getSourceId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
-				setTargetAttribute((EAttribute)newValue);
-				return;
-			case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
-				setSourceId((String)newValue);
-				return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
+			setTargetAttribute((EAttribute) newValue);
+			return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
+			setDescription((String) newValue);
+			return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
+			setSourceId((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
-				setTargetAttribute((EAttribute)null);
-				return;
-			case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
-				setSourceId(SOURCE_ID_EDEFAULT);
-				return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
+			setTargetAttribute((EAttribute) null);
+			return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
+			setDescription(DESCRIPTION_EDEFAULT);
+			return;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
+			setSourceId(SOURCE_ID_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
-				return targetAttribute != null;
-			case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
-				return SOURCE_ID_EDEFAULT == null ? sourceId != null : !SOURCE_ID_EDEFAULT.equals(sourceId);
+		case MappingModelPackage.MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE:
+			return targetAttribute != null;
+		case MappingModelPackage.MAPPING_ATTRIBUTE__DESCRIPTION:
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		case MappingModelPackage.MAPPING_ATTRIBUTE__SOURCE_ID:
+			return SOURCE_ID_EDEFAULT == null ? sourceId != null : !SOURCE_ID_EDEFAULT.equals(sourceId);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: ");
@@ -283,4 +291,4 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
-} //MappingAttributeImpl
+} // MappingAttributeImpl

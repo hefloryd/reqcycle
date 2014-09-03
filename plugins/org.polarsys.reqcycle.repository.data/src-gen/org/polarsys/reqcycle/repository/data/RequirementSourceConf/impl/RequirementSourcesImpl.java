@@ -38,8 +38,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
  *
  * @generated
  */
-public class RequirementSourcesImpl extends MinimalEObjectImpl.Container
-		implements RequirementSources {
+public class RequirementSourcesImpl extends MinimalEObjectImpl.Container implements RequirementSources {
 	/**
 	 * The cached value of the '{@link #getRequirementSources()
 	 * <em>Requirement Sources</em>}' containment reference list. <!--
@@ -78,10 +77,7 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container
 	@Override
 	public EList<RequirementSource> getRequirementSources() {
 		if (requirementSources == null) {
-			requirementSources = new EObjectContainmentEList<RequirementSource>(
-					RequirementSource.class,
-					this,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES);
+			requirementSources = new EObjectContainmentEList<RequirementSource>(RequirementSource.class, this, RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES);
 		}
 		return requirementSources;
 	}
@@ -92,12 +88,10 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-			return ((InternalEList<?>) getRequirementSources()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRequirementSources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -127,8 +121,7 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
 			getRequirementSources().clear();
-			getRequirementSources().addAll(
-					(Collection<? extends RequirementSource>) newValue);
+			getRequirementSources().addAll((Collection<? extends RequirementSource>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

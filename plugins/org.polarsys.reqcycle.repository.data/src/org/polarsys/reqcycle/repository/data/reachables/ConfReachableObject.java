@@ -17,7 +17,6 @@ import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.emf.visitors.EMFVisitable;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
-
 public class ConfReachableObject extends EMFReachableObject {
 
 	public ConfReachableObject(Reachable t) {

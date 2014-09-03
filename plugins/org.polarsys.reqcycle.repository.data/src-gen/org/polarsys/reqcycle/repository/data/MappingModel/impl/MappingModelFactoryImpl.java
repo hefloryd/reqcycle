@@ -20,35 +20,34 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.polarsys.reqcycle.repository.data.MappingModel.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class MappingModelFactoryImpl extends EFactoryImpl implements MappingModelFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static MappingModelFactory init() {
 		try {
-			MappingModelFactory theMappingModelFactory = (MappingModelFactory)EPackage.Registry.INSTANCE.getEFactory(MappingModelPackage.eNS_URI);
+			MappingModelFactory theMappingModelFactory = (MappingModelFactory) EPackage.Registry.INSTANCE.getEFactory(MappingModelPackage.eNS_URI);
 			if (theMappingModelFactory != null) {
 				return theMappingModelFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new MappingModelFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingModelFactoryImpl() {
@@ -56,23 +55,25 @@ public class MappingModelFactoryImpl extends EFactoryImpl implements MappingMode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MappingModelPackage.MAPPING_ELEMENT: return createMappingElement();
-			case MappingModelPackage.MAPPING_ATTRIBUTE: return createMappingAttribute();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case MappingModelPackage.MAPPING_ELEMENT:
+			return createMappingElement();
+		case MappingModelPackage.MAPPING_ATTRIBUTE:
+			return createMappingAttribute();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingElement createMappingElement() {
@@ -81,8 +82,8 @@ public class MappingModelFactoryImpl extends EFactoryImpl implements MappingMode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingAttribute createMappingAttribute() {
@@ -91,17 +92,17 @@ public class MappingModelFactoryImpl extends EFactoryImpl implements MappingMode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingModelPackage getMappingModelPackage() {
-		return (MappingModelPackage)getEPackage();
+		return (MappingModelPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -110,4 +111,4 @@ public class MappingModelFactoryImpl extends EFactoryImpl implements MappingMode
 		return MappingModelPackage.eINSTANCE;
 	}
 
-} //MappingModelFactoryImpl
+} // MappingModelFactoryImpl

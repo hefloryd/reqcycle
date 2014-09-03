@@ -29,57 +29,57 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage;
 import org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeConfPackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementSourceDataPackageImpl extends EPackageImpl implements RequirementSourceDataPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass abstractElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass sectionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass simpleRequirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsContainerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory
+	 * method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage#eNS_URI
 	 * @see #init()
@@ -90,34 +90,41 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model,
+	 * and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link RequirementSourceDataPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize
+	 * {@link RequirementSourceDataPackage#eINSTANCE} when that field is
+	 * accessed. Clients should not invoke it directly. Instead, they should
+	 * simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static RequirementSourceDataPackage init() {
-		if (isInited) return (RequirementSourceDataPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementSourceDataPackage.eNS_URI);
+		if (isInited)
+			return (RequirementSourceDataPackage) EPackage.Registry.INSTANCE.getEPackage(RequirementSourceDataPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RequirementSourceDataPackageImpl theRequirementSourceDataPackage = (RequirementSourceDataPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RequirementSourceDataPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RequirementSourceDataPackageImpl());
+		RequirementSourceDataPackageImpl theRequirementSourceDataPackage = (RequirementSourceDataPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RequirementSourceDataPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new RequirementSourceDataPackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		ScopeConfPackageImpl theScopeConfPackage = (ScopeConfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI) instanceof ScopeConfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI) : ScopeConfPackage.eINSTANCE);
+		ScopeConfPackageImpl theScopeConfPackage = (ScopeConfPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI) instanceof ScopeConfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI)
+				: ScopeConfPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementSourceDataPackage.createPackageContents();
@@ -130,15 +137,14 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 		// Mark meta-data to indicate it can't be changed
 		theRequirementSourceDataPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RequirementSourceDataPackage.eNS_URI, theRequirementSourceDataPackage);
 		return theRequirementSourceDataPackage;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAbstractElement() {
@@ -146,44 +152,44 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractElement_Id() {
-		return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) abstractElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractElement_Text() {
-		return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) abstractElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractElement_Uri() {
-		return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) abstractElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAbstractElement_Scopes() {
-		return (EReference)abstractElementEClass.getEStructuralFeatures().get(3);
+		return (EReference) abstractElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSection() {
@@ -191,17 +197,17 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSection_Children() {
-		return (EReference)sectionEClass.getEStructuralFeatures().get(0);
+		return (EReference) sectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSimpleRequirement() {
@@ -209,8 +215,8 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirement() {
@@ -218,8 +224,8 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsContainer() {
@@ -227,39 +233,40 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_Requirements() {
-		return (EReference)requirementsContainerEClass.getEStructuralFeatures().get(0);
+		return (EReference) requirementsContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementSourceDataFactory getRequirementSourceDataFactory() {
-		return (RequirementSourceDataFactory)getEFactoryInstance();
+		return (RequirementSourceDataFactory) getEFactoryInstance();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to
+	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -281,21 +288,22 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This
+	 * method is guarded to have no affect on any invocation but its first. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -304,7 +312,7 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ScopeConfPackage theScopeConfPackage = (ScopeConfPackage)EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI);
+		ScopeConfPackage theScopeConfPackage = (ScopeConfPackage) EPackage.Registry.INSTANCE.getEPackage(ScopeConfPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -321,7 +329,8 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 		initEAttribute(getAbstractElement_Id(), ecorePackage.getEString(), "id", null, 0, 1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractElement_Text(), ecorePackage.getEString(), "text", null, 0, 1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractElement_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractElement_Scopes(), theScopeConfPackage.getScope(), null, "scopes", null, 0, -1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractElement_Scopes(), theScopeConfPackage.getScope(), null, "scopes", null, 0, -1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSection_Children(), this.getAbstractElement(), null, "children", null, 0, -1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -331,7 +340,8 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 		initEClass(requirementEClass, Requirement.class, "Requirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(requirementsContainerEClass, RequirementsContainer.class, "RequirementsContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRequirementsContainer_Requirements(), this.getAbstractElement(), null, "requirements", null, 0, -1, RequirementsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementsContainer_Requirements(), this.getAbstractElement(), null, "requirements", null, 0, -1, RequirementsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -342,18 +352,14 @@ public class RequirementSourceDataPackageImpl extends EPackageImpl implements Re
 	}
 
 	/**
-	 * Initializes the annotations for <b>hidden</b>.
-	 * <!-- begin-user-doc -->
+	 * Initializes the annotations for <b>hidden</b>. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createHiddenAnnotations() {
-		String source = "hidden";	
-		addAnnotation
-		  (getAbstractElement_Uri(), 
-		   source, 
-		   new String[] {
-		   });
+		String source = "hidden";
+		addAnnotation(getAbstractElement_Uri(), source, new String[] {});
 	}
 
-} //RequirementSourceDataPackageImpl
+} // RequirementSourceDataPackageImpl

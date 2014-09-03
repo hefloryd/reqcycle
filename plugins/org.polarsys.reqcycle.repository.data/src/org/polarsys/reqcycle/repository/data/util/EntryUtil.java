@@ -40,15 +40,13 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
  */
 public class EntryUtil {
 
-	static IDataModelManager dataModelManager = ZigguratInject
-			.make(IDataModelManager.class);
+	static IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
 
 	public static final String AN_ENTRY = "entry";
 
 	private static final String CLEAR_IMG_PATH = "/icons/delete.gif";
 
-	public static ComboViewer createComboViewer(Composite composite,
-			String attributeName, Object input) {
+	public static ComboViewer createComboViewer(Composite composite, String attributeName, Object input) {
 		composite.setLayout(new GridLayout(3, false));
 		Label label = new Label(composite, SWT.None);
 		label.setText(attributeName);
@@ -59,10 +57,8 @@ public class EntryUtil {
 
 			@Override
 			public String getText(Object element) {
-				if (Platform.getAdapterManager().hasAdapter(element,
-						String.class.getName())) {
-					Object adapter = Platform.getAdapterManager().getAdapter(
-							element, String.class);
+				if (Platform.getAdapterManager().hasAdapter(element, String.class.getName())) {
+					Object adapter = Platform.getAdapterManager().getAdapter(element, String.class);
 					if (adapter instanceof String) {
 						return ((String) adapter);
 					}
@@ -74,32 +70,25 @@ public class EntryUtil {
 		comboViewer.setContentProvider(new ArrayContentProvider());
 		comboViewer.setInput(input);
 
-		comboViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						ISelection selection = event.getSelection();
-						if (selection instanceof IStructuredSelection) {
-							Object firstElement = ((IStructuredSelection) selection)
-									.getFirstElement();
-							if (firstElement instanceof IDataModel
-									|| firstElement instanceof IRequirementType
-									|| firstElement instanceof Scope) {
-								comboViewer.setData(AN_ENTRY,
-										labelProvider.getText(firstElement));
-							} else {
-								comboViewer.setData(AN_ENTRY, null);
-							}
-						}
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+					if (firstElement instanceof IDataModel || firstElement instanceof IRequirementType || firstElement instanceof Scope) {
+						comboViewer.setData(AN_ENTRY, labelProvider.getText(firstElement));
+					} else {
+						comboViewer.setData(AN_ENTRY, null);
 					}
-				});
+				}
+			}
+		});
 
 		Button clearCombo = new Button(composite, SWT.PUSH);
-		clearCombo
-				.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
-		clearCombo.setImage(Activator.getImageDescriptor(CLEAR_IMG_PATH)
-				.createImage());
+		clearCombo.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
+		clearCombo.setImage(Activator.getImageDescriptor(CLEAR_IMG_PATH).createImage());
 		clearCombo.addSelectionListener(new SelectionAdapter() {
 
 			@Override

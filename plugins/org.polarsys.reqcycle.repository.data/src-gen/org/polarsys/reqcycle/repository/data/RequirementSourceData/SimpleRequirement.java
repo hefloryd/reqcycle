@@ -9,11 +9,9 @@
  */
 package org.polarsys.reqcycle.repository.data.RequirementSourceData;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Simple Requirement</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Simple Requirement</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage#getSimpleRequirement()

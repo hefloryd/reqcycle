@@ -55,8 +55,7 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 		EMFTypeChecker emfTypeChecker = new EMFTypeChecker();
 		if (emfTypeChecker.apply(reachable)) {
 			try {
-				ReachableObject object = manager.getHandlerFromReachable(
-						reachable).getFromReachable(reachable);
+				ReachableObject object = manager.getHandlerFromReachable(reachable).getFromReachable(reachable);
 				IsRequirementTypeVisitor visitor = new IsRequirementTypeVisitor();
 				object.getVisitable().accept(visitor);
 				return visitor.getResult();
@@ -87,8 +86,7 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 
 				if (dataModel != null) {
 
-					String dataModelName = type.eClass().getEPackage()
-							.getName();
+					String dataModelName = type.eClass().getEPackage().getName();
 					if (!dataModelName.equals(dataModel)) {
 						found = false;
 					}
@@ -103,8 +101,7 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 								}
 							}
 							if (requirementScope.contains(":")) {
-								found = requirementScope.equals(dataModelName
-										+ "::" + s.getName());
+								found = requirementScope.equals(dataModelName + "::" + s.getName());
 							} else {
 								found = requirementScope.equals(s.getName());
 							}
@@ -115,8 +112,7 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 						found = false;
 						String className = type.eClass().getName();
 						if (requirementType.contains(":")) {
-							found = requirementType.equals(dataModelName + "::"
-									+ className);
+							found = requirementType.equals(dataModelName + "::" + className);
 						} else {
 							found = className.equals(requirementType);
 						}

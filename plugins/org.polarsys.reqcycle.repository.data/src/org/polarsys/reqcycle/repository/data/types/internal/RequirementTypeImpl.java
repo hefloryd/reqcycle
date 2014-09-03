@@ -35,8 +35,7 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	public RequirementTypeImpl(String name, IDataModel dataModel) {
 		eClass = EcoreFactory.eINSTANCE.createEClass();
 		eClass.setName(name);
-		eClass.getESuperTypes().add(
-				RequirementSourceDataPackage.Literals.REQUIREMENT);
+		eClass.getESuperTypes().add(RequirementSourceDataPackage.Literals.REQUIREMENT);
 		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
 			attributes.add(new AttributeImpl(eAttribute));
 		}
@@ -55,8 +54,7 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 	public void addAttributeType(IAttribute attributeType) {
 		EAttribute eAttribute = null;
 		if (attributeType instanceof IAdaptable) {
-			eAttribute = (EAttribute) ((IAdaptable) attributeType)
-					.getAdapter(EAttribute.class);
+			eAttribute = (EAttribute) ((IAdaptable) attributeType).getAdapter(EAttribute.class);
 		}
 		if (eAttribute != null) {
 			attributes.add(attributeType);

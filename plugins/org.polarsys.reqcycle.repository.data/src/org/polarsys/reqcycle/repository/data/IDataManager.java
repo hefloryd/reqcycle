@@ -33,8 +33,7 @@ public interface IDataManager {
 	 *            the requirement source connector id
 	 * @return the requirement source
 	 */
-	public RequirementSource createRequirementSource(String name,
-			String connectorId);
+	public RequirementSource createRequirementSource(String name, String connectorId);
 
 	/**
 	 * Creates an empty requirement source.
@@ -63,8 +62,7 @@ public interface IDataManager {
 	 * 
 	 * @param requirementSource
 	 */
-	public void removeRequirementSource(
-			final RequirementSource requirementSource, boolean removeFromWS);
+	public void removeRequirementSource(final RequirementSource requirementSource, boolean removeFromWS);
 
 	/**
 	 * Creates a section.
@@ -149,8 +147,7 @@ public interface IDataManager {
 	 * @param value
 	 *            the value to set
 	 */
-	public void addAttribute(AbstractElement element, IAttribute attribute,
-			Object value);
+	public void addAttribute(AbstractElement element, IAttribute attribute, Object value);
 
 	/**
 	 * Adds the elements to the requirement source.
@@ -161,8 +158,7 @@ public interface IDataManager {
 	 *            the elements to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToSource(RequirementSource source,
-			AbstractElement... elements);
+	public boolean addElementsToSource(RequirementSource source, AbstractElement... elements);
 
 	/**
 	 * Adds an element to a section.
@@ -173,8 +169,7 @@ public interface IDataManager {
 	 *            the element to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToSection(Section section,
-			AbstractElement... element);
+	public boolean addElementsToSection(Section section, AbstractElement... element);
 
 	/**
 	 * Adds an element to a requirement.
@@ -185,8 +180,7 @@ public interface IDataManager {
 	 *            the element to add
 	 * @return true, if successful
 	 */
-	public boolean addElementsToRequirement(Requirement requirement,
-			AbstractElement... element);
+	public boolean addElementsToRequirement(Requirement requirement, AbstractElement... element);
 
 	public void load();
 

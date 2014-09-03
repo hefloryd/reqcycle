@@ -130,8 +130,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScopeConfPackage.SCOPE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ScopeConfPackage.SCOPE__NAME, oldName, name));
 	}
 
 	/**
@@ -158,8 +157,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	public EList<? extends EObject> getOppositeObjs(EReference oppositeRef) {
 
-		ECrossReferenceAdapter c = ECrossReferenceAdapter
-				.getCrossReferenceAdapter(this);
+		ECrossReferenceAdapter c = ECrossReferenceAdapter.getCrossReferenceAdapter(this);
 		if (c == null) {
 			c = new ECrossReferenceAdapter();
 		}
@@ -218,9 +216,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 		String oldDataModelURI = dataModelURI;
 		dataModelURI = newDataModelURI;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScopeConfPackage.SCOPE__DATA_MODEL_URI, oldDataModelURI,
-					dataModelURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, ScopeConfPackage.SCOPE__DATA_MODEL_URI, oldDataModelURI, dataModelURI));
 	}
 
 	/**
@@ -286,13 +282,11 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ScopeConfPackage.SCOPE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ScopeConfPackage.SCOPE__REQUIREMENTS:
 			return isSetRequirements();
 		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null
-					: !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
+			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null : !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
 		}
 		return super.eIsSet(featureID);
 	}

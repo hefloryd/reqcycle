@@ -35,7 +35,7 @@ public interface IEnumerationType {
 	 * Adds the enumerator.
 	 * 
 	 * @param enumerator
-	 *        the enumerator to add
+	 *            the enumerator to add
 	 */
 	public void addEnumerator(IEnumerator enumerator);
 

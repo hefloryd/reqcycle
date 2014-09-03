@@ -20,35 +20,34 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements RequirementSourceDataFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static RequirementSourceDataFactory init() {
 		try {
-			RequirementSourceDataFactory theRequirementSourceDataFactory = (RequirementSourceDataFactory)EPackage.Registry.INSTANCE.getEFactory(RequirementSourceDataPackage.eNS_URI);
+			RequirementSourceDataFactory theRequirementSourceDataFactory = (RequirementSourceDataFactory) EPackage.Registry.INSTANCE.getEFactory(RequirementSourceDataPackage.eNS_URI);
 			if (theRequirementSourceDataFactory != null) {
 				return theRequirementSourceDataFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RequirementSourceDataFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementSourceDataFactoryImpl() {
@@ -56,25 +55,29 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RequirementSourceDataPackage.SECTION: return createSection();
-			case RequirementSourceDataPackage.SIMPLE_REQUIREMENT: return createSimpleRequirement();
-			case RequirementSourceDataPackage.REQUIREMENT: return createRequirement();
-			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER: return createRequirementsContainer();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case RequirementSourceDataPackage.SECTION:
+			return createSection();
+		case RequirementSourceDataPackage.SIMPLE_REQUIREMENT:
+			return createSimpleRequirement();
+		case RequirementSourceDataPackage.REQUIREMENT:
+			return createRequirement();
+		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER:
+			return createRequirementsContainer();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Section createSection() {
@@ -83,8 +86,8 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SimpleRequirement createSimpleRequirement() {
@@ -93,8 +96,8 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Requirement createRequirement() {
@@ -103,8 +106,8 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsContainer createRequirementsContainer() {
@@ -113,17 +116,17 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementSourceDataPackage getRequirementSourceDataPackage() {
-		return (RequirementSourceDataPackage)getEPackage();
+		return (RequirementSourceDataPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -132,4 +135,4 @@ public class RequirementSourceDataFactoryImpl extends EFactoryImpl implements Re
 		return RequirementSourceDataPackage.eINSTANCE;
 	}
 
-} //RequirementSourceDataFactoryImpl
+} // RequirementSourceDataFactoryImpl

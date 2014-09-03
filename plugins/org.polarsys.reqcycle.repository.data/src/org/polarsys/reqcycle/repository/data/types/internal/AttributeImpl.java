@@ -28,20 +28,19 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	/** The type. */
 	protected IAttributeType type;
 
-
 	/**
 	 * Instantiates a new attribute.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param type
-	 *        the attribute type
+	 *            the attribute type
 	 */
 	public AttributeImpl(String name, IAttributeType type) {
 
 		EDataType eDataType = null;
-		if(type instanceof IAdaptable) {
-			eDataType = (EDataType)((IAdaptable)type).getAdapter(EDataType.class);
+		if (type instanceof IAdaptable) {
+			eDataType = (EDataType) ((IAdaptable) type).getAdapter(EDataType.class);
 		}
 		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
 		eAttribute.setEType(eDataType);
@@ -54,9 +53,9 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 * Instantiates a new attribute.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param type
-	 *        the attribute type
+	 *            the attribute type
 	 */
 	protected AttributeImpl(String name, EDataType type) {
 
@@ -71,7 +70,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 * Instantiates a new attribute.
 	 * 
 	 * @param eAttribute
-	 *        the EAttribute
+	 *            the EAttribute
 	 */
 	protected AttributeImpl(EAttribute eAttribute) {
 		this.eAttribute = eAttribute;
@@ -106,7 +105,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 */
 	@Override
 	public boolean isHidden() {
-		if(eAttribute.getEAnnotation("hidden") != null) {
+		if (eAttribute.getEAnnotation("hidden") != null) {
 			return true;
 		}
 		return false;
@@ -120,10 +119,10 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(adapter == EAttribute.class) {
+		if (adapter == EAttribute.class) {
 			return eAttribute;
 		}
-		if(adapter == EDataType.class) {
+		if (adapter == EDataType.class) {
 			return eAttribute.getEType();
 		}
 		return null;
@@ -132,7 +131,8 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.polarsys.reqcycle.repository.data.types.IAttribute#getAttributeType()
+	 * @see
+	 * org.polarsys.reqcycle.repository.data.types.IAttribute#getAttributeType()
 	 */
 	@Override
 	public IAttributeType getAttributeType() {

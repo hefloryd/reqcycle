@@ -18,8 +18,6 @@ import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.RequirementTypeLabelProvider;
 
-
-
 public class DataModelAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
@@ -34,14 +32,13 @@ public class DataModelAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
 	protected Adapter createAdapter(Notifier target) {
-		if(target instanceof IDataModel) {
+		if (target instanceof IDataModel) {
 			return new DataModelLabelProvider(this);
 		}
-		if(target instanceof IRequirementType) {
+		if (target instanceof IRequirementType) {
 			return new RequirementTypeLabelProvider(this);
 		}
 		return super.createAdapter(target);
 	}
-
 
 }

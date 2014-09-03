@@ -15,9 +15,8 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Simple Requirement</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Simple Requirement</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -25,8 +24,8 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequire
  */
 public class SimpleRequirementImpl extends AbstractElementImpl implements SimpleRequirement {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SimpleRequirementImpl() {
@@ -34,8 +33,8 @@ public class SimpleRequirementImpl extends AbstractElementImpl implements Simple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -43,4 +42,4 @@ public class SimpleRequirementImpl extends AbstractElementImpl implements Simple
 		return RequirementSourceDataPackage.Literals.SIMPLE_REQUIREMENT;
 	}
 
-} //SimpleRequirementImpl
+} // SimpleRequirementImpl

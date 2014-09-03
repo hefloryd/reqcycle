@@ -56,60 +56,34 @@ public class DataUtil {
 	@Inject
 	static ILogger logger;
 
-	public static final IAttributeType BYTE = new AttributeTypeImpl(
-			EcorePackage.Literals.EBYTE.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EBYTE);
+	public static final IAttributeType BYTE = new AttributeTypeImpl(EcorePackage.Literals.EBYTE.getName().replaceFirst("E", ""), EcorePackage.Literals.EBYTE);
 
-	public static final IAttributeType STRING = new AttributeTypeImpl(
-			EcorePackage.Literals.ESTRING.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.ESTRING);
+	public static final IAttributeType STRING = new AttributeTypeImpl(EcorePackage.Literals.ESTRING.getName().replaceFirst("E", ""), EcorePackage.Literals.ESTRING);
 
-	public static final IAttributeType INT = new AttributeTypeImpl(
-			EcorePackage.Literals.EINT.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EINT);
+	public static final IAttributeType INT = new AttributeTypeImpl(EcorePackage.Literals.EINT.getName().replaceFirst("E", ""), EcorePackage.Literals.EINT);
 
-	public static final IAttributeType LONG = new AttributeTypeImpl(
-			EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.ELONG);
+	public static final IAttributeType LONG = new AttributeTypeImpl(EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""), EcorePackage.Literals.ELONG);
 
-	public static final IAttributeType BIG_DECIMAL = new AttributeTypeImpl(
-			EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.ELONG);
+	public static final IAttributeType BIG_DECIMAL = new AttributeTypeImpl(EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""), EcorePackage.Literals.ELONG);
 
-	public static final IAttributeType CHAR = new AttributeTypeImpl(
-			EcorePackage.Literals.ECHAR.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.ECHAR);
+	public static final IAttributeType CHAR = new AttributeTypeImpl(EcorePackage.Literals.ECHAR.getName().replaceFirst("E", ""), EcorePackage.Literals.ECHAR);
 
-	public static final IAttributeType FLOAT = new AttributeTypeImpl(
-			EcorePackage.Literals.EFLOAT.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EFLOAT);
+	public static final IAttributeType FLOAT = new AttributeTypeImpl(EcorePackage.Literals.EFLOAT.getName().replaceFirst("E", ""), EcorePackage.Literals.EFLOAT);
 
-	public static final IAttributeType DOUBLE = new AttributeTypeImpl(
-			EcorePackage.Literals.EDOUBLE.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EDOUBLE);
+	public static final IAttributeType DOUBLE = new AttributeTypeImpl(EcorePackage.Literals.EDOUBLE.getName().replaceFirst("E", ""), EcorePackage.Literals.EDOUBLE);
 
-	public static final IAttributeType SHORT = new AttributeTypeImpl(
-			EcorePackage.Literals.ESHORT.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.ESHORT);
+	public static final IAttributeType SHORT = new AttributeTypeImpl(EcorePackage.Literals.ESHORT.getName().replaceFirst("E", ""), EcorePackage.Literals.ESHORT);
 
-	public static final IAttributeType BIG_INTEGER = new AttributeTypeImpl(
-			EcorePackage.Literals.EBIG_INTEGER.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EBIG_INTEGER);
+	public static final IAttributeType BIG_INTEGER = new AttributeTypeImpl(EcorePackage.Literals.EBIG_INTEGER.getName().replaceFirst("E", ""), EcorePackage.Literals.EBIG_INTEGER);
 
-	public static final IAttributeType BOOLEAN = new AttributeTypeImpl(
-			EcorePackage.Literals.EBOOLEAN.getName().replaceFirst("E", ""),
-			EcorePackage.Literals.EBOOLEAN);
+	public static final IAttributeType BOOLEAN = new AttributeTypeImpl(EcorePackage.Literals.EBOOLEAN.getName().replaceFirst("E", ""), EcorePackage.Literals.EBOOLEAN);
 
-	public static final Collection<IAttributeType> eDataTypes = Arrays.asList(
-			BYTE, STRING, INT, LONG, BIG_DECIMAL, CHAR, FLOAT, DOUBLE, SHORT,
-			BIG_INTEGER, BOOLEAN);
+	public static final Collection<IAttributeType> eDataTypes = Arrays.asList(BYTE, STRING, INT, LONG, BIG_DECIMAL, CHAR, FLOAT, DOUBLE, SHORT, BIG_INTEGER, BOOLEAN);
 
-	protected static ComposedAdapterFactory cAdapterFactory = new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	protected static ComposedAdapterFactory cAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	public static String getLabel(Object obj) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory
-				.adapt(obj, IItemLabelProvider.class);
+		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory.adapt(obj, IItemLabelProvider.class);
 		if (itemLabelProvider != null) {
 			return itemLabelProvider.getText(obj);
 		}
@@ -120,8 +94,7 @@ public class DataUtil {
 	}
 
 	public static Image getImage(Object obj) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory
-				.adapt(obj, IItemLabelProvider.class);
+		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory.adapt(obj, IItemLabelProvider.class);
 		if (itemLabelProvider != null) {
 			return null;// Activator.getImageDescriptor(itemLabelProvider.getImage(obj).toString()).createImage();
 		}
@@ -145,8 +118,7 @@ public class DataUtil {
 	public static String getInformation(AbstractElement object) {
 		String result = "";
 
-		EList<EStructuralFeature> structuralFeatures = object.eClass()
-				.getEStructuralFeatures();
+		EList<EStructuralFeature> structuralFeatures = object.eClass().getEStructuralFeatures();
 		if (object.getId() != null && !object.getId().isEmpty()) {
 			result += " id : " + object.getId() + " ";
 		}
@@ -158,15 +130,12 @@ public class DataUtil {
 		}
 
 		for (EStructuralFeature eStructuralFeature : structuralFeatures) {
-			if (!(eStructuralFeature instanceof EReference)
-					&& object.eGet(eStructuralFeature) != null) {
-				result += "[ " + eStructuralFeature.getName() + " : "
-						+ object.eGet(eStructuralFeature) + "]";
+			if (!(eStructuralFeature instanceof EReference) && object.eGet(eStructuralFeature) != null) {
+				result += "[ " + eStructuralFeature.getName() + " : " + object.eGet(eStructuralFeature) + "]";
 			}
 		}
 		if (result.isEmpty()) {
-			result = "Requirement Type : " + object.eClass().getName()
-					+ " [ this element doesn't have any attribute ]";
+			result = "Requirement Type : " + object.eClass().getName() + " [ this element doesn't have any attribute ]";
 		}
 
 		return result;
@@ -181,8 +150,7 @@ public class DataUtil {
 	 *            the attribute mapping ID
 	 * @return the attribute mapping found or null
 	 */
-	public static MappingAttribute getAttributeMapping(
-			MappingElement mappingElement, String id) {
+	public static MappingAttribute getAttributeMapping(MappingElement mappingElement, String id) {
 		for (MappingAttribute attribute : mappingElement.getAttributes()) {
 			if (id.equals(attribute.getSourceId())) {
 				return attribute;
@@ -200,8 +168,7 @@ public class DataUtil {
 	 *            the source element qualifier
 	 * @return the element mapping found or null
 	 */
-	public static MappingElement getElementMapping(
-			Collection<MappingElement> mapping, String qualifier) {
+	public static MappingElement getElementMapping(Collection<MappingElement> mapping, String qualifier) {
 		for (MappingElement mappingElement : mapping) {
 			if (qualifier.equals(mappingElement.getSourceQualifier())) {
 				return mappingElement;
@@ -210,14 +177,12 @@ public class DataUtil {
 		return null;
 	}
 
-	public static Collection<AbstractElement> getAllContainedElements(
-			EList<AbstractElement> elements) {
+	public static Collection<AbstractElement> getAllContainedElements(EList<AbstractElement> elements) {
 		Collection<AbstractElement> result = new ArrayList<AbstractElement>();
 		result.addAll(elements);
 		for (AbstractElement element : elements) {
 			if (element instanceof Section) {
-				result.addAll(getAllContainedElements(((Section) element)
-						.getChildren()));
+				result.addAll(getAllContainedElements(((Section) element).getChildren()));
 			}
 		}
 		return result;
@@ -228,13 +193,10 @@ public class DataUtil {
 	 * @param modelLocation
 	 * @return
 	 */
-	public static Collection<EClassifier> getTargetEPackage(
-			ResourceSet resourceSet, String modelLocation) {
+	public static Collection<EClassifier> getTargetEPackage(ResourceSet resourceSet, String modelLocation) {
 		// FIXME : check uri creation
-		URI uriAttributeModel = URI.createPlatformPluginURI(modelLocation,
-				false);
-		Resource attributeModelResource = resourceSet.getResource(
-				uriAttributeModel, true);
+		URI uriAttributeModel = URI.createPlatformPluginURI(modelLocation, false);
+		Resource attributeModelResource = resourceSet.getResource(uriAttributeModel, true);
 		EList<EObject> modelContent = attributeModelResource.getContents();
 		if (modelContent.size() > 0) {
 			Collection<EClassifier> result = new ArrayList<EClassifier>();
@@ -242,25 +204,21 @@ public class DataUtil {
 			while (iter.hasNext()) {
 				EObject eObject = iter.next();
 				if (eObject instanceof EPackage) {
-					Collection<EClassifier> filtered = Collections2.filter(
-							((EPackage) eObject).getEClassifiers(),
-							new Predicate<EClassifier>() {
+					Collection<EClassifier> filtered = Collections2.filter(((EPackage) eObject).getEClassifiers(), new Predicate<EClassifier>() {
 
-								@Override
-								public boolean apply(EClassifier arg0) {
-									if (arg0 instanceof EClass) {
-										EList<EClass> superTypes = ((EClass) arg0)
-												.getEAllSuperTypes();
-										for (EClassifier superType : superTypes) {
-											if ("AbstractElement"
-													.equals(superType.getName())) {
-												return true;
-											}
-										}
+						@Override
+						public boolean apply(EClassifier arg0) {
+							if (arg0 instanceof EClass) {
+								EList<EClass> superTypes = ((EClass) arg0).getEAllSuperTypes();
+								for (EClassifier superType : superTypes) {
+									if ("AbstractElement".equals(superType.getName())) {
+										return true;
 									}
-									return false;
 								}
-							});
+							}
+							return false;
+						}
+					});
 					result.addAll(filtered);
 				}
 			}
@@ -270,8 +228,7 @@ public class DataUtil {
 	}
 
 	public static Collection<RequirementSource> getRepositories(Object obj) {
-		if (obj instanceof String
-				&& requirementSourceManager.getRequirementSources((String) obj) != null) {
+		if (obj instanceof String && requirementSourceManager.getRequirementSources((String) obj) != null) {
 			return requirementSourceManager.getRequirementSources((String) obj);
 		}
 		if (obj instanceof RequirementSource) {

@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-
 public class RequirementTypeLabelProvider extends ItemProviderAdapter implements IItemLabelProvider, Adapter {
 
 	public RequirementTypeLabelProvider(AdapterFactory adapterFactory) {
@@ -24,8 +23,8 @@ public class RequirementTypeLabelProvider extends ItemProviderAdapter implements
 
 	@Override
 	public String getText(Object object) {
-		if(object instanceof IRequirementType) {
-			return ((IRequirementType)object).getName();
+		if (object instanceof IRequirementType) {
+			return ((IRequirementType) object).getName();
 		}
 		return null;
 	}

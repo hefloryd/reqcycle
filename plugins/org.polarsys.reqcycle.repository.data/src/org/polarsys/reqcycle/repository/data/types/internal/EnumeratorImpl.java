@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 
-
 public class EnumeratorImpl implements IEnumerator, IAdaptable {
 
 	protected EEnumLiteral eEnumLiteral;
@@ -48,7 +47,7 @@ public class EnumeratorImpl implements IEnumerator, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(adapter == EEnumLiteral.class) {
+		if (adapter == EEnumLiteral.class) {
 			return eEnumLiteral;
 		}
 		return null;

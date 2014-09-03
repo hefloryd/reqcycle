@@ -45,8 +45,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
  *
  * @generated
  */
-public class RequirementsContainerImpl extends MinimalEObjectImpl.Container
-		implements RequirementsContainer {
+public class RequirementsContainerImpl extends MinimalEObjectImpl.Container implements RequirementsContainer {
 	/**
 	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}
 	 * ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -85,10 +84,7 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container
 	@Override
 	public EList<AbstractElement> getRequirements() {
 		if (requirements == null) {
-			requirements = new EObjectContainmentEList<AbstractElement>(
-					AbstractElement.class,
-					this,
-					RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS);
+			requirements = new EObjectContainmentEList<AbstractElement>(AbstractElement.class, this, RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS);
 		}
 		return requirements;
 	}
@@ -99,12 +95,10 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			return ((InternalEList<?>) getRequirements()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -134,8 +128,7 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
 			getRequirements().clear();
-			getRequirements().addAll(
-					(Collection<? extends AbstractElement>) newValue);
+			getRequirements().addAll((Collection<? extends AbstractElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -181,8 +174,7 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container
 
 	public EList<? extends EObject> getOppositeObjs(EReference oppositeRef) {
 
-		ECrossReferenceAdapter c = ECrossReferenceAdapter
-				.getCrossReferenceAdapter(this);
+		ECrossReferenceAdapter c = ECrossReferenceAdapter.getCrossReferenceAdapter(this);
 		if (c == null) {
 			c = new ECrossReferenceAdapter();
 		}

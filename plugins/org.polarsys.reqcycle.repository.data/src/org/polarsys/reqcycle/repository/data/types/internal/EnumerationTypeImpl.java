@@ -22,7 +22,6 @@ import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 
-
 public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 
 	protected EEnum eEnum;
@@ -39,7 +38,7 @@ public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 
 	protected EnumerationTypeImpl(EEnum eEnum) {
 		this.eEnum = eEnum;
-		for(EEnumLiteral eLiteral : eEnum.getELiterals()) {
+		for (EEnumLiteral eLiteral : eEnum.getELiterals()) {
 			enumerators.add(new EnumeratorImpl(eLiteral));
 		}
 		this.type = new AttributeTypeImpl(eEnum.getName(), eEnum);
@@ -48,10 +47,10 @@ public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 	@Override
 	public void addEnumerator(IEnumerator enumerator) {
 		EEnumLiteral eEnumLiteral = null;
-		if(enumerator instanceof IAdaptable) {
-			eEnumLiteral = (EEnumLiteral)((IAdaptable)enumerator).getAdapter(EEnumLiteral.class);
+		if (enumerator instanceof IAdaptable) {
+			eEnumLiteral = (EEnumLiteral) ((IAdaptable) enumerator).getAdapter(EEnumLiteral.class);
 		}
-		if(eEnumLiteral != null) {
+		if (eEnumLiteral != null) {
 			eEnum.getELiterals().add(eEnumLiteral);
 			enumerators.add(enumerator);
 		}
@@ -85,10 +84,10 @@ public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(adapter == EEnum.class || adapter == EDataType.class) {
+		if (adapter == EEnum.class || adapter == EDataType.class) {
 			return eEnum;
 		}
-		if(adapter == IAttributeType.class) {
+		if (adapter == IAttributeType.class) {
 			return type;
 		}
 		return null;

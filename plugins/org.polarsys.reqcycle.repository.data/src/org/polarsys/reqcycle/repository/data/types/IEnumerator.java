@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.types;
 
-
 /**
  * The Interface Enumerator.
  */

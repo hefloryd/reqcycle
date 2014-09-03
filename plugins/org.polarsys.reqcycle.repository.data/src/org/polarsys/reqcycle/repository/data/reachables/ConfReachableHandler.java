@@ -15,7 +15,6 @@ import org.polarsys.reqcycle.emf.handlers.EMFReachableObject;
 import org.polarsys.reqcycle.emf.handlers.EMFURIHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
-
 public class ConfReachableHandler extends EMFURIHandler {
 
 	@Override

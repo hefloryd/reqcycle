@@ -39,16 +39,13 @@ public class DataTypesAdapterFactory implements IAdapterFactory {
 			if (String.class == adapterType) {
 				Scope scope = (Scope) adaptableObject;
 				String dataModelURI = scope.getDataModelURI();
-				IDataModelManager dataModelManager = ZigguratInject
-						.make(IDataModelManager.class);
-				Collection<IDataModel> dataModels = dataModelManager
-						.getDataModelByURI(dataModelURI);
+				IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
+				Collection<IDataModel> dataModels = dataModelManager.getDataModelByURI(dataModelURI);
 				IDataModel dataModel = null;
 				if (dataModels.size() > 0) {
 					dataModel = dataModels.iterator().next();
 				}
-				return dataModel != null ? dataModel.getName() + "::"
-						+ scope.getName() : scope.getName();
+				return dataModel != null ? dataModel.getName() + "::" + scope.getName() : scope.getName();
 			}
 		}
 		return null;

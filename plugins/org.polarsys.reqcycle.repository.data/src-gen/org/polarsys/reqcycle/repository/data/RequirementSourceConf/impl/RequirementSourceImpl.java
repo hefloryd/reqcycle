@@ -79,8 +79,7 @@ import com.google.common.collect.Collections2;
  *
  * @generated
  */
-public class RequirementSourceImpl extends MinimalEObjectImpl.Container
-		implements RequirementSource {
+public class RequirementSourceImpl extends MinimalEObjectImpl.Container implements RequirementSource {
 	/**
 	 * The cached value of the '{@link #getContents() <em>Contents</em>}'
 	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -195,11 +194,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 			contents = (RequirementsContainer) eResolveProxy(oldContents);
 			if (contents != oldContents) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS,
-							oldContents, contents));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS, oldContents, contents));
 			}
 		}
 		return contents;
@@ -224,9 +219,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 		RequirementsContainer oldContents = contents;
 		contents = newContents;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS,
-					oldContents, contents));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS, oldContents, contents));
 	}
 
 	/**
@@ -236,8 +229,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	public String getName() {
-		String label = getProperties().get(
-				IRequirementSourceProperties.PROPERTY_LABEL);
+		String label = getProperties().get(IRequirementSourceProperties.PROPERTY_LABEL);
 		return label != null ? label : "No Label";
 	}
 
@@ -248,8 +240,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	public void setName(String newName) {
-		getProperties().put(IRequirementSourceProperties.PROPERTY_LABEL,
-				newName);
+		getProperties().put(IRequirementSourceProperties.PROPERTY_LABEL, newName);
 	}
 
 	/**
@@ -260,10 +251,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	@Override
 	public EMap<String, String> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String, String>(
-					EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
-					EStringToStringMapEntryImpl.class, this,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES);
+			properties = new EcoreEMap<String, String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES);
 		}
 		return properties;
 	}
@@ -275,8 +263,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	public String getConnectorId() {
-		String type = getProperties().get(
-				IRequirementSourceProperties.PROPERTY_CONNECTOR_ID);
+		String type = getProperties().get(IRequirementSourceProperties.PROPERTY_CONNECTOR_ID);
 		return type != null ? type : IRequirementSourceProperties.TYPE_UNKNOWN;
 	}
 
@@ -287,8 +274,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	public void setConnectorId(String newConnectorId) {
-		getProperties().put(IRequirementSourceProperties.PROPERTY_CONNECTOR_ID,
-				newConnectorId);
+		getProperties().put(IRequirementSourceProperties.PROPERTY_CONNECTOR_ID, newConnectorId);
 	}
 
 	/**
@@ -299,9 +285,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	@Override
 	public EList<MappingElement> getMappings() {
 		if (mappings == null) {
-			mappings = new EObjectContainmentEList<MappingElement>(
-					MappingElement.class, this,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS);
+			mappings = new EObjectContainmentEList<MappingElement>(MappingElement.class, this, RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS);
 		}
 		return mappings;
 	}
@@ -326,11 +310,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 		String oldDataModelURI = dataModelURI;
 		dataModelURI = newDataModelURI;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI,
-					oldDataModelURI, dataModelURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI, oldDataModelURI, dataModelURI));
 	}
 
 	/**
@@ -345,11 +325,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 			defaultScope = (Scope) eResolveProxy(oldDefaultScope);
 			if (defaultScope != oldDefaultScope) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE,
-							oldDefaultScope, defaultScope));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE, oldDefaultScope, defaultScope));
 			}
 		}
 		return defaultScope;
@@ -374,11 +350,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 		Scope oldDefaultScope = defaultScope;
 		defaultScope = newDefaultScope;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE,
-					oldDefaultScope, defaultScope));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE, oldDefaultScope, defaultScope));
 	}
 
 	/**
@@ -387,15 +359,12 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-			return ((InternalEList<?>) getMappings()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -456,8 +425,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 			return;
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
 			getMappings().clear();
-			getMappings().addAll(
-					(Collection<? extends MappingElement>) newValue);
+			getMappings().addAll((Collection<? extends MappingElement>) newValue);
 			return;
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
 			setDataModelURI((String) newValue);
@@ -513,18 +481,15 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
 			return contents != null;
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT
-					.equals(getName());
+			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
 			return properties != null && !properties.isEmpty();
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-			return CONNECTOR_ID_EDEFAULT == null ? getConnectorId() != null
-					: !CONNECTOR_ID_EDEFAULT.equals(getConnectorId());
+			return CONNECTOR_ID_EDEFAULT == null ? getConnectorId() != null : !CONNECTOR_ID_EDEFAULT.equals(getConnectorId());
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
 			return mappings != null && !mappings.isEmpty();
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
-			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null
-					: !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
+			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null : !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
 		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
 			return defaultScope != null;
 		}
@@ -575,14 +540,13 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 		if (mappings == null) {
 			return Collections.emptyList();
 		}
-		return Collections2.transform(mappings,
-				new Function<MappingElement, EClass>() {
+		return Collections2.transform(mappings, new Function<MappingElement, EClass>() {
 
-					@Override
-					public EClass apply(MappingElement arg0) {
-						return arg0.getTargetElement();
-					}
-				});
+			@Override
+			public EClass apply(MappingElement arg0) {
+				return arg0.getTargetElement();
+			}
+		});
 	}
 
 	@Override
@@ -640,16 +604,14 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void setProperty(String property, String newValue) {
 		String oldValue = getProperties().get(property);
-		if ((oldValue != null && oldValue.equals(newValue))
-				|| (oldValue == null && newValue != null)) {
+		if ((oldValue != null && oldValue.equals(newValue)) || (oldValue == null && newValue != null)) {
 			properties.put(property, newValue);
 			notifyChangeListeners(property, oldValue, newValue);
 		}
 	}
 
 	protected void notifyChangeListeners(String key, String old, String value) {
-		PropertyChangeEvent event = new PropertyChangeEvent(this, key, old,
-				value);
+		PropertyChangeEvent event = new PropertyChangeEvent(this, key, old, value);
 		for (PropertyChangeListener listener : propertyChangeListeners) {
 			listener.propertyChange(event);
 		}

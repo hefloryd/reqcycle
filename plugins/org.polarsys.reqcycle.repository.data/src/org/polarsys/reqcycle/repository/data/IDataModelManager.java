@@ -75,8 +75,7 @@ public interface IDataModelManager {
 	 * @param dataTypes
 	 *            the data types to add
 	 */
-	public void addRequirementTypes(IDataModel dataModel,
-			IRequirementType... dataTypes);
+	public void addRequirementTypes(IDataModel dataModel, IRequirementType... dataTypes);
 
 	/**
 	 * Adds the enumeration types to a Data Model.
@@ -86,8 +85,7 @@ public interface IDataModelManager {
 	 * @param enumerationTypes
 	 *            the enumeration types to add
 	 */
-	public void addEnumerationTypes(IDataModel dataModel,
-			IEnumerationType... enumerationTypes);
+	public void addEnumerationTypes(IDataModel dataModel, IEnumerationType... enumerationTypes);
 
 	/**
 	 * Adds the scopes to a Data Model.
@@ -182,8 +180,7 @@ public interface IDataModelManager {
 	 * @param selectedModel
 	 * @return the requirement type
 	 */
-	public IRequirementType createRequirementType(String name,
-			IDataModel selectedModel);
+	public IRequirementType createRequirementType(String name, IDataModel selectedModel);
 
 	/**
 	 * Creates the enumeration type.

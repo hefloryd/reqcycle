@@ -54,6 +54,4 @@ public class ConfResourceSet extends ResourceSetImpl {
 		getResourceFactoryRegistry().getExtensionToFactoryMap().put("reqcycle", new ResourceFactory());
 	}
 
-
-
 }

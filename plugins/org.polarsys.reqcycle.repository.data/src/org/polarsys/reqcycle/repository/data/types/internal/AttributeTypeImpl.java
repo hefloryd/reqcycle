@@ -29,9 +29,9 @@ public class AttributeTypeImpl implements IAttributeType, IAdaptable {
 	 * Instantiates a new attribute type.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param eDataType
-	 *        the EDataType
+	 *            the EDataType
 	 */
 	public AttributeTypeImpl(EDataType eDataType) {
 		this.eDataType = eDataType;
@@ -40,10 +40,10 @@ public class AttributeTypeImpl implements IAttributeType, IAdaptable {
 
 	protected String getName(EDataType eDataType) {
 		String className = eDataType.getInstanceClassName();
-		if(className == null) {
+		if (className == null) {
 			return eDataType.getName();
 		}
-		if(className.contains(".")) {
+		if (className.contains(".")) {
 			return className.substring(className.lastIndexOf(".") + 1);
 		}
 		return className;
@@ -53,9 +53,9 @@ public class AttributeTypeImpl implements IAttributeType, IAdaptable {
 	 * Instantiates a new attribute type.
 	 * 
 	 * @param name
-	 *        the attribute name
+	 *            the attribute name
 	 * @param eDataType
-	 *        the EDataType
+	 *            the EDataType
 	 */
 	public AttributeTypeImpl(String name, EDataType eDataType) {
 		this.name = name;
@@ -72,34 +72,34 @@ public class AttributeTypeImpl implements IAttributeType, IAdaptable {
 		return name;
 	}
 
-	//	/**
-	//	 * Sets the attribute name.
-	//	 * 
-	//	 * @param name
-	//	 *        the attribute name
-	//	 */
-	//	public void setName(String name) {
-	//		this.name = name;
-	//	}
+	// /**
+	// * Sets the attribute name.
+	// *
+	// * @param name
+	// * the attribute name
+	// */
+	// public void setName(String name) {
+	// this.name = name;
+	// }
 	//
-	//	/**
-	//	 * Gets the EDataType.
-	//	 * 
-	//	 * @return the EDataType
-	//	 */
-	//	public EDataType getEDataType() {
-	//		return eDataType;
-	//	}
+	// /**
+	// * Gets the EDataType.
+	// *
+	// * @return the EDataType
+	// */
+	// public EDataType getEDataType() {
+	// return eDataType;
+	// }
 	//
-	//	/**
-	//	 * Sets the EDataType.
-	//	 * 
-	//	 * @param eDataType
-	//	 *        the EDataType
-	//	 */
-	//	public void setEDataType(EDataType eDataType) {
-	//		this.eDataType = eDataType;
-	//	}
+	// /**
+	// * Sets the EDataType.
+	// *
+	// * @param eDataType
+	// * the EDataType
+	// */
+	// public void setEDataType(EDataType eDataType) {
+	// this.eDataType = eDataType;
+	// }
 
 	/*
 	 * (non-Javadoc)
@@ -109,7 +109,7 @@ public class AttributeTypeImpl implements IAttributeType, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(adapter == EDataType.class) {
+		if (adapter == EDataType.class) {
 			return eDataType;
 		}
 		return null;
