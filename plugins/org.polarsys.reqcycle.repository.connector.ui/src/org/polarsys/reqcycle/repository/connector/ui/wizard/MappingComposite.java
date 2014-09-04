@@ -142,7 +142,7 @@ public abstract class MappingComposite extends Composite {
 		sourceViewer.setInput(getSourceInput());
 
 		btnLink = new Button(selectionComposite, SWT.NONE);
-		btnLink.setImage(Activator.getImageDescriptor("icons/link_add.png").createImage());
+		btnLink.setImage(Activator.getImageDescriptor("icons/chain--plus.png").createImage());
 		btnLink.setToolTipText("Link");
 		btnLink.setEnabled(false);
 
@@ -177,14 +177,14 @@ public abstract class MappingComposite extends Composite {
 		btnRemoveLink = new Button(resultComposite, SWT.NONE);
 		btnRemoveLink.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false, 1, 1));
 		btnRemoveLink.setToolTipText("Remove Link");
-		btnRemoveLink.setImage(Activator.getImageDescriptor("icons/link_break.png").createImage());
+		btnRemoveLink.setImage(Activator.getImageDescriptor("icons/chain--minus.png").createImage());
 		btnRemoveLink.setEnabled(false);
 
 		//TODO : created when it's possible to edit link
 		btnEditLink = new Button(resultComposite, SWT.NONE);
 		btnEditLink.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false, 1, 1));
 		btnEditLink.setToolTipText("Edit Link");
-		btnEditLink.setImage(Activator.getImageDescriptor("icons/link_edit.png").createImage());
+		btnEditLink.setImage(Activator.getImageDescriptor("icons/chain--pencil.png").createImage());
 		btnEditLink.setEnabled(getCanEditLink());
 		btnEditLink.setVisible(getCanEditLink());
 
