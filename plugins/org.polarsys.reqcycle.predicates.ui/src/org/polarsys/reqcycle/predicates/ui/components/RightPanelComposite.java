@@ -381,7 +381,7 @@ public class RightPanelComposite extends Composite {
 		buttonFinish = new Button(compositeButtons, SWT.NONE);
 		buttonFinish.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, false, 1, 1));
 		buttonFinish.setToolTipText("Finish the current edition and clear the editor");
-		buttonFinish.setImage(AbstractUIPlugin.imageDescriptorFromPlugin(PredicatesUIPlugin.PLUGIN_ID, "/icons/full/obj16/clear_obj.png").createImage());
+		buttonFinish.setImage(AbstractUIPlugin.imageDescriptorFromPlugin(PredicatesUIPlugin.PLUGIN_ID, "/icons/full/obj16/broom.png").createImage());
 		buttonFinish.setEnabled(false);
 		buttonFinish.addSelectionListener(new SelectionAdapter() {
 
