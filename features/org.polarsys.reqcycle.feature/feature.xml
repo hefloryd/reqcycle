@@ -5,18 +5,18 @@
       version="0.7.0.qualifier">
 
    <description url="http://org.polarsys.reqcycle/description">
-      ReqCycle feature contains requirement management, engineering and traceability
+      ReqCycle feature contains requirement engineering and traceability
    </description>
 
-   <copyright>
-      &lt;copyright&gt;(c) Copyright Eclipse contributors and others 2000, 2014. All
-rights reserved. Visit http://www.eclipse.org/platform This product includes
-following third parties with associated licenses: Google guava (license:
-http://www.apache.org/licenses/LICENSE-2.0) BluePrint : (license: BSD-like
-license, https://github.com/tinkerpop/blueprints/raw/master/LICENSE.txt)
-OpenRDF Sesame : (license:
-https://bitbucket.org/openrdf/sesame/raw/b21436e56ae5a0c1434117ccc5c97c7151a5fe05/core/LICENSE.txt)\
+  <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2013-2014 AtoS and Samares Engineering
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
    </copyright>
+
 
    <license url="">
       Eclipse Public License - v 1.0
