@@ -17,14 +17,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 /**
  * The Interface RequirementType.
  */
-public interface IRequirementType {
-
-	/**
-	 * Gets the name.
-	 * 
-	 * @return the Requirement name
-	 */
-	public String getName();
+public interface IRequirementType extends IType {
 
 	/**
 	 * Gets the attributes.
@@ -39,7 +32,9 @@ public interface IRequirementType {
 	 * @param type
 	 *            the attribute type
 	 */
-	public void addAttributeType(IAttribute type);
+	public void addAttribute(IAttribute att);
+
+	public void removeAttribute(IAttribute att);
 
 	/**
 	 * Creates an instance.

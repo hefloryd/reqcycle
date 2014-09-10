@@ -20,7 +20,7 @@ public class DataModelEntryProvider extends AbstractPropsEditor<String> {
 	IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
 	@Override
 	protected AbstractPropsEditorComponent<String> initAndGetComponent() {
-		return new ComboComponent(getAttributeName(),dataModelManager.getAllDataModels(), getContainer());
+		return new ComboComponent(getAttributeName(),dataModelManager.getCurrentDataModels(), getContainer());
 	}
 
 

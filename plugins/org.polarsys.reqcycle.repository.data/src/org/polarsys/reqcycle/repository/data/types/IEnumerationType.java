@@ -15,14 +15,7 @@ import java.util.Collection;
 /**
  * The Interface EnumerationType.
  */
-public interface IEnumerationType {
-
-	/**
-	 * Gets the name.
-	 * 
-	 * @return the Enumeration type name
-	 */
-	public String getName();
+public interface IEnumerationType extends IType {
 
 	/**
 	 * Gets the enumerators.

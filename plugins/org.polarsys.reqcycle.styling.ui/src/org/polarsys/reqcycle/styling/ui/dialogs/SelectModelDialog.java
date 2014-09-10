@@ -28,7 +28,9 @@ import org.eclipse.ui.dialogs.PatternFilter;
 import org.polarsys.reqcycle.core.ui.dialogs.ValidatingTitleAreaDialog;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class SelectModelDialog extends ValidatingTitleAreaDialog {
@@ -90,8 +92,10 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 			}
 		});
 
-		Collection<IRequirementType> input = new ArrayList<IRequirementType>();
-		input.addAll(dataModelManager.getAllRequirementTypes());
+		ArrayList<IType> input = new ArrayList<IType>();
+		for (IDataModel dataModel : dataModelManager.getCurrentDataModels()) {
+			input.addAll(dataModel.getTypes());
+		}
 		treeViewer.setInput(input);
 
 		return area;

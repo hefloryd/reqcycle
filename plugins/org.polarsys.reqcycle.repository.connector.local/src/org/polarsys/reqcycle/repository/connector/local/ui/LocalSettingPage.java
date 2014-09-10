@@ -78,8 +78,7 @@ public class LocalSettingPage extends WizardPage implements Listener {
 	public void createControl(Composite parent) {
 		Composite compositeMain = new Composite(parent, SWT.NONE);
 		compositeMain.setLayout(new GridLayout(3, false));
-		compositeMain
-				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		compositeMain.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(compositeMain);
 
 		Label lblDataModel = new Label(compositeMain, SWT.NONE);
@@ -87,8 +86,7 @@ public class LocalSettingPage extends WizardPage implements Listener {
 
 		cvDataModel = new ComboViewer(compositeMain);
 		cDataModel = cvDataModel.getCombo();
-		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 2, 1));
+		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		cvDataModel.setContentProvider(ArrayContentProvider.getInstance());
 		cvDataModel.setLabelProvider(new LabelProvider() {
 
@@ -100,15 +98,14 @@ public class LocalSettingPage extends WizardPage implements Listener {
 				return super.getText(element);
 			}
 		});
-		cvDataModel.setInput(dataModelManager.getAllDataModels());
+		cvDataModel.setInput(dataModelManager.getCurrentDataModels());
 
 		Label lblScope = new Label(compositeMain, SWT.NONE);
 		lblScope.setText("Scope :");
 
 		cvScope = new ComboViewer(compositeMain);
 		cScope = cvScope.getCombo();
-		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2,
-				1));
+		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		cScope.setEnabled(false);
 		cvScope.setContentProvider(ArrayContentProvider.getInstance());
 		cvScope.setLabelProvider(new LabelProvider() {
@@ -126,8 +123,7 @@ public class LocalSettingPage extends WizardPage implements Listener {
 		lblDestination.setText("Destination File :");
 
 		txtDestination = new Text(compositeMain, SWT.BORDER);
-		txtDestination.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				false, 1, 1));
+		txtDestination.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 
 		btnBrowse = new Button(compositeMain, SWT.PUSH);
 		btnBrowse.setText("Browse");
@@ -139,26 +135,23 @@ public class LocalSettingPage extends WizardPage implements Listener {
 
 	protected void hookListeners() {
 
-		cvDataModel
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		cvDataModel.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						cvScope.setInput(Collections.emptyList());
-						cScope.setEnabled(false);
-						ISelection selection = event.getSelection();
-						if (selection instanceof IStructuredSelection) {
-							Object obj = ((IStructuredSelection) selection)
-									.getFirstElement();
-							if (obj instanceof IDataModel) {
-								cScope.setEnabled(true);
-								cvScope.setInput(dataModelManager
-										.getScopes((IDataModel) obj));
-							}
-						}
-						cvScope.refresh();
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				cvScope.setInput(Collections.emptyList());
+				cScope.setEnabled(false);
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj instanceof IDataModel) {
+						cScope.setEnabled(true);
+						cvScope.setInput(dataModelManager.getScopes((IDataModel) obj));
 					}
-				});
+				}
+				cvScope.refresh();
+			}
+		});
 
 		btnBrowse.addSelectionListener(new SelectionAdapter() {
 
@@ -222,26 +215,17 @@ public class LocalSettingPage extends WizardPage implements Listener {
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties
-				.singleSelection().observe(cvDataModel);
-		IObservableValue dataModelBeanObserveValue = PojoProperties.value(
-				"dataModel").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvDataModel,
-				dataModelBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties.singleSelection().observe(cvDataModel);
+		IObservableValue dataModelBeanObserveValue = PojoProperties.value("dataModel").observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvDataModel, dataModelBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionCvScope = ViewerProperties
-				.singleSelection().observe(cvScope);
-		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope")
-				.observe(bean);
-		bindingContext.bindValue(observeSingleSelectionCvScope,
-				scopeBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvScope = ViewerProperties.singleSelection().observe(cvScope);
+		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope").observe(bean);
+		bindingContext.bindValue(observeSingleSelectionCvScope, scopeBeanObserveValue, null, null);
 		//
-		IObservableValue observeTextTxtDestinationObserveWidget = WidgetProperties
-				.text(SWT.Modify).observe(txtDestination);
-		IObservableValue destinationBeanObserveValue = PojoProperties.value(
-				"destination").observe(bean);
-		bindingContext.bindValue(observeTextTxtDestinationObserveWidget,
-				destinationBeanObserveValue, null, null);
+		IObservableValue observeTextTxtDestinationObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtDestination);
+		IObservableValue destinationBeanObserveValue = PojoProperties.value("destination").observe(bean);
+		bindingContext.bindValue(observeTextTxtDestinationObserveWidget, destinationBeanObserveValue, null, null);
 		//
 		return bindingContext;
 	}

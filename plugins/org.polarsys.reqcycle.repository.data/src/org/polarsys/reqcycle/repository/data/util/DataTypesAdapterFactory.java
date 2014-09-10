@@ -10,14 +10,10 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.util;
 
-import java.util.Collection;
-
 import org.eclipse.core.runtime.IAdapterFactory;
-import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class DataTypesAdapterFactory implements IAdapterFactory {
 
@@ -38,14 +34,7 @@ public class DataTypesAdapterFactory implements IAdapterFactory {
 		if (adaptableObject instanceof Scope) {
 			if (String.class == adapterType) {
 				Scope scope = (Scope) adaptableObject;
-				String dataModelURI = scope.getDataModelURI();
-				IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
-				Collection<IDataModel> dataModels = dataModelManager.getDataModelByURI(dataModelURI);
-				IDataModel dataModel = null;
-				if (dataModels.size() > 0) {
-					dataModel = dataModels.iterator().next();
-				}
-				return dataModel != null ? dataModel.getName() + "::" + scope.getName() : scope.getName();
+				return scope.getDataModelName() + "::" + scope.getName();
 			}
 		}
 		return null;

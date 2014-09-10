@@ -20,8 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes#getScopes
- * <em>Scopes</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes#getScopes <em>Scopes</em>}</li>
  * </ul>
  * </p>
  *

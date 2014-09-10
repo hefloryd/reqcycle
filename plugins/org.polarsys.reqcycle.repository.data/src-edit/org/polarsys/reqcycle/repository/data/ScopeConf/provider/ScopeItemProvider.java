@@ -62,20 +62,31 @@ public class ScopeItemProvider extends ItemProviderAdapter implements IEditingDo
 
 			addNamePropertyDescriptor(object);
 			addRequirementsPropertyDescriptor(object);
-			addDataModelURIPropertyDescriptor(object);
+			addDataModelNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scope_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Scope_name_feature", "_UI_Scope_type"), ScopeConfPackage.Literals.SCOPE__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scope_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scope_name_feature", "_UI_Scope_type"),
+				 ScopeConfPackage.Literals.SCOPE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -85,24 +96,46 @@ public class ScopeItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * @generated
 	 */
 	protected void addRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scope_requirements_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Scope_requirements_feature", "_UI_Scope_type"), ScopeConfPackage.Literals.SCOPE__REQUIREMENTS, false, false, false, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scope_requirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scope_requirements_feature", "_UI_Scope_type"),
+				 ScopeConfPackage.Literals.SCOPE__REQUIREMENTS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Data Model URI feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Data Model Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDataModelURIPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scope_DataModelURI_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Scope_DataModelURI_feature", "_UI_Scope_type"), ScopeConfPackage.Literals.SCOPE__DATA_MODEL_URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	protected void addDataModelNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scope_dataModelName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scope_dataModelName_feature", "_UI_Scope_type"),
+				 ScopeConfPackage.Literals.SCOPE__DATA_MODEL_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Scope.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Scope.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,23 +144,24 @@ public class ScopeItemProvider extends ItemProviderAdapter implements IEditingDo
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Scope) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Scope_type") : getString("_UI_Scope_type") + " " + label;
+		String label = ((Scope)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Scope_type") :
+			getString("_UI_Scope_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,10 +169,10 @@ public class ScopeItemProvider extends ItemProviderAdapter implements IEditingDo
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Scope.class)) {
-		case ScopeConfPackage.SCOPE__NAME:
-		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case ScopeConfPackage.SCOPE__NAME:
+			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

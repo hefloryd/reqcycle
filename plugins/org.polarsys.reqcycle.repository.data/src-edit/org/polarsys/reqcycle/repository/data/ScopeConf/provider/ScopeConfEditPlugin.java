@@ -39,18 +39,21 @@ public final class ScopeConfEditPlugin extends EMFPlugin {
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Create the instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ScopeConfEditPlugin() {
-		super(new ResourceLocator[] { RequirementSourceDataEditPlugin.INSTANCE, });
+		super
+		  (new ResourceLocator [] {
+		     RequirementSourceDataEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -60,9 +63,9 @@ public final class ScopeConfEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -78,8 +81,8 @@ public final class ScopeConfEditPlugin extends EMFPlugin {
 	 */
 	public static class Implementation extends EclipsePlugin {
 		/**
-		 * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * Creates an instance.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		public Implementation() {

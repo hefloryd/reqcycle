@@ -12,26 +12,33 @@ package org.polarsys.reqcycle.repository.data.types.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
-import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 
 /**
  * The Class DataModelImpl.
  */
 public class DataModelImpl implements IDataModel, IAdaptable {
+
+	protected boolean needsNewVersionOnSave = false;
+
+	protected static final Pattern VERSION_REGEX = Pattern.compile(".*/([0-9]*)");
 
 	/** The ePackage. */
 	protected EPackage ePackage;
@@ -39,14 +46,10 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	/** The subPackages. */
 	protected Collection<IDataModel> subPackages = new ArrayList<IDataModel>();
 
-	/** The scopes. */
-	protected Collection<Scope> scopes = new ArrayList<Scope>();
-
 	/** The requirement types. */
-	protected Collection<IRequirementType> requirementTypes = new ArrayList<IRequirementType>();
+	protected Collection<IType> types = new ArrayList<IType>();
 
-	/** The enumeration types. */
-	protected Collection<IEnumerationType> enumerationTypes = new ArrayList<IEnumerationType>();
+	protected int version = 0;
 
 	/**
 	 * Instantiates a new data model.
@@ -64,12 +67,13 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	 * @param name
 	 *            the data model name
 	 */
-	public DataModelImpl(String name) {
+	public DataModelImpl(String name, int version) {
+		this.version = version;
 		ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		ePackage.setName(name);
-		// ePackage.setName(name);
 		ePackage.setNsPrefix(name);
-		ePackage.setNsURI(IDataModelManager.MODEL_NS_URI + "/" + name);
+		ePackage.setNsURI(IDataModelManager.MODEL_NS_URI + "/" + name + "/" + this.version);
+
 	}
 
 	/**
@@ -81,17 +85,27 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	public DataModelImpl(EPackage ePackage) {
 		this.ePackage = ePackage;
 
+		Matcher matcher = VERSION_REGEX.matcher(ePackage.getNsURI());
+		if (matcher.matches()) {
+			version = Integer.parseInt(matcher.group(1));
+		}
+
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
-			if (classifier instanceof EClass) {
-				requirementTypes.add(new RequirementTypeImpl((EClass) classifier, this));
-			} else if (classifier instanceof EEnum) {
-				enumerationTypes.add(new EnumerationTypeImpl((EEnum) classifier));
+			if (classifier instanceof EEnum) {
+				types.add(new EnumerationTypeImpl((EEnum) classifier));
+			} else if (classifier instanceof EClass) {
+				types.add(new RequirementTypeImpl((EClass) classifier, this));
 			}
 		}
 
 		for (EPackage subPackage : ePackage.getESubpackages()) {
 			subPackages.add(new DataModelImpl(subPackage));
 		}
+	}
+
+	@Override
+	public int getVersion() {
+		return version;
 	}
 
 	/*
@@ -109,42 +123,9 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	 * 
 	 * @return the factory instance
 	 */
-	EFactory getFactoryInstance() {
+	protected EFactory getFactoryInstance() {
 		return ePackage.getEFactoryInstance();
 	}
-
-	// //FIXME : Continue
-	// /**
-	// * Creates the.
-	// *
-	// * @param dataType
-	// * the data type
-	// * @return the requirement section
-	// */
-	// @Override
-	// public Requirement create(IRequirementType dataType) {
-	// // return
-	// (Requirement)createFactoryInstance().create(((RequirementTypeImpl)dataType).getEClass());
-	// EClass eclass = null;
-	// if(dataType instanceof IAdaptable) {
-	// eclass = (EClass)((IAdaptable)dataType).getAdapter(EClass.class);
-	// }
-	//
-	// if(eclass == null) {
-	// return null;
-	// }
-	//
-	// for(IDataModel p : getSubDataModels()) {
-	// EPackage pac = null;
-	// if(p instanceof IAdaptable) {
-	// pac = (EPackage)((IAdaptable)p).getAdapter(EPackage.class);
-	// }
-	// if(pac != null && pac.getEClassifiers().contains(eclass)) {
-	// return (Requirement)pac.getEFactoryInstance().create(eclass);
-	// }
-	// }
-	// return null;
-	// }
 
 	/**
 	 * Adds the data model.
@@ -152,83 +133,45 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	 * @param dataModel
 	 *            the data model to add
 	 */
-	public void addDataModel(IDataModel dataModel) {
+	public void addSubDataModel(IDataModel dataModel) {
+		subPackages.add(dataModel);
+
 		EPackage ePackage = null;
 		if (dataModel instanceof IAdaptable) {
 			ePackage = (EPackage) ((IAdaptable) dataModel).getAdapter(EPackage.class);
 		}
 		if (ePackage != null) {
 			this.ePackage.getESubpackages().add(ePackage);
-			subPackages.add(dataModel);
 		}
 	}
 
-	/**
-	 * Gets the e package.
-	 * 
-	 * @return the e package
-	 * @deprecated use getAdapter
-	 */
-	@Deprecated
-	public EPackage getEPackage() {
-		return ePackage;
-	}
+	public void removeSubDataModel(IDataModel p) {
+		subPackages.remove(p);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#addRequirementType
-	 * (org.polarsys.reqcycle.repository.data.types.IRequirementType)
-	 */
-	@Override
-	public void addRequirementType(IRequirementType dataType) {
-		EClass eClass = null;
-		if (dataType instanceof IAdaptable) {
-			eClass = (EClass) ((IAdaptable) dataType).getAdapter(EClass.class);
+		EPackage ePackage = null;
+		if (p instanceof IAdaptable) {
+			ePackage = (EPackage) ((IAdaptable) p).getAdapter(EPackage.class);
 		}
-		if (eClass != null) {
-			ePackage.getEClassifiers().add(eClass);
-			requirementTypes.add(dataType);
+		if (ePackage != null) {
+			EcoreUtil.remove(ePackage);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.DataModel#add(org.eclipse.
-	 * reqcycle.repository.data.types.EnumerationType)
+	 * @see org.polarsys.reqcycle.repository.data.types.IDataModel#addRequirementType (org.polarsys.reqcycle.repository.data.types.IRequirementType)
 	 */
 	@Override
-	public void addEnumerationType(IEnumerationType enumerationType) {
-		EEnum eEnum = null;
-		if (enumerationType instanceof IAdaptable) {
-			eEnum = (EEnum) ((IAdaptable) enumerationType).getAdapter(EEnum.class);
+	public void addType(IType type) {
+		EClassifier eType = null;
+		if (type instanceof IAdaptable) {
+			eType = (EClassifier) ((IAdaptable) type).getAdapter(EClassifier.class);
 		}
-		if (eEnum != null) {
-			ePackage.getEClassifiers().add(eEnum);
-			enumerationTypes.add(enumerationType);
+		if (eType != null) {
+			ePackage.getEClassifiers().add(eType);
+			types.add(type);
 		}
-	}
-
-	/**
-	 * Gets the data model.
-	 * 
-	 * @param name
-	 *            the name
-	 * @return the data model
-	 */
-	public IDataModel getSubDataModel(String name) {
-		if (name == null) {
-			return null;
-		}
-		for (IDataModel p : subPackages) {
-			if (name.equals(p.getName())) {
-				return p;
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -243,15 +186,13 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#getEnumerationType
-	 * (java.lang.String)
+	 * @see org.polarsys.reqcycle.repository.data.types.IDataModel#getRequirementType (java.lang.String)
 	 */
 	@Override
-	public IEnumerationType getEnumerationType(String name) {
-		for (IEnumerationType enumerationType : enumerationTypes) {
-			if (name.equals(enumerationType.getName())) {
-				return enumerationType;
+	public IType getType(String name) {
+		for (IType type : types) {
+			if (name.equals(type.getName())) {
+				return type;
 			}
 		}
 		return null;
@@ -260,113 +201,12 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#getRequirementType
-	 * (java.lang.String)
+	 * @see org.polarsys.reqcycle.repository.data.types.IDataModel#getRequirementTypes ()
 	 */
 	@Override
-	public IRequirementType getRequirementType(String name) {
-		for (IRequirementType dataType : requirementTypes) {
-			if (name.equals(dataType.getName())) {
-				return dataType;
-			}
-		}
-		return null;
+	public Collection<IType> getTypes() {
+		return types;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#getRequirementTypes
-	 * ()
-	 */
-	@Override
-	public Collection<IRequirementType> getRequirementTypes() {
-		return requirementTypes;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#getEnumerationTypes
-	 * ()
-	 */
-	@Override
-	public Collection<IEnumerationType> getEnumerationTypes() {
-		return enumerationTypes;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#addScope(DataModel
-	 * .Scope)
-	 * 
-	 * @Deprecated Use IDataModelManager to add data models scopes
-	 */
-	@Deprecated
-	@Override
-	public void addScope(Scope scope) {
-
-		EAnnotation scopeEAnnotation = ePackage.getEAnnotation("SCOPES");
-		if (scopeEAnnotation == null) {
-			scopeEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			scopeEAnnotation.setSource("SCOPES");
-			ePackage.getEAnnotations().add(scopeEAnnotation);
-		}
-		scopes.add(scope);
-		scopeEAnnotation.getContents().add(scope);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IDataModel#getScope(java.lang
-	 * .String)
-	 * 
-	 * @Deprecated Use IDataModelManager to retrieve data models scopes
-	 */
-	@Deprecated
-	@Override
-	public Scope getScope(String name) {
-		for (Scope scope : scopes) {
-			if (name.equals(scope.getName())) {
-				return scope;
-			}
-		}
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.polarsys.reqcycle.repository.data.types.IDataModel#getScopes()
-	 * 
-	 * @Deprecated Use IDataModelManager to retrieve data models scopes
-	 */
-	@Deprecated
-	@Override
-	public Collection<Scope> getScopes() {
-		return scopes;
-	}
-
-	// /**
-	// * Adds the data type.
-	// *
-	// * @param type
-	// * the type
-	// */
-	// public void addDataType(DataType type) {
-	// if(type instanceof IRequirementType) {
-	// addRequirementType((IRequirementType)type);
-	// } else if(type instanceof IEnumerationType) {
-	// addEnumerationType((IEnumerationType)type);
-	// }
-	// }
 
 	/*
 	 * (non-Javadoc)
@@ -387,20 +227,31 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 		return ePackage.getNsURI();
 	}
 
-	public void removeDataModel(IDataModel p) {
-		requirementTypes.removeAll(p.getRequirementTypes());
-		enumerationTypes.removeAll(p.getEnumerationTypes());
-		subPackages.remove(p);
-
-		EPackage ePackage = null;
-		if (p instanceof IAdaptable) {
-			ePackage = (EPackage) ((IAdaptable) p).getAdapter(EPackage.class);
+	@Override
+	public void removeType(IType type) {
+		if (types.remove(type)) {
+			needsNewVersionOnSave = true;
 		}
-		if (ePackage != null) {
-			this.ePackage.getESubpackages().remove(ePackage);
-		}
-		EcoreUtil.remove(ePackage);
+	}
 
+	public DataModelImpl prepareSave() {
+		if (needsNewVersionOnSave) {
+			needsNewVersionOnSave = false;
+			String oldNsURI = ePackage.getNsURI();
+			version = version + 1;
+			ePackage.setNsURI(IDataModelManager.MODEL_NS_URI + "/" + ePackage.getName() + "/" + version);
+			// reload old version of the DataModel which need to be kept for migration
+			ResourceSetImpl rs = new ResourceSetImpl();
+			Resource oldResource = rs.getResource(ePackage.eResource().getURI(), true);
+			TreeIterator<EObject> it = oldResource.getAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				if (obj instanceof EPackage && oldNsURI.equals(((EPackage) obj).getNsURI())) {
+					return new DataModelImpl((EPackage) obj);
+				}
+			}
+		}
+		return null;
 	}
 
 }

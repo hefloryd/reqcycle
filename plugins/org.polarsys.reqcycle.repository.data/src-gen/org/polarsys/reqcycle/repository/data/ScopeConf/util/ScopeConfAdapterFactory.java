@@ -22,22 +22,21 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.*;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage
  * @generated
  */
 public class ScopeConfAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ScopeConfPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ScopeConfAdapterFactory() {
@@ -51,7 +50,6 @@ public class ScopeConfAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
 	 * the object is either the model's package or is an instance object of the
 	 * model. <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -61,7 +59,7 @@ public class ScopeConfAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -73,34 +71,31 @@ public class ScopeConfAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ScopeConfSwitch<Adapter> modelSwitch = new ScopeConfSwitch<Adapter>() {
-		@Override
-		public Adapter caseScopes(Scopes object) {
-			return createScopesAdapter();
-		}
-
-		@Override
-		public Adapter caseScope(Scope object) {
-			return createScopeAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseScopes(Scopes object) {
+				return createScopesAdapter();
+			}
+			@Override
+			public Adapter caseScope(Scope object) {
+				return createScopeAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
@@ -136,9 +131,9 @@ public class ScopeConfAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

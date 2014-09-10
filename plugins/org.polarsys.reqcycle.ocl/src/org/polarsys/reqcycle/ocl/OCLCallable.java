@@ -26,6 +26,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.ocl.OCLEvaluator;
 import org.polarsys.reqcycle.utils.ocl.ZigguratOCLPlugin;
 
@@ -62,7 +63,7 @@ protected void fillRequirements(RequirementSource requirementSource) throws Exce
 	OCLEvaluator evaluator = ZigguratOCLPlugin.compileOCL(resourceSet, URI.createPlatformResourceURI(requirementSource.getProperty(IOCLConstants.OCL_URI), true));
 	
 	Iterator<EObject> contents = getIterator(requirementSource, resourceSet);
-	Collection<IRequirementType> requirementTypes = PropertyUtils.getDataModelFromSource(requirementSource).getRequirementTypes();
+	Collection<IType> types = PropertyUtils.getDataModelFromSource(requirementSource).getTypes();
 	while(contents.hasNext()) {
 		EObject eObject = contents.next();
 				if (OCLUtilities.isSection(evaluator,eObject)){
@@ -72,12 +73,15 @@ protected void fillRequirements(RequirementSource requirementSource) throws Exce
 					sections.put(eObject, section);
 					addToSection(requirementSource, eObject, section);
 				}
-		for(IRequirementType reqType : requirementTypes) {
-			if(OCLUtilities.isDataType(evaluator, eObject, reqType)) {
-				AbstractElement requirement = createRequirement(evaluator, mapping, eObject, reqType);
-						addToSection(requirementSource, eObject, requirement);
-			}
-		}
+				for(IType type : types) {
+					if (type instanceof IRequirementType) {
+						IRequirementType reqType = (IRequirementType)type;
+						if(OCLUtilities.isDataType(evaluator, eObject, reqType)) {
+							AbstractElement requirement = createRequirement(evaluator, mapping, eObject, reqType);
+							addToSection(requirementSource, eObject, requirement);
+						}
+					}
+				}
 	}
 		}
 	
@@ -101,7 +105,7 @@ protected AbstractElement createRequirement(OCLEvaluator evaluator, Collection<M
 	for(IAttribute attribute : Iterables.filter(reqType.getAttributes(), IAttribute.class)) {
 		Object value = OCLUtilities.getAttributeValue(evaluator, eObject, attribute);
 		if(value != null) {
-			dataManager.addAttribute(requirement, attribute, value);
+			dataManager.addAttributeValue(requirement, attribute, value);
 		}
 	}
 	return requirement;

@@ -11,13 +11,14 @@
 package org.polarsys.reqcycle.repository.data.impl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.eclipse.core.runtime.Assert;
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.repository.data.IDataManager;
@@ -41,11 +41,11 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfFactory;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scopes;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.repository.data.types.internal.AttributeImpl;
 import org.polarsys.reqcycle.repository.data.types.internal.DataModelImpl;
 import org.polarsys.reqcycle.repository.data.types.internal.EnumerationTypeImpl;
@@ -57,25 +57,23 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Singleton
 public class DataModelManagerImpl implements IDataModelManager {
 
 	/** EPackage containing possible data types */
-	protected IDataModel dataModel;
+	protected IDataModel containerDataModel;
 
 	/** Configuration Manager */
 	@Inject
 	IConfigurationManager confManager;
 
 	/** Configuration ID */
-	final static String CONF_ID = "org.polarsys.reqcycle.data.dataTypes";
+	final static String DATAMODELS_CONF_ID = "org.polarsys.reqcycle.data.datamodels";
 
 	final static String SCOPES_CONF_ID = "org.polarsys.reqcycle.data.scopes";
-
-	@Inject
-	@Named("confResourceSet")
-	protected ResourceSet rs;
 
 	protected Scopes scopes;
 
@@ -86,8 +84,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 	 * Constructor
 	 */
 	@Inject
-	DataModelManagerImpl(@Named("confResourceSet") ResourceSet rs, IConfigurationManager confManager, IDataManager dataManager) {
-		this.rs = rs;
+	DataModelManagerImpl(IConfigurationManager confManager, IDataManager dataManager) {
 		this.confManager = confManager;
 		this.dataManager = dataManager;
 
@@ -96,7 +93,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 	}
 
 	protected void initScopes() {
-		Collection<EObject> conf = confManager.getConfiguration(null, null, SCOPES_CONF_ID, rs, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, null, SCOPES_CONF_ID, null, null, true);
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
 			element = conf.iterator().next();
@@ -110,7 +107,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 	}
 
 	protected void initTypes() {
-		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, CONF_ID, rs, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, DATAMODELS_CONF_ID, null, "ecore", true);
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
 			element = conf.iterator().next();
@@ -118,13 +115,13 @@ public class DataModelManagerImpl implements IDataModelManager {
 		EPackage ePackage;
 		if (element instanceof EPackage) {
 			ePackage = (EPackage) element;
-			dataModel = new DataModelImpl(ePackage);
+			containerDataModel = new DataModelImpl(ePackage);
 		} else {
 			ePackage = EcoreFactory.eINSTANCE.createEPackage();
 			ePackage.setName("DataModels");
 			ePackage.setNsPrefix("DataModels");
 			ePackage.setNsURI(MODEL_NS_URI);
-			dataModel = new DataModelImpl(ePackage);
+			containerDataModel = new DataModelImpl(ePackage);
 			saveDataModels();
 		}
 		registerDataModels(ePackage);
@@ -143,19 +140,25 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 	protected void saveScopes() {
 		try {
-			confManager.saveConfiguration(scopes, null, null, SCOPES_CONF_ID, rs);
+			confManager.saveConfiguration(Collections.singleton(scopes), null, null, SCOPES_CONF_ID, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	protected void saveDataModels() {
+		for (IDataModel dataModel : Lists.newArrayList(getAllDataModels())) {
+			DataModelImpl oldDataModel = ((DataModelImpl) dataModel).prepareSave();
+			if (oldDataModel != null) {
+				((DataModelImpl) containerDataModel).addSubDataModel(oldDataModel);
+			}
+		}
 		try {
 			EPackage ePackage = null;
-			if (dataModel instanceof IAdaptable) {
-				ePackage = (EPackage) ((IAdaptable) dataModel).getAdapter(EPackage.class);
+			if (containerDataModel instanceof IAdaptable) {
+				ePackage = (EPackage) ((IAdaptable) containerDataModel).getAdapter(EPackage.class);
 			}
-			confManager.saveConfiguration(ePackage, null, IConfigurationManager.Scope.WORKSPACE, CONF_ID, rs);
+			confManager.saveConfiguration(Collections.singleton(ePackage), null, IConfigurationManager.Scope.WORKSPACE, DATAMODELS_CONF_ID, null, "ecore");
 			registerDataModels(ePackage);
 		} catch (IOException e) {
 			// FIXME : use logger
@@ -165,7 +168,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 	@Override
 	public IDataModel createDataModel(String name) {
-		IDataModel dataModel = new DataModelImpl(name);
+		IDataModel dataModel = new DataModelImpl(name, 1);
 		addDataModel(dataModel);
 		return dataModel;
 	}
@@ -175,10 +178,10 @@ public class DataModelManagerImpl implements IDataModelManager {
 		if (p == null) {
 			return;
 		}
-		if (getDataModel(p.getName()) != null) {
-			throw new RuntimeException("A data model with the same name already exists.");
+		if (getCurrentDataModel(p.getName()) != null) {
+			throw new RuntimeException("A data model with the uri name already exists.");
 		}
-		((DataModelImpl) dataModel).addDataModel(p);
+		((DataModelImpl) containerDataModel).addSubDataModel(p);
 	}
 
 	@Override
@@ -186,8 +189,8 @@ public class DataModelManagerImpl implements IDataModelManager {
 		if (p == null) {
 			return;
 		}
-		((DataModelImpl) dataModel).removeDataModel(p);
-		getScopes(dataModel);
+		((DataModelImpl) containerDataModel).removeSubDataModel(p);
+		getScopes(containerDataModel);
 	}
 
 	public void removeScope(Scope... scopes) {
@@ -202,48 +205,49 @@ public class DataModelManagerImpl implements IDataModelManager {
 	}
 
 	@Override
-	public void addRequirementTypes(IDataModel dataModel, IRequirementType... types) {
-		for (IRequirementType type : types) {
-			dataModel.addRequirementType(type);
+	public IDataModel getCurrentDataModel(String name) {
+		IDataModel matchingDataModel = null;
+		for (IDataModel dataModel : getAllDataModels()) {
+			if (name.equals(dataModel.getName()) && isNewer(matchingDataModel, dataModel)) {
+				matchingDataModel = dataModel;
+			}
 		}
+		return matchingDataModel;
 	}
 
-	@Override
-	public void addEnumerationTypes(IDataModel dataModel, IEnumerationType... enumerationTypes) {
-		for (IEnumerationType enumerationType : enumerationTypes) {
-			dataModel.addEnumerationType(enumerationType);
+	// @Override
+	public Collection<IDataModel> getAllVersionsOfDataModel(String name) {
+		List<IDataModel> matchingDataModels = Lists.newArrayList();
+		for (IDataModel dataModel : getAllDataModels()) {
+			if (name.equals(dataModel.getName())) {
+				matchingDataModels.add(dataModel);
+			}
 		}
+		return matchingDataModels;
+	}
+
+	protected boolean isNewer(IDataModel ref, IDataModel toCompare) {
+		if (ref == null || toCompare.getVersion() > ref.getVersion()) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public IDataModel getDataModel(String name) {
-		Assert.isNotNull(dataModel);
-		return ((DataModelImpl) dataModel).getSubDataModel(name);
+	public Collection<IDataModel> getCurrentDataModels() {
+		Map<String, IDataModel> nameToDataModels = Maps.newHashMap();
+		for (IDataModel dataModel : getAllDataModels()) {
+			IDataModel matchingDataModel = nameToDataModels.get(dataModel.getName());
+			if (matchingDataModel == null || isNewer(matchingDataModel, dataModel)) {
+				nameToDataModels.put(dataModel.getName(), dataModel);
+			}
+		}
+		return nameToDataModels.values();
 	}
 
-	@Override
 	public Collection<IDataModel> getAllDataModels() {
-		Assert.isNotNull(dataModel);
-		return ((DataModelImpl) dataModel).getSubDataModels();
-	}
-
-	@Override
-	public Collection<IRequirementType> getAllRequirementTypes() {
-		Assert.isNotNull(dataModel);
-		Collection<IRequirementType> types = new ArrayList<IRequirementType>();
-		for (IDataModel dataModel : getAllDataModels()) {
-			types.addAll(dataModel.getRequirementTypes());
-		}
-		return types;
-	}
-
-	@Override
-	public Collection<IEnumerationType> getAllEnumerationTypes() {
-		Collection<IEnumerationType> enums = new ArrayList<IEnumerationType>();
-		for (IDataModel dataModel : getAllDataModels()) {
-			enums.addAll(dataModel.getEnumerationTypes());
-		}
-		return enums;
+		Assert.isNotNull(containerDataModel);
+		return ((DataModelImpl) containerDataModel).getSubDataModels();
 	}
 
 	@Override
@@ -265,26 +269,15 @@ public class DataModelManagerImpl implements IDataModelManager {
 	}
 
 	@Override
-	public IAttribute createAttribute(String name, IAttributeType type) {
-		return new AttributeImpl(name, type);
-	}
-
-	@Override
-	public IAttribute createAttribute(String name, IEnumerationType enumerationType) {
-		IAttributeType attributeType = null;
-
-		if (enumerationType instanceof IAdaptable) {
-			attributeType = (IAttributeType) ((IAdaptable) enumerationType).getAdapter(IAttributeType.class);
-		}
-
-		return new AttributeImpl(name, attributeType);
+	public IAttribute createAttribute(String name, IType type, boolean isMany) {
+		return new AttributeImpl(name, type, isMany);
 	}
 
 	@Override
 	public Scope createScope(String name, IDataModel dataModel) {
 		Scope scope = ScopeConfFactory.eINSTANCE.createScope();
 		scope.setName(name);
-		scope.setDataModelURI(dataModel.getDataModelURI());
+		scope.setDataModelName(dataModel.getName());
 		return scope;
 	}
 
@@ -306,7 +299,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 			@Override
 			public boolean apply(Scope arg0) {
-				if (arg0.getDataModelURI().equals(dataModel.getDataModelURI())) {
+				if (arg0.getDataModelName().equals(dataModel.getName())) {
 					return true;
 				}
 				return false;
@@ -317,7 +310,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 	@Override
 	public Scope getScope(String name, IDataModel dataModel) {
 		for (Scope s : scopes.getScopes()) {
-			if (s.getDataModelURI().equals(dataModel.getDataModelURI()) && s.getName().equals(name)) {
+			if (s.getDataModelName().equals(dataModel.getName()) && s.getName().equals(name)) {
 				return s;
 			}
 		}
@@ -325,49 +318,40 @@ public class DataModelManagerImpl implements IDataModelManager {
 	}
 
 	@Override
-	public Collection<IDataModel> getDataModelByURI(String uri) {
-		Collection<IDataModel> dataModels = new ArrayList<IDataModel>();
-		Collection<IDataModel> subDataModels = ((DataModelImpl) dataModel).getSubDataModels();
-		for (IDataModel dataModel : subDataModels) {
+	public IDataModel getDataModelByURI(String uri) {
+		for (IDataModel dataModel : getAllDataModels()) {
 			if (uri.equals(dataModel.getDataModelURI())) {
-				dataModels.add(dataModel);
+				return dataModel;
 			}
 		}
-		return dataModels;
+		return null;
 	}
 
-	private boolean isRequirementTypesUsed(Collection<EClass> types) {
+	private boolean isTypesUsed(Collection<EClass> types) {
 		for (RequirementSource requirementSource : dataManager.getRequirementSources()) {
-			if (requirementSource.eIsProxy()) {
-				EObject newObj = EcoreUtil.resolve(requirementSource, rs);
-				if (newObj instanceof RequirementSource) {
-					requirementSource = (RequirementSource) newObj;
-				}
-			}
+			requirementSource = resolveProxy(requirementSource);
 			return isRequirementTypesUsed(requirementSource.getRequirements(), types);
 		}
 		return false;
 	}
 
+	private <T extends EObject> T resolveProxy(T obj) {
+		if (obj.eIsProxy() && obj.eResource() != null) {
+			EObject newObj = EcoreUtil.resolve(obj, obj.eResource().getResourceSet());
+			return (T) newObj;
+		}
+		return obj;
+	}
+
 	private boolean isRequirementTypesUsed(EList<AbstractElement> requirements, Collection<EClass> types) {
 		for (AbstractElement abstractElement : requirements) {
-			if (abstractElement.eIsProxy()) {
-				EObject newObj = EcoreUtil.resolve(abstractElement, rs);
-				if (newObj instanceof AbstractElement) {
-					abstractElement = (AbstractElement) newObj;
-				}
-			}
+			abstractElement = resolveProxy(abstractElement);
 			if (types.contains(abstractElement.eClass())) {
 				return true;
 			}
 			if (abstractElement != null && abstractElement.getScopes() != null && !abstractElement.getScopes().isEmpty()) {
 				for (Scope scope : abstractElement.getScopes()) {
-					if (scope.eIsProxy()) {
-						EObject newObj = EcoreUtil.resolve(scope, rs);
-						if (newObj instanceof Scope) {
-							scope = (Scope) newObj;
-						}
-					}
+					scope = resolveProxy(scope);
 				}
 			}
 			if (abstractElement instanceof Requirement) {
@@ -379,20 +363,20 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 	@Override
 	public boolean isDataModelUsed(IDataModel dataModel) {
-		Collection<IRequirementType> reqTypes = dataModel.getRequirementTypes();
-		Collection<EClass> types = Collections2.transform(reqTypes, new Function<IRequirementType, EClass>() {
+		Collection<IType> types = dataModel.getTypes();
+		Collection<EClass> eTypes = Collections2.transform(types, new Function<IType, EClass>() {
 
 			@Override
-			public EClass apply(IRequirementType arg0) {
+			public EClass apply(IType type) {
 				EClass eclass = null;
-				if (arg0 instanceof IAdaptable) {
-					eclass = (EClass) ((IAdaptable) arg0).getAdapter(EClass.class);
+				if (type instanceof IAdaptable) {
+					eclass = (EClass) ((IAdaptable) type).getAdapter(EClass.class);
 				}
 				return eclass;
 			};
 		});
 
-		if (isRequirementTypesUsed(Collections2.filter(types, Predicates.notNull()))) {
+		if (isTypesUsed(Collections2.filter(eTypes, Predicates.notNull()))) {
 			return true;
 		}
 		String dataModelURI = dataModel.getDataModelURI();
@@ -414,7 +398,7 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 	@Override
 	public boolean isEmpty(IDataModel dataModel) {
-		return dataModel.getEnumerationTypes().isEmpty() && dataModel.getRequirementTypes().isEmpty() && dataModel.getScopes().isEmpty();
+		return dataModel.getTypes().isEmpty();
 	}
 
 	@Override
@@ -422,17 +406,18 @@ public class DataModelManagerImpl implements IDataModelManager {
 		EClass eClass = ae.eClass();
 		ECrossReferenceAdapter c = ECrossReferenceAdapter.getCrossReferenceAdapter(eClass);
 
-		if (c == null) {
+		if (c == null && eClass.eResource() != null) {
 			c = new ECrossReferenceAdapter();
+			eClass.eResource().getResourceSet().eAdapters().add(c);
 		}
 
-		c.setTarget(rs);
-
-		Collection<Setting> settings = c.getInverseReferences(eClass);
-		for (Setting setting : settings) {
-			EObject eo = setting.getEObject();
-			if (eo instanceof IRequirementType) {
-				return ((IRequirementType) eo);
+		if (c != null) {
+			Collection<Setting> settings = c.getInverseReferences(eClass);
+			for (Setting setting : settings) {
+				EObject eo = setting.getEObject();
+				if (eo instanceof IRequirementType) {
+					return ((IRequirementType) eo);
+				}
 			}
 		}
 

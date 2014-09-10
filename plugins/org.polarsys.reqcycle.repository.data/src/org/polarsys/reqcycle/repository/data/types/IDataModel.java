@@ -12,8 +12,6 @@ package org.polarsys.reqcycle.repository.data.types;
 
 import java.util.Collection;
 
-import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
-
 /**
  * The Interface DataModel.
  */
@@ -26,13 +24,7 @@ public interface IDataModel {
 	 */
 	public String getName();
 
-	/**
-	 * Adds the scope to the data model.
-	 * 
-	 * @param scope
-	 *            the scope to add
-	 */
-	public void addScope(Scope scope);
+	public int getVersion();
 
 	/**
 	 * Adds the requirement type.
@@ -40,24 +32,9 @@ public interface IDataModel {
 	 * @param type
 	 *            the requirement type to add
 	 */
-	public void addRequirementType(IRequirementType type);
+	public void addType(IType type);
 
-	/**
-	 * Adds the Enumeration type.
-	 * 
-	 * @param type
-	 *            the Enumeration type to add
-	 */
-	public void addEnumerationType(IEnumerationType type);
-
-	/**
-	 * Gets the enumeration type.
-	 * 
-	 * @param name
-	 *            the enumeration type name
-	 * @return the enumeration type
-	 */
-	public IEnumerationType getEnumerationType(String name);
+	public void removeType(IType type);
 
 	/**
 	 * Gets the requirement type.
@@ -66,37 +43,14 @@ public interface IDataModel {
 	 *            the requirement type name
 	 * @return the requirement type
 	 */
-	public IRequirementType getRequirementType(String name);
-
-	/**
-	 * Gets the scope.
-	 * 
-	 * @param name
-	 *            the scope name
-	 * @return the scope
-	 */
-	public Scope getScope(String name);
+	public IType getType(String name);
 
 	/**
 	 * Gets the requirement types.
 	 * 
 	 * @return the requirement types
 	 */
-	public Collection<IRequirementType> getRequirementTypes();
-
-	/**
-	 * Gets the enumeration types.
-	 * 
-	 * @return the enumeration types
-	 */
-	public Collection<IEnumerationType> getEnumerationTypes();
-
-	/**
-	 * Gets the scopes.
-	 * 
-	 * @return the scopes
-	 */
-	public Collection<Scope> getScopes();
+	public Collection<IType> getTypes();
 
 	/**
 	 * Gets the data model uri.

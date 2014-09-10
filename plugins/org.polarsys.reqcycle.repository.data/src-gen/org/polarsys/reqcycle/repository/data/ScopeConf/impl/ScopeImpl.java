@@ -34,15 +34,9 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getName
- * <em>Name</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getRequirements
- * <em>Requirements</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getDataModelURI
- * <em>Data Model URI</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getDataModelName <em>Data Model Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,7 +46,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -62,7 +55,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -70,30 +62,27 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDataModelURI()
-	 * <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getDataModelURI()
+	 * The default value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataModelName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DATA_MODEL_URI_EDEFAULT = null;
+	protected static final String DATA_MODEL_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDataModelURI()
-	 * <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getDataModelURI()
+	 * The cached value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataModelName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String dataModelURI = DATA_MODEL_URI_EDEFAULT;
+	protected String dataModelName = DATA_MODEL_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ScopeImpl() {
@@ -102,7 +91,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +100,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +109,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,115 +183,107 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getDataModelURI() {
-		return dataModelURI;
+	public String getDataModelName() {
+		return dataModelName;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setDataModelURI(String newDataModelURI) {
-		String oldDataModelURI = dataModelURI;
-		dataModelURI = newDataModelURI;
+	public void setDataModelName(String newDataModelName) {
+		String oldDataModelName = dataModelName;
+		dataModelName = newDataModelName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScopeConfPackage.SCOPE__DATA_MODEL_URI, oldDataModelURI, dataModelURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, ScopeConfPackage.SCOPE__DATA_MODEL_NAME, oldDataModelName, dataModelName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ScopeConfPackage.SCOPE__NAME:
-			return getName();
-		case ScopeConfPackage.SCOPE__REQUIREMENTS:
-			return getRequirements();
-		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			return getDataModelURI();
+			case ScopeConfPackage.SCOPE__NAME:
+				return getName();
+			case ScopeConfPackage.SCOPE__REQUIREMENTS:
+				return getRequirements();
+			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+				return getDataModelName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ScopeConfPackage.SCOPE__NAME:
-			setName((String) newValue);
-			return;
-		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			setDataModelURI((String) newValue);
-			return;
+			case ScopeConfPackage.SCOPE__NAME:
+				setName((String)newValue);
+				return;
+			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+				setDataModelName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ScopeConfPackage.SCOPE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			setDataModelURI(DATA_MODEL_URI_EDEFAULT);
-			return;
+			case ScopeConfPackage.SCOPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+				setDataModelName(DATA_MODEL_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ScopeConfPackage.SCOPE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ScopeConfPackage.SCOPE__REQUIREMENTS:
-			return isSetRequirements();
-		case ScopeConfPackage.SCOPE__DATA_MODEL_URI:
-			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null : !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
+			case ScopeConfPackage.SCOPE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ScopeConfPackage.SCOPE__REQUIREMENTS:
+				return isSetRequirements();
+			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+				return DATA_MODEL_NAME_EDEFAULT == null ? dataModelName != null : !DATA_MODEL_NAME_EDEFAULT.equals(dataModelName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", DataModelURI: ");
-		result.append(dataModelURI);
+		result.append(", dataModelName: ");
+		result.append(dataModelName);
 		result.append(')');
 		return result.toString();
 	}

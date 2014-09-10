@@ -46,12 +46,7 @@ public class PropertyUtils {
 
 	public static IDataModel getDataModelFromSource(RequirementSource source) {
 		String datamodelURI = source.getProperty(DATAMODEL_ID_KEY);
-		Collection<IDataModel> datamodels = modelManager
-				.getDataModelByURI(datamodelURI);
-		if (datamodels != null) {
-			return datamodels.iterator().next();
-		}
-		return null;
+		return modelManager.getDataModelByURI(datamodelURI);
 	}
 
 	public static void setScopeInSource(RequirementSource source, Scope scope) {

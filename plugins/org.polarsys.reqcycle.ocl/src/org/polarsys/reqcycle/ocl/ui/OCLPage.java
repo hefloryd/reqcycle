@@ -68,6 +68,7 @@ import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.ocl.ZigguratOCLPlugin;
 
 import com.google.common.base.Predicate;
@@ -103,7 +104,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 	private TableViewerColumn tvcAttributesTypes;
 
 	/** Viewers Inputs */
-	private Collection<IRequirementType> inputTypes = new ArrayList<IRequirementType>();
+	private Collection<IType> inputTypes = new ArrayList<IType>();
 
 	private Collection<IAttribute> inputAttributes = new ArrayList<IAttribute>();
 
@@ -146,7 +147,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		AbstractSettingPage.observeBean(bindingContext, this);
 		setControl(containerComposite);
 		if (bean.getDataModel() != null){
-			tvTypes.setInput(bean.getDataModel().getRequirementTypes());
+			tvTypes.setInput(bean.getDataModel().getTypes());
 		}
 	}
 
@@ -372,7 +373,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 	private void updateDataTypes() {
 		IDataModel dataPackage = bean.getDataModel();
 		if(dataPackage != null) {
-			Collection<IRequirementType> dataTypes = dataPackage.getRequirementTypes();
+			Collection<IType> dataTypes = dataPackage.getTypes();
 			inputTypes.clear();
 			inputTypes.addAll(dataTypes);
 		}
@@ -434,7 +435,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		// TODO Auto-generated method stub
 		if (tvTypes != null){
 			if (bean.getDataModel() != null){
-				tvTypes.setInput(bean.getDataModel().getRequirementTypes());
+				tvTypes.setInput(bean.getDataModel().getTypes());
 			}
 			else {
 				tvTypes.setInput(Lists.newArrayList());

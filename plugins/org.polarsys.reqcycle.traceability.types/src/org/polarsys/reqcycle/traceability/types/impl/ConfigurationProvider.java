@@ -11,6 +11,7 @@ package org.polarsys.reqcycle.traceability.types.impl;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -61,7 +62,7 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 
 	private TypeConfigContainer doGetContainer() {
 
-		Collection<EObject> conf = confManager.getConfiguration(null, null, ITypesConfigurationProvider.CONF_PREF_ID, false);
+		Collection<EObject> conf = confManager.getConfiguration(null, null, ITypesConfigurationProvider.CONF_PREF_ID, null, null, false);
 
 		TypeConfigContainer configuration = null;
 		if(conf != null && !conf.isEmpty()) {
@@ -174,7 +175,7 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 
 	private void saveContainer(TypeConfigContainer eobject) {
 		try {
-			confManager.saveConfiguration(eobject, null, null, CONF_PREF_ID);
+			confManager.saveConfiguration(Collections.singleton(eobject), null, null, CONF_PREF_ID, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -191,7 +192,7 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 	public Iterable<IType> getTypes() {
 		Collection<EObject> conf = confManager
 				.getConfiguration(null, null,
-						ITypesConfigurationProvider.CONF_PREF_ID, false);
+						ITypesConfigurationProvider.CONF_PREF_ID, null, null, false);
 		
 		TypeConfigContainer container = null;
 		if(conf != null && !conf.isEmpty()) {

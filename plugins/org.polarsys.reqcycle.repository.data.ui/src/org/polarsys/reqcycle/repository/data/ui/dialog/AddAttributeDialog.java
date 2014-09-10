@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 
 public class AddAttributeDialog extends NameDialog {
 
@@ -36,29 +36,29 @@ public class AddAttributeDialog extends NameDialog {
 	 */
 	public class Bean extends NameBean {
 
-		private IAttributeType type;
+		private IType type;
 
 		public Bean(Listener listener) {
 			super(listener);
 		}
 
-		public IAttributeType getType() {
+		public IType getType() {
 			return type;
 		}
 
-		public void setType(IAttributeType type) {
+		public void setType(IType type) {
 			this.type = type;
 			listener.handleEvent(new Event());
 		}
 	}
 
 	/** Attribute types */
-	private Collection<IAttributeType> types;
+	private Collection<IType> types;
 
 	/** Attribute Types Combo Viewer */
 	private ComboViewer cvAttribute;
 
-	public AddAttributeDialog(Shell parentShell, String title, Collection<IAttributeType> types) {
+	public AddAttributeDialog(Shell parentShell, String title, Collection<IType> types) {
 		super(parentShell, title);
 		setBean(new Bean(this));
 		this.types = types;
@@ -76,14 +76,16 @@ public class AddAttributeDialog extends NameDialog {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IAttributeType) {
+				if (element instanceof IType) {
 
-					return ((IAttributeType)element).getName();
-					//						String nsURI = ((IAttributeType)element).getEPackage().getNsURI();
-					//						if(EcoreFactory.eINSTANCE.getEPackage().getNsURI().equals(nsURI) && name.startsWith("E")) {
-					//							name = name.replaceFirst("E", "");
-					//						}
-					//						return name + "  [" + nsURI + "]";
+					return ((IType) element).getName();
+					// String nsURI =
+					// ((IAttributeType)element).getEPackage().getNsURI();
+					// if(EcoreFactory.eINSTANCE.getEPackage().getNsURI().equals(nsURI)
+					// && name.startsWith("E")) {
+					// name = name.replaceFirst("E", "");
+					// }
+					// return name + "  [" + nsURI + "]";
 				}
 				return super.getText(element);
 			}
@@ -95,7 +97,7 @@ public class AddAttributeDialog extends NameDialog {
 	@Override
 	protected Button createButton(Composite parent, int id, String label, boolean defaultButton) {
 		Button button = super.createButton(parent, id, label, defaultButton);
-		if(OK == id) {
+		if (OK == id) {
 			button.setEnabled(false);
 		}
 		return button;
@@ -108,7 +110,7 @@ public class AddAttributeDialog extends NameDialog {
 
 	@Override
 	public boolean doHandleEvent(Event event) {
-		if(((Bean)bean).getType() == null) {
+		if (((Bean) bean).getType() == null) {
 			return false;
 		}
 		return true;
@@ -124,7 +126,7 @@ public class AddAttributeDialog extends NameDialog {
 	/**
 	 * @return chosen attribue type
 	 */
-	public IAttributeType getType() {
-		return ((Bean)bean).getType();
+	public IType getType() {
+		return ((Bean) bean).getType();
 	}
 }

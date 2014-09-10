@@ -126,7 +126,7 @@ public abstract class AbstractSettingPage extends WizardPage implements
 				return super.getText(element);
 			}
 		});
-		cvDataModel.setInput(dataManager.getAllDataModels());
+		cvDataModel.setInput(dataManager.getCurrentDataModels());
 
 	}
 

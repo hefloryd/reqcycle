@@ -16,11 +16,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.eclipse.core.runtime.Assert;
@@ -32,10 +32,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.Activator;
@@ -50,14 +51,14 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
-import org.polarsys.reqcycle.utils.configuration.impl.ConfigurationManagerImpl;
 import org.polarsys.reqcycle.utils.configuration.impl.EMFConfResourceFactory.EMFConfResource;
 
 @Singleton
 public class DataManagerImpl implements IDataManager {
 
-	protected static final Map<?, ?> SAVE_OPTIONS = Collections.singletonMap(XMIResource.OPTION_SCHEMA_LOCATION, true);
+	protected static final Map<?, ?> SAVE_OPTIONS = Collections.emptyMap(); // Collections.singletonMap(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
 	/** Connector id to repositories */
 	private Map<String, Set<RequirementSource>> repositoryMap = new HashMap<String, Set<RequirementSource>>();
@@ -67,11 +68,9 @@ public class DataManagerImpl implements IDataManager {
 	@Inject
 	IConfigurationManager confManager;
 
-	public static final String ID = "org.polarsys.reqcycle.repositories";
+	ResourceSet resourceSet = new ResourceSetImpl();
 
-	// @Inject
-	// @Named("confResourceSet")
-	private ResourceSet rs;
+	public static final String ID = "org.polarsys.reqcycle.repositories";
 
 	@Inject
 	IEventBroker broker;
@@ -83,11 +82,10 @@ public class DataManagerImpl implements IDataManager {
 	 * Constructor
 	 */
 	@Inject
-	DataManagerImpl(@Named("confResourceSet") ResourceSet rs, IConfigurationManager confManager) {
+	DataManagerImpl(IConfigurationManager confManager) {
 		this.confManager = confManager;
-		this.rs = rs;
 
-		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, ID, rs, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, ID, resourceSet, null, true);
 
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
@@ -138,6 +136,14 @@ public class DataManagerImpl implements IDataManager {
 		}
 	}
 
+	private <T extends EObject> T resolveProxy(T obj) {
+		if (obj.eIsProxy() && obj.eResource() != null) {
+			EObject newObj = EcoreUtil.resolve(obj, obj.eResource().getResourceSet());
+			return (T) newObj;
+		}
+		return obj;
+	}
+
 	@Override
 	public void removeRequirementSource(final RequirementSource repository, boolean removeFromWS) {
 
@@ -148,12 +154,7 @@ public class DataManagerImpl implements IDataManager {
 			// fixed bug. contents can be null if the source was not well
 			// created
 			if (contents != null) {
-				if (contents.eIsProxy()) {
-					EObject newObj = EcoreUtil.resolve(contents, rs);
-					if (newObj instanceof RequirementsContainer) {
-						contents = (RequirementsContainer) newObj;
-					}
-				}
+				contents = resolveProxy(contents);
 
 				Resource resource = contents.eResource();
 				if (resource != null && WorkspaceSynchronizer.getFile(resource) != null && removeFromWS) {
@@ -190,7 +191,7 @@ public class DataManagerImpl implements IDataManager {
 	}
 
 	protected void saveSources() throws IOException {
-		confManager.saveConfiguration(sources, null, null, ID, rs);
+		confManager.saveConfiguration(Collections.singleton(sources), null, null, ID, resourceSet, null);
 	}
 
 	protected void saveContents() throws IOException {
@@ -207,21 +208,22 @@ public class DataManagerImpl implements IDataManager {
 				}
 
 			} else {
+				// TODO check with Anass : wrong ??
 				// If the requirement container isn't set (null), remove the
 				// corresponding resource if it exist.
-				URI configurationFileUri = ((ConfigurationManagerImpl) confManager).getConfigurationFileUri(null, null, ID);
-				Resource resource = rs.getResource(configurationFileUri, false);
-				if (resource != null) {
-					try {
-						if (resource.isLoaded()) {
-							resource.unload();
-						}
-						resource.delete(Collections.emptyMap());
-					} catch (IOException e) {
-						// FIXME : use logger
-						e.printStackTrace();
-					}
-				}
+				// URI configurationFileURI = ((ConfigurationManagerImpl) confManager).getConfigurationFileURI(null, null, ID, null);
+				// Resource resource = resourceSet.getResource(configurationFileURI, false);
+				// if (resource != null) {
+				// try {
+				// if (resource.isLoaded()) {
+				// resource.unload();
+				// }
+				// resource.delete(Collections.emptyMap());
+				// } catch (IOException e) {
+				// // FIXME : use logger
+				// e.printStackTrace();
+				// }
+				// }
 			}
 		}
 	}
@@ -336,21 +338,20 @@ public class DataManagerImpl implements IDataManager {
 	}
 
 	@Override
-	public void addAttribute(AbstractElement element, org.polarsys.reqcycle.repository.data.types.IAttribute attribute, Object value) {
-		EAttribute eAttribute = null;
-		if (attribute instanceof IAdaptable) {
-			eAttribute = (EAttribute) ((IAdaptable) attribute).getAdapter(EAttribute.class);
-		}
-		// FIXME : raise exception when eAttribute is null (must not happen)
-		if (eAttribute != null) {
-			element.eSet(eAttribute, value);
+	public void addAttributeValue(AbstractElement element, IAttribute attribute, Object value) {
+		EStructuralFeature eFeature = (EAttribute) ((IAdaptable) attribute).getAdapter(EStructuralFeature.class);
+		if (eFeature.isMany()) {
+			List l = (List) element.eGet(eFeature);
+			l.add(value);
+		} else {
+			element.eSet(eFeature, value);
 		}
 	}
 
 	@Override
 	public RequirementsContainer createRequirementsContainer(URI uri) {
 		RequirementsContainer requirementsContainer = RequirementSourceDataFactory.eINSTANCE.createRequirementsContainer();
-		Resource resource = rs.createResource(uri);
+		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(requirementsContainer);
 		return requirementsContainer;
 	}
@@ -358,32 +359,17 @@ public class DataManagerImpl implements IDataManager {
 	@Override
 	public void load() {
 		for (RequirementSource requirementSource : sources.getRequirementSources()) {
-			if (requirementSource.eIsProxy()) {
-				EObject newObj = EcoreUtil.resolve(requirementSource, rs);
-				if (newObj instanceof RequirementSource) {
-					requirementSource = (RequirementSource) newObj;
-				}
-			}
+			requirementSource = resolveProxy(requirementSource);
 			loadContents(requirementSource.getRequirements());
 		}
 	}
 
 	private void loadContents(EList<AbstractElement> requirements) {
 		for (AbstractElement abstractElement : requirements) {
-			if (abstractElement.eIsProxy()) {
-				EObject newObj = EcoreUtil.resolve(abstractElement, rs);
-				if (newObj instanceof AbstractElement) {
-					abstractElement = (AbstractElement) newObj;
-				}
-			}
+			abstractElement = resolveProxy(abstractElement);
 			if (abstractElement != null && abstractElement.getScopes() != null && !abstractElement.getScopes().isEmpty()) {
 				for (Scope scope : abstractElement.getScopes()) {
-					if (scope.eIsProxy()) {
-						EObject newObj = EcoreUtil.resolve(scope, rs);
-						if (newObj instanceof Scope) {
-							scope = (Scope) newObj;
-						}
-					}
+					scope = resolveProxy(scope);
 				}
 			}
 			if (abstractElement instanceof Requirement) {

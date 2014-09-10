@@ -14,34 +14,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 
-public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
-
-	protected EEnum eEnum;
+public class EnumerationTypeImpl extends ETypeImpl implements IEnumerationType, IAdaptable {
 
 	protected Collection<IEnumerator> enumerators = new ArrayList<IEnumerator>();
 
-	protected AttributeTypeImpl type;
-
 	public EnumerationTypeImpl(String name) {
-		eEnum = EcoreFactory.eINSTANCE.createEEnum();
-		eEnum.setName(name);
-		type = new AttributeTypeImpl(name, eEnum);
+		super(createEEnum(name));
 	}
 
 	protected EnumerationTypeImpl(EEnum eEnum) {
-		this.eEnum = eEnum;
+		super(eEnum);
 		for (EEnumLiteral eLiteral : eEnum.getELiterals()) {
 			enumerators.add(new EnumeratorImpl(eLiteral));
 		}
-		this.type = new AttributeTypeImpl(eEnum.getName(), eEnum);
+	}
+
+	protected static EEnum createEEnum(String name) {
+		EEnum eEnum = EcoreFactory.eINSTANCE.createEEnum();
+		eEnum.setName(name);
+		return eEnum;
 	}
 
 	@Override
@@ -51,14 +48,14 @@ public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 			eEnumLiteral = (EEnumLiteral) ((IAdaptable) enumerator).getAdapter(EEnumLiteral.class);
 		}
 		if (eEnumLiteral != null) {
-			eEnum.getELiterals().add(eEnumLiteral);
+			getEType().getELiterals().add(eEnumLiteral);
 			enumerators.add(enumerator);
 		}
 	}
 
 	@Override
-	public String getName() {
-		return eEnum.getName();
+	public EEnum getEType() {
+		return (EEnum) super.getEType();
 	}
 
 	@Override
@@ -67,29 +64,6 @@ public class EnumerationTypeImpl implements IEnumerationType, IAdaptable {
 	}
 
 	public String getModelNsURI() {
-		return eEnum.getEPackage() != null ? eEnum.getEPackage().getNsURI() : null;
-	}
-
-	/**
-	 * Gets the EDataType.
-	 * 
-	 * @return the EDataType
-	 * @deprecated use getAdapter
-	 */
-	@Deprecated
-	public EDataType getEDataType() {
-		return eEnum;
-	}
-
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Object getAdapter(Class adapter) {
-		if (adapter == EEnum.class || adapter == EDataType.class) {
-			return eEnum;
-		}
-		if (adapter == IAttributeType.class) {
-			return type;
-		}
-		return null;
+		return getEType().getEPackage() != null ? getEType().getEPackage().getNsURI() : null;
 	}
 }

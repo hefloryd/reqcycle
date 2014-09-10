@@ -15,7 +15,7 @@
     <genClasses ecoreClass="ScopeConf.ecore#//Scope">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ScopeConf.ecore#//Scope/name"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ScopeConf.ecore#//Scope/requirements"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ScopeConf.ecore#//Scope/DataModelURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ScopeConf.ecore#//Scope/dataModelName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -39,21 +38,17 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
+import org.polarsys.reqcycle.repository.data.types.internal.ETypeImpl;
 import org.polarsys.reqcycle.repository.data.ui.Activator;
 import org.polarsys.reqcycle.repository.data.ui.dialog.AddAttributeDialog;
 import org.polarsys.reqcycle.repository.data.ui.dialog.AddTypeDialog;
 import org.polarsys.reqcycle.repository.data.ui.dialog.NameDialog;
 import org.polarsys.reqcycle.repository.data.ui.preference.PreferenceUiUtil;
-import org.polarsys.reqcycle.repository.data.util.DataUtil;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Collections2;
 
 public class DataTypesPreferencePage extends DataModelsPreferencePage {
 
@@ -93,14 +88,15 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 	/** Viewers Selected Items */
 	protected IDataModel selectedModel;
 
-	protected Object selectedType;
+	protected IType selectedType;
+
+	protected IAttribute selectedAttribute;
 
 	private Button btnDeleteAttribute;
 
 	private Button btnDeleteType;
 
 	private Boolean dirty = false;
-
 
 	public DataTypesPreferencePage() {
 	}
@@ -110,23 +106,23 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 		super.handleEvent(event);
 
 		inputTypes.clear();
-		if(tvTypes != null) {
+		if (tvTypes != null) {
 			tvTypes.refresh();
 		}
 
 		inputAttributes.clear();
-		if(tvAttributes != null) {
+		if (tvAttributes != null) {
 			tvAttributes.refresh();
 		}
 	}
 
 	@Override
 	public void doCreateContents(Composite control) {
-		//Data Type group
+		// Data Type group
 		Group typeGrp = PreferenceUiUtil.createGroup(control, "Data Types");
 		createTypesUi(typeGrp);
 
-		//Attribute group
+		// Attribute group
 		Group attributesGrp = PreferenceUiUtil.createGroup(control, "Attributes");
 		createAttribuesUi(attributesGrp);
 	}
@@ -135,10 +131,10 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 	 * Create Attributes Ui Elements
 	 * 
 	 * @param parent
-	 *        Composite parent
+	 *            Composite parent
 	 */
 	protected void createAttribuesUi(Composite parent) {
-		//Table Viewer
+		// Table Viewer
 		Composite viewerComposite = new Composite(parent, SWT.NONE);
 		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -152,16 +148,16 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 		tAttributes.setHeaderVisible(true);
 		tAttributes.setLinesVisible(true);
 
-		//Columns
+		// Columns
 		tvcAttributesNames = PreferenceUiUtil.createTableViewerColumn(tvAttributes, "Name", SWT.None);
 		tvcAttributesNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IAttribute) {
-					return ((IAttribute)element).getName();
-				} else if(element instanceof IEnumerator) {
-					return ((IEnumerator)element).getName();
+				if (element instanceof IAttribute) {
+					return ((IAttribute) element).getName();
+				} else if (element instanceof IEnumerator) {
+					return ((IEnumerator) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -173,8 +169,8 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IAttribute) {
-					return ((IAttribute)element).getAttributeType().getName();
+				if (element instanceof IAttribute) {
+					return ((IAttribute) element).getType().getName();
 				}
 				return "";
 			}
@@ -197,15 +193,14 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 		btnDeleteAttribute.setEnabled(false);
 	}
 
-
 	/**
 	 * Create Types Attributes
 	 * 
 	 * @param parent
-	 *        Composite parent
+	 *            Composite parent
 	 */
 	protected void createTypesUi(Composite parent) {
-		//Table viewer
+		// Table viewer
 		Composite viewerComposite = new Composite(parent, SWT.NONE);
 		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -220,21 +215,15 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 		tTypes.setHeaderVisible(true);
 		tTypes.setLinesVisible(true);
 
-		//Columns
+		// Columns
 		tvcTypesNames = PreferenceUiUtil.createTableViewerColumn(tvTypes, "Name", SWT.None);
 		tvcTypesNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-
-				if(element instanceof IRequirementType) {
-					return ((IRequirementType)element).getName();
+				if (element instanceof IType) {
+					return ((IType) element).getName();
 				}
-
-				if(element instanceof IEnumerationType) {
-					return ((IEnumerationType)element).getName();
-				}
-
 				return super.getText(element);
 			}
 		});
@@ -245,7 +234,7 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IEnumerationType) {
+				if (element instanceof IEnumerationType) {
 					return "Enumeration";
 				} else {
 					return "Requirement";
@@ -285,13 +274,12 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 				inputAttributes.clear();
 
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					if(obj instanceof IDataModel) {
-						selectedModel = (IDataModel)obj;
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj instanceof IDataModel) {
+						selectedModel = (IDataModel) obj;
 						btnAddType.setEnabled(true);
-						inputTypes.addAll(selectedModel.getRequirementTypes());
-						inputTypes.addAll(selectedModel.getEnumerationTypes());
+						inputTypes.addAll(selectedModel.getTypes());
 					}
 				}
 				tvTypes.refresh();
@@ -304,59 +292,92 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				btnAddAttribute.setEnabled(false);
+				btnDeleteType.setEnabled(false);
+				selectedType = null;
 				inputAttributes.clear();
 
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					selectedType = obj;
-					if(obj instanceof IRequirementType) {
-						inputAttributes.addAll(((IRequirementType)obj).getAttributes());
-						if(!tvcAttributesTypes.getColumn().getResizable()) {
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj instanceof IType) {
+						selectedType = (IType) obj;
+						btnAddAttribute.setEnabled(true);
+						btnDeleteType.setEnabled(true);
 
-							int width = (tvAttributes.getTable().getBounds().width) / 2;
+						if (obj instanceof IRequirementType) {
+							inputAttributes.addAll(((IRequirementType) obj).getAttributes());
+							if (!tvcAttributesTypes.getColumn().getResizable()) {
 
-							tvcAttributesTypes.getColumn().setWidth(width - tvAttributes.getTable().getBorderWidth());
-							tvcAttributesTypes.getColumn().setResizable(true);
-							tvcAttributesNames.getColumn().setWidth(width - tvAttributes.getTable().getBorderWidth());
+								int width = (tvAttributes.getTable().getBounds().width) / 2;
+
+								tvcAttributesTypes.getColumn().setWidth(width - tvAttributes.getTable().getBorderWidth());
+								tvcAttributesTypes.getColumn().setResizable(true);
+								tvcAttributesNames.getColumn().setWidth(width - tvAttributes.getTable().getBorderWidth());
+							}
+						}
+						if (obj instanceof IEnumerationType) {
+							inputAttributes.addAll(((IEnumerationType) obj).getEnumerators());
+							if (tvcAttributesTypes.getColumn().getResizable()) {
+								tvcAttributesTypes.getColumn().setWidth(0);
+								tvcAttributesTypes.getColumn().setResizable(false);
+								tvcAttributesNames.getColumn().setWidth(tvAttributes.getTable().getBounds().width - tvAttributes.getTable().getBorderWidth() * 2);
+							}
 						}
 					}
-					if(obj instanceof IEnumerationType) {
-						inputAttributes.addAll(((IEnumerationType)obj).getEnumerators());
-						if(tvcAttributesTypes.getColumn().getResizable()) {
-							tvcAttributesTypes.getColumn().setWidth(0);
-							tvcAttributesTypes.getColumn().setResizable(false);
-							tvcAttributesNames.getColumn().setWidth(tvAttributes.getTable().getBounds().width - tvAttributes.getTable().getBorderWidth() * 2);
-						}
-					}
-					btnAddAttribute.setEnabled(true);
 				}
 				tvAttributes.refresh();
 			}
 		});
 
+		tvAttributes.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				btnDeleteAttribute.setEnabled(false);
+				selectedAttribute = null;
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj instanceof IAttribute) {
+						selectedAttribute = (IAttribute) obj;
+						btnDeleteAttribute.setEnabled(true);
+					}
+				}
+			}
+		});
 
 		btnAddType.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				AddTypeDialog dialog = new AddTypeDialog(e.display.getActiveShell(), "Add Data Type");
-				if(dialog.open() == Window.OK) {
+				if (dialog.open() == Window.OK) {
 					String name = dialog.getName();
 					boolean isReq = dialog.isRequirement();
-					Object element;
+					IType type;
 
-					if(isReq) {
-						element = dataModelManager.createRequirementType(name, selectedModel);
-						selectedModel.addRequirementType((IRequirementType)element);
+					if (isReq) {
+						type = dataModelManager.createRequirementType(name, selectedModel);
+
 					} else {
-						element = dataModelManager.createEnumerationType(name);
-						selectedModel.addEnumerationType((IEnumerationType)element);
+						type = dataModelManager.createEnumerationType(name);
 					}
+					selectedModel.addType(type);
 
-					inputTypes.add(element);
+					inputTypes.add(type);
 					tvTypes.refresh();
 					dirty = true;
+				}
+			}
+		});
+
+		btnDeleteType.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (selectedType != null) {
+					if (MessageDialog.openConfirm(e.display.getActiveShell(), "Delete type", "A new version of the meta model needs to be created when deleting a type, do you confirm ?")) {
+						selectedModel.removeType(selectedType);
+					}
 				}
 			}
 		});
@@ -367,58 +388,52 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 			public void widgetSelected(SelectionEvent e) {
 
 				Object attribute = null;
-
-				if(selectedType instanceof IEnumerationType) {
+				if (selectedType instanceof IEnumerationType) {
 
 					NameDialog dialog = new NameDialog(e.display.getActiveShell(), "Add Enumeration Value");
-					if(dialog.open() == Window.OK) {
+					if (dialog.open() == Window.OK) {
 						attribute = dataModelManager.createEnumerator(dialog.getName());
-						((IEnumerationType)selectedType).addEnumerator((IEnumerator)attribute);
+						((IEnumerationType) selectedType).addEnumerator((IEnumerator) attribute);
 					}
 
-				} else if(selectedType instanceof IRequirementType) {
-
-					Set<IAttributeType> values = new HashSet<IAttributeType>();
-					values.addAll(DataUtil.eDataTypes);
-					Collection<IEnumerationType> enumerations = selectedModel.getEnumerationTypes();
-					values.addAll(Collections2.transform(enumerations, new Function<IEnumerationType, IAttributeType>() {
-
-						@Override
-						public IAttributeType apply(IEnumerationType arg0) {
-							IAttributeType attributeType = null;
-							if(arg0 instanceof IAdaptable) {
-								attributeType = (IAttributeType)((IAdaptable)arg0).getAdapter(IAttributeType.class);
-							}
-							return attributeType;
-						}
-					}));
-
-					Collection<IAttributeType> types = Collections2.filter(values, Predicates.notNull());
+				} else if (selectedType instanceof IRequirementType) {
+					Set<IType> types = new HashSet<IType>();
+					types.addAll(ETypeImpl.eBasicTypes);
+					types.addAll(selectedModel.getTypes());
 
 					AddAttributeDialog dialog = new AddAttributeDialog(e.display.getActiveShell(), "Add Attribute", types);
 
-					if(Window.OK == dialog.open()) {
+					if (Window.OK == dialog.open()) {
 						String name = dialog.getName();
-						IAttributeType type = dialog.getType();
-						attribute = dataModelManager.createAttribute(name, type);
-						((IRequirementType)selectedType).addAttributeType((IAttribute)attribute);
+						IType type = dialog.getType();
+						// TODO handle many
+						attribute = dataModelManager.createAttribute(name, type, false);
+						((IRequirementType) selectedType).addAttribute((IAttribute) attribute);
 					}
 				}
-				if(attribute != null) {
+				if (attribute != null) {
 					inputAttributes.add(attribute);
 					tvAttributes.refresh();
 					dirty = true;
 				}
-
 			}
+		});
 
+		btnDeleteAttribute.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (selectedAttribute != null && selectedType instanceof IRequirementType
+						&& MessageDialog.openConfirm(e.display.getActiveShell(), "Delete type", "A new version of the meta model needs to be created when deleting an attribute, do you confirm ?")) {
+					((IRequirementType) selectedType).removeAttribute(selectedAttribute);
+				}
+			}
 		});
 	}
 
 	@Override
 	public boolean performOk() {
 		boolean result = super.performOk();
-		if(dirty) {
+		if (dirty) {
 			MessageDialog.openWarning(getShell(), "Eclipse Restart", "Please relaunch Eclipse to use newly added Requirements types and attributes");
 			dirty = false;
 		}

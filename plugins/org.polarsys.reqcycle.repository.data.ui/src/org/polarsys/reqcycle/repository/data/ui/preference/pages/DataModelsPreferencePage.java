@@ -49,7 +49,6 @@ import org.polarsys.reqcycle.repository.data.ui.dialog.NameDialog;
 import org.polarsys.reqcycle.repository.data.ui.preference.PreferenceUiUtil;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-
 public class DataModelsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Listener {
 
 	@Inject
@@ -71,7 +70,6 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 
 	protected Collection<IDataModel> inputModels;
 
-
 	/**
 	 * @wbp.parser.constructor
 	 */
@@ -84,13 +82,12 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 	protected void performDefaults() {
 	}
 
-
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		Button defaultButton = getDefaultsButton();
-		//Disable default button
-		if(defaultButton != null) {
+		// Disable default button
+		if (defaultButton != null) {
 			defaultButton.setVisible(false);
 			defaultButton.setEnabled(false);
 		}
@@ -108,14 +105,13 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 		return super.performCancel();
 	}
 
-
 	@Override
 	protected Control createContents(Composite parent) {
 		SashForm control = new SashForm(parent, SWT.VERTICAL);
 		control.setLayout(new GridLayout(1, false));
 		control.setLayoutData(new GridData());
 
-		//Data type Packages group
+		// Data type Packages group
 		Group packagesGrp = PreferenceUiUtil.createGroup(control, "Data Models");
 		createModelsUi(packagesGrp);
 
@@ -133,15 +129,14 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 	public void doCreateContents(Composite control) {
 	}
 
-
 	/**
 	 * Create Model Viewer UI
 	 * 
 	 * @param parent
-	 *        Composite parent
+	 *            Composite parent
 	 */
 	protected void createModelsUi(Composite parent) {
-		//Table Viewer
+		// Table Viewer
 		Composite viewerComposite = new Composite(parent, SWT.None);
 		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -161,27 +156,28 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 		btnEditModel.setEnabled(false);
 
 		btnDeleteModel = PreferenceUiUtil.createButton(btnComposite, "Delete Data Model", Activator.getImageDescriptor("/icons/delete.gif").createImage());
-		//		btnDeleteModel.setEnabled(false);
+		// btnDeleteModel.setEnabled(false);
 
 	}
 
 	public TableViewer createDataModelTableViewer(Composite parent, TableColumnLayout packagesTVLayout) {
 
-		//Table Viewer
+		// Table Viewer
 		TableViewer tvModels = new TableViewer(parent);
 		tvModels.setContentProvider(ArrayContentProvider.getInstance());
 		Table tModels = tvModels.getTable();
 		tModels.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		tModels.setLinesVisible(true);
 
-		//Columns
+		// Columns
 		TableViewerColumn tvcModelsNames = PreferenceUiUtil.createTableViewerColumn(tvModels, "Name", SWT.None);
 		tvcModelsNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IDataModel) {
-					return ((IDataModel)element).getName();
+				if (element instanceof IDataModel) {
+					IDataModel dataModel = (IDataModel) element;
+					return dataModel.getName() + (dataModel.getVersion() > 1 ? " (v" + dataModel.getVersion() + ")" : "");
 				}
 				return super.getText(element);
 			}
@@ -196,17 +192,17 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 
 	private void initInput(IDataModelManager dataModelManager) {
 		inputModels = new ArrayList<IDataModel>();
-		inputModels.addAll(dataModelManager.getAllDataModels());
+		inputModels.addAll(dataModelManager.getCurrentDataModels());
 	}
 
 	public void addDataModels(IDataModel... models) {
-		for(IDataModel model : models) {
+		for (IDataModel model : models) {
 			inputModels.add(model);
 		}
 	}
 
 	public void removeDataModels(IDataModel... models) {
-		for(IDataModel model : models) {
+		for (IDataModel model : models) {
 			inputModels.remove(model);
 		}
 	}
@@ -225,15 +221,16 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 					@Override
 					protected void okPressed() {
 						String name = getName();
-						//FIXME : use exception mecanism instead of using message dialog.
-						if(dataModelManager.getDataModel(name) != null) {
+						// FIXME : use exception mecanism instead of using
+						// message dialog.
+						if (dataModelManager.getCurrentDataModel(name) != null) {
 							MessageDialog.openError(getShell(), "Add Data Model", "A Data Model with the same name already exists. Please choose a differente one.");
 							return;
 						}
 						super.okPressed();
 					}
 				};
-				if(dialog.open() == Window.OK) {
+				if (dialog.open() == Window.OK) {
 					String name = dialog.getName();
 					addDataModels(dataModelManager.createDataModel(name));
 					tvModels.refresh();
@@ -246,16 +243,16 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = tvModels.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object firstElement = ((IStructuredSelection)selection).getFirstElement();
-					if(firstElement instanceof IDataModel) {
-						IDataModel dataModel = (IDataModel)firstElement;
-						if(!isEmpty(dataModel)) {
-							if(!MessageDialog.openQuestion(getShell(), "Delete Data Model", "The Data Model you are trying to remove is not empty. Would you like to continue ?")) {
+				if (selection instanceof IStructuredSelection) {
+					Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+					if (firstElement instanceof IDataModel) {
+						IDataModel dataModel = (IDataModel) firstElement;
+						if (!isEmpty(dataModel)) {
+							if (!MessageDialog.openQuestion(getShell(), "Delete Data Model", "The Data Model you are trying to remove is not empty. Would you like to continue ?")) {
 								return;
 							}
 						}
-						if(isUsed(dataModel)) {
+						if (isUsed(dataModel)) {
 							MessageDialog.openError(getShell(), "Delete Data Model", "The Data Model you are trying to remove is used. Used Data Models can't be deleted");
 							return;
 						} else {
@@ -281,7 +278,7 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 
 	@Override
 	public void handleEvent(Event event) {
-		if(tvModels != null) {
+		if (tvModels != null) {
 			tvModels.refresh();
 		}
 	}
@@ -292,13 +289,13 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 
 	@Override
 	public void setVisible(boolean visible) {
-		if(visible && tvModels != null && inputModels != null) {
-			Collection<IDataModel> dataModels = dataModelManager.getAllDataModels();
+		if (visible && tvModels != null && inputModels != null) {
+			Collection<IDataModel> dataModels = dataModelManager.getCurrentDataModels();
 			Iterator<IDataModel> iter = inputModels.iterator();
 			Collection<IDataModel> toRemove = new ArrayList<IDataModel>();
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				IDataModel dataModel = iter.next();
-				if(!dataModels.contains(dataModel)) {
+				if (!dataModels.contains(dataModel)) {
 					toRemove.add(dataModel);
 				}
 			}

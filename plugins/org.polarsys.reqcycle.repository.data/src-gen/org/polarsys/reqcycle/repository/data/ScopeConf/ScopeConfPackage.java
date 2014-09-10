@@ -25,46 +25,43 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfFactory
  * @model kind="package"
  * @generated
  */
 public interface ScopeConfPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "ScopeConf";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://www.polarsys.org/ReqCycle/ScopeConf";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "ScopeConf";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	ScopeConfPackage eINSTANCE = org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeConfPackageImpl.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopesImpl
-	 * <em>Scopes</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopesImpl <em>Scopes</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopesImpl
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeConfPackageImpl#getScopes()
 	 * @generated
@@ -72,9 +69,8 @@ public interface ScopeConfPackage extends EPackage {
 	int SCOPES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Scopes</b></em>' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Scopes</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -99,10 +95,8 @@ public interface ScopeConfPackage extends EPackage {
 	int SCOPES_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl
-	 * <em>Scope</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl <em>Scope</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeConfPackageImpl#getScope()
 	 * @generated
@@ -121,20 +115,19 @@ public interface ScopeConfPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SCOPE__REQUIREMENTS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Model URI</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Data Model Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCOPE__DATA_MODEL_URI = 2;
+	int SCOPE__DATA_MODEL_NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Scope</em>' class. <!--
@@ -155,10 +148,8 @@ public interface ScopeConfPackage extends EPackage {
 	int SCOPE_OPERATION_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes
-	 * <em>Scopes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes <em>Scopes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Scopes</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scopes
 	 * @generated
@@ -166,12 +157,9 @@ public interface ScopeConfPackage extends EPackage {
 	EClass getScopes();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes#getScopes
-	 * <em>Scopes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Scopes</em>'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scopes#getScopes <em>Scopes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Scopes</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scopes#getScopes()
 	 * @see #getScopes()
 	 * @generated
@@ -179,10 +167,8 @@ public interface ScopeConfPackage extends EPackage {
 	EReference getScopes_Scopes();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope
-	 * <em>Scope</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope <em>Scope</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Scope</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scope
 	 * @generated
@@ -190,10 +176,8 @@ public interface ScopeConfPackage extends EPackage {
 	EClass getScope();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName
-	 * <em>Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName()
 	 * @see #getScope()
@@ -202,10 +186,8 @@ public interface ScopeConfPackage extends EPackage {
 	EAttribute getScope_Name();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements
-	 * <em>Requirements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements <em>Requirements</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Requirements</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements()
 	 * @see #getScope()
@@ -214,16 +196,15 @@ public interface ScopeConfPackage extends EPackage {
 	EReference getScope_Requirements();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelURI
-	 * <em>Data Model URI</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Data Model URI</em>'.
-	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelURI()
+	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName <em>Data Model Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Model Name</em>'.
+	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName()
 	 * @see #getScope()
 	 * @generated
 	 */
-	EAttribute getScope_DataModelURI();
+	EAttribute getScope_DataModelName();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -245,7 +226,6 @@ public interface ScopeConfPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -262,18 +242,15 @@ public interface ScopeConfPackage extends EPackage {
 		EClass SCOPES = eINSTANCE.getScopes();
 
 		/**
-		 * The meta object literal for the '<em><b>Scopes</b></em>' containment
-		 * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Scopes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SCOPES__SCOPES = eINSTANCE.getScopes_Scopes();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl
-		 * <em>Scope</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl <em>Scope</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl
 		 * @see org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeConfPackageImpl#getScope()
 		 * @generated
@@ -281,28 +258,26 @@ public interface ScopeConfPackage extends EPackage {
 		EClass SCOPE = eINSTANCE.getScope();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SCOPE__NAME = eINSTANCE.getScope_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Requirements</b></em>'
-		 * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Requirements</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SCOPE__REQUIREMENTS = eINSTANCE.getScope_Requirements();
 
 		/**
-		 * The meta object literal for the '<em><b>Data Model URI</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Data Model Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SCOPE__DATA_MODEL_URI = eINSTANCE.getScope_DataModelURI();
+		EAttribute SCOPE__DATA_MODEL_NAME = eINSTANCE.getScope_DataModelName();
 
 	}
 

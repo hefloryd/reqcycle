@@ -17,12 +17,6 @@
             impl="org.polarsys.reqcycle.repository.data.impl.DataModelManagerImpl"
             interface="org.polarsys.reqcycle.repository.data.IDataModelManager">
       </binding>
-      <binding
-            impl="org.polarsys.reqcycle.repository.data.impl.ConfResourceSet"
-            interface="org.eclipse.emf.ecore.resource.ResourceSet"
-            name="confResourceSet"
-            priority="20">
-      </binding>
    </extension>
    <extension
          point="org.polarsys.reqcycle.types.types">

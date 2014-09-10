@@ -15,11 +15,11 @@ import java.util.Collection;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 
 /**
  * The Interface IDataModelManager.
@@ -68,26 +68,6 @@ public interface IDataModelManager {
 	public Scope createScope(String name, IDataModel dataModel);
 
 	/**
-	 * Adds the requirement types to a Data Model.
-	 * 
-	 * @param dataModel
-	 *            the data model container
-	 * @param dataTypes
-	 *            the data types to add
-	 */
-	public void addRequirementTypes(IDataModel dataModel, IRequirementType... dataTypes);
-
-	/**
-	 * Adds the enumeration types to a Data Model.
-	 * 
-	 * @param dataModel
-	 *            the data model container
-	 * @param enumerationTypes
-	 *            the enumeration types to add
-	 */
-	public void addEnumerationTypes(IDataModel dataModel, IEnumerationType... enumerationTypes);
-
-	/**
 	 * Adds the scopes to a Data Model.
 	 * 
 	 * @param dataModel
@@ -104,7 +84,7 @@ public interface IDataModelManager {
 	 *            the data model name
 	 * @return the data model
 	 */
-	public IDataModel getDataModel(String name);
+	public IDataModel getCurrentDataModel(String name);
 
 	/**
 	 * Gets the data model.
@@ -113,28 +93,16 @@ public interface IDataModelManager {
 	 *            the data model URI
 	 * @return data models
 	 */
-	public Collection<IDataModel> getDataModelByURI(String uri);
+	public IDataModel getDataModelByURI(String uri);
 
 	/**
 	 * Gets all data models.
 	 * 
 	 * @return all data models
 	 */
-	public Collection<IDataModel> getAllDataModels();
+	// public Collection<IDataModel> getAllDataModels();
 
-	/**
-	 * Gets all requirement types.
-	 * 
-	 * @return all requirement types
-	 */
-	public Collection<IRequirementType> getAllRequirementTypes();
-
-	/**
-	 * Gets all enumeration types.
-	 * 
-	 * @return all enumeration types
-	 */
-	public Collection<IEnumerationType> getAllEnumerationTypes();
+	public Collection<IDataModel> getCurrentDataModels();
 
 	/**
 	 * Gets the scope.
@@ -162,15 +130,6 @@ public interface IDataModelManager {
 	 * @return all scopes
 	 */
 	public Collection<Scope> getAllScopes();
-
-	// /**
-	// * Creates the instance.
-	// *
-	// * @param requirementType
-	// * the requirement type
-	// * @return the e object
-	// */
-	// public EObject createInstance(IRequirementType requirementType);
 
 	/**
 	 * Creates requirement type.
@@ -209,18 +168,7 @@ public interface IDataModelManager {
 	 *            the Attribute type
 	 * @return the attribute
 	 */
-	public IAttribute createAttribute(String name, IAttributeType type);
-
-	/**
-	 * Creates attribute.
-	 * 
-	 * @param name
-	 *            the attribute name
-	 * @param type
-	 *            the Enumeration type
-	 * @return the attribute
-	 */
-	public IAttribute createAttribute(String name, IEnumerationType type);
+	public IAttribute createAttribute(String name, IType type, boolean isMany);
 
 	/**
 	 * Checks if the given data model is used.

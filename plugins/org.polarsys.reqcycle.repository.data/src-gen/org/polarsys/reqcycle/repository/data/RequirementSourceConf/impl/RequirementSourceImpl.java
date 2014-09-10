@@ -12,18 +12,19 @@ package org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -48,32 +49,17 @@ import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Requirement Source</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement Source</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getContents
- * <em>Contents</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getName
- * <em>Name</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getProperties
- * <em>Properties</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getConnectorId
- * <em>Connector Id</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getMappings
- * <em>Mappings</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDataModelURI
- * <em>Data Model URI</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDefaultScope
- * <em>Default Scope</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getContents <em>Contents</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getConnectorId <em>Connector Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getMappings <em>Mappings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDataModelURI <em>Data Model URI</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDefaultScope <em>Default Scope</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,8 +67,7 @@ import com.google.common.collect.Collections2;
  */
 public class RequirementSourceImpl extends MinimalEObjectImpl.Container implements RequirementSource {
 	/**
-	 * The cached value of the '{@link #getContents() <em>Contents</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getContents() <em>Contents</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getContents()
 	 * @generated
@@ -91,8 +76,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected RequirementsContainer contents;
 	protected Set<PropertyChangeListener> propertyChangeListeners = new HashSet<PropertyChangeListener>();
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getName()
 	 * @generated
@@ -101,8 +85,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}'
-	 * map. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getProperties()
 	 * @generated
@@ -111,8 +94,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected EMap<String, String> properties;
 
 	/**
-	 * The default value of the '{@link #getConnectorId() <em>Connector Id</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getConnectorId()
 	 * @generated
@@ -121,8 +103,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String CONNECTOR_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getMappings()
 	 * @generated
@@ -131,9 +112,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected EList<MappingElement> mappings;
 
 	/**
-	 * The default value of the '{@link #getDataModelURI()
-	 * <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDataModelURI()
 	 * @generated
@@ -142,9 +121,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String DATA_MODEL_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDataModelURI()
-	 * <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDataModelURI()
 	 * @generated
@@ -153,15 +130,15 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected String dataModelURI = DATA_MODEL_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDefaultScope()
-	 * <em>Default Scope</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getDefaultScope() <em>Default Scope</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDefaultScope()
 	 * @generated
 	 * @ordered
 	 */
 	protected Scope defaultScope;
+
+	protected Collection<EPackage> targetEPackages;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -170,6 +147,15 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	protected RequirementSourceImpl() {
 		super();
+		eAdapters().add(new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (RequirementSourceConfPackage.Literals.REQUIREMENT_SOURCE__MAPPINGS.equals(msg.getFeature())) {
+					targetEPackages = null;
+				}
+			}
+		});
 	}
 
 	/**
@@ -536,17 +522,17 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	@Override
-	public Collection<EClass> getTargetEPackage() {
-		if (mappings == null) {
-			return Collections.emptyList();
-		}
-		return Collections2.transform(mappings, new Function<MappingElement, EClass>() {
+	public Collection<EPackage> getTargetEPackages() {
+		if (targetEPackages == null) {
+			targetEPackages = Collections2.transform(getMappings(), new Function<MappingElement, EPackage>() {
 
-			@Override
-			public EClass apply(MappingElement arg0) {
-				return arg0.getTargetElement();
-			}
-		});
+				@Override
+				public EPackage apply(MappingElement mappingElement) {
+					return mappingElement.getTargetElement().getEPackage();
+				}
+			});
+		}
+		return targetEPackages;
 	}
 
 	@Override

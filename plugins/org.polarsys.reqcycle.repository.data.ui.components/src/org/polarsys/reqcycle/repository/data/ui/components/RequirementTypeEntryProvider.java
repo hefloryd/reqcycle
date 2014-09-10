@@ -10,10 +10,16 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.ui.components;
 
+import java.util.ArrayList;
+
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditor;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
+import com.google.common.collect.Lists;
 
 
 public class RequirementTypeEntryProvider extends AbstractPropsEditor<String> {
@@ -22,7 +28,11 @@ public class RequirementTypeEntryProvider extends AbstractPropsEditor<String> {
 
 	@Override
 	protected AbstractPropsEditorComponent<String> initAndGetComponent() {
-		return new ComboComponent(getAttributeName(),dataModelManager.getAllRequirementTypes(), getContainer());
+		ArrayList<IType> availablesTypes = Lists.newArrayList();
+		for (IDataModel dataModel : dataModelManager.getCurrentDataModels()) {
+			availablesTypes.addAll(dataModel.getTypes());
+		}
+		return new ComboComponent(getAttributeName(), availablesTypes, getContainer());
 	}
 
 }

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
@@ -24,58 +24,64 @@ import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 
-public class RequirementTypeImpl implements IRequirementType, IAdaptable {
-
-	protected EClass eClass;
+public class RequirementTypeImpl extends ETypeImpl implements IRequirementType, IAdaptable {
 
 	protected Collection<IAttribute> attributes = new ArrayList<IAttribute>();
 
 	private IDataModel dataModel;
 
 	public RequirementTypeImpl(String name, IDataModel dataModel) {
-		eClass = EcoreFactory.eINSTANCE.createEClass();
+		this(createReqEClass(name), dataModel);
+	}
+
+	protected static EClass createReqEClass(String name) {
+		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
 		eClass.setName(name);
 		eClass.getESuperTypes().add(RequirementSourceDataPackage.Literals.REQUIREMENT);
-		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
-			attributes.add(new AttributeImpl(eAttribute));
-		}
-		this.dataModel = dataModel;
+		return eClass;
 	}
 
 	public RequirementTypeImpl(EClass eClass, IDataModel dataModel) {
-		this.eClass = eClass;
-		for (EAttribute attribute : eClass.getEAllAttributes()) {
-			attributes.add(new AttributeImpl(attribute));
+		super(eClass);
+		if (!eClass.getESuperTypes().contains(RequirementSourceDataPackage.Literals.REQUIREMENT)) {
+			throw new RuntimeException();
+		}
+		for (EStructuralFeature feature : getEType().getEAllStructuralFeatures()) {
+			attributes.add(new AttributeImpl(feature));
 		}
 		this.dataModel = dataModel;
 	}
 
 	@Override
-	public void addAttributeType(IAttribute attributeType) {
-		EAttribute eAttribute = null;
-		if (attributeType instanceof IAdaptable) {
-			eAttribute = (EAttribute) ((IAdaptable) attributeType).getAdapter(EAttribute.class);
+	public EClass getEType() {
+		return (EClass) super.getEType();
+	}
+
+	@Override
+	public void addAttribute(IAttribute att) {
+		EStructuralFeature feature = null;
+		if (att instanceof IAdaptable) {
+			feature = (EStructuralFeature) ((IAdaptable) att).getAdapter(EStructuralFeature.class);
 		}
-		if (eAttribute != null) {
-			attributes.add(attributeType);
-			eClass.getEStructuralFeatures().add(eAttribute);
+		if (feature != null) {
+			attributes.add(att);
+			getEType().getEStructuralFeatures().add(feature);
 		}
 	}
 
 	@Override
-	public String getName() {
-		return eClass.getName();
-	}
-
-	/**
-	 * Gets the EClass.
-	 * 
-	 * @return the EClass
-	 * @deprecated use getAdapter
-	 */
-	@Deprecated
-	public EClass getEClass() {
-		return eClass;
+	public void removeAttribute(IAttribute att) {
+		attributes.remove(att);
+		EStructuralFeature feature = null;
+		if (att instanceof IAdaptable) {
+			feature = (EStructuralFeature) ((IAdaptable) att).getAdapter(EStructuralFeature.class);
+		}
+		if (feature != null) {
+			getEType().getEStructuralFeatures().remove(feature);
+			if (dataModel instanceof DataModelImpl) {
+				((DataModelImpl) dataModel).needsNewVersionOnSave = true;
+			}
+		}
 	}
 
 	@Override
@@ -85,18 +91,9 @@ public class RequirementTypeImpl implements IRequirementType, IAdaptable {
 
 	@Override
 	public Requirement createInstance() {
-		EPackage ePackage = eClass.getEPackage();
+		EPackage ePackage = getEType().getEPackage();
 		if (ePackage != null) {
-			return (Requirement) ePackage.getEFactoryInstance().create(eClass);
-		}
-		return null;
-	}
-
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Object getAdapter(Class adapter) {
-		if (adapter == EClass.class) {
-			return eClass;
+			return (Requirement) ePackage.getEFactoryInstance().create(getEType());
 		}
 		return null;
 	}

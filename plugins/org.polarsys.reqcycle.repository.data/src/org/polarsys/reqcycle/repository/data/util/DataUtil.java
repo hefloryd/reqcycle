@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -41,8 +40,6 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
-import org.polarsys.reqcycle.repository.data.types.internal.AttributeTypeImpl;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -55,30 +52,6 @@ public class DataUtil {
 
 	@Inject
 	static ILogger logger;
-
-	public static final IAttributeType BYTE = new AttributeTypeImpl(EcorePackage.Literals.EBYTE.getName().replaceFirst("E", ""), EcorePackage.Literals.EBYTE);
-
-	public static final IAttributeType STRING = new AttributeTypeImpl(EcorePackage.Literals.ESTRING.getName().replaceFirst("E", ""), EcorePackage.Literals.ESTRING);
-
-	public static final IAttributeType INT = new AttributeTypeImpl(EcorePackage.Literals.EINT.getName().replaceFirst("E", ""), EcorePackage.Literals.EINT);
-
-	public static final IAttributeType LONG = new AttributeTypeImpl(EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""), EcorePackage.Literals.ELONG);
-
-	public static final IAttributeType BIG_DECIMAL = new AttributeTypeImpl(EcorePackage.Literals.ELONG.getName().replaceFirst("E", ""), EcorePackage.Literals.ELONG);
-
-	public static final IAttributeType CHAR = new AttributeTypeImpl(EcorePackage.Literals.ECHAR.getName().replaceFirst("E", ""), EcorePackage.Literals.ECHAR);
-
-	public static final IAttributeType FLOAT = new AttributeTypeImpl(EcorePackage.Literals.EFLOAT.getName().replaceFirst("E", ""), EcorePackage.Literals.EFLOAT);
-
-	public static final IAttributeType DOUBLE = new AttributeTypeImpl(EcorePackage.Literals.EDOUBLE.getName().replaceFirst("E", ""), EcorePackage.Literals.EDOUBLE);
-
-	public static final IAttributeType SHORT = new AttributeTypeImpl(EcorePackage.Literals.ESHORT.getName().replaceFirst("E", ""), EcorePackage.Literals.ESHORT);
-
-	public static final IAttributeType BIG_INTEGER = new AttributeTypeImpl(EcorePackage.Literals.EBIG_INTEGER.getName().replaceFirst("E", ""), EcorePackage.Literals.EBIG_INTEGER);
-
-	public static final IAttributeType BOOLEAN = new AttributeTypeImpl(EcorePackage.Literals.EBOOLEAN.getName().replaceFirst("E", ""), EcorePackage.Literals.EBOOLEAN);
-
-	public static final Collection<IAttributeType> eDataTypes = Arrays.asList(BYTE, STRING, INT, LONG, BIG_DECIMAL, CHAR, FLOAT, DOUBLE, SHORT, BIG_INTEGER, BOOLEAN);
 
 	protected static ComposedAdapterFactory cAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 

@@ -2,6 +2,7 @@ package org.polarsys.reqcycle.styling.ui.impl;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -56,7 +57,7 @@ public class StylingManager implements IStylingManager {
 
 	public void save() {
 		try {
-			confManager.saveConfiguration(currentModel, null, null, PREF_ID);
+			confManager.saveConfiguration(Collections.singleton(currentModel), null, null, PREF_ID, null, null);
 
 			Map<String, Object> conf = Maps.newHashMap();
 			conf.put(PREF_ID_PREFERRED, preferredStylingModel);
@@ -70,7 +71,7 @@ public class StylingManager implements IStylingManager {
 	@Override
 	public void reload() {
 		Collection<EObject> conf = confManager.getConfiguration(null, null,
-				PREF_ID, true);
+				PREF_ID, null, null, true);
 
 		if (conf != null && conf.size() != 0) {
 			EObject first = conf.iterator().next();

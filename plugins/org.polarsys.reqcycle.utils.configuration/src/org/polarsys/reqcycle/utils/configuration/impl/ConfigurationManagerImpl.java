@@ -56,14 +56,9 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 	public static final String CONF_RESOURCE_EXTENSION = "emfconf";
 
-	public RestrictedResourceSet rs = new RestrictedResourceSet();
-
-
-	public void saveConfiguration(EObject conf, IResource context, Scope scope, String id, ResourceSet resourceSet) throws IOException {
-		saveConfiguration(Collections.singleton(conf), context, scope, id, resourceSet);
-	}
+	public RestrictedResourceSet internalRestrictedResourceSet = new RestrictedResourceSet();
 	
-	public void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet) throws IOException {
+	public void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension) throws IOException {
 		if(context == null && Scope.PROJECT.equals(scope)) {
 			throw new IOException("Context should not be null when using project scope");
 		}
@@ -71,8 +66,14 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		if(scope == null || context == null) {
 			scope = Scope.WORKSPACE;
 		}
+		
+		if (resourceSet == null) {
+			resourceSet = internalRestrictedResourceSet;
+		} else {
+			resourceExtension = null;
+		}
 
-		URI confFileUri = getConfigurationFileUri(context, scope, id);
+		URI confFileUri = getConfigurationFileURI(context, scope, id, resourceExtension);
 		if(resourceSet instanceof RestrictedResourceSet) {
 			((RestrictedResourceSet)resourceSet).authorizedUris.add(confFileUri);
 		}
@@ -91,41 +92,34 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 	}
 	
-	public Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, boolean reload) {
-		URI confFileUri = getConfigurationFileUri(context, scope, id);
+	public Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension, boolean reload) {
+		if (resourceSet == null) {
+			resourceSet = internalRestrictedResourceSet;
+		} else {
+			resourceExtension = null;
+		}
+
+		URI confFileURI = getConfigurationFileURI(context, scope, id, resourceExtension);
 		if(resourceSet instanceof RestrictedResourceSet) {
-			((RestrictedResourceSet)resourceSet).addAuthorizedUri(confFileUri);
+			((RestrictedResourceSet)resourceSet).addAuthorizedUri(confFileURI);
 		}
 		try {
-			Resource loadedResource = resourceSet.getResource(confFileUri, false);
+			Resource loadedResource = resourceSet.getResource(confFileURI, false);
 			if (reload && loadedResource != null && loadedResource.isLoaded()) {
 				loadedResource.unload();
 				resourceSet.getResources().remove(loadedResource);
 			}
 
-			Resource r = resourceSet.getResource(confFileUri, true);
+			Resource r = resourceSet.getResource(confFileURI, true);
 
 			if(r != null && !r.getContents().isEmpty()) {
 				return r.getContents();
 			}
 		} catch (Throwable e) {
 			//DO NOTHING
-			e.printStackTrace();
 		}
 
 		return null;
-	}
-
-	public void saveConfiguration(EObject conf, IResource context, Scope scope, String id) throws IOException {
-		if(!isSelfContained(conf)) {
-			throw new IOException("The configuration object have reference(s) outside of itself and its children");
-		}
-
-		saveConfiguration(conf, context, scope, id, rs);
-	}
-
-	public Collection<EObject> getConfiguration(IResource context, Scope scope, String id, boolean reload) {
-		return getConfiguration(context, scope, id, rs, reload);
 	}
 
 	protected boolean isSelfContained(EObject eObj) {
@@ -166,15 +160,14 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		return false;
 	}
 
-	public URI getConfigurationFileUri(IResource context, Scope scope, String id) {
-		return getConfigurationFileUri(context, scope, id, CONF_RESOURCE_EXTENSION);
-	}
-
-	protected URI getConfigurationFileUri(IResource context, Scope scope, String id, String extension) {
+	public URI getConfigurationFileURI(IResource context, Scope scope, String id, String resourceExtension) {
+		if (resourceExtension == null || "".equals(resourceExtension)) {
+			resourceExtension = CONF_RESOURCE_EXTENSION;
+		}
 		IPath confFilePath = null;
 
 		if(context != null && context.getProject() != null && (scope == null || Scope.PROJECT.equals(scope))) {
-			confFilePath = context.getProject().getFullPath().append("/.settings/" + Activator.PLUGIN_ID + "/" + id + "." + extension);
+			confFilePath = context.getProject().getFullPath().append("/.settings/" + Activator.PLUGIN_ID + "/" + id + "." + resourceExtension);
 			IFile confFile = ResourcesPlugin.getWorkspace().getRoot().getFile(confFilePath);
 
 			if(!confFile.exists() && scope == null) {
@@ -183,7 +176,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		if(confFilePath == null && (scope == null || Scope.WORKSPACE.equals(scope))) {
-			return URI.createURI("platform:/meta/" + Activator.PLUGIN_ID + "/" + id + "." + extension);
+			return URI.createURI("platform:/meta/" + Activator.PLUGIN_ID + "/" + id + "." + resourceExtension);
 		} else {
 			return URI.createPlatformResourceURI(confFilePath.toOSString(), true);
 		}
@@ -197,7 +190,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 	public Map<String, Object> getSimpleConfiguration(IResource context, Scope scope, String id, boolean reload) {
 		EObject confEObj = null;
 		
-		Collection<EObject> conf = getConfiguration(context, scope, id, reload);
+		Collection<EObject> conf = getConfiguration(context, scope, id, internalRestrictedResourceSet, null, reload);
 		if(conf != null && !conf.isEmpty()) {
 			confEObj = conf.iterator().next();
 		}
@@ -294,8 +287,8 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 			eClass.getEStructuralFeatures().add(feature);
 		}
 
-		URI mmFileUri = getConfigurationFileUri(context, scope, id, "ecore");
-		Resource mmResource = rs.createResource(mmFileUri);
+		URI mmFileUri = getConfigurationFileURI(context, scope, id, "ecore");
+		Resource mmResource = internalRestrictedResourceSet.createResource(mmFileUri);
 		mmResource.getContents().add(ePackage);
 		mmResource.save(null);
 
@@ -303,9 +296,9 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 		for(Entry<String, Object> elem : conf.entrySet()) {
 		    Object value = elem.getValue();
-		    if(value instanceof Collection) {
+		    if(value instanceof Iterable) {
 		        List l = (List)confEObj.eGet(eClass.getEStructuralFeature(elem.getKey()));
-		        for (Object o : (Collection)value) {
+		        for (Object o : (Iterable)value) {
 		            if (o instanceof EObject && !isSelfContained((EObject) o)) {
 		                throw new IOException("The configuration object have reference(s) outside of itself and its children");
 		            }
@@ -321,7 +314,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		    }
 		}
 
-		saveConfiguration(confEObj, context, scope, id);
+		saveConfiguration(Collections.singleton(confEObj), context, scope, id, null, null);
 	}
 
 	protected EClassifier getEType(Object obj) {
@@ -342,5 +335,4 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 		return null;
 	}
-
 }

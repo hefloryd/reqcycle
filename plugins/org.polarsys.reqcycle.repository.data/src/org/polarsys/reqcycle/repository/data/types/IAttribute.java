@@ -27,7 +27,7 @@ public interface IAttribute {
 	 * 
 	 * @return the attribute type
 	 */
-	public IAttributeType getAttributeType();
+	public IType getType();
 
 	/**
 	 * Checks if it is hidden.

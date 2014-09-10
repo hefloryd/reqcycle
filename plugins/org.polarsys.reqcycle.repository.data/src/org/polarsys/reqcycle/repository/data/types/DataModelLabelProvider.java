@@ -24,8 +24,8 @@ public class DataModelLabelProvider extends ItemProviderAdapter implements IItem
 	@Override
 	public String getText(Object object) {
 		if (object instanceof IDataModel) {
-			return ((IDataModel) object).getName();
-
+			IDataModel dataModel = (IDataModel) object;
+			return dataModel.getName() + (dataModel.getVersion() > 1 ? " (v" + dataModel.getVersion() + ")" : "");
 		}
 		return null;
 	}

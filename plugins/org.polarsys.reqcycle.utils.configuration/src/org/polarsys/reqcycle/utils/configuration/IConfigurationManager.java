@@ -49,7 +49,7 @@ public interface IConfigurationManager {
 	 * @param id
 	 * @return the configuration or null if not found
 	 */
-	Collection<EObject> getConfiguration(IResource context, Scope scope, String id, boolean reload);
+	Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension, boolean reload);
 
 	/**
 	 * Retrieve a configuration EObject using the provided resource set to load the corresponding configuration resource.
@@ -63,28 +63,11 @@ public interface IConfigurationManager {
 	 * @param resourceSet
 	 * @return the configuration or null if not found
 	 */
-	Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, boolean reload);
-
-	/**
-	 * Save an EObject as a configuration.
-	 * The object can have references to elements outside of itself in the provided resource set,
-	 * but it implies that the configuration will be saved and loaded using a configuration Resource in the provided resource set.
-	 * You can use getConfigurationResourceExtension to filter configuration resources when displaying your resource set.
-	 * 
-	 * @param conf
-	 * @param context
-	 *        can be null if the scope is workspace
-	 * @param scope
-	 *        should not be null
-	 * @param id
-	 * @param resourceSet
-	 * @throws IOException
-	 */
-	void saveConfiguration(EObject conf, IResource context, Scope scope, String id, ResourceSet resourceSet) throws IOException;
+	//Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, boolean reload);
 
 	/**
 	 * Save a Collection of EObjects as a configuration.
-	 * Objects can have references to elements outside themselves in the provided resource set,
+	 * If a resource set is provided objects can have references to elements outside themselves in the provided resource set,
 	 * but it implies that the configuration will be saved and loaded using a configuration Resource in the provided resource set.
 	 * You can use getConfigurationResourceExtension to filter configuration resources when displaying your resource set.
 	 * 
@@ -95,9 +78,10 @@ public interface IConfigurationManager {
 	 *        should not be null
 	 * @param id
 	 * @param resourceSet
+	 * @param resourceExtension
 	 * @throws IOException
 	 */
-	void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet) throws IOException;
+	void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension) throws IOException;
 	
 	/**
 	 * Save an EObject as a configuration.
@@ -112,7 +96,7 @@ public interface IConfigurationManager {
 	 * @param id
 	 * @throws IOException
 	 */
-	void saveConfiguration(EObject conf, IResource context, Scope scope, String id) throws IOException;
+	//void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id) throws IOException;
 
 	/**
 	 * Save a simple key-value representation of a configuration.
@@ -131,7 +115,7 @@ public interface IConfigurationManager {
 	void saveSimpleConfiguration(Map<String, Object> conf, IResource context, Scope scope, String id) throws IOException;
 
 	/**
-	 * @return the extension used for configuration resources
+	 * @return the extension used by default for configuration resources
 	 */
 	String getConfigurationResourceExtension();
 }

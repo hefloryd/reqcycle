@@ -35,7 +35,7 @@ public class OrderByScopesHandler extends AbstractHandler {
 			Collection<Scope> scopes = new LinkedList<Scope>();
 
 			Collection<IDataModel> dataModels = dataModelManager
-					.getAllDataModels();
+					.getCurrentDataModels();
 			Iterator<IDataModel> iterator = dataModels.iterator();
 			while (iterator.hasNext()) {
 				IDataModel next = iterator.next();

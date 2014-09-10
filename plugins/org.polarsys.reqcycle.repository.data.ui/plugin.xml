@@ -40,6 +40,22 @@
           </equals>
        </enabledWhen>
     </handler>
+    <handler
+          class="org.polarsys.reqcycle.repository.data.ui.handlers.UpdateMetaModelHandler"
+          commandId="org.polarsys.reqcycle.repository.data.ui.commands.updateMetaModel">
+       <enabledWhen>
+          <iterate
+                ifEmpty="false"
+                operator="and">
+             <adapt
+                   type="org.eclipse.emf.ecore.EObject">
+                <instanceof
+                      value="org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource">
+                </instanceof>
+             </adapt>
+          </iterate>
+       </enabledWhen>
+    </handler>
  </extension>
  <extension
        point="org.eclipse.ui.menus">
@@ -50,6 +66,10 @@
              id="org.polarsys.reqcycle.repository.data.ui.menus.initCustomData"
              mnemonic="S">
        </command>
+       <command
+             commandId="org.polarsys.reqcycle.repository.data.ui.commands.updateMetaModel"
+             style="push">
+       </command>
     </menuContribution>
  </extension>
  <extension
@@ -58,6 +78,11 @@
           categoryId="org.polarsys.reqcycle.core.ui.category"
           id="org.polarsys.reqcycle.repository.data.ui.commands.initCustomData"
           name="Load Custom Data Model">
+    </command>
+    <command
+          categoryId="org.polarsys.reqcycle.core.ui.category"
+          id="org.polarsys.reqcycle.repository.data.ui.commands.updateMetaModel"
+          name="Update MetaModel">
     </command>
  </extension>
  <extension

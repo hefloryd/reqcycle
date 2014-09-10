@@ -21,7 +21,9 @@ import org.eclipse.swt.graphics.Image;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.ui.providers.ConnectorLabelProvider;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
 import org.polarsys.reqcycle.repository.ui.Activator;
 import org.polarsys.reqcycle.repository.ui.Messages;
@@ -40,6 +42,9 @@ public class RequirementSourceLabelProvider extends LabelProvider {
 
 	private @Inject IConnectorManager repositoryConnectorManager = ZigguratInject
 			.make(IConnectorManager.class);
+	
+	private @Inject IDataModelManager dataModelManager = ZigguratInject
+			.make(IDataModelManager.class);
 
 	@Override
 	public String getText(Object obj) {
@@ -53,7 +58,13 @@ public class RequirementSourceLabelProvider extends LabelProvider {
 			}
 		}
 		if (obj instanceof RequirementSource) {
-			return DataUtil.getLabel(obj);
+			String label = DataUtil.getLabel(obj);
+			IDataModel dataModel = dataModelManager.getDataModelByURI(((RequirementSource) obj).getDataModelURI());
+			int lastVersion = dataModelManager.getCurrentDataModel(dataModel.getName()).getVersion();
+			if (lastVersion > dataModel.getVersion()) {
+				label += " (" + dataModel.getName() + " v" + dataModel.getVersion() + ")";
+			}
+			return label;
 		}
 		return obj.toString();
 	}

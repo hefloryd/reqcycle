@@ -11,11 +11,13 @@
 package org.polarsys.reqcycle.repository.data.types.internal;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
-import org.polarsys.reqcycle.repository.data.types.IAttributeType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 
 /**
  * The Class AttributeImpl.
@@ -23,10 +25,12 @@ import org.polarsys.reqcycle.repository.data.types.IAttributeType;
 public class AttributeImpl implements IAttribute, IAdaptable {
 
 	/** The eAttribute. */
-	protected EAttribute eAttribute;
+	protected EStructuralFeature feature;
 
 	/** The type. */
-	protected IAttributeType type;
+	protected IType type;
+
+	protected boolean isMany = false;
 
 	/**
 	 * Instantiates a new attribute.
@@ -36,34 +40,37 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 * @param type
 	 *            the attribute type
 	 */
-	public AttributeImpl(String name, IAttributeType type) {
-
-		EDataType eDataType = null;
-		if (type instanceof IAdaptable) {
-			eDataType = (EDataType) ((IAdaptable) type).getAdapter(EDataType.class);
-		}
-		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-		eAttribute.setEType(eDataType);
-		eAttribute.setName(name);
-		this.eAttribute = eAttribute;
+	public AttributeImpl(String name, IType type, boolean isMany) {
 		this.type = type;
+		this.isMany = isMany;
+		EClassifier eType = null;
+		if (type instanceof IAdaptable) {
+			eType = (EClassifier) ((IAdaptable) type).getAdapter(EClassifier.class);
+		}
+		this.feature = createFeature(name, eType, isMany);
 	}
 
-	/**
-	 * Instantiates a new attribute.
-	 * 
-	 * @param name
-	 *            the attribute name
-	 * @param type
-	 *            the attribute type
-	 */
-	protected AttributeImpl(String name, EDataType type) {
+	public AttributeImpl(String name, EClassifier eType, boolean isMany) {
+		this.isMany = isMany;
+		this.feature = createFeature(name, eType, isMany);
+		this.type = ETypeImpl.createEType(eType);
+	}
 
-		EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-		eAttribute.setEType(type);
-		eAttribute.setName(name);
-		this.eAttribute = eAttribute;
-		this.type = new AttributeTypeImpl(name, type);
+	protected static EStructuralFeature createFeature(String name, EClassifier eType, boolean isMany) {
+		EStructuralFeature feature = null;
+		if (eType instanceof EDataType) {
+			feature = EcoreFactory.eINSTANCE.createEAttribute();
+		} else if (eType instanceof EClass) {
+			feature = EcoreFactory.eINSTANCE.createEReference();
+		} else {
+			throw new RuntimeException();
+		}
+		feature.setEType(eType);
+		feature.setName(name);
+		if (isMany) {
+			feature.setUpperBound(-1);
+		}
+		return feature;
 	}
 
 	/**
@@ -72,9 +79,9 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 * @param eAttribute
 	 *            the EAttribute
 	 */
-	protected AttributeImpl(EAttribute eAttribute) {
-		this.eAttribute = eAttribute;
-		this.type = new AttributeTypeImpl(eAttribute.getEAttributeType());
+	protected AttributeImpl(EStructuralFeature feature) {
+		this.feature = feature;
+		this.type = ETypeImpl.createEType(feature.getEType());
 	}
 
 	/*
@@ -84,18 +91,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 */
 	@Override
 	public String getName() {
-		return eAttribute != null ? eAttribute.getName() : null;
-	}
-
-	/**
-	 * Gets the type.
-	 * 
-	 * @return the type
-	 * @deprecated use getAdapter()
-	 */
-	@Deprecated
-	public EDataType getType() {
-		return eAttribute.getEAttributeType();
+		return feature != null ? feature.getName() : null;
 	}
 
 	/*
@@ -105,7 +101,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 */
 	@Override
 	public boolean isHidden() {
-		if (eAttribute.getEAnnotation("hidden") != null) {
+		if (feature.getEAnnotation("hidden") != null) {
 			return true;
 		}
 		return false;
@@ -119,11 +115,8 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (adapter == EAttribute.class) {
-			return eAttribute;
-		}
-		if (adapter == EDataType.class) {
-			return eAttribute.getEType();
+		if (EStructuralFeature.class.isAssignableFrom(adapter)) {
+			return feature;
 		}
 		return null;
 	}
@@ -135,7 +128,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	 * org.polarsys.reqcycle.repository.data.types.IAttribute#getAttributeType()
 	 */
 	@Override
-	public IAttributeType getAttributeType() {
+	public IType getType() {
 		return type;
 	}
 

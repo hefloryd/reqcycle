@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
@@ -63,10 +61,6 @@ public class RequirementScopeView extends ViewPart {
 	@Inject
 	IDataModelManager dataManager;
 
-	@Inject
-	@Named("confResourceSet")
-	ResourceSet rs;
-
 	private Collection<Scope> scopes = new ArrayList<Scope>();
 
 	private Collection<IDataModel> dataModels = new ArrayList<IDataModel>();
@@ -106,13 +100,11 @@ public class RequirementScopeView extends ViewPart {
 		composite.setLayout(new GridLayout(2, false));
 
 		Label lblDataModel = new Label(composite, SWT.NONE);
-		lblDataModel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
+		lblDataModel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblDataModel.setText("Data Model :");
 
 		cvDataModel = new ComboViewer(composite, SWT.NONE);
-		cvDataModel.getCombo().setLayoutData(
-				new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		cvDataModel.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		cvDataModel.setContentProvider(ArrayContentProvider.getInstance());
 
 		// TODO : use scope generated label provider
@@ -127,7 +119,7 @@ public class RequirementScopeView extends ViewPart {
 			}
 		});
 
-		cvDataModel.setInput(dataManager.getAllDataModels());
+		cvDataModel.setInput(dataManager.getCurrentDataModels());
 
 		// refreshBtn = new Button(composite, SWT.PUSH);
 		// refreshBtn.setImage(Activator.getImageDescriptor("icons/refresh.gif").createImage());
@@ -135,13 +127,11 @@ public class RequirementScopeView extends ViewPart {
 		// refreshBtn.setToolTipText("Refresh View");
 
 		Label lblScope = new Label(composite, SWT.NONE);
-		lblScope.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
+		lblScope.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblScope.setText("Scope :");
 
 		cvScope = new ComboViewer(composite, SWT.NONE);
-		cvScope.getCombo().setLayoutData(
-				new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		cvScope.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		cvScope.setContentProvider(ArrayContentProvider.getInstance());
 
 		// TODO : use scope generated label provider
@@ -159,13 +149,11 @@ public class RequirementScopeView extends ViewPart {
 		cvScope.setInput(scopes);
 
 		viewer = new TreeViewer(composite, SWT.BORDER);
-		viewer.getTree().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		viewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 		viewer.setContentProvider(new ITreeContentProvider() {
 
 			@Override
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			}
 
 			@Override
@@ -194,8 +182,7 @@ public class RequirementScopeView extends ViewPart {
 
 			@Override
 			public Object[] getElements(Object inputElement) {
-				return ArrayContentProvider.getInstance().getElements(
-						inputElement);
+				return ArrayContentProvider.getInstance().getElements(inputElement);
 			}
 
 			@Override
@@ -226,8 +213,7 @@ public class RequirementScopeView extends ViewPart {
 		Transfer[] transfers;
 		transfers = new Transfer[] { PluginTransfer.getInstance() };
 
-		DragRequirementSourceAdapter listener = new DragRequirementSourceAdapter(
-				viewer);
+		DragRequirementSourceAdapter listener = new DragRequirementSourceAdapter(viewer);
 		ZigguratInject.inject(listener);
 		viewer.addDragSupport(dndOperations, transfers, listener);
 		getViewSite().setSelectionProvider(viewer);
@@ -240,31 +226,29 @@ public class RequirementScopeView extends ViewPart {
 	private void initInputs() {
 		dataModels.clear();
 		scopes.clear();
-		dataModels.addAll(dataManager.getAllDataModels());
+		dataModels.addAll(dataManager.getCurrentDataModels());
 	}
 
 	private void hookListeners() {
 
-		cvDataModel
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		cvDataModel.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						ISelection selection = event.getSelection();
-						if (selection instanceof IStructuredSelection) {
-							Object firstElement = ((IStructuredSelection) selection)
-									.getFirstElement();
-							if (firstElement instanceof IDataModel) {
-								IDataModel selectedDataModel = (IDataModel) firstElement;
-								if (selectedDataModel != dataModel) {
-									dataModel = selectedDataModel;
-									scope = null;
-									setScopes(dataManager.getScopes(dataModel));
-								}
-							}
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+					if (firstElement instanceof IDataModel) {
+						IDataModel selectedDataModel = (IDataModel) firstElement;
+						if (selectedDataModel != dataModel) {
+							dataModel = selectedDataModel;
+							scope = null;
+							setScopes(dataManager.getScopes(dataModel));
 						}
 					}
-				});
+				}
+			}
+		});
 
 		cvScope.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -272,8 +256,7 @@ public class RequirementScopeView extends ViewPart {
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
 				if (selection instanceof IStructuredSelection) {
-					Object element = ((IStructuredSelection) selection)
-							.getFirstElement();
+					Object element = ((IStructuredSelection) selection).getFirstElement();
 					if (element instanceof Scope) {
 						Scope selectedScope = (Scope) element;
 						if (selectedScope != scope) {
@@ -297,7 +280,7 @@ public class RequirementScopeView extends ViewPart {
 	}
 
 	protected void refresh() {
-		setDataModels(dataManager.getAllDataModels());
+		setDataModels(dataManager.getCurrentDataModels());
 		refreshDataModelSelection();
 		setScopes(dataModel);
 		setRequirements(scope != null ? scope.getRequirements() : null);
@@ -379,8 +362,7 @@ public class RequirementScopeView extends ViewPart {
 				refresh();
 			}
 		};
-		refreshAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/refresh.gif"));
+		refreshAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
 
 		newInstanceAction = new Action("New Instance") {
 
@@ -389,13 +371,11 @@ public class RequirementScopeView extends ViewPart {
 				createNewView();
 			}
 		};
-		newInstanceAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/newView.gif"));
+		newInstanceAction.setImageDescriptor(Activator.getImageDescriptor("icons/newView.gif"));
 	}
 
 	protected static IViewPart createNewView() {
-		IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		int nbView = 0;
 		for (IViewReference ref : activePage.getViewReferences()) {
 			if (ref.getId().startsWith(VIEW_ID)) {
@@ -406,8 +386,7 @@ public class RequirementScopeView extends ViewPart {
 		nbView++;
 		IViewPart view = null;
 		try {
-			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView,
-					IWorkbenchPage.VIEW_ACTIVATE);
+			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView, IWorkbenchPage.VIEW_ACTIVATE);
 			// view.
 		} catch (PartInitException e) {
 			e.printStackTrace();

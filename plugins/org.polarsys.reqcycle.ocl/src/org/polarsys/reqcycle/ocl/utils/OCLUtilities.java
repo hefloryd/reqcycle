@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.ocl.OCLEvaluator;
 
 import com.google.common.base.Predicate;
@@ -127,7 +128,7 @@ public class OCLUtilities {
 	 * of the attribute.
 	 */
 	public static IStatus isOperationPresent(final IAttribute attribute, BaseResource resource) {
-		String attributeTypeName = attribute.getAttributeType().getName();
+		String attributeTypeName = attribute.getType().getName();
 		System.out.println("attribute name= "+ attribute.getName());
 		System.out.println("attributeTypeName = "+ attributeTypeName);
 		if( ! mapToOCLPrimitives.containsKey(attributeTypeName)) {
@@ -186,7 +187,7 @@ public class OCLUtilities {
 				}
 				if(operationReturnType instanceof PrimitiveTypeRefCS) {
 					String returnType = ((PrimitiveTypeRefCS)operationReturnType).getName();
-					String attributeTypeName = attribute.getAttributeType().getName();
+					String attributeTypeName = attribute.getType().getName();
 					String lookupResult = mapToOCLPrimitives.get(attributeTypeName);
 					if(lookupResult == null  || !lookupResult.equals(returnType)) {
 						return false;
@@ -197,7 +198,7 @@ public class OCLUtilities {
 		});
 	}
 
-	public static String getOperationRequiredName(IRequirementType type) {
+	public static String getOperationRequiredName(IType type) {
 		String dataTypeName = type.getName();
 		return getOperationRequiredName(dataTypeName);
 	}
@@ -220,12 +221,12 @@ public class OCLUtilities {
 	}
 
 	public static String getOperationRequiredSignature(IAttribute attribute) {
-		String returnTypeName = attribute.getAttributeType().getName();
+		String returnTypeName = attribute.getType().getName();
 		String lookupType = mapToOCLPrimitives.get(returnTypeName);
 		return getOperationRequiredName(attribute) + "() : " + lookupType; //$NON-NLS-1$
 	}
 
-	public static boolean isDataType(OCLEvaluator evaluator, EObject eObject, IRequirementType type) {
+	public static boolean isDataType(OCLEvaluator evaluator, EObject eObject, IType type) {
 		String operationName = OCLUtilities.getOperationRequiredName(type);
 		EOperation eOperation = evaluator.getCompiledOperation(operationName, eObject);
 		if(eOperation != null) {

@@ -10,10 +10,11 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.types;
 
+
 /**
  * The Class IAttributeType.
  */
-public interface IAttributeType {
+public interface IType {
 
 	/**
 	 * Gets the attribute type name.

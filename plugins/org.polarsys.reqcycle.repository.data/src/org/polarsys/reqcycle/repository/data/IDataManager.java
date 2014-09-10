@@ -147,7 +147,7 @@ public interface IDataManager {
 	 * @param value
 	 *            the value to set
 	 */
-	public void addAttribute(AbstractElement element, IAttribute attribute, Object value);
+	public void addAttributeValue(AbstractElement element, IAttribute attribute, Object value);
 
 	/**
 	 * Adds the elements to the requirement source.

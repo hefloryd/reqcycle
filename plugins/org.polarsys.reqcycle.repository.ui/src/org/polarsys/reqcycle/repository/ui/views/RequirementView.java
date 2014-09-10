@@ -10,7 +10,6 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
@@ -100,9 +99,6 @@ public class RequirementView extends CommonNavigator {
 			}
 
 			RequirementView reqView = (RequirementView) view;
-
-			final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 			reqView.setPredicates(predicates);
 			reqView.setSources(sources);
