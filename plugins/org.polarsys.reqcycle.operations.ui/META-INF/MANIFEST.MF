@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ui
-Bundle-SymbolicName: org.polarsys.reqcycle.operations.ui
-Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.polarsys.reqcycle.operations.ui;singleton:=true
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.operations.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.polarsys.reqcycle.core.ui;bundle-version="1.0.0",
- org.polarsys.reqcycle.operations;bundle-version="1.0.0",
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0",
- org.polarsys.reqcycle.ui.eattrpropseditor;bundle-version="1.0.0"
+ org.polarsys.reqcycle.core.ui,
+ org.polarsys.reqcycle.operations,
+ org.polarsys.reqcycle.utils.inject,
+ org.polarsys.reqcycle.ui.eattrpropseditor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.operations.dialogs

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.reqcycle.predicates.persistance;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -15,8 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.polarsys.reqcycle.predicates.core;visibility:=reexport,
- org.polarsys.reqcycle.utils.configuration;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.core.resources;bundle-version="3.8.100";visibility:=reexport,
+ org.polarsys.reqcycle.utils.configuration;visibility:=reexport,
+ org.eclipse.core.resources;visibility:=reexport,
  javax.inject,
  org.polarsys.reqcycle.utils.inject
 Bundle-ActivationPolicy: lazy

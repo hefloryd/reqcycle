@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.reqcycle.predicates.core;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -14,8 +14,8 @@ Export-Package: org.polarsys.reqcycle.predicates.core,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.apache.commons.lang;bundle-version="2.6.0";visibility:=reexport,
+ org.apache.commons.lang;visibility:=reexport,
  org.polarsys.reqcycle.utils.inject,
- org.polarsys.reqcycle.operations;bundle-version="1.0.0",
- org.eclipse.ui;bundle-version="3.106.0"
+ org.polarsys.reqcycle.operations,
+ org.eclipse.ui
 Bundle-ActivationPolicy: lazy

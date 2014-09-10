@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Iterator
-Bundle-SymbolicName: org.polarsys.reqcycle.utils.iterators
-Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.polarsys.reqcycle.utils.iterators;singleton:=true
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.utils.iterators.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.guava;bundle-version="11.0.2"
+ com.google.guava
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.utils.iterators.collectors,

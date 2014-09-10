@@ -2,13 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modelnature
 Bundle-SymbolicName: org.polarsys.reqcycle.utils.modelnature;singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.utils.modelnature.ModelNaturePlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.guava;bundle-version="10.0.1",
+ com.google.guava,
  org.eclipse.emf.ecore,
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0";visibility:=reexport,
+ org.polarsys.reqcycle.utils.inject;visibility:=reexport,
  org.eclipse.emf.transaction,
  org.eclipse.e4.core.contexts
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

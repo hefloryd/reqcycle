@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.reqcycle.predicates.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -19,13 +19,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
- org.apache.commons.lang;bundle-version="2.6.0";visibility:=reexport,
+ org.apache.commons.lang;visibility:=reexport,
  org.polarsys.reqcycle.predicates.core;visibility:=reexport,
  org.polarsys.reqcycle.ui.eattrpropseditor;visibility:=reexport,
- org.polarsys.reqcycle.predicates.persistance;bundle-version="0.1.0";visibility:=reexport,
- org.polarsys.reqcycle.core;bundle-version="1.0.0";visibility:=reexport,
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.emf.ecore.editor;bundle-version="2.9.0",
+ org.polarsys.reqcycle.predicates.persistance;visibility:=reexport,
+ org.polarsys.reqcycle.core;visibility:=reexport,
+ org.polarsys.reqcycle.utils.inject;visibility:=reexport,
+ org.eclipse.emf.ecore.editor,
  org.eclipse.ui.forms,
  org.eclipse.core.databinding,
  org.eclipse.core.databinding.beans,
@@ -34,8 +34,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.databinding,
  com.ibm.icu,
  org.eclipse.swt,
- org.polarsys.reqcycle.core.ui;bundle-version="1.0.0",
- org.polarsys.reqcycle.operations;bundle-version="1.0.0",
- org.polarsys.reqcycle.operations.ui;bundle-version="1.0.0"
+ org.polarsys.reqcycle.core.ui,
+ org.polarsys.reqcycle.operations,
+ org.polarsys.reqcycle.operations.ui
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject;version="1.0.0"

@@ -2,18 +2,27 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ui
 Bundle-SymbolicName: org.polarsys.reqcycle.repository.connector.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.repository.connector.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.polarsys.reqcycle.repository.connector,
  org.polarsys.reqcycle.core,
- org.polarsys.reqcycle.repository.data;bundle-version="1.0.0",
- org.polarsys.reqcycle.utils.inject
+ org.polarsys.reqcycle.repository.data,
+ org.polarsys.reqcycle.utils.inject,
+ org.eclipse.ui.workbench,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ org.apache.xerces,
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.observable,
+ org.eclipse.jface.databinding,
+ org.eclipse.core.databinding.property,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.swt
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.repository.connector.ui,
  org.polarsys.reqcycle.repository.connector.ui.providers,
  org.polarsys.reqcycle.repository.connector.ui.wizard,
  org.polarsys.reqcycle.repository.connector.ui.wizard.pages
-Import-Package: javax.inject;version="1.0.0"

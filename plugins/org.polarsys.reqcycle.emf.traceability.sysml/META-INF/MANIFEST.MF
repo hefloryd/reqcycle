@@ -2,21 +2,21 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sysml
 Bundle-SymbolicName: org.polarsys.reqcycle.emf.traceability.sysml;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.emf.traceability.sysml.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.polarsys.reqcycle.core;bundle-version="1.0.0",
+ org.polarsys.reqcycle.core,
  org.polarsys.reqcycle.traceability,
- org.polarsys.reqcycle.emf.traceability;bundle-version="1.0.0",
- org.polarsys.reqcycle.traceability.builder;bundle-version="1.0.0",
- org.eclipse.uml2.uml;bundle-version="4.0.1",
+ org.polarsys.reqcycle.emf.traceability,
+ org.polarsys.reqcycle.traceability.builder,
+ org.eclipse.uml2.uml,
  org.eclipse.papyrus.sysml,
- org.polarsys.reqcycle.uri;bundle-version="1.0.0",
- org.polarsys.reqcycle.types;bundle-version="1.0.0",
+ org.polarsys.reqcycle.uri,
+ org.polarsys.reqcycle.types,
+ org.polarsys.reqcycle.traceability.types,
  org.eclipse.papyrus.uml.profile;bundle-version="0.10.0";resolution:=optional,
- org.eclipse.uml2.uml.profile.l2;bundle-version="1.1.0";resolution:=optional,
- org.polarsys.reqcycle.traceability.types
+ org.eclipse.uml2.uml.profile.l2;bundle-version="1.1.0";resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0"

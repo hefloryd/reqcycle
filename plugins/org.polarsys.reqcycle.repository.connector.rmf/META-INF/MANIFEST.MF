@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Rmf
 Bundle-SymbolicName: org.polarsys.reqcycle.repository.connector.rmf;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.repository.connector.rmf.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -12,12 +12,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.common,
  org.polarsys.reqcycle.core,
  org.eclipse.emf.ecore,
- org.eclipse.rmf.reqif10;bundle-version="0.6.1",
- org.eclipse.rmf.reqif10.common;bundle-version="0.6.1",
- org.polarsys.reqcycle.repository.data;bundle-version="1.0.0",
+ org.eclipse.rmf.reqif10,
+ org.eclipse.rmf.reqif10.common,
+ org.polarsys.reqcycle.repository.data,
  org.eclipse.core.resources,
  javax.inject,
- org.polarsys.reqcycle.repository.ui;bundle-version="1.0.0",
+ org.polarsys.reqcycle.repository.ui,
  org.polarsys.reqcycle.utils.configuration,
  org.polarsys.reqcycle.utils.inject,
  org.eclipse.core.databinding,
@@ -26,6 +26,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.eclipse.ui.ide;bundle-version="3.9.0"
+ org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

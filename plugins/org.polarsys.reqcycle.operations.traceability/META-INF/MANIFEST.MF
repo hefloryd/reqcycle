@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ReqCycle Operations Traceability
 Bundle-SymbolicName: org.polarsys.reqcycle.operations.traceability;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.operations.traceability.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.polarsys.reqcycle.operations;bundle-version="1.0.0",
- org.polarsys.reqcycle.traceability;bundle-version="1.0.0",
- org.polarsys.reqcycle.uri;bundle-version="1.0.0",
+ org.polarsys.reqcycle.operations,
+ org.polarsys.reqcycle.traceability,
+ org.polarsys.reqcycle.uri,
  com.google.guava,
  org.polarsys.reqcycle.repository.data,
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0",
- org.eclipse.emf.workspace;bundle-version="1.5.1"
+ org.polarsys.reqcycle.utils.inject,
+ org.eclipse.emf.workspace
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

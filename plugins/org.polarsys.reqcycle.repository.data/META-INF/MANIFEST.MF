@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.reqcycle.repository.data;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: org.polarsys.reqcycle.repository.data.ScopeConf.provider.ScopeConfEditPlugin$Implementation
+Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.core.resources,
- org.polarsys.reqcycle.core;bundle-version="1.0.0",
+ org.polarsys.reqcycle.core,
  org.polarsys.reqcycle.types,
  org.polarsys.reqcycle.emf,
  org.polarsys.reqcycle.uri,
@@ -27,8 +27,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.core.services,
  org.eclipse.ui.ide,
  org.eclipse.e4.ui.di,
- org.eclipse.team.svn.core,
- org.eclipse.emf.workspace;bundle-version="1.5.1",
+ org.eclipse.emf.workspace,
  org.polarsys.reqcycle.traceability,
  org.polarsys.reqcycle.traceability.storage,
  org.eclipse.emf.common.ui,
@@ -45,6 +44,7 @@ Export-Package: org.polarsys.reqcycle.repository.data,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.util,
  org.polarsys.reqcycle.repository.data.RequirementSourceData,
+ org.polarsys.reqcycle.repository.data.RequirementSourceData.impl,
  org.polarsys.reqcycle.repository.data.RequirementSourceData.provider,
  org.polarsys.reqcycle.repository.data.RequirementSourceData.util,
  org.polarsys.reqcycle.repository.data.ScopeConf,

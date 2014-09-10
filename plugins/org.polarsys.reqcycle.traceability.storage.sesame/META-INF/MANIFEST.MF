@@ -2,22 +2,24 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sesame
 Bundle-SymbolicName: org.polarsys.reqcycle.traceability.storage.sesame;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.traceability.storage.sesame.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.polarsys.reqcycle.traceability.storage;bundle-version="1.0.0",
- org.polarsys.reqcycle.core;bundle-version="1.0.0",
- org.polarsys.reqcycle.uri;bundle-version="1.0.0",
- org.polarsys.reqcycle.traceability;bundle-version="1.0.0",
+ org.polarsys.reqcycle.traceability.storage,
+ org.polarsys.reqcycle.core,
+ org.polarsys.reqcycle.uri,
+ org.polarsys.reqcycle.traceability,
  org.polarsys.reqcycle.utils.inject,
  org.eclipse.e4.core.services,
  org.eclipse.core.resources,
- org.polarsys.reqcycle.traceability.builder;bundle-version="1.0.0",
- org.apache.commons.io;bundle-version="2.0.1"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ org.polarsys.reqcycle.traceability.builder,
+ org.apache.commons.io
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: javax.inject
+Import-Package: javax.inject,
+ org.apache.commons.io.input;version="2.0.1",
+ org.polarsys.reqcycle.traceability.builder
 Export-Package: org.polarsys.reqcycle.traceability.storage.sesame,
  org.polarsys.reqcycle.traceability.storage.sesame.storage,
  org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers,

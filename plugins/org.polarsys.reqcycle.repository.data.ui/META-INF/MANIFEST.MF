@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DataUI
 Bundle-SymbolicName: org.polarsys.reqcycle.repository.data.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.repository.data.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -12,14 +12,28 @@ Require-Bundle: org.eclipse.ui,
  javax.inject,
  org.polarsys.reqcycle.core,
  org.eclipse.core.expressions,
- org.eclipse.emf.codegen;bundle-version="2.9.0",
- org.eclipse.emf.codegen.ecore;bundle-version="2.9.0",
- org.polarsys.reqcycle.utils.configuration;bundle-version="1.0.0",
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0",
+ org.eclipse.emf.codegen,
+ org.eclipse.emf.codegen.ecore,
+ org.polarsys.reqcycle.utils.configuration,
+ org.polarsys.reqcycle.utils.inject,
  org.eclipse.core.databinding,
  org.eclipse.core.databinding.beans,
  org.eclipse.core.databinding.observable,
  org.eclipse.core.databinding.property,
- org.eclipse.jface.databinding
+ org.eclipse.jface.databinding,
+ org.polarsys.reqcycle.repository.connector,
+ org.polarsys.reqcycle.repository.connector.ui,
+ org.eclipse.ui.navigator,
+ org.polarsys.reqcycle.uri,
+ org.polarsys.reqcycle.predicates.core,
+ org.polarsys.reqcycle.impact,
+ org.polarsys.reqcycle.impact.ui,
+ org.eclipse.ui.ide,
+ org.polarsys.reqcycle.core.ui,
+ org.eclipse.e4.ui.di,
+ org.polarsys.reqcycle.dnd,
+ org.polarsys.reqcycle.ui.components,
+ org.eclipse.emf.workspace,
+ org.polarsys.reqcycle.predicates.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

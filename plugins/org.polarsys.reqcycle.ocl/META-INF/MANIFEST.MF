@@ -2,19 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ocl
 Bundle-SymbolicName: org.polarsys.reqcycle.ocl;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.polarsys.reqcycle.repository.data;bundle-version="1.0.0",
- org.polarsys.reqcycle.repository.connector;bundle-version="1.0.0",
- org.polarsys.reqcycle.repository.connector.ui;bundle-version="1.0.0",
- org.polarsys.reqcycle.utils.inject;bundle-version="1.0.0",
- org.polarsys.reqcycle.utils.ocl;bundle-version="0.0.1",
+ org.polarsys.reqcycle.repository.data,
+ org.polarsys.reqcycle.repository.connector,
+ org.polarsys.reqcycle.repository.connector.ui,
+ org.polarsys.reqcycle.utils.inject,
+ org.polarsys.reqcycle.utils.ocl,
  org.eclipse.core.resources,
  org.eclipse.emf.common.ui,
  org.eclipse.core.databinding,
- org.eclipse.core.databinding.property;bundle-version="1.4.200",
+ org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  org.eclipse.core.databinding.beans,
  org.eclipse.ocl.examples.pivot,
@@ -22,6 +22,12 @@ Require-Bundle: org.eclipse.ui,
  com.google.guava,
  org.polarsys.reqcycle.emf,
  org.eclipse.ui.workbench,
- org.eclipse.ui.ide;bundle-version="3.9.0"
+ org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Export-Package: org.polarsys.reqcycle.ocl,
+ org.polarsys.reqcycle.ocl.ui
+Export-Package: org.polarsys.reqcycle.ocl,
+ org.polarsys.reqcycle.ocl.ui
+Export-Package: org.polarsys.reqcycle.ocl,
+ org.polarsys.reqcycle.ocl.ui

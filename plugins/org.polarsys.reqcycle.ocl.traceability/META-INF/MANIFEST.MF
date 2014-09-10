@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Traceability
 Bundle-SymbolicName: org.polarsys.reqcycle.ocl.traceability;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.ocl.traceability.OCLTraceabilityPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.core.resources;bundle-version="3.8.100",
- org.polarsys.reqcycle.utils.ocl;bundle-version="0.0.1",
- org.polarsys.reqcycle.uri;bundle-version="1.0.0",
+ org.eclipse.core.resources,
+ org.polarsys.reqcycle.utils.ocl,
+ org.polarsys.reqcycle.uri,
  org.polarsys.reqcycle.traceability.builder,
- org.eclipse.ocl.examples.pivot;bundle-version="3.3.0",
+ org.eclipse.ocl.examples.pivot,
  com.google.guava
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
