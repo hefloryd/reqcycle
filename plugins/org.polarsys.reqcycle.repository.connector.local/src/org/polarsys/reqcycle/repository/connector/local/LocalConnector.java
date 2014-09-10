@@ -10,13 +10,12 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.local;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.local.ui.LocalSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.data.IDataManager;
@@ -50,12 +49,12 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public Callable<RequirementSource> createRequirementSource() {
-		return new Callable<RequirementSource>() {
+	public ICallable getRequirementsCreator() {
+		return new ICallable() {
 
 			@Override
-			public RequirementSource call() throws Exception {
-				RequirementSource source = manager.createRequirementSource();
+			public void fillRequirementSource(RequirementSource source)
+					throws Exception {
 				RequirementsContainer rc = manager
 						.createRequirementsContainer(URI
 								.createPlatformResourceURI(destination, true));
@@ -64,13 +63,12 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 				source.setDefaultScope(scope);
 				source.setProperty(IRequirementSourceProperties.IS_LOCAL,
 						"true");
-				return source;
 			}
 		};
 	}
 
 	@Override
-	public void init(ISelection selection) {
+	public void init(ISelection selection, String name) {
 		// Don't need to init
 	}
 
@@ -89,6 +87,12 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	public void addPages() {
 		localSettingPage = new LocalSettingPage("Setting Page");
 		addPage(localSettingPage);
+	}
+
+	@Override
+	public void storeProperties(RequirementSource source) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

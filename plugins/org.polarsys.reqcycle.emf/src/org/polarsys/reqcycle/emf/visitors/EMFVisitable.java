@@ -51,7 +51,7 @@ public class EMFVisitable implements IVisitable, IAdaptable {
 	}
 
 	protected ResourceSet getResourceSet() {
-		return EMFUtils.getFastAndUnresolvingResourceSet();
+		return EMFUtils.getFAURSWithPathMaps();
 	}
 
 	@Override

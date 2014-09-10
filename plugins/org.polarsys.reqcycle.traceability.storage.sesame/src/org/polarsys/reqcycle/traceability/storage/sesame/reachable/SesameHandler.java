@@ -1,3 +1,39 @@
+/*******************************************************************************
+ * Copyright (c) 2014 AtoS
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ *    Reda Semlal (AtoS) - backend optimizations
+ *******************************************************************************/
+/*******************************************************************************
+ * Copyright (c) 2014 AtoS
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ *    Reda Semlal (AtoS) - backend optimizations
+ *******************************************************************************/
+/*******************************************************************************
+ * Copyright (c) 2014 AtoS
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ *    Reda Semlal (AtoS) - backend optimizations
+ *******************************************************************************/
+/*******************************************************************************
+ * Copyright (c) 2014 AtoS
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html *
+ * Contributors:
+ *    Reda Semlal (AtoS) - backend optimizations
+ *******************************************************************************/
 package org.polarsys.reqcycle.traceability.storage.sesame.reachable;
 
 import java.io.File;
@@ -30,21 +66,18 @@ public class SesameHandler implements IObjectHandler, IReachableHandler {
 	@Override
 	public ReachableObject getFromObject(Object object) {
 		ReachableObject result = null;
-		/*if(object instanceof Vertex) {
-			Vertex vertext = (Vertex)object;
-			if(vertext.getId() instanceof String) {
-				result = new SesameReachableObject(op.getReachable(vertext));
-			}
-		} else */if(object instanceof File) {
-			result = new SesameReachableObject(creator.getReachable(((File)object).toURI(), object));
-		} else if(object instanceof IFile) {
+		if (object instanceof File) {
+			final URI uri = ((File) object).toURI();
+			result = new SesameReachableObject(creator.getReachable(uri, object));
+		} else if (object instanceof IFile) {
 			try {
-				result = new SesameReachableObject(creator.getReachable(new URI("platform:" + ((IFile)object).getFullPath().toString()), object));
+				final URI uri = new URI("platform:" + ((IFile) object).getFullPath().toString());
+				result = new SesameReachableObject(creator.getReachable(uri, object));
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
 		}
-		if(result != null) {
+		if (result != null) {
 			ZigguratInject.inject(result);
 		}
 		return result;
@@ -52,12 +85,10 @@ public class SesameHandler implements IObjectHandler, IReachableHandler {
 
 	@Override
 	public boolean handlesObject(Object object) {
-/*		if(object instanceof Vertex) {
-			return true;
-		} else*/ if(object instanceof File) {
-			return RDFWriterRegistry.getInstance().getFileFormatForFileName(((File)object).getName()) != null;
-		} else if(object instanceof IFile) {
-			return RDFWriterRegistry.getInstance().getFileFormatForFileName(((IFile)object).getName()) != null;
+		if (object instanceof File) {
+			return RDFWriterRegistry.getInstance().getFileFormatForFileName(((File) object).getName()) != null;
+		} else if (object instanceof IFile) {
+			return RDFWriterRegistry.getInstance().getFileFormatForFileName(((IFile) object).getName()) != null;
 		}
 		return false;
 	}
@@ -71,7 +102,8 @@ public class SesameHandler implements IObjectHandler, IReachableHandler {
 
 	@Override
 	public boolean handlesReachable(Reachable t) {
-		return t.getPath() != null && ! "reqcycleStd".equals(t.getScheme()) && RDFWriterRegistry.getInstance().getFileFormatForFileName(t.getPath()) != null;
+		return t.getPath() != null && !"reqcycleStd".equals(t.getScheme())
+				&& RDFWriterRegistry.getInstance().getFileFormatForFileName(t.getPath()) != null;
 	}
 
 	@Override

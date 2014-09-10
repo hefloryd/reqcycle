@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.wizard;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -20,8 +18,10 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
+import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.ui.wizard.pages.SelectConnectorPage;
@@ -33,7 +33,7 @@ public class NewRequirementSourceWizard extends Wizard implements
 	/** connector selection wizard page */
 	private SelectConnectorPage selectConnectorPage;
 
-	private Callable<RequirementSource> createRequirementSource = null;
+	private ICallable createRequirementSource = null;
 
 	private IStructuredSelection selection;
 
@@ -75,8 +75,7 @@ public class NewRequirementSourceWizard extends Wizard implements
 				return false;
 			}
 		}
-		createRequirementSource = connector.createRequirementSource();
-		RequirementSource source;
+		createRequirementSource = connector.getRequirementsCreator();
 		try {
 			if (createRequirementSource == null) {
 				// FIXME : Exception
@@ -84,12 +83,17 @@ public class NewRequirementSourceWizard extends Wizard implements
 				throw new Exception(
 						"requirement source is null; Should not occur = bug");
 			}
-
-			source = createRequirementSource.call();
+			RequirementSource source = requirementSourceManager
+					.createRequirementSource();
 			ConnectorDescriptor connectorDescriptor = getConnectorDescriptor();
 			source.setConnectorId(connectorDescriptor.getId());
 			String sourceName = getSourceName();
 			source.setName(sourceName);
+			if (connector instanceof IConnectorWizard) {
+				IConnectorWizard wiz = (IConnectorWizard) connector;
+				wiz.storeProperties(source);
+			}
+			createRequirementSource.fillRequirementSource(source);
 			getRequirementSourceManager().addRequirementSource(source);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -123,11 +127,16 @@ public class NewRequirementSourceWizard extends Wizard implements
 		if (page instanceof SelectConnectorPage
 				&& connector instanceof IConnectorWizard) {
 			IConnectorWizard connectorWizard = (IConnectorWizard) connector;
-			if (selection != null) {
-				connectorWizard.init(selection);
-			}
+			connectorWizard.init(selection,
+					((SelectConnectorPage) page).getSourceName());
 			if (connectorWizard.getPageCount() == 0) {
 				connectorWizard.addPages();
+			}
+			if (connectorWizard.getStartingPage() instanceof AbstractSettingPage) {
+				AbstractSettingPage startingPage = (AbstractSettingPage) connectorWizard
+						.getStartingPage();
+				startingPage.setFileName(((SelectConnectorPage) page)
+						.getSourceName());
 			}
 			IWizardPage startingPage = connectorWizard.getStartingPage();
 			if (startingPage != null) {
@@ -166,10 +175,6 @@ public class NewRequirementSourceWizard extends Wizard implements
 			return selectConnectorPage.getSourceName();
 		}
 		return null;
-	}
-
-	public Callable<RequirementSource> getResult() {
-		return createRequirementSource;
 	}
 
 	@Override

@@ -30,6 +30,7 @@ public class OrderByPredicatesHandler extends AbstractHandler {
 				reqView.setPredicates(selection);
 				reqView.setViewFiltered(false);
 				reqView.setViewOrdered(true);
+				reqView.setViewByScopes(false);
 				reqView.getCommonViewer().refresh(true);
 			}
 		} else {
@@ -38,6 +39,7 @@ public class OrderByPredicatesHandler extends AbstractHandler {
 				RequirementView reqView = (RequirementView) part;
 				reqView.setViewFiltered(false);
 				reqView.setViewOrdered(false);
+				reqView.setViewByScopes(false);
 				reqView.getCommonViewer().refresh();
 			}
 		}

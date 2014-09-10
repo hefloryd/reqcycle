@@ -52,6 +52,7 @@ import org.polarsys.reqcycle.repository.ui.Messages;
 import org.polarsys.reqcycle.repository.ui.actions.AddRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.actions.DeleteRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.actions.EditMappingAction;
+import org.polarsys.reqcycle.repository.ui.actions.OpenImpactAnalysisViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenRequirementViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.RefreshViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.SynchronizeRequirementSourceAction;
@@ -64,7 +65,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
  */
 public class RequirementSourcesView extends ViewPart {
 
-	//FIXME : Use manager or local connector to retrieve this ID
+	// FIXME : Use manager or local connector to retrieve this ID
 	public final static String LOCAL_CONNECTOR_ID = "org.polarsys.reqcycle.repository.connector.local.connectorCore";
 
 	/** The ID of the view as specified by the extension. */
@@ -86,16 +87,19 @@ public class RequirementSourcesView extends ViewPart {
 	private Action refreshViewAction;
 
 	/** Navigation bar adapter for the tree viewer */
-	//	private DrillDownAdapter drillDownAdapter;
+	// private DrillDownAdapter drillDownAdapter;
 
 	/** Synchronize Resource Stub Action */
 	private Action synchResourceAction;
 
 	/** Open Predicates Editor Action */
-	//	private OpenPredicatesEditorAction openPredicatesEditorAction;
+	// private OpenPredicatesEditorAction openPredicatesEditorAction;
 
 	/** Open Predicates View Action */
 	private OpenRequirementViewAction openRequirementViewAction;
+
+	/** Open Impact Analysis View Action */
+	private OpenImpactAnalysisViewAction openImpactAnalysisViewAction;
 
 	/** Add location icon */
 	private static final String ICON_ADD_LOCATION = Messages.ADD_RESOURCE_ICON;
@@ -108,6 +112,9 @@ public class RequirementSourcesView extends ViewPart {
 
 	/** Open Requirement View button icon */
 	private static final String ICON_OPEN = "icons/open.png";
+
+	/** Open ImpactAnalysis View button icon */
+	private static final String ICON_IMPACT = "icons/compare_view.gif";
 
 	/** Requirement Source Manager */
 	@Inject
@@ -123,15 +130,16 @@ public class RequirementSourcesView extends ViewPart {
 	 * The constructor.
 	 */
 	public RequirementSourcesView() {
-		//		connectorManager = ZigguratInject.make(IConnectorManager.class);
-		//		logger = ZigguratInject.make(ILogger.class);
-		//		requirementSourceManager = ZigguratInject.make(IDataManager.class);
+		// connectorManager = ZigguratInject.make(IConnectorManager.class);
+		// logger = ZigguratInject.make(ILogger.class);
+		// requirementSourceManager = ZigguratInject.make(IDataManager.class);
 		super();
 		ZigguratInject.inject(this);
 	}
 
 	/**
-	 * This is a callback that will allow us to create the viewer and initialize it.
+	 * This is a callback that will allow us to create the viewer and initialize
+	 * it.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -144,7 +152,7 @@ public class RequirementSourcesView extends ViewPart {
 			}
 		};
 
-		//		drillDownAdapter = new DrillDownAdapter(viewer);
+		// drillDownAdapter = new DrillDownAdapter(viewer);
 		viewer.setContentProvider(new RequirementSourceContentProvider());
 		viewer.setLabelProvider(new RequirementSourceLabelProvider());
 		viewer.setInput(requirementSourceManager.getRepositoryMap().keySet());
@@ -155,12 +163,14 @@ public class RequirementSourcesView extends ViewPart {
 			public void handleEvent(Event event) {
 				List<TreeItem> reqSourceItems = new ArrayList<TreeItem>();
 				TreeItem[] selectedItems = viewer.getTree().getSelection();
-				for(TreeItem item : selectedItems) {
-					if((item.getData() instanceof RequirementSource)) {
+				for (TreeItem item : selectedItems) {
+					if ((item.getData() instanceof RequirementSource)) {
 						reqSourceItems.add(item);
 					}
 				}
-				viewer.getTree().setSelection(reqSourceItems.toArray(new TreeItem[reqSourceItems.size()]));
+				viewer.getTree().setSelection(
+						reqSourceItems.toArray(new TreeItem[reqSourceItems
+								.size()]));
 			}
 		});
 
@@ -176,33 +186,37 @@ public class RequirementSourcesView extends ViewPart {
 	 * Refresh the View buttons
 	 * 
 	 * @param iSelection
-	 *        the View iSelection
+	 *            the View iSelection
 	 */
 	public void refreshButton(ISelection iSelection) {
 		Object selectedElement = null;
-		if(iSelection instanceof IStructuredSelection) {
-			selectedElement = ((IStructuredSelection)iSelection).getFirstElement();
+		if (iSelection instanceof IStructuredSelection) {
+			selectedElement = ((IStructuredSelection) iSelection)
+					.getFirstElement();
 		}
 
-		if(deleteRequirementSourceAction != null) {
+		if (deleteRequirementSourceAction != null) {
 			deleteRequirementSourceAction.setEnabled(selectedElement != null);
 		}
-		if(editMappingAction != null) {
-			editMappingAction.setEnabled(selectedElement instanceof RequirementSource ? canEditSource((RequirementSource)selectedElement) : false);
+		if (editMappingAction != null) {
+			editMappingAction
+					.setEnabled(selectedElement instanceof RequirementSource ? canEditSource((RequirementSource) selectedElement)
+							: false);
 		}
 	}
 
-	//TODO move to requirement source util class
+	// TODO move to requirement source util class
 	public boolean canEditSource(RequirementSource source) {
-		if(!(source instanceof RequirementSource)) {
+		if (!(source instanceof RequirementSource)) {
 			return false;
 		}
 		String connectorID = source.getConnectorId();
-		if(connectorID == null) {
+		if (connectorID == null) {
 			return false;
 		}
-		ConnectorDescriptor connectorDescriptor = connectorManager.get(connectorID);
-		if(connectorDescriptor == null) {
+		ConnectorDescriptor connectorDescriptor = connectorManager
+				.get(connectorID);
+		if (connectorDescriptor == null) {
 			return false;
 		}
 		IConnector connector = null;
@@ -212,7 +226,7 @@ public class RequirementSourcesView extends ViewPart {
 			e.printStackTrace();
 			logger.log(e.getStatus());
 		}
-		if(connector instanceof IConnectorWizard) {
+		if (connector instanceof IConnectorWizard) {
 			return true;
 		}
 
@@ -228,11 +242,12 @@ public class RequirementSourcesView extends ViewPart {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object element = ((IStructuredSelection)selection).getFirstElement();
-					if(element instanceof RequirementSource) {
-						RequirementSource source = (RequirementSource)element;
-						//						synchResourceAction.setEnabled(Boolean.parseBoolean(source.getProperty(IRequirementSourceProperties.IS_LOCAL)));
+				if (selection instanceof IStructuredSelection) {
+					Object element = ((IStructuredSelection) selection)
+							.getFirstElement();
+					if (element instanceof RequirementSource) {
+						RequirementSource source = (RequirementSource) element;
+						// synchResourceAction.setEnabled(Boolean.parseBoolean(source.getProperty(IRequirementSourceProperties.IS_LOCAL)));
 					}
 
 				}
@@ -272,49 +287,50 @@ public class RequirementSourcesView extends ViewPart {
 	 * Fills the local Pull Down menu
 	 * 
 	 * @param manager
-	 *        the menu manager
+	 *            the menu manager
 	 */
 	private void fillLocalPullDown(IMenuManager manager) {
-		//		manager.add(addRepoAction);
-		//		manager.add(new Separator());
-		//		manager.add(deleteRequirementSourceAction);
-		//		manager.add(new Separator());
-		//		manager.add(synchResourceAction);
-		//		manager.add(new Separator());
-		//		manager.add(openRequirementViewAction);
+		// manager.add(addRepoAction);
+		// manager.add(new Separator());
+		// manager.add(deleteRequirementSourceAction);
+		// manager.add(new Separator());
+		// manager.add(synchResourceAction);
+		// manager.add(new Separator());
+		// manager.add(openRequirementViewAction);
 	}
 
 	/**
 	 * Fills the context menu
 	 * 
 	 * @param manager
-	 *        the context menu manager
+	 *            the context menu manager
 	 */
 	private void fillContextMenu(IMenuManager manager) {
-		//		manager.add(addRepoAction);
-		//		manager.add(deleteRequirementSourceAction);
+		// manager.add(addRepoAction);
+		// manager.add(deleteRequirementSourceAction);
 		manager.add(new Separator(IWorkbenchActionConstants.NEW_EXT));
 		manager.add(synchResourceAction);
-		//		manager.add(editMappingAction);
+		// manager.add(editMappingAction);
 		manager.add(openRequirementViewAction);
 		manager.add(new Separator());
-		//		drillDownAdapter.addNavigationActions(manager);
+		// drillDownAdapter.addNavigationActions(manager);
 		// Other plug-ins can contribute there actions here
+		manager.add(openImpactAnalysisViewAction);
 	}
 
 	/**
 	 * Fills the local Tool Bar
 	 * 
 	 * @param manager
-	 *        The tool Bar manager
+	 *            The tool Bar manager
 	 */
 	private void fillLocalToolBar(IToolBarManager manager) {
 		manager.add(addRepoAction);
 		manager.add(deleteRequirementSourceAction);
-		//		manager.add(synchResourceAction);
+		// manager.add(synchResourceAction);
 		manager.add(refreshViewAction);
-		//		manager.add(new Separator());
-		//		drillDownAdapter.addNavigationActions(manager);
+		// manager.add(new Separator());
+		// drillDownAdapter.addNavigationActions(manager);
 	}
 
 	/**
@@ -325,31 +341,45 @@ public class RequirementSourcesView extends ViewPart {
 		ZigguratInject.inject(addRepoAction);
 		addRepoAction.setText(Messages.ADD_RESOURCE_TEXT);
 		addRepoAction.setToolTipText(Messages.ADD_RESOURCE_TEXT);
-		addRepoAction.setImageDescriptor(Activator.getImageDescriptor(ICON_ADD_LOCATION));
+		addRepoAction.setImageDescriptor(Activator
+				.getImageDescriptor(ICON_ADD_LOCATION));
 
-		deleteRequirementSourceAction = new DeleteRequirementSourceAction(viewer);
+		deleteRequirementSourceAction = new DeleteRequirementSourceAction(
+				viewer);
 		ZigguratInject.inject(deleteRequirementSourceAction);
 		deleteRequirementSourceAction.setText(Messages.REMOVE_RESOURCE_TEXT);
-		deleteRequirementSourceAction.setToolTipText(Messages.REMOVE_RESOURCE_TEXT);
-		deleteRequirementSourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_DELETE_LOCATION));
+		deleteRequirementSourceAction
+				.setToolTipText(Messages.REMOVE_RESOURCE_TEXT);
+		deleteRequirementSourceAction.setImageDescriptor(Activator
+				.getImageDescriptor(ICON_DELETE_LOCATION));
 		deleteRequirementSourceAction.setEnabled(false);
 
-		//		openPredicatesEditorAction = new OpenPredicatesEditorAction();
-		//		ZigguratInject.inject(openPredicatesEditorAction);
-		//		openPredicatesEditorAction.setText("Open Predicates Editor");
-		//		openPredicatesEditorAction.setToolTipText("Open Predicates Editor");
-		//		openPredicatesEditorAction.setImageDescriptor(Activator.getImageDescriptor(ICON_OPEN)); // TODO: replace icon
+		// openPredicatesEditorAction = new OpenPredicatesEditorAction();
+		// ZigguratInject.inject(openPredicatesEditorAction);
+		// openPredicatesEditorAction.setText("Open Predicates Editor");
+		// openPredicatesEditorAction.setToolTipText("Open Predicates Editor");
+		// openPredicatesEditorAction.setImageDescriptor(Activator.getImageDescriptor(ICON_OPEN));
+		// // TODO: replace icon
 
 		openRequirementViewAction = new OpenRequirementViewAction(viewer);
 		openRequirementViewAction.setText("Open Requirements View");
 		openRequirementViewAction.setToolTipText("Open Requirements View");
-		openRequirementViewAction.setImageDescriptor(Activator.getImageDescriptor(ICON_OPEN)); // TODO: replace icon
+		openRequirementViewAction.setImageDescriptor(Activator
+				.getImageDescriptor(ICON_OPEN)); // TODO: replace icon
+
+		openImpactAnalysisViewAction = new OpenImpactAnalysisViewAction(viewer);
+		openImpactAnalysisViewAction.setText("Open Impact Analysis View");
+		openImpactAnalysisViewAction
+				.setToolTipText("Open Impact Analysis View");
+		openImpactAnalysisViewAction.setImageDescriptor(Activator
+				.getImageDescriptor(ICON_IMPACT));
 
 		synchResourceAction = new SynchronizeRequirementSourceAction(viewer);
 		ZigguratInject.inject(synchResourceAction);
 		synchResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
-		synchResourceAction.setToolTipText("Synchronization not available");//Messages.SYNC_RESOURCE_TEXT);
-		synchResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_SYNCHRONIZE));
+		synchResourceAction.setToolTipText("Synchronization not available");// Messages.SYNC_RESOURCE_TEXT);
+		synchResourceAction.setImageDescriptor(Activator
+				.getImageDescriptor(ICON_SYNCHRONIZE));
 		synchResourceAction.setEnabled(false);
 
 		editMappingAction = new EditMappingAction(viewer);
@@ -357,12 +387,13 @@ public class RequirementSourcesView extends ViewPart {
 		editMappingAction.setText("Edit Requirement Source");
 		editMappingAction.setToolTipText("Edit Requiement Source");
 		// FIXME : add image change mapping
-		//		editMappingAction.setImageDescriptor();
+		// editMappingAction.setImageDescriptor();
 		editMappingAction.setEnabled(false);
 
 		refreshViewAction = new RefreshViewAction(viewer);
 		refreshViewAction.setToolTipText("Refresh View");
-		refreshViewAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
+		refreshViewAction.setImageDescriptor(Activator
+				.getImageDescriptor("icons/refresh.gif"));
 		refreshViewAction.setEnabled(true);
 	}
 
@@ -381,13 +412,14 @@ public class RequirementSourcesView extends ViewPart {
 
 	@Inject
 	@Optional
-	void reactOnElementAddition(@UIEventTopic(IDataTopics.NEW_SOURCE) RequirementSource object) {
+	void reactOnElementAddition(
+			@UIEventTopic(IDataTopics.NEW_SOURCE) RequirementSource object) {
 
-		if(object == null) {
+		if (object == null) {
 			return;
 		}
 
-		if(viewer != null) {
+		if (viewer != null) {
 			viewer.refresh();
 			viewer.setSelection(new StructuredSelection(object));
 		}

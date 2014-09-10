@@ -16,6 +16,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -30,9 +31,11 @@ public class StylingContentProvider implements ITreeContentProvider {
 	IPredicateEvaluator predicateEvaluator;
 
 	private List<IPredicate> predicates;
+	private List<Scope> scopes;
 
 	private Boolean filtered;
 	private Boolean ordered;
+	private Boolean scope;
 
 	private NavigatorRoot navigatorRoot;
 
@@ -41,8 +44,10 @@ public class StylingContentProvider implements ITreeContentProvider {
 		ZigguratInject.inject(this);
 
 		predicates = new LinkedList<IPredicate>();
+		scopes = new LinkedList<Scope>();
 		filtered = false;
 		ordered = false;
+		scope = false;
 	}
 
 	@Override
@@ -61,8 +66,10 @@ public class StylingContentProvider implements ITreeContentProvider {
 	public Object[] getElements(Object inputElement) {
 		if (inputElement instanceof NavigatorRoot) {
 			predicates = ((NavigatorRoot) inputElement).getPredicates();
+			scopes = ((NavigatorRoot) inputElement).getScopes();
 			filtered = ((NavigatorRoot) inputElement).isViewFiltered();
-			ordered = ((NavigatorRoot) inputElement).isViewOredered();
+			ordered = ((NavigatorRoot) inputElement).isViewOrdered();
+			scope  = ((NavigatorRoot) inputElement).isViewByScopes();
 
 			if (ordered && (predicates.size() != 0)) {
 				return predicates.toArray();
@@ -72,6 +79,8 @@ public class StylingContentProvider implements ITreeContentProvider {
 				return Iterators.toArray(Iterators.filter(
 						((NavigatorRoot) inputElement).getSources().iterator(),
 						new PPredicate(predicate)), Object.class);
+			} else if (scope && (scopes.size() != 0)) {
+				return scopes.toArray();
 			} else {
 				List<RequirementSource> sources = ((NavigatorRoot) inputElement)
 						.getSources();
@@ -110,6 +119,8 @@ public class StylingContentProvider implements ITreeContentProvider {
 			} else {
 				elements = ((Section) object).getChildren();
 			}
+		} else if (object instanceof Scope) {
+			return ((Scope)object).getRequirements().toArray();
 		}
 
 		if (elements.size() != 0) {
@@ -146,6 +157,8 @@ public class StylingContentProvider implements ITreeContentProvider {
 							new PPredicate((IPredicate) object)).hasNext();
 		} else if (object instanceof Section) {
 			return !((Section) object).getChildren().isEmpty();
+		} else if (object instanceof Scope) {
+			return !((Scope)object).getRequirements().isEmpty();
 		}
 		return false;
 	}

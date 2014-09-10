@@ -14,17 +14,14 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.Path;
 import org.polarsys.reqcycle.traceability.builder.IBuildingDecoration.IBuildingDecorationAdapter;
 import org.polarsys.reqcycle.traceability.builder.ITraceabilityBuilder.IBuilderCallBack;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
+import org.polarsys.reqcycle.traceability.storage.NoProjectStorageException;
 import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
 import org.polarsys.reqcycle.traceability.types.RelationBasedType;
 import org.polarsys.reqcycle.traceability.types.RelationUtils;
@@ -35,7 +32,6 @@ import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.uri.model.ReachableObject;
 
 public class AttributesConfigurationBuildingDecoration extends
 		IBuildingDecorationAdapter {
@@ -45,7 +41,6 @@ public class AttributesConfigurationBuildingDecoration extends
 	@Inject
 	protected IReachableManager manager;
 	@Inject
-	@Named("RDF")
 	protected IStorageProvider storageProvider;
 
 	protected ITraceabilityStorage currentStorage;
@@ -60,31 +55,11 @@ public class AttributesConfigurationBuildingDecoration extends
 		if (defaultConfiguration == null) {
 			return;
 		}
-		ReachableObject object;
 		try {
-			object = manager.getHandlerFromReachable(reachable)
-					.getFromReachable(reachable);
-			if (object != null) {
-				IFile adapted = (IFile) object.getAdapter(IFile.class);
-				if (adapted != null && adapted.exists()) {
-					IProject p = adapted.getProject();
-					currentStorage = getStorage(p);
-					// currentStorage.get
-				}
-			}
-		} catch (IReachableHandlerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			currentStorage = storageProvider.getProjectStorageFromLinkId(reachable);
+		} catch (NoProjectStorageException e) {
+			e.printStackTrace(); // TODO Error handling
 		}
-	}
-
-	private ITraceabilityStorage getStorage(IProject p) {
-		IFile file = p.getFile(new Path(
-				TraceabilityAttributesManager.STORAGE_PATH));
-		// get the storage for the file path
-		String uri = file.getLocationURI().getPath();
-		ITraceabilityStorage storage = storageProvider.getStorage(uri);
-		return storage;
 	}
 
 	@Override

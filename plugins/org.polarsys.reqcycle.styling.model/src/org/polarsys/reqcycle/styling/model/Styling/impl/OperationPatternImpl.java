@@ -12,7 +12,9 @@ package org.polarsys.reqcycle.styling.model.Styling.impl;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,6 +40,8 @@ import org.polarsys.reqcycle.uri.IReachableListener;
 import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.functions.URIFunctions;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
 import com.google.common.base.Function;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -113,6 +117,7 @@ public class OperationPatternImpl extends PatternImpl implements
 	 */
 	protected OperationPatternImpl() {
 		super();
+		ZigguratInject.inject(this);
 	}
 
 	/**

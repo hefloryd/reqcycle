@@ -29,6 +29,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 /**
  * Example of Action to Synchronize a Requirement Resource
  * FIXME : use a synchronize module in a different plugin and remove this one
+ * FIXME : features involving this class may be broken
  */
 public class SynchronizeRequirementSourceAction extends Action {
 

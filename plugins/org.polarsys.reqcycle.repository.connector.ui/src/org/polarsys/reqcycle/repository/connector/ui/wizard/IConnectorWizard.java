@@ -13,13 +13,23 @@ package org.polarsys.reqcycle.repository.connector.ui.wizard;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.IWizard;
 import org.polarsys.reqcycle.repository.connector.IConnector;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 /**
- * If the connector's configuration is made through a wizard, this interface should be used.
+ * If the connector's configuration is made through a wizard, this interface
+ * should be used.
  */
 public interface IConnectorWizard extends IConnector, IWizard {
 
 	/** Initialize the wizard with the user selection */
-	public void init(ISelection selection);
+	public void init(ISelection selection, String name);
+
+	/**
+	 * Called before the callable, used to register specific properties to the
+	 * connector
+	 * 
+	 * @param source
+	 */
+	public void storeProperties(RequirementSource source);
 
 }

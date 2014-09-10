@@ -111,13 +111,22 @@ public interface StylingPackage extends EPackage {
 	int STYLING_MODEL__DEFAULT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Basic</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STYLING_MODEL__BASIC = 3;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STYLING_MODEL_FEATURE_COUNT = 3;
+	int STYLING_MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -1009,6 +1018,70 @@ public interface StylingPackage extends EPackage {
 	int EOBJECT_PARAMETER_OPERATION_COUNT = PARAMETER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.styling.model.Styling.impl.BasicImpl <em>Basic</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.BasicImpl
+	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getBasic()
+	 * @generated
+	 */
+	int BASIC = 17;
+
+	/**
+	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC__SEGMENTS = CASE_STYLE__SEGMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC__ICON = CASE_STYLE__ICON;
+
+	/**
+	 * The number of structural features of the '<em>Basic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_FEATURE_COUNT = CASE_STYLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Styled String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC___GET_STYLED_STRING__OBJECT = CASE_STYLE___GET_STYLED_STRING__OBJECT;
+
+	/**
+	 * The operation id for the '<em>Get Image</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC___GET_IMAGE = CASE_STYLE___GET_IMAGE;
+
+	/**
+	 * The number of operations of the '<em>Basic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_OPERATION_COUNT = CASE_STYLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.polarsys.reqcycle.styling.model.Styling.FontOption <em>Font Option</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1016,7 +1089,7 @@ public interface StylingPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getFontOption()
 	 * @generated
 	 */
-	int FONT_OPTION = 17;
+	int FONT_OPTION = 18;
 
 	/**
 	 * The meta object id for the '<em>Color</em>' data type.
@@ -1026,7 +1099,7 @@ public interface StylingPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getColor()
 	 * @generated
 	 */
-	int COLOR = 18;
+	int COLOR = 19;
 
 	/**
 	 * The meta object id for the '<em>Font</em>' data type.
@@ -1036,7 +1109,7 @@ public interface StylingPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getFont()
 	 * @generated
 	 */
-	int FONT = 19;
+	int FONT = 20;
 
 	/**
 	 * The meta object id for the '<em>Styled String</em>' data type.
@@ -1046,7 +1119,7 @@ public interface StylingPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getStyledString()
 	 * @generated
 	 */
-	int STYLED_STRING = 20;
+	int STYLED_STRING = 21;
 
 	/**
 	 * The meta object id for the '<em>Image</em>' data type.
@@ -1056,7 +1129,7 @@ public interface StylingPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 21;
+	int IMAGE = 22;
 
 
 	/**
@@ -1101,6 +1174,17 @@ public interface StylingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStylingModel_Default();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.polarsys.reqcycle.styling.model.Styling.StylingModel#getBasic <em>Basic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Basic</em>'.
+	 * @see org.polarsys.reqcycle.styling.model.Styling.StylingModel#getBasic()
+	 * @see #getStylingModel()
+	 * @generated
+	 */
+	EReference getStylingModel_Basic();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.reqcycle.styling.model.Styling.StylingPredicate <em>Predicate</em>}'.
@@ -1541,6 +1625,16 @@ public interface StylingPackage extends EPackage {
 	EReference getEObjectParameter_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.styling.model.Styling.Basic <em>Basic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Basic</em>'.
+	 * @see org.polarsys.reqcycle.styling.model.Styling.Basic
+	 * @generated
+	 */
+	EClass getBasic();
+
+	/**
 	 * Returns the meta object for enum '{@link org.polarsys.reqcycle.styling.model.Styling.FontOption <em>Font Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1650,6 +1744,14 @@ public interface StylingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STYLING_MODEL__DEFAULT = eINSTANCE.getStylingModel_Default();
+
+		/**
+		 * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STYLING_MODEL__BASIC = eINSTANCE.getStylingModel_Basic();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.reqcycle.styling.model.Styling.impl.StylingPredicateImpl <em>Predicate</em>}' class.
@@ -2018,6 +2120,16 @@ public interface StylingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EOBJECT_PARAMETER__VALUE = eINSTANCE.getEObjectParameter_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.styling.model.Styling.impl.BasicImpl <em>Basic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.reqcycle.styling.model.Styling.impl.BasicImpl
+		 * @see org.polarsys.reqcycle.styling.model.Styling.impl.StylingPackageImpl#getBasic()
+		 * @generated
+		 */
+		EClass BASIC = eINSTANCE.getBasic();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.reqcycle.styling.model.Styling.FontOption <em>Font Option</em>}' enum.

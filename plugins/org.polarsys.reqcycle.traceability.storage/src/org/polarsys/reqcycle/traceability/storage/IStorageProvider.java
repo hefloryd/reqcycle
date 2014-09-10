@@ -10,7 +10,8 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.storage;
 
-
+import org.eclipse.core.resources.IProject;
+import org.polarsys.reqcycle.uri.model.Reachable;
 
 public interface IStorageProvider {
 	/**
@@ -20,6 +21,26 @@ public interface IStorageProvider {
 	 * @return
 	 */
 	ITraceabilityStorage getStorage(String path);
-	
+
+	/**
+	 * @param project
+	 *            The target project.
+	 * @return A storage able to store explicit traceability links for a
+	 *         project.
+	 */
+	ITraceabilityStorage getProjectStorage(IProject project);
+
+	/**
+	 * Gets a {@link ITraceabilityStorage} that can be used to read/update an
+	 * explicit link.
+	 * 
+	 * @param reachable
+	 *            Id of the explicit link.
+	 * @return {@link ITraceabilityStorage} object.
+	 * @throws NoProjectStorageException
+	 *             Thrown when the link id is not a valid explicit link id.
+	 */
+	ITraceabilityStorage getProjectStorageFromLinkId(Reachable reachable) throws NoProjectStorageException;
+
 	void notifyChanged(String event, Object data);
 }

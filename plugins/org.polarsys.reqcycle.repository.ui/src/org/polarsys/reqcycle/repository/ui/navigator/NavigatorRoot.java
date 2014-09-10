@@ -8,15 +8,19 @@ import java.util.List;
 import org.eclipse.core.runtime.PlatformObject;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 
 public class NavigatorRoot extends PlatformObject {
 
 	private List<RequirementSource> sources = new LinkedList<RequirementSource>();
 
-	protected List<IPredicate> predicates = new LinkedList<IPredicate>();
+	private List<IPredicate> predicates = new LinkedList<IPredicate>();
+
+	private List<Scope> scopes = new LinkedList<Scope>();
 
 	private Boolean filterView = false;
 	private Boolean orderView = false;
+	private Boolean scopeView = false;
 
 	public NavigatorRoot() {
 	}
@@ -46,19 +50,38 @@ public class NavigatorRoot extends PlatformObject {
 		return Collections.unmodifiableList(predicates);
 	}
 
+	public void setScopes(Collection<Scope> scopes2) {
+		scopes.clear();
+		if (scopes2 != null) {
+			scopes.addAll(scopes2);
+		}
+	}
+
+	public List<Scope> getScopes() {
+		return scopes;
+	}
+
 	public Boolean isViewFiltered() {
 		return filterView;
 	}
 
-	public Boolean isViewOredered() {
+	public Boolean isViewOrdered() {
 		return orderView;
+	}
+
+	public Boolean isViewByScopes() {
+		return scopeView;
 	}
 
 	public void setViewFiltered(Boolean filtered) {
 		filterView = filtered;
 	}
 
-	public void setViewOredered(Boolean ordered) {
+	public void setViewOrdered(Boolean ordered) {
 		orderView = ordered;
+	}
+
+	public void setViewByScopes(Boolean scope) {
+		scopeView = scope;
 	}
 }

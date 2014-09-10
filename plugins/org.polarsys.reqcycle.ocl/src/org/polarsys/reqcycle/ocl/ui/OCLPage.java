@@ -16,6 +16,8 @@ import java.util.Collection;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -50,9 +52,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
@@ -62,6 +62,8 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.ocl.ui.OCLConnector.SettingBean;
 import org.polarsys.reqcycle.ocl.utils.OCLUtilities;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.IUpdatablePage;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerator;
@@ -70,11 +72,11 @@ import org.polarsys.reqcycle.utils.ocl.ZigguratOCLPlugin;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
-public class OCLPage extends WizardPage implements Listener {
+public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePage {
 
-
-	protected OCLPage(SettingBean bean) {
+	public OCLPage(SettingBean bean) {
 		super("OCL queries");
 		setDescription("An OCL file, from which operations will be used from model analysis, has to be provided. " + "You can check whether all the operations needed by ReqCycle have been implemented, or if some are missing");
 		this.bean = bean;
@@ -115,6 +117,8 @@ public class OCLPage extends WizardPage implements Listener {
 	private Button browseButton;
 
 	private BaseResource resource;
+
+	private DataBindingContext bindingContext;
 	
 
 	@Override
@@ -138,8 +142,12 @@ public class OCLPage extends WizardPage implements Listener {
 		
 
 		hookListeners();
-		initDataBindings();
+		bindingContext = initDataBindings();
+		AbstractSettingPage.observeBean(bindingContext, this);
 		setControl(containerComposite);
+		if (bean.getDataModel() != null){
+			tvTypes.setInput(bean.getDataModel().getRequirementTypes());
+		}
 	}
 
 	private void createTypesUi(Composite parent) {
@@ -332,6 +340,8 @@ public class OCLPage extends WizardPage implements Listener {
 					tFile.setText(location);
 					tvTypes.refresh();
 					tvAttributes.refresh();
+					getWizard().getContainer().updateMessage();
+					getWizard().getContainer().updateButtons();
 				}
 			}
 		});
@@ -345,6 +355,7 @@ public class OCLPage extends WizardPage implements Listener {
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(tFile);
 		IObservableValue uriBeanObserveValue = PojoProperties.value("oclUri").observe(bean);
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
+		
 		//
 		return bindingContext;
 	}
@@ -358,16 +369,8 @@ public class OCLPage extends WizardPage implements Listener {
 		return viewerColumn;
 	}
 
-	@Override
-	public void handleEvent(Event event) {
-		updateDataTypes();
-		if(tvTypes != null) {
-			tvTypes.refresh();
-		}
-	}
-
 	private void updateDataTypes() {
-		IDataModel dataPackage = bean.getDataPackage();
+		IDataModel dataPackage = bean.getDataModel();
 		if(dataPackage != null) {
 			Collection<IRequirementType> dataTypes = dataPackage.getRequirementTypes();
 			inputTypes.clear();
@@ -412,5 +415,31 @@ public class OCLPage extends WizardPage implements Listener {
 			return Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
 		}
 	};
+
+
+	@Override
+	public void handleChange(ChangeEvent event) {
+		bindingContext.updateModels();
+		bindingContext.updateTargets();
+		updateDataTypes();
+		if(tvTypes != null) {
+			tvTypes.refresh();
+		}
+		getWizard().getContainer().updateButtons();
+		getWizard().getContainer().updateMessage();
+	}
+
+	@Override
+	public void hasChanged() {
+		// TODO Auto-generated method stub
+		if (tvTypes != null){
+			if (bean.getDataModel() != null){
+				tvTypes.setInput(bean.getDataModel().getRequirementTypes());
+			}
+			else {
+				tvTypes.setInput(Lists.newArrayList());
+			}
+		}
+	}
 
 }

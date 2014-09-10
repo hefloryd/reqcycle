@@ -36,6 +36,7 @@ public class SelectPredicatesFiltersHandler extends AbstractHandler {
 				reqView.setPredicates(selection);
 				reqView.setViewFiltered(true);
 				reqView.setViewOrdered(false);
+				reqView.setViewByScopes(false);
 				reqView.getCommonViewer().refresh();
 			}
 		} else {
@@ -44,6 +45,7 @@ public class SelectPredicatesFiltersHandler extends AbstractHandler {
 				RequirementView reqView = (RequirementView) part;
 				reqView.setViewFiltered(false);
 				reqView.setViewOrdered(false);
+				reqView.setViewByScopes(false);
 				reqView.getCommonViewer().refresh();
 			}
 		}

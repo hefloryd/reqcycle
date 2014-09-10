@@ -9,6 +9,7 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.storage.sesame.storage;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,6 +18,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.CoreException;
+import org.openrdf.OpenRDFException;
 import org.openrdf.model.Resource;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
@@ -33,11 +36,13 @@ import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorageTopics;
+import org.polarsys.reqcycle.traceability.storage.sesame.exceptions.SesameStorageRuntimeException;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers.KindStorageHelper;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers.LinksStorageHelper;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers.ReachablesStorageHelper;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers.StorageHelpersProvider;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.internal.beans.LinkRef;
+import org.polarsys.reqcycle.traceability.storage.sesame.storage.savetriggers.ISaveTrigger;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.utils.Reachable2StorageURIFunction;
 import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.model.Reachable;
@@ -47,6 +52,7 @@ import com.google.common.collect.Collections2;
 public class SesameTraceabilityStorage implements ITraceabilityStorage {
 
 	private final String path;
+	private final ISaveTrigger saveTrigger;
 	private final RepositoryConnection connection;
 	private StorageHelpersProvider helpers;
 	private final IStorageProvider provider;
@@ -54,23 +60,15 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 	@Inject
 	IReachableCreator creator;
 
-	public SesameTraceabilityStorage(final IStorageProvider provider, final String path, final RepositoryConnection connection) {
+	public SesameTraceabilityStorage(final IStorageProvider provider, final String path, final RepositoryConnection connection, final ISaveTrigger saveTrigger) {
 		super();
 		this.provider = provider;
 		this.path = path;
 		this.connection = connection;
+		this.saveTrigger = saveTrigger;
 		this.helpers = new StorageHelpersProvider(connection);
 	}
 	
-	private void persistAndNotify(final String notificationTopic) {
-		try {
-			this.connection.commit();
-			this.provider.notifyChanged(notificationTopic, this);
-		} catch (final RepositoryException e) {
-			throw new SesameStorageRuntimeException("Failed to commit current transaction", e);
-		}
-	}
-
 	private Iterable<Pair<Link, Reachable>> retrieveTraceability(final DIRECTION direction, final URI extremityValue,
 			final Resource context) throws MalformedQueryException, QueryEvaluationException, URISyntaxException,
 			RepositoryException {
@@ -124,12 +122,31 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 
 	@Override
 	public void commit() {
-		this.persistAndNotify(ITraceabilityStorageTopics.COMMIT);
+		try {
+			this.connection.commit();
+			this.provider.notifyChanged(ITraceabilityStorageTopics.COMMIT, this);
+		} catch (final RepositoryException e) {
+			throw new SesameStorageRuntimeException("Failed to commit current transaction", e);
+		}
 	}
 
 	@Override
 	public void save() {
-		this.persistAndNotify(ITraceabilityStorageTopics.SAVE);
+		try {
+			if(saveTrigger != null) {
+				this.saveTrigger.doSave(connection);
+			}
+			this.provider.notifyChanged(ITraceabilityStorageTopics.SAVE, this);
+		} catch (final RepositoryException e) {
+			throw new SesameStorageRuntimeException("Failed to save current state", e);
+		} catch (final OpenRDFException e) {
+			throw new SesameStorageRuntimeException("Failed to save current state", e);
+		} catch (final IOException e) {
+			throw new SesameStorageRuntimeException("Failed to save current state", e);
+		} catch (CoreException e) {
+			throw new SesameStorageRuntimeException("Failed to save current state", e);
+		}
+
 	}
 
 	@Override
@@ -286,7 +303,7 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 		try {
 			final URI owner = ReachablesStorageHelper.getURI(reachable);
 
-			this.helpers.getPropertiesStorageHelper().storeProperty(owner, key, value);
+			this.helpers.getPropertiesStorageHelper().addOrUpdateProperty(owner, key, value);
 		} catch (final RepositoryException e) {
 			throw new SesameStorageRuntimeException("Failed to add or update property", e);
 		}

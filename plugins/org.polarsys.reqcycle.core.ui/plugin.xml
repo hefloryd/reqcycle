@@ -74,5 +74,19 @@
             commandId="org.polarsys.reqcycle.core.ui.command.initConf">
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="org.polarsys.reqcycle.core.ui.import"
+            name="ReqCycle">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="org.polarsys.reqcycle.core.ui.export"
+            name="ReqCycle">
+      </category>
+   </extension>
     
 </plugin>

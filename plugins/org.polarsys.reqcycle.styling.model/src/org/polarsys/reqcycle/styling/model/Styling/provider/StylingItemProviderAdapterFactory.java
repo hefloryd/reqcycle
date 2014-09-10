@@ -408,6 +408,29 @@ public class StylingItemProviderAdapterFactory extends StylingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.polarsys.reqcycle.styling.model.Styling.Basic} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BasicItemProvider basicItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.styling.model.Styling.Basic}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBasicAdapter() {
+		if (basicItemProvider == null) {
+			basicItemProvider = new BasicItemProvider(this);
+		}
+
+		return basicItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -520,6 +543,7 @@ public class StylingItemProviderAdapterFactory extends StylingAdapterFactory imp
 		if (booleanParameterItemProvider != null) booleanParameterItemProvider.dispose();
 		if (stringParameterItemProvider != null) stringParameterItemProvider.dispose();
 		if (eObjectParameterItemProvider != null) eObjectParameterItemProvider.dispose();
+		if (basicItemProvider != null) basicItemProvider.dispose();
 	}
 
 }

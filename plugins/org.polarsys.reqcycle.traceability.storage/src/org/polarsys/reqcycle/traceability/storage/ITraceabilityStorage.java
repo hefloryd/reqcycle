@@ -150,6 +150,6 @@ public interface ITraceabilityStorage {
 	 * @param container
 	 *            The {@link Reachable} that represents the container.
 	 */
-	public abstract void clearInContainer(final Reachable container);
+	void clearInContainer(final Reachable container);
 
 }

@@ -5,6 +5,7 @@
          point="org.polarsys.reqcycle.repository.connector.connectorCore">
       <connectorCore
             class="org.polarsys.reqcycle.repository.connector.local.LocalConnector"
+            icon="icons/write_obj.gif"
             id="org.polarsys.reqcycle.repository.connector.local.connectorCore"
             name="Local">
       </connectorCore>

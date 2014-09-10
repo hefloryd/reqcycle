@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.polarsys.reqcycle</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.8.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+	
+	<profiles>
+		<profile>
+			<id>luna</id>
+			<properties>
+				<platform-eclipse>
+					http://download.eclipse.org/releases/luna/
+				</platform-eclipse>
+				<uml-version>
+					http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/luna
+				</uml-version>
+			</properties>
+		</profile>
+		<profile>
+			<id>kepler</id>
+			<properties>
+				<platform-eclipse>
+					http://download.eclipse.org/releases/kepler/
+				</platform-eclipse>
+				<uml-version>
+					http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/kepler
+				</uml-version>
+			</properties>
+		</profile>
+	</profiles>
+
+
+	<modules>
+		<!--Plugins -->
+		<module>../../plugins/org.polarsys.reqcycle.core</module>
+		<module>../../plugins/org.polarsys.reqcycle.core.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.emf</module>
+		<module>../../plugins/org.polarsys.reqcycle.glazedlist</module>
+		<module>../../plugins/org.polarsys.reqcycle.operations</module>
+		<module>../../plugins/org.polarsys.reqcycle.operations.requirement</module>
+		<module>../../plugins/org.polarsys.reqcycle.operations.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.predicates.core</module>
+		<module>../../plugins/org.polarsys.reqcycle.predicates.persistance</module>
+		<module>../../plugins/org.polarsys.reqcycle.predicates.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.stub</module>
+		<module>../../plugins/org.polarsys.reqcycle.types</module>
+		<module>../../plugins/org.polarsys.reqcycle.types.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.collectionspropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.components</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.datepropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.eattrpropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.eenumpropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.enumpropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.numberspropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.patternpropseditor</module>
+		<module>../../plugins/org.polarsys.reqcycle.ui.simplepropseditors</module>
+		<module>../../plugins/org.polarsys.reqcycle.uri</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.collect</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.configuration</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.inject</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.iterators</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.modelnature</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.local</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.data</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui.components</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.styling.model</module>
+		<module>../../plugins/org.polarsys.reqcycle.styling.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.emf.uml</module>
+		<module>../../plugins/org.polarsys.reqcycle.papyrus.dnd</module>
+		<module>../../plugins/org.polarsys.reqcycle.sirius.dnd</module>
+		<module>../../plugins/org.polarsys.reqcycle.ocl</module>
+		<module>../../plugins/org.polarsys.reqcycle.ocl.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.ocl</module>
+		<module>../../plugins/org.polarsys.reqcycle.utils.ocl.validation</module>
+		<module>../../plugins/org.polarsys.reqcycle.commands</module>
+		<module>../../plugins/org.polarsys.reqcycle.dnd</module>
+		<module>../../plugins/org.polarsys.reqcycle.emf.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.emf.traceability.sysml</module>
+		<module>../../plugins/org.polarsys.reqcycle.operations.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.builder</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.builder.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.cache</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.cache.emfbased</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.cache.storagebased</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.emf</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.emf.edit</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.export</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.export.xls</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.storage</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.sesame</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.table</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.types</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.types.lifecycle</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.types.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.jdt</module>
+		<module>../../plugins/org.polarsys.reqcycle.jdt.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.xcos</module>
+		<module>../../plugins/org.polarsys.reqcycle.xcos.traceability</module>
+		<module>../../plugins/org.polarsys.reqcycle.impact</module>
+		<module>../../plugins/org.polarsys.reqcycle.impact.ui</module>
+		
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common.edit</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.core</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.emfContentHandler</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.spreadsheet</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.spreadsheet.editor</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.tikaParsingFacility</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.ui</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor.editor</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document.ocl</module>
+		<module>../../plugins/org.polarsys.reqcycle.typesmodel</module>
+		<module>../../plugins/org.polarsys.reqcycle.windows.ini</module>
+		<module>../../plugins/org.topcased.typesmodel</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document</module>
+		<!-- Features -->
+		
+		<module>../../features/org.polarsys.reqcycle.core.feature</module>
+		<module>../../features/org.polarsys.reqcycle.jdt.feature</module>
+		<module>../../features/org.polarsys.reqcycle.ocl.feature</module>
+		<module>../../features/org.polarsys.reqcycle.papyrus.feature</module>
+		<module>../../features/org.polarsys.reqcycle.requirement.feature</module>
+		<module>../../features/org.polarsys.reqcycle.sirius.feature</module>
+		<module>../../features/org.polarsys.reqcycle.traceability.feature</module>
+		<module>../../features/org.polarsys.reqcycle.xcos.feature</module>
+		<module>../../features/org.polarsys.reqcycle.rmf.feature</module>
+		<module>../../features/org.polarsys.reqcycle.document.feature</module>
+		
+		<!-- updateSite -->
+		<module>../org.polarsys.reqcycle.tycho.updatesite</module>
+		
+		<!-- Tests -->
+		
+	</modules>
+
+	<properties>
+		<tycho-version>0.21.0</tycho-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>platform-eclipse</id>
+			<layout>p2</layout>
+			<url>${platform-eclipse}</url>
+		</repository>
+		<repository>
+			<id>rmf</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/rmf/updates</url>
+		</repository>
+		<repository>
+			<id>uml</id>
+			<layout>p2</layout>
+			<url>${uml-version}</url>
+		</repository>
+		<repository>
+			<id>diffmerge</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/diffmerge/updates/luna/official</url>
+		</repository>
+		<repository>
+			<id>guava</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/</url>
+		</repository>
+		<repository>
+			<id>ocl</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/releases/</url>
+		</repository>
+		<repository>
+			<id>uml2</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/updates/releases/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>platform-eclipse</id>
+			<layout>p2</layout>
+			<url>${platform-eclipse}</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>uml2</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/updates/releases/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin>
+			
+			<!-- <plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-director-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>materialize-products</id>
+						<goals>
+							<goal>materialize-products</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>archive-products</id>
+						<goals>
+							<goal>archive-products</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+			
+			
+			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<!-- configure the p2 target environments for multi-platform build -->
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<!-- <environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment> -->
+						<!-- <environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>-->
+						<!-- environment>
+				            <os>linux</os>
+				            <ws>gtk</ws>
+				            <arch>x86</arch>
+				        </environment-->
+				        <!--environment>
+				              <os>macosx</os>
+				              <ws>cocoa</ws>
+				              <arch>x86</arch>
+						</environment>
+						<environment>
+				              <os>macosx</os>
+				              <ws>cocoa</ws>
+				              <arch>x86_64</arch>
+						</environment> -->
+				      </environments>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<!-- The following argument removes errors due to discouraged access 
+						and convert it to a warning -->
+					<compilerArgument>-err:-forbidden</compilerArgument>
+					<compilerArgument>-warn:+forbidden</compilerArgument>
+				</configuration>
+			</plugin>
+			
+			
+			<!-- enable source bundle generation -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.1</version>
+		        <configuration>
+		          <source>1.6</source>
+		          <target>1.6</target>
+		        </configuration>
+		    </plugin>
+		</plugins>
+	</build>
+
+</project>

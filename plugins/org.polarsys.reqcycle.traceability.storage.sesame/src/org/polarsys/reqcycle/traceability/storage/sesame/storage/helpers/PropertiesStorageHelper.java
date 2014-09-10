@@ -93,6 +93,20 @@ public class PropertiesStorageHelper {
 		return propUri;
 	}
 
+	public URI addOrUpdateProperty(final URI owner, final String key, final String value, final Resource... contexts)
+			throws RepositoryException {
+		final URI propUri = getURI(owner, key);
+
+		this.conn.add(owner, ReqVoc.HAS_PROPERTY, propUri, contexts);
+		this.conn.add(propUri, RDFS.LABEL, valueFactory.createLiteral(key, XMLSchema.STRING), contexts);
+		if(this.conn.hasStatement(propUri, RDF.VALUE, null, false, contexts)) {
+			this.conn.remove(propUri, RDF.VALUE, null, contexts);
+		}
+		this.conn.add(propUri, RDF.VALUE, valueFactory.createLiteral(value, XMLSchema.STRING), contexts);
+
+		return propUri;
+	}
+
 	/**
 	 * Retrieves a stored property value.
 	 * 
@@ -125,7 +139,7 @@ public class PropertiesStorageHelper {
 		final TupleQueryResult result = query.evaluate();
 
 		String ret = null;
-		if (result.hasNext()) {
+		while (result.hasNext()) { // Le dernier en date sera pris
 			final BindingSet binding = result.next();
 			final Value value = binding.getValue(Queries.VALUE);
 			if (value != null) {
@@ -138,7 +152,7 @@ public class PropertiesStorageHelper {
 
 	/**
 	 * Deletes a stored property.
-	 * 
+	 *
 	 * @param conn
 	 * @param owner
 	 *            The owner of the property.

@@ -33,6 +33,15 @@
             name="Requirement Scope"
             restorable="true">
       </view>
+      <view
+            allowMultiple="false"
+            category="org.polarsys.reqcycle"
+            class="org.polarsys.reqcycle.repository.ui.views.ImpactView"
+            icon="icons/open.png"
+            id="org.polarsys.reqcycle.repository.ui.views.impact"
+            name="Impact Analysis"
+            restorable="true">
+      </view>
    </extension>
   <extension
         point="org.eclipse.ui.importWizards">
@@ -102,6 +111,20 @@
               tooltip="Order requirements by Predicates">
         </command>
         <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
+              icon="icons/types.gif"
+              label="Order by Scopes"
+              style="push"
+              tooltip="Order by Scopes">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
+              icon="icons/term_restart-1.gif"
+              label="Suppress filters"
+              style="push"
+              tooltip="Suppress filters">
+        </command>
+        <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
               icon="icons/editRepoList.png"
               label="Select Requirement Sources"
@@ -127,6 +150,16 @@
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
            name="Order requirements by Predicates">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
+           name="Order by Scopes">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
+           name="Suppress Filters">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"

@@ -11,4 +11,20 @@ package org.polarsys.reqcycle.uri.exceptions;
 
 public class VisitableException extends Exception {
 
+	public VisitableException() {
+		super();
+	}
+
+	public VisitableException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public VisitableException(String message) {
+		super(message);
+	}
+
+	public VisitableException(Throwable cause) {
+		super(cause);
+	}
+
 }

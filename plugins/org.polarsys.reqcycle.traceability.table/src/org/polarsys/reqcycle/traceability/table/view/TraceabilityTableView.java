@@ -28,7 +28,6 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine;
 import org.polarsys.reqcycle.traceability.model.Link;
 import org.polarsys.reqcycle.traceability.model.TType;
-import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorageTopics;
 import org.polarsys.reqcycle.traceability.table.filters.TableFilter;
 import org.polarsys.reqcycle.traceability.table.menus.actions.AllLinksAction;
@@ -67,9 +66,6 @@ public class TraceabilityTableView extends ViewPart {
 
 	@Inject
 	protected ITraceabilityEngine engine;
-
-	@Inject
-	protected IStorageProvider provider;
 
 	@Inject
 	protected IStylePredicateProvider styleProvider;

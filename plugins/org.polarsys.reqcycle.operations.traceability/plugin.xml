@@ -4,9 +4,6 @@
    <extension
          point="org.polarsys.reqcycle.operations.operation">
       <Operation
-            path="org.polarsys.reqcycle.operations.traceability.Test">
-      </Operation>
-      <Operation
             path="org.polarsys.reqcycle.operations.traceability.TraceabilityOperations">
       </Operation>
    </extension>

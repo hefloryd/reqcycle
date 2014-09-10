@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.polarsys.reqcycle.core.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.core.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.document.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.document.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.jdt.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.jdt.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.ocl.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.ocl.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.papyrus.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.papyrus.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.requirement.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.requirement.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.rmf.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.rmf.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.sirius.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.sirius.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.traceability.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.traceability.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.xcos.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.xcos.feature" version="0.8.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <category-def name="org.polarsys.reqcycle.updatesite" label="Polarsys ReqCycle UpdateSite">
+      <description>
+         Thoses features integrate the GPM method. This the main feature of the gPM EF and gPM Interop.
+      </description>
+   </category-def>
+</site>

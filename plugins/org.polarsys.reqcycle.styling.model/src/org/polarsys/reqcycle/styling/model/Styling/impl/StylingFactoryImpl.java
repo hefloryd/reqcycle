@@ -85,6 +85,7 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 			case StylingPackage.BOOLEAN_PARAMETER: return createBooleanParameter();
 			case StylingPackage.STRING_PARAMETER: return createStringParameter();
 			case StylingPackage.EOBJECT_PARAMETER: return createEObjectParameter();
+			case StylingPackage.BASIC: return createBasic();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -258,6 +259,16 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	public EObjectParameter createEObjectParameter() {
 		EObjectParameterImpl eObjectParameter = new EObjectParameterImpl();
 		return eObjectParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Basic createBasic() {
+		BasicImpl basic = new BasicImpl();
+		return basic;
 	}
 
 	/**

@@ -49,16 +49,12 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 				instance = c.newInstance();
 				ZigguratInject.inject(instance);
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (InvalidRegistryObjectException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (InstantiationException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IllegalAccessException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -67,7 +63,6 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 				for (Method m : method) {
 					if (m.isAnnotationPresent(IOperation.class)) {
 						IOperation op = m.getAnnotation(IOperation.class);
-						// TODO complete caller parameter
 						ReqCycleOperation reqCycleOp = new ReqCycleOperation(
 								m.getName(), op.value(), instance, m);
 						result.add(reqCycleOp);
@@ -97,5 +92,25 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 		}
 		return null;
 	}
+	
+	@Override
+	public ReqCycleOperation getOperationForEditingAttributes(String name, Class<?>[] listClass) {
+		for (ReqCycleOperation op : allOperations) {
+			if (op.getMethod().getName().equals(name)) {
+				Class<?>[] paramList = op.getMethod().getParameterTypes();
+				if ((listClass.length > 0) && (listClass.length == paramList.length - 1)) {
+					for (int i = 0; i < listClass.length; i++) {
+						Class<?> paramClass = paramList[i + 1];
+						if (!(paramClass.isAssignableFrom(listClass[i]))) {
+							return null;
+						}
+					}
+				}
+				return op;
+			}
+		}
+		return null;
+	}
+	
 
 }

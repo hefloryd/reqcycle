@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <relativePath>../../releng/org.polarsys.reqcycle.tycho.master/pom.xml</relativePath>
+    <groupId>org.polarsys.reqcycle</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.8.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>org.polarsys.reqcycle.jdt.feature</artifactId>
+  <packaging>eclipse-feature</packaging>
+  <version>0.8.0-SNAPSHOT</version>
+  
+  <name>reqcycle jdt Feature</name>
+  <groupId>org.polarsys.reqcycle</groupId>
+</project> 

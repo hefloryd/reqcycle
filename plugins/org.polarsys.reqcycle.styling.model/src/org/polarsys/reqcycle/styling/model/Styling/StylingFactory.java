@@ -162,6 +162,15 @@ public interface StylingFactory extends EFactory {
 	EObjectParameter createEObjectParameter();
 
 	/**
+	 * Returns a new object of class '<em>Basic</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic</em>'.
+	 * @generated
+	 */
+	Basic createBasic();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

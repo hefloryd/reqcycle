@@ -38,6 +38,7 @@ import org.polarsys.reqcycle.core.ui.dialogs.ValidatingTitleAreaDialog;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager;
 import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
+import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.Default;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
@@ -75,6 +76,10 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 		if (stylingModel.getDefault() == null) {
 			Default defaultStyle = StylingFactory.eINSTANCE.createDefault();
 			stylingModel.setDefault(defaultStyle);
+		}
+		if (stylingModel.getBasic() == null) {
+			Basic basicStyle = StylingFactory.eINSTANCE.createBasic();
+			stylingModel.setBasic(basicStyle);
 		}
 	}
 
@@ -300,14 +305,36 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 						Display.getDefault().getActiveShell(), stylingModel
 						.getDefault(), stylingModel);
 				if (editor.open() == Window.OK) {
-					// TODO
-
 					listViewer.setInput(stylingModel.getStyles());
-
 				}
 			}
 		});
 		btnEdit_1.setText("Edit");
+		
+		Label label = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+		
+		Label lblNewLabel = new Label(container, SWT.NONE);
+		lblNewLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+		lblNewLabel.setText("Basic styling is the style used to display requirements in ReqCycle views (except Requirements view).");
+		
+		Label lblBasic = new Label(container, SWT.NONE);
+		lblBasic.setText("Basic :");
+		
+		Button btnEdit_2 = new Button(container, SWT.NONE);
+		btnEdit_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				StyleModelEditorDialog editor = new StyleModelEditorDialog(
+						Display.getDefault().getActiveShell(), stylingModel
+						.getBasic(), stylingModel);
+				if (editor.open() == Window.OK) {
+					listViewer.setInput(stylingModel.getStyles());
+				}
+			}
+		});
+		btnEdit_2.setText("Edit");
 
 		return area;
 	}

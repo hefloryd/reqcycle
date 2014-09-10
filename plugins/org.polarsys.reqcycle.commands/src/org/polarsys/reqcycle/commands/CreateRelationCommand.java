@@ -12,14 +12,9 @@ package org.polarsys.reqcycle.commands;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
@@ -36,7 +31,6 @@ import com.google.common.collect.Lists;
 public class CreateRelationCommand implements Command {
 
 	@Inject
-	@Named("RDF")
 	IStorageProvider provider;
 
 	@Inject
@@ -74,23 +68,18 @@ public class CreateRelationCommand implements Command {
 	public void redo() {
 		// handle project traceability path
 		IProject p = res.getProject();
-		IFile traceaFile = p.getFile(new Path("./.traceability.rdf"));//$NON-NLS-1$
-		IFile attributeFile = p.getFile(new Path("./.t-attributes.rdf")); //$NON-NLS-1$
+		String projectURI = p.getFullPath().toPortableString() + "/here";
 		List<Reachable> toUpdate = Lists.newArrayList();
-		// get the storage for the file path
-		String traceaUri = traceaFile.getLocationURI().getPath();
-		String attributeURI = attributeFile.getLocationURI().getPath();
-		ITraceabilityStorage traceaStorage = provider.getStorage(traceaUri);
-		ITraceabilityStorage attributeStorage = provider.getStorage(attributeURI);
+		// get the storage for the project
+		ITraceabilityStorage traceaStorage = provider.getProjectStorage(p);
 		try {
 			Reachable container = manager.
-					getHandlerFromObject(traceaFile).
-						getFromObject(traceaFile).
-							getReachable(traceaFile);
+					getHandlerFromObject(projectURI).
+						getFromObject(projectURI).
+							getReachable(projectURI);
 			Object id = new Object[]{ container, getNextId() };
 			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable(id);
 			traceaStorage.startTransaction();
-			attributeStorage.startTransaction();
 			// FIX ME
 			// for (TType type : relation.getAgregated()) {
 			// storage.addOrUpdateUpwardRelationShip(type, tracea, container,
@@ -102,38 +91,21 @@ public class CreateRelationCommand implements Command {
 			toUpdate.add(container);
 			toUpdate.add(source);
 			toUpdate.add(target);
-			attributeStorage.addUpdateProperty(tracea, "relationKind", relation.getKind()); //$NON-NLS-1$
+			traceaStorage.addUpdateProperty(tracea, "relationKind", relation.getKind()); //$NON-NLS-1$
 			traceaStorage.commit();
-			attributeStorage.commit();
 			traceaStorage.save();
-			attributeStorage.save();
 			
 			
 			
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			attributeStorage.rollback();
 			traceaStorage.rollback();
 		} catch (IReachableHandlerException e) {
 			e.printStackTrace();
 		} finally {
-			attributeStorage.dispose();
 			traceaStorage.dispose();
 		}
-		try {
-			traceaFile.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-			attributeFile.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-			if(traceaFile.exists()) {
-				traceaFile.setHidden(false);
-			}
-			if (attributeFile.exists()){
-				attributeFile.setHidden(false);
-			}
-			listenerManager.notifyChanged(toUpdate.toArray(new Reachable[]{}));
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-
+		listenerManager.notifyChanged(toUpdate.toArray(new Reachable[]{}));
 	}
 
 	private String getNextId() {

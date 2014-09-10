@@ -5,6 +5,7 @@
          point="org.polarsys.reqcycle.repository.connector.connectorCore">
       <connectorCore
             class="org.polarsys.reqcycle.ocl.ui.OCLConnector"
+            icon="icons/ocl.png"
             id="org.polarsys.reqcycle.ocl.ui.OCLConnector"
             name="OCL Connector">
       </connectorCore>

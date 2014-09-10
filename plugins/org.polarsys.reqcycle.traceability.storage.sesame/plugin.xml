@@ -8,13 +8,12 @@
             interface="org.polarsys.reqcycle.traceability.storage.IStorageProvider">
       </binding>
       <binding
-            impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.SesameRepositoryHolder"
-            interface="org.polarsys.reqcycle.traceability.storage.sesame.storage.SesameRepositoryHolder">
+            impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.repositoryholders.SesameBinaryRepositoryHolder"
+            interface="org.polarsys.reqcycle.traceability.storage.sesame.storage.repositoryholders.SesameBinaryRepositoryHolder">
       </binding>
       <binding
-            impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.RDFSesameTraceabilityStorage"
-            interface="org.polarsys.reqcycle.traceability.storage.IStorageProvider"
-            name="RDF">
+                  impl="org.polarsys.reqcycle.traceability.storage.sesame.storage.repositoryholders.SesameXMLRepositoryHolder"
+            interface="org.polarsys.reqcycle.traceability.storage.sesame.storage.repositoryholders.SesameXMLRepositoryHolder">
       </binding>
    </extension>
    <extension

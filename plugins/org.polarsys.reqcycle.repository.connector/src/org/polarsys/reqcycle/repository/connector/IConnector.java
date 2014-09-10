@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector;
 
-import java.util.concurrent.Callable;
-
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 /**
@@ -30,6 +28,6 @@ public interface IConnector {
 	 * 
 	 * @return new requirement source repository (not null)
 	 */
-	public Callable<RequirementSource> createRequirementSource();
+	public ICallable getRequirementsCreator();
 
 }

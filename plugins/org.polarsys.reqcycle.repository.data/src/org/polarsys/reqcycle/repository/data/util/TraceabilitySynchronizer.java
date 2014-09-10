@@ -36,6 +36,8 @@ import com.google.common.collect.Lists;
 /**
  * The Class TraceabilitySynchronizer. FIXME : replace by an svn plugin for
  * traceability
+ * 
+ * FIXME Features that involve this class may be broken
  */
 public class TraceabilitySynchronizer {
 

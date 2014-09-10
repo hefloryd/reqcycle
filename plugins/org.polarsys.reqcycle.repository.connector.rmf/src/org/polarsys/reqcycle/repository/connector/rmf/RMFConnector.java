@@ -11,7 +11,6 @@
 package org.polarsys.reqcycle.repository.connector.rmf;
 
 import java.util.Collection;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
@@ -30,6 +29,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.rmf.reqif10.SpecType;
+import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFRepositoryMappingPage;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage.RMFSettingPageBean;
@@ -72,49 +72,42 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public Callable<RequirementSource> createRequirementSource() {
+	public ICallable getRequirementsCreator() {
 
-		return new Callable<RequirementSource>() {
+		return new ICallable() {
 
 			@Override
-			public RequirementSource call() throws Exception {
+			public void fillRequirementSource(
+					RequirementSource requirementSource) throws Exception {
 
-				RequirementSource requirementSource;
 				Scope scope = null;
 				IDataModel model = null;
 				String requirementsResourcePath = null;
 
-				if (edition) {
-					requirementSource = initSource;
-					// FIXME : Diff with existing and then merge
-				} else {
-					requirementSource = dataManager.createRequirementSource();
-					if (settingPageBean != null) {
-						scope = settingPageBean.getScope();
-						model = settingPageBean.getDataPackage();
-						requirementsResourcePath = settingPageBean
-								.getDestinationPath();
-						requirementSource.setProperty("DataModel_NAME",
-								model.getName());
-						requirementSource.setProperty("SCOPE_NAME",
-								scope.getName());
-						requirementSource.setProperty(
-								IRequirementSourceProperties.PROPERTY_URI,
-								settingPageBean.getUri());
-						Boolean isCopy = settingPageBean.getIsCopy();
-						if (isCopy && requirementsResourcePath != null
-								&& !requirementsResourcePath.isEmpty()) {
-							RequirementsContainer rc = dataManager
-									.createRequirementsContainer(URI
-											.createPlatformResourceURI(
-													requirementsResourcePath,
-													true));
-							requirementSource.setContents(rc);
-						}
-						requirementSource.setProperty(
-								IRequirementSourceProperties.IS_LOCAL,
-								isCopy.toString());
+				if (settingPageBean != null) {
+					scope = settingPageBean.getScope();
+					model = settingPageBean.getDataPackage();
+					requirementsResourcePath = settingPageBean
+							.getDestinationPath();
+					requirementSource.setProperty("DataModel_NAME",
+							model.getName());
+					requirementSource
+							.setProperty("SCOPE_NAME", scope.getName());
+					requirementSource.setProperty(
+							IRequirementSourceProperties.PROPERTY_URI,
+							settingPageBean.getUri());
+					Boolean isCopy = settingPageBean.getIsCopy();
+					if (isCopy && requirementsResourcePath != null
+							&& !requirementsResourcePath.isEmpty()) {
+						RequirementsContainer rc = dataManager
+								.createRequirementsContainer(URI
+										.createPlatformResourceURI(
+												requirementsResourcePath, true));
+						requirementSource.setContents(rc);
 					}
+					requirementSource.setProperty(
+							IRequirementSourceProperties.IS_LOCAL,
+							isCopy.toString());
 				}
 
 				if (((settingPageBean != null && !settingPageBean
@@ -130,7 +123,6 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 							new NullProgressMonitor(), scope);
 				}
 
-				return requirementSource;
 			}
 		};
 	}
@@ -268,7 +260,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public void init(ISelection selection) {
+	public void init(ISelection selection, String name) {
 		if (selection instanceof IStructuredSelection) {
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof IFile) {
@@ -277,4 +269,11 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 			}
 		}
 	}
+
+	@Override
+	public void storeProperties(RequirementSource source) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

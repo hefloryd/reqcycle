@@ -17,15 +17,8 @@ import java.util.Iterator;
 import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine;
@@ -42,24 +35,17 @@ import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
 import org.polarsys.reqcycle.traceability.table.providers.TraceabilityLazyContentProvider;
 import org.polarsys.reqcycle.traceability.types.scopes.ConfigurationScope;
 import org.polarsys.reqcycle.uri.IReachableListenerManager;
-import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class TableController {
 
-
-	private static final String RDF_FILE = "./.traceability.rdf"; //$NON-NLS-1$
-
 	@Inject
-	@Named("RDF")
 	protected IStorageProvider provider;
 	
 	@Inject
@@ -130,22 +116,17 @@ public class TableController {
 	}
 
 	protected Iterable<Link> getLinksFromProject(final IProject project) {
-		IFile file = project.getFile(new Path(RDF_FILE));
-		if(file != null && file.exists()) {
-			// get the storage for the file path
-			String uri = file.getLocationURI().getPath();
-			ITraceabilityStorage storage = provider.getStorage(uri);
-			Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage.getAllTraceability(DIRECTION.DOWNWARD);
+		final ITraceabilityStorage storage = provider.getProjectStorage(project);
+		final Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage.getAllTraceability(DIRECTION.DOWNWARD);
 
-			return Iterables.transform(allTraceabilityLinks, new Function<Pair<Link, Reachable>, Link>() {
+		return Iterables.transform(allTraceabilityLinks,
+				new Function<Pair<Link, Reachable>, Link>() {
 
-				@Override
-				public Link apply(Pair<Link, Reachable> arg0) {
-					return new TransverseLink(arg0.getFirst(), project);
-				}
-			});
-		}
-		return Lists.newArrayList();
+					@Override
+					public Link apply(Pair<Link, Reachable> arg0) {
+						return new TransverseLink(arg0.getFirst(), project);
+					}
+				});
 	}
 
 	public void deleteTraceabilityLinks(Iterator<TransverseLink> links) {
@@ -157,7 +138,7 @@ public class TableController {
 				TransverseLink link = links.next();
 				if(storage == null) {
 					project = link.getProject();
-					storage = getStorage(project, provider);
+					storage = provider.getProjectStorage(project);
 					storage.startTransaction();
 				}
 				Reachable source = Iterables.get(link.getSources(), 0);
@@ -180,24 +161,8 @@ public class TableController {
 		} finally {
 			storage.save();
 			refreshViewerData();
-			IFile file = project.getFile(new Path(RDF_FILE));
-			try {
-				file.getParent().refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-			} catch (CoreException e) {
-				//DO NOTHING
-			}
 		}
 	}
-
-	protected static ITraceabilityStorage getStorage(IProject project, IStorageProvider provider) {
-		IFile file = project.getFile(new Path(RDF_FILE));
-		if(file != null && file.exists()) {
-			String uri = file.getLocationURI().getPath();
-			return provider.getStorage(uri);
-		}
-		return null;
-	}
-
 
 	/**
 	 * Refreshes the viewer's data.

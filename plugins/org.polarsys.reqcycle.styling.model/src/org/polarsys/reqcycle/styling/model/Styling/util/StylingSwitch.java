@@ -191,6 +191,13 @@ public class StylingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StylingPackage.BASIC: {
+				Basic basic = (Basic)theEObject;
+				T result = caseBasic(basic);
+				if (result == null) result = caseCaseStyle(basic);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -447,6 +454,21 @@ public class StylingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEObjectParameter(EObjectParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasic(Basic object) {
 		return null;
 	}
 

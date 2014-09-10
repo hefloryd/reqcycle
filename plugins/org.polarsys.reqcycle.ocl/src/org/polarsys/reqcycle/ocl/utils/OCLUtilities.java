@@ -162,7 +162,7 @@ public class OCLUtilities {
 						return false;
 					}
 				}
-				return arg0.getName().equalsIgnoreCase(getOperationRequiredName(type));
+				return arg0.getName().replaceAll("\\s","").equalsIgnoreCase(getOperationRequiredName(type));
 			}
 		});
 	}
@@ -205,14 +205,14 @@ public class OCLUtilities {
 	public static String getOperationRequiredName(String dataTypeName) {
 		StringBuilder builder = new StringBuilder("is"); //$NON-NLS-1$
 		builder.append(Character.toUpperCase(dataTypeName.charAt(0))).append(dataTypeName.substring(1));
-		return builder.toString();
+		return builder.toString().replaceAll("\\s", "");
 	}
 
 	public static String getOperationRequiredName(IAttribute attribute) {
 		StringBuilder builder = new StringBuilder("get"); //$NON-NLS-1$
 		String name = attribute.getName();
 		builder.append(Character.toUpperCase(name.charAt(0))).append(name.substring(1));
-		return builder.toString();
+		return builder.toString().replaceAll("\\s", "");
 	}
 
 	public static String getOperationRequiredSignature(IRequirementType type) {

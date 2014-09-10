@@ -120,6 +120,7 @@ public class StylingModelItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(StylingPackage.Literals.STYLING_MODEL__STYLES);
 			childrenFeatures.add(StylingPackage.Literals.STYLING_MODEL__DEFAULT);
+			childrenFeatures.add(StylingPackage.Literals.STYLING_MODEL__BASIC);
 		}
 		return childrenFeatures;
 	}
@@ -180,6 +181,7 @@ public class StylingModelItemProvider
 				return;
 			case StylingPackage.STYLING_MODEL__STYLES:
 			case StylingPackage.STYLING_MODEL__DEFAULT:
+			case StylingPackage.STYLING_MODEL__BASIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -209,8 +211,18 @@ public class StylingModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(StylingPackage.Literals.STYLING_MODEL__STYLES,
+				 StylingFactory.eINSTANCE.createBasic()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(StylingPackage.Literals.STYLING_MODEL__DEFAULT,
 				 StylingFactory.eINSTANCE.createDefault()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StylingPackage.Literals.STYLING_MODEL__BASIC,
+				 StylingFactory.eINSTANCE.createBasic()));
 	}
 
 	/**
@@ -226,7 +238,8 @@ public class StylingModelItemProvider
 
 		boolean qualify =
 			childFeature == StylingPackage.Literals.STYLING_MODEL__STYLES ||
-			childFeature == StylingPackage.Literals.STYLING_MODEL__DEFAULT;
+			childFeature == StylingPackage.Literals.STYLING_MODEL__DEFAULT ||
+			childFeature == StylingPackage.Literals.STYLING_MODEL__BASIC;
 
 		if (qualify) {
 			return getString

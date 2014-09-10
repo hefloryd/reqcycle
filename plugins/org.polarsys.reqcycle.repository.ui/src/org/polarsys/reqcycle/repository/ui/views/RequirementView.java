@@ -6,7 +6,14 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.ui.IViewPart;
@@ -17,8 +24,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonViewerMapper;
+import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
@@ -36,6 +45,8 @@ public class RequirementView extends CommonNavigator {
 
 	NavigatorRoot root = new NavigatorRoot();
 
+	private AdapterFactoryEditingDomain readOnlyEditingDomain;
+
 	@Override
 	protected IAdaptable getInitialInput() {
 		this.getCommonViewer().refresh();
@@ -45,11 +56,30 @@ public class RequirementView extends CommonNavigator {
 	@Override
 	protected CommonViewer createCommonViewer(Composite aParent) {
 		CommonViewer viewer = super.createCommonViewer(aParent);
+		getSite().setSelectionProvider(viewer);
 		viewer.setUseHashlookup(true);
 		ReachableMapper mapper = new ReachableMapper();
 		ZigguratInject.inject(mapper);
 		viewer.setMapper(mapper);
 		return viewer;
+	}
+
+	@Override
+	public Object getAdapter(Class adapter) {
+		if (IPropertySheetPage.class.equals(adapter)) {
+			return getPropertySheetPage();
+		}
+		return super.getAdapter(adapter);
+	}
+
+	public IPropertySheetPage getPropertySheetPage() {
+		ExtendedPropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(
+				readOnlyEditingDomain,
+				ExtendedPropertySheetPage.Decoration.NONE, null);
+		propertySheetPage
+				.setPropertySourceProvider(new AdapterFactoryContentProvider(
+						new ReflectiveItemProviderAdapterFactory()));
+		return propertySheetPage;
 	}
 
 	/**
@@ -80,6 +110,24 @@ public class RequirementView extends CommonNavigator {
 	}
 
 	public void setSources(Collection<RequirementSource> sources) {
+		if (readOnlyEditingDomain == null && !sources.isEmpty()) {
+			ResourceSet rs = sources.iterator().next().eResource()
+					.getResourceSet();
+			if (readOnlyEditingDomain == null) {
+				readOnlyEditingDomain = new AdapterFactoryEditingDomain(
+						new ReflectiveItemProviderAdapterFactory(),
+						new BasicCommandStack(), rs) {
+
+					@Override
+					public boolean isReadOnly(Resource resource) {
+						return true;
+					}
+				};
+				rs.eAdapters().add(
+						new AdapterFactoryEditingDomain.EditingDomainProvider(
+								readOnlyEditingDomain));
+			}
+		}
 		root.setSources(sources);
 	}
 
@@ -87,12 +135,20 @@ public class RequirementView extends CommonNavigator {
 		root.setPredicates(predicates);
 	}
 
+	public void setScopes(Collection<Scope> scopes) {
+		root.setScopes(scopes);
+	}
+
 	public void setViewFiltered(Boolean filtered) {
 		root.setViewFiltered(filtered);
 	}
 
 	public void setViewOrdered(Boolean ordered) {
-		root.setViewOredered(ordered);
+		root.setViewOrdered(ordered);
+	}
+
+	public void setViewByScopes(Boolean scope) {
+		root.setViewByScopes(scope);
 	}
 
 	public static IViewPart createNewView() {

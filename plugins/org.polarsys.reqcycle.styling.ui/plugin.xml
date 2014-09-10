@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="stylingpic" name="Styling Picture" schema="schema/stylingpic.exsd"/>
+   
 <extension
         point="org.eclipse.ui.navigator.navigatorContent">
      <navigatorContent
@@ -122,5 +123,13 @@
    <Picture
          path="regIcons/bkmrk_nav.gif">
    </Picture>
+</extension>
+<extension
+      point="org.polarsys.reqcycle.utils.inject.binding">
+   <binding
+         impl="org.polarsys.reqcycle.styling.ui.providers.StylingDelegateLabelProvider"
+         interface="org.polarsys.reqcycle.repository.data.MappingModel.provider.IDelegateLabelProvider"
+         priority="10">
+   </binding>
 </extension>
 </plugin>

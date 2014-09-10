@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.Default;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
@@ -40,6 +41,7 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
  *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StylingModelImpl#getStyles <em>Styles</em>}</li>
  *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StylingModelImpl#getModeName <em>Mode Name</em>}</li>
  *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StylingModelImpl#getDefault <em>Default</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StylingModelImpl#getBasic <em>Basic</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,6 +94,16 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 	 * @ordered
 	 */
 	protected Default default_;
+
+	/**
+	 * The cached value of the '{@link #getBasic() <em>Basic</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBasic()
+	 * @generated
+	 * @ordered
+	 */
+	protected Basic basic;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,6 +205,49 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Basic getBasic() {
+		return basic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBasic(Basic newBasic, NotificationChain msgs) {
+		Basic oldBasic = basic;
+		basic = newBasic;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StylingPackage.STYLING_MODEL__BASIC, oldBasic, newBasic);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBasic(Basic newBasic) {
+		if (newBasic != basic) {
+			NotificationChain msgs = null;
+			if (basic != null)
+				msgs = ((InternalEObject)basic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StylingPackage.STYLING_MODEL__BASIC, null, msgs);
+			if (newBasic != null)
+				msgs = ((InternalEObject)newBasic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StylingPackage.STYLING_MODEL__BASIC, null, msgs);
+			msgs = basicSetBasic(newBasic, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StylingPackage.STYLING_MODEL__BASIC, newBasic, newBasic));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -200,6 +255,8 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 				return ((InternalEList<?>)getStyles()).basicRemove(otherEnd, msgs);
 			case StylingPackage.STYLING_MODEL__DEFAULT:
 				return basicSetDefault(null, msgs);
+			case StylingPackage.STYLING_MODEL__BASIC:
+				return basicSetBasic(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -218,6 +275,8 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 				return getModeName();
 			case StylingPackage.STYLING_MODEL__DEFAULT:
 				return getDefault();
+			case StylingPackage.STYLING_MODEL__BASIC:
+				return getBasic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,6 +300,9 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 			case StylingPackage.STYLING_MODEL__DEFAULT:
 				setDefault((Default)newValue);
 				return;
+			case StylingPackage.STYLING_MODEL__BASIC:
+				setBasic((Basic)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -262,6 +324,9 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 			case StylingPackage.STYLING_MODEL__DEFAULT:
 				setDefault((Default)null);
 				return;
+			case StylingPackage.STYLING_MODEL__BASIC:
+				setBasic((Basic)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -280,6 +345,8 @@ public class StylingModelImpl extends MinimalEObjectImpl.Container implements St
 				return MODE_NAME_EDEFAULT == null ? modeName != null : !MODE_NAME_EDEFAULT.equals(modeName);
 			case StylingPackage.STYLING_MODEL__DEFAULT:
 				return default_ != null;
+			case StylingPackage.STYLING_MODEL__BASIC:
+				return basic != null;
 		}
 		return super.eIsSet(featureID);
 	}

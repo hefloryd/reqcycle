@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.polarsys.reqcycle.core.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.core.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.jdt.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.jdt.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.ocl.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.ocl.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.papyrus_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.papyrus" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.requirement.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.requirement.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.sirius.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.sirius.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.traceability.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.traceability.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <feature url="features/org.polarsys.reqcycle.xcos.feature_1.0.0.qualifier.jar" id="org.polarsys.reqcycle.xcos.feature" version="1.0.0.qualifier">
+      <category name="org.polarsys.reqcycle.updatesite"/>
+   </feature>
+   <category-def name="org.polarsys.reqcycle.updatesite" label="Polarsys ReqCycle UpdateSite"/>
+</site>

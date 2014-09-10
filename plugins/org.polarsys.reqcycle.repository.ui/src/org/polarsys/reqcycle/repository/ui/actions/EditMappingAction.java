@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.actions;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.CoreException;
@@ -26,6 +24,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
+import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.ui.Activator;
@@ -62,50 +61,58 @@ public class EditMappingAction extends Action {
 	@Override
 	public void run() {
 		ISelection selection = viewer.getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object element = ((IStructuredSelection)selection).getFirstElement();
-			if(element instanceof RequirementSource) {
+		if (selection instanceof IStructuredSelection) {
+			Object element = ((IStructuredSelection) selection)
+					.getFirstElement();
+			if (element instanceof RequirementSource) {
 				try {
-					RequirementSource requirementSource = (RequirementSource)element;
+					RequirementSource requirementSource = (RequirementSource) element;
 
-					//Gets and init the connector 
+					// Gets and init the connector
 					String connectorID = requirementSource.getConnectorId();
-					ConnectorDescriptor connectorDescriptor = connectorManager.get(connectorID);
+					ConnectorDescriptor connectorDescriptor = connectorManager
+							.get(connectorID);
 					connector = connectorDescriptor.createConnector();
-					connector.initializeWithRequirementSource(requirementSource);
+					connector
+							.initializeWithRequirementSource(requirementSource);
 
-					Callable<RequirementSource> callable = null;
+					ICallable callable = null;
 
-					if(connector instanceof IConnectorWizard) {
-						WizardDialog wd = new WizardDialog(Display.getDefault().getActiveShell(), (IConnectorWizard)connector);
+					if (connector instanceof IConnectorWizard) {
+						WizardDialog wd = new WizardDialog(Display.getDefault()
+								.getActiveShell(), (IConnectorWizard) connector);
 						wd.setHelpAvailable(false);
-						if(wd.open() == Window.OK) {
-							callable = this.connector.createRequirementSource();
+						if (wd.open() == Window.OK) {
+							callable = this.connector.getRequirementsCreator();
 						}
 					} else {
-						callable = this.connector.createRequirementSource();
+						callable = this.connector.getRequirementsCreator();
 					}
 
-					if(callable != null) {
-						callable.call();
+					if (callable != null) {
+						requirementSource.clearContent();
+						callable.fillRequirementSource(requirementSource);
 
-
-						//						EList<ElementMapping> mappings = requirementSource.getMappings();
-						//						
-						//						ResourceSet rs = new ResourceSetImpl();
-						//						for(ElementMapping elementMapping : mappings) {
-						//							rs.getResources().add(elementMapping.getTargetElement().eResource());
-						//							for(AttributeMapping attributeMapping : elementMapping.getAttributes()) {
-						//								rs.getResources().add(attributeMapping.getTargetAttribute().eResource());
-						//							}
-						//						}
-						requirementSourceManager.addRequirementSource(requirementSource);
+						// EList<ElementMapping> mappings =
+						// requirementSource.getMappings();
+						//
+						// ResourceSet rs = new ResourceSetImpl();
+						// for(ElementMapping elementMapping : mappings) {
+						// rs.getResources().add(elementMapping.getTargetElement().eResource());
+						// for(AttributeMapping attributeMapping :
+						// elementMapping.getAttributes()) {
+						// rs.getResources().add(attributeMapping.getTargetAttribute().eResource());
+						// }
+						// }
+						requirementSourceManager
+								.addRequirementSource(requirementSource);
 
 					}
 				} catch (CoreException e) {
 					logger.log(e.getStatus());
 				} catch (Exception e) {
-					logger.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not modify the requirement source"));
+					logger.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+							"Could not modify the requirement source"));
 				}
 
 			}

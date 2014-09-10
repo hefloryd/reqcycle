@@ -45,16 +45,6 @@
       </reachableHandler>
    </extension>
    <extension
-         point="org.eclipse.ui.importWizards">
-      <wizard
-            class="org.polarsys.reqcycle.repository.data.ImportDataModel"
-            id="org.polarsys.reqcycle.repository.data.types.import"
-            name="Import Data Model">
-      </wizard>
-   </extension>
-
-
-   <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
             class="org.polarsys.reqcycle.utils.configuration.impl.EMFConfResourceFactory"

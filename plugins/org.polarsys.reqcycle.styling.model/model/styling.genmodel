@@ -26,6 +26,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference styling.ecore#//StylingModel/styles"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute styling.ecore#//StylingModel/modeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference styling.ecore#//StylingModel/default"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference styling.ecore#//StylingModel/basic"/>
     </genClasses>
     <genClasses ecoreClass="styling.ecore#//StylingPredicate">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference styling.ecore#//StylingPredicate/predicate"/>
@@ -90,5 +91,6 @@
     <genClasses ecoreClass="styling.ecore#//EObjectParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference styling.ecore#//EObjectParameter/value"/>
     </genClasses>
+    <genClasses ecoreClass="styling.ecore#//Basic"/>
   </genPackages>
 </genmodel:GenModel>

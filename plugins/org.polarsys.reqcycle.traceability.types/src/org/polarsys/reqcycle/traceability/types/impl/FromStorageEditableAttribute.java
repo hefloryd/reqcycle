@@ -9,7 +9,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.types.impl;
 
-import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
 import org.polarsys.reqcycle.traceability.types.ITraceabilityAttributesManager.EditableAttribute;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Attribute;
@@ -29,19 +28,20 @@ import static com.google.common.collect.Iterables.transform;
  * 
  */
 public class FromStorageEditableAttribute implements EditableAttribute {
+	public static interface ILazyStorageProvider {
+		ITraceabilityStorage getStorage();
+	}
 
+	private final ILazyStorageProvider lazyStorageProvider;
 	private Attribute attribute;
-	private IStorageProvider provider;
-	private String path;
 	private Reachable reachable;
 	private Object value = null;
 
 	public FromStorageEditableAttribute(Attribute attribute,
-			Reachable reachable, IStorageProvider provider, String path) {
+			Reachable reachable, FromStorageEditableAttribute.ILazyStorageProvider lazyStorageProvider) {
 		this.attribute = attribute;
 		this.reachable = reachable;
-		this.provider = provider;
-		this.path = path;
+		this.lazyStorageProvider = lazyStorageProvider;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 	@Override
 	public Object getValue() {
 		if (value == null) {
-			ITraceabilityStorage storage = getStorage();
+			ITraceabilityStorage storage = lazyStorageProvider.getStorage();
 			String propValue = storage.getProperty(reachable,
 					attribute.getName());
 			value = getObjectValue(propValue, attribute.getType());
@@ -61,13 +61,9 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 		return value;
 	}
 
-	private ITraceabilityStorage getStorage() {
-		return provider.getStorage(path);
-	}
-
 	@Override
 	public void setValue(Object value) {
-		ITraceabilityStorage storage = getStorage();
+		ITraceabilityStorage storage = lazyStorageProvider.getStorage();
 		storage.addUpdateProperty(reachable, attribute.getName(),
 				getStringValue(value, attribute.getType()));
 		storage.save();

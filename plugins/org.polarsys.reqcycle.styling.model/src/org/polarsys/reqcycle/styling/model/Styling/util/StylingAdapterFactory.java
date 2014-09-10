@@ -150,6 +150,10 @@ public class StylingAdapterFactory extends AdapterFactoryImpl {
 				return createEObjectParameterAdapter();
 			}
 			@Override
+			public Adapter caseBasic(Basic object) {
+				return createBasicAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -404,6 +408,20 @@ public class StylingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEObjectParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.styling.model.Styling.Basic <em>Basic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.polarsys.reqcycle.styling.model.Styling.Basic
+	 * @generated
+	 */
+	public Adapter createBasicAdapter() {
 		return null;
 	}
 

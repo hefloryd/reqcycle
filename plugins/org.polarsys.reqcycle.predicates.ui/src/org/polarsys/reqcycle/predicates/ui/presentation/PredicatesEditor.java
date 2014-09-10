@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -160,8 +161,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 		IViewerProvider, IGotoMarker, IPropertyChangeListener {
 
 	/**
-	 * This keeps track of the editing domain that is used to track all changes to the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the editing domain that is used to track all changes
+	 * to the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AdapterFactoryEditingDomain editingDomain;
@@ -169,37 +171,38 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	/**
 	 * This is the one adapter factory used for providing views of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
 	/**
-	 * This is the content outline page.
-	 * <!-- begin-user-doc --> <!--
+	 * This is the content outline page. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IContentOutlinePage contentOutlinePage;
 
 	/**
-	 * This is a kludge...
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is a kludge... <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IStatusLineManager contentOutlineStatusLineManager;
 
 	/**
-	 * This is the content outline page's viewer.
-	 * <!-- begin-user-doc --> <!--
+	 * This is the content outline page's viewer. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TreeViewer contentOutlineViewer;
 
 	/**
-	 * This is the property sheet page.
-	 * <!-- begin-user-doc --> <!--
+	 * This is the property sheet page. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
@@ -214,40 +217,41 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	protected PredicatesTreeViewer selectionViewer;
 
 	/**
-	 * This inverts the roll of parent and child in the content provider and show parents as a tree.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This inverts the roll of parent and child in the content provider and
+	 * show parents as a tree. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TreeViewer parentViewer;
 
 	/**
-	 * This shows how a tree view works.
-	 * <!-- begin-user-doc --> <!--
+	 * This shows how a tree view works. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TreeViewer treeViewer;
 
 	/**
-	 * This shows how a list view works.
-	 * A list viewer doesn't support icons.
+	 * This shows how a list view works. A list viewer doesn't support icons.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ListViewer listViewer;
 
 	/**
-	 * This shows how a table view works.
-	 * A table can be used as a list with icons.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This shows how a table view works. A table can be used as a list with
+	 * icons. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TableViewer tableViewer;
 
 	/**
-	 * This shows how a tree view with columns works.
-	 * <!-- begin-user-doc -->
+	 * This shows how a tree view with columns works. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TreeViewer treeViewerWithColumns;
@@ -270,16 +274,18 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	protected Viewer currentViewer;
 
 	/**
-	 * This listens to which ever viewer is active.
-	 * <!-- begin-user-doc --> <!--
+	 * This listens to which ever viewer is active. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ISelectionChangedListener selectionChangedListener;
 
 	/**
-	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of all the
+	 * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
+	 * listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
@@ -293,10 +299,10 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
 
 	/**
-	 * The MarkerHelper is responsible for creating workspace resource markers presented
-	 * in Eclipse's Problems View.
-	 * <!-- begin-user-doc --> <!--
+	 * The MarkerHelper is responsible for creating workspace resource markers
+	 * presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
@@ -323,43 +329,53 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 			.make(IPredicatesConfManager.class);
 
 	/**
-	 * This listens for when the outline becomes active
-	 * <!-- begin-user-doc -->
+	 * This listens for when the outline becomes active <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IPartListener partListener = new IPartListener() {
-			public void partActivated(IWorkbenchPart p) {
-				if (p instanceof ContentOutline) {
-					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(PredicatesEditor.this);
+		@Override
+		public void partActivated(IWorkbenchPart p) {
+			if (p instanceof ContentOutline) {
+				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
+					getActionBarContributor().setActiveEditor(
+							PredicatesEditor.this);
 
-						setCurrentViewer(contentOutlineViewer);
-					}
+					setCurrentViewer(contentOutlineViewer);
 				}
-				else if (p instanceof PropertySheet) {
-					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(PredicatesEditor.this);
-						handleActivate();
-					}
-				}
-				else if (p == PredicatesEditor.this) {
+			} else if (p instanceof PropertySheet) {
+				if (propertySheetPages.contains(((PropertySheet) p)
+						.getCurrentPage())) {
+					getActionBarContributor().setActiveEditor(
+							PredicatesEditor.this);
 					handleActivate();
 				}
+			} else if (p == PredicatesEditor.this) {
+				handleActivate();
 			}
-			public void partBroughtToTop(IWorkbenchPart p) {
-				// Ignore.
-			}
-			public void partClosed(IWorkbenchPart p) {
-				// Ignore.
-			}
-			public void partDeactivated(IWorkbenchPart p) {
-				// Ignore.
-			}
-			public void partOpened(IWorkbenchPart p) {
-				// Ignore.
-			}
-		};
+		}
+
+		@Override
+		public void partBroughtToTop(IWorkbenchPart p) {
+			// Ignore.
+		}
+
+		@Override
+		public void partClosed(IWorkbenchPart p) {
+			// Ignore.
+		}
+
+		@Override
+		public void partDeactivated(IWorkbenchPart p) {
+			// Ignore.
+		}
+
+		@Override
+		public void partOpened(IWorkbenchPart p) {
+			// Ignore.
+		}
+	};
 
 	/**
 	 * Resources that have been removed since last activation. <!--
@@ -402,140 +418,151 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	protected boolean updateProblemIndication = true;
 
 	/**
-	 * Adapter used to update the problem indication when resources are demanded loaded.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Adapter used to update the problem indication when resources are demanded
+	 * loaded. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
-			@Override
-			public void notifyChanged(Notification notification) {
-				if (notification.getNotifier() instanceof Resource) {
-					switch (notification.getFeatureID(Resource.class)) {
-						case Resource.RESOURCE__IS_LOADED:
-						case Resource.RESOURCE__ERRORS:
-						case Resource.RESOURCE__WARNINGS: {
-							Resource resource = (Resource)notification.getNotifier();
-							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-							if (diagnostic.getSeverity() != Diagnostic.OK) {
-								resourceToDiagnosticMap.put(resource, diagnostic);
-							}
-							else {
-								resourceToDiagnosticMap.remove(resource);
-							}
-
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 public void run() {
-											 updateProblemIndication();
-										 }
-									 });
-							}
-							break;
-						}
+		@Override
+		public void notifyChanged(Notification notification) {
+			if (notification.getNotifier() instanceof Resource) {
+				switch (notification.getFeatureID(Resource.class)) {
+				case Resource.RESOURCE__IS_LOADED:
+				case Resource.RESOURCE__ERRORS:
+				case Resource.RESOURCE__WARNINGS: {
+					Resource resource = (Resource) notification.getNotifier();
+					Diagnostic diagnostic = analyzeResourceProblems(resource,
+							null);
+					if (diagnostic.getSeverity() != Diagnostic.OK) {
+						resourceToDiagnosticMap.put(resource, diagnostic);
+					} else {
+						resourceToDiagnosticMap.remove(resource);
 					}
-				}
-				else {
-					super.notifyChanged(notification);
-				}
-			}
 
-			@Override
-			protected void setTarget(Resource target) {
-				basicSetTarget(target);
-			}
-
-			@Override
-			protected void unsetTarget(Resource target) {
-				basicUnsetTarget(target);
-				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
-					getSite().getShell().getDisplay().asyncExec
-						(new Runnable() {
-							 public void run() {
-								 updateProblemIndication();
-							 }
-						 });
+					if (updateProblemIndication) {
+						getSite().getShell().getDisplay()
+								.asyncExec(new Runnable() {
+									@Override
+									public void run() {
+										updateProblemIndication();
+									}
+								});
+					}
+					break;
 				}
+				}
+			} else {
+				super.notifyChanged(notification);
 			}
-		};
+		}
+
+		@Override
+		protected void setTarget(Resource target) {
+			basicSetTarget(target);
+		}
+
+		@Override
+		protected void unsetTarget(Resource target) {
+			basicUnsetTarget(target);
+			resourceToDiagnosticMap.remove(target);
+			if (updateProblemIndication) {
+				getSite().getShell().getDisplay().asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						updateProblemIndication();
+					}
+				});
+			}
+		}
+	};
 
 	/**
-	 * This listens for workspace changes.
-	 * <!-- begin-user-doc --> <!--
+	 * This listens for workspace changes. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
-			public void resourceChanged(IResourceChangeEvent event) {
-				IResourceDelta delta = event.getDelta();
-				try {
-					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-						protected ResourceSet resourceSet = editingDomain.getResourceSet();
-						protected Collection<Resource> changedResources = new ArrayList<Resource>();
-						protected Collection<Resource> removedResources = new ArrayList<Resource>();
+		@Override
+		public void resourceChanged(IResourceChangeEvent event) {
+			IResourceDelta delta = event.getDelta();
+			try {
+				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+					protected ResourceSet resourceSet = editingDomain
+							.getResourceSet();
+					protected Collection<Resource> changedResources = new ArrayList<Resource>();
+					protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-						public boolean visit(IResourceDelta delta) {
-							if (delta.getResource().getType() == IResource.FILE) {
-								if (delta.getKind() == IResourceDelta.REMOVED ||
-								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-									if (resource != null) {
-										if (delta.getKind() == IResourceDelta.REMOVED) {
-											removedResources.add(resource);
-										}
-										else if (!savedResources.remove(resource)) {
-											changedResources.add(resource);
-										}
+					@Override
+					public boolean visit(IResourceDelta delta) {
+						if (delta.getResource().getType() == IResource.FILE) {
+							if (delta.getKind() == IResourceDelta.REMOVED
+									|| delta.getKind() == IResourceDelta.CHANGED
+									&& delta.getFlags() != IResourceDelta.MARKERS) {
+								Resource resource = resourceSet
+										.getResource(URI
+												.createPlatformResourceURI(
+														delta.getFullPath()
+																.toString(),
+														true), false);
+								if (resource != null) {
+									if (delta.getKind() == IResourceDelta.REMOVED) {
+										removedResources.add(resource);
+									} else if (!savedResources.remove(resource)) {
+										changedResources.add(resource);
 									}
 								}
-								return false;
 							}
-
-							return true;
+							return false;
 						}
 
-						public Collection<Resource> getChangedResources() {
-							return changedResources;
-						}
-
-						public Collection<Resource> getRemovedResources() {
-							return removedResources;
-						}
+						return true;
 					}
 
-					final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-					delta.accept(visitor);
-
-					if (!visitor.getRemovedResources().isEmpty()) {
-						getSite().getShell().getDisplay().asyncExec
-							(new Runnable() {
-								 public void run() {
-									 removedResources.addAll(visitor.getRemovedResources());
-									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(PredicatesEditor.this, false);
-									 }
-								 }
-							 });
+					public Collection<Resource> getChangedResources() {
+						return changedResources;
 					}
 
-					if (!visitor.getChangedResources().isEmpty()) {
-						getSite().getShell().getDisplay().asyncExec
-							(new Runnable() {
-								 public void run() {
-									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == PredicatesEditor.this) {
-										 handleActivate();
-									 }
-								 }
-							 });
+					public Collection<Resource> getRemovedResources() {
+						return removedResources;
 					}
 				}
-				catch (CoreException exception) {
-					PredicatesUIPlugin.INSTANCE.log(exception);
+
+				final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+				delta.accept(visitor);
+
+				if (!visitor.getRemovedResources().isEmpty()) {
+					getSite().getShell().getDisplay().asyncExec(new Runnable() {
+						@Override
+						public void run() {
+							removedResources.addAll(visitor
+									.getRemovedResources());
+							if (!isDirty()) {
+								getSite().getPage().closeEditor(
+										PredicatesEditor.this, false);
+							}
+						}
+					});
 				}
+
+				if (!visitor.getChangedResources().isEmpty()) {
+					getSite().getShell().getDisplay().asyncExec(new Runnable() {
+						@Override
+						public void run() {
+							changedResources.addAll(visitor
+									.getChangedResources());
+							if (getSite().getPage().getActiveEditor() == PredicatesEditor.this) {
+								handleActivate();
+							}
+						}
+					});
+				}
+			} catch (CoreException exception) {
+				PredicatesUIPlugin.INSTANCE.log(exception);
 			}
-		};
+		}
+	};
 
 	private ViewerPane viewerPane;
 
@@ -549,24 +576,22 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
-		  editingDomain.getResourceToReadOnlyMap().clear();
+			editingDomain.getResourceToReadOnlyMap().clear();
 
-		  // Refresh any actions that may become enabled or disabled.
-		  //
-		  setSelection(getSelection());
+			// Refresh any actions that may become enabled or disabled.
+			//
+			setSelection(getSelection());
 		}
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(PredicatesEditor.this, false);
-			}
-			else {
+			} else {
 				removedResources.clear();
 				changedResources.clear();
 				savedResources.clear();
 			}
-		}
-		else if (!changedResources.isEmpty()) {
+		} else if (!changedResources.isEmpty()) {
 			changedResources.removeAll(savedResources);
 			handleChangedResources();
 			changedResources.clear();
@@ -581,9 +606,11 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	 * @generated
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+		if (!changedResources.isEmpty()
+				&& (!isDirty() || handleDirtyConflict())) {
 			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
+				changedResources.addAll(editingDomain.getResourceSet()
+						.getResources());
 			}
 			editingDomain.getCommandStack().flush();
 
@@ -593,10 +620,12 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 					resource.unload();
 					try {
 						resource.load(Collections.EMPTY_MAP);
-					}
-					catch (IOException exception) {
+					} catch (IOException exception) {
 						if (!resourceToDiagnosticMap.containsKey(resource)) {
-							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+							resourceToDiagnosticMap
+									.put(resource,
+											analyzeResourceProblems(resource,
+													exception));
 						}
 					}
 				}
@@ -612,19 +641,16 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * Updates the problems indication with the information described in the specified diagnostic.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Updates the problems indication with the information described in the
+	 * specified diagnostic. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic =
-				new BasicDiagnostic
-					(Diagnostic.OK,
-					 "org.polarsys.reqcycle.predicates.ui",
-					 0,
-					 null,
-					 new Object [] { editingDomain.getResourceSet() });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK,
+					"org.polarsys.reqcycle.predicates.ui", 0, null,
+					new Object[] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -632,23 +658,24 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 			}
 
 			int lastEditorPage = getPageCount() - 1;
-			if (lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
-				((ProblemEditorPart)getEditor(lastEditorPage)).setDiagnostic(diagnostic);
+			if (lastEditorPage >= 0
+					&& getEditor(lastEditorPage) instanceof ProblemEditorPart) {
+				((ProblemEditorPart) getEditor(lastEditorPage))
+						.setDiagnostic(diagnostic);
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					setActivePage(lastEditorPage);
 				}
-			}
-			else if (diagnostic.getSeverity() != Diagnostic.OK) {
+			} else if (diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
 				problemEditorPart.setMarkerHelper(markerHelper);
 				try {
-					addPage(++lastEditorPage, problemEditorPart, getEditorInput());
+					addPage(++lastEditorPage, problemEditorPart,
+							getEditorInput());
 					setPageText(lastEditorPage, problemEditorPart.getPartName());
 					setActivePage(lastEditorPage);
 					showTabs();
-				}
-				catch (PartInitException exception) {
+				} catch (PartInitException exception) {
 					PredicatesUIPlugin.INSTANCE.log(exception);
 				}
 			}
@@ -658,8 +685,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					try {
 						markerHelper.createMarkers(diagnostic);
-					}
-					catch (CoreException exception) {
+					} catch (CoreException exception) {
 						PredicatesUIPlugin.INSTANCE.log(exception);
 					}
 				}
@@ -674,11 +700,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
-		return
-			MessageDialog.openQuestion
-				(getSite().getShell(),
-				 getString("_UI_FileConflict_label"),
-				 getString("_WARN_FileConflict"));
+		return MessageDialog.openQuestion(getSite().getShell(),
+				getString("_UI_FileConflict_label"),
+				getString("_WARN_FileConflict"));
 	}
 
 	/**
@@ -775,9 +799,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This is here for the listener to be able to call it.
-	 * <!-- begin-user-doc
+	 * This is here for the listener to be able to call it. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -796,25 +820,29 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 		// Make sure it's okay.
 		//
 		if (theSelection != null && !theSelection.isEmpty()) {
-			Runnable runnable =
-				new Runnable() {
-					public void run() {
-						// Try to select the items in the current content viewer of the editor.
-						//
-						if (currentViewer != null) {
-							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
-						}
+			Runnable runnable = new Runnable() {
+				@Override
+				public void run() {
+					// Try to select the items in the current content viewer of
+					// the editor.
+					//
+					if (currentViewer != null) {
+						currentViewer.setSelection(new StructuredSelection(
+								theSelection.toArray()), true);
 					}
-				};
+				}
+			};
 			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
 	}
 
 	/**
-	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
-	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
+	 * This returns the editing domain as required by the
+	 * {@link IEditingDomainProvider} interface. This is important for
+	 * implementing the static methods of {@link AdapterFactoryEditingDomain}
 	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -824,6 +852,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public class ReverseAdapterFactoryContentProvider extends
@@ -831,6 +860,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		public ReverseAdapterFactoryContentProvider(
@@ -840,26 +870,31 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		@Override
-		public Object [] getElements(Object object) {
+		public Object[] getElements(Object object) {
 			Object parent = super.getParent(object);
-			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
+			return (parent == null ? Collections.EMPTY_SET : Collections
+					.singleton(parent)).toArray();
 		}
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		@Override
-		public Object [] getChildren(Object object) {
+		public Object[] getChildren(Object object) {
 			Object parent = super.getParent(object);
-			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
+			return (parent == null ? Collections.EMPTY_SET : Collections
+					.singleton(parent)).toArray();
 		}
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		@Override
@@ -870,6 +905,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		@Override
@@ -880,6 +916,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
@@ -906,20 +943,23 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 			if (selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				selectionChangedListener =
-					new ISelectionChangedListener() {
-						// This just notifies those things that are affected by the section.
-						//
-						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
-							setSelection(selectionChangedEvent.getSelection());
-						}
-					};
+				selectionChangedListener = new ISelectionChangedListener() {
+					// This just notifies those things that are affected by the
+					// section.
+					//
+					@Override
+					public void selectionChanged(
+							SelectionChangedEvent selectionChangedEvent) {
+						setSelection(selectionChangedEvent.getSelection());
+					}
+				};
 			}
 
 			// Stop listening to the old one.
 			//
 			if (currentViewer != null) {
-				currentViewer.removeSelectionChangedListener(selectionChangedListener);
+				currentViewer
+						.removeSelectionChangedListener(selectionChangedListener);
 			}
 
 			// Start listening to the new one.
@@ -932,15 +972,18 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 			//
 			currentViewer = viewer;
 
-			// Set the editors selection based on the current viewer's selection.
+			// Set the editors selection based on the current viewer's
+			// selection.
 			//
-			setSelection(currentViewer == null ? StructuredSelection.EMPTY : currentViewer.getSelection());
+			setSelection(currentViewer == null ? StructuredSelection.EMPTY
+					: currentViewer.getSelection());
 		}
 	}
 
 	/**
-	 * This returns the viewer as required by the {@link IViewerProvider} interface.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the viewer as required by the {@link IViewerProvider}
+	 * interface. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1005,35 +1048,31 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * Returns a diagnostic describing the errors and warnings listed in the resource
-	 * and the specified exception (if any).
-	 * <!-- begin-user-doc -->
+	 * Returns a diagnostic describing the errors and warnings listed in the
+	 * resource and the specified exception (if any). <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource,
 			Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic =
-				new BasicDiagnostic
-					(Diagnostic.ERROR,
-					 "org.polarsys.reqcycle.predicates.ui",
-					 0,
-					 getString("_UI_CreateModelError_message", resource.getURI()),
-					 new Object [] { exception == null ? (Object)resource : exception });
+		if (!resource.getErrors().isEmpty()
+				|| !resource.getWarnings().isEmpty()) {
+			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(
+					Diagnostic.ERROR,
+					"org.polarsys.reqcycle.predicates.ui",
+					0,
+					getString("_UI_CreateModelError_message", resource.getURI()),
+					new Object[] { exception == null ? (Object) resource
+							: exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
-		}
-		else if (exception != null) {
-			return
-				new BasicDiagnostic
-					(Diagnostic.ERROR,
-					 "org.polarsys.reqcycle.predicates.ui",
-					 0,
-					 getString("_UI_CreateModelError_message", resource.getURI()),
-					 new Object[] { exception });
-		}
-		else {
+		} else if (exception != null) {
+			return new BasicDiagnostic(Diagnostic.ERROR,
+					"org.polarsys.reqcycle.predicates.ui", 0, getString(
+							"_UI_CreateModelError_message", resource.getURI()),
+					new Object[] { exception });
+		} else {
 			return Diagnostic.OK_INSTANCE;
 		}
 	}
@@ -1142,16 +1181,16 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * If there is just one page in the multi-page editor part,
-	 * this hides the single tab at the bottom.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * If there is just one page in the multi-page editor part, this hides the
+	 * single tab at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void hideTabs() {
 		if (getPageCount() <= 1) {
 			setPageText(0, "");
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder)getContainer()).setTabHeight(1);
+				((CTabFolder) getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
 				getContainer().setSize(point.x, point.y + 6);
 			}
@@ -1159,16 +1198,16 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * If there is more than one page in the multi-page editor part,
-	 * this shows the tabs at the bottom.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * If there is more than one page in the multi-page editor part, this shows
+	 * the tabs at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void showTabs() {
 		if (getPageCount() > 1) {
 			setPageText(0, getString("_UI_SelectionPage_label"));
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder)getContainer()).setTabHeight(SWT.DEFAULT);
+				((CTabFolder) getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
 				getContainer().setSize(point.x, point.y - 6);
 			}
@@ -1176,9 +1215,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This is used to track the active viewer.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to track the active viewer. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1201,14 +1240,11 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	public Object getAdapter(Class key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? getContentOutlinePage() : null;
-		}
-		else if (key.equals(IPropertySheetPage.class)) {
+		} else if (key.equals(IPropertySheetPage.class)) {
 			return getPropertySheetPage();
-		}
-		else if (key.equals(IGotoMarker.class)) {
+		} else if (key.equals(IGotoMarker.class)) {
 			return this;
-		}
-		else {
+		} else {
 			return super.getAdapter(key);
 		}
 	}
@@ -1292,46 +1328,52 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This accesses a cached version of the property sheet.
-	 * <!-- begin-user-doc
+	 * This accesses a cached version of the property sheet. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		PropertySheetPage propertySheetPage =
-			new ExtendedPropertySheetPage(editingDomain) {
-				@Override
-				public void setSelectionToViewer(List<?> selection) {
-					PredicatesEditor.this.setSelectionToViewer(selection);
-					PredicatesEditor.this.setFocus();
-				}
+		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(
+				editingDomain) {
+			@Override
+			public void setSelectionToViewer(List<?> selection) {
+				PredicatesEditor.this.setSelectionToViewer(selection);
+				PredicatesEditor.this.setFocus();
+			}
 
-				@Override
-				public void setActionBars(IActionBars actionBars) {
-					super.setActionBars(actionBars);
-					getActionBarContributor().shareGlobalActions(this, actionBars);
-				}
-			};
-		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+			@Override
+			public void setActionBars(IActionBars actionBars) {
+				super.setActionBars(actionBars);
+				getActionBarContributor().shareGlobalActions(this, actionBars);
+			}
+		};
+		propertySheetPage
+				.setPropertySourceProvider(new AdapterFactoryContentProvider(
+						adapterFactory));
 		propertySheetPages.add(propertySheetPage);
 
 		return propertySheetPage;
 	}
 
 	/**
-	 * This deals with how we want selection in the outliner to affect the other views.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This deals with how we want selection in the outliner to affect the other
+	 * views. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
-		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
-			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
+		if (currentViewerPane != null && !selection.isEmpty()
+				&& selection instanceof IStructuredSelection) {
+			Iterator<?> selectedElements = ((IStructuredSelection) selection)
+					.iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
 
-				// If it's the selection viewer, then we want it to select the same selection as this selection.
+				// If it's the selection viewer, then we want it to select the
+				// same selection as this selection.
 				//
 				if (currentViewerPane.getViewer() == selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
@@ -1342,9 +1384,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 					// Set the selection to the widget.
 					//
-					selectionViewer.setSelection(new StructuredSelection(selectionList));
-				}
-				else {
+					selectionViewer.setSelection(new StructuredSelection(
+							selectionList));
+				} else {
 					// Set the input to the widget.
 					//
 					if (currentViewerPane.getViewer().getInput() != selectedElement) {
@@ -1400,6 +1442,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 				} else {
 					predicateManager.storePredicate(newPredicate);
 				}
+				editingDomain.getCommandStack().flush();
 				setDirty(false);
 			} else if (rightPanel != null) {
 				savePredicate();
@@ -1469,22 +1512,23 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This returns whether something has been persisted to the URI of the specified resource.
-	 * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
-	 * <!-- begin-user-doc
+	 * This returns whether something has been persisted to the URI of the
+	 * specified resource. The implementation uses the URI converter from the
+	 * editor's resource set to try to open an input stream. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected boolean isPersisted(Resource resource) {
 		boolean result = false;
 		try {
-			InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
+			InputStream stream = editingDomain.getResourceSet()
+					.getURIConverter().createInputStream(resource.getURI());
 			if (stream != null) {
 				result = true;
 				stream.close();
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			// Ignore
 		}
 		return result;
@@ -1507,9 +1551,9 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This also changes the editor's input.
-	 * <!-- begin-user-doc --> <!--
+	 * This also changes the editor's input. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1520,7 +1564,8 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 		if (path != null) {
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			if (file != null) {
-				doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString(), true), new FileEditorInput(file));
+				doSaveAs(URI.createPlatformResourceURI(file.getFullPath()
+						.toString(), true), new FileEditorInput(file));
 			}
 		}
 	}
@@ -1543,11 +1588,13 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void gotoMarker(IMarker marker) {
-		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
+		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain,
+				marker);
 		if (!targetObjects.isEmpty()) {
 			setSelectionToViewer(targetObjects);
 		}
@@ -1593,6 +1640,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	/**
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1603,6 +1651,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	/**
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1612,9 +1661,10 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection.
-	 * <!-- begin-user-doc --> <!--
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
+	 * return this editor's overall selection. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1623,9 +1673,10 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
-	 * Calling this result will notify the listeners.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
+	 * set this editor's overall selection. Calling this result will notify the
+	 * listeners. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1640,32 +1691,40 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
-			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = currentViewer != null
+				&& currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
+				: getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
-				Collection<?> collection = ((IStructuredSelection)selection).toList();
+				Collection<?> collection = ((IStructuredSelection) selection)
+						.toList();
 				switch (collection.size()) {
-					case 0: {
-						statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
-						break;
-					}
-					case 1: {
-						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
-						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
-						break;
-					}
-					default: {
-						statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
-						break;
-					}
+				case 0: {
+					statusLineManager
+							.setMessage(getString("_UI_NoObjectSelected"));
+					break;
 				}
-			}
-			else {
+				case 1: {
+					String text = new AdapterFactoryItemDelegator(
+							adapterFactory).getText(collection.iterator()
+							.next());
+					statusLineManager.setMessage(getString(
+							"_UI_SingleObjectSelected", text));
+					break;
+				}
+				default: {
+					statusLineManager.setMessage(getString(
+							"_UI_MultiObjectSelected",
+							Integer.toString(collection.size())));
+					break;
+				}
+				}
+			} else {
 				statusLineManager.setMessage("");
 			}
 		}
@@ -1688,7 +1747,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return PredicatesUIPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return PredicatesUIPlugin.INSTANCE.getString(key, new Object[] { s1 });
 	}
 
 	/**
@@ -1700,19 +1759,23 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	 */
 	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
-		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
+		((IMenuListener) getEditorSite().getActionBarContributor())
+				.menuAboutToShow(menuManager);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
+		return (EditingDomainActionBarContributor) getEditorSite()
+				.getActionBarContributor();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IActionBars getActionBars() {
@@ -1721,6 +1784,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
@@ -1976,11 +2040,14 @@ public class PredicatesEditor extends MultiPageEditorPart implements
 	public boolean setRootPredicate(IPredicate rootPredicate) {
 		if (resource == null)
 			initResource();
-		if (isDirty()
-				&& !MessageDialog.openQuestion(getSite().getShell(),
-						"Unsaved Changes",
-						"There is unsaved changes. Continue and discard them")) {
-			return false;
+		if (isDirty()) {
+			if (!MessageDialog.openQuestion(getSite().getShell(),
+					"Unsaved Changes",
+					"There is unsaved changes. Continue and discard them")) {
+				return false;
+			} else {
+				editingDomain.getCommandStack().flush();
+			}
 		}
 		if (!resource.getContents().isEmpty()) {
 			resource.getContents().clear();

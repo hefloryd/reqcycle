@@ -18,30 +18,33 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
-import org.polarsys.reqcycle.repository.connector.IConnector;
 
 /**
  * Connector Label Provider
  */
 public class ConnectorLabelProvider extends LabelProvider {
 
+	@Override
 	public String getText(Object obj) {
-		if(obj instanceof ConnectorDescriptor) {
-			return ((ConnectorDescriptor)obj).getName();
+		if (obj instanceof ConnectorDescriptor) {
+			return ((ConnectorDescriptor) obj).getName();
 		}
 		return obj.toString();
 	}
 
+	@Override
 	public Image getImage(Object obj) {
-		if(obj instanceof IConnector) {
-			return createImage(((ConnectorDescriptor)obj), 20, 20);
+		if (obj instanceof ConnectorDescriptor) {
+			ConnectorDescriptor desc = (ConnectorDescriptor) obj;
+			return createImage(desc, 15, 15);
 		}
 		return null;
 	}
 
-	public static Image createImage(ConnectorDescriptor connector, int width, int height) {
+	public static Image createImage(ConnectorDescriptor connector, int width,
+			int height) {
 		ImageDescriptor imageDescriptor = connector.getImageDescriptor();
-		if(imageDescriptor == null) {
+		if (imageDescriptor == null) {
 			return null;
 		}
 		Image image = imageDescriptor.createImage();
@@ -49,7 +52,8 @@ public class ConnectorLabelProvider extends LabelProvider {
 		GC gc = new GC(scaled);
 		gc.setAntialias(SWT.ON);
 		gc.setInterpolation(SWT.HIGH);
-		gc.drawImage(image, 0, 0, image.getBounds().width, image.getBounds().height, 0, 0, width, height);
+		gc.drawImage(image, 0, 0, image.getBounds().width,
+				image.getBounds().height, 0, 0, width, height);
 		gc.dispose();
 		image.dispose();
 		return scaled;

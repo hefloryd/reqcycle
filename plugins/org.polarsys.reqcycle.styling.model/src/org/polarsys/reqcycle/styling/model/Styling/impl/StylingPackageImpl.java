@@ -27,6 +27,7 @@ import org.eclipse.swt.graphics.Image;
 
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 
+import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.BooleanParameter;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.ConstantPattern;
@@ -186,6 +187,13 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass basicEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum fontOptionEEnum = null;
 
 	/**
@@ -314,6 +322,15 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 	 */
 	public EReference getStylingModel_Default() {
 		return (EReference)stylingModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStylingModel_Basic() {
+		return (EReference)stylingModelEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -699,6 +716,15 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBasic() {
+		return basicEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFontOption() {
 		return fontOptionEEnum;
 	}
@@ -771,6 +797,7 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 		createEReference(stylingModelEClass, STYLING_MODEL__STYLES);
 		createEAttribute(stylingModelEClass, STYLING_MODEL__MODE_NAME);
 		createEReference(stylingModelEClass, STYLING_MODEL__DEFAULT);
+		createEReference(stylingModelEClass, STYLING_MODEL__BASIC);
 
 		stylingPredicateEClass = createEClass(STYLING_PREDICATE);
 		createEReference(stylingPredicateEClass, STYLING_PREDICATE__PREDICATE);
@@ -830,6 +857,8 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 		eObjectParameterEClass = createEClass(EOBJECT_PARAMETER);
 		createEReference(eObjectParameterEClass, EOBJECT_PARAMETER__VALUE);
 
+		basicEClass = createEClass(BASIC);
+
 		// Create enums
 		fontOptionEEnum = createEEnum(FONT_OPTION);
 
@@ -880,12 +909,14 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 		booleanParameterEClass.getESuperTypes().add(this.getParameter());
 		stringParameterEClass.getESuperTypes().add(this.getParameter());
 		eObjectParameterEClass.getESuperTypes().add(this.getParameter());
+		basicEClass.getESuperTypes().add(this.getCaseStyle());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stylingModelEClass, StylingModel.class, "StylingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStylingModel_Styles(), this.getCaseStyle(), null, "styles", null, 0, -1, StylingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStylingModel_ModeName(), ecorePackage.getEString(), "modeName", null, 0, 1, StylingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStylingModel_Default(), this.getDefault(), null, "default", null, 1, 1, StylingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStylingModel_Basic(), this.getBasic(), null, "basic", null, 1, 1, StylingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stylingPredicateEClass, StylingPredicate.class, "StylingPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStylingPredicate_Predicate(), thePredicatesPackage.getIPredicate(), null, "predicate", null, 0, 1, StylingPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -955,6 +986,8 @@ public class StylingPackageImpl extends EPackageImpl implements StylingPackage {
 
 		initEClass(eObjectParameterEClass, EObjectParameter.class, "EObjectParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEObjectParameter_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, EObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(basicEClass, Basic.class, "Basic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(fontOptionEEnum, FontOption.class, "FontOption");

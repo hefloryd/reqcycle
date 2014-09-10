@@ -3,6 +3,9 @@ package org.polarsys.reqcycle.styling.ui.dialogs;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.preference.ColorSelector;
@@ -28,6 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.polarsys.reqcycle.core.ui.dialogs.ValidatingTitleAreaDialog;
+import org.polarsys.reqcycle.operations.IReqCycleOperationManager;
 import org.polarsys.reqcycle.operations.ReqCycleOperation;
 import org.polarsys.reqcycle.operations.dialogs.OperationAttributesEditor;
 import org.polarsys.reqcycle.operations.dialogs.SelectOperationDialog;
@@ -39,14 +43,19 @@ import org.polarsys.reqcycle.styling.model.Styling.FontOption;
 import org.polarsys.reqcycle.styling.model.Styling.IntParameter;
 import org.polarsys.reqcycle.styling.model.Styling.ModelPattern;
 import org.polarsys.reqcycle.styling.model.Styling.OperationPattern;
+import org.polarsys.reqcycle.styling.model.Styling.Parameter;
 import org.polarsys.reqcycle.styling.model.Styling.Pattern;
 import org.polarsys.reqcycle.styling.model.Styling.Segment;
 import org.polarsys.reqcycle.styling.model.Styling.StringParameter;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
 import org.polarsys.reqcycle.ui.eattrpropseditor.GenericEAttrPropsEditor;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
+	@Inject
+	IReqCycleOperationManager reqCycleOperationlManager;
+	
 	private Segment segment;
 	private Text constantText;
 	private Text modelText;
@@ -78,6 +87,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 	public SegmentEditorDialog(Shell parentShell, Segment segmentToEdit) {
 		super(parentShell);
 		segment = segmentToEdit;
+		ZigguratInject.inject(this);
 	}
 
 	/**
@@ -437,10 +447,40 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 			constantText.setEnabled(false);
 			btnLoadResources.setEnabled(false);
 			btnOperation.setEnabled(true);
-			btnEditOperation.setEnabled(true);
 
-			operationText.setText(((OperationPattern) pattern).getOperation());
+			String operationName = ((OperationPattern) pattern).getOperation();
+			operationText.setText(operationName);
 			operationButton.setSelection(true);
+			
+			EList<Parameter> paramList = ((OperationPattern) pattern).getParameters();
+			Class<?>[] listTypes = new Class<?>[paramList.size()];
+			for (int i = 0; i < paramList.size(); i++) {
+				Parameter p = paramList.get(i);
+				if (p instanceof StringParameter) {
+					listTypes[i] = String.class;
+				} else if (p instanceof IntParameter) {
+					listTypes[i] = Integer.class;
+				} else if (p instanceof BooleanParameter) {
+					listTypes[i] = Boolean.class;
+				} else if (p instanceof EObjectParameter) {
+					listTypes[i] = EObject.class;
+				} else {
+					// Type is not supported
+					return;
+				}
+			}
+			ReqCycleOperation op = reqCycleOperationlManager.getOperationForEditingAttributes(
+					operationName, listTypes);
+			if (op != null) {
+				method = op.getMethod();
+				if (paramList.size() > 0) {
+					btnEditOperation.setEnabled(true);
+				} else {
+					btnEditOperation.setEnabled(false);
+				}
+			} else {
+				btnEditOperation.setEnabled(false);
+			}
 		}
 	}
 
@@ -463,7 +503,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 			constantText.setEnabled(false);
 			btnLoadResources.setEnabled(false);
 			btnOperation.setEnabled(true);
-			btnEditOperation.setEnabled(true);
+			btnEditOperation.setEnabled(false);
 			constantText.setText("");
 			modelText.setText("");
 		}

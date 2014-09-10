@@ -14,22 +14,18 @@ import java.util.Collection;
 import java.util.Collections;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.resources.IProject;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
+import org.polarsys.reqcycle.traceability.storage.NoProjectStorageException;
 import org.polarsys.reqcycle.traceability.types.ITraceabilityAttributesManager;
 import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Attribute;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
-import org.polarsys.reqcycle.uri.IReachableManager;
-import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
-import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.traceability.types.impl.FromStorageEditableAttribute.ILazyStorageProvider;
 import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.uri.model.ReachableObject;
 
 import com.google.common.base.Predicate;
 
@@ -37,16 +33,11 @@ import static com.google.common.collect.Iterables.find;
 
 public class TraceabilityAttributesManager implements
 		ITraceabilityAttributesManager {
-
-	public static final String STORAGE_PATH = "./.t-attributes";
 	public static final String RELATION_NAME = "relationKind";
 
 	@Inject
-	IReachableManager reachableManager;
-	@Inject
 	ITypesConfigurationProvider typesConfigurationProvider;
 	@Inject
-	@Named("RDF")
 	IStorageProvider storageProvider;
 
 	@Override
@@ -59,28 +50,15 @@ public class TraceabilityAttributesManager implements
 		}
 		// retrieve the reachable object to get correct project
 		try {
-			IReachableHandler handler = reachableManager
-					.getHandlerFromReachable(reachable);
-			ReachableObject object = handler.getFromReachable(reachable);
-			IFile file = (IFile) object.getAdapter(IFile.class);
-			if (file != null) {
-				return getAttributes(reachable, defaultConfiguration, file);
+			ITraceabilityStorage storage = storageProvider.getProjectStorageFromLinkId(reachable);
+			if (storage == null) {
+				return Collections.emptyList();
 			}
-		} catch (IReachableHandlerException e) {
-			e.printStackTrace();
+			return getAttributes(reachable, defaultConfiguration, storage);
+		} catch (NoProjectStorageException e) {
+			e.printStackTrace(); // TODO Error handling
 		}
 		return Collections.emptyList();
-	}
-
-	private Collection<EditableAttribute> getAttributes(Reachable reachable,
-			Configuration configuration, IFile file) {
-		ITraceabilityStorage storage = storageProvider.getStorage(file
-				.getProject().getFile(new Path(STORAGE_PATH)).getLocationURI()
-				.getPath());
-		if (storage == null) {
-			return Collections.emptyList();
-		}
-		return getAttributes(reachable, configuration, storage);
 	}
 
 	private Collection<EditableAttribute> getAttributes(Reachable reachable,
@@ -98,19 +76,43 @@ public class TraceabilityAttributesManager implements
 
 					}, null);
 			if (rel != null) {
-				return getAttributes(reachable, storage, rel);
+				return getAttributes(reachable, rel);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	private Collection<EditableAttribute> getAttributes(Reachable reachable,
-			ITraceabilityStorage storage, Relation rel) {
+			Relation rel) {
 		Collection<EditableAttribute> attributes = new ArrayList<ITraceabilityAttributesManager.EditableAttribute>();
 		for (Attribute a : rel.getAttributes()) {
-			attributes.add(new FromStorageEditableAttribute(a, reachable,
-					storageProvider, storage.getPath()));
+			final LazyStorageProvider lazyStorageProvider = new LazyStorageProvider(storageProvider, reachable);
+			final FromStorageEditableAttribute editableAttribute = new FromStorageEditableAttribute(a, reachable, lazyStorageProvider);
+			attributes.add(editableAttribute);
 		}
 		return attributes;
+	}
+	
+	private class LazyStorageProvider implements ILazyStorageProvider {
+		final IStorageProvider provider;
+		final Reachable reachable;
+		
+		public LazyStorageProvider(IStorageProvider provider, Reachable reachable) {
+			super();
+			this.provider = provider;
+			this.reachable = reachable;
+		}
+
+
+
+		@Override
+		public ITraceabilityStorage getStorage() {
+			try {
+				return provider.getProjectStorageFromLinkId(reachable);
+			} catch (NoProjectStorageException e) {
+				throw new RuntimeException("Can't open storage"); // FIXME that's nasty
+			}
+		}
+		
 	}
 }
