@@ -54,7 +54,7 @@ public class ImpactAnalysisComposites {
 	private Label rsValueLabel;
 	private Label initialVersionValueLabel;
 	private Label finalVersionValueLabel;
-	
+
 	private Collection<TraceabilityLink> links = Lists.newArrayList();
 
 	private ArrayList<ImpactContainer> impactList = Lists.newArrayList();
@@ -70,8 +70,7 @@ public class ImpactAnalysisComposites {
 	public Composite createInputComposite(Composite parent) {
 		Composite inputComposite = new Composite(parent, SWT.NONE);
 		inputComposite.setLayout(new GridLayout(2, false));
-		GridData gd_inputComposite = new GridData(SWT.FILL, SWT.FILL, true,
-				false, 1, 1);
+		GridData gd_inputComposite = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
 		gd_inputComposite.heightHint = 73;
 		inputComposite.setLayoutData(gd_inputComposite);
 
@@ -80,24 +79,21 @@ public class ImpactAnalysisComposites {
 
 		rsValueLabel = new Label(inputComposite, SWT.NONE);
 		rsValueLabel.setEnabled(false);
-		rsValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				false, 1, 1));
+		rsValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 
 		Label initialVersionLabel = new Label(inputComposite, SWT.NONE);
 		initialVersionLabel.setText("Initial version for impact analysis :");
 
 		initialVersionValueLabel = new Label(inputComposite, SWT.NONE);
 		initialVersionValueLabel.setEnabled(false);
-		initialVersionValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				false, false, 1, 1));
+		initialVersionValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 
 		Label finalVersionLabel = new Label(inputComposite, SWT.NONE);
 		finalVersionLabel.setText("Final version for impact analysis :");
 
 		finalVersionValueLabel = new Label(inputComposite, SWT.NONE);
 		finalVersionValueLabel.setEnabled(false);
-		finalVersionValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				false, false, 1, 1));
+		finalVersionValueLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 
 		return inputComposite;
 	}
@@ -116,13 +112,12 @@ public class ImpactAnalysisComposites {
 
 	public Composite createImpactComposite(Composite parent) {
 		Composite impactResultComposite = new Composite(parent, SWT.NONE);
-		impactResultComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, true, 1, 1));
+		impactResultComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		impactResultComposite.setLayout(new GridLayout(3, false));
 
 		SashForm form = new SashForm(impactResultComposite, SWT.None);
 		form.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		
+
 		treeViewer = new TreeViewer(form, SWT.BORDER);
 		Tree tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
@@ -134,11 +129,9 @@ public class ImpactAnalysisComposites {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (((IStructuredSelection) event.getSelection())
-						.getFirstElement() instanceof RequirementImpacted) {
-					RequirementImpacted req = (RequirementImpacted) (((IStructuredSelection) event
-							.getSelection()).getFirstElement());
-					
+				if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof RequirementImpacted) {
+					RequirementImpacted req = (RequirementImpacted) (((IStructuredSelection) event.getSelection()).getFirstElement());
+
 					// In the attributes table we display the attributes modified for the
 					// selected requirement
 					attributeList.setInput(req);
@@ -152,18 +145,15 @@ public class ImpactAnalysisComposites {
 				}
 			}
 		});
-		
+
 		attributeList = new TreeViewer(form, SWT.BORDER);
 		Tree tree2 = attributeList.getTree();
 		tree2.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		attributeList.setLabelProvider(new AttributeLabelProvider());
 		attributeList.setContentProvider(new AttributeContentProvider());
 
-		linkViewer = new TableViewer(form, SWT.MULTI
-				| SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER
-				| SWT.VIRTUAL);
-		linkViewer.getTable().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
+		linkViewer = new TableViewer(form, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+		linkViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		ArrayContentProvider provider = ArrayContentProvider.getInstance();
 		linkViewer.setContentProvider(provider);
 
@@ -178,9 +168,7 @@ public class ImpactAnalysisComposites {
 		return impactResultComposite;
 	}
 
-	public void setImpactResult(EList<RequirementImpacted> reqAdded,
-			EList<RequirementImpacted> reqDeleted,
-			EList<RequirementImpacted> reqModified) {
+	public void setImpactResult(EList<RequirementImpacted> reqAdded, EList<RequirementImpacted> reqDeleted, EList<RequirementImpacted> reqModified) {
 		impactList.clear();
 		if (reqAdded.size() != 0) {
 			ImpactContainer added = new ImpactContainer("Added", reqAdded);
@@ -191,8 +179,7 @@ public class ImpactAnalysisComposites {
 			impactList.add(deleted);
 		}
 		if (reqModified.size() != 0) {
-			ImpactContainer modified = new ImpactContainer("Modified",
-					reqModified);
+			ImpactContainer modified = new ImpactContainer("Modified", reqModified);
 			impactList.add(modified);
 		}
 		attributeList.setInput(null);
@@ -209,50 +196,45 @@ public class ImpactAnalysisComposites {
 	}
 
 	private void createModel() {
-		createTableViewerColumn("Link type", 100, 0).setLabelProvider(
-				new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Link type", 100, 0).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
-					@Override
-					public String getText(Object element) {
-						if (element instanceof TraceabilityLink) {
-							TraceabilityLink link = (TraceabilityLink) element;
-							return link.getLinkType();
-						}
-						return super.getText(element);
-					}
-				});
+			@Override
+			public String getText(Object element) {
+				if (element instanceof TraceabilityLink) {
+					TraceabilityLink link = (TraceabilityLink) element;
+					return link.getLinkType();
+				}
+				return super.getText(element);
+			}
+		});
 
-		createTableViewerColumn("Direction", 100, 1).setLabelProvider(
-				new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Direction", 100, 1).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
-					@Override
-					public String getText(Object element) {
-						if (element instanceof TraceabilityLink) {
-							TraceabilityLink link = (TraceabilityLink) element;
-							return link.getLinkDirection();
-						}
-						return super.getText(element);
-					}
-				});
+			@Override
+			public String getText(Object element) {
+				if (element instanceof TraceabilityLink) {
+					TraceabilityLink link = (TraceabilityLink) element;
+					return link.getLinkDirection();
+				}
+				return super.getText(element);
+			}
+		});
 
-		createTableViewerColumn("Link to", 200, 2).setLabelProvider(
-				new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Link to", 200, 2).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
-					@Override
-					public String getText(Object element) {
-						if (element instanceof TraceabilityLink) {
-							TraceabilityLink link = (TraceabilityLink) element;
-							return link.getLinkedElement();
-						}
-						return super.getText(element);
-					}
-				});
+			@Override
+			public String getText(Object element) {
+				if (element instanceof TraceabilityLink) {
+					TraceabilityLink link = (TraceabilityLink) element;
+					return link.getLinkedElement();
+				}
+				return super.getText(element);
+			}
+		});
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, int bound,
-			final int colNumber) {
-		final TableViewerColumn viewerColumn = new TableViewerColumn(
-				linkViewer, SWT.NONE);
+	private TableViewerColumn createTableViewerColumn(String title, int bound, final int colNumber) {
+		final TableViewerColumn viewerColumn = new TableViewerColumn(linkViewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
 		column.setWidth(bound);
@@ -278,21 +260,21 @@ public class ImpactAnalysisComposites {
 			return this.reqList;
 		}
 	}
-	
+
 	public class AttributeLabelProvider implements ILabelProvider {
 
 		Image imageOldValue;
 		Image imageNewValue;
-		
+
 		public AttributeLabelProvider() {
 			super();
 			ImageDescriptor descrNew = Activator.getImageDescriptor("icons/add_obj.gif");
 			imageNewValue = descrNew.createImage();
-			
+
 			ImageDescriptor descrOld = Activator.getImageDescriptor("icons/remove_correction.gif");
 			imageOldValue = descrOld.createImage();
 		}
-		
+
 		@Override
 		public void addListener(ILabelProviderListener listener) {
 		}
@@ -313,12 +295,12 @@ public class ImpactAnalysisComposites {
 		@Override
 		public Image getImage(Object element) {
 			if (element instanceof AttributeValue) {
-				if(((AttributeValue)element).getStatus().equals(Status.NEW_VALUE)) {
+				if (((AttributeValue) element).getStatus().equals(Status.NEW_VALUE)) {
 					return imageNewValue;
 				} else {
 					return imageOldValue;
 				}
-			}			
+			}
 			return null;
 		}
 
@@ -329,12 +311,12 @@ public class ImpactAnalysisComposites {
 			} else if (element instanceof RequirementImpacted) {
 				return ((RequirementImpacted) element).getId();
 			} else if (element instanceof AttributeValue) {
-				return ((AttributeValue)element).getValue();
+				return ((AttributeValue) element).getValue();
 			}
 			return element.toString();
 		}
 	}
-	
+
 	public class AttributeContentProvider implements ITreeContentProvider {
 
 		@Override
@@ -348,9 +330,9 @@ public class ImpactAnalysisComposites {
 		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof Collection) {
-				return ((Collection)inputElement).toArray();
+				return ((Collection) inputElement).toArray();
 			} else if (inputElement instanceof RequirementImpacted) {
-				return ((RequirementImpacted)inputElement).getAttributesImpacted().toArray();
+				return ((RequirementImpacted) inputElement).getAttributesImpacted().toArray();
 			}
 			return null;
 		}
@@ -381,25 +363,25 @@ public class ImpactAnalysisComposites {
 			return false;
 		}
 	}
-	
+
 	protected enum Status {
-		   OLD_VALUE, NEW_VALUE;
-		}
-	
+		OLD_VALUE, NEW_VALUE;
+	}
+
 	protected class AttributeValue {
 
 		String value;
 		Status status;
-		
+
 		AttributeValue(String value, Status status) {
-			this.value= value;
+			this.value = value;
 			this.status = status;
 		}
-		
+
 		protected String getValue() {
 			return this.value;
 		}
-		
+
 		protected Status getStatus() {
 			return this.status;
 		}

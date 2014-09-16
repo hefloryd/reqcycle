@@ -13,24 +13,20 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.IsNullPredicate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Is Null Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Is Null Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl#getDisplayName
- * <em>Display Name</em>}</li>
+ * {@link org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements
-		IsNullPredicate {
+public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements IsNullPredicate {
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>} ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDisplayName()
 	 * @generated
@@ -39,8 +35,7 @@ public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDisplayName()
 	 * @generated
@@ -87,9 +82,7 @@ public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements
 		String oldDisplayName = displayName;
 		displayName = newDisplayName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PredicatesPackage.IS_NULL_PREDICATE__DISPLAY_NAME,
-					oldDisplayName, displayName));
+			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IS_NULL_PREDICATE__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -155,8 +148,7 @@ public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case PredicatesPackage.IS_NULL_PREDICATE__DISPLAY_NAME:
-			return DISPLAY_NAME_EDEFAULT == null ? displayName != null
-					: !DISPLAY_NAME_EDEFAULT.equals(displayName);
+			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -167,8 +159,7 @@ public class IsNullPredicateImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case PredicatesPackage.IS_NULL_PREDICATE___MATCH__OBJECT:
 			return match(arguments.get(0));

@@ -11,16 +11,13 @@
  */
 package org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Registered Attribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Registered Attribute</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.RegisteredAttribute#getId <em>Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.RegisteredAttribute#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,13 +27,12 @@ package org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration
  */
 public interface RegisteredAttribute extends StdAttribute {
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getRegisteredAttribute_Id()
@@ -46,10 +42,10 @@ public interface RegisteredAttribute extends StdAttribute {
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.RegisteredAttribute#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.RegisteredAttribute#getId <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */

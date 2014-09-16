@@ -33,8 +33,7 @@ public class StyleModelChooserHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		StyleModelChooserDialog dialog = new StyleModelChooserDialog(Display
-				.getDefault().getActiveShell());
+		StyleModelChooserDialog dialog = new StyleModelChooserDialog(Display.getDefault().getActiveShell());
 		int result = dialog.open();
 		if (result == Window.CANCEL) {
 			styleManager.reload();

@@ -22,12 +22,13 @@ import org.eclipse.ocl.expressions.Variable;
 public interface JavaImplementedOCLOperation {
 
 	/**
-	 * Matches the following ocl code : 
-	 * context.customOperation(args)
+	 * Matches the following ocl code : context.customOperation(args)
 	 */
 	public Object execute(Object context, Object[] args) throws IllegalArgumentException;
+
 	/**
 	 * Check whether the operation is executable for a given context and given arguments.
+	 * 
 	 * @param context
 	 * @param args
 	 * @return
@@ -53,5 +54,5 @@ public interface JavaImplementedOCLOperation {
 	 * The parameters of the operation.
 	 */
 	public List<Variable<EClassifier, EParameter>> getParameters();
-	
+
 }

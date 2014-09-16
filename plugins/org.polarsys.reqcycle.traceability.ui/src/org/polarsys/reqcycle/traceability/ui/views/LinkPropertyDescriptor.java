@@ -41,8 +41,7 @@ public class LinkPropertyDescriptor extends PropertyDescriptor {
 		}
 		Object[] possibleValues = att.getPossibleValues();
 		if (possibleValues != null && possibleValues.length > 0) {
-			ComboBoxViewerCellEditor cellEditor = new ComboBoxViewerCellEditor(
-					parent, SWT.READ_ONLY);
+			ComboBoxViewerCellEditor cellEditor = new ComboBoxViewerCellEditor(parent, SWT.READ_ONLY);
 			cellEditor.setContentProvider(ArrayContentProvider.getInstance());
 			cellEditor.setInput(possibleValues);
 			return cellEditor;
@@ -64,9 +63,7 @@ public class LinkPropertyDescriptor extends PropertyDescriptor {
 
 					@Override
 					public String isValid(Object value) {
-						if (value instanceof String
-								&& INTPATTERN.matcher((CharSequence) value)
-										.matches()) {
+						if (value instanceof String && INTPATTERN.matcher((CharSequence) value).matches()) {
 							return null;
 						}
 						return "integer value expected";

@@ -26,28 +26,24 @@ import org.polarsys.reqcycle.uri.services.IReachableExtender;
 public class TTypeExtender implements IReachableExtender {
 
 	/**
-	 * Id of the property that stores the value of {@link TType#getId()} in the
-	 * {@link Reachable}.
+	 * Id of the property that stores the value of {@link TType#getId()} in the {@link Reachable}.
 	 */
 	public static final String PROPERTY_ID = "id";
 
 	/**
-	 * Id of the property that stores the serialized value of the {@link TType}
-	 * instance in the {@link Reachable}.
+	 * Id of the property that stores the serialized value of the {@link TType} instance in the {@link Reachable}.
 	 */
 	public static final String PROPERTY_DATA = "data";
 
 	/**
-	 * Id of the property that stores the value of {@link TType#getLabel()} in
-	 * the {@link Reachable}.
+	 * Id of the property that stores the value of {@link TType#getLabel()} in the {@link Reachable}.
 	 */
 	public static final String PROPERTY_LABEL = "label";
 
 	/**
 	 * @param reachable
 	 *            {@link Reachable} of {@link TType}.
-	 * @return The {@link TType} id (the result of {@link TType#getId()}) from
-	 *         its reachable, or <code>null</code> on error.
+	 * @return The {@link TType} id (the result of {@link TType#getId()}) from its reachable, or <code>null</code> on error.
 	 */
 	public static String getId(final Reachable reachable) {
 		return reachable.get(TTypeExtender.PROPERTY_ID);
@@ -56,8 +52,7 @@ public class TTypeExtender implements IReachableExtender {
 	/**
 	 * @param reachable
 	 *            {@link Reachable} of {@link TType}.
-	 * @return The {@link TType} label (the result of {@link TType#getLabel()})
-	 *         from its reachable, or <code>null</code> on error.
+	 * @return The {@link TType} label (the result of {@link TType#getLabel()}) from its reachable, or <code>null</code> on error.
 	 */
 	public static String getLabel(final Reachable reachable) {
 		return reachable.get(TTypeExtender.PROPERTY_LABEL);
@@ -66,8 +61,7 @@ public class TTypeExtender implements IReachableExtender {
 	/**
 	 * @param reachable
 	 *            {@link Reachable} of {@link TType}.
-	 * @return The {@link TType} serialized string representation from its
-	 *         reachable, or <code>null</code> on error.
+	 * @return The {@link TType} serialized string representation from its reachable, or <code>null</code> on error.
 	 */
 	public static String getData(final Reachable reachable) {
 		return reachable.get(TTypeExtender.PROPERTY_DATA);

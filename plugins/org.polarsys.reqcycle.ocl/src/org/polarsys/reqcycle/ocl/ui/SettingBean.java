@@ -16,7 +16,7 @@ public class SettingBean extends AbstractStorageBean {
 	 */
 	private final IWizard wizard;
 	private String oclUri = "";
-	
+
 	public SettingBean(IWizard oclConnector) {
 		this.wizard = oclConnector;
 	}
@@ -30,15 +30,14 @@ public class SettingBean extends AbstractStorageBean {
 		notifyChange();
 	}
 
-
 	public void notifyChange() {
 		IWizardPage[] pages = this.wizard.getPages();
-		if(pages != null) {
-			for(int i = 0; i < pages.length; i++) {
+		if (pages != null) {
+			for (int i = 0; i < pages.length; i++) {
 				IWizardPage iWizardPage = pages[i];
 				iWizardPage.getWizard().getContainer().updateButtons();
-				if(iWizardPage instanceof Listener) {
-					((Listener)iWizardPage).handleEvent(new Event());
+				if (iWizardPage instanceof Listener) {
+					((Listener) iWizardPage).handleEvent(new Event());
 				}
 			}
 		}
@@ -54,5 +53,5 @@ public class SettingBean extends AbstractStorageBean {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

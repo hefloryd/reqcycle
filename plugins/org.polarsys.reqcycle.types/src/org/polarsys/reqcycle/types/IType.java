@@ -29,7 +29,7 @@ public interface IType {
 	public boolean isExtensible();
 
 	public Class<? extends ITypeChecker> getCheckerClass();
-	
+
 	/**
 	 * Available only if isExtensible = true
 	 * 
@@ -46,7 +46,7 @@ public interface IType {
 			this.type = type;
 		}
 	}
-	
+
 	public class FieldURIDescriptor extends FieldDescriptor {
 		public String name;
 		public Class<?> type;

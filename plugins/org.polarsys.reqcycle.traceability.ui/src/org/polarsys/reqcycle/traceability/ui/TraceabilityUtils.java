@@ -35,8 +35,7 @@ public class TraceabilityUtils {
 			IReachableHandler handler = manager.getHandlerFromReachable(r);
 			ReachableObject reachableObject = handler.getFromReachable(r);
 			if (reachableObject != null) {
-				ILabelProvider provider = (ILabelProvider) reachableObject
-						.getAdapter(ILabelProvider.class);
+				ILabelProvider provider = (ILabelProvider) reachableObject.getAdapter(ILabelProvider.class);
 				return provider;
 			}
 		} catch (IReachableHandlerException e) {

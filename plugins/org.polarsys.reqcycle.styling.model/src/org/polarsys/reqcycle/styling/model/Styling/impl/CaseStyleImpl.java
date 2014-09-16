@@ -35,29 +35,28 @@ import org.polarsys.reqcycle.styling.model.Styling.Segment;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Case Style</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Case Style</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.CaseStyleImpl#getSegments <em>Segments</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.CaseStyleImpl#getIcon <em>Icon</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.CaseStyleImpl#getSegments <em>Segments</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.CaseStyleImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
-		implements CaseStyle {
+public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container implements CaseStyle {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The cached value of the '{@link #getSegments() <em>Segments</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSegments() <em>Segments</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSegments()
 	 * @generated
 	 * @ordered
@@ -65,8 +64,8 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 	protected EList<Segment> segments;
 
 	/**
-	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIcon()
 	 * @generated
 	 * @ordered
@@ -75,6 +74,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CaseStyleImpl() {
@@ -83,6 +83,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +93,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Segment> getSegments() {
@@ -103,6 +105,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Icon getIcon() {
@@ -111,6 +114,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIcon(Icon newIcon, NotificationChain msgs) {
@@ -118,26 +122,30 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 		icon = newIcon;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StylingPackage.CASE_STYLE__ICON, oldIcon, newIcon);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIcon(Icon newIcon) {
 		if (newIcon != icon) {
 			NotificationChain msgs = null;
 			if (icon != null)
-				msgs = ((InternalEObject)icon).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StylingPackage.CASE_STYLE__ICON, null, msgs);
+				msgs = ((InternalEObject) icon).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StylingPackage.CASE_STYLE__ICON, null, msgs);
 			if (newIcon != null)
-				msgs = ((InternalEObject)newIcon).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StylingPackage.CASE_STYLE__ICON, null, msgs);
+				msgs = ((InternalEObject) newIcon).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StylingPackage.CASE_STYLE__ICON, null, msgs);
 			msgs = basicSetIcon(newIcon, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StylingPackage.CASE_STYLE__ICON, newIcon, newIcon));
 	}
 
@@ -164,8 +172,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 			if (segment.getStyle().getAppliedFonts().contains(FontOption.BOLD)) {
 				fontRegistryName += "B";
 			}
-			if (segment.getStyle().getAppliedFonts()
-					.contains(FontOption.ITALIC)) {
+			if (segment.getStyle().getAppliedFonts().contains(FontOption.ITALIC)) {
 				fontRegistryName += "I";
 			}
 
@@ -177,12 +184,10 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 				public void applyStyles(TextStyle textStyle) {
 					textStyle.font = font;
 
-					if (segment.getStyle().getAppliedFonts()
-							.contains(FontOption.UNDERLINE)) {
+					if (segment.getStyle().getAppliedFonts().contains(FontOption.UNDERLINE)) {
 						textStyle.underline = true;
 					}
-					if (segment.getStyle().getAppliedFonts()
-							.contains(FontOption.STRIKE)) {
+					if (segment.getStyle().getAppliedFonts().contains(FontOption.STRIKE)) {
 						textStyle.strikeout = true;
 					}
 
@@ -200,6 +205,7 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Image getImage() {
@@ -210,98 +216,102 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StylingPackage.CASE_STYLE__SEGMENTS:
-				return ((InternalEList<?>)getSegments()).basicRemove(otherEnd, msgs);
-			case StylingPackage.CASE_STYLE__ICON:
-				return basicSetIcon(null, msgs);
+		case StylingPackage.CASE_STYLE__SEGMENTS:
+			return ((InternalEList<?>) getSegments()).basicRemove(otherEnd, msgs);
+		case StylingPackage.CASE_STYLE__ICON:
+			return basicSetIcon(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StylingPackage.CASE_STYLE__SEGMENTS:
-				return getSegments();
-			case StylingPackage.CASE_STYLE__ICON:
-				return getIcon();
+		case StylingPackage.CASE_STYLE__SEGMENTS:
+			return getSegments();
+		case StylingPackage.CASE_STYLE__ICON:
+			return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StylingPackage.CASE_STYLE__SEGMENTS:
-				getSegments().clear();
-				getSegments().addAll((Collection<? extends Segment>)newValue);
-				return;
-			case StylingPackage.CASE_STYLE__ICON:
-				setIcon((Icon)newValue);
-				return;
+		case StylingPackage.CASE_STYLE__SEGMENTS:
+			getSegments().clear();
+			getSegments().addAll((Collection<? extends Segment>) newValue);
+			return;
+		case StylingPackage.CASE_STYLE__ICON:
+			setIcon((Icon) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StylingPackage.CASE_STYLE__SEGMENTS:
-				getSegments().clear();
-				return;
-			case StylingPackage.CASE_STYLE__ICON:
-				setIcon((Icon)null);
-				return;
+		case StylingPackage.CASE_STYLE__SEGMENTS:
+			getSegments().clear();
+			return;
+		case StylingPackage.CASE_STYLE__ICON:
+			setIcon((Icon) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StylingPackage.CASE_STYLE__SEGMENTS:
-				return segments != null && !segments.isEmpty();
-			case StylingPackage.CASE_STYLE__ICON:
-				return icon != null;
+		case StylingPackage.CASE_STYLE__SEGMENTS:
+			return segments != null && !segments.isEmpty();
+		case StylingPackage.CASE_STYLE__ICON:
+			return icon != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StylingPackage.CASE_STYLE___GET_STYLED_STRING__OBJECT:
-				return getStyledString(arguments.get(0));
-			case StylingPackage.CASE_STYLE___GET_IMAGE:
-				return getImage();
+		case StylingPackage.CASE_STYLE___GET_STYLED_STRING__OBJECT:
+			return getStyledString(arguments.get(0));
+		case StylingPackage.CASE_STYLE___GET_IMAGE:
+			return getImage();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

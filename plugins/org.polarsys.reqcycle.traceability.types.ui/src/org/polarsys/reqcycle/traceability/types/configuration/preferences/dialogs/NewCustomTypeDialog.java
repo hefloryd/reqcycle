@@ -88,13 +88,11 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label lblName = new Label(container, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
-				1, 1));
+		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblName.setText("Name :");
 
 		textName = new Text(container, SWT.BORDER);
-		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				1, 1));
+		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		textName.addModifyListener(new ModifyListener() {
 
 			@Override
@@ -107,26 +105,22 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 
 		Group grpParameters = new Group(container, SWT.NONE);
 		grpParameters.setLayout(new GridLayout(1, false));
-		grpParameters.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true, 2, 1));
+		grpParameters.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		grpParameters.setText("Parameters");
 
-		ScrolledComposite scrolledComposite = new ScrolledComposite(
-				grpParameters, SWT.BORDER | SWT.V_SCROLL);
-		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true,
-				true, 1, 1));
+		ScrolledComposite scrolledComposite = new ScrolledComposite(grpParameters, SWT.BORDER | SWT.V_SCROLL);
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, true, 1, 1));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
 		Composite composite = new Composite(scrolledComposite, SWT.NONE);
-		composite.setLayout(new GridLayout(1,false));
+		composite.setLayout(new GridLayout(1, false));
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
 		createEntries(composite);
 
 		scrolledComposite.setContent(composite);
-		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT,
-				SWT.DEFAULT));
+		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
 		return area;
 	}
@@ -134,12 +128,11 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 	private void createEntries(Composite composite) {
 		for (IType.FieldDescriptor d : injectedJavaType.getDescriptors()) {
 			GenericEAttrPropsEditor editor = new GenericEAttrPropsEditor(composite, SWT.None);
-			if (d instanceof FieldURIDescriptor){
-				FieldURIDescriptor desc = (FieldURIDescriptor) d ;
-				editor.init(d.name, desc.realType,Collections.emptyList());
-			}
-			else {
-				editor.init(d.name, d.type,Collections.emptyList());
+			if (d instanceof FieldURIDescriptor) {
+				FieldURIDescriptor desc = (FieldURIDescriptor) d;
+				editor.init(d.name, desc.realType, Collections.emptyList());
+			} else {
+				editor.init(d.name, d.type, Collections.emptyList());
 			}
 			editor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 			editors.add(editor);
@@ -162,7 +155,7 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 		builder.append(currentWord);
 		return builder.toString();
 	}
-	
+
 	@Override
 	protected void buttonPressed(int buttonId) {
 		super.buttonPressed(buttonId);
@@ -175,10 +168,8 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**
@@ -195,12 +186,11 @@ public class NewCustomTypeDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		if (newCustomType.getTypeId() == null
-				|| newCustomType.getTypeId().length() == 0) {
+		if (newCustomType.getTypeId() == null || newCustomType.getTypeId().length() == 0) {
 			setErrorMessage("Please set a name");
 			return;
 		}
-		for (GenericEAttrPropsEditor a : editors){
+		for (GenericEAttrPropsEditor a : editors) {
 			Entry entry = TypeconfigurationFactory.eINSTANCE.createEntry();
 			entry.setName(a.getAttributeName());
 			entry.setValue(a.getEnteredValue());

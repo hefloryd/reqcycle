@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
- * accessors for the meta objects to represent
+ * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
  * <ul>
  * <li>each class,</li>
  * <li>each feature of each class,</li>
@@ -53,18 +52,14 @@ public interface MappingModelPackage extends EPackage {
 	String eNS_PREFIX = "MappingModel";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	MappingModelPackage eINSTANCE = org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl
-	 * <em>Mapping Element</em>}' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The meta object id for the ' {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl <em>Mapping Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingModelPackageImpl#getMappingElement()
@@ -73,8 +68,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -82,8 +76,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT__DESCRIPTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Element</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Target Element</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -91,8 +84,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT__TARGET_ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -100,8 +92,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT__ATTRIBUTES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Source Qualifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Source Qualifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -109,8 +100,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT__SOURCE_QUALIFIER = 3;
 
 	/**
-	 * The number of structural features of the '<em>Mapping Element</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Mapping Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -118,8 +108,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Mapping Element</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of operations of the '<em>Mapping Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -127,10 +116,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl
-	 * <em>Mapping Attribute</em>}' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The meta object id for the ' {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl <em>Mapping Attribute</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingModelPackageImpl#getMappingAttribute()
@@ -139,8 +125,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Target Attribute</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -148,8 +133,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -157,8 +141,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Source Id</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Source Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -166,8 +149,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE__SOURCE_ID = 2;
 
 	/**
-	 * The number of structural features of the '<em>Mapping Attribute</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Mapping Attribute</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -175,8 +157,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Mapping Attribute</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of operations of the '<em>Mapping Attribute</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -184,9 +165,7 @@ public interface MappingModelPackage extends EPackage {
 	int MAPPING_ATTRIBUTE_OPERATION_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement
-	 * <em>Mapping Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement <em>Mapping Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Mapping Element</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement
@@ -195,9 +174,7 @@ public interface MappingModelPackage extends EPackage {
 	EClass getMappingElement();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getDescription
-	 * <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getDescription <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getDescription()
@@ -207,9 +184,7 @@ public interface MappingModelPackage extends EPackage {
 	EAttribute getMappingElement_Description();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getTargetElement
-	 * <em>Target Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getTargetElement <em>Target Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Target Element</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getTargetElement()
@@ -219,12 +194,9 @@ public interface MappingModelPackage extends EPackage {
 	EReference getMappingElement_TargetElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getAttributes
-	 * <em>Attributes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the containment reference list ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getAttributes <em>Attributes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Attributes</em>'.
+	 * @return the meta object for the containment reference list ' <em>Attributes</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getAttributes()
 	 * @see #getMappingElement()
 	 * @generated
@@ -232,10 +204,7 @@ public interface MappingModelPackage extends EPackage {
 	EReference getMappingElement_Attributes();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getSourceQualifier
-	 * <em>Source Qualifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns the meta object for the attribute ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getSourceQualifier <em>Source Qualifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Source Qualifier</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement#getSourceQualifier()
@@ -245,10 +214,7 @@ public interface MappingModelPackage extends EPackage {
 	EAttribute getMappingElement_SourceQualifier();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute
-	 * <em>Mapping Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns the meta object for class ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute <em>Mapping Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Mapping Attribute</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute
@@ -257,10 +223,7 @@ public interface MappingModelPackage extends EPackage {
 	EClass getMappingAttribute();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getTargetAttribute
-	 * <em>Target Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns the meta object for the reference ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getTargetAttribute <em>Target Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Target Attribute</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getTargetAttribute()
@@ -270,9 +233,7 @@ public interface MappingModelPackage extends EPackage {
 	EReference getMappingAttribute_TargetAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getDescription
-	 * <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getDescription <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getDescription()
@@ -282,9 +243,7 @@ public interface MappingModelPackage extends EPackage {
 	EAttribute getMappingAttribute_Description();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getSourceId
-	 * <em>Source Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getSourceId <em>Source Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Source Id</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute#getSourceId()
@@ -294,8 +253,7 @@ public interface MappingModelPackage extends EPackage {
 	EAttribute getMappingAttribute_SourceId();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
@@ -303,8 +261,7 @@ public interface MappingModelPackage extends EPackage {
 	MappingModelFactory getMappingModelFactory();
 
 	/**
-	 * <!-- begin-user-doc --> Defines literals for the meta objects that
-	 * represent
+	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
 	 * <ul>
 	 * <li>each class,</li>
 	 * <li>each feature of each class,</li>
@@ -318,10 +275,7 @@ public interface MappingModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '
-		 * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl
-		 * <em>Mapping Element</em>}' class. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the ' {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl <em>Mapping Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl
 		 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingModelPackageImpl#getMappingElement()
@@ -330,43 +284,35 @@ public interface MappingModelPackage extends EPackage {
 		EClass MAPPING_ELEMENT = eINSTANCE.getMappingElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute MAPPING_ELEMENT__DESCRIPTION = eINSTANCE.getMappingElement_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Element</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Target Element</b></em>' reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference MAPPING_ELEMENT__TARGET_ELEMENT = eINSTANCE.getMappingElement_TargetElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>'
-		 * containment reference list feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference MAPPING_ELEMENT__ATTRIBUTES = eINSTANCE.getMappingElement_Attributes();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Qualifier</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Source Qualifier</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute MAPPING_ELEMENT__SOURCE_QUALIFIER = eINSTANCE.getMappingElement_SourceQualifier();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl
-		 * <em>Mapping Attribute</em>}' class. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the ' {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl <em>Mapping Attribute</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl
 		 * @see org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingModelPackageImpl#getMappingAttribute()
@@ -375,24 +321,21 @@ public interface MappingModelPackage extends EPackage {
 		EClass MAPPING_ATTRIBUTE = eINSTANCE.getMappingAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Attribute</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Target Attribute</b></em>' reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference MAPPING_ATTRIBUTE__TARGET_ATTRIBUTE = eINSTANCE.getMappingAttribute_TargetAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute MAPPING_ATTRIBUTE__DESCRIPTION = eINSTANCE.getMappingAttribute_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Id</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Source Id</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */

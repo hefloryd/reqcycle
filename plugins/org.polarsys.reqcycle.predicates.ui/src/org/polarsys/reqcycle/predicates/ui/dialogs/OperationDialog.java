@@ -58,8 +58,7 @@ public class OperationDialog extends ValidatingTitleAreaDialog {
 		operationText = new Text(area, SWT.BORDER);
 		operationText.setEditable(false);
 		operationText.setEnabled(false);
-		operationText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1));
+		operationText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		btnSelectOperation = new Button(area, SWT.NONE);
 		btnSelectOperation.setText("...");
@@ -67,8 +66,7 @@ public class OperationDialog extends ValidatingTitleAreaDialog {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SelectOperationDialog dialog = new SelectOperationDialog(
-						Display.getDefault().getActiveShell());
+				SelectOperationDialog dialog = new SelectOperationDialog(Display.getDefault().getActiveShell());
 				int result = dialog.open();
 				if (result == Window.OK) {
 					ReqCycleOperation op = dialog.getResult();
@@ -117,8 +115,7 @@ public class OperationDialog extends ValidatingTitleAreaDialog {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				OperationAttributesEditor dialog = new OperationAttributesEditor(
-						Display.getDefault().getActiveShell(), method);
+				OperationAttributesEditor dialog = new OperationAttributesEditor(Display.getDefault().getActiveShell(), method);
 				int result = dialog.open();
 				if (result == Window.OK) {
 					editors = dialog.getEditors();

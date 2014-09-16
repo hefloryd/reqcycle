@@ -14,16 +14,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Requirement Impacted</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Requirement Impacted</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getId <em>Id</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getLinkList <em>Link List</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getAttributesImpacted <em>Attributes Impacted</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getId <em>Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getLinkList <em>Link List</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getAttributesImpacted <em>Attributes Impacted</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,13 +31,12 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface RequirementImpacted extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getRequirementImpacted_Id()
@@ -49,24 +46,22 @@ public interface RequirementImpacted extends EObject {
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted#getId <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */
 	void setId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Link List</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.TraceabilityLink}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Link List</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.TraceabilityLink}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Link List</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Link List</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Link List</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getRequirementImpacted_LinkList()
 	 * @model containment="true"
@@ -75,14 +70,12 @@ public interface RequirementImpacted extends EObject {
 	EList<TraceabilityLink> getLinkList();
 
 	/**
-	 * Returns the value of the '<em><b>Attributes Impacted</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.AttributeImpacted}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes Impacted</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.AttributeImpacted}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attributes Impacted</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Attributes Impacted</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attributes Impacted</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getRequirementImpacted_AttributesImpacted()
 	 * @model containment="true"
@@ -91,8 +84,8 @@ public interface RequirementImpacted extends EObject {
 	EList<AttributeImpacted> getAttributesImpacted();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */

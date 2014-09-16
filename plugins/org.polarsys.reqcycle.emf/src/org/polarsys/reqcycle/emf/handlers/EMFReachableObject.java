@@ -1,4 +1,3 @@
-
 /*******************************************************************************
  *  Copyright (c) 2013-2014 AtoS
  *  All rights reserved. This program and the accompanying materials
@@ -98,34 +97,27 @@ public class EMFReachableObject implements ReachableObject {
 					}
 
 					@Override
-					public void setAttributes(String[] attributeNames,
-							Object[] values) throws CoreException {
+					public void setAttributes(String[] attributeNames, Object[] values) throws CoreException {
 					}
 
 					@Override
-					public void setAttributes(
-							Map<String, ? extends Object> attributes)
-							throws CoreException {
+					public void setAttributes(Map<String, ? extends Object> attributes) throws CoreException {
 					}
 
 					@Override
-					public void setAttribute(String attributeName, boolean value)
-							throws CoreException {
+					public void setAttribute(String attributeName, boolean value) throws CoreException {
 					}
 
 					@Override
-					public void setAttribute(String attributeName, Object value)
-							throws CoreException {
+					public void setAttribute(String attributeName, Object value) throws CoreException {
 					}
 
 					@Override
-					public void setAttribute(String attributeName, int value)
-							throws CoreException {
+					public void setAttribute(String attributeName, int value) throws CoreException {
 					}
 
 					@Override
-					public boolean isSubtypeOf(String superType)
-							throws CoreException {
+					public boolean isSubtypeOf(String superType) throws CoreException {
 						return false;
 					}
 
@@ -150,26 +142,22 @@ public class EMFReachableObject implements ReachableObject {
 					}
 
 					@Override
-					public Object[] getAttributes(String[] attributeNames)
-							throws CoreException {
+					public Object[] getAttributes(String[] attributeNames) throws CoreException {
 						return new Object[] {};
 					}
 
 					@Override
-					public Map<String, Object> getAttributes()
-							throws CoreException {
+					public Map<String, Object> getAttributes() throws CoreException {
 						return Collections.emptyMap();
 					}
 
 					@Override
-					public boolean getAttribute(String attributeName,
-							boolean defaultValue) {
+					public boolean getAttribute(String attributeName, boolean defaultValue) {
 						return false;
 					}
 
 					@Override
-					public String getAttribute(String attributeName,
-							String defaultValue) {
+					public String getAttribute(String attributeName, String defaultValue) {
 						if (EValidator.URI_ATTRIBUTE.equals(attributeName)) {
 							return t.toString();
 						}
@@ -177,14 +165,12 @@ public class EMFReachableObject implements ReachableObject {
 					}
 
 					@Override
-					public int getAttribute(String attributeName,
-							int defaultValue) {
+					public int getAttribute(String attributeName, int defaultValue) {
 						return 0;
 					}
 
 					@Override
-					public Object getAttribute(String attributeName)
-							throws CoreException {
+					public Object getAttribute(String attributeName) throws CoreException {
 						if (EValidator.URI_ATTRIBUTE.equals(attributeName)) {
 							return t.toString();
 						}
@@ -205,8 +191,7 @@ public class EMFReachableObject implements ReachableObject {
 		}
 		if (IResource.class.equals(adapter) || IFile.class.equals(adapter)) {
 			try {
-				return WorkspaceSynchronizer
-						.getFile(((EMFVisitable) getVisitable()).getResource());
+				return WorkspaceSynchronizer.getFile(((EMFVisitable) getVisitable()).getResource());
 			} catch (VisitableException e) {
 				e.printStackTrace();
 			}

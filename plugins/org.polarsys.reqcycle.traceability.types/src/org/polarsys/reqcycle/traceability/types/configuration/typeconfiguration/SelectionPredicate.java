@@ -11,11 +11,8 @@
  */
 package org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Selection Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Selection Predicate</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getSelectionPredicate()

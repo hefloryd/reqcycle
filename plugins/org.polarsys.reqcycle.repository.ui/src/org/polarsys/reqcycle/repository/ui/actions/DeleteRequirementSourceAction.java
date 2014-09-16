@@ -41,7 +41,7 @@ public class DeleteRequirementSourceAction extends Action {
 	 * Constructor
 	 * 
 	 * @param viewer
-	 *        The Requirement Resource Viewer
+	 *            The Requirement Resource Viewer
 	 */
 	public DeleteRequirementSourceAction(TreeViewer viewer) {
 		this.viewer = viewer;
@@ -51,14 +51,14 @@ public class DeleteRequirementSourceAction extends Action {
 	public void run() {
 
 		ISelection selection = viewer.getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object obj = ((IStructuredSelection)selection).getFirstElement();
+		if (selection instanceof IStructuredSelection) {
+			Object obj = ((IStructuredSelection) selection).getFirstElement();
 
-			if(obj instanceof RequirementSource) {
+			if (obj instanceof RequirementSource) {
 				boolean response = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Would you like to remove Requirement Source file ?");
-				requirementSourceManager.removeRequirementSource((RequirementSource)obj, response);
-			} else if(obj instanceof String && connectorManager.get((String)obj) != null) {
-				requirementSourceManager.removeRequirementSources((String)obj);
+				requirementSourceManager.removeRequirementSource((RequirementSource) obj, response);
+			} else if (obj instanceof String && connectorManager.get((String) obj) != null) {
+				requirementSourceManager.removeRequirementSources((String) obj);
 			}
 
 			viewer.refresh();

@@ -65,8 +65,8 @@ public class StandardReachableObject implements ReachableObject {
 
 	@Override
 	public Reachable getReachable(Object o) {
-		if(object instanceof Reachable) {
-			return (Reachable)object;
+		if (object instanceof Reachable) {
+			return (Reachable) object;
 		} else {
 			return StandardUtils.getReachable(o);
 		}

@@ -31,8 +31,8 @@ class EEnumEditingSupport extends EditingSupport {
 
 	@Override
 	protected CellEditor getCellEditor(Object element) {
-		if(element instanceof EEnumLiteral) {
-			return new ComboBoxCellEditor(this.tableViewer.getTable(), this.getItems((EEnumLiteral)element));
+		if (element instanceof EEnumLiteral) {
+			return new ComboBoxCellEditor(this.tableViewer.getTable(), this.getItems((EEnumLiteral) element));
 		}
 		return null;
 	}
@@ -40,7 +40,7 @@ class EEnumEditingSupport extends EditingSupport {
 	private String[] getItems(final EEnumLiteral literal) {
 		Collection<EEnumLiteral> literals = literal.getEEnum().getELiterals();
 		List<String> items = new ArrayList<String>();
-		for(EEnumLiteral l : literals) {
+		for (EEnumLiteral l : literals) {
 			items.add(l.getLiteral());
 		}
 		return items.toArray(new String[items.size()]);
@@ -53,7 +53,7 @@ class EEnumEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		if(element instanceof EEnumLiteral) {
+		if (element instanceof EEnumLiteral) {
 			return element;
 		}
 		return null;

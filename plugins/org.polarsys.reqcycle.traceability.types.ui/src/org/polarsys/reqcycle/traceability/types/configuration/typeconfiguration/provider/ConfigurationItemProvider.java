@@ -34,16 +34,13 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.ui.configuration.typeconfiguration.provider.TypeConfigurationEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration} object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ConfigurationItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ConfigurationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -52,8 +49,7 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -68,37 +64,24 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Configuration_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Configuration_name_feature", "_UI_Configuration_type"),
-				 TypeconfigurationPackage.Literals.CONFIGURATION__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Configuration_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Configuration_name_feature", "_UI_Configuration_type"), TypeconfigurationPackage.Literals.CONFIGURATION__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TypeconfigurationPackage.Literals.CONFIGURATION__RELATIONS);
@@ -108,6 +91,7 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,8 +103,7 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns Configuration.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns Configuration.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -130,8 +113,7 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -146,10 +128,8 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,37 +137,30 @@ public class ConfigurationItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Configuration.class)) {
-			case TypeconfigurationPackage.CONFIGURATION__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case TypeconfigurationPackage.CONFIGURATION__NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TypeconfigurationPackage.Literals.CONFIGURATION__RELATIONS,
-				 TypeconfigurationFactory.eINSTANCE.createRelation()));
+		newChildDescriptors.add(createChildParameter(TypeconfigurationPackage.Literals.CONFIGURATION__RELATIONS, TypeconfigurationFactory.eINSTANCE.createRelation()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

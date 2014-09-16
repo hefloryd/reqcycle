@@ -48,29 +48,24 @@ public class VersionManager implements IVersionManager {
 		ZigguratInject.inject(this);
 	}
 
-	public Map<RepositoryProvider, Collection<IFileRevision>> getHistory(
-			RequirementSource requirementSource) {
-		Map<RepositoryProvider, Collection<IFileRevision>> versions = Maps
-				.newHashMap();
+	public Map<RepositoryProvider, Collection<IFileRevision>> getHistory(RequirementSource requirementSource) {
+		Map<RepositoryProvider, Collection<IFileRevision>> versions = Maps.newHashMap();
 
-		IFile file = WorkspaceSynchronizer.getFile(requirementSource
-				.getContents().eResource());
+		IFile file = WorkspaceSynchronizer.getFile(requirementSource.getContents().eResource());
 		IProject proj = file.getProject();
 
 		String[] repoTypes = RepositoryProvider.getAllProviderTypeIds();
 		ArrayList<RepositoryProvider> repos = Lists.newArrayList();
 
 		for (String repoType : repoTypes) {
-			RepositoryProvider repo = RepositoryProvider.getProvider(proj,
-					repoType);
+			RepositoryProvider repo = RepositoryProvider.getProvider(proj, repoType);
 			if (repo != null) {
 				repos.add(repo);
 			}
 		}
 
 		for (RepositoryProvider repo : repos) {
-			IFileHistory history = repo.getFileHistoryProvider()
-					.getFileHistoryFor(file, IFileHistoryProvider.NONE, null);
+			IFileHistory history = repo.getFileHistoryProvider().getFileHistoryFor(file, IFileHistoryProvider.NONE, null);
 			IFileRevision[] revs = history.getFileRevisions();
 
 			versions.put(repo, Arrays.asList(revs));
@@ -79,10 +74,8 @@ public class VersionManager implements IVersionManager {
 		return versions;
 	}
 
-	public ArrayList<IFileState> getLocalHistory(
-			RequirementSource requirementSource) {
-		IFile file = WorkspaceSynchronizer.getFile(requirementSource
-				.getContents().eResource());
+	public ArrayList<IFileState> getLocalHistory(RequirementSource requirementSource) {
+		IFile file = WorkspaceSynchronizer.getFile(requirementSource.getContents().eResource());
 
 		try {
 			IFileState[] localHistory = file.getHistory(null);
@@ -95,8 +88,7 @@ public class VersionManager implements IVersionManager {
 		return null;
 	}
 
-	public RequirementSource loadResource(IFileRevision rev,
-			String dataModelURI, Scope scope, String resourceName) {
+	public RequirementSource loadResource(IFileRevision rev, String dataModelURI, Scope scope, String resourceName) {
 		IStorage storage = null;
 		InputStream c = null;
 
@@ -111,8 +103,7 @@ public class VersionManager implements IVersionManager {
 		return loadResource(c, dataModelURI, scope, resourceName, URI.createURI(rev.getURI().toString()));
 	}
 
-	public RequirementSource loadLocalHistoryResource(IFileState fileState,
-			String dataModelURI, Scope scope, String resourceName) {
+	public RequirementSource loadLocalHistoryResource(IFileState fileState, String dataModelURI, Scope scope, String resourceName) {
 		InputStream input;
 		try {
 			input = fileState.getContents();
@@ -120,15 +111,14 @@ public class VersionManager implements IVersionManager {
 			e.printStackTrace();
 			return null;
 		}
-		return loadResource(input, dataModelURI, scope, resourceName, URI.createPlatformResourceURI(fileState.getFullPath().toString(),true));
+		return loadResource(input, dataModelURI, scope, resourceName, URI.createPlatformResourceURI(fileState.getFullPath().toString(), true));
 	}
 
-	private RequirementSource loadResource(InputStream inputStream,
-			String dataModelURI, Scope scope, String resourceName, URI fileURI) {
+	private RequirementSource loadResource(InputStream inputStream, String dataModelURI, Scope scope, String resourceName, URI fileURI) {
 		RequirementSource source = null;
 		try {
 
-			Resource resource = new XMIResourceImpl(fileURI){
+			Resource resource = new XMIResourceImpl(fileURI) {
 				@Override
 				protected boolean useUUIDs() {
 					return true;
@@ -149,8 +139,7 @@ public class VersionManager implements IVersionManager {
 					source.setDefaultScope(scope);
 
 					source.setContents((RequirementsContainer) eObject);
-					source.setProperty(IRequirementSourceProperties.IS_LOCAL,
-							"true");
+					source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
 				}
 			}
 		} catch (CoreException e2) {

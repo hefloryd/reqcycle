@@ -24,13 +24,11 @@ public interface ITraceabilityBuilder {
 	 * @param callBack
 	 *            the callback which handles the detection of traceability link
 	 * @param forceBuild
-	 *            if true the build will not try to identify {@link Reachable}
-	 *            modification
+	 *            if true the build will not try to identify {@link Reachable} modification
 	 * @throws BuilderException
 	 *             if an error occurs during build
 	 */
-	void build(Reachable r, IBuilderCallBack callBack, boolean forceBuild)
-			throws BuilderException;
+	void build(Reachable r, IBuilderCallBack callBack, boolean forceBuild) throws BuilderException;
 
 	public interface IBuilderCallBack {
 
@@ -63,10 +61,7 @@ public interface ITraceabilityBuilder {
 		void errorOccurs(Reachable reachable, Throwable t);
 
 		/**
-		 * Identify a new relationship. The direction between the source and the
-		 * target is an downstream to upstream When several targets are filled
-		 * it is important to notice that the traceability link will be
-		 * consistent only with all the targets
+		 * Identify a new relationship. The direction between the source and the target is an downstream to upstream When several targets are filled it is important to notice that the traceability link will be consistent only with all the targets
 		 * 
 		 * @param traceabilityObject
 		 *            the {@link Object} identifying the relationship
@@ -78,11 +73,9 @@ public interface ITraceabilityBuilder {
 		 *            the {@link Object} targets of the relation
 		 * @param label
 		 *            the label identifying the relation
-		 * @return the reachable corresponding to the identification of the
-		 *         link, or null if the creation was not possible
+		 * @return the reachable corresponding to the identification of the link, or null if the creation was not possible
 		 */
-		void newUpwardRelation(Object traceabilityObject, Object resource,
-				Object source, List<? extends Object> targets, TType label);
+		void newUpwardRelation(Object traceabilityObject, Object resource, Object source, List<? extends Object> targets, TType label);
 
 	}
 

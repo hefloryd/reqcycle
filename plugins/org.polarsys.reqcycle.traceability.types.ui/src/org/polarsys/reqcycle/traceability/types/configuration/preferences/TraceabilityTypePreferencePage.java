@@ -33,25 +33,21 @@ public class TraceabilityTypePreferencePage extends AbstractPreferencePage {
 		return new ViewerFilter() {
 
 			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				return !(element instanceof Type)
-						&& !(element instanceof RelationsPredicatesMapping);
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return !(element instanceof Type) && !(element instanceof RelationsPredicatesMapping);
 			}
 		};
 	}
 
 	@Override
 	protected boolean removeCondition(EObject firstElement) {
-		return !(firstElement instanceof TypeConfigContainer)
-				&& firstElement != null;
+		return !(firstElement instanceof TypeConfigContainer) && firstElement != null;
 	}
 
 	@Override
 	protected void addAction() {
 		if (treeViewer.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection selec = (IStructuredSelection) treeViewer
-					.getSelection();
+			IStructuredSelection selec = (IStructuredSelection) treeViewer.getSelection();
 			Object firstElement = selec.getFirstElement();
 			if (firstElement == null) {
 				createConfiguration();
@@ -77,8 +73,7 @@ public class TraceabilityTypePreferencePage extends AbstractPreferencePage {
 	}
 
 	private void createAttribute(Relation relation) {
-		NewAttributeDialog dialog = new NewAttributeDialog(getShell(),
-				container);
+		NewAttributeDialog dialog = new NewAttributeDialog(getShell(), container);
 		ZigguratInject.inject(dialog);
 		if (dialog.open() == NewAttributeDialog.OK) {
 			relation.getAttributes().add(EcoreUtil.copy(dialog.getAttribute()));
@@ -97,24 +92,21 @@ public class TraceabilityTypePreferencePage extends AbstractPreferencePage {
 	@Override
 	protected void removeAction() {
 		if (treeViewer.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection new_name = (IStructuredSelection) treeViewer
-					.getSelection();
+			IStructuredSelection new_name = (IStructuredSelection) treeViewer.getSelection();
 			EObject firstElement = (EObject) new_name.getFirstElement();
 			if (removeCondition(firstElement)) {
 				EcoreUtil.delete(firstElement, true);
 			}
 		}
 	}
-	
+
 	@Override
 	public void setVisible(boolean visible) {
-		if(visible) {
+		if (visible) {
 			doLoad();
 			setInput();
 		}
 		super.setVisible(visible);
 	}
 
-	
-	
 }

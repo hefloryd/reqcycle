@@ -37,14 +37,12 @@ import org.polarsys.reqcycle.utils.ocl.OCLEvaluator;
 import org.polarsys.reqcycle.utils.ocl.ZigguratOCLPlugin;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-
 public class OCLTraceabilityVisitor implements IVisitor {
 
 	private OCLEvaluator evaluator;
-	
+
 	// -RF- only one initialization at startup (static)
-	//private static IStatus initializationStatus = null;
-	
+	// private static IStatus initializationStatus = null;
 
 	@Override
 	public void start(IAdaptable adaptable) {
@@ -52,16 +50,17 @@ public class OCLTraceabilityVisitor implements IVisitor {
 
 	@Override
 	public boolean visit(Object o, IAdaptable adaptable) {
-		IBuilderCallBack callBack = (IBuilderCallBack)adaptable.getAdapter(IBuilderCallBack.class);
-		if(o instanceof Resource) {
-			Resource resource = (Resource)o;
+		IBuilderCallBack callBack = (IBuilderCallBack) adaptable.getAdapter(IBuilderCallBack.class);
+		if (o instanceof Resource) {
+			Resource resource = (Resource) o;
 			URI uri = resource.getURI();
-			if(uri != null && uri.fileExtension() != null && uri.fileExtension().equals("uml")) {
+			if (uri != null && uri.fileExtension() != null && uri.fileExtension().equals("uml")) {
 				IStatus initializationStatus = initializeOCLEvaluator(uri);
-				/*if (initializationStatus == null) 
-					initializationStatus = initializeOCLEvaluator(uri);*/
-				
-				if(!initializationStatus.isOK()) {
+				/*
+				 * if (initializationStatus == null) initializationStatus = initializeOCLEvaluator(uri);
+				 */
+
+				if (!initializationStatus.isOK()) {
 					StatusManager.getManager().handle(initializationStatus, StatusManager.LOG);
 					return false;
 				}
@@ -77,38 +76,36 @@ public class OCLTraceabilityVisitor implements IVisitor {
 
 	private void go(Resource resource, IBuilderCallBack callback) {
 		TreeIterator<EObject> allContents = resource.getAllContents();
-		while(allContents.hasNext()) {
-			EObject eObject = allContents.next();	
+		while (allContents.hasNext()) {
+			EObject eObject = allContents.next();
 			EOperation operation = evaluator.getCompiledOperation("getLinkTypes", eObject); //$NON-NLS-1$
 			evaluateOperationOnEObject(callback, eObject, operation);
-			
-			//FIXME -RF- allow management of several linkTypes operations. prototype. Can accept up to 20 OCL definitions of link types 
-			for(int i=1;i<=20;i++) {
-			    operation = evaluator.getCompiledOperation("getLinkTypes"+i, eObject); //$NON-NLS-1$
+
+			// FIXME -RF- allow management of several linkTypes operations. prototype. Can accept up to 20 OCL definitions of link types
+			for (int i = 1; i <= 20; i++) {
+				operation = evaluator.getCompiledOperation("getLinkTypes" + i, eObject); //$NON-NLS-1$
 				evaluateOperationOnEObject(callback, eObject, operation);
 			}
 		}
 	}
 
-	private void evaluateOperationOnEObject(IBuilderCallBack callback,
-			EObject eObject, EOperation operation) {
-		if(operation != null) {
+	private void evaluateOperationOnEObject(IBuilderCallBack callback, EObject eObject, EOperation operation) {
+		if (operation != null) {
 			Object result = evaluator.evaluateOperation(operation, eObject, new Object[0]);
-			if(result instanceof Collection<?>) {
-				for(Object o : (Collection<?>)result) {
-					if(o instanceof String) {
-						computeTraceability((String)o, eObject, callback);
+			if (result instanceof Collection<?>) {
+				for (Object o : (Collection<?>) result) {
+					if (o instanceof String) {
+						computeTraceability((String) o, eObject, callback);
 					}
 				}
-			} else if(result instanceof String) {
-				computeTraceability((String)result, eObject, callback);
+			} else if (result instanceof String) {
+				computeTraceability((String) result, eObject, callback);
 			}
 		}
 	}
 
 	/**
-	 * Retrieves the right operation to trace links from the object, executes it,
-	 * and serialize the links.
+	 * Retrieves the right operation to trace links from the object, executes it, and serialize the links.
 	 * 
 	 * @param callBack
 	 */
@@ -116,16 +113,16 @@ public class OCLTraceabilityVisitor implements IVisitor {
 		OCLVolatileType ttype = new OCLVolatileType(linkType);
 		String operationName = ttype.getOperationName();
 		EOperation traceaOperation = evaluator.getCompiledOperation(operationName, from);
-		if(traceaOperation != null) {
+		if (traceaOperation != null) {
 			Object result = evaluator.evaluateOperation(traceaOperation, from, new Object[0]);
-			if(result instanceof Collection<?>) {
-				for(Object o : ((Collection<?>)result)) {
+			if (result instanceof Collection<?>) {
+				for (Object o : ((Collection<?>) result)) {
 					UUID uniqueID = UUID.randomUUID();
 					callBack.newUpwardRelation(uniqueID.toString(), from.eResource(), o, Collections.singletonList(from), ttype);
 				}
 				return Status.OK_STATUS;
-			} else if(result != null) {
-				//Downward relation from "from" to "result" == upward relation from "result" to "from";
+			} else if (result != null) {
+				// Downward relation from "from" to "result" == upward relation from "result" to "from";
 				UUID uniqueID = UUID.randomUUID();
 				callBack.newUpwardRelation(uniqueID.toString(), from.eResource(), result, Collections.singletonList(from), ttype);
 				return Status.OK_STATUS;
@@ -137,17 +134,16 @@ public class OCLTraceabilityVisitor implements IVisitor {
 	}
 
 	/**
-	 * Initializes the ocl evaluator by compiling the file "traceability.ocl" that should be present at the
-	 * root of the workspace.
+	 * Initializes the ocl evaluator by compiling the file "traceability.ocl" that should be present at the root of the workspace.
 	 */
 	private IStatus initializeOCLEvaluator(URI uri) {
-		if(uri.isPlatformResource()) {
+		if (uri.isPlatformResource()) {
 			String[] segments = uri.segments();
-			if(segments.length > 1) {
+			if (segments.length > 1) {
 				String projectName = segments[1];
 				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
 				IResource resource = project.findMember("traceability.ocl");
-				if(resource instanceof IFile && resource.exists()) {
+				if (resource instanceof IFile && resource.exists()) {
 					String location = resource.getFullPath().toOSString();
 					URI oclURI = URI.createPlatformResourceURI(location, true);
 					try {
@@ -155,8 +151,8 @@ public class OCLTraceabilityVisitor implements IVisitor {
 						return Status.OK_STATUS;
 					} catch (Exception e) {
 						e.printStackTrace();
-						if(e instanceof CoreException) {
-							return ((CoreException)e).getStatus();
+						if (e instanceof CoreException) {
+							return ((CoreException) e).getStatus();
 						}
 						return new Status(IStatus.ERROR, OCLTraceabilityPlugin.PLUGIN_ID, e.getMessage());
 					}

@@ -95,8 +95,7 @@ public class ReachablesStorageHelper {
 	 * @throws QueryEvaluationException
 	 *             on error.
 	 */
-	public Reachable getStoredReachable(final RepositoryConnection conn, final URI uri, final Resource context)
-			throws RepositoryException, URISyntaxException, QueryEvaluationException, MalformedQueryException {
+	public Reachable getStoredReachable(final RepositoryConnection conn, final URI uri, final Resource context) throws RepositoryException, URISyntaxException, QueryEvaluationException, MalformedQueryException {
 		final Reachable reachable = this.creator.getReachable(new java.net.URI(uri.stringValue()));
 
 		final Map<String, String> props = this.helpers.getPropertiesStorageHelper().getStoredProperties(uri, context);
@@ -104,7 +103,5 @@ public class ReachablesStorageHelper {
 
 		return reachable;
 	}
-
-
 
 }

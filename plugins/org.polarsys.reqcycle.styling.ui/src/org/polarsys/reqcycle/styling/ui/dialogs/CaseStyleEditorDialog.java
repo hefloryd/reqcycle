@@ -55,8 +55,7 @@ import com.google.common.collect.Lists;
 
 public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements IDoubleClickListener {
 	IStylingManager styleManager = ZigguratInject.make(IStylingManager.class);
-	IPredicatesConfManager predicatesConfManager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	private ListViewer listViewer;
 
@@ -70,8 +69,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 	 */
 	public CaseStyleEditorDialog(Shell parentShell, StylingModel style) {
 		super(parentShell);
-		setShellStyle(SWT.DIALOG_TRIM | SWT.MAX | SWT.RESIZE
-				| SWT.PRIMARY_MODAL);
+		setShellStyle(SWT.DIALOG_TRIM | SWT.MAX | SWT.RESIZE | SWT.PRIMARY_MODAL);
 		stylingModel = style;
 		if (stylingModel.getDefault() == null) {
 			Default defaultStyle = StylingFactory.eINSTANCE.createDefault();
@@ -120,8 +118,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 		composite.setText("Style predicates");
 		composite.setToolTipText("");
 		composite.setLayout(new GridLayout(2, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		listViewer = new ListViewer(composite, SWT.BORDER | SWT.V_SCROLL);
 		listViewer.setUseHashlookup(true);
@@ -129,10 +126,9 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 		list.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		listViewer.addDoubleClickListener(this);
-		
+
 		Composite composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true,
-				1, 1));
+		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true, 1, 1));
 		composite_1.setLayout(new GridLayout(1, false));
 
 		Button btnAdd = new Button(composite_1, SWT.NONE);
@@ -140,45 +136,35 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 		btnAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final Collection<IPredicate> predicates = predicatesConfManager
-						.getPredicates(false);
+				final Collection<IPredicate> predicates = predicatesConfManager.getPredicates(false);
 
-				final Iterable<IPredicate> alreadyUsed = Iterables.filter(
-						Iterables.transform(stylingModel.getStyles(),
-								new Function<CaseStyle, IPredicate>() {
+				final Iterable<IPredicate> alreadyUsed = Iterables.filter(Iterables.transform(stylingModel.getStyles(), new Function<CaseStyle, IPredicate>() {
 
-							@Override
-							public IPredicate apply(CaseStyle arg0) {
-								if (arg0 instanceof StylingPredicate) {
-									StylingPredicate sp = (StylingPredicate) arg0;
-									return sp.getPredicate();
-								}
-								return null;
+					@Override
+					public IPredicate apply(CaseStyle arg0) {
+						if (arg0 instanceof StylingPredicate) {
+							StylingPredicate sp = (StylingPredicate) arg0;
+							return sp.getPredicate();
+						}
+						return null;
+					}
+
+				}), Predicates.notNull());
+				Collection<IPredicate> selectionPredicates = Lists.newArrayList(Iterables.filter(predicates, new Predicate<IPredicate>() {
+					public boolean apply(IPredicate arg0) {
+						for (IPredicate p : alreadyUsed) {
+							if (p.getDisplayName().equals(arg0.getDisplayName())) {
+								return false;
 							}
+						}
+						return true;
+					};
+				}));
 
-						}), Predicates.notNull());
-				Collection<IPredicate> selectionPredicates = Lists
-						.newArrayList(Iterables.filter(predicates,
-								new Predicate<IPredicate>() {
-							public boolean apply(IPredicate arg0) {
-								for (IPredicate p : alreadyUsed) {
-									if (p.getDisplayName().equals(
-											arg0.getDisplayName())) {
-										return false;
-									}
-								}
-								return true;
-							};
-						}));
-
-				Collection<IPredicate> selection = PredicatesUIHelper
-						.openPredicatesChooser(selectionPredicates,
-								selectionPredicates, "Creating Styling Model",
-								"Select a predicate to apply.", false);
+				Collection<IPredicate> selection = PredicatesUIHelper.openPredicatesChooser(selectionPredicates, selectionPredicates, "Creating Styling Model", "Select a predicate to apply.", false);
 				if (selection != null) {
 					EList<CaseStyle> casesStyle = stylingModel.getStyles();
-					CaseStyle newStyle = StylingFactory.eINSTANCE
-							.createStylingPredicate();
+					CaseStyle newStyle = StylingFactory.eINSTANCE.createStylingPredicate();
 					casesStyle.add(newStyle);
 
 					IPredicate p = selection.iterator().next();
@@ -189,8 +175,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 				}
 			}
 		});
-		btnAdd.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
+		btnAdd.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
 
 		Button btnRemove = new Button(composite_1, SWT.NONE);
 		btnRemove.setToolTipText("Remove the selected styling predicate");
@@ -198,10 +183,8 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					CaseStyle caseStyle = (CaseStyle) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					CaseStyle caseStyle = (CaseStyle) selection.getFirstElement();
 					if (caseStyle != null) {
 						EList<CaseStyle> casesStyle = stylingModel.getStyles();
 						casesStyle.remove(caseStyle);
@@ -212,8 +195,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 				}
 			}
 		});
-		btnRemove.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
+		btnRemove.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
 
 		Button btnEdit = new Button(composite_1, SWT.NONE);
 		btnEdit.setToolTipText("Edit the selected styling predicate");
@@ -221,18 +203,15 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					CaseStyle caseStyle = (CaseStyle) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					CaseStyle caseStyle = (CaseStyle) selection.getFirstElement();
 					if (caseStyle != null) {
 						editStylePredicate(caseStyle);
 					}
 				}
 			}
 		});
-		btnEdit.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
+		btnEdit.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
 		new Label(composite_1, SWT.NONE);
 
 		Button btnUp = new Button(composite_1, SWT.NONE);
@@ -241,10 +220,8 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					CaseStyle caseStyle = (CaseStyle) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					CaseStyle caseStyle = (CaseStyle) selection.getFirstElement();
 					if (caseStyle != null) {
 						EList<CaseStyle> list = stylingModel.getStyles();
 						int pos = list.indexOf(caseStyle);
@@ -258,8 +235,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 				}
 			}
 		});
-		btnUp.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
+		btnUp.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
 
 		Button btnDown = new Button(composite_1, SWT.NONE);
 		btnDown.setToolTipText("Move down the selected styling predicate");
@@ -267,10 +243,8 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					CaseStyle caseStyle = (CaseStyle) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					CaseStyle caseStyle = (CaseStyle) selection.getFirstElement();
 					if (caseStyle != null) {
 						EList<CaseStyle> list = stylingModel.getStyles();
 						int pos = list.indexOf(caseStyle);
@@ -284,16 +258,14 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 				}
 			}
 		});
-		btnDown.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
+		btnDown.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
 
 		initDataBindings();
 
 		initProviders(listViewer);
 
 		Label lblDefaultPredicate = new Label(container, SWT.NONE);
-		lblDefaultPredicate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-				false, false, 1, 1));
+		lblDefaultPredicate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblDefaultPredicate.setText("Default :");
 
 		Button btnEdit_1 = new Button(container, SWT.NONE);
@@ -301,34 +273,30 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				StyleModelEditorDialog editor = new StyleModelEditorDialog(
-						Display.getDefault().getActiveShell(), stylingModel
-						.getDefault(), stylingModel);
+				StyleModelEditorDialog editor = new StyleModelEditorDialog(Display.getDefault().getActiveShell(), stylingModel.getDefault(), stylingModel);
 				if (editor.open() == Window.OK) {
 					listViewer.setInput(stylingModel.getStyles());
 				}
 			}
 		});
 		btnEdit_1.setText("Edit");
-		
+
 		Label label = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
-		
+
 		Label lblNewLabel = new Label(container, SWT.NONE);
 		lblNewLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		lblNewLabel.setText("Basic styling is the style used to display requirements in ReqCycle views (except Requirements view).");
-		
+
 		Label lblBasic = new Label(container, SWT.NONE);
 		lblBasic.setText("Basic :");
-		
+
 		Button btnEdit_2 = new Button(container, SWT.NONE);
 		btnEdit_2.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				StyleModelEditorDialog editor = new StyleModelEditorDialog(
-						Display.getDefault().getActiveShell(), stylingModel
-						.getBasic(), stylingModel);
+				StyleModelEditorDialog editor = new StyleModelEditorDialog(Display.getDefault().getActiveShell(), stylingModel.getBasic(), stylingModel);
 				if (editor.open() == Window.OK) {
 					listViewer.setInput(stylingModel.getStyles());
 				}
@@ -340,10 +308,8 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 	}
 
 	private void initProviders(ListViewer listViewer) {
-		AdapterFactory adapterfactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				adapterfactory) {
+		AdapterFactory adapterfactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterfactory) {
 			@Override
 			public String getText(Object object) {
 				if (object instanceof StylingPredicate) {
@@ -355,8 +321,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			}
 		};
 
-		ArrayContentProvider contentProvider = ArrayContentProvider
-				.getInstance();
+		ArrayContentProvider contentProvider = ArrayContentProvider.getInstance();
 
 		listViewer.setLabelProvider(labelProvider);
 		listViewer.setContentProvider(contentProvider);
@@ -367,12 +332,9 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeTextTextObserveWidget = WidgetProperties.text(
-				SWT.Modify).observe(text);
-		IObservableValue modeNameStylingModelObserveValue = PojoProperties
-				.value("modeName").observe(stylingModel);
-		bindingContext.bindValue(observeTextTextObserveWidget,
-				modeNameStylingModelObserveValue, null, null);
+		IObservableValue observeTextTextObserveWidget = WidgetProperties.text(SWT.Modify).observe(text);
+		IObservableValue modeNameStylingModelObserveValue = PojoProperties.value("modeName").observe(stylingModel);
+		bindingContext.bindValue(observeTextTextObserveWidget, modeNameStylingModelObserveValue, null, null);
 		//
 		return bindingContext;
 	}
@@ -416,25 +378,21 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 
 		};
 	}
-	
+
 	private void editStylePredicate(CaseStyle caseStyle) {
-		StyleModelEditorDialog editor = new StyleModelEditorDialog(
-				Display.getDefault().getActiveShell(),
-				(StylingPredicate) caseStyle, stylingModel);
+		StyleModelEditorDialog editor = new StyleModelEditorDialog(Display.getDefault().getActiveShell(), (StylingPredicate) caseStyle, stylingModel);
 		if (editor.open() == Window.OK) {
 			// TODO
 
 			listViewer.setInput(stylingModel.getStyles());
 		}
 	}
-	
+
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
-		final IStructuredSelection selection = (IStructuredSelection) event
-				.getSelection();
+		final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 		if (selection.getFirstElement() instanceof CaseStyle) {
-			CaseStyle caseStyle = (CaseStyle) selection
-					.getFirstElement();
+			CaseStyle caseStyle = (CaseStyle) selection.getFirstElement();
 			if (caseStyle != null) {
 				editStylePredicate(caseStyle);
 			}

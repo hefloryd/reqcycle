@@ -43,8 +43,7 @@ public class SysMLTypeChecker implements IInjectedTypeChecker {
 		EMFTypeChecker emfTypeChecker = new EMFTypeChecker();
 		if (emfTypeChecker.apply(reachable)) {
 			try {
-				ReachableObject object = manager.getHandlerFromReachable(
-						reachable).getFromReachable(reachable);
+				ReachableObject object = manager.getHandlerFromReachable(reachable).getFromReachable(reachable);
 				IsSysMLVisitor visitor = new IsSysMLVisitor();
 				object.getVisitable().accept(visitor);
 				return visitor.found;
@@ -72,20 +71,12 @@ public class SysMLTypeChecker implements IInjectedTypeChecker {
 				Element e = (Element) o;
 				EList<EObject> eobjects = e.getStereotypeApplications();
 				for (EObject tmp : eobjects) {
-					if (!tmp.eIsProxy()
-							&& tmp.eClass()
-									.getEPackage()
-									.getNsURI()
-									.contains(
-											"http://www.eclipse.org/papyrus/0.7.0/SysML")) {
-						if (sysmlElementName == null
-								&& applicatedStereotype == null
-								&& umlElementName == null) {
+					if (!tmp.eIsProxy() && tmp.eClass().getEPackage().getNsURI().contains("http://www.eclipse.org/papyrus/0.7.0/SysML")) {
+						if (sysmlElementName == null && applicatedStereotype == null && umlElementName == null) {
 							found = true;
 							break;
 						} else {
-							if (isElementOK(e) && isStereotypeOk(e)
-									&& isSysMLOK(tmp)) {
+							if (isElementOK(e) && isStereotypeOk(e) && isSysMLOK(tmp)) {
 								found = true;
 								break;
 							}

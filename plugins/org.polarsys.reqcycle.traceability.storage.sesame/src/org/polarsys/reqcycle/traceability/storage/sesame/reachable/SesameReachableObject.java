@@ -65,7 +65,7 @@ public class SesameReachableObject implements ReachableObject {
 
 	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-		if(IFile.class.equals(adapter)) {
+		if (IFile.class.equals(adapter)) {
 			final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			final IWorkspaceRoot workspaceRoot = workspace.getRoot();
 			final IFile file = workspaceRoot.getFile(new Path(reachable.getPath()));

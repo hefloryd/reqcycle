@@ -18,9 +18,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-
 public class ReqCyclePerspective implements IPerspectiveFactory {
-	
+
 	private IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
 	/**
@@ -50,18 +49,18 @@ public class ReqCyclePerspective implements IPerspectiveFactory {
 
 	private void addView(String viewId, IFolderLayout folderLayout) {
 		IViewReference viewRef = activePage.findViewReference(viewId);
-		if(viewRef == null) {
+		if (viewRef == null) {
 			try {
 				activePage.showView(viewId, null, IWorkbenchPage.VIEW_ACTIVATE);
 				viewRef = activePage.findViewReference(viewId);
 			} catch (PartInitException e) {
 			}
 		}
-		if (viewRef != null){
+		if (viewRef != null) {
 			folderLayout.addView(viewId);
 		}
 	}
-	
+
 	/**
 	 * Add fast views to the perspective.
 	 */
@@ -79,5 +78,5 @@ public class ReqCyclePerspective implements IPerspectiveFactory {
 	 */
 	private void addPerspectiveShortcuts(IPageLayout layout) {
 	}
-	
+
 }

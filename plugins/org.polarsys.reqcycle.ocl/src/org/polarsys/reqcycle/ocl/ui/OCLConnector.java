@@ -30,9 +30,9 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 	}
 
 	protected SettingPage oclSettingPage;
-	
+
 	protected OCLPage oclMappingPage;
-	
+
 	protected SettingBean bean = new SettingBean(this);
 
 	private RequirementSource requirementSource = null;
@@ -52,13 +52,12 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 		super.addPages();
 	}
 
-
 	@Override
 	public ICallable getRequirementsCreator() {
-		
-			OCLCallable callable = ZigguratInject.make(OCLCallable.class);
-			
-			return callable;
+
+		OCLCallable callable = ZigguratInject.make(OCLCallable.class);
+
+		return callable;
 	}
 
 	@Override
@@ -73,9 +72,7 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean canFinish() {
-		return bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null 
-				&& !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty()
-				&& !bean.getOutputPath().isEmpty();
+		return bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty() && !bean.getOutputPath().isEmpty();
 	}
 
 	@Override
@@ -87,6 +84,5 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 	public void storeProperties(RequirementSource source) {
 		bean.storeProperties(source);
 	}
-
 
 }

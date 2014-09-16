@@ -24,8 +24,7 @@ public class Link {
 	TType kind;
 	Reachable id;
 
-	public Link(Reachable id, TType kind, Iterable<Reachable> sources,
-			Iterable<Reachable> targets) {
+	public Link(Reachable id, TType kind, Iterable<Reachable> sources, Iterable<Reachable> targets) {
 		this.id = id;
 		this.kind = kind;
 		this.sources = Sets.newHashSet(sources);
@@ -33,8 +32,7 @@ public class Link {
 	}
 
 	public Link(Reachable id, TType kind, Reachable source, Reachable target) {
-		this(id, kind, Collections.singleton(source), Collections
-				.singleton(target));
+		this(id, kind, Collections.singleton(source), Collections.singleton(target));
 	}
 
 	public Reachable getId() {
@@ -65,9 +63,7 @@ public class Link {
 	public boolean equals(Object obj) {
 		if (obj instanceof Link) {
 			Link link = (Link) obj;
-			return Objects.equal(sources, link.sources)
-					&& Objects.equal(targets, link.targets)
-					&& Objects.equal(kind, link.kind);
+			return Objects.equal(sources, link.sources) && Objects.equal(targets, link.targets) && Objects.equal(kind, link.kind);
 		}
 		return super.equals(obj);
 	}

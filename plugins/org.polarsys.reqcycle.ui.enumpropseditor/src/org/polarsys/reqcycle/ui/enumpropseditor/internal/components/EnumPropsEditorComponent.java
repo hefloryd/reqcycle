@@ -46,8 +46,8 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum>
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof EEnumLiteral) {
-					return ((EEnumLiteral)element).getLiteral();
+				if (element instanceof EEnumLiteral) {
+					return ((EEnumLiteral) element).getLiteral();
 				}
 				return super.getText(element);
 			}
@@ -57,9 +57,8 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum>
 
 	@Override
 	public boolean isValid() {
-		final IStructuredSelection selectedLiteral = (IStructuredSelection)((IStructuredSelection)comboViewer.getSelection()).getFirstElement();
+		final IStructuredSelection selectedLiteral = (IStructuredSelection) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement();
 		return selectedLiteral != null;
 	}
-	
-	
+
 }

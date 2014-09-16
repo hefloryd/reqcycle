@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.table.handlers;
 
-
 import java.util.Iterator;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -32,17 +31,15 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.UnmodifiableIterator;
 
-
 public class DeleteLinkHandler extends AbstractHandler {
-	
-	
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
 		IWorkbenchPart activePart = HandlerUtil.getActivePart(event);
-		if (activePart instanceof TraceabilityTableView){
-			TableController controller = ((TraceabilityTableView)activePart).getController();
-			Iterator<?> iterator = ((IStructuredSelection)currentSelection).iterator();
+		if (activePart instanceof TraceabilityTableView) {
+			TableController controller = ((TraceabilityTableView) activePart).getController();
+			Iterator<?> iterator = ((IStructuredSelection) currentSelection).iterator();
 			UnmodifiableIterator<TransverseLink> links = Iterators.filter(iterator, TransverseLink.class);
 			controller.deleteTraceabilityLinks(links);
 		}
@@ -52,22 +49,22 @@ public class DeleteLinkHandler extends AbstractHandler {
 	@Override
 	public boolean isEnabled() {
 		ISelection selection = getSelection();
-		if (selection instanceof IStructuredSelection){
-			Iterator<?> iterator = ((IStructuredSelection)selection).iterator();
+		if (selection instanceof IStructuredSelection) {
+			Iterator<?> iterator = ((IStructuredSelection) selection).iterator();
 			return Iterators.all(iterator, Predicates.instanceOf(TransverseLink.class));
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean isHandled() {
 		return true;
 	}
-	
-	public ISelection getSelection(){
-		 IWorkbench workbench = PlatformUI.getWorkbench();
-		 IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-		 ISelectionService selectionService = workbenchWindow.getSelectionService();
-		 return selectionService.getSelection();
+
+	public ISelection getSelection() {
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+		ISelectionService selectionService = workbenchWindow.getSelectionService();
+		return selectionService.getSelection();
 	}
 }

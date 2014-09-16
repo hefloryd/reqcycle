@@ -52,25 +52,21 @@ public class AttributeComposite extends Composite {
 		setLayout(new GridLayout(3, false));
 
 		Label lblName = new Label(this, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
-				1, 1));
+		lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblName.setText("name : ");
 		new Label(this, SWT.NONE);
 
 		textName = new Text(this, SWT.BORDER);
-		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				1, 1));
+		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Label lblType = new Label(this, SWT.NONE);
-		lblType.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
-				1, 1));
+		lblType.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblType.setText("type : ");
 		new Label(this, SWT.NONE);
 
 		comboViewer = new ComboViewer(this, SWT.READ_ONLY);
 		comboType = comboViewer.getCombo();
-		comboType.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				1, 1));
+		comboType.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		comboViewer.setLabelProvider(new LabelProvider() {
 
 			@Override
@@ -93,20 +89,17 @@ public class AttributeComposite extends Composite {
 
 		Composite composite = new Composite(this, SWT.NONE);
 		composite.setLayout(new GridLayout(2, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
 		listViewer = new ListViewer(composite, SWT.BORDER | SWT.V_SCROLL);
 		listValuess = listViewer.getList();
-		listValuess.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
-				1, 1));
+		listValuess.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		listViewer.setLabelProvider(new LabelProvider());
 		listViewer.setContentProvider(new ArrayContentProvider());
 		listViewer.setInput(allPossibleValues);
 
 		Composite composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false,
-				false, 1, 1));
+		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false, 1, 1));
 		composite_1.setLayout(new FillLayout(SWT.VERTICAL));
 		composite_1.setBounds(0, 0, 64, 64);
 
@@ -114,8 +107,7 @@ public class AttributeComposite extends Composite {
 		buttonAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				InputDialog dialog = new InputDialog(getShell(), "Value",
-						"Please enter a possible value", "", null);
+				InputDialog dialog = new InputDialog(getShell(), "Value", "Please enter a possible value", "", null);
 				if (dialog.open() == InputDialog.OK) {
 					allPossibleValues.add(dialog.getValue());
 					listViewer.refresh();
@@ -130,8 +122,7 @@ public class AttributeComposite extends Composite {
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = listViewer.getSelection();
 				if (selection != null) {
-					String element = (String) ((IStructuredSelection) selection)
-							.getFirstElement();
+					String element = (String) ((IStructuredSelection) selection).getFirstElement();
 					allPossibleValues.remove(element);
 					listViewer.refresh();
 				}
@@ -172,8 +163,7 @@ public class AttributeComposite extends Composite {
 
 	public void saveInAttribute(StdAttribute att) {
 		att.setName(textName.getText());
-		att.setType((AttributeType) ((IStructuredSelection) comboViewer
-				.getSelection()).getFirstElement());
+		att.setType((AttributeType) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement());
 		att.getPossibleValues().addAll(allPossibleValues);
 	}
 }

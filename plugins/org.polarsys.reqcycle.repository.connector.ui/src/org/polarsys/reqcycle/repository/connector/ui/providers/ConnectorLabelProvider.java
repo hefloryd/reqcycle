@@ -41,8 +41,7 @@ public class ConnectorLabelProvider extends LabelProvider {
 		return null;
 	}
 
-	public static Image createImage(ConnectorDescriptor connector, int width,
-			int height) {
+	public static Image createImage(ConnectorDescriptor connector, int width, int height) {
 		ImageDescriptor imageDescriptor = connector.getImageDescriptor();
 		if (imageDescriptor == null) {
 			return null;
@@ -52,8 +51,7 @@ public class ConnectorLabelProvider extends LabelProvider {
 		GC gc = new GC(scaled);
 		gc.setAntialias(SWT.ON);
 		gc.setInterpolation(SWT.HIGH);
-		gc.drawImage(image, 0, 0, image.getBounds().width,
-				image.getBounds().height, 0, 0, width, height);
+		gc.drawImage(image, 0, 0, image.getBounds().width, image.getBounds().height, 0, 0, width, height);
 		gc.dispose();
 		image.dispose();
 		return scaled;

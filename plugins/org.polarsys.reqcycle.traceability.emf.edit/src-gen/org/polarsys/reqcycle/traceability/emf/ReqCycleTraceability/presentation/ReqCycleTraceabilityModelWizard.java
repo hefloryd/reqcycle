@@ -66,8 +66,7 @@ import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTrace
 import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.provider.ReachableLinkEditPlugin;
 
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -80,81 +79,70 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The supported extensions for created files. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The supported extensions for created files. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(ReachableLinkEditPlugin.INSTANCE.getString("_UI_ReqCycleTraceabilityEditorFilenameExtensions").split(
-			"\\s*,\\s*")));
+	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(ReachableLinkEditPlugin.INSTANCE.getString("_UI_ReqCycleTraceabilityEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
-	 * A formatted list of supported file extensions, suitable for display. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * A formatted list of supported file extensions, suitable for display. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS = ReachableLinkEditPlugin.INSTANCE.getString("_UI_ReqCycleTraceabilityEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
-	 * This caches an instance of the model package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This caches an instance of the model package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ReqCycleTraceabilityPackage reqCycleTraceabilityPackage = ReqCycleTraceabilityPackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the model factory. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This caches an instance of the model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ReqCycleTraceabilityFactory reqCycleTraceabilityFactory = reqCycleTraceabilityPackage.getReqCycleTraceabilityFactory();
 
 	/**
-	 * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ReqCycleTraceabilityModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
-	 * This is the initial object creation page. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is the initial object creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ReqCycleTraceabilityModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
-	 * Remember the selection during initialization for populating the default
-	 * container. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Remember the selection during initialization for populating the default container. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
 
 	/**
-	 * Remember the workbench during initialization. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Remember the workbench during initialization. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected IWorkbench workbench;
 
 	/**
-	 * Caches the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Caches the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
 
 	/**
-	 * This just records the information. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This just records the information. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -166,8 +154,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	}
 
 	/**
-	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -199,8 +186,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	}
 
 	/**
-	 * Do the work after everything is specified. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Do the work after everything is specified. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -282,8 +268,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	}
 
 	/**
-	 * This is the one page of the wizard. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is the one page of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -298,8 +283,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 		}
 
 		/**
-		 * The framework calls this to see if the file is correct. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The framework calls this to see if the file is correct. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -328,8 +312,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	}
 
 	/**
-	 * This is the page where the type of object to create is selected. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This is the page where the type of object to create is selected. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -500,8 +483,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 		}
 
 		/**
-		 * Returns the label for the specified type name. <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
+		 * Returns the label for the specified type name. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -531,8 +513,7 @@ public class ReqCycleTraceabilityModelWizard extends Wizard implements INewWizar
 	}
 
 	/**
-	 * The framework calls this to create the contents of the wizard. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The framework calls this to create the contents of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

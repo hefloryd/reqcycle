@@ -37,8 +37,7 @@ public interface ITypeEditor<T> {
 	T getValue();
 
 	/**
-	 * @return <code>true</code> if the edition is valid, <code>false</code>
-	 *         otherwise.
+	 * @return <code>true</code> if the edition is valid, <code>false</code> otherwise.
 	 */
 	boolean isValid();
 

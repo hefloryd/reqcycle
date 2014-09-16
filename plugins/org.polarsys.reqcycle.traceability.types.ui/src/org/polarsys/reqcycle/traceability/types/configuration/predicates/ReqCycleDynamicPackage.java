@@ -41,10 +41,8 @@ public class ReqCycleDynamicPackage {
 	public static final EDataType STRING = EcorePackage.Literals.ESTRING;
 	public static final EDataType BOOLEAN = EcorePackage.Literals.EBOOLEAN;
 
-	static ITypesConfigurationProvider provider = ZigguratInject
-			.make(ITypesConfigurationProvider.class);
-	private static ITraceabilityAttributesManager attributesManager = ZigguratInject
-			.make(ITraceabilityAttributesManager.class);
+	static ITypesConfigurationProvider provider = ZigguratInject.make(ITypesConfigurationProvider.class);
+	private static ITraceabilityAttributesManager attributesManager = ZigguratInject.make(ITraceabilityAttributesManager.class);
 
 	public static void reinitURIPackage() {
 		try {
@@ -67,9 +65,7 @@ public class ReqCycleDynamicPackage {
 			ePackage.getEClassifiers().add(getEClass(ePackage, r));
 		}
 		if (ePackage.eResource() == null) {
-			Resource r = new EcoreResourceFactoryImpl()
-					.createResource(org.eclipse.emf.common.util.URI
-							.createURI(URI));
+			Resource r = new EcoreResourceFactoryImpl().createResource(org.eclipse.emf.common.util.URI.createURI(URI));
 			r.getContents().add(ePackage);
 		}
 		return ePackage;
@@ -128,8 +124,7 @@ public class ReqCycleDynamicPackage {
 		if (defaultConfiguration == null) {
 			return null;
 		}
-		Relation r = RelationUtils.getRelation(link.getKind().getLabel(),
-				defaultConfiguration);
+		Relation r = RelationUtils.getRelation(link.getKind().getLabel(), defaultConfiguration);
 		if (r == null) {
 			return null;
 		}
@@ -150,8 +145,7 @@ public class ReqCycleDynamicPackage {
 	}
 
 	private static EObject getEObject(Link link, Relation r, EClass c) {
-		Collection<EditableAttribute> attributes = attributesManager
-				.getAttributes(link.getId());
+		Collection<EditableAttribute> attributes = attributesManager.getAttributes(link.getId());
 		EObject e = c.getEPackage().getEFactoryInstance().create(c);
 		for (EAttribute a : c.getEAllAttributes()) {
 			for (EditableAttribute att : attributes) {
@@ -168,8 +162,7 @@ public class ReqCycleDynamicPackage {
 
 	private static Object getVal(Link link, EAttribute a, EditableAttribute att) {
 		Object val = att.getValue();
-		if (att.getPossibleValues() == null
-				|| att.getPossibleValues().length == 0) {
+		if (att.getPossibleValues() == null || att.getPossibleValues().length == 0) {
 			return val;
 		} else {
 			return getEnumValue(val, a.getEType());

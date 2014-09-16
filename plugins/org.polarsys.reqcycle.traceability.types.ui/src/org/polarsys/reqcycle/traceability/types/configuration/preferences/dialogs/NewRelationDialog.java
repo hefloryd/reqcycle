@@ -73,8 +73,7 @@ public class NewRelationDialog extends TitleAreaDialog {
 	@Inject
 	ITraceTypesManager ttManager;
 	private TypeConfigContainer container;
-	private AdapterFactory adapterFactory = new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	private AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 	private Text textKind;
 	private CheckboxTableViewer listOfTTViewer;
 	private Text textIcon;
@@ -93,8 +92,7 @@ public class NewRelationDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		if (rel.getDownstreamType() == null || rel.getUpstreamType() == null
-				|| rel.getKind() == null) {
+		if (rel.getDownstreamType() == null || rel.getUpstreamType() == null || rel.getKind() == null) {
 			setErrorMessage("Please fill all the parameters");
 		} else {
 			super.okPressed();
@@ -115,8 +113,7 @@ public class NewRelationDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Composite composite = new Composite(container, SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		composite.setLayout(new GridLayout(2, false));
 
 		treeViewer = new TreeViewer(composite, SWT.BORDER);
@@ -124,54 +121,43 @@ public class NewRelationDialog extends TitleAreaDialog {
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		Composite composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false,
-				1, 1));
+		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 		composite_1.setLayout(new GridLayout(1, false));
 
 		Button btnSource = new Button(composite_1, SWT.NONE);
 		btnSource.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Object firstElement = ((IStructuredSelection) treeViewer
-						.getSelection()).getFirstElement();
+				Object firstElement = ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 				if (firstElement instanceof Type) {
 					Type type = (Type) firstElement;
-					set(type,
-							textSource,
-							TypeconfigurationPackage.Literals.RELATION__UPSTREAM_TYPE);
+					set(type, textSource, TypeconfigurationPackage.Literals.RELATION__UPSTREAM_TYPE);
 				}
 			}
 		});
-		btnSource.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false,
-				1, 1));
+		btnSource.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false, 1, 1));
 		btnSource.setText("Upstream");
 
 		Button btnTarget = new Button(composite_1, SWT.NONE);
 		btnTarget.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				set((Type) ((IStructuredSelection) treeViewer.getSelection())
-						.getFirstElement(),
-						textTarget,
-						TypeconfigurationPackage.Literals.RELATION__DOWNSTREAM_TYPE);
+				set((Type) ((IStructuredSelection) treeViewer.getSelection()).getFirstElement(), textTarget, TypeconfigurationPackage.Literals.RELATION__DOWNSTREAM_TYPE);
 			}
 		});
-		btnTarget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
-				false, 1, 1));
+		btnTarget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnTarget.setText("Downstream");
 
 		Group grpProperties = new Group(container, SWT.NONE);
 		grpProperties.setLayout(new GridLayout(3, false));
-		grpProperties.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1));
+		grpProperties.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		grpProperties.setText("Properties");
 
 		Label lblNewLabel_1 = new Label(grpProperties, SWT.NONE);
 		lblNewLabel_1.setText("Name : ");
 
 		textKind = new Text(grpProperties, SWT.BORDER);
-		textKind.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				2, 1));
+		textKind.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		textKind.addModifyListener(new ModifyListener() {
 
 			@Override
@@ -184,8 +170,7 @@ public class NewRelationDialog extends TitleAreaDialog {
 		lblIcon.setText("Icon : ");
 
 		textIcon = new Text(grpProperties, SWT.BORDER);
-		textIcon.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				1, 1));
+		textIcon.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Button btnNewButton = new Button(grpProperties, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
@@ -201,25 +186,21 @@ public class NewRelationDialog extends TitleAreaDialog {
 
 		textSource = new Text(grpProperties, SWT.BORDER);
 		textSource.setEditable(false);
-		textSource.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 2, 1));
+		textSource.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
 		Label lblNewLabel = new Label(grpProperties, SWT.NONE);
 		lblNewLabel.setText("Downstream :");
 
 		textTarget = new Text(grpProperties, SWT.BORDER);
 		textTarget.setEditable(false);
-		textTarget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 2, 1));
+		textTarget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
 		Group grpIncludedTraceability = new Group(container, SWT.NONE);
 		grpIncludedTraceability.setText("Included Traceability");
 		grpIncludedTraceability.setLayout(new FillLayout(SWT.HORIZONTAL));
-		grpIncludedTraceability.setLayoutData(new GridData(SWT.FILL,
-				SWT.CENTER, false, false, 1, 1));
+		grpIncludedTraceability.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 
-		listOfTTViewer = CheckboxTableViewer.newCheckList(
-				grpIncludedTraceability, SWT.BORDER | SWT.V_SCROLL | SWT.CHECK);
+		listOfTTViewer = CheckboxTableViewer.newCheckList(grpIncludedTraceability, SWT.BORDER | SWT.V_SCROLL | SWT.CHECK);
 		listOfTTViewer.addCheckStateListener(new ICheckStateListener() {
 
 			@Override
@@ -246,20 +227,16 @@ public class NewRelationDialog extends TitleAreaDialog {
 
 		});
 		listOfTTViewer.setInput(Lists.newArrayList(ttManager.getAllTTypes()));
-		IContentProvider provider = new PreferenceDialogTypesContentProvider(
-				adapterFactory, this.container);
-		ILabelProvider labelProvider = new PreferenceDialogTypeLabelProvider(
-				adapterFactory, new AdapterFactoryLabelProvider(adapterFactory));
+		IContentProvider provider = new PreferenceDialogTypesContentProvider(adapterFactory, this.container);
+		ILabelProvider labelProvider = new PreferenceDialogTypeLabelProvider(adapterFactory, new AdapterFactoryLabelProvider(adapterFactory));
 		ZigguratInject.inject(labelProvider, provider);
 		treeViewer.setContentProvider(provider);
 		treeViewer.setLabelProvider(labelProvider);
 		treeViewer.addFilter(new ViewerFilter() {
 
 			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				return element instanceof TypeConfigContainer
-						|| element instanceof Type;
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return element instanceof TypeConfigContainer || element instanceof Type;
 			}
 		});
 		treeViewer.setInput(this.container.eResource());
@@ -283,10 +260,8 @@ public class NewRelationDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**

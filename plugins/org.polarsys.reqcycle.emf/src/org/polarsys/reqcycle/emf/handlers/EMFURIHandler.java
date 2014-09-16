@@ -59,8 +59,7 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 		}
 		if (!result) {
 			if (t instanceof IResource) {
-				result |= handlesURI(URI.createPlatformResourceURI(
-						((IResource) t).getFullPath().toString(), true));
+				result |= handlesURI(URI.createPlatformResourceURI(((IResource) t).getFullPath().toString(), true));
 			}
 		}
 		if (!result) {
@@ -77,19 +76,15 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 		EMFReachableObject result = null;
 		if (o instanceof IResource) {
 			IResource res = (IResource) o;
-			result = doGetReachableObject(EMFUtils.getReachable(URI
-					.createPlatformResourceURI(res.getFullPath().toString(),
-							true)));
+			result = doGetReachableObject(EMFUtils.getReachable(URI.createPlatformResourceURI(res.getFullPath().toString(), true)));
 
 		} else if (o instanceof EObject) {
 			result = doGetReachableObject(EMFUtils.getReachable(((EObject) o)));
 		} else if (o instanceof Resource) {
-			result = doGetReachableObject(EMFUtils.getReachable(((Resource) o)
-					.getURI()));
+			result = doGetReachableObject(EMFUtils.getReachable(((Resource) o).getURI()));
 		} else if (o instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable) o;
-			result = doGetReachableObject(EMFUtils
-					.getReachable((EObject) adaptable.getAdapter(EObject.class)));
+			result = doGetReachableObject(EMFUtils.getReachable((EObject) adaptable.getAdapter(EObject.class)));
 		}
 		if (result != null) {
 			ZigguratInject.inject(result);

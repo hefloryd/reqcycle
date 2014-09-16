@@ -43,19 +43,12 @@ public class CustomRequirementsContainerItemProvider extends RequirementsContain
 	}
 
 	/*
-	 * ECrossReferenceAdapter c =
-	 * ECrossReferenceAdapter.getCrossReferenceAdapter(this);
+	 * ECrossReferenceAdapter c = ECrossReferenceAdapter.getCrossReferenceAdapter(this);
 	 * 
-	 * if(c == null) { c = new ECrossReferenceAdapter(); Resource r =
-	 * this.eResource(); if(r != null) { ResourceSet rs = r.getResourceSet();
-	 * if(rs != null) { c.setTarget(rs); } else { c.setTarget(r); } } else {
-	 * c.setTarget(this); } }
+	 * if(c == null) { c = new ECrossReferenceAdapter(); Resource r = this.eResource(); if(r != null) { ResourceSet rs = r.getResourceSet(); if(rs != null) { c.setTarget(rs); } else { c.setTarget(r); } } else { c.setTarget(this); } }
 	 * 
 	 * 
-	 * EList<EObject> res = new BasicEList<EObject>(); Collection<Setting>
-	 * settings = c.getInverseReferences(this, true); for(Setting s : settings)
-	 * { if(oppositeRef.equals(s.getEStructuralFeature())) {
-	 * res.add(s.getEObject()); } } return res;
+	 * EList<EObject> res = new BasicEList<EObject>(); Collection<Setting> settings = c.getInverseReferences(this, true); for(Setting s : settings) { if(oppositeRef.equals(s.getEStructuralFeature())) { res.add(s.getEObject()); } } return res;
 	 */
 
 	@Override
@@ -90,7 +83,7 @@ public class CustomRequirementsContainerItemProvider extends RequirementsContain
 		}
 		for (IType type : types) {
 			if (type instanceof IRequirementType) {
-				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, ((IRequirementType)type).createInstance()));
+				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, ((IRequirementType) type).createInstance()));
 			}
 		}
 		newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, RequirementSourceDataFactory.eINSTANCE.createSection()));

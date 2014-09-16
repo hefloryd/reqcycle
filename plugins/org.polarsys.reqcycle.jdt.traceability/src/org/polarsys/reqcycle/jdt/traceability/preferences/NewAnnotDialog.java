@@ -67,8 +67,7 @@ public class NewAnnotDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		setTitleImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.jdt.traceability", "icons/annot.gif"));
+		setTitleImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.jdt.traceability", "icons/annot.gif"));
 		setTitle("Register new Annotation");
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
@@ -76,8 +75,7 @@ public class NewAnnotDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label lblAnnotationName = new Label(container, SWT.NONE);
-		lblAnnotationName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-				false, false, 1, 1));
+		lblAnnotationName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblAnnotationName.setText("Annotation Name : ");
 
 		text = new Text(container, SWT.BORDER);
@@ -94,11 +92,7 @@ public class NewAnnotDialog extends TitleAreaDialog {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				OpenTypeSelectionDialog d = new OpenTypeSelectionDialog(
-						getShell(), false, PlatformUI.getWorkbench()
-								.getProgressService(), SearchEngine
-								.createWorkspaceScope(),
-						IJavaSearchConstants.ANNOTATION_TYPE);
+				OpenTypeSelectionDialog d = new OpenTypeSelectionDialog(getShell(), false, PlatformUI.getWorkbench().getProgressService(), SearchEngine.createWorkspaceScope(), IJavaSearchConstants.ANNOTATION_TYPE);
 				if (d.open() == OpenTypeSelectionDialog.OK) {
 					SourceType type = (SourceType) d.getFirstResult();
 					text.setText(type.getElementName());
@@ -108,26 +102,23 @@ public class NewAnnotDialog extends TitleAreaDialog {
 		button.setText("...");
 
 		Label lblKind = new Label(container, SWT.NONE);
-		lblKind.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
-				1, 1));
+		lblKind.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblKind.setText("Kind : ");
 
 		comboViewer = new ComboViewer(container, SWT.None);
 		Combo combo = comboViewer.getCombo();
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2,
-				1));
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		comboViewer.setContentProvider(new ArrayContentProvider());
 		comboViewer.setLabelProvider(new LabelProvider());
 		input.addAll(JDTPreferences.getPreferences().keySet());
 		comboViewer.setInput(input);
-		comboViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						link = new JDTType(comboViewer.getCCombo().getText());
-					}
-				});
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				link = new JDTType(comboViewer.getCCombo().getText());
+			}
+		});
 		return area;
 	}
 
@@ -147,10 +138,8 @@ public class NewAnnotDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**

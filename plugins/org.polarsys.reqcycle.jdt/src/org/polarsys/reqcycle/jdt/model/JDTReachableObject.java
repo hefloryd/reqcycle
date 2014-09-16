@@ -33,8 +33,7 @@ public class JDTReachableObject implements ReachableObject {
 
 	public JDTReachableObject(Reachable t) {
 		this.reachable = t;
-		String path = t.trimFragment().toString()
-				.replaceFirst(JDTUtils.PLATFORM, "");
+		String path = t.trimFragment().toString().replaceFirst(JDTUtils.PLATFORM, "");
 		file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path));
 		element = JavaCore.create(file);
 		if (element instanceof ITypeRoot) {
@@ -53,8 +52,7 @@ public class JDTReachableObject implements ReachableObject {
 		}
 	}
 
-	private IJavaElement findMethodRecursively(IParent aClass,
-			final String[] javaElement) {
+	private IJavaElement findMethodRecursively(IParent aClass, final String[] javaElement) {
 		try {
 			IJavaElement result = null;
 			boolean found = false;

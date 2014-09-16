@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.SimpleRequirementItemProvider;
 
-
 /**
  * The Class CustomRequirementItemProvider.
  */
@@ -24,7 +23,7 @@ public class CustomSimpleRequirementItemProvider extends SimpleRequirementItemPr
 	 * Instantiates a new custom requirement item provider.
 	 * 
 	 * @param adapterFactory
-	 *        the adapter factory
+	 *            the adapter factory
 	 */
 	public CustomSimpleRequirementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
@@ -34,19 +33,19 @@ public class CustomSimpleRequirementItemProvider extends SimpleRequirementItemPr
 	public String getText(Object object) {
 		String result = "";
 
-		String id = ((SimpleRequirement)object).getId();
-		String text = ((SimpleRequirement)object).getText();
+		String id = ((SimpleRequirement) object).getId();
+		String text = ((SimpleRequirement) object).getText();
 
-		if(id != null && !id.isEmpty()) {
+		if (id != null && !id.isEmpty()) {
 			result += "[ id : " + id;
 		}
 
-		if(text != null && !text.isEmpty()) {
+		if (text != null && !text.isEmpty()) {
 			result += result.isEmpty() ? "[ " : " | ";
 			result += "name : " + text;
 		}
 
-		if(!result.isEmpty()) {
+		if (!result.isEmpty()) {
 			result += " ]";
 		}
 

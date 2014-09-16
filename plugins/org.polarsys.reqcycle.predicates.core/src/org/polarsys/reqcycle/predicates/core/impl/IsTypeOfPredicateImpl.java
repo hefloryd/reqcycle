@@ -17,30 +17,24 @@ import org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate;
 import com.google.common.collect.Sets;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Is Type Of Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Is Type Of Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#getDisplayName
- * <em>Display Name</em>}</li>
+ * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#getDisplayName <em>Display Name</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#getType
- * <em>Type</em>}</li>
+ * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#getType <em>Type</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#isIsStrictTypeOf
- * <em>Is Strict Type Of</em>}</li>
+ * {@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl#isIsStrictTypeOf <em>Is Strict Type Of</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
-		implements IsTypeOfPredicate {
+public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container implements IsTypeOfPredicate {
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>} ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDisplayName()
 	 * @generated
@@ -49,8 +43,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDisplayName()
 	 * @generated
@@ -59,8 +52,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getType()
 	 * @generated
@@ -69,8 +61,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final Object TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getType()
 	 * @generated
@@ -79,9 +70,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	protected Object type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsStrictTypeOf()
-	 * <em>Is Strict Type Of</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #isIsStrictTypeOf() <em>Is Strict Type Of</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isIsStrictTypeOf()
 	 * @generated
@@ -90,9 +79,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final boolean IS_STRICT_TYPE_OF_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsStrictTypeOf()
-	 * <em>Is Strict Type Of</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #isIsStrictTypeOf() <em>Is Strict Type Of</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isIsStrictTypeOf()
 	 * @generated
@@ -139,9 +126,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 		String oldDisplayName = displayName;
 		displayName = newDisplayName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PredicatesPackage.IS_TYPE_OF_PREDICATE__DISPLAY_NAME,
-					oldDisplayName, displayName));
+			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IS_TYPE_OF_PREDICATE__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -164,8 +149,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 		Object oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PredicatesPackage.IS_TYPE_OF_PREDICATE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IS_TYPE_OF_PREDICATE__TYPE, oldType, type));
 	}
 
 	/**
@@ -188,9 +172,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 		boolean oldIsStrictTypeOf = isStrictTypeOf;
 		isStrictTypeOf = newIsStrictTypeOf;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PredicatesPackage.IS_TYPE_OF_PREDICATE__IS_STRICT_TYPE_OF,
-					oldIsStrictTypeOf, isStrictTypeOf));
+			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.IS_TYPE_OF_PREDICATE__IS_STRICT_TYPE_OF, oldIsStrictTypeOf, isStrictTypeOf));
 	}
 
 	/**
@@ -280,11 +262,9 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case PredicatesPackage.IS_TYPE_OF_PREDICATE__DISPLAY_NAME:
-			return DISPLAY_NAME_EDEFAULT == null ? displayName != null
-					: !DISPLAY_NAME_EDEFAULT.equals(displayName);
+			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		case PredicatesPackage.IS_TYPE_OF_PREDICATE__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
-					.equals(type);
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		case PredicatesPackage.IS_TYPE_OF_PREDICATE__IS_STRICT_TYPE_OF:
 			return isStrictTypeOf != IS_STRICT_TYPE_OF_EDEFAULT;
 		}
@@ -297,8 +277,7 @@ public class IsTypeOfPredicateImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case PredicatesPackage.IS_TYPE_OF_PREDICATE___MATCH__OBJECT:
 			return match(arguments.get(0));

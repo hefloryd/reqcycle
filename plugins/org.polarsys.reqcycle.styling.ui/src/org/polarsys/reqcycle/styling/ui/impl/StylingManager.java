@@ -22,8 +22,7 @@ import com.google.common.collect.Maps;
 public class StylingManager implements IStylingManager {
 
 	private static String PREF_ID = Activator.PLUGIN_ID + ".styling";
-	private static String PREF_ID_PREFERRED = Activator.PLUGIN_ID
-			+ ".styling.preferred";
+	private static String PREF_ID_PREFERRED = Activator.PLUGIN_ID + ".styling.preferred";
 
 	@Inject
 	IConfigurationManager confManager;
@@ -61,8 +60,7 @@ public class StylingManager implements IStylingManager {
 
 			Map<String, Object> conf = Maps.newHashMap();
 			conf.put(PREF_ID_PREFERRED, preferredStylingModel);
-			confManager.saveSimpleConfiguration(conf, null, null,
-					PREF_ID_PREFERRED);
+			confManager.saveSimpleConfiguration(conf, null, null, PREF_ID_PREFERRED);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,8 +68,7 @@ public class StylingManager implements IStylingManager {
 
 	@Override
 	public void reload() {
-		Collection<EObject> conf = confManager.getConfiguration(null, null,
-				PREF_ID, null, null, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, null, PREF_ID, null, null, true);
 
 		if (conf != null && conf.size() != 0) {
 			EObject first = conf.iterator().next();
@@ -84,8 +81,7 @@ public class StylingManager implements IStylingManager {
 			currentModel = StylingFactory.eINSTANCE.createStyling();
 		}
 
-		Map<String, Object> map = confManager.getSimpleConfiguration(null,
-				null, PREF_ID_PREFERRED, false);
+		Map<String, Object> map = confManager.getSimpleConfiguration(null, null, PREF_ID_PREFERRED, false);
 		if (map != null) {
 			preferredStylingModel = (String) map.get(PREF_ID_PREFERRED);
 		}

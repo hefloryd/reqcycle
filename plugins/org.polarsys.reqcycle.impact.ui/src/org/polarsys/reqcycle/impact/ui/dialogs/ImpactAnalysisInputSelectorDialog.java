@@ -19,8 +19,7 @@ import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class ImpactAnalysisInputSelectorDialog extends
-		ValidatingTitleAreaDialog {
+public class ImpactAnalysisInputSelectorDialog extends ValidatingTitleAreaDialog {
 
 	@Inject
 	IDataModelManager dataModelManager;
@@ -42,8 +41,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 	 * 
 	 * @param parentShell
 	 */
-	public ImpactAnalysisInputSelectorDialog(Shell parentShell,
-			RequirementSource requirementSource) {
+	public ImpactAnalysisInputSelectorDialog(Shell parentShell, RequirementSource requirementSource) {
 		super(parentShell);
 		setShellStyle(SWT.CLOSE | SWT.MIN | SWT.MAX);
 		ZigguratInject.inject(this);
@@ -61,15 +59,13 @@ public class ImpactAnalysisInputSelectorDialog extends
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
 		container.setLayout(new GridLayout(3, false));
-		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		Label lblModel = new Label(container, SWT.NONE);
 		lblModel.setText("Select model for impact analysis :");
 
 		lblModelSelected = new Label(container, SWT.BORDER);
-		lblModelSelected.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				false, 1, 1));
+		lblModelSelected.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		lblModelSelected.setEnabled(false);
 
 		Button btnModelButton = new Button(container, SWT.NONE);
@@ -78,8 +74,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 		btnModelButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SelectModelDialog dialog = new SelectModelDialog(Display
-						.getDefault().getActiveShell());
+				SelectModelDialog dialog = new SelectModelDialog(Display.getDefault().getActiveShell());
 				if (dialog.open() == Window.OK) {
 
 					requirementSource = dialog.getRequirementSource();
@@ -106,8 +101,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 		lblVersionFrom.setText("Select initial version :");
 
 		lblVersionSelectedFrom = new Label(container, SWT.BORDER);
-		lblVersionSelectedFrom.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, false, 1, 1));
+		lblVersionSelectedFrom.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		lblVersionSelectedFrom.setEnabled(false);
 
 		btnVersionFromButton = new Button(container, SWT.NONE);
@@ -118,9 +112,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (requirementSource != null) {
-					SelectVersionDialog dialog = new SelectVersionDialog(
-							Display.getDefault().getActiveShell(),
-							requirementSource);
+					SelectVersionDialog dialog = new SelectVersionDialog(Display.getDefault().getActiveShell(), requirementSource);
 					if (dialog.open() == Window.OK) {
 						requirementSourceFrom = dialog.getRequirementSource();
 						initialVersion = dialog.getRSVersion();
@@ -136,8 +128,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 		lblVersionTo.setText("Select final version :");
 
 		lblVersionSelectedTo = new Label(container, SWT.BORDER);
-		lblVersionSelectedTo.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, false, 1, 1));
+		lblVersionSelectedTo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		lblVersionSelectedTo.setEnabled(false);
 
 		btnVersionToButton = new Button(container, SWT.NONE);
@@ -148,9 +139,7 @@ public class ImpactAnalysisInputSelectorDialog extends
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (requirementSource != null) {
-					SelectVersionDialog dialog = new SelectVersionDialog(
-							Display.getDefault().getActiveShell(),
-							requirementSource);
+					SelectVersionDialog dialog = new SelectVersionDialog(Display.getDefault().getActiveShell(), requirementSource);
 					if (dialog.open() == Window.OK) {
 						requirementSourceTo = dialog.getRequirementSource();
 						finalVersion = dialog.getRSVersion();

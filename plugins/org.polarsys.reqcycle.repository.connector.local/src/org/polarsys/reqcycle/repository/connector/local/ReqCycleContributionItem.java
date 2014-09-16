@@ -60,7 +60,6 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 
 	protected EObject selectedElement;
 
-
 	public ReqCycleContributionItem() {
 		super();
 		ZigguratInject.inject(this);
@@ -71,13 +70,13 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		Set<EClass> classes = new HashSet<EClass>();
-		if(window != null) {
+		if (window != null) {
 			ISelection selection = window.getSelectionService().getSelection();
-			if(selection instanceof IStructuredSelection) {
-				Object firstElement = ((IStructuredSelection)selection).getFirstElement();
+			if (selection instanceof IStructuredSelection) {
+				Object firstElement = ((IStructuredSelection) selection).getFirstElement();
 				selectedElement = null;
-				if(firstElement instanceof EObject) {
-					selectedElement = (EObject)firstElement;
+				if (firstElement instanceof EObject) {
+					selectedElement = (EObject) firstElement;
 					classes = getDataEClasses(selectedElement);
 				}
 			}
@@ -103,19 +102,18 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 									EObject object = arg0.getEPackage().getEFactoryInstance().create(arg0);
 									AbstractElement element;
 
-									if(object instanceof AbstractElement) {
-										element = (AbstractElement)object;
+									if (object instanceof AbstractElement) {
+										element = (AbstractElement) object;
 									} else {
 										throw new Exception("Error while creating a " + arg0.getName() + " element.");
 									}
 
-
-									if(selectedElement instanceof RequirementSource) {
-										dataManager.addElementsToSource((RequirementSource)selectedElement, element);
+									if (selectedElement instanceof RequirementSource) {
+										dataManager.addElementsToSource((RequirementSource) selectedElement, element);
 									}
 
-									if(selectedElement instanceof Section) {
-										dataManager.addElementsToSection((Section)selectedElement, element);
+									if (selectedElement instanceof Section) {
+										dataManager.addElementsToSection((Section) selectedElement, element);
 									}
 
 									dataManager.notifyChange(IDataTopics.NEW_ELEMENT, element);
@@ -142,17 +140,17 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 	 * Gets the data e classes.
 	 * 
 	 * @param selectedElement
-	 *        the selected element
+	 *            the selected element
 	 * @return the data e classes
 	 */
 	protected Set<EClass> getDataEClasses(Object selectedElement) {
-		if(!(selectedElement instanceof Section || selectedElement instanceof RequirementSource)) {
+		if (!(selectedElement instanceof Section || selectedElement instanceof RequirementSource)) {
 			return Sets.newHashSet();
 		}
 
 		Set<EClass> classes = new HashSet<EClass>();
 
-		//Gets Requirement Types EClasses
+		// Gets Requirement Types EClasses
 		Collection<IDataModel> dataModels = dataModelManager.getCurrentDataModels();
 		List<IType> types = Lists.newArrayList();
 		for (IDataModel dataModel : dataModels) {
@@ -162,14 +160,14 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 
 			@Override
 			public EClass apply(IType arg0) {
-				if(arg0 instanceof IAdaptable) {
-					return (EClass)((IAdaptable)arg0).getAdapter(EClass.class);
+				if (arg0 instanceof IAdaptable) {
+					return (EClass) ((IAdaptable) arg0).getAdapter(EClass.class);
 				}
 				return null;
 			}
 		}));
 
-		//Add Section EClass
+		// Add Section EClass
 		classes.add(RequirementSourceDataPackage.Literals.SECTION);
 		return classes;
 	}

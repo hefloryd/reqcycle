@@ -11,11 +11,13 @@ import java.util.Collection;
 public @interface IOperation {
 
 	String value();
-	
+
 	public static interface Result<T> {
-		Collection<Object> getObjectsToListen ();
-		T getResult ();
-		Class<T> getResultType () ;
+		Collection<Object> getObjectsToListen();
+
+		T getResult();
+
+		Class<T> getResultType();
 	}
-		
+
 }

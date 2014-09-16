@@ -109,21 +109,20 @@ public class RightPanelComposite extends Composite {
 
 	}
 
-
 	protected Collection<EPackage> getAllPackages(Resource resource) {
 		List<EPackage> result = new ArrayList<EPackage>();
-		for(TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
+		for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected Iterator<? extends EObject> getEObjectChildren(EObject eObject) {
-				return eObject instanceof EPackage ? ((EPackage)eObject).getESubpackages().iterator() : Collections.<EObject> emptyList().iterator();
+				return eObject instanceof EPackage ? ((EPackage) eObject).getESubpackages().iterator() : Collections.<EObject> emptyList().iterator();
 			}
 		}; j.hasNext();) {
 			Object content = j.next();
-			if(content instanceof EPackage) {
-				result.add((EPackage)content);
+			if (content instanceof EPackage) {
+				result.add((EPackage) content);
 			}
 		}
 		return result;
@@ -168,7 +167,7 @@ public class RightPanelComposite extends Composite {
 		tableViewerOfDefautPredicates.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		tableViewerOfDefautPredicates.setInput(new Object());
 
-		final Transfer[] transferTypes = new Transfer[]{ LocalTransfer.getInstance() };
+		final Transfer[] transferTypes = new Transfer[] { LocalTransfer.getInstance() };
 		final int dndOperations = DND.DROP_COPY | DND.DROP_MOVE;
 
 		tableViewerOfDefautPredicates.addDragSupport(dndOperations, transferTypes, new ViewerDragAdapter(tableViewerOfDefautPredicates) {
@@ -216,32 +215,30 @@ public class RightPanelComposite extends Composite {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if(!editionMode) {
+				if (!editionMode) {
 					ISelection selection = event.getSelection();
 					boolean isEmptySelection = selection == null || event.getSelection().isEmpty();
 					boolean isMultySelection = false;
-					if(!isEmptySelection && selection instanceof IStructuredSelection) {
-						isMultySelection = ((IStructuredSelection)selection).size() > 1;
+					if (!isEmptySelection && selection instanceof IStructuredSelection) {
+						isMultySelection = ((IStructuredSelection) selection).size() > 1;
 					}
-					if(buttonRemove != null)
+					if (buttonRemove != null)
 						buttonRemove.setEnabled(!isEmptySelection);
-					if(buttonEdit != null)
+					if (buttonEdit != null)
 						buttonEdit.setEnabled(!isEmptySelection && !isMultySelection);
 				}
 			}
 		});
 
-		final Transfer[] transferTypes = new Transfer[]{ LocalTransfer.getInstance() };
+		final Transfer[] transferTypes = new Transfer[] { LocalTransfer.getInstance() };
 		final int dndOperations = DND.DROP_COPY | DND.DROP_MOVE;
 
 		tableViewerOfCustomPredicates.addDragSupport(dndOperations, transferTypes, new CustomPredicatesTreeViewerDragAdapter(tableViewerOfCustomPredicates) {
 		});
 
-
 		Composite compositeButtons = new Composite(grpCustomPredicates, SWT.NONE);
 		compositeButtons.setLayout(new GridLayout(5, false));
 		compositeButtons.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-
 
 		buttonAdd = new Button(compositeButtons, SWT.NONE);
 		buttonAdd.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, false, 1, 1));
@@ -251,18 +248,18 @@ public class RightPanelComposite extends Composite {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(!createNewPredicate(getShell())) {
+				if (!createNewPredicate(getShell())) {
 					return;
 				}
 				editionMode = true;
 				buttonAdd.setEnabled(false);
-				if(buttonRemove != null)
+				if (buttonRemove != null)
 					buttonRemove.setEnabled(false);
-				if(buttonEdit != null)
+				if (buttonEdit != null)
 					buttonEdit.setEnabled(false);
-				if(buttonSave != null)
+				if (buttonSave != null)
 					buttonSave.setEnabled(true);
-				if(buttonFinish != null)
+				if (buttonFinish != null)
 					buttonFinish.setEnabled(true);
 			}
 		});
@@ -276,16 +273,16 @@ public class RightPanelComposite extends Composite {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(tableViewerOfCustomPredicates.getSelection() instanceof IStructuredSelection) {
-					IStructuredSelection selection = (IStructuredSelection)tableViewerOfCustomPredicates.getSelection();
-					if(selection != null && !selection.isEmpty()) {
+				if (tableViewerOfCustomPredicates.getSelection() instanceof IStructuredSelection) {
+					IStructuredSelection selection = (IStructuredSelection) tableViewerOfCustomPredicates.getSelection();
+					if (selection != null && !selection.isEmpty()) {
 						List<IPredicate> predicatesToRemove = new ArrayList<IPredicate>();
 						@SuppressWarnings("unchecked")
 						Iterator<IStructuredSelection> iter = selection.iterator();
-						while(iter.hasNext()) {
+						while (iter.hasNext()) {
 							Object currentObj = iter.next();
-							if(currentObj instanceof IPredicate) {
-								IPredicate predicate = (IPredicate)currentObj;
+							if (currentObj instanceof IPredicate) {
+								IPredicate predicate = (IPredicate) currentObj;
 								predicatesToRemove.add(predicate);
 							}
 						}
@@ -293,14 +290,14 @@ public class RightPanelComposite extends Composite {
 						final StringBuilder confirmMessage = new StringBuilder("Do you really want to remove the following predicates :");
 						final String lineSeparator = System.getProperty("line.separator");
 						confirmMessage.append(lineSeparator).append(lineSeparator);
-						for(IPredicate p : predicatesToRemove) {
+						for (IPredicate p : predicatesToRemove) {
 							confirmMessage.append(" - ").append(p.getDisplayName()).append(lineSeparator);
 						}
 						boolean confirmRemoval = MessageDialog.openConfirm(getShell(), "Remove predicates", confirmMessage.toString());
-						if(confirmRemoval) {
-							for(IPredicate p : predicatesToRemove) {
+						if (confirmRemoval) {
+							for (IPredicate p : predicatesToRemove) {
 								boolean removed = predicatesConfManager.removePredicate(p);
-								if(removed) {
+								if (removed) {
 									predicatesConfManager.save();
 									tableViewerOfCustomPredicates.remove(p);
 								} else {
@@ -312,8 +309,6 @@ public class RightPanelComposite extends Composite {
 				}
 			}
 		});
-
-
 
 		buttonEdit = new Button(compositeButtons, SWT.NONE);
 		buttonEdit.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, false, 1, 1));
@@ -329,18 +324,18 @@ public class RightPanelComposite extends Composite {
 				tableViewerOfCustomPredicates.refresh();
 				editedItem = item;
 				Object data = item.getData();
-				if(predicatesEditor != null && data instanceof IPredicate) {
-					if(predicatesEditor.setRootPredicate(EcoreUtil.copy((IPredicate)data))) {
-						predicatesEditor.setEditorTitle(((IPredicate)data).getDisplayName());
+				if (predicatesEditor != null && data instanceof IPredicate) {
+					if (predicatesEditor.setRootPredicate(EcoreUtil.copy((IPredicate) data))) {
+						predicatesEditor.setEditorTitle(((IPredicate) data).getDisplayName());
 						editionMode = true;
 						buttonEdit.setEnabled(false);
-						if(buttonAdd != null)
+						if (buttonAdd != null)
 							buttonAdd.setEnabled(false);
-						if(buttonRemove != null)
+						if (buttonRemove != null)
 							buttonRemove.setEnabled(false);
-						if(buttonSave != null)
+						if (buttonSave != null)
 							buttonSave.setEnabled(true);
-						if(buttonFinish != null)
+						if (buttonFinish != null)
 							buttonFinish.setEnabled(true);
 					}
 
@@ -357,23 +352,23 @@ public class RightPanelComposite extends Composite {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(editedItem != null) {
+				if (editedItem != null) {
 					editedItem.setBackground(new Color(getDisplay(), 255, 255, 255));
 					editedItem = null;
 					tableViewerOfCustomPredicates.refresh();
 				}
 
-				//FIXME : set a real null progress monitor
+				// FIXME : set a real null progress monitor
 				predicatesEditor.doSave(new NullProgressMonitor());
 
 				buttonSave.setEnabled(true);
-				if(buttonAdd != null)
+				if (buttonAdd != null)
 					buttonAdd.setEnabled(false);
-				if(buttonRemove != null)
+				if (buttonRemove != null)
 					buttonRemove.setEnabled(false);
-				if(buttonEdit != null)
+				if (buttonEdit != null)
 					buttonEdit.setEnabled(false);
-				if(buttonFinish != null)
+				if (buttonFinish != null)
 					buttonFinish.setEnabled(true);
 			}
 		});
@@ -387,31 +382,29 @@ public class RightPanelComposite extends Composite {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(predicatesEditor != null) {
-					if(predicatesEditor.setRootPredicate(null)) {
+				if (predicatesEditor != null) {
+					if (predicatesEditor.setRootPredicate(null)) {
 						predicatesEditor.setEditorTitle("");
 						editionMode = false;
 						buttonFinish.setEnabled(false);
-						if(buttonAdd != null)
+						if (buttonAdd != null)
 							buttonAdd.setEnabled(true);
-						if(buttonRemove != null)
+						if (buttonRemove != null)
 							buttonRemove.setEnabled(true);
-						if(buttonEdit != null)
+						if (buttonEdit != null)
 							buttonEdit.setEnabled(true);
-						if(buttonSave != null)
+						if (buttonSave != null)
 							buttonSave.setEnabled(false);
 					}
-
 
 				}
 			}
 		});
 
-
 	}
 
 	public void addPredicate(IPredicate newPredicate) {
-		if(tableViewerOfCustomPredicates != null) {
+		if (tableViewerOfCustomPredicates != null) {
 			tableViewerOfCustomPredicates.add(newPredicate);
 			tableViewerOfCustomPredicates.setSelection(new StructuredSelection(newPredicate));
 		}
@@ -420,7 +413,7 @@ public class RightPanelComposite extends Composite {
 	public boolean createNewPredicate(Shell shell) {
 		NewPredicateDialog dialog = new NewPredicateDialog(shell);
 		boolean added = false;
-		if(Window.OK == dialog.open()) {
+		if (Window.OK == dialog.open()) {
 			String name = dialog.getName();
 			IPredicate rootPredicate = dialog.getRootPredicate();
 			IPredicate newPredicate = EcoreUtil.copy(rootPredicate);
@@ -428,9 +421,9 @@ public class RightPanelComposite extends Composite {
 			predicatesEditor.setRootPredicate(newPredicate);
 			predicatesEditor.setDirty(false);
 			added = predicatesConfManager.storePredicate(newPredicate);
-			if(added) {
+			if (added) {
 				addPredicate(newPredicate);
-			} else if(!added) {
+			} else if (!added) {
 				MessageDialog.openError(shell, "Error adding predicate", "Unable to add the predicate : " + newPredicate.getDisplayName());
 			}
 		}

@@ -12,20 +12,15 @@ package org.polarsys.reqcycle.utils.iterators.pickers;
 
 import org.polarsys.reqcycle.utils.iterators.exceptions.PickerExecutionException;
 
-
 /**
- * A picker defines a way to collect children from an element.
- * The type of children and the type of parent are not taken into consideration
- * by the interface, meaning that the implementation should make sure that the
- * types are consistent.
+ * A picker defines a way to collect children from an element. The type of children and the type of parent are not taken into consideration by the interface, meaning that the implementation should make sure that the types are consistent.
  */
 public interface IPicker {
 
 	/**
 	 * @param element
-	 *        the element from which the children are to be retrieved
-	 * @return
-	 *         the children of the elements
+	 *            the element from which the children are to be retrieved
+	 * @return the children of the elements
 	 * @throws Exception
 	 */
 	public Iterable<?> getNexts(Object element) throws PickerExecutionException;

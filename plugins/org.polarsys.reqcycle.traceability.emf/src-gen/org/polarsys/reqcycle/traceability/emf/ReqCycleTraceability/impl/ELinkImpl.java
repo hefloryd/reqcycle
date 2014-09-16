@@ -29,20 +29,16 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>ELink</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>ELink</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getUpwards
- * <em>Upwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getUpwards <em>Upwards</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getDownwards
- * <em>Downwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getDownwards <em>Downwards</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getAttributes
- * <em>Attributes</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ELinkImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,8 +53,7 @@ public class ELinkImpl extends ElementImpl implements ELink {
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The cached value of the '{@link #getUpwards() <em>Upwards</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUpwards() <em>Upwards</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUpwards()
 	 * @generated
@@ -67,8 +62,7 @@ public class ELinkImpl extends ElementImpl implements ELink {
 	protected EList<EReachable> upwards;
 
 	/**
-	 * The cached value of the '{@link #getDownwards() <em>Downwards</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDownwards() <em>Downwards</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDownwards()
 	 * @generated
@@ -77,8 +71,7 @@ public class ELinkImpl extends ElementImpl implements ELink {
 	protected EList<EReachable> downwards;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAttributes()
 	 * @generated

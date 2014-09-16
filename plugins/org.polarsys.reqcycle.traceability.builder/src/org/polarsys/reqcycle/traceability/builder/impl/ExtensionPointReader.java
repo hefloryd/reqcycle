@@ -30,29 +30,21 @@ public class ExtensionPointReader {
 	private static String EXT_ID = "newUpwardDecoration";
 
 	public Set<IBuildingDecoration> read() {
-		IConfigurationElement[] elements = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
-		return Sets
-				.newHashSet(filter(
-						transform(
-								Arrays.asList(elements),
-								new Function<IConfigurationElement, IBuildingDecoration>() {
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
+		return Sets.newHashSet(filter(transform(Arrays.asList(elements), new Function<IConfigurationElement, IBuildingDecoration>() {
 
-									@Override
-									public IBuildingDecoration apply(
-											IConfigurationElement arg0) {
-										try {
-											IBuildingDecoration createExecutableExtension = (IBuildingDecoration) arg0
-													.createExecutableExtension("decorate");
-											ZigguratInject
-													.inject(createExecutableExtension);
-											return createExecutableExtension;
-										} catch (CoreException e) {
-											e.printStackTrace();
-										}
-										return null;
-									}
+			@Override
+			public IBuildingDecoration apply(IConfigurationElement arg0) {
+				try {
+					IBuildingDecoration createExecutableExtension = (IBuildingDecoration) arg0.createExecutableExtension("decorate");
+					ZigguratInject.inject(createExecutableExtension);
+					return createExecutableExtension;
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}
 
-								}), Predicates.notNull()));
+		}), Predicates.notNull()));
 	}
 }

@@ -17,7 +17,6 @@ import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
 
 public class EditPredicateHandler extends AbstractHandler {
 
-
 	public EditPredicateHandler() {
 	}
 
@@ -26,6 +25,5 @@ public class EditPredicateHandler extends AbstractHandler {
 		PredicatesUIHelper.editPredicate();
 		return null;
 	}
-
 
 }

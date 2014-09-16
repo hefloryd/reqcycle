@@ -32,16 +32,13 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType} object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class CustomTypeItemProvider extends TypeItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CustomTypeItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -50,8 +47,7 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -66,37 +62,23 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Super Type feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Super Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addSuperTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CustomType_superType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CustomType_superType_feature", "_UI_CustomType_type"),
-				 TypeconfigurationPackage.Literals.CUSTOM_TYPE__SUPER_TYPE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_CustomType_superType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CustomType_superType_feature", "_UI_CustomType_type"), TypeconfigurationPackage.Literals.CUSTOM_TYPE__SUPER_TYPE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TypeconfigurationPackage.Literals.CUSTOM_TYPE__ENTRIES);
@@ -106,6 +88,7 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,8 +100,7 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 	}
 
 	/**
-	 * This returns CustomType.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns CustomType.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -128,39 +110,37 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		CustomType customType = (CustomType) object;
-		
+
 		StringBuilder label = new StringBuilder(customType.getTypeId());
 		if (customType.getEntries().size() > 0) {
- 			label.append(" [");
+			label.append(" [");
 			boolean flag = false;
 			for (Entry e : customType.getEntries()) {
 				if (flag) {
 					label.append(", ");
 				}
-				
+
 				String t = null;
 				Object v = e.getValue();
 				// -RFU- check that v is not null (can be if no value was defined)
 				if (v == null) {
 					t = "";
-				} else if(v instanceof String) {
-					 t = (String)v;
+				} else if (v instanceof String) {
+					t = (String) v;
 				} else if (Platform.getAdapterManager().hasAdapter(v, String.class.getName())) {
 					Object adapter = Platform.getAdapterManager().getAdapter(v, String.class);
-					if(adapter instanceof String) {
-						t = (String)adapter;
+					if (adapter instanceof String) {
+						t = (String) adapter;
 					}
 				}
-				
-				
+
 				label.append(e.getName()).append("=").append(t);
 				flag = true;
 			}
@@ -168,25 +148,23 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 		}
 		return label.toString();
 	}
-	
-//	protected Method getGetLabelMethod (Object o){
-//		return Iterables.find(ImmutableList.copyOf(o.getClass().getDeclaredMethods()), new Predicate<Method>() {
-//
-//			@Override
-//			public boolean apply(Method arg0) {
-//				if (arg0.isAnnotationPresent(GetLabel.class)){
-//					return String.class.isAssignableFrom(arg0.getReturnType()) && arg0.getParameterTypes().length == 0;
-//				}
-//				return false;
-//			}
-//		}, null);
-//	}
+
+	// protected Method getGetLabelMethod (Object o){
+	// return Iterables.find(ImmutableList.copyOf(o.getClass().getDeclaredMethods()), new Predicate<Method>() {
+	//
+	// @Override
+	// public boolean apply(Method arg0) {
+	// if (arg0.isAnnotationPresent(GetLabel.class)){
+	// return String.class.isAssignableFrom(arg0.getReturnType()) && arg0.getParameterTypes().length == 0;
+	// }
+	// return false;
+	// }
+	// }, null);
+	// }
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,29 +172,23 @@ public class CustomTypeItemProvider extends TypeItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CustomType.class)) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(TypeconfigurationPackage.Literals.CUSTOM_TYPE__ENTRIES,
-				 TypeconfigurationFactory.eINSTANCE.createEntry()));
+		newChildDescriptors.add(createChildParameter(TypeconfigurationPackage.Literals.CUSTOM_TYPE__ENTRIES, TypeconfigurationFactory.eINSTANCE.createEntry()));
 	}
 
 }

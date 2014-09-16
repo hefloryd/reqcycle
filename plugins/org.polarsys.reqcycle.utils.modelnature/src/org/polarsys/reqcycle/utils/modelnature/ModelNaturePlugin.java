@@ -24,7 +24,6 @@ public class ModelNaturePlugin extends AbstractUIPlugin {
 	// The shared instance
 	private static ModelNaturePlugin plugin;
 
-
 	/**
 	 * The constructor
 	 */

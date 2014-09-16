@@ -64,8 +64,7 @@ public class JDTTraceabilityVisitor implements IVisitor {
 
 	}
 
-	protected void handleAnnot(IAnnotatable annot, IAnnotation ann,
-			TType traceabilityLink) {
+	protected void handleAnnot(IAnnotatable annot, IAnnotation ann, TType traceabilityLink) {
 		if (ann != null) {
 			IMemberValuePair[] pairs;
 			try {
@@ -75,19 +74,9 @@ public class JDTTraceabilityVisitor implements IVisitor {
 						if (m.getValue() instanceof String) {
 							String value = (String) m.getValue();
 							if (annot instanceof IJavaElement) {
-								Reachable reachable = manager
-										.getReachable(value);
+								Reachable reachable = manager.getReachable(value);
 								if (reachable != null) {
-									getCallBack()
-											.newUpwardRelation(
-													((IJavaElement) annot)
-															.getElementName(),
-													((IJavaElement) annot)
-															.getResource(),
-													annot,
-													Collections
-															.singletonList(reachable),
-													traceabilityLink);
+									getCallBack().newUpwardRelation(((IJavaElement) annot).getElementName(), ((IJavaElement) annot).getResource(), annot, Collections.singletonList(reachable), traceabilityLink);
 								}
 							}
 						}

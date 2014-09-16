@@ -15,14 +15,13 @@ import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditor;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-
 public class ScopeEntryProvider extends AbstractPropsEditor<String> {
 
 	IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
 
 	@Override
 	protected AbstractPropsEditorComponent<String> initAndGetComponent() {
-		return new ComboComponent(getAttributeName(),dataModelManager.getAllScopes(), getContainer());
+		return new ComboComponent(getAttributeName(), dataModelManager.getAllScopes(), getContainer());
 	}
 
 }

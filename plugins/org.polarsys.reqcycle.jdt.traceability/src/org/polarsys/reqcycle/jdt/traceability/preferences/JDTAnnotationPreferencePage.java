@@ -40,14 +40,12 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-public class JDTAnnotationPreferencePage extends PreferencePage implements
-		IWorkbenchPreferencePage {
+public class JDTAnnotationPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	private Table table;
 	private Map<String, TType> preferences;
 	private TableViewer tableViewer;
 	private static final String IMAGE_PATH = "/icons/annot.gif";
-	private static final String IMAGE_KEY = Activator.PLUGIN_ID
-			+ "/icons/annot.gif";
+	private static final String IMAGE_KEY = Activator.PLUGIN_ID + "/icons/annot.gif";
 
 	public JDTAnnotationPreferencePage() {
 		super();
@@ -68,38 +66,32 @@ public class JDTAnnotationPreferencePage extends PreferencePage implements
 	@Override
 	protected Control createContents(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		composite.setLayout(new GridLayout(2, false));
 
 		Composite composite_1 = new Composite(composite, SWT.NONE);
 		composite_1.setLayout(new FillLayout(SWT.HORIZONTAL));
-		composite_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
-				1, 1));
+		composite_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
-		tableViewer = new TableViewer(composite_1, SWT.BORDER
-				| SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(composite_1, SWT.BORDER | SWT.FULL_SELECTION);
 		tableViewer.setUseHashlookup(true);
 		table = tableViewer.getTable();
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 
-		TableViewerColumn tableViewerColumn = new TableViewerColumn(
-				tableViewer, SWT.NONE);
+		TableViewerColumn tableViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
 		TableColumn tblclmnAnnotation = tableViewerColumn.getColumn();
 		tblclmnAnnotation.setWidth(100);
 		tblclmnAnnotation.setText("Annotation");
 
-		TableViewerColumn tableViewerColumn_1 = new TableViewerColumn(
-				tableViewer, SWT.NONE);
+		TableViewerColumn tableViewerColumn_1 = new TableViewerColumn(tableViewer, SWT.NONE);
 		TableColumn tblclmnKind = tableViewerColumn_1.getColumn();
 		tblclmnKind.setWidth(100);
 		tblclmnKind.setText("Kind");
 
 		Composite composite_2 = new Composite(composite, SWT.NONE);
 		composite_2.setLayout(new FillLayout(SWT.VERTICAL));
-		composite_2.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, true,
-				1, 1));
+		composite_2.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, true, 1, 1));
 
 		Button btnAdd = new Button(composite_2, SWT.NONE);
 		btnAdd.addSelectionListener(new SelectionAdapter() {
@@ -118,11 +110,9 @@ public class JDTAnnotationPreferencePage extends PreferencePage implements
 		btnRemove.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				IStructuredSelection selec = (IStructuredSelection) tableViewer
-						.getSelection();
+				IStructuredSelection selec = (IStructuredSelection) tableViewer.getSelection();
 				@SuppressWarnings("unchecked")
-				Entry<String, TType> entry = (Entry<String, TType>) selec
-						.getFirstElement();
+				Entry<String, TType> entry = (Entry<String, TType>) selec.getFirstElement();
 				preferences.remove(entry.getKey());
 				tableViewer.refresh(true);
 			}
@@ -172,8 +162,7 @@ public class JDTAnnotationPreferencePage extends PreferencePage implements
 		tableViewer.setContentProvider(new IStructuredContentProvider() {
 
 			@Override
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			}
 
 			@Override
@@ -199,10 +188,7 @@ public class JDTAnnotationPreferencePage extends PreferencePage implements
 		ImageRegistry imageRegistry = Activator.getDefault().getImageRegistry();
 		Image image = imageRegistry.get(IMAGE_KEY);
 		if (image == null) {
-			imageRegistry.put(
-					IMAGE_KEY,
-					ImageDescriptor.createFromURL(Activator.getDefault()
-							.getBundle().getEntry(IMAGE_PATH)));
+			imageRegistry.put(IMAGE_KEY, ImageDescriptor.createFromURL(Activator.getDefault().getBundle().getEntry(IMAGE_PATH)));
 			image = imageRegistry.get(IMAGE_KEY);
 		}
 		return image;

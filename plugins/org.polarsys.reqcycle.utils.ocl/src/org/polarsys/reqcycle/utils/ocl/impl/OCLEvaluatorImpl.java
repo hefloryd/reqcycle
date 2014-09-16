@@ -68,8 +68,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 	private Map<EOperationKey, EOperation> compiledOperations = new HashMap<EOperationKey, EOperation>();
 
 	/**
-	 * If the EvaluationEnvironment#define throws an exception, it will still be present in the environment.
-	 * Therefore, the ocl evaluator should be set as dirty;
+	 * If the EvaluationEnvironment#define throws an exception, it will still be present in the environment. Therefore, the ocl evaluator should be set as dirty;
 	 */
 	private boolean dirty = false;
 
@@ -89,11 +88,11 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 	}
 
 	public EOperation getCompiledOperation(String operationName, Object context) {
-		if(context instanceof EObject) {
-			for(EOperationKey key : this.compiledOperations.keySet()) {
-				if(key.name != null && key.name.equals(operationName)) {
+		if (context instanceof EObject) {
+			for (EOperationKey key : this.compiledOperations.keySet()) {
+				if (key.name != null && key.name.equals(operationName)) {
 					EClassifier keyClassifier = key.classifier;
-					if(keyClassifier.isInstance(context)) {
+					if (keyClassifier.isInstance(context)) {
 						return this.compiledOperations.get(key);
 					}
 				}
@@ -119,7 +118,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		EClassifier eClassifier = oclHelper.getOCL().getEnvironment().lookupClassifier(lookupParameters);
 		return eClassifier;
 	}
-	
+
 	public EClassifier lookupEClassifier(List<String> parameters) {
 		Helper oclHelper = getOCL().createOCLHelper();
 		EClassifier eClassifier = oclHelper.getOCL().getEnvironment().lookupClassifier(parameters);
@@ -131,8 +130,8 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 	}
 
 	public Object evaluateQuery(String queryBody, Object context, Map<String, ? extends Object> globalVars) throws ParserException {
-		if(globalVars != null) {
-			for(Entry<String, ?> entry : globalVars.entrySet()) {
+		if (globalVars != null) {
+			for (Entry<String, ?> entry : globalVars.entrySet()) {
 				// create a variable declaring our global application context
 				// object
 				Variable<EClassifier, EParameter> var = ExpressionsFactory.eINSTANCE.createVariable();
@@ -152,8 +151,8 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		OCLExpression oclExpression;
 		try {
 			oclExpression = oclHelper.createQuery(queryBody);
-			if(globalVars != null) {
-				for(Entry<String, ?> entry : globalVars.entrySet()) {
+			if (globalVars != null) {
+				for (Entry<String, ?> entry : globalVars.entrySet()) {
 					getOCL().getEvaluationEnvironment().add(entry.getKey(), entry.getValue());
 				}
 			}
@@ -161,8 +160,8 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		} finally {
 			// Clearing the variables
 			getOCL().getEnvironment().getVariables().clear();
-			if(globalVars != null) {
-				for(Entry<String, ?> entry : globalVars.entrySet()) {
+			if (globalVars != null) {
+				for (Entry<String, ?> entry : globalVars.entrySet()) {
 					getOCL().getEvaluationEnvironment().remove(entry.getKey());
 				}
 			}
@@ -172,9 +171,9 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 
 	public EOperation compileOperation(JavaImplementedOCLOperation operation) {
 		String name = operation.getName();
-		if(operation != null && name != null && !name.isEmpty()) {
-			if(getOCL().getEvaluationEnvironment() instanceof CustomEvaluationEnvironment) {
-				CustomEvaluationEnvironment evaluationEnvironment = (CustomEvaluationEnvironment)getOCL().getEvaluationEnvironment();
+		if (operation != null && name != null && !name.isEmpty()) {
+			if (getOCL().getEvaluationEnvironment() instanceof CustomEvaluationEnvironment) {
+				CustomEvaluationEnvironment evaluationEnvironment = (CustomEvaluationEnvironment) getOCL().getEvaluationEnvironment();
 				evaluationEnvironment.addCustomJavaOperation(operation);
 				EClassifier eClassifier = operation.getEClassifier();
 				List<Variable<EClassifier, EParameter>> parameters = operation.getParameters();
@@ -215,7 +214,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 	 */
 	protected void setContextOperation(EClassifier eclass, EOperation op) {
 		EAnnotation annot = op.getEAnnotation(STORAGE_SOURCE);
-		if(annot == null) {
+		if (annot == null) {
 			annot = EcoreFactory.eINSTANCE.createEAnnotation();
 			annot.setSource(STORAGE_SOURCE);
 			op.getEAnnotations().add(annot);
@@ -229,7 +228,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 	 */
 	protected EClassifier getContextOperation(EOperation op) {
 		EAnnotation annot = op.getEAnnotation(STORAGE_SOURCE);
-		return (EClassifier)annot.getReferences().get(0);
+		return (EClassifier) annot.getReferences().get(0);
 	}
 
 	public Object evaluateOperation(EOperation eOperation, EObject context, Object[] args) {
@@ -240,14 +239,14 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		// Addition of the "self" parameter.
 		evaluationEnvironment.add("self", context); //$NON-NLS-1$
 		// Addition of other parameters.
-		for(int i = 0; i < args.length; i++) {
+		for (int i = 0; i < args.length; i++) {
 			EParameter p = eOperation.getEParameters().get(i);
 			evaluationEnvironment.add(p.getName(), args[i]);
 		}
 		// Creating an evaluation visitor, in charge of evaluating the
 		// expression.
 		Map<EClass, ? extends Set<? extends EObject>> extentMap = getOCL().getExtentMap();
-		if(extentMap == null) {
+		if (extentMap == null) {
 			// Retrieving the default dynamic extent map implementation
 			extentMap = evaluationEnvironment.createExtentMap(context);
 		}
@@ -255,7 +254,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		OperationCallExp<EClassifier, Object> expression = getExpression(eOperation);
 		Object result = null;
 		// Checking that the operation is applicable on the context object.
-		if(getContextOperation(eOperation).isInstance(context)) {
+		if (getContextOperation(eOperation).isInstance(context)) {
 			result = expression.accept(visitor);
 		}
 		// Clearing the evaluation environment of variables.
@@ -279,7 +278,7 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 		VariableExp<EClassifier, EParameter> var = getVariable(Environment.SELF_VARIABLE_NAME, eOperation.getEContainingClass());
 		var.setType(eOperation.getEContainingClass());
 		// Adding parameters to the operation call exp.
-		for(EParameter arg : eOperation.getEParameters()) {
+		for (EParameter arg : eOperation.getEParameters()) {
 			VariableExp<EClassifier, EParameter> v = getVariable(arg.getName(), arg.getEType());
 			result.getArgument().add(v);
 		}
@@ -290,7 +289,8 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 
 	protected OCL createOCL(List<String> listPackages) {
 		EcoreEnvironmentFactory factory = new EcoreEnvironmentFactory(EPackage.Registry.INSTANCE);
-		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> pckContext = factory.createPackageContext(this.ocl.getEnvironment(), listPackages);
+		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> pckContext = factory.createPackageContext(this.ocl.getEnvironment(),
+				listPackages);
 		OCL newOcl = OCL.newInstance(pckContext);
 		return newOcl;
 	}
@@ -306,18 +306,17 @@ public class OCLEvaluatorImpl implements OCLEvaluator {
 			this.classifier = classifier;
 		}
 
-
 		@Override
 		public boolean equals(Object obj) {
-			if(obj instanceof EOperationKey) {
-				return (name != null && name.equals(((EOperationKey)obj).name)) && (classifier != null && classifier.equals(((EOperationKey)obj).classifier));
+			if (obj instanceof EOperationKey) {
+				return (name != null && name.equals(((EOperationKey) obj).name)) && (classifier != null && classifier.equals(((EOperationKey) obj).classifier));
 			}
 			return false;
 		}
 
 		@Override
 		public int hashCode() {
-			if(name != null) {
+			if (name != null) {
 				return name.hashCode();
 			}
 			return super.hashCode();

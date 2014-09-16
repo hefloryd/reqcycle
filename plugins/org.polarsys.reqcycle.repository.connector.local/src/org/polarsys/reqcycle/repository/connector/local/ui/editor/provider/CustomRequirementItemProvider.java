@@ -94,15 +94,10 @@ public class CustomRequirementItemProvider extends RequirementItemProvider {
 		super.getPropertyDescriptors(object);
 		// if(itemPropertyDescriptors == null) {
 		customItemPropertyDescriptors = new ArrayList<IItemPropertyDescriptor>();
-		EList<EStructuralFeature> features = ((Requirement) object).eClass()
-				.getEStructuralFeatures();
+		EList<EStructuralFeature> features = ((Requirement) object).eClass().getEStructuralFeatures();
 		for (EStructuralFeature eStructuralFeature : features) {
-			customItemPropertyDescriptors.add(createItemPropertyDescriptor(
-					((ComposeableAdapterFactory) adapterFactory)
-							.getRootAdapterFactory(), getResourceLocator(),
-					eStructuralFeature.getName(), "", eStructuralFeature, true,
-					false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-					null, null));
+			customItemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), eStructuralFeature.getName(), "", eStructuralFeature, true, false, false,
+					ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 		}
 		itemPropertyDescriptors.addAll(customItemPropertyDescriptors);
 		return itemPropertyDescriptors;
@@ -111,8 +106,7 @@ public class CustomRequirementItemProvider extends RequirementItemProvider {
 	}
 
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		// FIXME : Use element Data Model to get possible children
 		// Gets Dynamic Data Model possible children
 
@@ -126,16 +120,12 @@ public class CustomRequirementItemProvider extends RequirementItemProvider {
 
 		for (IType type : types) {
 			if (type instanceof IRequirementType) {
-				Requirement instance = ((IRequirementType)type).createInstance();
+				Requirement instance = ((IRequirementType) type).createInstance();
 				instance.getScopes().add(scope);
-				newChildDescriptors.add(createChildParameter(
-						RequirementSourceDataPackage.Literals.SECTION__CHILDREN,
-						instance));
+				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.SECTION__CHILDREN, instance));
 			}
 		}
-		newChildDescriptors.add(createChildParameter(
-				RequirementSourceDataPackage.Literals.SECTION__CHILDREN,
-				RequirementSourceDataFactory.eINSTANCE.createSection()));
+		newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.SECTION__CHILDREN, RequirementSourceDataFactory.eINSTANCE.createSection()));
 	}
 
 	private Scope getScope(Object object) {

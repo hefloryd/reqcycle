@@ -18,7 +18,6 @@ import org.polarsys.reqcycle.traceability.table.model.TableController;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.progress.UIJob;
 
-
 public class AllLinksAction extends Action {
 
 	private TableController control;
@@ -29,7 +28,6 @@ public class AllLinksAction extends Action {
 		setToolTipText("Display all traceability links");
 		this.control = control;
 	}
-
 
 	@Override
 	public void run() {

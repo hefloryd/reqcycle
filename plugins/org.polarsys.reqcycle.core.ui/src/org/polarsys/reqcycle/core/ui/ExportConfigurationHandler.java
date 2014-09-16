@@ -27,7 +27,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 
-
 /**
  * The Class ExportConfigurationHandler.
  */
@@ -48,7 +47,7 @@ public class ExportConfigurationHandler extends AbstractHandler {
 	protected void exportConf() {
 		FileDialog dialog = new FileDialog(Display.getDefault().getActiveShell(), SWT.SAVE);
 		String uri = dialog.open();
-		if(uri != null) {
+		if (uri != null) {
 			IPath confFilePath = org.polarsys.reqcycle.utils.configuration.Activator.getDefault().getStateLocation();
 			URI folderURI = URI.createURI(confFilePath.toOSString());
 			createZipFromFiles(folderURI, uri);
@@ -60,9 +59,9 @@ public class ExportConfigurationHandler extends AbstractHandler {
 	 * Creates the zip from files.
 	 * 
 	 * @param directoryURI
-	 *        the directory uri to zip
+	 *            the directory uri to zip
 	 * @param outputURI
-	 *        the output uri
+	 *            the output uri
 	 */
 	private void createZipFromFiles(URI directoryURI, String outputURI) {
 
@@ -74,8 +73,8 @@ public class ExportConfigurationHandler extends AbstractHandler {
 			File f = new File(outputURI);
 			FileOutputStream fileOutputStream = new FileOutputStream(f);
 			ZipOutputStream outputStream = new ZipOutputStream(fileOutputStream);
-			for(File file : listOfFiles) {
-				if(file.isFile() && file.getName().startsWith(reqCyclePrefix)) {
+			for (File file : listOfFiles) {
+				if (file.isFile() && file.getName().startsWith(reqCyclePrefix)) {
 
 					FileInputStream inStream = new FileInputStream(file);
 
@@ -84,7 +83,7 @@ public class ExportConfigurationHandler extends AbstractHandler {
 					byte[] buffer = new byte[1024];
 					int bytesRead;
 
-					while((bytesRead = inStream.read(buffer)) > 0) {
+					while ((bytesRead = inStream.read(buffer)) > 0) {
 						outputStream.write(buffer, 0, bytesRead);
 					}
 					outputStream.closeEntry();

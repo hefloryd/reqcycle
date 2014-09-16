@@ -32,17 +32,17 @@ public class XcosVisitable implements IVisitable, IAdaptable {
 		visitor.visit(anElement, this);
 		if (anElement instanceof XcosModel) {
 			XcosModel parent = (XcosModel) anElement;
-			
+
 			// we handle all Xcos blocks
 			for (XcosElement x : parent.getBlocks()) {
 				doAccept(x, visitor);
 			}
-			
+
 			// we handle all Xcos traces to external elements (requirement, SysML element...)
 			for (XcosElement trace : parent.getTraces()) {
 				doAccept(trace, visitor);
 			}
-			
+
 		}
 	}
 

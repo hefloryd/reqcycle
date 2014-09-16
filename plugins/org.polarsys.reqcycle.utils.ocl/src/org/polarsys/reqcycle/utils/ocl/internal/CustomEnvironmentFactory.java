@@ -22,7 +22,7 @@ import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 public class CustomEnvironmentFactory extends EcoreEnvironmentFactory {
 
 	public static CustomEnvironmentFactory INSTANCE = new CustomEnvironmentFactory();
-	
+
 	@Override
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
 		EcoreEvaluationEnvironment coreEvaluationEnvironment = (EcoreEvaluationEnvironment) super.createEvaluationEnvironment();
@@ -30,5 +30,5 @@ public class CustomEnvironmentFactory extends EcoreEnvironmentFactory {
 		customEvaluationEnvironment.setBaseEvaluationEnvironment(coreEvaluationEnvironment);
 		return customEvaluationEnvironment;
 	}
-	
+
 }

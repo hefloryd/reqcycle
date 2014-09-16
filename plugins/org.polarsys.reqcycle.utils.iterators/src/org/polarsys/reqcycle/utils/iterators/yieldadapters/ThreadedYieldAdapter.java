@@ -20,8 +20,7 @@ import org.polarsys.reqcycle.utils.iterators.utils.YieldAdapterIterable;
 import org.polarsys.reqcycle.utils.iterators.utils.YieldAdapterIterator;
 
 /**
- * A class to convert methods that implement the Collector<> class into a standard Iterable<>, using
- * a new thread created for the collection process, and a SynchronousQueue<> object.
+ * A class to convert methods that implement the Collector<> class into a standard Iterable<>, using a new thread created for the collection process, and a SynchronousQueue<> object.
  */
 public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 
@@ -57,14 +56,10 @@ public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 	}
 
 	/**
-	 * Convert a method that implements the Collector<> class with a standard Iterable<>. This means
-	 * that the collecting method can use complex recursive logic, but still allows the calling code
-	 * to handle the results with a standard iterator. Results are returned immediately and do not
-	 * incur overhead of being stored in a list. Calculation overhead is only performed for the
-	 * results that are requested through the iterator.
+	 * Convert a method that implements the Collector<> class with a standard Iterable<>. This means that the collecting method can use complex recursive logic, but still allows the calling code to handle the results with a standard iterator. Results
+	 * are returned immediately and do not incur overhead of being stored in a list. Calculation overhead is only performed for the results that are requested through the iterator.
 	 * 
-	 * This is implemented using a new thread created for the collection process, and a
-	 * SynchronousQueue<> object.
+	 * This is implemented using a new thread created for the collection process, and a SynchronousQueue<> object.
 	 */
 	public YieldAdapterIterable<T> adapt(final Collector<T> client) {
 
@@ -114,7 +109,7 @@ public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 								// Signal no more results to come
 
 							} catch (CollectionAbortedException collectionAborted) {
-								if(!(collectionAborted.getCause() instanceof InterruptedException)) {
+								if (!(collectionAborted.getCause() instanceof InterruptedException)) {
 									// Collect was aborted by client
 									// This is not sent on thread abort as there is nothing waiting
 									// to receive it, and the thread will block.
@@ -123,7 +118,7 @@ public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 							}
 
 						} catch (InterruptedException e) {
-							// Operation was aborted internally (e.g.  iterator out of scope)
+							// Operation was aborted internally (e.g. iterator out of scope)
 						}
 					}
 				};
@@ -143,19 +138,19 @@ public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 					public T next() {
 						readNextMessage();
 
-						if(StopMessage.class.isAssignableFrom(messageWaiting.getClass())) {
+						if (StopMessage.class.isAssignableFrom(messageWaiting.getClass())) {
 							// instanceof cannot be used because of generics restriction
 							throw new NoSuchElementException();
 						}
 
 						@SuppressWarnings("unchecked")
-						final T value = ((ValueMessage)messageWaiting).value;
+						final T value = ((ValueMessage) messageWaiting).value;
 						messageWaiting = null; // for next time
 						return value;
 					}
 
 					private void readNextMessage() {
-						if(messageWaiting == null) { // do not run if value waiting to be put
+						if (messageWaiting == null) { // do not run if value waiting to be put
 							try {
 								returnQueue.put(new Object()); // allow other thread to gather result
 								messageWaiting = synchronousQueue.take();
@@ -180,8 +175,7 @@ public class ThreadedYieldAdapter<T> implements YieldAdapter<T> {
 					}
 
 					/**
-					 * This can be manually called by the calling code to force release of
-					 * resources at the earliest opportunity.
+					 * This can be manually called by the calling code to force release of resources at the earliest opportunity.
 					 */
 					public void dispose() {
 						collectThread.interrupt();

@@ -9,10 +9,10 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 public class ReachableAdapterFactory implements IAdapterFactory {
 
 	private static IReachableManager manager = ZigguratInject.make(IReachableManager.class);
-	
+
 	@Override
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
-		if (Reachable.class.equals(adapterType)){
+		if (Reachable.class.equals(adapterType)) {
 			try {
 				return manager.getHandlerFromObject(adaptableObject).getFromObject(adaptableObject).getReachable(adaptableObject);
 			} catch (IReachableHandlerException e) {
@@ -23,7 +23,7 @@ public class ReachableAdapterFactory implements IAdapterFactory {
 
 	@Override
 	public Class[] getAdapterList() {
-		return new Class [] {Reachable.class};
+		return new Class[] { Reachable.class };
 	}
 
 }

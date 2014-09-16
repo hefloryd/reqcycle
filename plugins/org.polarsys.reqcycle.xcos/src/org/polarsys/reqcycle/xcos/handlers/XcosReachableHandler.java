@@ -19,7 +19,6 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.polarsys.reqcycle.xcos.model.XcosReachableObject;
 
 public class XcosReachableHandler implements IReachableHandler {
-	
 
 	public XcosReachableHandler() {
 	}
@@ -33,8 +32,8 @@ public class XcosReachableHandler implements IReachableHandler {
 
 	@Override
 	public boolean handlesReachable(Reachable t) {
-		
-		return t != null && t.getPath() !=null && t.getPath().endsWith(XcosExtension);
+
+		return t != null && t.getPath() != null && t.getPath().endsWith(XcosExtension);
 	}
 
 	@Override

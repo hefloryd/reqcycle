@@ -24,35 +24,29 @@ import com.google.common.collect.Sets;
 @Singleton
 public class ReachableListenerManager implements IReachableListenerManager {
 
-	Multimap<Reachable, IReachableListener> mapReachableToListener = HashMultimap
-			.create();
-	Multimap<IReachableListener, Reachable> mapListenerToReachable = HashMultimap
-			.create();
+	Multimap<Reachable, IReachableListener> mapReachableToListener = HashMultimap.create();
+	Multimap<IReachableListener, Reachable> mapListenerToReachable = HashMultimap.create();
 
 	boolean preventReentrant = false;
 
 	@Override
-	public void addReachableListener(Reachable reachable,
-			IReachableListener listener) {
+	public void addReachableListener(Reachable reachable, IReachableListener listener) {
 		put(mapReachableToListener, mapListenerToReachable, reachable, listener);
 	}
 
-	public <X, Y> void put(Multimap<X, Y> map, Multimap<Y, X> map2,
-			X reachable, Y listener) {
+	public <X, Y> void put(Multimap<X, Y> map, Multimap<Y, X> map2, X reachable, Y listener) {
 		map.put(reachable, listener);
 		map2.put(listener, reachable);
 	}
 
-	public <X, Y> void remove(Multimap<X, Y> map, Multimap<Y, X> map2,
-			X reachable, Y listener) {
+	public <X, Y> void remove(Multimap<X, Y> map, Multimap<Y, X> map2, X reachable, Y listener) {
 		map.remove(reachable, listener);
 		map2.remove(listener, reachable);
 	}
 
 	@Override
 	public synchronized void removeReachableListener(IReachableListener listener) {
-		Collection<Reachable> reachables = mapListenerToReachable
-				.removeAll(listener);
+		Collection<Reachable> reachables = mapListenerToReachable.removeAll(listener);
 		for (Reachable r : reachables) {
 			mapReachableToListener.remove(r, listener);
 		}
@@ -64,14 +58,12 @@ public class ReachableListenerManager implements IReachableListenerManager {
 			try {
 				preventReentrant = true;
 				Collection<IReachableListener> collection = Sets.newHashSet();
-				for (Reachable r : reachables){
-					collection.addAll(mapReachableToListener
-						.get(r));
+				for (Reachable r : reachables) {
+					collection.addAll(mapReachableToListener.get(r));
 				}
-				IReachableListener[] array = collection
-						.toArray(new IReachableListener[collection.size()]);
+				IReachableListener[] array = collection.toArray(new IReachableListener[collection.size()]);
 				for (int i = 0; i < array.length; i++) {
-					array[i].hasChanged(filter(reachables,mapListenerToReachable.get(array[i])));
+					array[i].hasChanged(filter(reachables, mapListenerToReachable.get(array[i])));
 				}
 			} catch (RuntimeException e) {
 				throw e;
@@ -81,22 +73,19 @@ public class ReachableListenerManager implements IReachableListenerManager {
 		}
 	}
 
-	private Reachable[] filter(Reachable[] reachables,
-			Collection<Reachable> collection) {
+	private Reachable[] filter(Reachable[] reachables, Collection<Reachable> collection) {
 		Collection<Reachable> result = Sets.newHashSet();
 		Collection<Reachable> collection2 = Sets.newHashSet(collection);
-		for (Reachable r : reachables){
-			if (collection2.contains(r)){
+		for (Reachable r : reachables) {
+			if (collection2.contains(r)) {
 				result.add(r);
 			}
 		}
-		return result.toArray(new Reachable[]{});
+		return result.toArray(new Reachable[] {});
 	}
 
 	@Override
-	public synchronized void removeReachableListener(
-			IReachableListener listener, Reachable reachable) {
-		remove(mapReachableToListener, mapListenerToReachable, reachable,
-				listener);
+	public synchronized void removeReachableListener(IReachableListener listener, Reachable reachable) {
+		remove(mapReachableToListener, mapListenerToReachable, reachable, listener);
 	}
 }

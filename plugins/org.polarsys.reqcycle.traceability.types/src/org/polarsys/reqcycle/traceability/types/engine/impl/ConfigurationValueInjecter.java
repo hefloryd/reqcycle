@@ -23,8 +23,7 @@ public class ConfigurationValueInjecter implements IValueInjecter {
 	}
 
 	@Override
-	public <T> T getValue(String typeId, String name,
-			Class<T> typeOfTheAttribute) {
+	public <T> T getValue(String typeId, String name, Class<T> typeOfTheAttribute) {
 		for (Entry e : ((CustomType) type).getEntries()) {
 			if (e.getName().equalsIgnoreCase(name)) {
 				if (e.getValue() instanceof String) {

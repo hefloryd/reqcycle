@@ -16,13 +16,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * An exception class that can be thrown by results handlers to
- * signal that the processed element cannot be handled.
+ * An exception class that can be thrown by results handlers to signal that the processed element cannot be handled.
  */
 public class CannotPickException extends CoreException {
 
 	private static final long serialVersionUID = 1L;
-
 
 	public CannotPickException(String message) {
 		this(new Status(IStatus.ERROR, PlatformUI.PLUGIN_ID, 0, message, null));

@@ -16,13 +16,10 @@ import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
 /**
- * The {@link IBuildingDecoration} decorates the building call back for each
- * method of {@link IBuilderCallBack} the decorator are also called The
- * transform method is called before core newUpwardRelation and allow decorators
- * to transform values given to the traceability engine
+ * The {@link IBuildingDecoration} decorates the building call back for each method of {@link IBuilderCallBack} the decorator are also called The transform method is called before core newUpwardRelation and allow decorators to transform values given
+ * to the traceability engine
  * 
- * Take care that the mthod needsBuild does not override global mechanism.
- * Returning True or False has no impact
+ * Take care that the mthod needsBuild does not override global mechanism. Returning True or False has no impact
  * 
  * @author tfaure
  * 
@@ -52,9 +49,7 @@ public interface IBuildingDecoration {
 	 * @param kind
 	 * @return true if the original traceability link shall be created
 	 */
-	boolean newUpwardRelation(IBuilderCallBack callback,
-			Object traceabilityObject, Object resource, Object source,
-			List<? extends Object> targets, TType kind);
+	boolean newUpwardRelation(IBuilderCallBack callback, Object traceabilityObject, Object resource, Object source, List<? extends Object> targets, TType kind);
 
 	public static class Composite implements Cloneable {
 		public Object traceabilityObject;
@@ -75,13 +70,10 @@ public interface IBuildingDecoration {
 
 	}
 
-	public static class IBuildingDecorationAdapter implements
-			IBuildingDecoration {
+	public static class IBuildingDecorationAdapter implements IBuildingDecoration {
 
 		@Override
-		public boolean newUpwardRelation(IBuilderCallBack callback,
-				Object traceabilityObject, Object resource, Object source,
-				List<? extends Object> targets, TType kind) {
+		public boolean newUpwardRelation(IBuilderCallBack callback, Object traceabilityObject, Object resource, Object source, List<? extends Object> targets, TType kind) {
 			return true;
 		}
 
@@ -96,8 +88,7 @@ public interface IBuildingDecoration {
 		}
 
 		@Override
-		public void errorOccurs(IBuilderCallBack callBack, Reachable reachable,
-				Throwable t) {
+		public void errorOccurs(IBuilderCallBack callBack, Reachable reachable, Throwable t) {
 		}
 
 	}

@@ -15,17 +15,14 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EModelElement;
 import org.polarsys.reqcycle.utils.modelnature.exceptions.NatureNotFoundException;
 
-
 public interface ModelNatureService {
-
-
 
 	/**
 	 * Adds a nature to an eObject.
 	 * 
 	 * @param eObject
 	 * @param natureID
-	 *        the id of the nature to be added.
+	 *            the id of the nature to be added.
 	 */
 	public void addNature(EModelElement eObject, String natureID) throws NatureNotFoundException;
 
@@ -34,20 +31,18 @@ public interface ModelNatureService {
 	 * 
 	 * @param eObject
 	 * @param natureID
-	 *        the id of the nature to be removed.
+	 *            the id of the nature to be removed.
 	 */
 	public void removeNature(EModelElement eObject, String natureID) throws NatureNotFoundException;
-
 
 	/**
 	 * Checks whether an eObject has a given nature.
 	 * 
 	 * @param eObject
 	 * @param natureID
-	 *        the id of the nature to be checked.
+	 *            the id of the nature to be checked.
 	 */
 	public boolean hasNature(EModelElement eObject, String natureID);
-
 
 	/**
 	 * Return all registered model nature

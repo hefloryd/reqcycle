@@ -15,18 +15,14 @@ package org.polarsys.reqcycle.predicates.core.api;
 import java.lang.CharSequence;
 import java.util.regex.Pattern;
 
-
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Contains Pattern Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Contains Pattern Predicate</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getInput <em>Input</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getExpectedPattern <em>Expected Pattern</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getInput <em>Input</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getExpectedPattern <em>Expected Pattern</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,12 +33,12 @@ import java.util.regex.Pattern;
 public interface ContainsPatternPredicate extends IPredicate {
 
 	/**
-	 * Returns the value of the '<em><b>Input</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Input</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Input</em>' attribute.
 	 * @see #setInput(CharSequence)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getContainsPatternPredicate_Input()
@@ -52,22 +48,22 @@ public interface ContainsPatternPredicate extends IPredicate {
 	CharSequence getInput();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getInput <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Input</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getInput <em>Input</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Input</em>' attribute.
 	 * @see #getInput()
 	 * @generated
 	 */
 	void setInput(CharSequence value);
 
 	/**
-	 * Returns the value of the '<em><b>Expected Pattern</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expected Pattern</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expected Pattern</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Expected Pattern</em>' attribute.
 	 * @see #setExpectedPattern(Pattern)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getContainsPatternPredicate_ExpectedPattern()
@@ -77,10 +73,10 @@ public interface ContainsPatternPredicate extends IPredicate {
 	Pattern getExpectedPattern();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getExpectedPattern <em>Expected Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expected Pattern</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate#getExpectedPattern <em>Expected Pattern</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Expected Pattern</em>' attribute.
 	 * @see #getExpectedPattern()
 	 * @generated
 	 */

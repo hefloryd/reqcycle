@@ -27,7 +27,7 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 		super();
 		ZigguratInject.inject(this);
 	}
-	
+
 	@Override
 	public Image getImage(Object object) {
 		if (object instanceof RequirementSource) {
@@ -39,14 +39,13 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 			StylingModel model = getStylingModel();
 			if (model != null) {
 				if (model.getBasic() != null) {
-					return IconRegistry.getImage(model.getBasic().getIcon()
-							.getImage());
+					return IconRegistry.getImage(model.getBasic().getIcon().getImage());
 				}
 			}
 			return null;
 		}
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getText(Object element, Class<T> theClass) {
@@ -62,18 +61,16 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 			if (label == null) {
 				label = ((RequirementSource) element).getName();
 			} else {
-				label = ((RequirementSource) element).getName() + " [" + label
-						+ "]";
+				label = ((RequirementSource) element).getName() + " [" + label + "]";
 			}
 			return toT(label, theClass);
 		} else {
 			StylingModel model = getStylingModel();
 			if (model != null) {
 				if (model.getBasic() != null) {
-					if (StyledString.class.equals(theClass)){
+					if (StyledString.class.equals(theClass)) {
 						return (T) applyStyle(element, model.getBasic());
-					}
-					else {
+					} else {
 						StyledString s = applyStyle(element, model.getBasic());
 						return (T) s.getString();
 					}

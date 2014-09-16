@@ -24,9 +24,7 @@ public interface IReachableHandler extends IHandler {
 
 	/**
 	 * 
-	 * @return The type of {@link ProxyResolver} to use with {@link Reachable}s
-	 *         handled by this instance, <b>or <code>null</code> if no
-	 *         {@link ProxyResolver} available</b>.
+	 * @return The type of {@link ProxyResolver} to use with {@link Reachable}s handled by this instance, <b>or <code>null</code> if no {@link ProxyResolver} available</b>.
 	 */
 	ProxyResolver getProxyResolver();
 }

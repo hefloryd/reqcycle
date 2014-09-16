@@ -16,14 +16,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IPredicate Link</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>IPredicate Link</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.IPredicateLink#getPredicate <em>Predicate</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.IPredicateLink#getPredicate <em>Predicate</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,13 +31,12 @@ import org.polarsys.reqcycle.predicates.core.api.IPredicate;
  */
 public interface IPredicateLink extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Predicate</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Predicate</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Predicate</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Predicate</em>' reference.
 	 * @see #setPredicate(IPredicate)
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getIPredicateLink_Predicate()
@@ -49,10 +46,10 @@ public interface IPredicateLink extends EObject {
 	IPredicate getPredicate();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.IPredicateLink#getPredicate <em>Predicate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Predicate</em>' reference.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.IPredicateLink#getPredicate <em>Predicate</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Predicate</em>' reference.
 	 * @see #getPredicate()
 	 * @generated
 	 */

@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.utils.collect;
 
-
 /**
  * A class to convert methods that implement the Collector<> class into a standard Iterable<>.
  */

@@ -28,6 +28,7 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AndPredicateImpl() {
@@ -36,6 +37,7 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,8 +47,8 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	@Override
 	public boolean match(Object input) {
-		for(IPredicate predicate : this.getPredicates()) {
-			if(!predicate.match(input))
+		for (IPredicate predicate : this.getPredicates()) {
+			if (!predicate.match(input))
 				return false;
 		}
 		return true;

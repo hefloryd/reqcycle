@@ -34,7 +34,7 @@ public class AddRequirementSourceAction extends Action {
 		NewRequirementSourceWizard wizard = new NewRequirementSourceWizard();
 		ZigguratInject.inject(wizard);
 		Shell shell = Display.getDefault().getActiveShell();
-		//FIXME : Create a custom wizard dialog
+		// FIXME : Create a custom wizard dialog
 		WizardDialog wd = new WizardDialog(shell, wizard);
 		wd.setHelpAvailable(false);
 		wd.open();

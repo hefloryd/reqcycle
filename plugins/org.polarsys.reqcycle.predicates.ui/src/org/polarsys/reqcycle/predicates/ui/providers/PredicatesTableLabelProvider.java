@@ -53,8 +53,8 @@ public class PredicatesTableLabelProvider implements ITableLabelProvider {
 
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
-		if(element instanceof IPredicate) {
-			return ((IPredicate)element).getDisplayName();
+		if (element instanceof IPredicate) {
+			return ((IPredicate) element).getDisplayName();
 		}
 		return adapterFactoryLabelProvider.getColumnText(element, columnIndex);
 	}

@@ -62,25 +62,21 @@ public class EditMappingAction extends Action {
 	public void run() {
 		ISelection selection = viewer.getSelection();
 		if (selection instanceof IStructuredSelection) {
-			Object element = ((IStructuredSelection) selection)
-					.getFirstElement();
+			Object element = ((IStructuredSelection) selection).getFirstElement();
 			if (element instanceof RequirementSource) {
 				try {
 					RequirementSource requirementSource = (RequirementSource) element;
 
 					// Gets and init the connector
 					String connectorID = requirementSource.getConnectorId();
-					ConnectorDescriptor connectorDescriptor = connectorManager
-							.get(connectorID);
+					ConnectorDescriptor connectorDescriptor = connectorManager.get(connectorID);
 					connector = connectorDescriptor.createConnector();
-					connector
-							.initializeWithRequirementSource(requirementSource);
+					connector.initializeWithRequirementSource(requirementSource);
 
 					ICallable callable = null;
 
 					if (connector instanceof IConnectorWizard) {
-						WizardDialog wd = new WizardDialog(Display.getDefault()
-								.getActiveShell(), (IConnectorWizard) connector);
+						WizardDialog wd = new WizardDialog(Display.getDefault().getActiveShell(), (IConnectorWizard) connector);
 						wd.setHelpAvailable(false);
 						if (wd.open() == Window.OK) {
 							callable = this.connector.getRequirementsCreator();
@@ -104,15 +100,13 @@ public class EditMappingAction extends Action {
 						// rs.getResources().add(attributeMapping.getTargetAttribute().eResource());
 						// }
 						// }
-						requirementSourceManager
-								.addRequirementSource(requirementSource);
+						requirementSourceManager.addRequirementSource(requirementSource);
 
 					}
 				} catch (CoreException e) {
 					logger.log(e.getStatus());
 				} catch (Exception e) {
-					logger.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-							"Could not modify the requirement source"));
+					logger.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not modify the requirement source"));
 				}
 
 			}

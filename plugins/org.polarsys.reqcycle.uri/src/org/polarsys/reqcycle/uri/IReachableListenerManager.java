@@ -24,8 +24,7 @@ public interface IReachableListenerManager {
 	 */
 	void addReachableListener(Reachable reachable, IReachableListener listener);
 
-	void removeReachableListener(IReachableListener listener,
-			Reachable reachable);
+	void removeReachableListener(IReachableListener listener, Reachable reachable);
 
 	/**
 	 * Remove a pre registered {@link IReachableListener}
@@ -35,8 +34,7 @@ public interface IReachableListenerManager {
 	void removeReachableListener(IReachableListener listener);
 
 	/**
-	 * Notify all the {@link IReachableListener} registered to this
-	 * {@link Reachable}
+	 * Notify all the {@link IReachableListener} registered to this {@link Reachable}
 	 * 
 	 * @param r
 	 */

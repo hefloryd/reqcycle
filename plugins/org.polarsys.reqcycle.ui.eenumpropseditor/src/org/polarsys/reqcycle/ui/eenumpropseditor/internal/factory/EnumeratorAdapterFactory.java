@@ -20,8 +20,8 @@ public class EnumeratorAdapterFactory implements IAdapterFactory {
 	@Override
 	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 
-		if((adapterType == Enumerator.class || adapterType == String.class) && (adaptableObject instanceof EEnumLiteral)) {
-			return new AdaptableEEnumLiteral((EEnumLiteral)adaptableObject).getAdapter(adapterType);
+		if ((adapterType == Enumerator.class || adapterType == String.class) && (adaptableObject instanceof EEnumLiteral)) {
+			return new AdaptableEEnumLiteral((EEnumLiteral) adaptableObject).getAdapter(adapterType);
 		}
 		return null;
 	}
@@ -29,6 +29,6 @@ public class EnumeratorAdapterFactory implements IAdapterFactory {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class[] getAdapterList() {
-		return new Class[]{ Enumerator.class, String.class };
+		return new Class[] { Enumerator.class, String.class };
 	}
 }

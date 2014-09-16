@@ -43,8 +43,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
 @Singleton
-public class ConfigurationProvider implements ITypesConfigurationProvider,
-		IInjectedTypeProvider {
+public class ConfigurationProvider implements ITypesConfigurationProvider, IInjectedTypeProvider {
 	@Inject
 	IConfigurationManager confManager;
 	@Inject
@@ -65,11 +64,11 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 		Collection<EObject> conf = confManager.getConfiguration(null, null, ITypesConfigurationProvider.CONF_PREF_ID, null, null, false);
 
 		TypeConfigContainer configuration = null;
-		if(conf != null && !conf.isEmpty()) {
-			configuration = (TypeConfigContainer)conf.iterator().next();
+		if (conf != null && !conf.isEmpty()) {
+			configuration = (TypeConfigContainer) conf.iterator().next();
 		}
 
-		if(configuration == null) {
+		if (configuration == null) {
 			configuration = TypeconfigurationFactory.eINSTANCE.createTypeConfigContainer();
 			saveContainer(configuration);
 		}
@@ -85,13 +84,11 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 					delete(custom);
 				}
 				if (typeJava.isExtensible()) {
-					Set<String> descriptorsName = Sets.newHashSet(Iterables
-							.transform(typeJava.getDescriptors(),
-									new Function<FieldDescriptor, String>() {
-										public String apply(FieldDescriptor d) {
-											return d.name;
-										}
-									}));
+					Set<String> descriptorsName = Sets.newHashSet(Iterables.transform(typeJava.getDescriptors(), new Function<FieldDescriptor, String>() {
+						public String apply(FieldDescriptor d) {
+							return d.name;
+						}
+					}));
 					if (custom.getEntries().size() != descriptorsName.size()) {
 						delete(custom);
 					} else {
@@ -108,11 +105,9 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 			}
 		}
 		for (IType t : typesManager.getAllTypes()) {
-			Type typeFromContainer = ConfigUtils.getType(configuration,
-					t.getId());
+			Type typeFromContainer = ConfigUtils.getType(configuration, t.getId());
 			if (typeFromContainer == null) {
-				typeFromContainer = TypeconfigurationFactory.eINSTANCE
-						.createType();
+				typeFromContainer = TypeconfigurationFactory.eINSTANCE.createType();
 				typeFromContainer.setTypeId(t.getId());
 				configuration.getTypes().add(typeFromContainer);
 			}
@@ -135,12 +130,11 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 
 	private Configuration doGetConfiguration(final String id) {
 		TypeConfigContainer container = doGetContainer();
-		Configuration conf = Iterables.find(container.getConfigurations(),
-				new Predicate<Configuration>() {
-					public boolean apply(Configuration conf) {
-						return Objects.equal(conf.getName(), id);
-					}
-				}, null);
+		Configuration conf = Iterables.find(container.getConfigurations(), new Predicate<Configuration>() {
+			public boolean apply(Configuration conf) {
+				return Objects.equal(conf.getName(), id);
+			}
+		}, null);
 		return conf;
 	}
 
@@ -190,29 +184,23 @@ public class ConfigurationProvider implements ITypesConfigurationProvider,
 
 	@Override
 	public Iterable<IType> getTypes() {
-		Collection<EObject> conf = confManager
-				.getConfiguration(null, null,
-						ITypesConfigurationProvider.CONF_PREF_ID, null, null, false);
-		
+		Collection<EObject> conf = confManager.getConfiguration(null, null, ITypesConfigurationProvider.CONF_PREF_ID, null, null, false);
+
 		TypeConfigContainer container = null;
-		if(conf != null && !conf.isEmpty()) {
+		if (conf != null && !conf.isEmpty()) {
 			container = (TypeConfigContainer) conf.iterator().next();
 		}
-		
+
 		if (container == null) {
 			return ImmutableList.of();
 		}
-		return Iterables.transform(
-				Iterables.filter(container.getTypes(), CustomType.class),
-				new Function<CustomType, IType>() {
-					public IType apply(CustomType custom) {
-						Type superType = custom.getSuperType();
-						IType superTypeJava = superType.getIType();
-						return typesManager.newInjectedType(custom.getTypeId(),
-								superTypeJava, new ConfigurationValueInjecter(
-										custom));
-					}
-				});
+		return Iterables.transform(Iterables.filter(container.getTypes(), CustomType.class), new Function<CustomType, IType>() {
+			public IType apply(CustomType custom) {
+				Type superType = custom.getSuperType();
+				IType superTypeJava = superType.getIType();
+				return typesManager.newInjectedType(custom.getTypeId(), superTypeJava, new ConfigurationValueInjecter(custom));
+			}
+		});
 
 	}
 

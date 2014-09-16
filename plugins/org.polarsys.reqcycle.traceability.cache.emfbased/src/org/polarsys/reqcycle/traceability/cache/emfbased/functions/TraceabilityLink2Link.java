@@ -26,7 +26,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
 public class TraceabilityLink2Link implements Function<TraceabilityLink, Link> {
-	
+
 	@Inject
 	IReachableCreator creator;
 
@@ -34,14 +34,12 @@ public class TraceabilityLink2Link implements Function<TraceabilityLink, Link> {
 	public Link apply(TraceabilityLink aLink) {
 		TraceableElement2Traceable traceableElement2Traceable = new TraceableElement2Traceable();
 		ZigguratInject.inject(traceableElement2Traceable);
-		Iterable<Reachable> sources = Iterables.transform(aLink.getSources(),
-				traceableElement2Traceable);
-		Iterable<Reachable> targets = Iterables.transform(aLink.getTargets(),
-				traceableElement2Traceable);
-		
+		Iterable<Reachable> sources = Iterables.transform(aLink.getSources(), traceableElement2Traceable);
+		Iterable<Reachable> targets = Iterables.transform(aLink.getTargets(), traceableElement2Traceable);
+
 		// RFa provide ID - to check
-		//FIXME
-		UUID uniqueID = UUID.randomUUID(); 
+		// FIXME
+		UUID uniqueID = UUID.randomUUID();
 		URI uri = null;
 		try {
 			uri = new URI(aLink.getResource().getUri());
@@ -50,7 +48,7 @@ public class TraceabilityLink2Link implements Function<TraceabilityLink, Link> {
 			e.printStackTrace();
 		}
 		Reachable r = creator.getReachable(uri);
-		Link link = new Link(r,new TType(uniqueID.toString(),aLink.getLabel()), sources, targets);
+		Link link = new Link(r, new TType(uniqueID.toString(), aLink.getLabel()), sources, targets);
 		return link;
 	}
 

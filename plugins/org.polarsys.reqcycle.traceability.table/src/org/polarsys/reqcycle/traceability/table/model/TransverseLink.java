@@ -19,28 +19,29 @@ import org.polarsys.reqcycle.traceability.ui.LinkPropertySource;
 
 /**
  * Creating a new link for deletion purpose.
+ * 
  * @author omelois
  *
  */
 public class TransverseLink extends Link implements IAdaptable {
-	
+
 	private IProject project;
-	
+
 	public TransverseLink(Link link, IProject project) {
 		super(link.getId(), link.getKind(), link.getSources(), link.getTargets());
-		this.project = project; 
+		this.project = project;
 	}
-	
-	public IProject getProject(){
+
+	public IProject getProject() {
 		return project;
 	}
 
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (IPropertySource.class.equals(adapter) || IPropertySource2.class.equals(adapter)){
+		if (IPropertySource.class.equals(adapter) || IPropertySource2.class.equals(adapter)) {
 			return new LinkPropertySource(this, null);
 		}
 		return null;
 	}
-	
+
 }

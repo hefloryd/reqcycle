@@ -41,20 +41,20 @@ public class EditRequirementsHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
-		for(IEditorReference iEditorReference : editorReferences) {
-			if(CustomDataModelEditor.EDITOR_ID.equals(iEditorReference.getId())) {
+		for (IEditorReference iEditorReference : editorReferences) {
+			if (CustomDataModelEditor.EDITOR_ID.equals(iEditorReference.getId())) {
 				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Open Requiement Editor", "Please close the opened Requirements Editor before beginning a new edition.");
 				return null;
 			}
 		}
 
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		if(selection instanceof IStructuredSelection) {
-			Object firstElement = ((IStructuredSelection)selection).getFirstElement();
-			if(firstElement instanceof RequirementSource) {
-				RequirementSource requirementSource = (RequirementSource)firstElement;
+		if (selection instanceof IStructuredSelection) {
+			Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+			if (firstElement instanceof RequirementSource) {
+				RequirementSource requirementSource = (RequirementSource) firstElement;
 				String connectorId = requirementSource.getConnectorId();
-				if(LocalConnector.LOCAL_CONNECTOR_ID.equals(connectorId)) {
+				if (LocalConnector.LOCAL_CONNECTOR_ID.equals(connectorId)) {
 					Resource eResource = requirementSource.getContents().eResource();
 					// Resource eResource = requirementSource.eResource();
 					// URI uri =

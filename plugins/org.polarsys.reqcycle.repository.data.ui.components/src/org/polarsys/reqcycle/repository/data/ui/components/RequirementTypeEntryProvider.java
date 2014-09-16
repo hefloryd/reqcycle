@@ -21,7 +21,6 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
-
 public class RequirementTypeEntryProvider extends AbstractPropsEditor<String> {
 
 	IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);

@@ -16,9 +16,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource </b> associated with the package.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Resource </b> associated with the package. <!-- end-user-doc -->
  * 
  * @see org.polarsys.reqcycle.predicates.persistance.util.PredicatesConfResourceFactoryImpl
  * @generated
@@ -26,12 +24,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 public class PredicatesConfResourceImpl extends XMIResourceImpl {
 
 	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param uri
-	 *        the URI of the new resource.
+	 *            the URI of the new resource.
 	 * @generated
 	 */
 	public PredicatesConfResourceImpl(URI uri) {
@@ -43,4 +39,4 @@ public class PredicatesConfResourceImpl extends XMIResourceImpl {
 		return true;
 	}
 
-} //PredicatesConfResourceImpl
+} // PredicatesConfResourceImpl

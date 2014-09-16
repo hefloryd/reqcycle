@@ -51,22 +51,21 @@ import com.google.common.collect.Maps;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class ConfigurationManagerImpl implements IConfigurationManager {
 
-	
 	protected static final Map<?, ?> SAVE_OPTIONS = Collections.singletonMap(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
 	public static final String CONF_RESOURCE_EXTENSION = "emfconf";
 
 	public RestrictedResourceSet internalRestrictedResourceSet = new RestrictedResourceSet();
-	
+
 	public void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension) throws IOException {
-		if(context == null && Scope.PROJECT.equals(scope)) {
+		if (context == null && Scope.PROJECT.equals(scope)) {
 			throw new IOException("Context should not be null when using project scope");
 		}
 
-		if(scope == null || context == null) {
+		if (scope == null || context == null) {
 			scope = Scope.WORKSPACE;
 		}
-		
+
 		if (resourceSet == null) {
 			resourceSet = internalRestrictedResourceSet;
 		} else {
@@ -74,24 +73,24 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		URI confFileUri = getConfigurationFileURI(context, scope, id, resourceExtension);
-		if(resourceSet instanceof RestrictedResourceSet) {
-			((RestrictedResourceSet)resourceSet).authorizedUris.add(confFileUri);
+		if (resourceSet instanceof RestrictedResourceSet) {
+			((RestrictedResourceSet) resourceSet).authorizedUris.add(confFileUri);
 		}
 		Resource r = resourceSet.getResource(confFileUri, false);
-		if(r == null) {
+		if (r == null) {
 			r = resourceSet.createResource(confFileUri);
 		}
 
 		r.getContents().clear();
 		r.getContents().addAll(conf);
 
-		if(r instanceof EMFConfResource) {
-			((EMFConfResource)r).manualSave(SAVE_OPTIONS);
+		if (r instanceof EMFConfResource) {
+			((EMFConfResource) r).manualSave(SAVE_OPTIONS);
 		} else {
 			r.save(SAVE_OPTIONS);
 		}
 	}
-	
+
 	public Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension, boolean reload) {
 		if (resourceSet == null) {
 			resourceSet = internalRestrictedResourceSet;
@@ -100,8 +99,8 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		URI confFileURI = getConfigurationFileURI(context, scope, id, resourceExtension);
-		if(resourceSet instanceof RestrictedResourceSet) {
-			((RestrictedResourceSet)resourceSet).addAuthorizedUri(confFileURI);
+		if (resourceSet instanceof RestrictedResourceSet) {
+			((RestrictedResourceSet) resourceSet).addAuthorizedUri(confFileURI);
 		}
 		try {
 			Resource loadedResource = resourceSet.getResource(confFileURI, false);
@@ -112,46 +111,46 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 			Resource r = resourceSet.getResource(confFileURI, true);
 
-			if(r != null && !r.getContents().isEmpty()) {
+			if (r != null && !r.getContents().isEmpty()) {
 				return r.getContents();
 			}
 		} catch (Throwable e) {
-			//DO NOTHING
+			// DO NOTHING
 		}
 
 		return null;
 	}
 
 	protected boolean isSelfContained(EObject eObj) {
-//		Set<EObject> containedObjs = Sets.newHashSet();
-//		containedObjs.add(eObj);
-//		TreeIterator<EObject> it = eObj.eAllContents();
-//		while(it.hasNext()) {
-//			containedObjs.add(it.next());
-//		}
-//
-//		for(EObject o : Lists.newLinkedList(containedObjs)) {
-//			if(hasOutsideReferences(o, containedObjs)) {
-//				return false;
-//			}
-//		}
+		// Set<EObject> containedObjs = Sets.newHashSet();
+		// containedObjs.add(eObj);
+		// TreeIterator<EObject> it = eObj.eAllContents();
+		// while(it.hasNext()) {
+		// containedObjs.add(it.next());
+		// }
+		//
+		// for(EObject o : Lists.newLinkedList(containedObjs)) {
+		// if(hasOutsideReferences(o, containedObjs)) {
+		// return false;
+		// }
+		// }
 
 		return true;
 	}
 
 	protected boolean hasOutsideReferences(EObject obj, Set<EObject> containedObjs) {
-		for(EReference ref : obj.eClass().getEAllReferences()) {
-			if(obj.eIsSet(ref) && !ref.isContainment()) {
-				if(ref.isMany()) {
-					List values = (List)obj.eGet(ref);
-					for(Object val : values) {
-						if(val != null && !containedObjs.contains(val)) {
+		for (EReference ref : obj.eClass().getEAllReferences()) {
+			if (obj.eIsSet(ref) && !ref.isContainment()) {
+				if (ref.isMany()) {
+					List values = (List) obj.eGet(ref);
+					for (Object val : values) {
+						if (val != null && !containedObjs.contains(val)) {
 							return true;
 						}
 					}
 				} else {
 					Object val = obj.eGet(ref);
-					if(val != null && !containedObjs.contains(val)) {
+					if (val != null && !containedObjs.contains(val)) {
 						return true;
 					}
 				}
@@ -166,21 +165,21 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 		IPath confFilePath = null;
 
-		if(context != null && context.getProject() != null && (scope == null || Scope.PROJECT.equals(scope))) {
+		if (context != null && context.getProject() != null && (scope == null || Scope.PROJECT.equals(scope))) {
 			confFilePath = context.getProject().getFullPath().append("/.settings/" + Activator.PLUGIN_ID + "/" + id + "." + resourceExtension);
 			IFile confFile = ResourcesPlugin.getWorkspace().getRoot().getFile(confFilePath);
 
-			if(!confFile.exists() && scope == null) {
+			if (!confFile.exists() && scope == null) {
 				confFilePath = null;
 			}
 		}
 
-		if(confFilePath == null && (scope == null || Scope.WORKSPACE.equals(scope))) {
+		if (confFilePath == null && (scope == null || Scope.WORKSPACE.equals(scope))) {
 			return URI.createURI("platform:/meta/" + Activator.PLUGIN_ID + "/" + id + "." + resourceExtension);
 		} else {
 			return URI.createPlatformResourceURI(confFilePath.toOSString(), true);
 		}
-		
+
 	}
 
 	public String getConfigurationResourceExtension() {
@@ -189,23 +188,23 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 	public Map<String, Object> getSimpleConfiguration(IResource context, Scope scope, String id, boolean reload) {
 		EObject confEObj = null;
-		
+
 		Collection<EObject> conf = getConfiguration(context, scope, id, internalRestrictedResourceSet, null, reload);
-		if(conf != null && !conf.isEmpty()) {
+		if (conf != null && !conf.isEmpty()) {
 			confEObj = conf.iterator().next();
 		}
 
-		if(confEObj == null) {
+		if (confEObj == null) {
 			return null;
 		}
 
 		Map<String, Object> res = Maps.newHashMap();
 
-		for(EAttribute att : confEObj.eClass().getEAllAttributes()) {
-			if(att.isMany()) {
-				List l = (List)confEObj.eGet(att);
+		for (EAttribute att : confEObj.eClass().getEAllAttributes()) {
+			if (att.isMany()) {
+				List l = (List) confEObj.eGet(att);
 				List newList = Lists.newArrayList();
-				for(Object o : l) {
+				for (Object o : l) {
 					newList.add(o);
 				}
 				res.put(att.getName(), newList);
@@ -220,7 +219,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		ePackage.setName(CONF_RESOURCE_EXTENSION);
 		ePackage.setNsPrefix(CONF_RESOURCE_EXTENSION);
-		//TODO change URI
+		// TODO change URI
 		ePackage.setNsURI("http://www.eclipse.org/" + CONF_RESOURCE_EXTENSION + "/" + EcoreUtil.generateUUID());
 
 		EFactory eFactory = EcoreFactory.eINSTANCE.createEFactory();
@@ -230,53 +229,51 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		eClass.setName("Conf");
 		ePackage.getEClassifiers().add(eClass);
 
-		for(Entry<String, Object> elem : conf.entrySet()) {
+		for (Entry<String, Object> elem : conf.entrySet()) {
 			EClassifier currentType = null;
-		    int upperBound = 1;
+			int upperBound = 1;
 
-			if(elem.getValue() instanceof Collection) {
-			    upperBound = -1;
+			if (elem.getValue() instanceof Collection) {
+				upperBound = -1;
 				// check collection consistency
-				for(Object o : (Collection)elem.getValue()) {
+				for (Object o : (Collection) elem.getValue()) {
 					// allow null objects
-					if(o != null) {
+					if (o != null) {
 						EClassifier oType = getEType(o);
-						if(oType == null) {
+						if (oType == null) {
 							throw new IOException("Unsupported value type");
-						} else if(oType instanceof EDataType && !oType.equals(oType)) {
+						} else if (oType instanceof EDataType && !oType.equals(oType)) {
 							throw new IOException("Incoherent collection (values of different types)");
-						} else if(oType instanceof EClass) {
-						    if (currentType == null) {
-						        currentType = oType;
-						    } else if(currentType instanceof EClass) {
-						        if (!((EClass)currentType).isSuperTypeOf(eClass)) {
-						            if (((EClass)oType).isSuperTypeOf((EClass) currentType)) {
-						                currentType = oType;
-						            } else {
-						                throw new IOException("Incoherent collection (values of different types)");
-						            }
-						        }
-						    } else {
-						        throw new IOException("Incoherent collection (values of different types)");
-						    }
+						} else if (oType instanceof EClass) {
+							if (currentType == null) {
+								currentType = oType;
+							} else if (currentType instanceof EClass) {
+								if (!((EClass) currentType).isSuperTypeOf(eClass)) {
+									if (((EClass) oType).isSuperTypeOf((EClass) currentType)) {
+										currentType = oType;
+									} else {
+										throw new IOException("Incoherent collection (values of different types)");
+									}
+								}
+							} else {
+								throw new IOException("Incoherent collection (values of different types)");
+							}
 						}
 					}
 				}
 			} else {
-			    currentType = getEType(elem.getValue());
+				currentType = getEType(elem.getValue());
 			}
-			
+
 			EStructuralFeature feature = null;
 
 			if (currentType instanceof EClass) {
-			    feature = EcoreFactory.eINSTANCE.createEReference();
+				feature = EcoreFactory.eINSTANCE.createEReference();
 			} else if (currentType instanceof EDataType) {
-			    feature = EcoreFactory.eINSTANCE.createEAttribute();
+				feature = EcoreFactory.eINSTANCE.createEAttribute();
 			}
-			
-			
 
-			if(feature == null) {
+			if (feature == null) {
 				throw new IOException("Unsupported value type");
 			}
 
@@ -294,43 +291,42 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 		EObject confEObj = eFactory.create(eClass);
 
-		for(Entry<String, Object> elem : conf.entrySet()) {
-		    Object value = elem.getValue();
-		    if(value instanceof Iterable) {
-		        List l = (List)confEObj.eGet(eClass.getEStructuralFeature(elem.getKey()));
-		        for (Object o : (Iterable)value) {
-		            if (o instanceof EObject && !isSelfContained((EObject) o)) {
-		                throw new IOException("The configuration object have reference(s) outside of itself and its children");
-		            }
-		            l.add(o);
-		        }
+		for (Entry<String, Object> elem : conf.entrySet()) {
+			Object value = elem.getValue();
+			if (value instanceof Iterable) {
+				List l = (List) confEObj.eGet(eClass.getEStructuralFeature(elem.getKey()));
+				for (Object o : (Iterable) value) {
+					if (o instanceof EObject && !isSelfContained((EObject) o)) {
+						throw new IOException("The configuration object have reference(s) outside of itself and its children");
+					}
+					l.add(o);
+				}
 
-
-		    } else {
-                if (value instanceof EObject && !isSelfContained((EObject) value)) {
-                    throw new IOException("The configuration object have reference(s) outside of itself and its children");
-                }
-		        confEObj.eSet(eClass.getEStructuralFeature(elem.getKey()), value);
-		    }
+			} else {
+				if (value instanceof EObject && !isSelfContained((EObject) value)) {
+					throw new IOException("The configuration object have reference(s) outside of itself and its children");
+				}
+				confEObj.eSet(eClass.getEStructuralFeature(elem.getKey()), value);
+			}
 		}
 
 		saveConfiguration(Collections.singleton(confEObj), context, scope, id, null, null);
 	}
 
 	protected EClassifier getEType(Object obj) {
-	    if (obj instanceof EObject) {
-	        return ((EObject) obj).eClass();
-	    } else if(obj instanceof String) {
+		if (obj instanceof EObject) {
+			return ((EObject) obj).eClass();
+		} else if (obj instanceof String) {
 			return EcorePackage.Literals.ESTRING;
-		} else if(obj instanceof Integer) {
+		} else if (obj instanceof Integer) {
 			return EcorePackage.Literals.EINTEGER_OBJECT;
-		} else if(obj instanceof Long) {
+		} else if (obj instanceof Long) {
 			return EcorePackage.Literals.ELONG_OBJECT;
-		} else if(obj instanceof Boolean) {
+		} else if (obj instanceof Boolean) {
 			return EcorePackage.Literals.EBOOLEAN_OBJECT;
-		} else if(obj instanceof Double) {
+		} else if (obj instanceof Double) {
 			return EcorePackage.Literals.EDOUBLE_OBJECT;
-		} else if(obj instanceof Float) {
+		} else if (obj instanceof Float) {
 			return EcorePackage.Literals.EFLOAT_OBJECT;
 		}
 		return null;

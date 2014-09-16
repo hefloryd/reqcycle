@@ -22,20 +22,16 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Mapping Attribute</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Mapping Attribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getTargetAttribute
- * <em>Target Attribute</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getTargetAttribute <em>Target Attribute</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getDescription
- * <em>Description</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getDescription <em>Description</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getSourceId
- * <em>Source Id</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl#getSourceId <em>Source Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,9 +39,7 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
  */
 public class MappingAttributeImpl extends MinimalEObjectImpl.Container implements MappingAttribute {
 	/**
-	 * The cached value of the '{@link #getTargetAttribute()
-	 * <em>Target Attribute</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getTargetAttribute()
 	 * @generated
@@ -54,8 +48,7 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected EAttribute targetAttribute;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -64,8 +57,7 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -74,8 +66,7 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSourceId() <em>Source Id</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getSourceId() <em>Source Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSourceId()
 	 * @generated
@@ -84,8 +75,7 @@ public class MappingAttributeImpl extends MinimalEObjectImpl.Container implement
 	protected static final String SOURCE_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceId() <em>Source Id</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceId() <em>Source Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSourceId()
 	 * @generated

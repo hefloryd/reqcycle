@@ -59,13 +59,12 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import RequirementSourceData.presentation.RequirementSourceDataEditor;
 import RequirementSourceData.presentation.RequirementSourceDataEditorPlugin;
 
-
 /**
  * The Class RequirementSourceEditor.
  */
 public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
-	//FIXME : Use manager or local connector to retrieve this ID
+	// FIXME : Use manager or local connector to retrieve this ID
 	public final static String LOCAL_CONNECTOR_ID = "org.polarsys.reqcycle.repository.connector.local.connectorCore";
 
 	/** The Constant EDITOR ID. */
@@ -91,7 +90,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 	 * Open Requirement editor.
 	 * 
 	 * @param uri
-	 *        the input uri
+	 *            the input uri
 	 */
 	public static void openEditor(URI uri) {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -103,7 +102,6 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 		}
 	}
 
-
 	public CustomDataModelEditor() {
 		super();
 	}
@@ -114,8 +112,8 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 	protected void initializeEditorInput() {
 		inputURI = null;
 		IEditorInput editorInput = getEditorInput();
-		if(editorInput instanceof URIEditorInput) {
-			inputURI = ((URIEditorInput)editorInput).getURI();
+		if (editorInput instanceof URIEditorInput) {
+			inputURI = ((URIEditorInput) editorInput).getURI();
 		}
 	}
 
@@ -145,13 +143,13 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 						// Try to select the affected objects.
 						//
-						Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
-						if(mostRecentCommand != null) {
+						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
+						if (mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						for(Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
+						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
 							PropertySheetPage propertySheetPage = i.next();
-							if(propertySheetPage.getControl().isDisposed()) {
+							if (propertySheetPage.getControl().isDisposed()) {
 								i.remove();
 							} else {
 								propertySheetPage.refresh();
@@ -172,7 +170,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 	@Override
 	public void createPages() {
-		//Initialize the inputURI : the input object uri
+		// Initialize the inputURI : the input object uri
 		//
 		initializeEditorInput();
 
@@ -182,7 +180,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 		// Only creates the selection page
 		//
-		if(!getEditingDomain().getResourceSet().getResources().isEmpty()) {
+		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			// Create a page for the selection tree view.
 			//
 			{
@@ -203,20 +201,20 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 					@Override
 					protected void createTitleBar() {
-						//initialize the title label and call the super method to let this title bar empty and not visible
+						// initialize the title label and call the super method to let this title bar empty and not visible
 						titleLabel = new CLabel(control, SWT.SHADOW_NONE);
 						super.createTitleBar();
 					}
 				};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer)viewerPane.getViewer();
+				selectionViewer = (TreeViewer) viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(getInput());
-				//Filter other requirement sources if there is any
-				//				selectionViewer.setFilters(createViewerFilters());
+				// Filter other requirement sources if there is any
+				// selectionViewer.setFilters(createViewerFilters());
 
 				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
@@ -243,7 +241,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 			@Override
 			public void controlResized(ControlEvent event) {
-				if(!guard) {
+				if (!guard) {
 					guard = true;
 					hideTabs();
 					guard = false;
@@ -260,7 +258,6 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 		});
 	}
 
-
 	/**
 	 * Creates the viewer filters.
 	 * 
@@ -272,25 +269,25 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				if(element instanceof RequirementSource) {
-					if(LOCAL_CONNECTOR_ID.equals(((RequirementSource)element).getConnectorId())) {
-						if(inputURI != null && inputURI.hasFragment()) {
-							//show the corresponding requirement source
-							return inputURI.fragment().equals(((RequirementSource)element).eResource().getURIFragment((RequirementSource)element));
+				if (element instanceof RequirementSource) {
+					if (LOCAL_CONNECTOR_ID.equals(((RequirementSource) element).getConnectorId())) {
+						if (inputURI != null && inputURI.hasFragment()) {
+							// show the corresponding requirement source
+							return inputURI.fragment().equals(((RequirementSource) element).eResource().getURIFragment((RequirementSource) element));
 						}
-						//if there isn't a fragment in the uri -> show all local requirement sources
+						// if there isn't a fragment in the uri -> show all local requirement sources
 						return true;
 					}
-					//If the requirement source is not a local one -> filter
+					// If the requirement source is not a local one -> filter
 					return false;
 				}
-				// FIXME : use supported element list to filter unsupported ones 
+				// FIXME : use supported element list to filter unsupported ones
 				// element is not a requirement source -> Show
 				return true;
 			}
 		};
 
-		return new ViewerFilter[]{ viewerFilter };
+		return new ViewerFilter[] { viewerFilter };
 	}
 
 	/**
@@ -299,8 +296,8 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 	 * @return the editor input
 	 */
 	protected Object getInput() {
-		//FIXME : return the Object corresponding to the fragment
-		if(inputURI != null) {
+		// FIXME : return the Object corresponding to the fragment
+		if (inputURI != null) {
 			return editingDomain.getResourceSet().getResource(inputURI.trimFragment(), true);
 		}
 		return editingDomain.getResourceSet().getResources();
@@ -310,7 +307,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 	 * Looks up a string in the plugin's plugin.properties file..
 	 * 
 	 * @param key
-	 *        the String key
+	 *            the String key
 	 * @return the corresponding string
 	 */
 	protected String getString(String key) {
@@ -330,7 +327,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 	@Override
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if(inputURI.trimFragment().equals(resource.getURI())) {
+		if (inputURI.trimFragment().equals(resource.getURI())) {
 			return super.analyzeResourceProblems(resource, exception);
 		}
 		return Diagnostic.OK_INSTANCE;

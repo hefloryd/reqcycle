@@ -25,21 +25,19 @@ public class SysMLType extends TType {
 	private int eclass;
 
 	public SysMLType(EClass eclass) {
-		super(Activator.PLUGIN_ID + "." + eclass.getName(), eclass.getName()
-				+ " (SysML)");
+		super(Activator.PLUGIN_ID + "." + eclass.getName(), eclass.getName() + " (SysML)");
 		this.eclass = eclass.getClassifierID();
 		this.packageUri = eclass.getEPackage().getNsURI();
 	}
 
 	public EClass getEClass() {
 		EPackage ep = EPackage.Registry.INSTANCE.getEPackage(packageUri);
-		return (EClass) find(ep.getEClassifiers(),
-				new Predicate<EClassifier>() {
-					@Override
-					public boolean apply(EClassifier arg0) {
-						return SysMLType.this.eclass == arg0.getClassifierID();
-					}
+		return (EClass) find(ep.getEClassifiers(), new Predicate<EClassifier>() {
+			@Override
+			public boolean apply(EClassifier arg0) {
+				return SysMLType.this.eclass == arg0.getClassifierID();
+			}
 
-				}, null);
+		}, null);
 	}
 }

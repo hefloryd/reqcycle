@@ -21,8 +21,8 @@ import org.eclipse.swt.graphics.Image;
 public class RMFLabelProvider extends LabelProvider {
 
 	public String getText(Object obj) {
-		if(obj instanceof SpecType) {
-			return ((SpecType)obj).getLongName();
+		if (obj instanceof SpecType) {
+			return ((SpecType) obj).getLongName();
 		}
 
 		return obj.toString();

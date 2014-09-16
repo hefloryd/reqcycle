@@ -20,21 +20,17 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
-public class Traceable2TraceableElement implements
-		Function<Reachable, TraceableElement> {
+public class Traceable2TraceableElement implements Function<Reachable, TraceableElement> {
 
 	private Model model;
 
 	public Traceable2TraceableElement(Model model) {
 		this.model = model;
 	}
-	
-
 
 	@Override
 	public TraceableElement apply(Reachable arg0) {
-		TraceableElement eleme = Iterables.find(model.getTraceables(),
-				new TraceableEqualsToTraceableElement(arg0), null);
+		TraceableElement eleme = Iterables.find(model.getTraceables(), new TraceableEqualsToTraceableElement(arg0), null);
 		if (eleme == null) {
 			eleme = CacheTracabilityFactory.eINSTANCE.createTraceableElement();
 			eleme.setUri(arg0.getURI().toString());

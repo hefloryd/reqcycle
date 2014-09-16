@@ -25,9 +25,8 @@ import org.polarsys.reqcycle.utils.iterators.pickers.IPicker;
 public class IteratorUtils {
 
 	/**
-	 * Method used to get to create a dependency list out of pickers. A DepthMeasuringHarvester
-	 * is used to iterate other elements, and the depth is computed while the elements are iterated on.
-	 * In the end, a list of dependencies is retrieved from the harvester.
+	 * Method used to get to create a dependency list out of pickers. A DepthMeasuringHarvester is used to iterate other elements, and the depth is computed while the elements are iterated on. In the end, a list of dependencies is retrieved from the
+	 * harvester.
 	 * 
 	 * if A.getNext() = [B,C,D] then B,C,D are deeper than A and A depends on B,C,D.
 	 * 
@@ -39,12 +38,11 @@ public class IteratorUtils {
 		IteratorFactory factory = new IteratorFactory(pickerAsSingleton, harvester);
 		Iterable<Object> iterable = factory.createIterable(startingElement);
 		Iterator<Object> iterator = iterable.iterator();
-		while(iterator.hasNext()) {
-			//Do nothing, just going through the iterator
+		while (iterator.hasNext()) {
+			// Do nothing, just going through the iterator
 			iterator.next();
 		}
 		return harvester.getElementsFromDeepest();
 	}
-
 
 }

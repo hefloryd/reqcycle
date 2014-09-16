@@ -22,15 +22,13 @@ import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.types.ui.providers.TypeLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-public class PreferenceDialogTypeLabelProvider extends
-		AdapterFactoryLabelProvider {
+public class PreferenceDialogTypeLabelProvider extends AdapterFactoryLabelProvider {
 	@Inject
 	private ITypesManager typesManager;
 	private ILabelProvider original;
 	private TypeLabelProvider forTypes;
 
-	public PreferenceDialogTypeLabelProvider(AdapterFactory adapterFactory,
-			ILabelProvider delegeated) {
+	public PreferenceDialogTypeLabelProvider(AdapterFactory adapterFactory, ILabelProvider delegeated) {
 		super(adapterFactory);
 		original = delegeated;
 		forTypes = new TypeLabelProvider();
@@ -50,7 +48,7 @@ public class PreferenceDialogTypeLabelProvider extends
 		}
 		return text;
 	}
-	
+
 	@Override
 	public Image getImage(Object element) {
 		String typeId = null;

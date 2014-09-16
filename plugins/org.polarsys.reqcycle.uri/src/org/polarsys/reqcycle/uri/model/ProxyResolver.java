@@ -10,8 +10,7 @@
 package org.polarsys.reqcycle.uri.model;
 
 /**
- * Service that expose a method to resolve proxy objects when registering
- * traceability links.
+ * Service that expose a method to resolve proxy objects when registering traceability links.
  * 
  * @author rsemlal
  */
@@ -21,8 +20,7 @@ public interface ProxyResolver {
 	 * 
 	 * @param obj
 	 *            Original object to resolve.
-	 * @return A new resolved instance if the original object was a proxy, or a
-	 *         reference to the same original object elsewhere.
+	 * @return A new resolved instance if the original object was a proxy, or a reference to the same original object elsewhere.
 	 */
 	Object resolve(Object obj);
 

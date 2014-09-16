@@ -33,13 +33,11 @@ public class BusinessDeffered implements IDeferredWorkbenchAdapter, IAdaptable {
 	RequestLabelProvider lp = new RequestLabelProvider();
 	private int level;
 
-	public BusinessDeffered(Object o,
-			RequestContentProvider requestContentProvider) {
+	public BusinessDeffered(Object o, RequestContentProvider requestContentProvider) {
 		this(o, requestContentProvider, 1);
 	}
 
-	public BusinessDeffered(Object o,
-			RequestContentProvider requestContentProvider, int level) {
+	public BusinessDeffered(Object o, RequestContentProvider requestContentProvider, int level) {
 		this.businessElement = o;
 		this.requestContentProvider = requestContentProvider;
 		this.level = level;
@@ -91,17 +89,14 @@ public class BusinessDeffered implements IDeferredWorkbenchAdapter, IAdaptable {
 	}
 
 	@Override
-	public void fetchDeferredChildren(Object object,
-			IElementCollector collector, IProgressMonitor monitor) {
+	public void fetchDeferredChildren(Object object, IElementCollector collector, IProgressMonitor monitor) {
 		Object objectToBrowse = object;
 		if (object instanceof BusinessDeffered) {
 			BusinessDeffered busi = (BusinessDeffered) object;
 			objectToBrowse = busi.getBusinessElement();
-			Collection<Object> child = requestContentProvider
-					.doGetChildren(objectToBrowse);
+			Collection<Object> child = requestContentProvider.doGetChildren(objectToBrowse);
 			for (Object o : child) {
-				BusinessDeffered element = new BusinessDeffered(o,
-						requestContentProvider, busi.getLevel() + 1);
+				BusinessDeffered element = new BusinessDeffered(o, requestContentProvider, busi.getLevel() + 1);
 				collector.add(element, monitor);
 			}
 		}
@@ -126,14 +121,14 @@ public class BusinessDeffered implements IDeferredWorkbenchAdapter, IAdaptable {
 	public Object getAdapter(Class adapter) {
 		if (getBusinessElement() instanceof Link) {
 			if (adapter == IPropertySource.class) {
-				Callable<?> callback = new Callable<Object>(){
+				Callable<?> callback = new Callable<Object>() {
 					@Override
 					public Object call() throws Exception {
-						for(IViewReference vr : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences()) {
-							if(vr.getId().equals(TraceabilityViewer.ID)) {
+						for (IViewReference vr : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences()) {
+							if (vr.getId().equals(TraceabilityViewer.ID)) {
 								IWorkbenchPart part = vr.getPart(false);
-								if(part != null && PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().isPartVisible(part)) {
-									TraceabilityViewer v = (TraceabilityViewer)part;
+								if (part != null && PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().isPartVisible(part)) {
+									TraceabilityViewer v = (TraceabilityViewer) part;
 									v.refreshElement(BusinessDeffered.this);
 								}
 							}

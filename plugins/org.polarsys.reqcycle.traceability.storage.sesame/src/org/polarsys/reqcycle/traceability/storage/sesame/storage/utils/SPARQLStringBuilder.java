@@ -15,10 +15,9 @@ import java.util.Map;
 import org.openrdf.model.Namespace;
 import org.openrdf.model.Resource;
 import org.openrdf.model.URI;
- 
+
 /**
- * Delegate around {@link StringBuilder} that adds SPARQL query building
- * helpers.
+ * Delegate around {@link StringBuilder} that adds SPARQL query building helpers.
  * 
  * @author rsemlal
  */
@@ -342,8 +341,7 @@ public class SPARQLStringBuilder {
 	 * @param start
 	 * @param end
 	 * @return
-	 * @see java.lang.StringBuilder#insert(int, java.lang.CharSequence, int,
-	 *      int)
+	 * @see java.lang.StringBuilder#insert(int, java.lang.CharSequence, int, int)
 	 */
 	public StringBuilder insert(int dstOffset, CharSequence s, int start, int end) {
 		return _builder.insert(dstOffset, s, start, end);

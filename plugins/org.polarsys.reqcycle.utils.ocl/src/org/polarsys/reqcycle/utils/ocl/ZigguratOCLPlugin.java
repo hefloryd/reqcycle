@@ -33,7 +33,6 @@ import org.polarsys.reqcycle.utils.ocl.impl.OCLEvaluatorImpl;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-
 public class ZigguratOCLPlugin implements BundleActivator {
 
 	private static BundleContext context;
@@ -65,7 +64,7 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	}
 
 	public static OCLEvaluator compileOCL(ResourceSet resourceSet, URI oclURI) throws Exception {
-		BaseResource resource = (BaseResource)resourceSet.getResource(oclURI, true);
+		BaseResource resource = (BaseResource) resourceSet.getResource(oclURI, true);
 		return compileOCL(resource);
 	}
 
@@ -73,7 +72,7 @@ public class ZigguratOCLPlugin implements BundleActivator {
 		OCLEvaluator evaluator = ZigguratOCLPlugin.createOCLEvaluator();
 
 		Collection<DefOperationCS> operations = getOperations(resource);
-		for(DefOperationCS operation : operations) {
+		for (DefOperationCS operation : operations) {
 			compileOperation(evaluator, operation);
 		}
 		return evaluator;
@@ -82,13 +81,13 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	private static void compileOperation(OCLEvaluator evaluator, DefOperationCS operationCS) throws Exception {
 		org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS classifierContextDecl = operationCS.getClassifierContextDecl();
 		Element pivot = classifierContextDecl.getPivot();
-		
+
 		String classifierString = pivot.toString();
-		
+
 		String[] split = classifierString.split("::");
 		// -RF- transformed to lower case first part as "toString" returns prefix in upper case in Luna.
 		split[0] = split[0].toLowerCase();
-		
+
 		EClassifier classifier = evaluator.lookupEClassifier(Arrays.asList(split));
 		String[] defNameExpression = operationCS.toString().split("def\\s*?:", 0);
 		String defExpression = defNameExpression[1];
@@ -103,13 +102,13 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	private static Collection<DefOperationCS> getOperations(BaseResource resource) {
 		Collection<DefOperationCS> result = Lists.newArrayList();
 		EList<EObject> contents = resource.getContents();
-		if(contents.size() == 1) {
+		if (contents.size() == 1) {
 			EObject root = contents.get(0);
-			if(root instanceof CompleteOCLDocumentCS) {
-				EList<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS> contexts = ((CompleteOCLDocumentCS)root).getContexts();
-				for(org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS context : contexts) {
-					if(context instanceof ClassifierContextDeclCS) {
-						EList<DefCS> definitions = ((ClassifierContextDeclCS)context).getDefinitions();
+			if (root instanceof CompleteOCLDocumentCS) {
+				EList<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getContexts();
+				for (org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS context : contexts) {
+					if (context instanceof ClassifierContextDeclCS) {
+						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getDefinitions();
 						Iterables.addAll(result, Iterables.filter(definitions, DefOperationCS.class));
 					}
 				}

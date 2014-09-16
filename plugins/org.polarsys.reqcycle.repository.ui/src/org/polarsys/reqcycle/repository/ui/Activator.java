@@ -68,11 +68,11 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs a message
 	 * 
 	 * @param severity
-	 *        the severity; one of OK, ERROR, INFO, WARNING, or CANCEL
+	 *            the severity; one of OK, ERROR, INFO, WARNING, or CANCEL
 	 * @param message
-	 *        a human-readable message, localized to the current locale
+	 *            a human-readable message, localized to the current locale
 	 * @param exception
-	 *        a low-level exception, or null if not applicable
+	 *            a low-level exception, or null if not applicable
 	 */
 	public static void log(int severity, String message, Throwable exception) {
 		IStatus status = new Status(severity, PLUGIN_ID, message, exception);
@@ -83,7 +83,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Returns an image descriptor for the image file at the given plug-in relative path
 	 * 
 	 * @param path
-	 *        the path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {

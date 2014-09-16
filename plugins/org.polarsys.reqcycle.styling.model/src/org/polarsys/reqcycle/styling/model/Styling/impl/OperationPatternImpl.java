@@ -49,44 +49,41 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Operation Pattern</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Operation Pattern</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.styling.model.Styling.impl.OperationPatternImpl#getOperation
- * <em>Operation</em>}</li>
+ * {@link org.polarsys.reqcycle.styling.model.Styling.impl.OperationPatternImpl#getOperation <em>Operation</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.styling.model.Styling.impl.OperationPatternImpl#getParameters
- * <em>Parameters</em>}</li>
+ * {@link org.polarsys.reqcycle.styling.model.Styling.impl.OperationPatternImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
  * @generated not
  */
-public class OperationPatternImpl extends PatternImpl implements
-		OperationPattern, IReachableListener {
+public class OperationPatternImpl extends PatternImpl implements OperationPattern, IReachableListener {
 
 	@Inject
 	IReqCycleOperationManager reqCycleOperationlManager;
 	@Inject
 	IReachableListenerManager manager;
-	
+
 	Multimap<Reachable, Reachable> maps = HashMultimap.create();
 
 	@Inject
 	IEventBroker broker;
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The default value of the '{@link #getOperation() <em>Operation</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getOperation() <em>Operation</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperation()
 	 * @generated
 	 * @ordered
@@ -94,8 +91,8 @@ public class OperationPatternImpl extends PatternImpl implements
 	protected static final String OPERATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperation()
 	 * @generated
 	 * @ordered
@@ -103,8 +100,8 @@ public class OperationPatternImpl extends PatternImpl implements
 	protected String operation = OPERATION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
@@ -113,6 +110,7 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationPatternImpl() {
@@ -122,6 +120,7 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,6 +130,7 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getOperation() {
@@ -139,6 +139,7 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOperation(String newOperation) {
@@ -150,6 +151,7 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Parameter> getParameters() {
@@ -161,91 +163,97 @@ public class OperationPatternImpl extends PatternImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StylingPackage.OPERATION_PATTERN__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+		case StylingPackage.OPERATION_PATTERN__PARAMETERS:
+			return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StylingPackage.OPERATION_PATTERN__OPERATION:
-				return getOperation();
-			case StylingPackage.OPERATION_PATTERN__PARAMETERS:
-				return getParameters();
+		case StylingPackage.OPERATION_PATTERN__OPERATION:
+			return getOperation();
+		case StylingPackage.OPERATION_PATTERN__PARAMETERS:
+			return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StylingPackage.OPERATION_PATTERN__OPERATION:
-				setOperation((String)newValue);
-				return;
-			case StylingPackage.OPERATION_PATTERN__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends Parameter>)newValue);
-				return;
+		case StylingPackage.OPERATION_PATTERN__OPERATION:
+			setOperation((String) newValue);
+			return;
+		case StylingPackage.OPERATION_PATTERN__PARAMETERS:
+			getParameters().clear();
+			getParameters().addAll((Collection<? extends Parameter>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StylingPackage.OPERATION_PATTERN__OPERATION:
-				setOperation(OPERATION_EDEFAULT);
-				return;
-			case StylingPackage.OPERATION_PATTERN__PARAMETERS:
-				getParameters().clear();
-				return;
+		case StylingPackage.OPERATION_PATTERN__OPERATION:
+			setOperation(OPERATION_EDEFAULT);
+			return;
+		case StylingPackage.OPERATION_PATTERN__PARAMETERS:
+			getParameters().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StylingPackage.OPERATION_PATTERN__OPERATION:
-				return OPERATION_EDEFAULT == null ? operation != null : !OPERATION_EDEFAULT.equals(operation);
-			case StylingPackage.OPERATION_PATTERN__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
+		case StylingPackage.OPERATION_PATTERN__OPERATION:
+			return OPERATION_EDEFAULT == null ? operation != null : !OPERATION_EDEFAULT.equals(operation);
+		case StylingPackage.OPERATION_PATTERN__PARAMETERS:
+			return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (operation: ");
@@ -278,30 +286,28 @@ public class OperationPatternImpl extends PatternImpl implements
 			listValues[i + 1] = p.getObjectValue();
 		}
 
-		ReqCycleOperation op = reqCycleOperationlManager.getOperation(
-				this.getOperation(), listTypes);
+		ReqCycleOperation op = reqCycleOperationlManager.getOperation(this.getOperation(), listTypes);
 		if (op != null) {
 			String resultString = "";
 			Object obj = op.execute(listValues);
 			List<Object> toListen = Lists.newArrayList();
-			
+
 			// register given parameter
 			toListen.add(object);
 			if (obj instanceof Result<?>) {
 				Result<?> result = (Result<?>) obj;
 				if (result.getResult() != null) {
-					if (result.getObjectsToListen() != null){
+					if (result.getObjectsToListen() != null) {
 						toListen.addAll(result.getObjectsToListen());
 					}
 					resultString = result.getResult().toString();
 				}
-			}
-			else {
-				if (obj != null){
-					resultString  = obj.toString();
+			} else {
+				if (obj != null) {
+					resultString = obj.toString();
 				}
 			}
-			register(object,toListen);
+			register(object, toListen);
 			return resultString;
 		}
 
@@ -313,9 +319,8 @@ public class OperationPatternImpl extends PatternImpl implements
 		if (iterable != null) {
 			for (Object obj : iterable) {
 				Reachable reachableObject = getReachable(obj);
-				manager.addReachableListener(reachableObject,
-						this);
-				maps.put(reachableObject,fromR);
+				manager.addReachableListener(reachableObject, this);
+				maps.put(reachableObject, fromR);
 			}
 		}
 	}
@@ -326,8 +331,7 @@ public class OperationPatternImpl extends PatternImpl implements
 			reachableObject = (Reachable) obj;
 
 		} else {
-			Function<Object, Reachable> obj2RO = URIFunctions
-					.newObject2ReachableFunction();
+			Function<Object, Reachable> obj2RO = URIFunctions.newObject2ReachableFunction();
 			reachableObject = obj2RO.apply(obj);
 		}
 		return reachableObject;
@@ -344,15 +348,14 @@ public class OperationPatternImpl extends PatternImpl implements
 		return pattern;
 	}
 
-
 	@Override
 	public void hasChanged(Reachable[] reachables) {
 		Collection<Reachable> message = Sets.newHashSet();
 		message.addAll(Arrays.asList(reachables));
-		for (Reachable r : reachables){
+		for (Reachable r : reachables) {
 			message.addAll(maps.get(r));
 		}
-		broker.post(ITopic.LISTENER , message);
+		broker.post(ITopic.LISTENER, message);
 	}
 
 } // OperationPatternImpl

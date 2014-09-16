@@ -15,19 +15,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Traceability Link</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Traceability Link</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getSources <em>Sources</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getTargets <em>Targets</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#isDeleted <em>Deleted</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getResource <em>Resource</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getLabel <em>Label</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getAttributes <em>Attributes</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getSources <em>Sources</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getTargets <em>Targets</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#isDeleted <em>Deleted</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getResource <em>Resource</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,14 +35,12 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface TraceabilityLink extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.Attribute}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.Attribute}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Attributes()
 	 * @model containment="true"
@@ -53,15 +49,13 @@ public interface TraceabilityLink extends EObject {
 	EList<Attribute> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Sources</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement}.
-	 * It is bidirectional and its opposite is '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getOutgoings <em>Outgoings</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sources</b></em>' reference list. The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement}. It is bidirectional and its opposite is '
+	 * {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getOutgoings <em>Outgoings</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sources</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Sources</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Sources</em>' reference list.
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Sources()
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getOutgoings
@@ -71,15 +65,13 @@ public interface TraceabilityLink extends EObject {
 	EList<TraceableElement> getSources();
 
 	/**
-	 * Returns the value of the '<em><b>Targets</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement}.
-	 * It is bidirectional and its opposite is '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getIncomings <em>Incomings</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Targets</b></em>' reference list. The list contents are of type {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement}. It is bidirectional and its opposite is '
+	 * {@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getIncomings <em>Incomings</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Targets</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Targets</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Targets</em>' reference list.
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Targets()
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement#getIncomings
@@ -89,13 +81,12 @@ public interface TraceabilityLink extends EObject {
 	EList<TraceableElement> getTargets();
 
 	/**
-	 * Returns the value of the '<em><b>Deleted</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Deleted</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Deleted</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Deleted</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Deleted</em>' attribute.
 	 * @see #setDeleted(boolean)
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Deleted()
@@ -105,24 +96,23 @@ public interface TraceabilityLink extends EObject {
 	boolean isDeleted();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#isDeleted <em>Deleted</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Deleted</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#isDeleted <em>Deleted</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Deleted</em>' attribute.
 	 * @see #isDeleted()
 	 * @generated
 	 */
 	void setDeleted(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Resource</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.AnalyzedResource#getLinks <em>Links</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Resource</b></em>' container reference. It is bidirectional and its opposite is '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.AnalyzedResource#getLinks <em>Links</em>}'. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resource</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Resource</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Resource</em>' container reference.
 	 * @see #setResource(AnalyzedResource)
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Resource()
@@ -133,23 +123,22 @@ public interface TraceabilityLink extends EObject {
 	AnalyzedResource getResource();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getResource <em>Resource</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Resource</em>' container reference.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getResource <em>Resource</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Resource</em>' container reference.
 	 * @see #getResource()
 	 * @generated
 	 */
 	void setResource(AnalyzedResource value);
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage#getTraceabilityLink_Label()
@@ -159,10 +148,10 @@ public interface TraceabilityLink extends EObject {
 	String getLabel();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getLabel <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Label</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink#getLabel <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */

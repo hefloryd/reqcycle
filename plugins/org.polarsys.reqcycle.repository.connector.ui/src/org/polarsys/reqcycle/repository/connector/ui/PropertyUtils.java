@@ -23,12 +23,10 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 
 public class PropertyUtils {
-	static IDataModelManager modelManager = ZigguratInject
-			.make(IDataModelManager.class);
+	static IDataModelManager modelManager = ZigguratInject.make(IDataModelManager.class);
 
 	public static String SCOPE_ID_KEY = Activator.PLUGIN_ID + ".scope";
-	public static String DATAMODEL_ID_KEY = Activator.PLUGIN_ID
-			+ ".dataModel.uri";
+	public static String DATAMODEL_ID_KEY = Activator.PLUGIN_ID + ".dataModel.uri";
 
 	public static Scope getScopeFromSource(RequirementSource source) {
 		IDataModel datamodel = getDataModelFromSource(source);
@@ -46,8 +44,7 @@ public class PropertyUtils {
 
 	public static IDataModel getDataModelFromSource(RequirementSource source) {
 		String datamodelURI = source.getProperty(DATAMODEL_ID_KEY);
-		return modelManager
-				.getDataModelByURI(datamodelURI);
+		return modelManager.getDataModelByURI(datamodelURI);
 	}
 
 	public static void setScopeInSource(RequirementSource source, Scope scope) {
@@ -61,8 +58,7 @@ public class PropertyUtils {
 		}
 	}
 
-	public static void setDataModelInSource(RequirementSource source,
-			IDataModel model) {
+	public static void setDataModelInSource(RequirementSource source, IDataModel model) {
 		setDataModelInSource(source, model.getDataModelURI());
 	}
 
@@ -75,14 +71,12 @@ public class PropertyUtils {
 		}
 	}
 
-	public static void setEObjectsInSource(RequirementSource source,
-			String key, List<EObject> eobjects) {
+	public static void setEObjectsInSource(RequirementSource source, String key, List<EObject> eobjects) {
 		XMIResource res = new XMIResourceImpl();
 		res.getContents().addAll(eobjects);
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		try {
-			res.save(new BufferedOutputStream(byteArrayOutputStream),
-					Collections.emptyMap());
+			res.save(new BufferedOutputStream(byteArrayOutputStream), Collections.emptyMap());
 			String s = new String(byteArrayOutputStream.toByteArray());
 			source.setProperty(key, s);
 			byteArrayOutputStream.close();
@@ -95,12 +89,10 @@ public class PropertyUtils {
 		}
 	}
 
-	public static List<EObject> getEObjectsInSource(RequirementSource source,
-			String key) {
+	public static List<EObject> getEObjectsInSource(RequirementSource source, String key) {
 		XMIResource res = new XMIResourceImpl();
 		try {
-			BufferedInputStream inputStream = new BufferedInputStream(
-					new ByteArrayInputStream(source.getProperty(key).getBytes()));
+			BufferedInputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(source.getProperty(key).getBytes()));
 			res.load(inputStream, Collections.emptyMap());
 			inputStream.close();
 		} catch (IOException e) {

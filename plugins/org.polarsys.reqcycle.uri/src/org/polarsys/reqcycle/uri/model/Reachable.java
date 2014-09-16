@@ -32,8 +32,7 @@ public final class Reachable implements Serializable {
 	private Map<String, String> properties = new HashMap<String, String>();
 
 	/**
-	 * This class is not intended to be instantiate please use
-	 * {@link IReachableCreator} instead
+	 * This class is not intended to be instantiate please use {@link IReachableCreator} instead
 	 */
 	public Reachable() {
 	}
@@ -55,8 +54,7 @@ public final class Reachable implements Serializable {
 			if (schemeSpecificPart != null) {
 				return new URI(scheme, schemeSpecificPart, fragment);
 			} else {
-				return new URI(scheme, userInfo, host, port, path, query,
-						fragment);
+				return new URI(scheme, userInfo, host, port, path, query, fragment);
 			}
 		} catch (URISyntaxException e) {
 			return null;
@@ -84,8 +82,7 @@ public final class Reachable implements Serializable {
 	}
 
 	/**
-	 * If this URI has a non-null {@link #fragment fragment}, returns the URI
-	 * formed by removing it; this URI unchanged, otherwise.
+	 * If this URI has a non-null {@link #fragment fragment}, returns the URI formed by removing it; this URI unchanged, otherwise.
 	 */
 	public Reachable trimFragment() {
 		if (fragment == null) {
@@ -171,7 +168,7 @@ public final class Reachable implements Serializable {
 	}
 
 	public void putAll(Map<String, String> map) {
-		
+
 		getProperties().putAll(map);
 	}
 

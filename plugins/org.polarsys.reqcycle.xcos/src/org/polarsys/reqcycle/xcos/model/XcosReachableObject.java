@@ -21,10 +21,8 @@ import org.polarsys.reqcycle.uri.visitors.EmptyVisitable;
 import org.polarsys.reqcycle.uri.visitors.IVisitable;
 import org.polarsys.reqcycle.xcos.utils.XcosUtils;
 
-
 /**
- * @author R. faudou
- * this class does the main job to create ReachableObjects from reachable
+ * @author R. faudou this class does the main job to create ReachableObjects from reachable
  *
  */
 public class XcosReachableObject implements ReachableObject {
@@ -34,35 +32,32 @@ public class XcosReachableObject implements ReachableObject {
 	private XcosElement element = null;
 
 	public XcosReachableObject(Reachable t) {
-		
+
 		this.reachable = t;
-		String path = t.trimFragment().toString()
-				.replaceFirst(XcosUtils.PLATFORM, "");
+		String path = t.trimFragment().toString().replaceFirst(XcosUtils.PLATFORM, "");
 		file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path));
-		
+
 		// if root, then we create or retrieve model (only one model for one file)
 		if (t.getFragment() == null) {
-			
+
 			element = getModel(file);
-		}
-		else {
+		} else {
 			element = null;
 		}
 	}
-	
+
 	/**
 	 * @param res
 	 * @return
 	 */
-	private XcosElement getModel (IResource res) {
-		//TODO real impl
+	private XcosElement getModel(IResource res) {
+		// TODO real impl
 		return XcosModelFactory.getModel(res);
 	}
 
-
 	@Override
 	@SuppressWarnings("rawtypes")
-	public Object getAdapter( Class adapter) {
+	public Object getAdapter(Class adapter) {
 		if (ILabelProvider.class.equals(adapter)) {
 			return new XcosLabelProvider();
 		}

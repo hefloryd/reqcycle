@@ -16,9 +16,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceConfItemProviderAdapterFactory;
 
-
 public class RequirementSourceItemProviderAdapterFactory extends RequirementSourceConfItemProviderAdapterFactory {
-
 
 	public RequirementSourceItemProviderAdapterFactory() {
 		super();
@@ -27,8 +25,8 @@ public class RequirementSourceItemProviderAdapterFactory extends RequirementSour
 
 	@Override
 	public Adapter createRequirementSourceAdapter() {
-		if(requirementSourceItemProvider == null) {
-			//Use Custom Requirement Source Item Provider
+		if (requirementSourceItemProvider == null) {
+			// Use Custom Requirement Source Item Provider
 			requirementSourceItemProvider = new CustomRequirementSourceItemProvider(this);
 		}
 		return requirementSourceItemProvider;
@@ -37,7 +35,7 @@ public class RequirementSourceItemProviderAdapterFactory extends RequirementSour
 	@Override
 	public boolean isFactoryForType(Object type) {
 		// Check the meta model NS_URI to support elements created with the Dynamic Data Model
-		return (type instanceof EPackage && ((EPackage)type).getNsURI().contains(IDataModelManager.MODEL_NS_URI)) || super.isFactoryForType(type);
+		return (type instanceof EPackage && ((EPackage) type).getNsURI().contains(IDataModelManager.MODEL_NS_URI)) || super.isFactoryForType(type);
 	}
 
 }

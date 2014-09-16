@@ -19,21 +19,16 @@ import org.polarsys.reqcycle.traceability.types.lifecycle.Activator;
 
 public class LifeCycleProvider implements TAttributeProvider {
 
-	private static final String LIFECYCLE_ID = Activator.PLUGIN_ID
-			+ ".lifecycle";
-	private static RegisteredAttribute[] ATTRIBUTES = new RegisteredAttribute[] { createRA(
-			LIFECYCLE_ID, "lifecycle", AttributeType.STRING, new String[] {
-					"DEFINED", "VALIDATED", "TO-CHECK" }) };
+	private static final String LIFECYCLE_ID = Activator.PLUGIN_ID + ".lifecycle";
+	private static RegisteredAttribute[] ATTRIBUTES = new RegisteredAttribute[] { createRA(LIFECYCLE_ID, "lifecycle", AttributeType.STRING, new String[] { "DEFINED", "VALIDATED", "TO-CHECK" }) };
 
 	@Override
 	public Iterable<RegisteredAttribute> getAttributes() {
 		return Arrays.asList(ATTRIBUTES);
 	}
 
-	private static RegisteredAttribute createRA(String id, String name,
-			AttributeType type, String[] values) {
-		RegisteredAttribute result = TypeconfigurationFactory.eINSTANCE
-				.createRegisteredAttribute();
+	private static RegisteredAttribute createRA(String id, String name, AttributeType type, String[] values) {
+		RegisteredAttribute result = TypeconfigurationFactory.eINSTANCE.createRegisteredAttribute();
 		result.setId(id);
 		result.setName(name);
 		result.setType(type);

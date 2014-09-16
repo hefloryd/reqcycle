@@ -30,11 +30,11 @@ public class StandardUtils {
 	}
 
 	private static URI getURI(Object o) {
-		if(o instanceof URI) {
-			return (URI)o;
+		if (o instanceof URI) {
+			return (URI) o;
 		} else {
 			URI arrayToURI = arrayToURI(o);
-			if(arrayToURI != null) {
+			if (arrayToURI != null) {
 				return arrayToURI;
 			}
 		}
@@ -52,11 +52,11 @@ public class StandardUtils {
 	}
 
 	public static URI arrayToURI(Object object) {
-		if(object instanceof Object[] && ((Object[])object).length == 2) {
-			Object object0 = ((Object[])object)[0];
-			Object object1 = ((Object[])object)[1];
-			Reachable parentReachable = (Reachable)object0;
-			if(parentReachable instanceof Reachable && (object1 instanceof String || object1 instanceof Integer)) {
+		if (object instanceof Object[] && ((Object[]) object).length == 2) {
+			Object object0 = ((Object[]) object)[0];
+			Object object1 = ((Object[]) object)[1];
+			Reachable parentReachable = (Reachable) object0;
+			if (parentReachable instanceof Reachable && (object1 instanceof String || object1 instanceof Integer)) {
 				Reachable reachable = creator.getReachable(parentReachable.getURI());
 				reachable.setScheme(SCHEME);
 				reachable.setFragment(object1.toString());

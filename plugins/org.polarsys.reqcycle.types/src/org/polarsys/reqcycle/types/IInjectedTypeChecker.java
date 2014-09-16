@@ -17,14 +17,12 @@ import java.lang.annotation.Target;
 public interface IInjectedTypeChecker extends ITypeChecker {
 
 	public interface IValueInjecter {
-		public <T> T getValue(String typeId, String attributeName,
-				Class<T> typeOfTheAttribute);
+		public <T> T getValue(String typeId, String attributeName, Class<T> typeOfTheAttribute);
 
 	}
 
 	/**
-	 * Annotation to put on fields where value shall be injected the current
-	 * authorized types are : String, int, boolean,
+	 * Annotation to put on fields where value shall be injected the current authorized types are : String, int, boolean,
 	 * 
 	 * @author tfaure
 	 * 
@@ -33,7 +31,7 @@ public interface IInjectedTypeChecker extends ITypeChecker {
 	@Target(ElementType.FIELD)
 	public @interface InjectValue {
 	}
-	
+
 	/**
 	 * Annotation to put on fields where element name shall be injected
 	 * 
@@ -43,7 +41,7 @@ public interface IInjectedTypeChecker extends ITypeChecker {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface InjectValueName {
-		//Element type
+		// Element type
 		Class<?> type();
 	}
 

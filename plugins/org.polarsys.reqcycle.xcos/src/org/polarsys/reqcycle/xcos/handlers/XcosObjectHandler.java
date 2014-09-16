@@ -8,7 +8,6 @@
  *    Raphael Faudou (Samares Engineering) - initial API and implementation and/or initial documentation
  *******************************************************************************/
 
-
 package org.polarsys.reqcycle.xcos.handlers;
 
 import static org.polarsys.reqcycle.xcos.utils.XcosUtils.XcosExtension;
@@ -22,7 +21,6 @@ import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.xcos.model.XcosElement;
 import org.polarsys.reqcycle.xcos.model.XcosModel;
 import org.polarsys.reqcycle.xcos.utils.XcosUtils;
-
 
 /**
  * @author R. Faudou
@@ -56,32 +54,31 @@ public class XcosObjectHandler implements IObjectHandler {
 			XcosElement xce = (XcosElement) object;
 			return XcosUtils.getReachable(xce);
 		}
-		
+
 		return null;
 	}
 
 	@SuppressWarnings("restriction")
 	@Override
 	public boolean handlesObject(Object object) {
-		
+
 		// in case this is a file, we must ensure that it is xcos extension.
 		// else we care only of XcosElements.
-		
+
 		if (object instanceof IFile) {
 			IFile file = (IFile) object;
 			if (XcosExtension.equalsIgnoreCase(file.getFileExtension())) {
-				//TODO real handleObject for Xcos
+				// TODO real handleObject for Xcos
 				return true;
 			}
 		}
 		// -RF- TODO to fix - bad test
-		/*if (object instanceof Resource) {
-			// -RF- to fix return true;
-			
-		}*/
+		/*
+		 * if (object instanceof Resource) { // -RF- to fix return true;
+		 * 
+		 * }
+		 */
 		return (object instanceof XcosElement);
 	}
-
-
 
 }

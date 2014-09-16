@@ -15,15 +15,15 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 
-public class TraceableEqualsToTraceableElement implements Predicate<TraceableElement>{
+public class TraceableEqualsToTraceableElement implements Predicate<TraceableElement> {
 	private Reachable t;
 
-	public TraceableEqualsToTraceableElement  (Reachable  t){
+	public TraceableEqualsToTraceableElement(Reachable t) {
 		this.t = t;
 	}
-	
+
 	@Override
 	public boolean apply(TraceableElement eleme) {
-		return Objects.equal(t.toString(),eleme.getUri());
+		return Objects.equal(t.toString(), eleme.getUri());
 	}
 }

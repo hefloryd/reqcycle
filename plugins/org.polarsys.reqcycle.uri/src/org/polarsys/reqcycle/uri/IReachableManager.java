@@ -25,8 +25,7 @@ public interface IReachableManager {
 	 * @throws IReachableHandlerException
 	 *             if no {@link IReachableHandler} can handle t
 	 */
-	IReachableHandler getHandlerFromReachable(Reachable t)
-			throws IReachableHandlerException;
+	IReachableHandler getHandlerFromReachable(Reachable t) throws IReachableHandlerException;
 
 	/**
 	 * Returns a {@link IReachableHandler} from a {@link Reachable}
@@ -37,7 +36,6 @@ public interface IReachableManager {
 	 * @throws IReachableHandlerException
 	 *             if no {@link IReachableHandler} can handle u
 	 */
-	IObjectHandler getHandlerFromObject(Object o)
-			throws IReachableHandlerException;
+	IObjectHandler getHandlerFromObject(Object o) throws IReachableHandlerException;
 
 }

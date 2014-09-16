@@ -28,14 +28,12 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 //FIXME : Don't use a container given in the constructor (Or don't copy the container at each display)
-public class PreferenceDialogTypesContentProvider extends
-		AdapterFactoryContentProvider {
+public class PreferenceDialogTypesContentProvider extends AdapterFactoryContentProvider {
 	@Inject
 	private ITypesManager typesManager;
 	private TypeConfigContainer container;
 
-	public PreferenceDialogTypesContentProvider(AdapterFactory adapterFactory,
-			TypeConfigContainer container) {
+	public PreferenceDialogTypesContentProvider(AdapterFactory adapterFactory, TypeConfigContainer container) {
 		super(adapterFactory);
 		this.container = container;
 	}
@@ -48,23 +46,19 @@ public class PreferenceDialogTypesContentProvider extends
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof TypeConfigContainer) {
-			return Lists.newArrayList(
-					Iterables.filter(Arrays.asList(super.getChildren(object)),
-							new Predicate<Object>() {
+			return Lists.newArrayList(Iterables.filter(Arrays.asList(super.getChildren(object)), new Predicate<Object>() {
 
-								public boolean apply(Object o) {
-									boolean result = (!(o instanceof CustomType));
-									if (result) {
-										if (o instanceof Type) {
-											Type type = (Type) o;
-											return type.getIType() != null
-													&& type.getIType()
-															.getSuperType() == null;
-										}
-									}
-									return result;
-								}
-							})).toArray();
+				public boolean apply(Object o) {
+					boolean result = (!(o instanceof CustomType));
+					if (result) {
+						if (o instanceof Type) {
+							Type type = (Type) o;
+							return type.getIType() != null && type.getIType().getSuperType() == null;
+						}
+					}
+					return result;
+				}
+			})).toArray();
 		} else if (object instanceof Type) {
 			List<Object> list = new LinkedList<Object>();
 			for (Type type : container.getTypes()) {
@@ -76,9 +70,7 @@ public class PreferenceDialogTypesContentProvider extends
 				} else {
 					if (type.getIType() != null) {
 						IType superType = type.getIType().getSuperType();
-						if (superType != null
-								&& superType.getId().equals(
-										((Type) object).getTypeId())) {
+						if (superType != null && superType.getId().equals(((Type) object).getTypeId())) {
 							list.add(type);
 						}
 					}
@@ -91,7 +83,7 @@ public class PreferenceDialogTypesContentProvider extends
 	}
 
 	public void setTypeConfigContainer(TypeConfigContainer container) {
-		if(container != null) {
+		if (container != null) {
 			this.container = container;
 		}
 	}

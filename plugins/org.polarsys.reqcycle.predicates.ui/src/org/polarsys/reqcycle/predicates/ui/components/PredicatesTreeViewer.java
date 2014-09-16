@@ -27,16 +27,16 @@ public class PredicatesTreeViewer extends TreeViewer {
 
 	@Override
 	public boolean isExpandable(Object element) {
-		if(getMayExpandCustomPredicates() == false) {
-			if(element instanceof IPredicate) {
-				IPredicate predicate = (IPredicate)element;
+		if (getMayExpandCustomPredicates() == false) {
+			if (element instanceof IPredicate) {
+				IPredicate predicate = (IPredicate) element;
 				String displayName = predicate.getDisplayName();
 				Resource resource = predicate.eResource();
-				if(resource != null) {
+				if (resource != null) {
 					EList<EObject> contents = resource.getContents();
 					EObject firstContent = contents.get(0);
-					if(firstContent instanceof IPredicate) {
-						if(predicate.equals(firstContent)) {
+					if (firstContent instanceof IPredicate) {
+						if (predicate.equals(firstContent)) {
 							return super.isExpandable(element);
 						}
 					}

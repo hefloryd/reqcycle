@@ -32,16 +32,13 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractEleme
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class AbstractElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -50,8 +47,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -69,8 +65,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -81,8 +76,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Text feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Text feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -93,8 +87,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Uri feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Uri feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -105,8 +98,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Scopes feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Scopes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -116,8 +108,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -128,10 +119,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -150,9 +138,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -162,8 +148,7 @@ public class AbstractElementItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

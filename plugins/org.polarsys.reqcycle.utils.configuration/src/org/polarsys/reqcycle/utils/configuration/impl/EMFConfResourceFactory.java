@@ -35,10 +35,9 @@ public class EMFConfResourceFactory implements Resource.Factory {
 			return true;
 		}
 
-		
 		public EMFConfResource() {
 		}
-		
+
 		public EMFConfResource(URI uri) {
 			super(uri);
 		}
@@ -54,7 +53,7 @@ public class EMFConfResourceFactory implements Resource.Factory {
 			} else {
 				newOptions = Maps.newHashMap(options);
 			}
-			
+
 			newOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
 			newOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
 			newOptions.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());

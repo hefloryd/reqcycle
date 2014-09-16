@@ -28,11 +28,10 @@ public class DynamicNatureServiceImpl implements ModelNatureService {
 
 	protected Multimap<String, String> natureMap = HashMultimap.create();
 
-
 	@Override
 	public void addNature(EModelElement eObject, String natureID) throws NatureNotFoundException {
 		String fragment = EcoreUtil.getURI(eObject).fragment();
-		if(!getModelNaturesIds().contains(natureID)) {
+		if (!getModelNaturesIds().contains(natureID)) {
 			throw new NatureNotFoundException(natureID);
 		}
 		natureMap.put(fragment, natureID);
@@ -47,7 +46,7 @@ public class DynamicNatureServiceImpl implements ModelNatureService {
 	@Override
 	public boolean hasNature(EModelElement eObject, String natureID) {
 		String fragment = EcoreUtil.getURI(eObject).fragment();
-		if(!getModelNaturesIds().contains(natureID)) {
+		if (!getModelNaturesIds().contains(natureID)) {
 			return false;
 		}
 		Collection<String> naturesOfEObject = natureMap.get(fragment);

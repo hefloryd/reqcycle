@@ -34,8 +34,7 @@ public class OrderByScopesHandler extends AbstractHandler {
 		if (part instanceof RequirementView) {
 			Collection<Scope> scopes = new LinkedList<Scope>();
 
-			Collection<IDataModel> dataModels = dataModelManager
-					.getCurrentDataModels();
+			Collection<IDataModel> dataModels = dataModelManager.getCurrentDataModels();
 			Iterator<IDataModel> iterator = dataModels.iterator();
 			while (iterator.hasNext()) {
 				IDataModel next = iterator.next();

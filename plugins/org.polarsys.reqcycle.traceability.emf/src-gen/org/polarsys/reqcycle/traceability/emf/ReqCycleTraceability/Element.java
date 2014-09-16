@@ -12,18 +12,15 @@ package org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getURI
- * <em>URI</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getURI <em>URI</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getLabel
- * <em>Label</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,11 +37,9 @@ public interface Element extends EObject {
 	String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * Returns the value of the '<em><b>URI</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>URI</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>URI</em>' attribute isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>URI</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -57,9 +52,7 @@ public interface Element extends EObject {
 	String getURI();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getURI
-	 * <em>URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getURI <em>URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>URI</em>' attribute.
@@ -69,11 +62,9 @@ public interface Element extends EObject {
 	void setURI(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -86,9 +77,7 @@ public interface Element extends EObject {
 	String getLabel();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getLabel
-	 * <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Element#getLabel <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>Label</em>' attribute.

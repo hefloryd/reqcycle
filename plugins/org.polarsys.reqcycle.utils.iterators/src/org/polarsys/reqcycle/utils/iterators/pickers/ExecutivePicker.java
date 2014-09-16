@@ -14,8 +14,7 @@ import org.polarsys.reqcycle.utils.iterators.exceptions.PickerExecutionException
 import org.polarsys.reqcycle.utils.iterators.handlers.PickingHandler;
 
 /**
- * Picker that will perform an additional treatment after each getNext() method,
- * depending on the handlers that it is provided with.
+ * Picker that will perform an additional treatment after each getNext() method, depending on the handlers that it is provided with.
  * 
  */
 public abstract class ExecutivePicker implements IPicker {
@@ -30,16 +29,15 @@ public abstract class ExecutivePicker implements IPicker {
 	}
 
 	/**
-	 * Simple addition of a treatment right after the retrieval of
-	 * the element's children.
+	 * Simple addition of a treatment right after the retrieval of the element's children.
 	 * 
 	 * @throws Exception
 	 */
 	public Iterable<?> getNexts(Object element) throws PickerExecutionException {
 		Iterable<?> nexts = basicPicker.getNexts(element);
 		Iterable<PickingHandler> handlers = this.retrieveHandlers();
-		if(handlers != null) {
-			for(PickingHandler handler : handlers) {
+		if (handlers != null) {
+			for (PickingHandler handler : handlers) {
 				handler.performTreatment(this, element, nexts);
 			}
 		}
@@ -47,9 +45,7 @@ public abstract class ExecutivePicker implements IPicker {
 	}
 
 	/**
-	 * Method to retrieve the handlers that will actively perform the additional
-	 * treatment(s) the ExecutivePicker has to perform. It has to be implemented,
-	 * depending on which handlers are to be added to the picker.
+	 * Method to retrieve the handlers that will actively perform the additional treatment(s) the ExecutivePicker has to perform. It has to be implemented, depending on which handlers are to be added to the picker.
 	 */
 	protected abstract Iterable<PickingHandler> retrieveHandlers();
 

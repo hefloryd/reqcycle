@@ -49,14 +49,12 @@ import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 
 	/**
-	 * The TreeViewer that will contain the model to edit (the model to which
-	 * the predicate is going to be applied).
+	 * The TreeViewer that will contain the model to edit (the model to which the predicate is going to be applied).
 	 */
 	private TreeViewer treeViewer;
 
 	/**
-	 * The collection of EClass of the model to which we are going to apply the
-	 * predicate.
+	 * The collection of EClass of the model to which we are going to apply the predicate.
 	 */
 	private final Collection<EClass> eClassesOfModelToEdit;
 
@@ -68,10 +66,7 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 	/** The EAttribute selected */
 	private EAttribute selectedEAttribute;
 
-	public IEAttrPredicatesNodeEditorDialog(final Shell parentShell,
-			final IEAttrPredicate eAttrPredicate,
-			final Collection<EClass> eClassesOfModelToEdit,
-			final boolean useExtendedFeature) {
+	public IEAttrPredicatesNodeEditorDialog(final Shell parentShell, final IEAttrPredicate eAttrPredicate, final Collection<EClass> eClassesOfModelToEdit, final boolean useExtendedFeature) {
 		super(parentShell);
 		this.eAttrPredicate = eAttrPredicate;
 		this.eClassesOfModelToEdit = eClassesOfModelToEdit;
@@ -95,8 +90,7 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		treeViewer.setContentProvider(new EClassContentProvider());
 		treeViewer.setLabelProvider(new EClassLabelProvider());
-		treeViewer
-				.addSelectionChangedListener(new SelectionChangedListenerImpl());
+		treeViewer.addSelectionChangedListener(new SelectionChangedListenerImpl());
 		treeViewer.setInput(this.eClassesOfModelToEdit);
 	}
 
@@ -107,10 +101,8 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	@Override
@@ -126,8 +118,7 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == IDialogConstants.OK_ID) {
 			if (this.selectedEAttribute == null) {
-				MessageDialog.openError(getShell(), "Error",
-						"An attribute must be selected");
+				MessageDialog.openError(getShell(), "Error", "An attribute must be selected");
 				return; // do not accept the OK ...
 			}
 		}
@@ -156,22 +147,18 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 		public Object[] getChildren(Object parentElement) {
 			if (!useExtendedFeature) {
 				if (parentElement instanceof EClass) {
-					return ((EClass) parentElement).getEAllAttributes()
-							.toArray();
+					return ((EClass) parentElement).getEAllAttributes().toArray();
 				}
 			} else {
 				if (parentElement instanceof EClass) {
-					return ((EClass) parentElement).getEAllStructuralFeatures()
-							.toArray();
+					return ((EClass) parentElement).getEAllStructuralFeatures().toArray();
 
 				} else if (parentElement instanceof EReference) {
 					return ((EReference) parentElement).eContents().toArray();
 				} else if (parentElement instanceof EGenericType) {
-					final EClassifier classifier = ((EGenericType) parentElement)
-							.getEClassifier();
+					final EClassifier classifier = ((EGenericType) parentElement).getEClassifier();
 					if (classifier != null && (classifier instanceof EClass)) {
-						return ((EClass) classifier)
-								.getEAllStructuralFeatures().toArray();
+						return ((EClass) classifier).getEAllStructuralFeatures().toArray();
 					}
 				}
 			}
@@ -222,14 +209,11 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 	}
 
 	/**
-	 * This ISelectionChangedListener shows the correct IEAttrPropsEditor to use
-	 * when the current selection is positioned onto an attribute. If the
-	 * selection is not an attribute, no properties editor will be shown.
+	 * This ISelectionChangedListener shows the correct IEAttrPropsEditor to use when the current selection is positioned onto an attribute. If the selection is not an attribute, no properties editor will be shown.
 	 * 
 	 * @see ModelAttributesViewerFilter
 	 */
-	private class SelectionChangedListenerImpl implements
-			ISelectionChangedListener {
+	private class SelectionChangedListenerImpl implements ISelectionChangedListener {
 
 		public SelectionChangedListenerImpl() {
 		}
@@ -238,8 +222,7 @@ public class IEAttrPredicatesNodeEditorDialog extends Dialog {
 		public void selectionChanged(SelectionChangedEvent event) {
 			if (event.getSelection() instanceof IStructuredSelection) {
 
-				final IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
+				final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				final Object selectedObject = selection.getFirstElement();
 
 				if (selectedObject instanceof EAttribute) {

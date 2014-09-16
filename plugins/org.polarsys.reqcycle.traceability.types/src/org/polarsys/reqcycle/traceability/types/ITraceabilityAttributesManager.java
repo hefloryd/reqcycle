@@ -17,9 +17,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 public interface ITraceabilityAttributesManager {
 
 	/**
-	 * Returns a {@link Collection} of {@link EditableAttribute} of a
-	 * {@link Reachable}. The attributes returned are those defined in the
-	 * enabled configuration
+	 * Returns a {@link Collection} of {@link EditableAttribute} of a {@link Reachable}. The attributes returned are those defined in the enabled configuration
 	 * 
 	 * @param reachable
 	 * @return

@@ -15,9 +15,7 @@ import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Basic</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Basic</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -25,15 +23,15 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
  */
 public class BasicImpl extends CaseStyleImpl implements Basic {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BasicImpl() {
@@ -41,8 +39,8 @@ public class BasicImpl extends CaseStyleImpl implements Basic {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -50,4 +48,4 @@ public class BasicImpl extends CaseStyleImpl implements Basic {
 		return StylingPackage.Literals.BASIC;
 	}
 
-} //BasicImpl
+} // BasicImpl

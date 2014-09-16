@@ -29,8 +29,7 @@ public class TraceTypesManager implements ITraceTypesManager {
 	ITypesManager manager;
 
 	Map<String, TType> map = new ExtensionPointReader().readTTypes();
-	Map<String, RegisteredAttribute> mapAtt = new ExtensionPointReader()
-			.readAttributes();
+	Map<String, RegisteredAttribute> mapAtt = new ExtensionPointReader().readAttributes();
 
 	@Override
 	public Iterable<TType> getAllTTypes() {

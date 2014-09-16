@@ -44,9 +44,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 
 	private static final String MODEL_NATURE_EXTENSION_POINT_ID = ModelNaturePlugin.PLUGIN_ID + ".modelnature"; //$NON-NLS-1$
 
-
 	protected static final String SEPARATOR = ";";
-
 
 	protected static final String NATURE_ANNOTATION_KEY = "MODEL_NATURES";
 
@@ -54,12 +52,12 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 
 	@Override
 	public void addNature(final EModelElement eObject, String natureID) throws NatureNotFoundException {
-		//No need to add the nature if the eObject already has it.
-		if(hasNature(eObject, natureID)) {
+		// No need to add the nature if the eObject already has it.
+		if (hasNature(eObject, natureID)) {
 			return;
 		}
 
-		if(!getModelNaturesIds().contains(natureID)) {
+		if (!getModelNaturesIds().contains(natureID)) {
 			throw new NatureNotFoundException(natureID);
 		}
 		String[] natures = getNatures(eObject);
@@ -82,7 +80,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 
 	@Override
 	public void removeNature(final EModelElement eObject, String natureID) throws NatureNotFoundException {
-		if(!getModelNaturesIds().contains(natureID)) {
+		if (!getModelNaturesIds().contains(natureID)) {
 			throw new NatureNotFoundException(natureID);
 		}
 		String[] natures = getNatures(eObject);
@@ -93,7 +91,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 		safeExecute(new AbstractCommand() {
 
 			public void execute() {
-				if(newNaturesAsString.isEmpty()) {
+				if (newNaturesAsString.isEmpty()) {
 					EcoreUtil.setAnnotation(eObject, NATURE_SOURCE_URI, NATURE_ANNOTATION_KEY, null);
 				} else {
 					EcoreUtil.setAnnotation(eObject, NATURE_SOURCE_URI, NATURE_ANNOTATION_KEY, newNaturesAsString);
@@ -109,7 +107,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 
 	@Override
 	public boolean hasNature(EModelElement eObject, String natureID) {
-		if(!getModelNaturesIds().contains(natureID)) {
+		if (!getModelNaturesIds().contains(natureID)) {
 			return false;
 		}
 		String[] natures = getNatures(eObject);
@@ -125,7 +123,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 	 */
 	protected String[] getNatures(EModelElement eObject) {
 		String annotation = EcoreUtil.getAnnotation(eObject, NATURE_SOURCE_URI, NATURE_ANNOTATION_KEY);
-		if(annotation != null) {
+		if (annotation != null) {
 			String[] naturesAsArray = annotation.split(SEPARATOR); //$NON-NLS-1$
 			return naturesAsArray;
 		}
@@ -140,11 +138,11 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 	 */
 	protected String naturesAsString(List<String> natures) {
 		StringBuilder builder = new StringBuilder();
-		if(natures.size() > 0) {
-			for(int i = 0; i < natures.size(); i++) {
+		if (natures.size() > 0) {
+			for (int i = 0; i < natures.size(); i++) {
 				String nature = natures.get(i);
-				if(getModelNaturesIds().contains(nature)) {
-					if(i > 0) {
+				if (getModelNaturesIds().contains(nature)) {
+					if (i > 0) {
 						builder.append(SEPARATOR);
 					}
 					builder.append(nature);
@@ -161,7 +159,7 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 	 * @param domain
 	 */
 	protected void safeExecute(final Command command, TransactionalEditingDomain domain) {
-		if(domain == null) {
+		if (domain == null) {
 			command.execute();
 		} else {
 			RecordingCommand recordingCommand = new RecordingCommand(domain) {
@@ -179,13 +177,13 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 
 	@Override
 	public Collection<ModelNature> getModelNatures() {
-		if(natures == null) {
+		if (natures == null) {
 			natures = new HashMap<String, ModelNature>();
 			IExtensionRegistry reg = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = reg.getExtensionPoint(MODEL_NATURE_EXTENSION_POINT_ID);
 
-			for(IExtension extension : extensionPoint.getExtensions()) {
-				for(IConfigurationElement e : extension.getConfigurationElements()) {
+			for (IExtension extension : extensionPoint.getExtensions()) {
+				for (IConfigurationElement e : extension.getConfigurationElements()) {
 					String id = e.getAttribute("id"); //$NON-NLS-1$
 					String description = e.getAttribute("description");
 					String name = e.getAttribute("name");
@@ -207,6 +205,5 @@ public class SerializedNatureServiceImpl implements ModelNatureService {
 			}
 		});
 	}
-
 
 }

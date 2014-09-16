@@ -55,7 +55,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
 	@Inject
 	IReqCycleOperationManager reqCycleOperationlManager;
-	
+
 	private Segment segment;
 	private Text constantText;
 	private Text modelText;
@@ -107,15 +107,12 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 		lblColor.setText("Color :");
 
 		colorSelector = new ColorSelector(area);
-		colorSelector.setColorValue(new RGB(segment.getColor().getRed(),
-				segment.getColor().getGreen(), segment.getColor().getBlue()));
-		colorSelector.getButton().setLayoutData(
-				new GridData(SWT.LEFT, SWT.CENTER, false, false, 7, 1));
+		colorSelector.setColorValue(new RGB(segment.getColor().getRed(), segment.getColor().getGreen(), segment.getColor().getBlue()));
+		colorSelector.getButton().setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 7, 1));
 		colorSelector.getButton().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				segment.setColor(new Color(Display.getDefault(), colorSelector
-						.getColorValue()));
+				segment.setColor(new Color(Display.getDefault(), colorSelector.getColorValue()));
 				handleStyle();
 			}
 
@@ -163,8 +160,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
 		btnUnderline = new Button(area, SWT.CHECK);
 		btnUnderline.setText("U");
-		if (segment.getStyle().getAppliedFonts()
-				.contains(FontOption.UNDERLINE)) {
+		if (segment.getStyle().getAppliedFonts().contains(FontOption.UNDERLINE)) {
 			btnUnderline.setSelection(true);
 		}
 		btnUnderline.addSelectionListener(new SelectionListener() {
@@ -204,8 +200,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 		constantButton.addSelectionListener(new SegmentSelectionListener());
 
 		constantText = new Text(area, SWT.BORDER);
-		constantText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 7, 1));
+		constantText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 7, 1));
 		constantText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
@@ -213,8 +208,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 				if (pattern instanceof ConstantPattern) {
 					((ConstantPattern) pattern).setValue(constantText.getText());
 				} else {
-					ConstantPattern newPattern = StylingFactory.eINSTANCE
-							.createConstantPattern();
+					ConstantPattern newPattern = StylingFactory.eINSTANCE.createConstantPattern();
 					newPattern.setValue(constantText.getText());
 					segment.setPattern(newPattern);
 				}
@@ -229,8 +223,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 		modelText = new Text(area, SWT.BORDER);
 		modelText.setEditable(false);
 		modelText.setEnabled(false);
-		modelText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				6, 1));
+		modelText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 6, 1));
 
 		btnLoadResources = new Button(area, SWT.NONE);
 		btnLoadResources.setText("...");
@@ -239,14 +232,12 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SelectModelDialog dialog = new SelectModelDialog(Display
-						.getDefault().getActiveShell());
+				SelectModelDialog dialog = new SelectModelDialog(Display.getDefault().getActiveShell());
 				int result = dialog.open();
 				if (result == Window.OK) {
 					IAttribute att = dialog.getResult();
 					String attributeName = att.getName();
-					ModelPattern pattern = StylingFactory.eINSTANCE
-							.createModelPattern();
+					ModelPattern pattern = StylingFactory.eINSTANCE.createModelPattern();
 					pattern.setAttributeName(attributeName);
 					segment.setPattern(pattern);
 					modelText.setText(attributeName);
@@ -263,8 +254,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 		operationText = new Text(area, SWT.BORDER);
 		operationText.setEditable(false);
 		operationText.setEnabled(false);
-		operationText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 5, 1));
+		operationText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 5, 1));
 
 		btnOperation = new Button(area, SWT.NONE);
 		btnOperation.setText("...");
@@ -272,8 +262,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SelectOperationDialog dialog = new SelectOperationDialog(
-						Display.getDefault().getActiveShell());
+				SelectOperationDialog dialog = new SelectOperationDialog(Display.getDefault().getActiveShell());
 				int result = dialog.open();
 				if (result == Window.OK) {
 					ReqCycleOperation op = dialog.getResult();
@@ -303,8 +292,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 						btnEditOperation.setEnabled(true);
 					} else {
 						btnEditOperation.setEnabled(false);
-						OperationPattern pattern = StylingFactory.eINSTANCE
-								.createOperationPattern();
+						OperationPattern pattern = StylingFactory.eINSTANCE.createOperationPattern();
 						pattern.setOperation(method.getName());
 
 						segment.setPattern(pattern);
@@ -321,40 +309,33 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				OperationAttributesEditor dialog = new OperationAttributesEditor(
-						Display.getDefault().getActiveShell(), method);
+				OperationAttributesEditor dialog = new OperationAttributesEditor(Display.getDefault().getActiveShell(), method);
 				int result = dialog.open();
 				if (result == Window.OK) {
-					OperationPattern pattern = StylingFactory.eINSTANCE
-							.createOperationPattern();
+					OperationPattern pattern = StylingFactory.eINSTANCE.createOperationPattern();
 					pattern.setOperation(method.getName());
 
-					for (Map.Entry<String, GenericEAttrPropsEditor> entry : dialog
-							.getEditors().entrySet()) {
+					for (Map.Entry<String, GenericEAttrPropsEditor> entry : dialog.getEditors().entrySet()) {
 						GenericEAttrPropsEditor editor = entry.getValue();
 
 						Object obj = editor.getEnteredValue();
 						if (obj instanceof String) {
-							StringParameter param = StylingFactory.eINSTANCE
-									.createStringParameter();
+							StringParameter param = StylingFactory.eINSTANCE.createStringParameter();
 							param.setName(entry.getKey());
 							param.setValue((String) obj);
 							pattern.getParameters().add(param);
 						} else if (obj instanceof Integer) {
-							IntParameter param = StylingFactory.eINSTANCE
-									.createIntParameter();
+							IntParameter param = StylingFactory.eINSTANCE.createIntParameter();
 							param.setName(entry.getKey());
 							param.setValue((Integer) obj);
 							pattern.getParameters().add(param);
 						} else if (obj instanceof Boolean) {
-							BooleanParameter param = StylingFactory.eINSTANCE
-									.createBooleanParameter();
+							BooleanParameter param = StylingFactory.eINSTANCE.createBooleanParameter();
 							param.setName(entry.getKey());
 							param.setValue((Boolean) obj);
 							pattern.getParameters().add(param);
 						} else if (obj instanceof EObject) {
-							EObjectParameter param = StylingFactory.eINSTANCE
-									.createEObjectParameter();
+							EObjectParameter param = StylingFactory.eINSTANCE.createEObjectParameter();
 							param.setName(entry.getKey());
 							param.setValue((EObject) obj);
 							pattern.getParameters().add(param);
@@ -369,14 +350,12 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 		initRadioButtons();
 
 		styledText = new StyledText(area, SWT.BORDER);
-		styledText.setBackground(SWTResourceManager
-				.getColor(SWT.COLOR_WIDGET_BACKGROUND));
+		styledText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
 		styledText.setAlignment(SWT.CENTER);
 		styledText.setText("The quick brown fox jumps over the lazy dog");
 		styledText.setEditable(false);
 		styledText.setEnabled(false);
-		styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
-				8, 1));
+		styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 8, 1));
 
 		handleStyle();
 
@@ -451,7 +430,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 			String operationName = ((OperationPattern) pattern).getOperation();
 			operationText.setText(operationName);
 			operationButton.setSelection(true);
-			
+
 			EList<Parameter> paramList = ((OperationPattern) pattern).getParameters();
 			Class<?>[] listTypes = new Class<?>[paramList.size()];
 			for (int i = 0; i < paramList.size(); i++) {
@@ -469,8 +448,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 					return;
 				}
 			}
-			ReqCycleOperation op = reqCycleOperationlManager.getOperationForEditingAttributes(
-					operationName, listTypes);
+			ReqCycleOperation op = reqCycleOperationlManager.getOperationForEditingAttributes(operationName, listTypes);
 			if (op != null) {
 				method = op.getMethod();
 				if (paramList.size() > 0) {

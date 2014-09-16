@@ -27,13 +27,11 @@ public class IconRegistry {
 
 	private static Map<String, Descriptor> init() {
 		Map<String, Descriptor> result = new HashMap<String, Descriptor>();
-		IConfigurationElement[] elements = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
 		for (IConfigurationElement e : elements) {
 			String pluginId = e.getContributor().getName();
 			String path = e.getAttribute("path");
-			ImageDescriptor createFromURL = ImageDescriptor
-					.createFromURL(Platform.getBundle(pluginId).getEntry(path));
+			ImageDescriptor createFromURL = ImageDescriptor.createFromURL(Platform.getBundle(pluginId).getEntry(path));
 			String id = pluginId + path;
 			JFaceResources.getImageRegistry().put(id, createFromURL);
 			Descriptor d = new Descriptor();

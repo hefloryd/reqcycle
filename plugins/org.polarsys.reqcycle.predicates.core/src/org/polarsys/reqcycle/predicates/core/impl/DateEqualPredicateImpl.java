@@ -19,9 +19,7 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Date Equal Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Date Equal Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -30,8 +28,8 @@ import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
 public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements DateEqualPredicate {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DateEqualPredicateImpl() {
@@ -39,8 +37,8 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,9 +47,8 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,9 +57,8 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,4 +66,4 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 		super.setExpectedObject(newExpectedObject);
 	}
 
-} //DateEqualPredicateImpl
+} // DateEqualPredicateImpl

@@ -28,23 +28,18 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Abstract Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Abstract Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getId
- * <em>Id</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getId <em>Id</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getText
- * <em>Text</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getText <em>Text</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getUri
- * <em>Uri</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getUri <em>Uri</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getScopes
- * <em>Scopes</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getScopes <em>Scopes</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,8 +47,7 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
  */
 public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container implements AbstractElement {
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -62,8 +56,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -72,8 +65,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected String id = ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getText() <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
 	 * @generated
@@ -82,8 +74,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected static final String TEXT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
 	 * @generated
@@ -92,8 +83,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUri()
 	 * @generated
@@ -102,8 +92,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected static final String URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUri()
 	 * @generated
@@ -112,8 +101,7 @@ public abstract class AbstractElementImpl extends MinimalEObjectImpl.Container i
 	protected String uri = URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScopes() <em>Scopes</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getScopes() <em>Scopes</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getScopes()
 	 * @generated

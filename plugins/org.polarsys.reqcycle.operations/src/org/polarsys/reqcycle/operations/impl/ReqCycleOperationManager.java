@@ -33,18 +33,16 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 	public Collection<ReqCycleOperation> getAllOperations() {
 		return allOperations;
 	}
-	
+
 	public Collection<ReqCycleOperation> doGetAllOperations() {
 		Collection<ReqCycleOperation> result = Lists.newArrayList();
-		IConfigurationElement[] elements = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID);
 		Class c = null;
 		Object instance = null;
-		
+
 		for (IConfigurationElement e : elements) {
 			try {
-				c = Platform.getBundle(e.getContributor().getName()).loadClass(
-						e.getAttribute("path"));
+				c = Platform.getBundle(e.getContributor().getName()).loadClass(e.getAttribute("path"));
 
 				instance = c.newInstance();
 				ZigguratInject.inject(instance);
@@ -63,8 +61,7 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 				for (Method m : method) {
 					if (m.isAnnotationPresent(IOperation.class)) {
 						IOperation op = m.getAnnotation(IOperation.class);
-						ReqCycleOperation reqCycleOp = new ReqCycleOperation(
-								m.getName(), op.value(), instance, m);
+						ReqCycleOperation reqCycleOp = new ReqCycleOperation(m.getName(), op.value(), instance, m);
 						result.add(reqCycleOp);
 					}
 				}
@@ -92,7 +89,7 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public ReqCycleOperation getOperationForEditingAttributes(String name, Class<?>[] listClass) {
 		for (ReqCycleOperation op : allOperations) {
@@ -111,6 +108,5 @@ public class ReqCycleOperationManager implements IReqCycleOperationManager {
 		}
 		return null;
 	}
-	
 
 }

@@ -18,11 +18,9 @@ import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine;
  * @author tfaure
  * 
  */
-public interface IBuildingTraceabilityEngine extends ITraceabilityEngine,
-		IBuilderCallBack {
+public interface IBuildingTraceabilityEngine extends ITraceabilityEngine, IBuilderCallBack {
 	/**
-	 * This string can be used as an option to prevent the check of the cache if
-	 * set to FALSE the cache is not checked
+	 * This string can be used as an option to prevent the check of the cache if set to FALSE the cache is not checked
 	 */
 	public static String OPTION_CHECK_CACHE = "optionCheckCache";
 

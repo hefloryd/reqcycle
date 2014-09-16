@@ -21,8 +21,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 
 import com.google.common.base.Function;
 
-public class TraceableElement2Traceable implements
-		Function<TraceableElement, Reachable> {
+public class TraceableElement2Traceable implements Function<TraceableElement, Reachable> {
 	@Inject
 	IReachableCreator creator;
 

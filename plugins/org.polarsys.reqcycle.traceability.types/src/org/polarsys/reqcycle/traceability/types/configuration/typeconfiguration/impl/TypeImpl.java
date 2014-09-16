@@ -30,15 +30,14 @@ import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Type</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getTypeId <em>Type Id</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getOutgoings <em>Outgoings</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getIncomings <em>Incomings</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#isIsExtensible <em>Is Extensible</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getTypeId <em>Type Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getOutgoings <em>Outgoings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#getIncomings <em>Incomings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.TypeImpl#isIsExtensible <em>Is Extensible</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,8 +47,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	private ITypesManager manager = ZigguratInject.make(ITypesManager.class);
 
 	/**
-	 * The default value of the '{@link #getTypeId() <em>Type Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getTypeId() <em>Type Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTypeId()
 	 * @generated
 	 * @ordered
@@ -57,8 +56,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	protected static final String TYPE_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTypeId() <em>Type Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTypeId() <em>Type Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTypeId()
 	 * @generated
 	 * @ordered
@@ -66,8 +65,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	protected String typeId = TYPE_ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOutgoings() <em>Outgoings</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOutgoings() <em>Outgoings</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOutgoings()
 	 * @generated
 	 * @ordered
@@ -75,8 +74,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	protected EList<Relation> outgoings;
 
 	/**
-	 * The cached value of the '{@link #getIncomings() <em>Incomings</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomings() <em>Incomings</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncomings()
 	 * @generated
 	 * @ordered
@@ -84,9 +83,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	protected EList<Relation> incomings;
 
 	/**
-	 * The default value of the '{@link #isIsExtensible() <em>Is Extensible</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #isIsExtensible() <em>Is Extensible</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isIsExtensible()
 	 * @generated
 	 * @ordered
@@ -94,8 +92,8 @@ public class TypeImpl extends EObjectImpl implements Type {
 	protected static final boolean IS_EXTENSIBLE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsExtensible() <em>Is Extensible</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isIsExtensible() <em>Is Extensible</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isIsExtensible()
 	 * @generated
 	 * @ordered
@@ -104,6 +102,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TypeImpl() {
@@ -112,6 +111,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,6 +121,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTypeId() {
@@ -129,6 +130,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTypeId(String newTypeId) {
@@ -140,6 +142,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Relation> getOutgoings() {
@@ -151,6 +154,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Relation> getIncomings() {
@@ -162,6 +166,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsExtensible() {
@@ -170,6 +175,7 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsExtensible(boolean newIsExtensible) {
@@ -190,131 +196,137 @@ public class TypeImpl extends EObjectImpl implements Type {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoings()).basicAdd(otherEnd, msgs);
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomings()).basicAdd(otherEnd, msgs);
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoings()).basicAdd(otherEnd, msgs);
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomings()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				return ((InternalEList<?>)getOutgoings()).basicRemove(otherEnd, msgs);
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				return ((InternalEList<?>)getIncomings()).basicRemove(otherEnd, msgs);
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			return ((InternalEList<?>) getOutgoings()).basicRemove(otherEnd, msgs);
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			return ((InternalEList<?>) getIncomings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__TYPE_ID:
-				return getTypeId();
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				return getOutgoings();
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				return getIncomings();
-			case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
-				return isIsExtensible();
+		case TypeconfigurationPackage.TYPE__TYPE_ID:
+			return getTypeId();
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			return getOutgoings();
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			return getIncomings();
+		case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
+			return isIsExtensible();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__TYPE_ID:
-				setTypeId((String)newValue);
-				return;
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				getOutgoings().clear();
-				getOutgoings().addAll((Collection<? extends Relation>)newValue);
-				return;
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				getIncomings().clear();
-				getIncomings().addAll((Collection<? extends Relation>)newValue);
-				return;
-			case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
-				setIsExtensible((Boolean)newValue);
-				return;
+		case TypeconfigurationPackage.TYPE__TYPE_ID:
+			setTypeId((String) newValue);
+			return;
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			getOutgoings().clear();
+			getOutgoings().addAll((Collection<? extends Relation>) newValue);
+			return;
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			getIncomings().clear();
+			getIncomings().addAll((Collection<? extends Relation>) newValue);
+			return;
+		case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
+			setIsExtensible((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__TYPE_ID:
-				setTypeId(TYPE_ID_EDEFAULT);
-				return;
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				getOutgoings().clear();
-				return;
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				getIncomings().clear();
-				return;
-			case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
-				setIsExtensible(IS_EXTENSIBLE_EDEFAULT);
-				return;
+		case TypeconfigurationPackage.TYPE__TYPE_ID:
+			setTypeId(TYPE_ID_EDEFAULT);
+			return;
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			getOutgoings().clear();
+			return;
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			getIncomings().clear();
+			return;
+		case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
+			setIsExtensible(IS_EXTENSIBLE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.TYPE__TYPE_ID:
-				return TYPE_ID_EDEFAULT == null ? typeId != null : !TYPE_ID_EDEFAULT.equals(typeId);
-			case TypeconfigurationPackage.TYPE__OUTGOINGS:
-				return outgoings != null && !outgoings.isEmpty();
-			case TypeconfigurationPackage.TYPE__INCOMINGS:
-				return incomings != null && !incomings.isEmpty();
-			case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
-				return isExtensible != IS_EXTENSIBLE_EDEFAULT;
+		case TypeconfigurationPackage.TYPE__TYPE_ID:
+			return TYPE_ID_EDEFAULT == null ? typeId != null : !TYPE_ID_EDEFAULT.equals(typeId);
+		case TypeconfigurationPackage.TYPE__OUTGOINGS:
+			return outgoings != null && !outgoings.isEmpty();
+		case TypeconfigurationPackage.TYPE__INCOMINGS:
+			return incomings != null && !incomings.isEmpty();
+		case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
+			return isExtensible != IS_EXTENSIBLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (typeId: ");

@@ -21,7 +21,7 @@ import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
 public class XcosIDContributor implements IIDContributor {
-	
+
 	@Inject
 	IReachableCreator creator;
 
@@ -34,21 +34,19 @@ public class XcosIDContributor implements IIDContributor {
 
 	@Override
 	public Reachable getReachable(String logicalID) {
-		
-			URI uri;
-			try {
-				uri = new URI(logicalID);
-				Reachable r = creator.getReachable(uri);
-				return r;
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
-			return null;
-			
-		
+
+		URI uri;
+		try {
+			uri = new URI(logicalID);
+			Reachable r = creator.getReachable(uri);
+			return r;
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return null;
+
 	}
 
 }

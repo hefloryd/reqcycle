@@ -22,8 +22,7 @@ import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTrace
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -36,8 +35,7 @@ public class ReqCycleTraceabilityFactoryImpl extends EFactoryImpl implements Req
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -54,8 +52,7 @@ public class ReqCycleTraceabilityFactoryImpl extends EFactoryImpl implements Req
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

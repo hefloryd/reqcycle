@@ -17,9 +17,7 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.CacheTracabilityPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -27,8 +25,8 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
  */
 public class AttributeImpl extends MinimalEObjectImpl.Container implements Attribute {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttributeImpl() {
@@ -36,8 +34,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -46,8 +44,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,4 +53,4 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		return 0;
 	}
 
-} //AttributeImpl
+} // AttributeImpl

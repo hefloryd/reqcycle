@@ -33,8 +33,7 @@ import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
-public class AttributesConfigurationBuildingDecoration extends
-		IBuildingDecorationAdapter {
+public class AttributesConfigurationBuildingDecoration extends IBuildingDecorationAdapter {
 
 	@Inject
 	protected ITypesConfigurationProvider provider;
@@ -73,9 +72,7 @@ public class AttributesConfigurationBuildingDecoration extends
 	}
 
 	@Override
-	public boolean newUpwardRelation(IBuilderCallBack callBack,
-			Object traceability, Object resource, Object source,
-			List<? extends Object> targets, TType kind) {
+	public boolean newUpwardRelation(IBuilderCallBack callBack, Object traceability, Object resource, Object source, List<? extends Object> targets, TType kind) {
 		if (kind instanceof RelationBasedType) {
 			// prevent recursive call
 			return true;
@@ -89,18 +86,13 @@ public class AttributesConfigurationBuildingDecoration extends
 		boolean newOne = true;
 		for (Object t : targets) {
 			Reachable reachableTarget = getReachable(t);
-			Iterable<Relation> relations = RelationUtils
-					.getAgregatingRelations(kind, defaultConfiguration,
-							reachableSource, reachableTarget, DIRECTION.UPWARD);
+			Iterable<Relation> relations = RelationUtils.getAgregatingRelations(kind, defaultConfiguration, reachableSource, reachableTarget, DIRECTION.UPWARD);
 			for (Relation r : relations) {
 				newOne = false;
 				RelationBasedType relBasedType = new RelationBasedType(r, kind);
-				callBack.newUpwardRelation(traceability, resource, source,
-						targets, relBasedType);
+				callBack.newUpwardRelation(traceability, resource, source, targets, relBasedType);
 				if (currentStorage != null) {
-					currentStorage.addUpdateProperty(reachableTrac,
-							TraceabilityAttributesManager.RELATION_NAME,
-							r.getKind());
+					currentStorage.addUpdateProperty(reachableTrac, TraceabilityAttributesManager.RELATION_NAME, r.getKind());
 				}
 			}
 		}
@@ -111,11 +103,11 @@ public class AttributesConfigurationBuildingDecoration extends
 	private Reachable getReachable(Object object) {
 		IObjectHandler handler;
 		try {
-			
+
 			handler = manager.getHandlerFromObject(object);
 			return handler.getFromObject(object).getReachable(object);
 		} catch (IReachableHandlerException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("could not get reachable for " + object);
 		}
 		return null;

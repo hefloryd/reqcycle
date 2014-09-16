@@ -10,8 +10,7 @@
 package org.polarsys.reqcycle.traceability.storage.sesame.storage;
 
 /**
- * Unchecked exception raised when internal errors in
- * {@link SesameTraceabilityStorage} and related classes occurs.
+ * Unchecked exception raised when internal errors in {@link SesameTraceabilityStorage} and related classes occurs.
  * 
  * @author rsemlal
  */

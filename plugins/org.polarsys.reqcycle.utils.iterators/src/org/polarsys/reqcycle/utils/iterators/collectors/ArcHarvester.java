@@ -21,9 +21,7 @@ import org.polarsys.reqcycle.utils.iterators.pickers.IPicker;
 import com.google.common.collect.Lists;
 
 /**
- * Decorator for the harvester class to transform its nature
- * from a state-aware harvester to a transition-aware harvester,
- * meaning that it collects links (arcs) instead of elements (states).
+ * Decorator for the harvester class to transform its nature from a state-aware harvester to a transition-aware harvester, meaning that it collects links (arcs) instead of elements (states).
  * 
  */
 public class ArcHarvester implements IHarvester {
@@ -38,9 +36,9 @@ public class ArcHarvester implements IHarvester {
 		this.basicHarvester = basicHarvester;
 		this.pickers = basicPickers;
 
-		//Transforming the original pickers into arc pickers.
+		// Transforming the original pickers into arc pickers.
 		List<IPicker> arcPickers = Lists.newLinkedList();
-		for(IPicker basicPicker : basicPickers) {
+		for (IPicker basicPicker : basicPickers) {
 			ArcPicker arcPicker = new ArcPicker(basicPicker);
 			arcPickers.add(arcPicker);
 		}
@@ -68,9 +66,9 @@ public class ArcHarvester implements IHarvester {
 	public void setPickers(Iterable<IPicker> basicPickers) {
 		this.pickers = basicPickers;
 
-		//Transforming the original pickers into arc pickers.
+		// Transforming the original pickers into arc pickers.
 		List<IPicker> arcPickers = Lists.newLinkedList();
-		for(IPicker basicPicker : basicPickers) {
+		for (IPicker basicPicker : basicPickers) {
 			ArcPicker arcPicker = new ArcPicker(basicPicker);
 			arcPickers.add(arcPicker);
 		}
@@ -93,15 +91,11 @@ public class ArcHarvester implements IHarvester {
 		}
 
 		/**
-		 * The starting destination of this arc is the first element
-		 * of the state-based iterator.
+		 * The starting destination of this arc is the first element of the state-based iterator.
 		 */
 		public Object getDestination() {
 			return startingElement;
 		}
 	}
-
-
-
 
 }

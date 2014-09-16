@@ -19,8 +19,8 @@ public class SWTUtil {
 	}
 
 	public static void recursiveSetEnabled(Control control, boolean enabled) {
-		if(control instanceof Composite) {
-			for(final Control c : ((Composite)control).getChildren()) {
+		if (control instanceof Composite) {
+			for (final Control c : ((Composite) control).getChildren()) {
 				recursiveSetEnabled(c, enabled);
 			}
 		} else {

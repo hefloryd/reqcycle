@@ -34,17 +34,17 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 	public ReqDropAdapterAssistant() {
 		ZigguratInject.inject(this);
 	}
-@Override
-protected void doInit() {
-	// TODO Auto-generated method stub
-	super.doInit();
-}
+
 	@Override
-	public IStatus validateDrop(Object target, int operation,
-			TransferData transferType) {
+	protected void doInit() {
+		// TODO Auto-generated method stub
+		super.doInit();
+	}
+
+	@Override
+	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
 		if (LocalSelectionTransfer.getTransfer().isSupportedType(transferType)) {
-			ISelection selection = LocalSelectionTransfer.getTransfer()
-					.getSelection();
+			ISelection selection = LocalSelectionTransfer.getTransfer().getSelection();
 			Iterable<Reachable> reachables = getReachable(selection);
 			if (reachables.iterator().hasNext()) {
 				return Status.OK_STATUS;
@@ -60,8 +60,7 @@ protected void doInit() {
 			Iterator<?> iterator = strucutred.iterator();
 			while (iterator.hasNext()) {
 				Object next = iterator.next();
-				Reachable r = objectHandler.getFromObject(next).getReachable(
-						next);
+				Reachable r = objectHandler.getFromObject(next).getReachable(next);
 				result.add(r);
 			}
 		}
@@ -69,18 +68,13 @@ protected void doInit() {
 	}
 
 	@Override
-	public IStatus handleDrop(CommonDropAdapter aDropAdapter,
-			DropTargetEvent aDropTargetEvent, Object aTarget) {
-		if (LocalSelectionTransfer.getTransfer().isSupportedType(
-				aDropAdapter.getCurrentTransfer())) {
-			Iterable<Reachable> reachables = getReachable(LocalSelectionTransfer
-					.getTransfer().getSelection());
+	public IStatus handleDrop(CommonDropAdapter aDropAdapter, DropTargetEvent aDropTargetEvent, Object aTarget) {
+		if (LocalSelectionTransfer.getTransfer().isSupportedType(aDropAdapter.getCurrentTransfer())) {
+			Iterable<Reachable> reachables = getReachable(LocalSelectionTransfer.getTransfer().getSelection());
 			DropRequirementDelegate req = new DropRequirementDelegate();
-			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget)
-					.eResource());
+			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
 			for (Reachable r : reachables) {
-				req.handleDrop(Lists.newArrayList(r), objectHandler
-						.getFromObject(aTarget).getReachable(aTarget), file);
+				req.handleDrop(Lists.newArrayList(r), objectHandler.getFromObject(aTarget).getReachable(aTarget), file);
 			}
 		}
 		return null;

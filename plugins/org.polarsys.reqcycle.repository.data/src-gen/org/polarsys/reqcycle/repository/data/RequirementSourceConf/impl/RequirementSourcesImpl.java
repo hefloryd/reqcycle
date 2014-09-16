@@ -25,12 +25,11 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSources;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Requirement Sources</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement Sources</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourcesImpl#getRequirementSources <em>Requirement Sources</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourcesImpl#getRequirementSources <em>Requirement Sources</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,9 +37,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
  */
 public class RequirementSourcesImpl extends MinimalEObjectImpl.Container implements RequirementSources {
 	/**
-	 * The cached value of the '{@link #getRequirementSources()
-	 * <em>Requirement Sources</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequirementSources() <em>Requirement Sources</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRequirementSources()
 	 * @generated
@@ -50,6 +47,7 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementSourcesImpl() {
@@ -58,6 +56,7 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +66,7 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,69 +79,74 @@ public class RequirementSourcesImpl extends MinimalEObjectImpl.Container impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-				return ((InternalEList<?>)getRequirementSources()).basicRemove(otherEnd, msgs);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
+			return ((InternalEList<?>) getRequirementSources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-				return getRequirementSources();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
+			return getRequirementSources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-				getRequirementSources().clear();
-				getRequirementSources().addAll((Collection<? extends RequirementSource>)newValue);
-				return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
+			getRequirementSources().clear();
+			getRequirementSources().addAll((Collection<? extends RequirementSource>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-				getRequirementSources().clear();
-				return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
+			getRequirementSources().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
-				return requirementSources != null && !requirementSources.isEmpty();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCES__REQUIREMENT_SOURCES:
+			return requirementSources != null && !requirementSources.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

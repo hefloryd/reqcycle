@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Papa Issa DIAKHATE
  * 
  * @param <T>
- *        - Type type for which this component is to be used for edition.
+ *            - Type type for which this component is to be used for edition.
  */
 public abstract class AbstractPropsEditorComponent<T> extends Composite {
 
@@ -38,7 +38,7 @@ public abstract class AbstractPropsEditorComponent<T> extends Composite {
 	/**
 	 * 
 	 * @param value
-	 *        - The current input value set from this properties editor. This value will be returned by {@link #getValue()}.
+	 *            - The current input value set from this properties editor. This value will be returned by {@link #getValue()}.
 	 */
 	protected void setValue(T value) {
 		this.value = value;
@@ -47,7 +47,7 @@ public abstract class AbstractPropsEditorComponent<T> extends Composite {
 	public void setInitialValue(Object object) {
 		return;
 	}
-	
+
 	/**
 	 * @return <code>true</code> if the edited text value is valid according to the type that this editor supports, <code>false</code> otherwise.
 	 */

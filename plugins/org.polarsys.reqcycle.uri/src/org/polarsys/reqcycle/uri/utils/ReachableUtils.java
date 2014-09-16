@@ -40,8 +40,7 @@ public class ReachableUtils {
 	}
 
 	/**
-	 * Compute an md5 hash based on the input stream the method closes the given
-	 * stream
+	 * Compute an md5 hash based on the input stream the method closes the given stream
 	 * 
 	 * @param stream
 	 * @return
@@ -71,8 +70,7 @@ public class ReachableUtils {
 
 	public static ReachableObject getReachableObject(IResource res) {
 		try {
-			IReachableManager manager = ZigguratInject
-					.make(IReachableManager.class);
+			IReachableManager manager = ZigguratInject.make(IReachableManager.class);
 			IObjectHandler handler = manager.getHandlerFromObject(res);
 			if (handler != null) {
 				return handler.getFromObject(res);

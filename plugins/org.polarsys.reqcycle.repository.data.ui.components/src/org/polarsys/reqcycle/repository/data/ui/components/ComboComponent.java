@@ -10,12 +10,11 @@ import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponen
 
 public class ComboComponent extends AbstractPropsEditorComponent<String> {
 
-	public ComboComponent(String attributeName,
-			Object input,Composite parent) {
-		super (String.class,parent,SWT.None);
+	public ComboComponent(String attributeName, Object input, Composite parent) {
+		super(String.class, parent, SWT.None);
 		final ComboViewer viewer = EntryUtil.createComboViewer(this, attributeName, input);
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			
+
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				setValue((String) viewer.getData(EntryUtil.AN_ENTRY));

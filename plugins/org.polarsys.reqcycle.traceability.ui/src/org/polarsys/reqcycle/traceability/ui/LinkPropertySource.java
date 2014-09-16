@@ -54,7 +54,7 @@ public class LinkPropertySource implements IPropertySource2 {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		List<EditableAttribute> editableAttributes = Lists.newArrayList(attributes.values());
 		IPropertyDescriptor[] descriptors = new IPropertyDescriptor[editableAttributes.size()];
-		for(int i = 0; i < editableAttributes.size(); i++) {
+		for (int i = 0; i < editableAttributes.size(); i++) {
 			descriptors[i] = new LinkPropertyDescriptor(editableAttributes.get(i));
 		}
 		return descriptors;
@@ -75,11 +75,11 @@ public class LinkPropertySource implements IPropertySource2 {
 	public void setPropertyValue(Object id, Object value) {
 		EditableAttribute att = attributes.get(id);
 		att.setValue(value);
-		if(callback != null) {
+		if (callback != null) {
 			try {
 				callback.call();
 			} catch (Exception e) {
-				//Do nothing.
+				// Do nothing.
 			}
 		}
 	}

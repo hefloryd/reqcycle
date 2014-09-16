@@ -19,14 +19,12 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.Property;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Property</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.PropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.PropertyImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.PropertyImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.PropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,8 +32,8 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
  */
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PropertyImpl() {
@@ -43,8 +41,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,8 +51,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,17 +61,17 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eGet(CacheTracabilityPackage.Literals.PROPERTY__NAME, true);
+		return (String) eGet(CacheTracabilityPackage.Literals.PROPERTY__NAME, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -81,21 +79,21 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getValue() {
-		return (String)eGet(CacheTracabilityPackage.Literals.PROPERTY__VALUE, true);
+		return (String) eGet(CacheTracabilityPackage.Literals.PROPERTY__VALUE, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setValue(String newValue) {
 		eSet(CacheTracabilityPackage.Literals.PROPERTY__VALUE, newValue);
 	}
 
-} //PropertyImpl
+} // PropertyImpl

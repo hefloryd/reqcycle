@@ -56,16 +56,16 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 	@Override
 	public boolean run(Object source, Object target) {
 		Reachable targetReachable = null;
-	
-		if(source instanceof byte[] && isEObject(target)) {
+
+		if (source instanceof byte[] && isEObject(target)) {
 			EObject targetEObj = getEObject(target);
 			IFile file = WorkspaceSynchronizer.getFile(targetEObj.eResource());
-			if(file != null) {
-				if(objectHandler.handlesObject(targetEObj)) {
+			if (file != null) {
+				if (objectHandler.handlesObject(targetEObj)) {
 					{
 						targetReachable = objectHandler.getFromObject(targetEObj).getReachable(targetEObj);
 					}
-					byte[] data = (byte[])source;
+					byte[] data = (byte[]) source;
 					List<Reachable> reachables = DNDReqCycle.getReachables(data);
 					handleDrop(reachables, targetReachable, file);
 				}
@@ -81,16 +81,16 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 
 	private EObject getEObject(Object target) {
 		EObject result = null;
-		if(target instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable)target;
-			result = (EObject)adaptable.getAdapter(EObject.class);
+		if (target instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) target;
+			result = (EObject) adaptable.getAdapter(EObject.class);
 		}
-		if(result == null) {
-			result = (EObject)Platform.getAdapterManager().getAdapter(target, EObject.class);
+		if (result == null) {
+			result = (EObject) Platform.getAdapterManager().getAdapter(target, EObject.class);
 		}
-		if(result == null) {
-			if(result instanceof EObject) {
-				result = (EObject)target;
+		if (result == null) {
+			if (result instanceof EObject) {
+				result = (EObject) target;
 			}
 		}
 		return result;
@@ -112,11 +112,11 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		});
 		Menu menu = new Menu(Display.getDefault().getActiveShell());
 		Iterator<RelationCreationDescriptor> iteratorUD = upstreamToDownstreams.iterator();
-		if(iteratorUD.hasNext()) {
+		if (iteratorUD.hasNext()) {
 			createMenu(menu, "Up To Down", iteratorUD, allCommands);
 		}
 		Iterator<RelationCreationDescriptor> iteratorDU = downstreamToUpstream.iterator();
-		if(iteratorDU.hasNext()) {
+		if (iteratorDU.hasNext()) {
 			createMenu(menu, "Down To Up", iteratorDU, allCommands);
 		}
 		menu.setVisible(true);
@@ -128,7 +128,7 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		Menu newMenu = new Menu(menu);
 		newItem.setMenu(newMenu);
 		newItem.setText(string);
-		for(; iteratorUD.hasNext();) {
+		for (; iteratorUD.hasNext();) {
 			RelationCreationDescriptor desc = iteratorUD.next();
 			MenuItem item = new MenuItem(newMenu, SWT.NONE);
 			final CreateRelationCommand command = allCommands.get(desc);

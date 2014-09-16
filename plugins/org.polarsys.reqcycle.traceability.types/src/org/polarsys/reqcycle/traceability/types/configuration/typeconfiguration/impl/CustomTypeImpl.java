@@ -27,14 +27,12 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Custom Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Custom Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.CustomTypeImpl#getSuperType <em>Super Type</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.CustomTypeImpl#getEntries <em>Entries</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.CustomTypeImpl#getSuperType <em>Super Type</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.CustomTypeImpl#getEntries <em>Entries</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,9 +40,8 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
  */
 public class CustomTypeImpl extends TypeImpl implements CustomType {
 	/**
-	 * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperType()
 	 * @generated
 	 * @ordered
@@ -52,9 +49,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	protected Type superType;
 
 	/**
-	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEntries()
 	 * @generated
 	 * @ordered
@@ -62,8 +58,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	protected EList<Entry> entries;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CustomTypeImpl() {
@@ -71,8 +67,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,14 +77,14 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Type getSuperType() {
 		if (superType != null && superType.eIsProxy()) {
-			InternalEObject oldSuperType = (InternalEObject)superType;
-			superType = (Type)eResolveProxy(oldSuperType);
+			InternalEObject oldSuperType = (InternalEObject) superType;
+			superType = (Type) eResolveProxy(oldSuperType);
 			if (superType != oldSuperType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE, oldSuperType, superType));
@@ -98,8 +94,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Type basicGetSuperType() {
@@ -107,8 +103,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuperType(Type newSuperType) {
@@ -119,8 +115,8 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Entry> getEntries() {
@@ -131,88 +127,89 @@ public class CustomTypeImpl extends TypeImpl implements CustomType {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			return ((InternalEList<?>) getEntries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
-				if (resolve) return getSuperType();
-				return basicGetSuperType();
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				return getEntries();
+		case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
+			if (resolve)
+				return getSuperType();
+			return basicGetSuperType();
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			return getEntries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
-				setSuperType((Type)newValue);
-				return;
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				getEntries().clear();
-				getEntries().addAll((Collection<? extends Entry>)newValue);
-				return;
+		case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
+			setSuperType((Type) newValue);
+			return;
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			getEntries().clear();
+			getEntries().addAll((Collection<? extends Entry>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
-				setSuperType((Type)null);
-				return;
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				getEntries().clear();
-				return;
+		case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
+			setSuperType((Type) null);
+			return;
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			getEntries().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
-				return superType != null;
-			case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
-				return entries != null && !entries.isEmpty();
+		case TypeconfigurationPackage.CUSTOM_TYPE__SUPER_TYPE:
+			return superType != null;
+		case TypeconfigurationPackage.CUSTOM_TYPE__ENTRIES:
+			return entries != null && !entries.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //CustomTypeImpl
+} // CustomTypeImpl

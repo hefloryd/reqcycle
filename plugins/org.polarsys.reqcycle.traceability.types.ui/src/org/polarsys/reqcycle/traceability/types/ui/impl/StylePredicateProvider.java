@@ -39,8 +39,7 @@ public class StylePredicateProvider implements IStylePredicateProvider {
 		if (!(link.getKind() instanceof RelationBasedType)) {
 			return null;
 		}
-		Relation r = RelationUtils.getRelation(link.getKind().getLabel(),
-				defaultConfiguration);
+		Relation r = RelationUtils.getRelation(link.getKind().getLabel(), defaultConfiguration);
 		if (r == null) {
 			return null;
 		}
@@ -61,8 +60,7 @@ public class StylePredicateProvider implements IStylePredicateProvider {
 		T handleRegistry(DecorationPredicate t);
 	}
 
-	private RelationsPredicatesMapping getMapping(Relation rel,
-			Configuration conf) {
+	private RelationsPredicatesMapping getMapping(Relation rel, Configuration conf) {
 		for (RelationsPredicatesMapping m : conf.getParent().getMappings()) {
 			if (m.getRelation() != null && m.getRelation().equals(rel)) {
 				return m;
@@ -76,13 +74,10 @@ public class StylePredicateProvider implements IStylePredicateProvider {
 
 			@Override
 			public Color handleRegistry(DecorationPredicate t) {
-				Color result = JFaceResources.getColorRegistry().get(
-						t.getColor());
+				Color result = JFaceResources.getColorRegistry().get(t.getColor());
 				if (result == null) {
-					JFaceResources.getColorRegistry().put(t.getColor(),
-							StringConverter.asRGB(t.getColor()));
-					result = JFaceResources.getColorRegistry()
-							.get(t.getColor());
+					JFaceResources.getColorRegistry().put(t.getColor(), StringConverter.asRGB(t.getColor()));
+					result = JFaceResources.getColorRegistry().get(t.getColor());
 				}
 				return result;
 			}
@@ -94,11 +89,9 @@ public class StylePredicateProvider implements IStylePredicateProvider {
 
 			@Override
 			public Font handleRegistry(DecorationPredicate t) {
-				Font result = JFaceResources.getFontRegistry()
-						.get(t.getStyle());
+				Font result = JFaceResources.getFontRegistry().get(t.getStyle());
 				if (result == null) {
-					JFaceResources.getFontRegistry().put(t.getStyle(),
-							StringConverter.asFontDataArray(t.getStyle()));
+					JFaceResources.getFontRegistry().put(t.getStyle(), StringConverter.asFontDataArray(t.getStyle()));
 					result = JFaceResources.getFontRegistry().get(t.getStyle());
 				}
 				return result;

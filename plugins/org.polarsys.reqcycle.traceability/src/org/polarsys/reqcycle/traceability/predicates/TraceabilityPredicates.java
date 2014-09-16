@@ -19,8 +19,7 @@ import com.google.common.base.Predicate;
 
 public class TraceabilityPredicates {
 
-	public static Predicate<Pair<Link, Reachable>> newIsInScopePredicate(
-			IScope scope) {
+	public static Predicate<Pair<Link, Reachable>> newIsInScopePredicate(IScope scope) {
 		IsInScopePredicate p = new IsInScopePredicate(scope);
 		ZigguratInject.inject(p);
 		return p;

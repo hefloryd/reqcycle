@@ -70,8 +70,6 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	@Inject
 	ILogger logger;
 	private Model theModel;
-	
-	
 
 	@Inject
 	public CacheTraceabilityEngine() {
@@ -83,8 +81,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		set = new ResourceSetImpl();
 		String pathName = getCachePath() + "/" + CACHE_RESOURCE_NAME;
 		if (logger.isDebug(Activator.OPTIONS_DEBUG, Activator.getDefault())) {
-			logger.trace(String
-					.format("cached database loading : %s", pathName));
+			logger.trace(String.format("cached database loading : %s", pathName));
 		}
 		URI uri = URI.createFileURI(pathName);
 		if (!(new File(pathName).exists())) {
@@ -109,8 +106,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	@Override
 	protected void environmentClosed() {
 		if (resource != null) {
-			boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG,
-					Activator.getDefault());
+			boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG, Activator.getDefault());
 			if (debug) {
 				logger.trace("Resource cache Closing");
 			}
@@ -134,18 +130,14 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		for (AnalyzedResource a : theModel.getResources()) {
 			if (uri.equals(a.getUri())) {
 				try {
-					IReachableHandler handler = manager
-							.getHandlerFromReachable(traceable);
-					ReachableObject object = handler
-							.getFromReachable(traceable);
+					IReachableHandler handler = manager.getHandlerFromReachable(traceable);
+					ReachableObject object = handler.getFromReachable(traceable);
 					if (object != null) {
 						// NULL means the object can not identify its revision
 						// so the cache must be computed each time
-						String revisionIdentification = object
-								.getRevisionIdentification();
+						String revisionIdentification = object.getRevisionIdentification();
 						if (revisionIdentification != null) {
-							return Objects.equal(revisionIdentification,
-									a.getModificationTime());
+							return Objects.equal(revisionIdentification, a.getModificationTime());
 						}
 					}
 				} catch (IReachableHandlerException e) {
@@ -158,40 +150,29 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	}
 
 	@Override
-	public void newUpwardRelation(Reachable traceable, Reachable container, Reachable source,
-			List<Reachable> targets, TType kind) {
-		Traceable2TraceableElement traceable2TraceableElement = new Traceable2TraceableElement(
-				theModel);
+	public void newUpwardRelation(Reachable traceable, Reachable container, Reachable source, List<Reachable> targets, TType kind) {
+		Traceable2TraceableElement traceable2TraceableElement = new Traceable2TraceableElement(theModel);
 		ZigguratInject.inject(traceable2TraceableElement);
-		TraceableElement sourceElement = traceable2TraceableElement
-				.apply(source);
-		Iterable<TraceableElement> targetElements = Iterables.transform(
-				targets, traceable2TraceableElement);
-		TraceabilityLink link = getTraceabilityLink(container, sourceElement,
-				targetElements, kind.getSemantic());
+		TraceableElement sourceElement = traceable2TraceableElement.apply(source);
+		Iterable<TraceableElement> targetElements = Iterables.transform(targets, traceable2TraceableElement);
+		TraceabilityLink link = getTraceabilityLink(container, sourceElement, targetElements, kind.getSemantic());
 		if (link == null) {
 			AnalyzedResource r = getOrCreateAnalyzedResource(container);
 			link = CacheTracabilityFactory.eINSTANCE.createTraceabilityLink();
 			link.setLabel(kind.getSemantic());
-			ArrayList<TraceableElement> sourcesToAdd = Lists
-					.newArrayList(sourceElement);
+			ArrayList<TraceableElement> sourcesToAdd = Lists.newArrayList(sourceElement);
 			link.getSources().addAll(sourcesToAdd);
-			ArrayList<TraceableElement> targetsToAdd = Lists
-					.newArrayList(targetElements);
+			ArrayList<TraceableElement> targetsToAdd = Lists.newArrayList(targetElements);
 			link.getTargets().addAll(targetsToAdd);
 			r.getLinks().add(link);
 		}
 	}
 
-	private TraceabilityLink getTraceabilityLink(Reachable container,
-			TraceableElement sourceElements,
-			Iterable<TraceableElement> targetElements, String label) {
+	private TraceabilityLink getTraceabilityLink(Reachable container, TraceableElement sourceElements, Iterable<TraceableElement> targetElements, String label) {
 		TraceabilityLink result = null;
 		AnalyzedResource analy = getResource(container);
 		if (analy != null) {
-			TraceabilityLink t = Iterables.find(analy.getLinks(),
-					new TraceabilityLinkPredicate(sourceElements,
-							targetElements, label), null);
+			TraceabilityLink t = Iterables.find(analy.getLinks(), new TraceabilityLinkPredicate(sourceElements, targetElements, label), null);
 			result = t;
 		}
 		return result;
@@ -202,8 +183,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		AnalyzedResource r = getResource(traceable);
 		if (r != null) {
 			Iterable<TraceabilityLink> links = r.getLinks();
-			Iterable<Link> result = Iterables.transform(links,
-					new TraceabilityLink2Link());
+			Iterable<Link> result = Iterables.transform(links, new TraceabilityLink2Link());
 			return result;
 		}
 		return Lists.newArrayList();
@@ -232,14 +212,12 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	}
 
 	private AnalyzedResource getResource(final Reachable traceable) {
-		return Iterables.find(theModel.getResources(),
-				new Predicate<AnalyzedResource>() {
-					@Override
-					public boolean apply(AnalyzedResource a) {
-						return a.getUri().equals(
-								traceable.trimFragment().toString());
-					}
-				}, null);
+		return Iterables.find(theModel.getResources(), new Predicate<AnalyzedResource>() {
+			@Override
+			public boolean apply(AnalyzedResource a) {
+				return a.getUri().equals(traceable.trimFragment().toString());
+			}
+		}, null);
 	}
 
 	@Override
@@ -248,9 +226,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		TraceableElement s = getTraceableElement(source);
 		if (s != null) {
 			IPicker picker = getPicker(direction, scope);
@@ -262,34 +238,28 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 			Iterator<Object> i = iterable.iterator();
 			i.next();
 			// create a list to "copy" data to the caller
-			return Lists.newArrayList(
-					Iterators.transform(i,
-							new Function<Object, Pair<Link, Reachable>>() {
-								public Pair<Link, Reachable> apply(Object o) {
-									return (Pair<Link, Reachable>) o;
-								}
-							})).iterator();
+			return Lists.newArrayList(Iterators.transform(i, new Function<Object, Pair<Link, Reachable>>() {
+				public Pair<Link, Reachable> apply(Object o) {
+					return (Pair<Link, Reachable>) o;
+				}
+			})).iterator();
 		}
 		return Iterators.emptyIterator();
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		TraceableElement s = getTraceableElement(source);
 		if (s != null) {
 			IPicker picker = getPicker(direction, scope);
 			try {
 				List<Pair<Link, Reachable>> result = new ArrayList<Pair<Link, Reachable>>();
 				Iterable<?> elements = picker.getNexts(source);
-				return Lists.newArrayList(
-						Iterables.transform(elements,
-								new Function<Object, Pair<Link, Reachable>>() {
-									public Pair<Link, Reachable> apply(Object o) {
-										return (Pair<Link, Reachable>) o;
-									}
-								})).iterator();
+				return Lists.newArrayList(Iterables.transform(elements, new Function<Object, Pair<Link, Reachable>>() {
+					public Pair<Link, Reachable> apply(Object o) {
+						return (Pair<Link, Reachable>) o;
+					}
+				})).iterator();
 			} catch (PickerExecutionException e) {
 				e.printStackTrace();
 			}
@@ -298,9 +268,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, StopCondition t, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, StopCondition t, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		// TODO Auto-generated method stub
 		ArrayDeque<Pair<Link, Reachable>> result = new ArrayDeque<Pair<Link, Reachable>>();
 		ArrayDeque<Pair<Link, Reachable>> current = new ArrayDeque<Pair<Link, Reachable>>();
@@ -321,18 +289,14 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		return result.iterator();
 	}
 
-	private IPicker getPicker(DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
-		TraceableElementPicker traceableElementPicker = new TraceableElementPicker(
-				direction, theModel, scope);
+	private IPicker getPicker(DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
+		TraceableElementPicker traceableElementPicker = new TraceableElementPicker(direction, theModel, scope);
 		ZigguratInject.inject(traceableElementPicker);
 		return traceableElementPicker;
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean checkPath(TraceableElement te, StopCondition condition,
-			Iterator<Object> i, ArrayDeque<Pair<Link, Reachable>> result,
-			ArrayDeque<Pair<Link, Reachable>> current) {
+	private boolean checkPath(TraceableElement te, StopCondition condition, Iterator<Object> i, ArrayDeque<Pair<Link, Reachable>> result, ArrayDeque<Pair<Link, Reachable>> current) {
 		boolean found = false;
 		TraceableElement2Traceable traceableElement2Traceable = new TraceableElement2Traceable();
 		ZigguratInject.inject(traceableElement2Traceable);
@@ -341,7 +305,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		while (i.hasNext()) {
 			Object o = i.next();
 			if (o instanceof Pair) {
-				
+
 				Pair<Link, Reachable> pair = (Pair<Link, Reachable>) o;
 				Reachable secondReachable = pair.getSecond();
 				Pair<Link, Reachable> pair2 = new Pair<Link, Reachable>(pair.getFirst(), secondReachable);
@@ -350,10 +314,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 					found = true;
 					break;
 				} else if (!(pair.getFirst().getSources().contains(source))) {
-					if (checkPath(
-							new Traceable2TraceableElement(theModel).apply(pair
-									.getFirst().getSources().iterator().next()),
-							condition, i, result, current)) {
+					if (checkPath(new Traceable2TraceableElement(theModel).apply(pair.getFirst().getSources().iterator().next()), condition, i, result, current)) {
 						result.addAll(current);
 					}
 				} else {
@@ -386,8 +347,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		}
 	}
 
-	private void deleteNodesIfCorrespondingToTraceable(Reachable traceable,
-			Iterable<TraceableElement> collection) {
+	private void deleteNodesIfCorrespondingToTraceable(Reachable traceable, Iterable<TraceableElement> collection) {
 		TraceableElement2Traceable function = new TraceableElement2Traceable();
 		ZigguratInject.inject(function);
 		for (TraceableElement t : collection) {
@@ -404,9 +364,7 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetAllTraceability(
-			DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> requestPredicate) {
+	protected Iterator<Pair<Link, Reachable>> doGetAllTraceability(DIRECTION direction, Predicate<Pair<Link, Reachable>> requestPredicate) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -416,9 +374,5 @@ public class CacheTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
-
 
 }

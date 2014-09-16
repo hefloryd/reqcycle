@@ -25,55 +25,50 @@ import org.polarsys.reqcycle.impact.Impact.TraceabilityLink;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass impactAnalysisEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementImpactedEClass = null;
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass traceabilityLinkEClass = null;
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass attributeImpactedEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EDataType uriEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#eNS_URI
 	 * @see #init()
@@ -84,8 +79,8 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -93,20 +88,21 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ImpactPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link ImpactPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static ImpactPackage init() {
-		if (isInited) return (ImpactPackage)EPackage.Registry.INSTANCE.getEPackage(ImpactPackage.eNS_URI);
+		if (isInited)
+			return (ImpactPackage) EPackage.Registry.INSTANCE.getEPackage(ImpactPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ImpactPackageImpl theImpactPackage = (ImpactPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ImpactPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ImpactPackageImpl());
+		ImpactPackageImpl theImpactPackage = (ImpactPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ImpactPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ImpactPackageImpl());
 
 		isInited = true;
 
@@ -122,15 +118,14 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 		// Mark meta-data to indicate it can't be changed
 		theImpactPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ImpactPackage.eNS_URI, theImpactPackage);
 		return theImpactPackage;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getImpactAnalysis() {
@@ -138,35 +133,35 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getImpactAnalysis_RequirementsAdded() {
-		return (EReference)impactAnalysisEClass.getEStructuralFeatures().get(0);
+		return (EReference) impactAnalysisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getImpactAnalysis_RequirementsDeleted() {
-		return (EReference)impactAnalysisEClass.getEStructuralFeatures().get(1);
+		return (EReference) impactAnalysisEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getImpactAnalysis_RequirementsModified() {
-		return (EReference)impactAnalysisEClass.getEStructuralFeatures().get(2);
+		return (EReference) impactAnalysisEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EOperation getImpactAnalysis__LaunchAnalysis__RequirementSource_RequirementSource() {
@@ -174,8 +169,8 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EOperation getImpactAnalysis__SaveAnalysis__URI() {
@@ -183,8 +178,8 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementImpacted() {
@@ -192,35 +187,35 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirementImpacted_Id() {
-		return (EAttribute)requirementImpactedEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) requirementImpactedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementImpacted_LinkList() {
-		return (EReference)requirementImpactedEClass.getEStructuralFeatures().get(1);
+		return (EReference) requirementImpactedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementImpacted_AttributesImpacted() {
-		return (EReference)requirementImpactedEClass.getEStructuralFeatures().get(2);
+		return (EReference) requirementImpactedEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EOperation getRequirementImpacted__GetImpactedAttribute__String() {
@@ -228,8 +223,8 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTraceabilityLink() {
@@ -237,35 +232,35 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTraceabilityLink_LinkType() {
-		return (EAttribute)traceabilityLinkEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) traceabilityLinkEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTraceabilityLink_LinkDirection() {
-		return (EAttribute)traceabilityLinkEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) traceabilityLinkEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTraceabilityLink_LinkedElement() {
-		return (EAttribute)traceabilityLinkEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) traceabilityLinkEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAttributeImpacted() {
@@ -273,35 +268,35 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeImpacted_Id() {
-		return (EAttribute)attributeImpactedEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) attributeImpactedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeImpacted_OldValue() {
-		return (EAttribute)attributeImpactedEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) attributeImpactedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeImpacted_NewValue() {
-		return (EAttribute)attributeImpactedEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) attributeImpactedEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EDataType getURI() {
@@ -309,30 +304,29 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ImpactFactory getImpactFactory() {
-		return (ImpactFactory)getEFactoryInstance();
+		return (ImpactFactory) getEFactoryInstance();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -364,21 +358,20 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -387,7 +380,7 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		RequirementSourceConfPackage theRequirementSourceConfPackage = (RequirementSourceConfPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementSourceConfPackage.eNS_URI);
+		RequirementSourceConfPackage theRequirementSourceConfPackage = (RequirementSourceConfPackage) EPackage.Registry.INSTANCE.getEPackage(RequirementSourceConfPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -397,9 +390,12 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(impactAnalysisEClass, ImpactAnalysis.class, "ImpactAnalysis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImpactAnalysis_RequirementsAdded(), this.getRequirementImpacted(), null, "requirementsAdded", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImpactAnalysis_RequirementsDeleted(), this.getRequirementImpacted(), null, "requirementsDeleted", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImpactAnalysis_RequirementsModified(), this.getRequirementImpacted(), null, "requirementsModified", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImpactAnalysis_RequirementsAdded(), this.getRequirementImpacted(), null, "requirementsAdded", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImpactAnalysis_RequirementsDeleted(), this.getRequirementImpacted(), null, "requirementsDeleted", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImpactAnalysis_RequirementsModified(), this.getRequirementImpacted(), null, "requirementsModified", null, 0, -1, ImpactAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getImpactAnalysis__LaunchAnalysis__RequirementSource_RequirementSource(), null, "launchAnalysis", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRequirementSourceConfPackage.getRequirementSource(), "rsFrom", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -410,8 +406,10 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 
 		initEClass(requirementImpactedEClass, RequirementImpacted.class, "RequirementImpacted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequirementImpacted_Id(), ecorePackage.getEString(), "id", null, 1, 1, RequirementImpacted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementImpacted_LinkList(), this.getTraceabilityLink(), null, "LinkList", null, 0, -1, RequirementImpacted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementImpacted_AttributesImpacted(), this.getAttributeImpacted(), null, "attributesImpacted", null, 0, -1, RequirementImpacted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementImpacted_LinkList(), this.getTraceabilityLink(), null, "LinkList", null, 0, -1, RequirementImpacted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementImpacted_AttributesImpacted(), this.getAttributeImpacted(), null, "attributesImpacted", null, 0, -1, RequirementImpacted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getRequirementImpacted__GetImpactedAttribute__String(), this.getAttributeImpacted(), "getImpactedAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attributeName", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -433,4 +431,4 @@ public class ImpactPackageImpl extends EPackageImpl implements ImpactPackage {
 		createResource(eNS_URI);
 	}
 
-} //ImpactPackageImpl
+} // ImpactPackageImpl

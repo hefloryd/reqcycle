@@ -36,8 +36,7 @@ public class UMLTypeChecker implements IInjectedTypeChecker {
 		EMFTypeChecker emfTypeChecker = new EMFTypeChecker();
 		if (emfTypeChecker.apply(reachable)) {
 			try {
-				ReachableObject object = manager.getHandlerFromReachable(
-						reachable).getFromReachable(reachable);
+				ReachableObject object = manager.getHandlerFromReachable(reachable).getFromReachable(reachable);
 				IsUMLVisitor visitor = new IsUMLVisitor();
 				object.getVisitable().accept(visitor);
 				return visitor.found;
@@ -107,7 +106,7 @@ public class UMLTypeChecker implements IInjectedTypeChecker {
 		boolean isOK = true;
 		if (stereotypeName != null) {
 			isOK = false;
-			//-RFU- check stereotypes applicable rather than those applied
+			// -RFU- check stereotypes applicable rather than those applied
 			for (Stereotype s : e.getApplicableStereotypes()) {
 				if (stereotypeName.equalsIgnoreCase(s.getName())) {
 					isOK = true;

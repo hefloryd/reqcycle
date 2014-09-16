@@ -17,13 +17,11 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.URIElement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>URI Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>URI Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.URIElementImpl#getUri <em>Uri</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.URIElementImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,8 +29,8 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
  */
 public abstract class URIElementImpl extends MinimalEObjectImpl.Container implements URIElement {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected URIElementImpl() {
@@ -40,8 +38,8 @@ public abstract class URIElementImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -50,8 +48,8 @@ public abstract class URIElementImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,21 +58,21 @@ public abstract class URIElementImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUri() {
-		return (String)eGet(CacheTracabilityPackage.Literals.URI_ELEMENT__URI, true);
+		return (String) eGet(CacheTracabilityPackage.Literals.URI_ELEMENT__URI, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUri(String newUri) {
 		eSet(CacheTracabilityPackage.Literals.URI_ELEMENT__URI, newUri);
 	}
 
-} //URIElementImpl
+} // URIElementImpl

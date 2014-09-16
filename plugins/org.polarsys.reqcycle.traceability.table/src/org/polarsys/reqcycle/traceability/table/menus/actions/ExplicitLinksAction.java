@@ -33,7 +33,6 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.progress.UIJob;
 
-
 public class ExplicitLinksAction extends Action {
 
 	private TableViewer viewer;
@@ -48,10 +47,9 @@ public class ExplicitLinksAction extends Action {
 		this.control = control;
 	}
 
-
 	@Override
 	public void run() {
-		Shell shell = viewer.getTable().getShell(); 
+		Shell shell = viewer.getTable().getShell();
 		BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider();
 		WorkspaceResourceDialog dialog = new WorkspaceResourceDialog(shell, labelProvider, contentProvider);
 		dialog.setTitle("Project selection");
@@ -63,15 +61,15 @@ public class ExplicitLinksAction extends Action {
 
 			@Override
 			public IStatus validate(Object[] selection) {
-				if((selection.length == 1) && (selection[0] instanceof IProject))
+				if ((selection.length == 1) && (selection[0] instanceof IProject))
 					return Status.OK_STATUS;
 				return new Status(IStatus.ERROR, TraceabilityTablePlugin.PLUGIN_ID, "Select a project");
 			}
 		});
 		int open = dialog.open();
-		if(open == 0) {
+		if (open == 0) {
 			IContainer[] selectedContainers = dialog.getSelectedContainers();
-			final IProject project = (IProject)selectedContainers[0];
+			final IProject project = (IProject) selectedContainers[0];
 			new UIJob(Display.getCurrent(), "Fetching traceability links") {
 
 				@Override
@@ -104,12 +102,11 @@ public class ExplicitLinksAction extends Action {
 
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if(element instanceof IProject) {
+			if (element instanceof IProject) {
 				return true;
 			}
 			return false;
 		}
 	};
-
 
 }

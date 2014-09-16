@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Text;
  * @author Papa Issa DIAKHATE
  * 
  * @param <T>
- *        - Type type for which this component is to be used for edition.
+ *            - Type type for which this component is to be used for edition.
  */
 public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsEditorComponent<T> {
 
@@ -54,7 +54,7 @@ public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsE
 		text = new Text(this, SWT.BORDER);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
-		if(useControlDecoration()) {
+		if (useControlDecoration()) {
 			this.controlDecoration = new ControlDecoration(text, SWT.RIGHT | SWT.TOP);
 			this.controlDecoration.setShowOnlyOnFocus(true);
 			this.controlDecoration.setShowHover(true);
@@ -66,13 +66,13 @@ public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsE
 			@Override
 			public void modifyText(ModifyEvent e) {
 				currentTextValue = text.getText();
-				if(isTextValid(currentTextValue)) {
-					if(useControlDecoration()) {
+				if (isTextValid(currentTextValue)) {
+					if (useControlDecoration()) {
 						getControlDecoration().setImage(null);
 					}
 					setValue(convertFromString(currentTextValue));
 				} else {
-					if(useControlDecoration()) {
+					if (useControlDecoration()) {
 						getControlDecoration().setImage(ERROR_IMAGE);
 						getControlDecoration().setDescriptionText(getErrorMessage());
 					}
@@ -84,27 +84,27 @@ public abstract class AbstractPropsTextEditorComponent<T> extends AbstractPropsE
 
 	@Override
 	public boolean isValid() {
-		if(currentTextValue !=null) {
+		if (currentTextValue != null) {
 			return isTextValid(currentTextValue);
 		}
 		return false;
 	}
-	
+
 	@Override
 	public void setInitialValue(Object object) {
-			text.setText(object.toString());
+		text.setText(object.toString());
 	}
-	
+
 	/**
 	 * @param textValue
-	 *        - The current text value entered into the {@link Text} widget.
+	 *            - The current text value entered into the {@link Text} widget.
 	 * @return The converted value from the text content. May be <tt>null</tt>.
 	 */
 	abstract protected T convertFromString(final String textValue);
 
 	/**
 	 * @param textValue
-	 *        - The current text value entered into the {@link Text} widget.
+	 *            - The current text value entered into the {@link Text} widget.
 	 * @return <code>true</code> if the text value is valid according to the expected supported type, <code>false</code> otherwise.
 	 */
 	abstract protected boolean isTextValid(final String textValue);

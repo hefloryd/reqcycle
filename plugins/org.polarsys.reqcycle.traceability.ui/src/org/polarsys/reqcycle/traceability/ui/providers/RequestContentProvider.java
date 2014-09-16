@@ -53,8 +53,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
-public class RequestContentProvider extends DeferredContentProvider implements
-		ITreeContentProvider, IReachableListener {
+public class RequestContentProvider extends DeferredContentProvider implements ITreeContentProvider, IReachableListener {
 
 	public static final String CONF_KEY = "conf";
 	public static final String EXPAND_ALL = "expandAll";
@@ -99,24 +98,18 @@ public class RequestContentProvider extends DeferredContentProvider implements
 		allParents.clear();
 		links.clear();
 		requests.clear();
-		contentManager = new DeferredTreeContentManager(
-				(AbstractTreeViewer) viewer) {
+		contentManager = new DeferredTreeContentManager((AbstractTreeViewer) viewer) {
 			@Override
-			protected void addChildren(final Object parent,
-					final Object[] children, IProgressMonitor monitor) {
-				WorkbenchJob updateJob = new WorkbenchJob(
-						ProgressMessages.DeferredTreeContentManager_AddingChildren) {
+			protected void addChildren(final Object parent, final Object[] children, IProgressMonitor monitor) {
+				WorkbenchJob updateJob = new WorkbenchJob(ProgressMessages.DeferredTreeContentManager_AddingChildren) {
 					/*
 					 * (non-Javadoc)
 					 * 
-					 * @see
-					 * org.eclipse.ui.progress.UIJob#runInUIThread(org.eclipse
-					 * .core.runtime.IProgressMonitor)
+					 * @see org.eclipse.ui.progress.UIJob#runInUIThread(org.eclipse .core.runtime.IProgressMonitor)
 					 */
 					public IStatus runInUIThread(IProgressMonitor updateMonitor) {
 						// Cancel the job if the tree viewer got closed
-						if (treeViewer.getControl().isDisposed()
-								|| updateMonitor.isCanceled()) {
+						if (treeViewer.getControl().isDisposed() || updateMonitor.isCanceled()) {
 							return Status.CANCEL_STATUS;
 						}
 						((AbstractTreeViewer) treeViewer).add(parent, children);
@@ -124,8 +117,7 @@ public class RequestContentProvider extends DeferredContentProvider implements
 							for (Object o : children) {
 								if (o instanceof BusinessDeffered) {
 									BusinessDeffered bd = (BusinessDeffered) o;
-									treeViewer.expandToLevel(bd,
-											bd.getLevel() + 1);
+									treeViewer.expandToLevel(bd, bd.getLevel() + 1);
 								}
 							}
 						}
@@ -163,8 +155,7 @@ public class RequestContentProvider extends DeferredContentProvider implements
 				Reachable source = c.getSource();
 				if (source != null) {
 					listenerManger.addReachableListener(source, this);
-					listenerManger.addReachableListener(source.trimFragment(),
-							this);
+					listenerManger.addReachableListener(source.trimFragment(), this);
 					result.add(new BusinessDeffered(source, this));
 				}
 			}
@@ -177,11 +168,9 @@ public class RequestContentProvider extends DeferredContentProvider implements
 		return contentManager.getChildren(parentElement);
 	}
 
-	private Iterator<Pair<Link, Reachable>> getTraceability(Request r)
-			throws EngineException {
+	private Iterator<Pair<Link, Reachable>> getTraceability(Request r) throws EngineException {
 		Object conf = r.getProperty(CONF_KEY);
-		Configuration defaultConfiguration = typeProvider
-				.getDefaultConfiguration();
+		Configuration defaultConfiguration = typeProvider.getDefaultConfiguration();
 		if (defaultConfiguration != null && Boolean.TRUE.equals(conf)) {
 			return typedEngine.getTraceability(defaultConfiguration, r);
 		} else {
@@ -230,12 +219,10 @@ public class RequestContentProvider extends DeferredContentProvider implements
 			if (c.isEmpty()) {
 				if (baseRequest.getDepth() == DEPTH.INFINITE) {
 					// an infinite request is computed one time
-					if (!Boolean.TRUE.equals(baseRequest
-							.getProperty("COMPUTED"))) {
+					if (!Boolean.TRUE.equals(baseRequest.getProperty("COMPUTED"))) {
 						try {
 							Iterator<Pair<Link, Reachable>> traceIterator = getTraceability(baseRequest);
-							links.putAll(EngineUtils
-									.toFollowingMap(traceIterator));
+							links.putAll(EngineUtils.toFollowingMap(traceIterator));
 							c = links.get(reachable);
 							baseRequest.addProperty("COMPUTED", true);
 						} catch (EngineException e) {
@@ -246,21 +233,12 @@ public class RequestContentProvider extends DeferredContentProvider implements
 					}
 				} else {
 					// for DEPTH ONE request, a request is created each time
-					Request r = new Request()
-							.addProperty(
-									IBuildingTraceabilityEngine.OPTION_CHECK_CACHE,
-									true)
+					Request r = new Request().addProperty(IBuildingTraceabilityEngine.OPTION_CHECK_CACHE, true)
 
-							.setDepth(DEPTH.ONE)
-							.setDirection(baseRequest.getDirection())
-							.setScope(baseRequest.getScope())
-							.addProperty(CONF_KEY,
-									baseRequest.getProperty(CONF_KEY));
-					ArrayList<Couple> listOfCouples = Lists
-							.newArrayList(baseRequest.getCouples());
+					.setDepth(DEPTH.ONE).setDirection(baseRequest.getDirection()).setScope(baseRequest.getScope()).addProperty(CONF_KEY, baseRequest.getProperty(CONF_KEY));
+					ArrayList<Couple> listOfCouples = Lists.newArrayList(baseRequest.getCouples());
 					for (Couple cTmp : listOfCouples) {
-						r.addSourceAndCondition(reachable,
-								cTmp.getStopCondition());
+						r.addSourceAndCondition(reachable, cTmp.getStopCondition());
 						if (cTmp.getStopCondition() != null) {
 							r.setDepth(DEPTH.INFINITE);
 						}

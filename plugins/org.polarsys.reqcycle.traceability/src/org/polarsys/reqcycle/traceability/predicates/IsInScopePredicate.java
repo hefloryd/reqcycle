@@ -35,12 +35,8 @@ public class IsInScopePredicate implements Predicate<Pair<Link, Reachable>> {
 		if (scope == null) {
 			return true;
 		}
-		Function<Reachable, Reachable> function = URIFunctions
-				.newTrimFragmentFunction();
-		Iterator<Reachable> reachables = Iterators.concat(Iterators.transform(
-				arg0.getFirst().getSources().iterator(), function), Iterators
-				.transform(arg0.getFirst().getTargets().iterator(), function));
-		return Sets.newHashSet(scope.getReachables()).containsAll(
-				Sets.newHashSet(reachables));
+		Function<Reachable, Reachable> function = URIFunctions.newTrimFragmentFunction();
+		Iterator<Reachable> reachables = Iterators.concat(Iterators.transform(arg0.getFirst().getSources().iterator(), function), Iterators.transform(arg0.getFirst().getTargets().iterator(), function));
+		return Sets.newHashSet(scope.getReachables()).containsAll(Sets.newHashSet(reachables));
 	}
 }

@@ -22,20 +22,19 @@ public class StyleModelNameDialog extends ValidatingTitleAreaDialog {
 	private Text text;
 	private String styleName;
 
-
 	public StyleModelNameDialog(Shell parentShell) {
 		super(parentShell);
 		setShellStyle(SWT.CLOSE | SWT.MIN | SWT.TITLE | SWT.PRIMARY_MODAL);
 
 	}
-	
+
 	@Override
 	protected Control createContents(Composite parent) {
 		Control result = super.createContents(parent);
 		validateInput();
 		return result;
 	}
-	
+
 	/**
 	 * Create contents of the dialog.
 	 * 
@@ -69,7 +68,8 @@ public class StyleModelNameDialog extends ValidatingTitleAreaDialog {
 	/**
 	 * Check if the name is already used
 	 * 
-	 * @param name Name to check
+	 * @param name
+	 *            Name to check
 	 */
 	private boolean isNameAlreadyUsed(String name) {
 		EList<StylingModel> list = styleManager.getStyling().getModels();
@@ -92,7 +92,7 @@ public class StyleModelNameDialog extends ValidatingTitleAreaDialog {
 
 	@Override
 	public IValidator getInputValidator() {
-		return new IValidator(){
+		return new IValidator() {
 			@Override
 			public String isValid() {
 				String newText = text.getText();
@@ -103,7 +103,7 @@ public class StyleModelNameDialog extends ValidatingTitleAreaDialog {
 				}
 				return null;
 			}
-			
+
 		};
 	}
 }

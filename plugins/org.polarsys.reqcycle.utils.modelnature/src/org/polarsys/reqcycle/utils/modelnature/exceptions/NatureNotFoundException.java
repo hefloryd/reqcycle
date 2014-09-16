@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.polarsys.reqcycle.utils.modelnature.ModelNaturePlugin;
 
-
 public class NatureNotFoundException extends CoreException {
 
 	private static final long serialVersionUID = 7701522530140459106L;

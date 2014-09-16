@@ -44,7 +44,6 @@ import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
 
-
 public abstract class MappingComposite extends Composite {
 
 	private TreeViewer sourceViewer;
@@ -118,7 +117,7 @@ public abstract class MappingComposite extends Composite {
 		lblSource = new Label(selectionComposite, SWT.NONE);
 
 		String sourceDetail = getSourceDetail();
-		if(sourceDetail != null && !sourceDetail.isEmpty()) {
+		if (sourceDetail != null && !sourceDetail.isEmpty()) {
 			lblSource.setText("Source (" + sourceDetail + ")");
 		} else {
 			lblSource.setText("Source");
@@ -129,7 +128,7 @@ public abstract class MappingComposite extends Composite {
 		lblTarget = new Label(selectionComposite, SWT.NONE);
 
 		String targetDetail = getTargetDetail();
-		if(targetDetail != null && !targetDetail.isEmpty()) {
+		if (targetDetail != null && !targetDetail.isEmpty()) {
 			lblTarget.setText("Target (" + targetDetail + ")");
 		} else {
 			lblTarget.setText("Target");
@@ -159,7 +158,7 @@ public abstract class MappingComposite extends Composite {
 		lblMapping = new Label(resultComposite, SWT.NONE);
 
 		String resultDetail = getResultDetail();
-		if(resultDetail != null && !resultDetail.isEmpty()) {
+		if (resultDetail != null && !resultDetail.isEmpty()) {
 			lblMapping.setText("Mapping (" + resultDetail + ")");
 		} else {
 			lblMapping.setText("Mapping");
@@ -180,7 +179,7 @@ public abstract class MappingComposite extends Composite {
 		btnRemoveLink.setImage(Activator.getImageDescriptor("icons/chain--minus.png").createImage());
 		btnRemoveLink.setEnabled(false);
 
-		//TODO : created when it's possible to edit link
+		// TODO : created when it's possible to edit link
 		btnEditLink = new Button(resultComposite, SWT.NONE);
 		btnEditLink.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false, 1, 1));
 		btnEditLink.setToolTipText("Edit Link");
@@ -209,8 +208,8 @@ public abstract class MappingComposite extends Composite {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					sourceSelection = ((IStructuredSelection)selection).getFirstElement();
+				if (selection instanceof IStructuredSelection) {
+					sourceSelection = ((IStructuredSelection) selection).getFirstElement();
 				}
 				btnLink.setEnabled(!targetViewer.getSelection().isEmpty() && !selection.isEmpty());
 			}
@@ -221,8 +220,8 @@ public abstract class MappingComposite extends Composite {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					targetSelection = ((IStructuredSelection)selection).getFirstElement();
+				if (selection instanceof IStructuredSelection) {
+					targetSelection = ((IStructuredSelection) selection).getFirstElement();
 				}
 				btnLink.setEnabled(!event.getSelection().isEmpty() && !sourceViewer.getSelection().isEmpty());
 			}
@@ -242,10 +241,10 @@ public abstract class MappingComposite extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				EObject linkedElement = linkElements(sourceSelection, targetSelection);
-				if(linkedElement != null) {
+				if (linkedElement != null) {
 					result.add(linkedElement);
 					resultViewer.refresh();
-					if(page != null) {
+					if (page != null) {
 						page.setPageComplete(true);
 					}
 				}
@@ -257,11 +256,11 @@ public abstract class MappingComposite extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = resultViewer.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object fElement = ((IStructuredSelection)selection).getFirstElement();
+				if (selection instanceof IStructuredSelection) {
+					Object fElement = ((IStructuredSelection) selection).getFirstElement();
 					result.remove(fElement);
 					resultViewer.refresh();
-					if(page != null && result.isEmpty()) {
+					if (page != null && result.isEmpty()) {
 						page.setPageComplete(false);
 					}
 				}
@@ -290,14 +289,14 @@ public abstract class MappingComposite extends Composite {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IRequirementType) {
-					return ((IRequirementType)element).getName();
+				if (element instanceof IRequirementType) {
+					return ((IRequirementType) element).getName();
 				}
-				if(element instanceof IEnumerationType) {
-					return ((IEnumerationType)element).getName();
+				if (element instanceof IEnumerationType) {
+					return ((IEnumerationType) element).getName();
 				}
-				if(element instanceof IAttribute) {
-					IAttribute attr = (IAttribute)element;
+				if (element instanceof IAttribute) {
+					IAttribute attr = (IAttribute) element;
 					String typeName = attr.getType().getName();
 					return attr.getName() + " : " + typeName;
 				}
@@ -326,7 +325,7 @@ public abstract class MappingComposite extends Composite {
 
 	public void addToResult(EObject element) {
 		result.add(element);
-		if(resultViewer != null) {
+		if (resultViewer != null) {
 			resultViewer.refresh();
 			page.setPageComplete(true);
 		}
@@ -334,7 +333,7 @@ public abstract class MappingComposite extends Composite {
 
 	public void addToResult(Collection<EObject> elements) {
 		result.addAll(elements);
-		if(resultViewer != null) {
+		if (resultViewer != null) {
 			resultViewer.refresh();
 			page.setPageComplete(true);
 		}

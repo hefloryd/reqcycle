@@ -38,21 +38,21 @@ public class BindingManager {
 			@Override
 			public SortedSet<PriorityClass> get() {
 				SortedSet<PriorityClass> sorted = new TreeSet<PriorityClass>(new Comparator<PriorityClass>() {
-							@Override
-							public int compare(PriorityClass o1, PriorityClass o2) {
-								int result = new Integer(o1.priority).compareTo(o2.priority);
-								if (result == 0 && !o1.equals(o2)) {
-									result = -1;
-								}
-								return result;
-							}
-						});
+					@Override
+					public int compare(PriorityClass o1, PriorityClass o2) {
+						int result = new Integer(o1.priority).compareTo(o2.priority);
+						if (result == 0 && !o1.equals(o2)) {
+							result = -1;
+						}
+						return result;
+					}
+				});
 				return sorted;
 			}
 		};
 		SortedSetMultimap<Class, PriorityClass> multi = Multimaps.newSortedSetMultimap(map, factory);
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(ZigguratInject.PLUGIN_ID, EXT_POINT);
-		for(IConfigurationElement e : elements) {
+		for (IConfigurationElement e : elements) {
 			String theInterface = e.getAttribute("interface");
 			String theImpl = e.getAttribute("impl");
 			String name = e.getAttribute("name");
@@ -60,13 +60,13 @@ public class BindingManager {
 			Class theImplC = loadClass(e, theImpl);
 			int priority = 0;
 			String prio = e.getAttribute("priority");
-			if(prio != null && prio.length() > 0) {
+			if (prio != null && prio.length() > 0) {
 				try {
 					priority = Integer.parseInt(prio);
 				} catch (NumberFormatException ex) {
 				}
 			}
-			if(theInterfaceC != null && theImplC != null && theInterfaceC.isAssignableFrom(theImplC)) {
+			if (theInterfaceC != null && theImplC != null && theInterfaceC.isAssignableFrom(theImplC)) {
 				PriorityClass priorityClass = new PriorityClass();
 				priorityClass.aClass = theImplC;
 				priorityClass.priority = priority;
@@ -74,16 +74,16 @@ public class BindingManager {
 				multi.put(theInterfaceC, priorityClass);
 			}
 		}
-		for(Class c : multi.keys()) {
+		for (Class c : multi.keys()) {
 			PriorityClass last = null;
 			// for each priority class if name is present a binding is created with the given name
-			for(PriorityClass pc : multi.get(c)) {
-				if(pc.name != null && pc.name.length() > 0) {
+			for (PriorityClass pc : multi.get(c)) {
+				if (pc.name != null && pc.name.length() > 0) {
 					InjectorFactory.getDefault().addBinding(c).implementedBy(pc.aClass).named(pc.name);
-				} 
+				}
 				last = pc;
 			}
-			if(last != null) {
+			if (last != null) {
 				// the binding by default is made by a class with no name
 				InjectorFactory.getDefault().addBinding(c).implementedBy(last.aClass);
 			}

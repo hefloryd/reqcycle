@@ -25,8 +25,7 @@ public class TraceabilityLinkPredicate implements Predicate<TraceabilityLink> {
 	private Iterable<TraceableElement> targets;
 	private String label;
 
-	public TraceabilityLinkPredicate(TraceableElement source,
-			Iterable<TraceableElement> targets, String label) {
+	public TraceabilityLinkPredicate(TraceableElement source, Iterable<TraceableElement> targets, String label) {
 		this.source = source;
 		this.targets = targets;
 		this.label = label;
@@ -36,8 +35,7 @@ public class TraceabilityLinkPredicate implements Predicate<TraceabilityLink> {
 	public boolean apply(TraceabilityLink arg0) {
 		try {
 			if (Objects.equal(arg0.getLabel(), label)) {
-				if (Iterables.find(arg0.getSources(),
-						Predicates.equalTo(source)) != null) {
+				if (Iterables.find(arg0.getSources(), Predicates.equalTo(source)) != null) {
 					if (Iterables.elementsEqual(arg0.getTargets(), targets)) {
 						return true;
 					}

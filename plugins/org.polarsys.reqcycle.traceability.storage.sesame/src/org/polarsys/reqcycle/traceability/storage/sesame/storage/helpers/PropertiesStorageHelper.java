@@ -82,8 +82,7 @@ public class PropertiesStorageHelper {
 	 * @throws RepositoryException
 	 *             Error.
 	 */
-	public URI storeProperty(final URI owner, final String key, final String value, final Resource... contexts)
-			throws RepositoryException {
+	public URI storeProperty(final URI owner, final String key, final String value, final Resource... contexts) throws RepositoryException {
 		final URI propUri = getURI(owner, key);
 
 		this.conn.add(owner, ReqVoc.HAS_PROPERTY, propUri, contexts);
@@ -93,13 +92,12 @@ public class PropertiesStorageHelper {
 		return propUri;
 	}
 
-	public URI addOrUpdateProperty(final URI owner, final String key, final String value, final Resource... contexts)
-			throws RepositoryException {
+	public URI addOrUpdateProperty(final URI owner, final String key, final String value, final Resource... contexts) throws RepositoryException {
 		final URI propUri = getURI(owner, key);
 
 		this.conn.add(owner, ReqVoc.HAS_PROPERTY, propUri, contexts);
 		this.conn.add(propUri, RDFS.LABEL, valueFactory.createLiteral(key, XMLSchema.STRING), contexts);
-		if(this.conn.hasStatement(propUri, RDF.VALUE, null, false, contexts)) {
+		if (this.conn.hasStatement(propUri, RDF.VALUE, null, false, contexts)) {
 			this.conn.remove(propUri, RDF.VALUE, null, contexts);
 		}
 		this.conn.add(propUri, RDF.VALUE, valueFactory.createLiteral(value, XMLSchema.STRING), contexts);
@@ -118,8 +116,7 @@ public class PropertiesStorageHelper {
 	 *            The property's name.
 	 * @param context
 	 *            The containing context (or <code>null</code> for all of them).
-	 * @return The retrieved value or <code>null</code> if no property
-	 *         associated.
+	 * @return The retrieved value or <code>null</code> if no property associated.
 	 * @throws RepositoryException
 	 *             on error.
 	 * @throws QueryEvaluationException
@@ -127,8 +124,7 @@ public class PropertiesStorageHelper {
 	 * @throws MalformedQueryException
 	 *             on error.
 	 */
-	public String getStoredProperty(final URI owner, final String key, final Resource context) throws RepositoryException,
-			QueryEvaluationException, MalformedQueryException {
+	public String getStoredProperty(final URI owner, final String key, final Resource context) throws RepositoryException, QueryEvaluationException, MalformedQueryException {
 
 		final String queryString = Queries.buildPropertySelectQuery(context);
 		final TupleQuery query = this.conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -167,8 +163,7 @@ public class PropertiesStorageHelper {
 	 * @throws RepositoryException
 	 *             on error.
 	 */
-	public void deleteStoredProperty(final URI owner, final String key, final Resource context) throws UpdateExecutionException,
-			MalformedQueryException, RepositoryException {
+	public void deleteStoredProperty(final URI owner, final String key, final Resource context) throws UpdateExecutionException, MalformedQueryException, RepositoryException {
 
 		final String queryString = Queries.buildPropertyDeleteQuery(context);
 		final Update query = this.conn.prepareUpdate(QueryLanguage.SPARQL, queryString);
@@ -193,8 +188,7 @@ public class PropertiesStorageHelper {
 	 * @throws RepositoryException
 	 *             on error.
 	 */
-	public void storeProperties(final URI owner, final Map<String, String> props, final Resource... contexts)
-			throws RepositoryException {
+	public void storeProperties(final URI owner, final Map<String, String> props, final Resource... contexts) throws RepositoryException {
 
 		for (final Entry<String, String> entry : props.entrySet()) {
 			final String key = entry.getKey();
@@ -210,10 +204,8 @@ public class PropertiesStorageHelper {
 	 * @param uri
 	 *            {@link URI} of the stored {@link Reachable}.
 	 * @param context
-	 *            The containing {@link Resource} or <code>null</code> to grab
-	 *            properties from all contexts.
-	 * @return A {@link Map} object containing the key-value pairs of the stored
-	 *         {@link Reachable} properties.
+	 *            The containing {@link Resource} or <code>null</code> to grab properties from all contexts.
+	 * @return A {@link Map} object containing the key-value pairs of the stored {@link Reachable} properties.
 	 * @throws RepositoryException
 	 *             When error occured.
 	 * @throws QueryEvaluationException
@@ -221,8 +213,7 @@ public class PropertiesStorageHelper {
 	 * @throws MalformedQueryException
 	 *             When error occured.
 	 */
-	public Map<String, String> getStoredProperties(final URI owner, final Resource context) throws RepositoryException,
-			QueryEvaluationException, MalformedQueryException {
+	public Map<String, String> getStoredProperties(final URI owner, final Resource context) throws RepositoryException, QueryEvaluationException, MalformedQueryException {
 		final String queryString = Queries.buildPropertySelectQuery(context);
 		final TupleQuery query = this.conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 

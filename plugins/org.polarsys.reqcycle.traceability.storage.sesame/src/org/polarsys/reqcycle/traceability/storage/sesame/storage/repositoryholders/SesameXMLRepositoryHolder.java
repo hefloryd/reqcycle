@@ -42,8 +42,7 @@ public class SesameXMLRepositoryHolder extends AbstractSesameRepositoryHolder<IP
 		super();
 	}
 
-	private static void loadDataFromStream(final RepositoryConnection connection, final InputStream stream) throws RepositoryException, IOException,
-			RDFParseException {
+	private static void loadDataFromStream(final RepositoryConnection connection, final InputStream stream) throws RepositoryException, IOException, RDFParseException {
 		connection.begin();
 		connection.add(stream, "", RDFFormat.RDFXML);
 		connection.commit();
@@ -89,8 +88,7 @@ public class SesameXMLRepositoryHolder extends AbstractSesameRepositoryHolder<IP
 		return repository;
 	}
 
-	public RepositoryConnection getConnection(final InputStream inputStream) throws RepositoryException, ExecutionException, RDFParseException,
-			IOException {
+	public RepositoryConnection getConnection(final InputStream inputStream) throws RepositoryException, ExecutionException, RDFParseException, IOException {
 		final Repository repository = createRepository();
 		final RepositoryConnection connection = repository.getConnection();
 		loadDataFromStream(connection, inputStream);

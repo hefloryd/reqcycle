@@ -27,8 +27,7 @@ public class GetTraceabilityPicker implements IPicker {
 	private ITraceabilityStorage storage;
 	private Predicate<Pair<Link, Reachable>> predicate;
 
-	public GetTraceabilityPicker(DIRECTION d, ITraceabilityStorage storage,
-			Predicate<Pair<Link, Reachable>> predicate) {
+	public GetTraceabilityPicker(DIRECTION d, ITraceabilityStorage storage, Predicate<Pair<Link, Reachable>> predicate) {
 		this.direction = d;
 		this.storage = storage;
 		this.predicate = predicate;
@@ -45,10 +44,8 @@ public class GetTraceabilityPicker implements IPicker {
 		return null;
 	}
 
-	private Iterable<Pair<Link, Reachable>> getTraceability(Reachable source,
-			DIRECTION direction) {
-		Iterable<Pair<Link, Reachable>> result = storage.getTraceability(
-				source, direction);
+	private Iterable<Pair<Link, Reachable>> getTraceability(Reachable source, DIRECTION direction) {
+		Iterable<Pair<Link, Reachable>> result = storage.getTraceability(source, direction);
 		return Iterables.filter(result, predicate);
 	}
 }

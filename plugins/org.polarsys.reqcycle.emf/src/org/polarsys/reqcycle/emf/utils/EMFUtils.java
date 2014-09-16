@@ -29,8 +29,7 @@ public class EMFUtils {
 
 	public static Reachable getReachable(URI uri) {
 		try {
-			IReachableCreator creator = ZigguratInject
-					.make(IReachableCreator.class);
+			IReachableCreator creator = ZigguratInject.make(IReachableCreator.class);
 			return creator.getReachable(new java.net.URI(uri.toString()));
 		} catch (URISyntaxException e) {
 			return null;
@@ -52,15 +51,12 @@ public class EMFUtils {
 	}
 
 	public static Reachable getReachable(EObject eobject) {
-		if (eobject == null){
+		if (eobject == null) {
 			return null;
 		}
 		try {
-			IReachableCreator creator = ZigguratInject
-					.make(IReachableCreator.class);
-			return creator.getReachable(
-					new java.net.URI(EcoreUtil.getURI(eobject).toString()),
-					eobject);
+			IReachableCreator creator = ZigguratInject.make(IReachableCreator.class);
+			return creator.getReachable(new java.net.URI(EcoreUtil.getURI(eobject).toString()), eobject);
 		} catch (URISyntaxException e) {
 			return null;
 		}
@@ -83,8 +79,7 @@ public class EMFUtils {
 
 		};
 		set.eSetDeliver(false);
-		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION,
-				true);
+		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		set.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		set.getLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, true);
 		return set;
@@ -102,16 +97,14 @@ public class EMFUtils {
 				if (uri.equals(firstURI)) {
 					return super.getResource(uri, loadOnDemand);
 				}
-				if (uri.isPlatformPlugin() || "pathmap".equals(uri.scheme())
-						|| "http".equals(uri.scheme())) {
+				if (uri.isPlatformPlugin() || "pathmap".equals(uri.scheme()) || "http".equals(uri.scheme())) {
 					return super.getResource(uri, loadOnDemand);
 				}
 				return null;
 			}
 		};
 		set.eSetDeliver(false);
-		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION,
-				true);
+		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		set.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		// set.getLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, true);
 		return set;
@@ -153,26 +146,23 @@ public class EMFUtils {
 				break;
 			}
 		}
-		return handles
-				&& Resource.Factory.Registry.INSTANCE
-						.getExtensionToFactoryMap().containsKey(
-								getExtension(uri.path()));
+		return handles && Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey(getExtension(uri.path()));
 	}
-	
+
 	/**
-	 * Check whether uri can be managed by URI handler. if checkRegistrationExtension is set to true
-	 * check also if extension is registered in EMF registry.
+	 * Check whether uri can be managed by URI handler. if checkRegistrationExtension is set to true check also if extension is registered in EMF registry.
+	 * 
 	 * @param uri
 	 * @param checkRegisteredExtension
 	 * @return
 	 */
 	public static boolean isEMF(URI uri, boolean checkRegisteredExtension) {
-		
+
 		// if we want to check that EMF extension is registered in EMF registry, use default method
 		if (checkRegisteredExtension) {
 			return isEMF(uri);
 		}
-		//else, just check handler can do that.
+		// else, just check handler can do that.
 		boolean handles = false;
 		for (URIHandler u : DEFAULT_HANDLERS) {
 			if (u.canHandle(uri)) {
@@ -181,6 +171,6 @@ public class EMFUtils {
 			}
 		}
 		return handles;
-				
+
 	}
 }

@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.reqcycle.repository.data.MappingModel.*;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
- * an adapter <code>createXXX</code> method for each class of the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
  * 
  * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage
  * @generated
@@ -35,8 +33,7 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	protected static MappingModelPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -47,10 +44,8 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
-	 * the object is either the model's package or is an instance object of the
-	 * model. <!-- end-user-doc -->
+	 * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc --> This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model. <!-- end-user-doc
+	 * -->
 	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
@@ -67,8 +62,7 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -90,8 +84,7 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param target
 	 *            the object to adapt.
@@ -104,12 +97,8 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement
-	 * <em>Mapping Element</em>}'. <!-- begin-user-doc --> This default
-	 * implementation returns null so that we can easily ignore cases; it's
-	 * useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingElement <em>Mapping Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingElement
@@ -120,12 +109,8 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute
-	 * <em>Mapping Attribute</em>}'. <!-- begin-user-doc --> This default
-	 * implementation returns null so that we can easily ignore cases; it's
-	 * useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute <em>Mapping Attribute</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute
@@ -136,8 +121,7 @@ public class MappingModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
-	 * default implementation returns null. <!-- end-user-doc -->
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This default implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @generated

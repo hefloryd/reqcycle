@@ -19,8 +19,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class CommonDragAdapterAssistant extends
-		org.eclipse.ui.navigator.CommonDragAdapterAssistant {
+public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonDragAdapterAssistant {
 
 	private final static String PLUGIN_TRANSFER_ACTION_ID = "org.polarsys.reqcycle.dnd.DropRequirementDelegate";
 
@@ -39,8 +38,7 @@ public class CommonDragAdapterAssistant extends
 	}
 
 	@Override
-	public void dragStart(DragSourceEvent anEvent,
-			IStructuredSelection selection) {
+	public void dragStart(DragSourceEvent anEvent, IStructuredSelection selection) {
 		Iterator<?> iterator = selection.iterator();
 
 		try {
@@ -48,8 +46,7 @@ public class CommonDragAdapterAssistant extends
 			while (iterator.hasNext()) {
 				Object next = iterator.next();
 				if (objectHandler.handlesObject(next)) {
-					ReachableObject fromObject = objectHandler
-							.getFromObject(next);
+					ReachableObject fromObject = objectHandler.getFromObject(next);
 					objectURIs.add(fromObject.getReachable(next));
 				} else {
 					// if one object is not handled, do not transfer any
@@ -58,25 +55,24 @@ public class CommonDragAdapterAssistant extends
 				}
 			}
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream buffered;
-            buffered = new ObjectOutputStream(bos);
-            buffered.writeObject(objectURIs.toArray());
-            byte[] data = bos.toByteArray();
-            bos.close();
-            buffered.close();
+			ObjectOutputStream buffered;
+			buffered = new ObjectOutputStream(bos);
+			buffered.writeObject(objectURIs.toArray());
+			byte[] data = bos.toByteArray();
+			bos.close();
+			buffered.close();
 
-            anEvent.data = new PluginTransferData(PLUGIN_TRANSFER_ACTION_ID, data);
+			anEvent.data = new PluginTransferData(PLUGIN_TRANSFER_ACTION_ID, data);
 		} catch (Exception e) {
 			anEvent.doit = false;
 			return;
 		}
 		anEvent.doit = true;
-//		anEvent.data = 
+		// anEvent.data =
 	}
 
 	@Override
-	public boolean setDragData(DragSourceEvent event,
-			IStructuredSelection selection) {
+	public boolean setDragData(DragSourceEvent event, IStructuredSelection selection) {
 		Iterator<?> iterator = selection.iterator();
 
 		if (PluginTransfer.getInstance().isSupportedType(event.dataType)) {
@@ -85,8 +81,7 @@ public class CommonDragAdapterAssistant extends
 				while (iterator.hasNext()) {
 					Object next = iterator.next();
 					if (objectHandler.handlesObject(next)) {
-						ReachableObject fromObject = objectHandler
-								.getFromObject(next);
+						ReachableObject fromObject = objectHandler.getFromObject(next);
 						objectURIs.add(fromObject.getReachable(next));
 					} else {
 						// if one object is not handled, do not transfer any
@@ -101,8 +96,7 @@ public class CommonDragAdapterAssistant extends
 				bos.close();
 				buffered.close();
 
-				event.data = new PluginTransferData(PLUGIN_TRANSFER_ACTION_ID,
-						data);
+				event.data = new PluginTransferData(PLUGIN_TRANSFER_ACTION_ID, data);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

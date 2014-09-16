@@ -33,12 +33,9 @@ public class LabelledVisitor implements IVisitor {
 	public static Collection<LabelledVisitor> getRegisteredVisitors() {
 		if (visitors == null) {
 			visitors = new ArrayDeque<LabelledVisitor>();
-			for (IConfigurationElement e : Platform
-					.getExtensionRegistry()
-					.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_POINT)) {
+			for (IConfigurationElement e : Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_POINT)) {
 				try {
-					IVisitor v = (IVisitor) e
-							.createExecutableExtension("visitor");
+					IVisitor v = (IVisitor) e.createExecutableExtension("visitor");
 					ZigguratInject.inject(v);
 					String label = e.getAttribute(LABEL);
 					if (label == null || label.length() == 0) {
@@ -46,12 +43,9 @@ public class LabelledVisitor implements IVisitor {
 					}
 					String description = e.getAttribute(DESCRIPTION);
 					if (description == null) {
-						description = " analyser registered in bundle : "
-								+ FrameworkUtil.getBundle(v.getClass())
-										.getSymbolicName();
+						description = " analyser registered in bundle : " + FrameworkUtil.getBundle(v.getClass()).getSymbolicName();
 					}
-					LabelledVisitor labelled = new LabelledVisitor(label,
-							description, v);
+					LabelledVisitor labelled = new LabelledVisitor(label, description, v);
 					visitors.add(labelled);
 				} catch (CoreException e1) {
 					e1.printStackTrace();

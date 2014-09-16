@@ -28,8 +28,7 @@ public class MethodChecker implements ITypeChecker {
 		if (handler == null) {
 			return false;
 		}
-		IJavaElement adapter = (IJavaElement) handler
-				.getAdapter(IJavaElement.class);
+		IJavaElement adapter = (IJavaElement) handler.getAdapter(IJavaElement.class);
 		return adapter != null && adapter instanceof IMethod;
 	}
 }

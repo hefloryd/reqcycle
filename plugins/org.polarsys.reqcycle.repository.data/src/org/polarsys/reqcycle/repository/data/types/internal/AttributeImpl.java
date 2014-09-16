@@ -124,8 +124,7 @@ public class AttributeImpl implements IAttribute, IAdaptable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.polarsys.reqcycle.repository.data.types.IAttribute#getAttributeType()
+	 * @see org.polarsys.reqcycle.repository.data.types.IAttribute#getAttributeType()
 	 */
 	@Override
 	public IType getType() {

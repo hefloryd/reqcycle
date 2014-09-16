@@ -25,14 +25,12 @@ public interface IStorageProvider {
 	/**
 	 * @param project
 	 *            The target project.
-	 * @return A storage able to store explicit traceability links for a
-	 *         project.
+	 * @return A storage able to store explicit traceability links for a project.
 	 */
 	ITraceabilityStorage getProjectStorage(IProject project);
 
 	/**
-	 * Gets a {@link ITraceabilityStorage} that can be used to read/update an
-	 * explicit link.
+	 * Gets a {@link ITraceabilityStorage} that can be used to read/update an explicit link.
 	 * 
 	 * @param reachable
 	 *            Id of the explicit link.

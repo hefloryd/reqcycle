@@ -12,7 +12,6 @@ package org.polarsys.reqcycle.utils.iterators.pickers;
 
 import java.util.List;
 
-
 public interface IPickableArc extends IArc {
 
 	public abstract IPicker getPicker();

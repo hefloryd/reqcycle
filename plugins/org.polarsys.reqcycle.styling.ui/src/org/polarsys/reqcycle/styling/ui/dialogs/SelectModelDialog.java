@@ -69,8 +69,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		area.setLayout(new GridLayout(1, false));
 
 		PatternFilter filter = new PatternFilter();
-		this.filteredTree = new FilteredTree(area, SWT.SINGLE | SWT.H_SCROLL
-				| SWT.V_SCROLL, filter, true);
+		this.filteredTree = new FilteredTree(area, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL, filter, true);
 
 		treeViewer = filteredTree.getViewer();
 		final Tree tree = treeViewer.getTree();
@@ -83,10 +82,8 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				validateInput();
-				if (((IStructuredSelection) event.getSelection())
-						.getFirstElement() instanceof IAttribute) {
-					IAttribute att = (IAttribute) ((IStructuredSelection) event
-							.getSelection()).getFirstElement();
+				if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof IAttribute) {
+					IAttribute att = (IAttribute) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					currentAttribute = att;
 				}
 			}
@@ -138,8 +135,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof IRequirementType) {
-				return ((IRequirementType) parentElement).getAttributes()
-						.toArray();
+				return ((IRequirementType) parentElement).getAttributes().toArray();
 			}
 			return null;
 		}
@@ -151,8 +147,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof IRequirementType) {
-				Collection<IAttribute> attr = ((IRequirementType) element)
-						.getAttributes();
+				Collection<IAttribute> attr = ((IRequirementType) element).getAttributes();
 				return attr.size() > 0;
 			}
 			return false;
@@ -180,8 +175,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 				if (treeViewer.getSelection().isEmpty()) {
 					return "An attribute must be selected";
 				}
-				IStructuredSelection selection = (IStructuredSelection) treeViewer
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
 				if (!(selection.getFirstElement() instanceof IAttribute)) {
 					return "An attribute must be selected";
 				}

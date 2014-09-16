@@ -23,8 +23,7 @@ import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTrace
 import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTraceabilityPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -65,14 +64,10 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 	private EClass propertyEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory
-	 * method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTraceabilityPackage#eNS_URI
@@ -91,14 +86,10 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model,
-	 * and for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize
-	 * {@link ReqCycleTraceabilityPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should
-	 * simply access that field to obtain the package. <!-- begin-user-doc -->
+	 * This method is used to initialize {@link ReqCycleTraceabilityPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
@@ -111,8 +102,8 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 			return (ReqCycleTraceabilityPackage) EPackage.Registry.INSTANCE.getEPackage(ReqCycleTraceabilityPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ReqCycleTraceabilityPackageImpl theReqCycleTraceabilityPackage = (ReqCycleTraceabilityPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ReqCycleTraceabilityPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new ReqCycleTraceabilityPackageImpl());
+		ReqCycleTraceabilityPackageImpl theReqCycleTraceabilityPackage = (ReqCycleTraceabilityPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ReqCycleTraceabilityPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new ReqCycleTraceabilityPackageImpl());
 
 		isInited = true;
 
@@ -291,9 +282,7 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -332,9 +321,7 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -358,37 +345,27 @@ public class ReqCycleTraceabilityPackageImpl extends EPackageImpl implements Req
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(eReachableEClass, EReachable.class, "EReachable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEReachable_Downwards(), this.getELink(), null, "downwards", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEReachable_Types(), ecorePackage.getEString(), "types", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
-		initEReference(getEReachable_Upwards(), this.getELink(), null, "upwards", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getEReachable_Downwards(), this.getELink(), null, "downwards", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEReachable_Types(), ecorePackage.getEString(), "types", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getEReachable_Upwards(), this.getELink(), null, "upwards", null, 0, -1, EReachable.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEReachable__GetEObject(), ecorePackage.getEObject(), "getEObject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eLinkEClass, ELink.class, "ELink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getELink_Upwards(), this.getEReachable(), null, "upwards", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getELink_Downwards(), this.getEReachable(), null, "downwards", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getELink_Attributes(), this.getProperty(), null, "attributes", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getELink_Upwards(), this.getEReachable(), null, "upwards", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getELink_Downwards(), this.getEReachable(), null, "downwards", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getELink_Attributes(), this.getProperty(), null, "attributes", null, 0, -1, ELink.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getElement_URI(), ecorePackage.getEString(), "URI", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getElement_Label(), ecorePackage.getEString(), "label", null, 0, 1, Element.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getElement_URI(), ecorePackage.getEString(), "URI", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_Label(), ecorePackage.getEString(), "label", null, 0, 1, Element.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getElement__GetAdapter__Class(), ecorePackage.getEJavaObject(), "getAdapter", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaClass(), "type", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

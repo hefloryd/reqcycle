@@ -24,28 +24,20 @@ import RequirementSourceData.presentation.RequirementSourceDataActionBarContribu
 /**
  * The Class RequirementsActionBarContributor.
  */
-public class CustomDataModelActionBarContributor extends
-		RequirementSourceDataActionBarContributor {
+public class CustomDataModelActionBarContributor extends RequirementSourceDataActionBarContributor {
 
 	@Override
-	protected Collection<IAction> generateCreateChildActions(
-			Collection<?> descriptors, ISelection selection) {
-		if (CustomDataModelEditorUtil.isInstance(selection,
-				RequirementSources.class)) {
+	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
+		if (CustomDataModelEditorUtil.isInstance(selection, RequirementSources.class)) {
 			return Collections.emptyList();
 		}
-		Collection<IAction> result = super.generateCreateChildActions(
-				descriptors, selection);
+		Collection<IAction> result = super.generateCreateChildActions(descriptors, selection);
 		return result;
 	}
 
 	@Override
-	protected Collection<IAction> generateCreateSiblingActions(
-			Collection<?> descriptors, ISelection selection) {
-		if (CustomDataModelEditorUtil.isInstance(selection,
-				RequirementSources.class)
-				|| CustomDataModelEditorUtil.isInstance(selection,
-						RequirementSource.class)) {
+	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
+		if (CustomDataModelEditorUtil.isInstance(selection, RequirementSources.class) || CustomDataModelEditorUtil.isInstance(selection, RequirementSource.class)) {
 			return Collections.emptyList();
 		}
 		return super.generateCreateSiblingActions(descriptors, selection);

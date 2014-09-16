@@ -30,13 +30,11 @@ public class SelectTypeDialog extends TitleAreaDialog {
 	private Boolean isStrictTypeOf;
 
 	/**
-	 * The collection of EClass of the model to which we are going to apply the
-	 * predicate.
+	 * The collection of EClass of the model to which we are going to apply the predicate.
 	 */
 	private final Collection<EClass> eClassesOfModelToEdit;
 
-	public SelectTypeDialog(final Shell parentShell,
-			final Collection<EClass> eClassesOfModelToEdit) {
+	public SelectTypeDialog(final Shell parentShell, final Collection<EClass> eClassesOfModelToEdit) {
 		super(parentShell);
 		this.eClassesOfModelToEdit = eClassesOfModelToEdit;
 	}
@@ -56,20 +54,17 @@ public class SelectTypeDialog extends TitleAreaDialog {
 		listViewer.setInput(this.eClassesOfModelToEdit.toArray());
 
 		attributeEditor = new GenericEAttrPropsEditor(container, SWT.NONE);
-		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1));
+		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Collection<Object> possibleValues = Collections.emptyList();
-		attributeEditor.init("Is strict type of : ", Boolean.class,
-				possibleValues);
+		attributeEditor.init("Is strict type of : ", Boolean.class, possibleValues);
 
 		return container;
 	}
 
 	private void initProviders(ListViewer list) {
 		AdapterFactory adapterfactory = new PredicatesAdapterFactory();
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				adapterfactory) {
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterfactory) {
 			@Override
 			public String getText(Object object) {
 				if (object instanceof EClass) {
@@ -79,8 +74,7 @@ public class SelectTypeDialog extends TitleAreaDialog {
 			}
 		};
 
-		ArrayContentProvider contentProvider = ArrayContentProvider
-				.getInstance();
+		ArrayContentProvider contentProvider = ArrayContentProvider.getInstance();
 
 		list.setLabelProvider(labelProvider);
 		list.setContentProvider(contentProvider);
@@ -90,17 +84,14 @@ public class SelectTypeDialog extends TitleAreaDialog {
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == IDialogConstants.OK_ID) {
 			if (!attributeEditor.isEditionValid()) {
-				MessageDialog.openError(getShell(), "Error",
-						"Is strict type of must be selected");
+				MessageDialog.openError(getShell(), "Error", "Is strict type of must be selected");
 				return;
 			}
 			if (listViewer.getSelection().isEmpty()) {
-				MessageDialog.openError(getShell(), "Error",
-						"A type must be selected");
+				MessageDialog.openError(getShell(), "Error", "A type must be selected");
 				return;
 			}
-			IStructuredSelection selection = (IStructuredSelection) listViewer
-					.getSelection();
+			IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
 			type = selection.getFirstElement();
 			isStrictTypeOf = (Boolean) attributeEditor.getEnteredValue();
 		}

@@ -41,8 +41,7 @@ public class StubbedIdContributor implements IIDContributor {
 	@Override
 	public Reachable getReachable(String logicalID) {
 		String[] splitted = logicalID.split("/");
-		
-		
+
 		// general case
 		IResource container = ResourcesPlugin.getWorkspace().getRoot();
 		Resource resEMF = null;
@@ -81,15 +80,10 @@ public class StubbedIdContributor implements IIDContributor {
 						f = null;
 					} else {
 						try {
-							org.eclipse.emf.common.util.URI emfURI = org.eclipse.emf.common.util.URI
-									.createPlatformResourceURI(f.getFullPath()
-											.toString(), true);
-							boolean checker = new EMFTypeChecker()
-									.apply(creator.getReachable(new URI(emfURI
-											.toString())));
+							org.eclipse.emf.common.util.URI emfURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(f.getFullPath().toString(), true);
+							boolean checker = new EMFTypeChecker().apply(creator.getReachable(new URI(emfURI.toString())));
 							if (checker) {
-								resEMF = EMFUtils.getFAURSWithPathMaps()
-										.getResource(emfURI, true);
+								resEMF = EMFUtils.getFAURSWithPathMaps().getResource(emfURI, true);
 							}
 						} catch (URISyntaxException e) {
 							// TODO Auto-generated catch block
@@ -101,8 +95,7 @@ public class StubbedIdContributor implements IIDContributor {
 		}
 		if (found && current != null) {
 			try {
-				return manager.getHandlerFromObject(current)
-						.getFromObject(current).getReachable(current);
+				return manager.getHandlerFromObject(current).getFromObject(current).getReachable(current);
 			} catch (IReachableHandlerException e) {
 				e.printStackTrace();
 			}

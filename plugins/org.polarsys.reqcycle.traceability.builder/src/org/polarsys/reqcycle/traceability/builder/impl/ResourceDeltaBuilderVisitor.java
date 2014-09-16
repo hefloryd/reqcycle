@@ -28,8 +28,7 @@ import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.utils.ReachableUtils;
 
-public class ResourceDeltaBuilderVisitor implements IResourceDeltaVisitor,
-		IResourceVisitor {
+public class ResourceDeltaBuilderVisitor implements IResourceDeltaVisitor, IResourceVisitor {
 	@Inject
 	ITraceabilityBuilder builder;
 	@Inject
@@ -40,8 +39,7 @@ public class ResourceDeltaBuilderVisitor implements IResourceDeltaVisitor,
 	private boolean forceBuild;
 	private ArrayDeque<Reachable> toBuild = new ArrayDeque<Reachable>();
 
-	public ResourceDeltaBuilderVisitor(IProgressMonitor monitor,
-			boolean forceBuild) {
+	public ResourceDeltaBuilderVisitor(IProgressMonitor monitor, boolean forceBuild) {
 		this.monitor = monitor;
 		this.forceBuild = forceBuild;
 	}

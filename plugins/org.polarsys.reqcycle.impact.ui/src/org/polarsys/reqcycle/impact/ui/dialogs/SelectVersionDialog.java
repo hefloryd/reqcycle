@@ -47,14 +47,13 @@ public class SelectVersionDialog extends ValidatingTitleAreaDialog implements ID
 
 	@Inject
 	IDataManager dataManager;
-	
+
 	/**
 	 * Create the dialog.
 	 * 
 	 * @param parentShell
 	 */
-	public SelectVersionDialog(Shell parentShell,
-			RequirementSource requirementSource) {
+	public SelectVersionDialog(Shell parentShell, RequirementSource requirementSource) {
 		super(parentShell);
 		ZigguratInject.inject(this);
 		this.requirementSource = requirementSource;
@@ -84,8 +83,7 @@ public class SelectVersionDialog extends ValidatingTitleAreaDialog implements ID
 
 		Composite composite = new Composite(container, SWT.NONE);
 		composite.setLayout(new FillLayout(SWT.HORIZONTAL));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		treeViewer = new TreeViewer(composite);
 		treeViewer.setContentProvider(new VersionContentProvider());
@@ -93,29 +91,17 @@ public class SelectVersionDialog extends ValidatingTitleAreaDialog implements ID
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (((IStructuredSelection) event.getSelection())
-						.getFirstElement() instanceof IFileRevision) {
-					IFileRevision fileRev = (IFileRevision) (((IStructuredSelection) event
-							.getSelection()).getFirstElement());
+				if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof IFileRevision) {
+					IFileRevision fileRev = (IFileRevision) (((IStructuredSelection) event.getSelection()).getFirstElement());
 					Date date = new Date(fileRev.getTimestamp());
 					rsVersion = date.toString();
-					requirementSourceSelected = versionManager.loadResource(
-							fileRev, requirementSource.getDataModelURI(),
-							requirementSource.getDefaultScope(),
-							requirementSource.getName());
-				} else if (((IStructuredSelection) event.getSelection())
-						.getFirstElement() instanceof IFileState) {
-					IFileState fileState = (IFileState) (((IStructuredSelection) event
-							.getSelection()).getFirstElement());
+					requirementSourceSelected = versionManager.loadResource(fileRev, requirementSource.getDataModelURI(), requirementSource.getDefaultScope(), requirementSource.getName());
+				} else if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof IFileState) {
+					IFileState fileState = (IFileState) (((IStructuredSelection) event.getSelection()).getFirstElement());
 					Date date = new Date(fileState.getModificationTime());
 					rsVersion = date.toString();
-					requirementSourceSelected = versionManager
-							.loadLocalHistoryResource(fileState,
-									requirementSource.getDataModelURI(),
-									requirementSource.getDefaultScope(),
-									requirementSource.getName());
-				} else if (((IStructuredSelection) event.getSelection())
-						.getFirstElement().equals("Current")) {
+					requirementSourceSelected = versionManager.loadLocalHistoryResource(fileState, requirementSource.getDataModelURI(), requirementSource.getDefaultScope(), requirementSource.getName());
+				} else if (((IStructuredSelection) event.getSelection()).getFirstElement().equals("Current")) {
 					requirementSourceSelected = EcoreUtil.copy(requirementSource);
 					rsVersion = "Current";
 				} else {
@@ -157,8 +143,7 @@ public class SelectVersionDialog extends ValidatingTitleAreaDialog implements ID
 		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof RepositoryProvider) {
-				return history.get((RepositoryProvider) parentElement)
-						.toArray();
+				return history.get((RepositoryProvider) parentElement).toArray();
 			} else if (parentElement.equals("Local History")) {
 				return localHistory.toArray();
 			}
@@ -190,8 +175,7 @@ public class SelectVersionDialog extends ValidatingTitleAreaDialog implements ID
 				Date date = new Date(((IFileRevision) element).getTimestamp());
 				return date.toString();
 			} else if (element instanceof IFileState) {
-				Date date = new Date(
-						((IFileState) element).getModificationTime());
+				Date date = new Date(((IFileState) element).getModificationTime());
 				return date.toString();
 			}
 			return super.getText(element);

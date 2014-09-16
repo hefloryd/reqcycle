@@ -12,11 +12,11 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 
 public interface IVersionManager {
 	public Map<RepositoryProvider, Collection<IFileRevision>> getHistory(RequirementSource requirementSource);
-	
+
 	public ArrayList<IFileState> getLocalHistory(RequirementSource requirementSource);
-	
+
 	public RequirementSource loadResource(IFileRevision rev, String dataModelURI, Scope scope, String resourceName);
-	
+
 	public RequirementSource loadLocalHistoryResource(IFileState fileState, String dataModelURI, Scope scope, String resourceName);
-	
+
 }

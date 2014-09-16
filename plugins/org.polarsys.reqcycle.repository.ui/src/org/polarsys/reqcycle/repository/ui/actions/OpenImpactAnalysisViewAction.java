@@ -26,14 +26,12 @@ public class OpenImpactAnalysisViewAction extends Action {
 		if (selection instanceof IStructuredSelection) {
 
 			Collection<Object> selectedObj = new ArrayList<Object>();
-			for (Iterator<?> iterator = ((IStructuredSelection) selection)
-					.iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = ((IStructuredSelection) selection).iterator(); iterator.hasNext();) {
 				selectedObj.add(iterator.next());
 			}
 
 			Collection<RequirementSource> input = new ArrayList<RequirementSource>();
-			for (Iterator<Object> iterator = selectedObj.iterator(); iterator
-					.hasNext();) {
+			for (Iterator<Object> iterator = selectedObj.iterator(); iterator.hasNext();) {
 				Object obj = iterator.next();
 				input.addAll(DataUtil.getRepositories(obj));
 			}

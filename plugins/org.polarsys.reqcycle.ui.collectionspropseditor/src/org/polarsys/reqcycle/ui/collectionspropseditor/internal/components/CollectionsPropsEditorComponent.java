@@ -63,18 +63,18 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 		final Label lblName = new Label(this, SWT.NONE);
 		lblName.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false, 1, 1));
 		lblName.setText(attributeName);
-//		Class type = get 
-//		final EClassifier eType = attribute.getEType();
+		// Class type = get
+		// final EClassifier eType = attribute.getEType();
 
-//		if(eType instanceof EEnum) {
-//			setLayout(new GridLayout(2, false));
-//			this.initTableViewerForEEnum(parent, (EEnum)eType);
-//
-//		} else {
+		// if(eType instanceof EEnum) {
+		// setLayout(new GridLayout(2, false));
+		// this.initTableViewerForEEnum(parent, (EEnum)eType);
+		//
+		// } else {
 		// TODO deal with multi enums
-			setLayout(new GridLayout(4, false));
-			this.initSimpleTableViewer(parent);
-//		}
+		setLayout(new GridLayout(4, false));
+		this.initSimpleTableViewer(parent);
+		// }
 
 		tableViewer.setLabelProvider(new DefaultTableLabelProvider());
 		this.comparator = new CustomViewerComparator();
@@ -93,10 +93,10 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 			@Override
 			public void update(ViewerCell cell) {
 				Object obj = cell.getElement();
-				if(obj instanceof ItemValue) {
+				if (obj instanceof ItemValue) {
 					cell.setText(obj.toString());
-				} else if(obj instanceof Enumerator) {
-					cell.setText(((Enumerator)obj).getLiteral());
+				} else if (obj instanceof Enumerator) {
+					cell.setText(((Enumerator) obj).getLiteral());
 				} else {
 					throw new IllegalArgumentException("Cannot update the cell label, unknown content type ...");
 				}
@@ -161,19 +161,19 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 
 			@Override
 			public Object[] getElements(Object inputElement) {
-				return (Object[])inputElement;
+				return (Object[]) inputElement;
 			}
 		});
-		((CheckboxTableViewer)tableViewer).addCheckStateListener(new ICheckStateListener() {
+		((CheckboxTableViewer) tableViewer).addCheckStateListener(new ICheckStateListener() {
 
 			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				Object obj = event.getElement();
-				if(obj instanceof EEnumLiteral) {
-					if(event.getChecked()) {
-						enteredValues.add(((EEnumLiteral)obj).getInstance());
+				if (obj instanceof EEnumLiteral) {
+					if (event.getChecked()) {
+						enteredValues.add(((EEnumLiteral) obj).getInstance());
 					} else {
-						enteredValues.remove(((EEnumLiteral)obj).getInstance());
+						enteredValues.remove(((EEnumLiteral) obj).getInstance());
 					}
 				}
 			}
@@ -214,7 +214,7 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 
 	private void removeSelectedItems() {
 		Table t = tableViewer.getTable();
-		for(int i : t.getSelectionIndices()) {
+		for (int i : t.getSelectionIndices()) {
 			Object obj = tableViewer.getElementAt(i);
 			this.enteredValues.remove(obj);
 		}
@@ -225,11 +225,11 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 	@Override
 	public Collection<Object> getValue() {
 		Collection<Object> result = new ArrayList<Object>();
-		for(Object item : this.enteredValues) {
-			if(item instanceof ItemValue) {
-				result.add(((ItemValue)item).getValue());
-			} else if(item instanceof EEnumLiteral) {
-				result.add(((EEnumLiteral)item).getLiteral());
+		for (Object item : this.enteredValues) {
+			if (item instanceof ItemValue) {
+				result.add(((ItemValue) item).getValue());
+			} else if (item instanceof EEnumLiteral) {
+				result.add(((EEnumLiteral) item).getLiteral());
 			} else {
 				result.add(item);
 			}
@@ -278,8 +278,8 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 
 		@Override
 		public String getColumnText(Object element, int columnIndex) {
-			if(element instanceof EEnumLiteral) {
-				return ((EEnumLiteral)element).getLiteral();
+			if (element instanceof EEnumLiteral) {
+				return ((EEnumLiteral) element).getLiteral();
 			}
 			return element.toString();
 		}
@@ -314,14 +314,14 @@ public class CollectionsPropsEditorComponent extends AbstractPropsEditorComponen
 
 			int rc = 0;
 
-			if(e1 instanceof EEnumLiteral && e2 instanceof EEnumLiteral) {
-				rc = ((EEnumLiteral)e1).getLiteral().compareTo(((EEnumLiteral)e2).getLiteral());
+			if (e1 instanceof EEnumLiteral && e2 instanceof EEnumLiteral) {
+				rc = ((EEnumLiteral) e1).getLiteral().compareTo(((EEnumLiteral) e2).getLiteral());
 			} else {
 				rc = super.compare(viewer, e1, e2);
 			}
 
 			// If descending order, flip the direction
-			if(direction == DESCENDING) {
+			if (direction == DESCENDING) {
 				rc = -rc;
 			}
 			return rc;

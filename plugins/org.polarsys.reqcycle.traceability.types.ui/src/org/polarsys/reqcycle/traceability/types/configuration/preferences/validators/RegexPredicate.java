@@ -17,8 +17,7 @@ public class RegexPredicate implements Predicate<String> {
 	private Pattern regex;
 
 	public RegexPredicate(String regex) {
-		this.regex = Pattern.compile(regex, Pattern.DOTALL
-				| Pattern.CASE_INSENSITIVE);
+		this.regex = Pattern.compile(regex, Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 	}
 
 	@Override

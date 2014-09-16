@@ -7,19 +7,19 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class ValidatingTitleAreaDialog extends TitleAreaDialog {
-	 public ValidatingTitleAreaDialog(Shell parentShell) {
+	public ValidatingTitleAreaDialog(Shell parentShell) {
 		super(parentShell);
 	}
 
-	public abstract IValidator getInputValidator () ;
+	public abstract IValidator getInputValidator();
 
 	@Override
 	protected Control createContents(Composite parent) {
 		Control result = super.createContents(parent);
-		
-		return result; 
+
+		return result;
 	}
-	
+
 	protected void validateInput() {
 		String errorMessage = null;
 		IValidator validator = getInputValidator();
@@ -32,9 +32,9 @@ public abstract class ValidatingTitleAreaDialog extends TitleAreaDialog {
 			okButton.setEnabled(errorMessage == null);
 		}
 	}
-	
+
 	public static interface IValidator {
-		String isValid () ;
+		String isValid();
 	}
-	
+
 }

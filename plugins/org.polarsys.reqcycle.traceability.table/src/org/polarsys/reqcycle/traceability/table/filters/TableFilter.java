@@ -18,7 +18,6 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 
 import com.google.common.collect.Iterables;
 
-
 public class TableFilter extends ViewerFilter {
 
 	private String searchString;
@@ -30,25 +29,25 @@ public class TableFilter extends ViewerFilter {
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		if(searchString == null || searchString.length() == 0) {
+		if (searchString == null || searchString.length() == 0) {
 			return true;
 		}
-		Link link = (Link)element;
+		Link link = (Link) element;
 
 		Reachable source = Iterables.get(link.getSources(), 0);
 		String sourceText = TraceabilityUtils.getText(source);
 		Reachable target = Iterables.get(link.getTargets(), 0);
 		String targetText = TraceabilityUtils.getText(target);
 
-		if(link.getKind().getLabel().matches(searchString)) {
+		if (link.getKind().getLabel().matches(searchString)) {
 			return true;
 		}
 
-		if(sourceText != null && sourceText.matches(searchString)) {
+		if (sourceText != null && sourceText.matches(searchString)) {
 			return true;
 		}
-		
-		if(targetText != null && targetText.matches(searchString)) {
+
+		if (targetText != null && targetText.matches(searchString)) {
 			return true;
 		}
 

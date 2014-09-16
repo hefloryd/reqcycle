@@ -77,31 +77,24 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Analysis</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Analysis</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsAdded
- * <em>Requirements Added</em>}</li>
+ * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsAdded <em>Requirements Added</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsDeleted
- * <em>Requirements Deleted</em>}</li>
+ * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsDeleted <em>Requirements Deleted</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsModified
- * <em>Requirements Modified</em>}</li>
+ * {@link org.polarsys.reqcycle.impact.Impact.impl.ImpactAnalysisImpl#getRequirementsModified <em>Requirements Modified</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
-		ImpactAnalysis {
+public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements ImpactAnalysis {
 	/**
-	 * The cached value of the '{@link #getRequirementsAdded()
-	 * <em>Requirements Added</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequirementsAdded() <em>Requirements Added</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRequirementsAdded()
 	 * @generated
@@ -110,9 +103,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	protected EList<RequirementImpacted> requirementsAdded;
 
 	/**
-	 * The cached value of the '{@link #getRequirementsDeleted()
-	 * <em>Requirements Deleted</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequirementsDeleted() <em>Requirements Deleted</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRequirementsDeleted()
 	 * @generated
@@ -120,9 +111,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 */
 	protected EList<RequirementImpacted> requirementsDeleted;
 	/**
-	 * The cached value of the '{@link #getRequirementsModified()
-	 * <em>Requirements Modified</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRequirementsModified() <em>Requirements Modified</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRequirementsModified()
 	 * @generated
@@ -173,9 +162,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<RequirementImpacted> getRequirementsAdded() {
 		if (requirementsAdded == null) {
-			requirementsAdded = new EObjectContainmentEList<RequirementImpacted>(
-					RequirementImpacted.class, this,
-					ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_ADDED);
+			requirementsAdded = new EObjectContainmentEList<RequirementImpacted>(RequirementImpacted.class, this, ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_ADDED);
 		}
 		return requirementsAdded;
 	}
@@ -187,9 +174,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<RequirementImpacted> getRequirementsDeleted() {
 		if (requirementsDeleted == null) {
-			requirementsDeleted = new EObjectContainmentEList<RequirementImpacted>(
-					RequirementImpacted.class, this,
-					ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_DELETED);
+			requirementsDeleted = new EObjectContainmentEList<RequirementImpacted>(RequirementImpacted.class, this, ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_DELETED);
 		}
 		return requirementsDeleted;
 	}
@@ -201,9 +186,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<RequirementImpacted> getRequirementsModified() {
 		if (requirementsModified == null) {
-			requirementsModified = new EObjectContainmentEList<RequirementImpacted>(
-					RequirementImpacted.class, this,
-					ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_MODIFIED);
+			requirementsModified = new EObjectContainmentEList<RequirementImpacted>(RequirementImpacted.class, this, ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_MODIFIED);
 		}
 		return requirementsModified;
 	}
@@ -229,8 +212,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 * 
 	 * @generated NOT
 	 */
-	public void launchAnalysis(RequirementSource sourceFrom,
-			RequirementSource sourceTo) {
+	public void launchAnalysis(RequirementSource sourceFrom, RequirementSource sourceTo) {
 		this.getRequirementsAdded().clear();
 		this.getRequirementsDeleted().clear();
 		this.getRequirementsModified().clear();
@@ -263,9 +245,9 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 					refObjects.add((Requirement) elt);
 				} else if (elt instanceof Section) {
 					refObjects.addAll(getRequirement(elt));
-//					for (AbstractElement e : ((Section) elt).getChildren()) {
-//						refObjects.add((Requirement) e);
-//					}
+					// for (AbstractElement e : ((Section) elt).getChildren()) {
+					// refObjects.add((Requirement) e);
+					// }
 				}
 			}
 			Collections.sort(refObjects, new Comparator<Requirement>() {
@@ -277,18 +259,14 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 
 			});
 
-			CustomRootedModelScope refScope = new CustomRootedModelScope(
-					refObjects);
-			CustomRootedModelScope targetScope = new CustomRootedModelScope(
-					targetObjects);
+			CustomRootedModelScope refScope = new CustomRootedModelScope(refObjects);
+			CustomRootedModelScope targetScope = new CustomRootedModelScope(targetObjects);
 
-			EComparison comparison = new EComparisonImpl(targetScope, refScope,
-					null);
+			EComparison comparison = new EComparisonImpl(targetScope, refScope, null);
 
 			comparison.compute(null, null, null, null);
 
-			List<IDifference> toMergeDiffs = Lists.newArrayList(comparison
-					.getRemainingDifferences());
+			List<IDifference> toMergeDiffs = Lists.newArrayList(comparison.getRemainingDifferences());
 
 			for (IDifference diff : toMergeDiffs) {
 				if (diff instanceof EElementPresence) {
@@ -296,26 +274,20 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 					// this means a requirement has been added
 					if (presence.getPresenceRole() == Role.TARGET) {
 						if (presence.getElement() instanceof Requirement) {
-							RequirementImpacted reqAdded = ImpactFactory.eINSTANCE
-									.createRequirementImpacted();
-							reqAdded.setId(((Requirement) presence.getElement())
-									.getId());
+							RequirementImpacted reqAdded = ImpactFactory.eINSTANCE.createRequirementImpacted();
+							reqAdded.setId(((Requirement) presence.getElement()).getId());
 
 							this.getRequirementsAdded().add(reqAdded);
 						}
 					} else { // presence.getPresenceRole() == Role.REFERENCE
 						// this means a requirement has been deleted
 						if (presence.getElement() instanceof Requirement) {
-							RequirementImpacted reqDeleted = ImpactFactory.eINSTANCE
-									.createRequirementImpacted();
-							reqDeleted.setId(((Requirement) presence
-									.getElement()).getId());
+							RequirementImpacted reqDeleted = ImpactFactory.eINSTANCE.createRequirementImpacted();
+							reqDeleted.setId(((Requirement) presence.getElement()).getId());
 
-							Requirement req = (Requirement) presence
-									.getElement();
+							Requirement req = (Requirement) presence.getElement();
 
-							reqDeleted.getLinkList().addAll(
-									getTraceabilityLinks(req));
+							reqDeleted.getLinkList().addAll(getTraceabilityLinks(req));
 
 							this.getRequirementsDeleted().add(reqDeleted);
 						}
@@ -331,47 +303,36 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 					EAttributeValuePresence ref = (EAttributeValuePresence) diff;
 					if (ref.getPresenceRole() == Role.TARGET) {
 						if (ref.getElementMatch().getReference() instanceof Requirement) {
-							Requirement req = (Requirement) ref
-									.getElementMatch().getReference();
+							Requirement req = (Requirement) ref.getElementMatch().getReference();
 							RequirementImpacted reqModified = getReqModified(req);
 
-							AttributeImpacted att = reqModified
-									.getImpactedAttribute(ref.getFeature()
-											.getName());
+							AttributeImpacted att = reqModified.getImpactedAttribute(ref.getFeature().getName());
 							if (att != null) {
 								att.setNewValue(ref.getValue().toString());
 							} else {
-								AttributeImpacted attImpacted = ImpactFactory.eINSTANCE
-										.createAttributeImpacted();
+								AttributeImpacted attImpacted = ImpactFactory.eINSTANCE.createAttributeImpacted();
 								ref.getElementMatch();
 								attImpacted.setId(ref.getFeature().getName());
-								attImpacted.setNewValue(ref.getValue()
-										.toString());
+								attImpacted.setNewValue(ref.getValue().toString());
 
-								reqModified.getAttributesImpacted().add(
-										attImpacted);
+								reqModified.getAttributesImpacted().add(attImpacted);
 							}
 						}
 					} else { // presence.getPresenceRole() == Role.REFERENCE
 						// Requirement modified already treated in the if case
-						Requirement req = (Requirement) ref.getElementMatch()
-								.getReference();
+						Requirement req = (Requirement) ref.getElementMatch().getReference();
 						RequirementImpacted reqModified = getReqModified(req);
 
-						AttributeImpacted att = reqModified
-								.getImpactedAttribute(ref.getFeature()
-										.getName());
+						AttributeImpacted att = reqModified.getImpactedAttribute(ref.getFeature().getName());
 						if (att != null) {
 							att.setOldValue(ref.getValue().toString());
 						} else {
-							AttributeImpacted attImpacted = ImpactFactory.eINSTANCE
-									.createAttributeImpacted();
+							AttributeImpacted attImpacted = ImpactFactory.eINSTANCE.createAttributeImpacted();
 							ref.getElementMatch();
 							attImpacted.setId(ref.getFeature().getName());
 							attImpacted.setOldValue(ref.getValue().toString());
 
-							reqModified.getAttributesImpacted()
-									.add(attImpacted);
+							reqModified.getAttributesImpacted().add(attImpacted);
 						}
 					}
 				}
@@ -391,8 +352,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 		}
 		if (set == null) {
 			set = new ResourceSetImpl();
-			set.getResourceFactoryRegistry().getExtensionToFactoryMap()
-					.put("*", new XMIResourceFactoryImpl());
+			set.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		}
 		Resource r = set.createResource(targetName);
 		r.getContents().add(this);
@@ -409,18 +369,14 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_ADDED:
-			return ((InternalEList<?>) getRequirementsAdded()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRequirementsAdded()).basicRemove(otherEnd, msgs);
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_DELETED:
-			return ((InternalEList<?>) getRequirementsDeleted()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRequirementsDeleted()).basicRemove(otherEnd, msgs);
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_MODIFIED:
-			return ((InternalEList<?>) getRequirementsModified()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRequirementsModified()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -432,8 +388,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 			}
 		}
 
-		RequirementImpacted reqModified = ImpactFactory.eINSTANCE
-				.createRequirementImpacted();
+		RequirementImpacted reqModified = ImpactFactory.eINSTANCE.createRequirementImpacted();
 		reqModified.setId(requirement.getId());
 		reqModified.getLinkList().addAll(getTraceabilityLinks(requirement));
 		this.getRequirementsModified().add(reqModified);
@@ -470,18 +425,15 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_ADDED:
 			getRequirementsAdded().clear();
-			getRequirementsAdded().addAll(
-					(Collection<? extends RequirementImpacted>) newValue);
+			getRequirementsAdded().addAll((Collection<? extends RequirementImpacted>) newValue);
 			return;
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_DELETED:
 			getRequirementsDeleted().clear();
-			getRequirementsDeleted().addAll(
-					(Collection<? extends RequirementImpacted>) newValue);
+			getRequirementsDeleted().addAll((Collection<? extends RequirementImpacted>) newValue);
 			return;
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_MODIFIED:
 			getRequirementsModified().clear();
-			getRequirementsModified().addAll(
-					(Collection<? extends RequirementImpacted>) newValue);
+			getRequirementsModified().addAll((Collection<? extends RequirementImpacted>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -519,11 +471,9 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_ADDED:
 			return requirementsAdded != null && !requirementsAdded.isEmpty();
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_DELETED:
-			return requirementsDeleted != null
-					&& !requirementsDeleted.isEmpty();
+			return requirementsDeleted != null && !requirementsDeleted.isEmpty();
 		case ImpactPackage.IMPACT_ANALYSIS__REQUIREMENTS_MODIFIED:
-			return requirementsModified != null
-					&& !requirementsModified.isEmpty();
+			return requirementsModified != null && !requirementsModified.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -534,12 +484,10 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case ImpactPackage.IMPACT_ANALYSIS___LAUNCH_ANALYSIS__REQUIREMENTSOURCE_REQUIREMENTSOURCE:
-			launchAnalysis((RequirementSource) arguments.get(0),
-					(RequirementSource) arguments.get(1));
+			launchAnalysis((RequirementSource) arguments.get(0), (RequirementSource) arguments.get(1));
 			return null;
 		case ImpactPackage.IMPACT_ANALYSIS___SAVE_ANALYSIS__URI:
 			saveAnalysis((URI) arguments.get(0));
@@ -548,8 +496,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 		return super.eInvoke(operationID, arguments);
 	}
 
-	protected Collection<TraceabilityLink> getTraceabilityLinks(
-			Requirement requirement) {
+	protected Collection<TraceabilityLink> getTraceabilityLinks(Requirement requirement) {
 		List<TraceabilityLink> traceabilityLinks = new LinkedList<TraceabilityLink>();
 
 		Iterable<Link> itUp = getLinks(requirement, DIRECTION.UPWARD);
@@ -559,15 +506,13 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 			while (iterator.hasNext()) {
 				Link link = iterator.next();
 
-				TraceabilityLink traceabilityLink = ImpactFactory.eINSTANCE
-						.createTraceabilityLink();
+				TraceabilityLink traceabilityLink = ImpactFactory.eINSTANCE.createTraceabilityLink();
 
 				TType kind = link.getKind();
 				StringBuilder builder = new StringBuilder(kind.getLabel());
 				TType superKind = kind.getSuperType();
 				if (superKind != null) {
-					builder.append(String.format(" [Transverse : %s]",
-							superKind.getLabel()));
+					builder.append(String.format(" [Transverse : %s]", superKind.getLabel()));
 				}
 				traceabilityLink.setLinkType(builder.toString());
 
@@ -575,8 +520,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 				if (set != null && set.size() == 1) {
 					Reachable reachable = Iterables.get(set, 0);
 					traceabilityLink.setLinkDirection("UP");
-					traceabilityLink.setLinkedElement(TraceabilityUtils
-							.getText(reachable));
+					traceabilityLink.setLinkedElement(TraceabilityUtils.getText(reachable));
 				}
 				traceabilityLinks.add(traceabilityLink);
 			}
@@ -588,15 +532,13 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 			while (iterator.hasNext()) {
 				Link link = iterator.next();
 
-				TraceabilityLink traceabilityLink = ImpactFactory.eINSTANCE
-						.createTraceabilityLink();
+				TraceabilityLink traceabilityLink = ImpactFactory.eINSTANCE.createTraceabilityLink();
 
 				TType kind = link.getKind();
 				StringBuilder builder = new StringBuilder(kind.getLabel());
 				TType superKind = kind.getSuperType();
 				if (superKind != null) {
-					builder.append(String.format(" [Transverse : %s]",
-							superKind.getLabel()));
+					builder.append(String.format(" [Transverse : %s]", superKind.getLabel()));
 				}
 				traceabilityLink.setLinkType(builder.toString());
 
@@ -604,8 +546,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 				if (set != null && set.size() == 1) {
 					Reachable reachable = Iterables.get(set, 0);
 					traceabilityLink.setLinkDirection("DOWN");
-					traceabilityLink.setLinkedElement(TraceabilityUtils
-							.getText(reachable));
+					traceabilityLink.setLinkedElement(TraceabilityUtils.getText(reachable));
 				}
 				traceabilityLinks.add(traceabilityLink);
 			}
@@ -614,8 +555,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 		return traceabilityLinks;
 	}
 
-	protected Iterable<Link> getLinks(final Requirement req,
-			final DIRECTION direction) {
+	protected Iterable<Link> getLinks(final Requirement req, final DIRECTION direction) {
 		return new Iterable<Link>() {
 
 			@Override
@@ -627,23 +567,20 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements
 				request.setDepth(DEPTH.ONE);
 				request.setDirection(direction);
 				try {
-					request.addSource(manager.getHandlerFromObject(req)
-							.getFromObject(req).getReachable(req));
+					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable(req));
 				} catch (IReachableHandlerException e1) {
 					e1.printStackTrace();
 					return new ArrayList<Link>().iterator();
 				}
 				try {
-					Iterator<Pair<Link, Reachable>> traceability = engine
-							.getTraceability(request);
-					return Iterators.transform(traceability,
-							new Function<Pair<Link, Reachable>, Link>() {
+					Iterator<Pair<Link, Reachable>> traceability = engine.getTraceability(request);
+					return Iterators.transform(traceability, new Function<Pair<Link, Reachable>, Link>() {
 
-								@Override
-								public Link apply(Pair<Link, Reachable> arg0) {
-									return arg0.getFirst();
-								}
-							});
+						@Override
+						public Link apply(Pair<Link, Reachable> arg0) {
+							return arg0.getFirst();
+						}
+					});
 				} catch (EngineException e) {
 					e.printStackTrace();
 				} catch (IllegalArgumentException e) {

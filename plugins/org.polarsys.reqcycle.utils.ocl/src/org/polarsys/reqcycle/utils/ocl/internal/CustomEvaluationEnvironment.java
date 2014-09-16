@@ -37,22 +37,18 @@ public class CustomEvaluationEnvironment extends EcoreEvaluationEnvironment impl
 
 	private EcoreEvaluationEnvironment baseEvaluationEnvironment;
 
-	//The developer should not forget to set a base environment.
+	// The developer should not forget to set a base environment.
 	@SuppressWarnings("deprecation")
 	public CustomEvaluationEnvironment() {
 	}
-
 
 	protected CustomEvaluationEnvironment(EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
 		super(parent);
 	}
 
-
-
 	public void setBaseEvaluationEnvironment(EcoreEvaluationEnvironment baseEvaluationEnvironment) {
 		this.baseEvaluationEnvironment = baseEvaluationEnvironment;
 	}
-
 
 	/**
 	 * Adds a custom operation to this environment.
@@ -67,11 +63,11 @@ public class CustomEvaluationEnvironment extends EcoreEvaluationEnvironment impl
 	public Object callOperation(EOperation operation, int opcode, Object source, Object[] args) throws IllegalArgumentException {
 		String operationName = operation.getName();
 		JavaImplementedOCLOperation customOperation = customOperations.get(operationName);
-		if(customOperation != null && customOperation.check(source, args)) {
+		if (customOperation != null && customOperation.check(source, args)) {
 			return customOperation.execute(source, args);
 		}
-		for (int i = 0; i<args.length; i++){
-			if (args[i] == null){
+		for (int i = 0; i < args.length; i++) {
+			if (args[i] == null) {
 				StringBuilder message = new StringBuilder("NULL ARGUMENT WARNING : ");
 				message.append(operationName);
 				message.append(" on element ");
@@ -81,13 +77,12 @@ public class CustomEvaluationEnvironment extends EcoreEvaluationEnvironment impl
 				throw new IllegalArgumentException(message.toString());
 			}
 		}
-		
-		//If the operation is not a custom one, calling the base eval environment method.
+
+		// If the operation is not a custom one, calling the base eval environment method.
 		return baseEvaluationEnvironment.callOperation(operation, opcode, source, args);
 	}
 
-
-	//DECORATION METHODS.
+	// DECORATION METHODS.
 
 	@Override
 	public Object getValueOf(String name) {
@@ -153,6 +148,5 @@ public class CustomEvaluationEnvironment extends EcoreEvaluationEnvironment impl
 	public Tuple<EOperation, EStructuralFeature> createTuple(EClassifier type, Map<EStructuralFeature, Object> values) {
 		return baseEvaluationEnvironment.createTuple(type, values);
 	}
-
 
 }

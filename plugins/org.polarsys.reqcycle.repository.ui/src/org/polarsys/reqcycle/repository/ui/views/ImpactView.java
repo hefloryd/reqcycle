@@ -66,8 +66,7 @@ public class ImpactView extends ViewPart {
 		parent.setLayout(new GridLayout(1, false));
 
 		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		composite.setLayout(new GridLayout(1, false));
 
 		impactComposites.createInputComposite(composite);
@@ -85,8 +84,7 @@ public class ImpactView extends ViewPart {
 		this.impact = impact;
 	}
 
-	public static void openNewImpactView(
-			Collection<RequirementSource> requirementSources) {
+	public static void openNewImpactView(Collection<RequirementSource> requirementSources) {
 		IViewPart view = createNewView();
 		if (view == null) {
 			return;
@@ -97,8 +95,7 @@ public class ImpactView extends ViewPart {
 	}
 
 	public static IViewPart createNewView() {
-		IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		int nbView = 0;
 		for (IViewReference ref : activePage.getViewReferences()) {
 			if (ref.getId().startsWith(VIEW_ID)) {
@@ -109,8 +106,7 @@ public class ImpactView extends ViewPart {
 		nbView++;
 		IViewPart view = null;
 		try {
-			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView,
-					IWorkbenchPage.VIEW_ACTIVATE);
+			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView, IWorkbenchPage.VIEW_ACTIVATE);
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
@@ -154,56 +150,41 @@ public class ImpactView extends ViewPart {
 			public void run() {
 				RequirementSource reqSource = getRequirementSource();
 
-				ImpactAnalysisInputSelectorDialog dialog = new ImpactAnalysisInputSelectorDialog(
-						Display.getDefault().getActiveShell(), reqSource);
+				ImpactAnalysisInputSelectorDialog dialog = new ImpactAnalysisInputSelectorDialog(Display.getDefault().getActiveShell(), reqSource);
 
 				if (dialog.open() == Window.OK) {
-					ImpactAnalysis analysis = ImpactFactory.eINSTANCE
-							.createImpactAnalysis();
+					ImpactAnalysis analysis = ImpactFactory.eINSTANCE.createImpactAnalysis();
 					if (reqSource == null) {
 						reqSource = dialog.getRequirementSource();
 					}
 
-					RequirementSource requirementSourceFrom = dialog
-							.getRequirementSourceFrom();
-					RequirementSource requirementSourceTo = dialog
-							.getRequirementSourceTo();
+					RequirementSource requirementSourceFrom = dialog.getRequirementSourceFrom();
+					RequirementSource requirementSourceTo = dialog.getRequirementSourceTo();
 
-					analysis.launchAnalysis(requirementSourceFrom,
-							requirementSourceTo);
+					analysis.launchAnalysis(requirementSourceFrom, requirementSourceTo);
 
-					impactComposites.setRequirementSource(dialog
-							.getRequirementSource().getName());
-					impactComposites.setInitialVersion(dialog
-							.getInitialVersion());
+					impactComposites.setRequirementSource(dialog.getRequirementSource().getName());
+					impactComposites.setInitialVersion(dialog.getInitialVersion());
 					impactComposites.setFinalVersion(dialog.getFinalVersion());
 
 					setImpactAnalysis(analysis);
 
-					impactComposites.setImpactResult(
-							impact.getRequirementsAdded(),
-							impact.getRequirementsDeleted(),
-							impact.getRequirementsModified());
+					impactComposites.setImpactResult(impact.getRequirementsAdded(), impact.getRequirementsDeleted(), impact.getRequirementsModified());
 				}
 			}
 		};
-		selectImpactInputs.setImageDescriptor(Activator
-				.getImageDescriptor("icons/goto_input-1.gif"));
+		selectImpactInputs.setImageDescriptor(Activator.getImageDescriptor("icons/goto_input-1.gif"));
 
 		saveImpact = new Action("Save Impact Analysis") {
 
 			@Override
 			public void run() {
-				SaveAsDialog d = new SaveAsDialog(Display.getDefault()
-						.getActiveShell()) {
+				SaveAsDialog d = new SaveAsDialog(Display.getDefault().getActiveShell()) {
 				};
 				if (d.open() == ResourceSelectionDialog.OK) {
-					impact.saveAnalysis(URI.createPlatformResourceURI(d
-							.getResult().toString(), true));
+					impact.saveAnalysis(URI.createPlatformResourceURI(d.getResult().toString(), true));
 					try {
-						ResourcesPlugin.getWorkspace().getRoot()
-								.getFile(d.getResult()).getParent()
-								.refreshLocal(IResource.DEPTH_ONE, null);
+						ResourcesPlugin.getWorkspace().getRoot().getFile(d.getResult()).getParent().refreshLocal(IResource.DEPTH_ONE, null);
 					} catch (CoreException e) {
 						e.printStackTrace();
 					}
@@ -211,8 +192,7 @@ public class ImpactView extends ViewPart {
 				}
 			}
 		};
-		saveImpact.setImageDescriptor(Activator
-				.getImageDescriptor("icons/Save_obj.gif"));
+		saveImpact.setImageDescriptor(Activator.getImageDescriptor("icons/Save_obj.gif"));
 	}
 
 	protected Resource newResource(URI uri, RequirementSource requirementSource) {

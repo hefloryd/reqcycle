@@ -21,42 +21,38 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.polarsys.reqcycle.styling.model.Styling.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static StylingFactory init() {
 		try {
-			StylingFactory theStylingFactory = (StylingFactory)EPackage.Registry.INSTANCE.getEFactory(StylingPackage.eNS_URI);
+			StylingFactory theStylingFactory = (StylingFactory) EPackage.Registry.INSTANCE.getEFactory(StylingPackage.eNS_URI);
 			if (theStylingFactory != null) {
 				return theStylingFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new StylingFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StylingFactoryImpl() {
@@ -64,66 +60,81 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case StylingPackage.STYLING_MODEL: return createStylingModel();
-			case StylingPackage.STYLING_PREDICATE: return createStylingPredicate();
-			case StylingPackage.SEGMENT: return createSegment();
-			case StylingPackage.ICON: return createIcon();
-			case StylingPackage.STYLE: return createStyle();
-			case StylingPackage.DEFAULT: return createDefault();
-			case StylingPackage.STYLING: return createStyling();
-			case StylingPackage.CONSTANT_PATTERN: return createConstantPattern();
-			case StylingPackage.MODEL_PATTERN: return createModelPattern();
-			case StylingPackage.OPERATION_PATTERN: return createOperationPattern();
-			case StylingPackage.INT_PARAMETER: return createIntParameter();
-			case StylingPackage.BOOLEAN_PARAMETER: return createBooleanParameter();
-			case StylingPackage.STRING_PARAMETER: return createStringParameter();
-			case StylingPackage.EOBJECT_PARAMETER: return createEObjectParameter();
-			case StylingPackage.BASIC: return createBasic();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case StylingPackage.STYLING_MODEL:
+			return createStylingModel();
+		case StylingPackage.STYLING_PREDICATE:
+			return createStylingPredicate();
+		case StylingPackage.SEGMENT:
+			return createSegment();
+		case StylingPackage.ICON:
+			return createIcon();
+		case StylingPackage.STYLE:
+			return createStyle();
+		case StylingPackage.DEFAULT:
+			return createDefault();
+		case StylingPackage.STYLING:
+			return createStyling();
+		case StylingPackage.CONSTANT_PATTERN:
+			return createConstantPattern();
+		case StylingPackage.MODEL_PATTERN:
+			return createModelPattern();
+		case StylingPackage.OPERATION_PATTERN:
+			return createOperationPattern();
+		case StylingPackage.INT_PARAMETER:
+			return createIntParameter();
+		case StylingPackage.BOOLEAN_PARAMETER:
+			return createBooleanParameter();
+		case StylingPackage.STRING_PARAMETER:
+			return createStringParameter();
+		case StylingPackage.EOBJECT_PARAMETER:
+			return createEObjectParameter();
+		case StylingPackage.BASIC:
+			return createBasic();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case StylingPackage.FONT_OPTION:
-				return createFontOptionFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case StylingPackage.FONT_OPTION:
+			return createFontOptionFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case StylingPackage.FONT_OPTION:
-				return convertFontOptionToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case StylingPackage.FONT_OPTION:
+			return convertFontOptionToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StylingModel createStylingModel() {
@@ -132,8 +143,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StylingPredicate createStylingPredicate() {
@@ -142,8 +153,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Segment createSegment() {
@@ -152,8 +163,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Icon createIcon() {
@@ -162,8 +173,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Style createStyle() {
@@ -172,8 +183,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Default createDefault() {
@@ -182,8 +193,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Styling createStyling() {
@@ -192,8 +203,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConstantPattern createConstantPattern() {
@@ -202,8 +213,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelPattern createModelPattern() {
@@ -212,8 +223,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationPattern createOperationPattern() {
@@ -222,8 +233,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IntParameter createIntParameter() {
@@ -232,8 +243,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BooleanParameter createBooleanParameter() {
@@ -242,8 +253,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StringParameter createStringParameter() {
@@ -252,8 +263,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObjectParameter createEObjectParameter() {
@@ -262,8 +273,8 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Basic createBasic() {
@@ -272,19 +283,20 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FontOption createFontOptionFromString(EDataType eDataType, String initialValue) {
 		FontOption result = FontOption.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertFontOptionToString(EDataType eDataType, Object instanceValue) {
@@ -292,17 +304,17 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StylingPackage getStylingPackage() {
-		return (StylingPackage)getEPackage();
+		return (StylingPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -311,4 +323,4 @@ public class StylingFactoryImpl extends EFactoryImpl implements StylingFactory {
 		return StylingPackage.eINSTANCE;
 	}
 
-} //StylingFactoryImpl
+} // StylingFactoryImpl

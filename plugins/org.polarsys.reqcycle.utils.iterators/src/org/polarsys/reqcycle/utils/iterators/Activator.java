@@ -66,7 +66,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs an error from the exception to the activator logger.
 	 * 
 	 * @param e
-	 *        the exception.
+	 *            the exception.
 	 */
 	public static void logError(Exception e) {
 		ILog logger = Activator.getDefault().getLog();

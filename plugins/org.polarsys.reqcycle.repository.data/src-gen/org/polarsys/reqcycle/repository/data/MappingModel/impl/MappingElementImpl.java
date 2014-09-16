@@ -30,23 +30,18 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Mapping Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Mapping Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getDescription
- * <em>Description</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getDescription <em>Description</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getTargetElement
- * <em>Target Element</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getTargetElement <em>Target Element</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getAttributes
- * <em>Attributes</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getAttributes <em>Attributes</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getSourceQualifier
- * <em>Source Qualifier</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl#getSourceQualifier <em>Source Qualifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,8 +49,7 @@ import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelPackage;
  */
 public class MappingElementImpl extends MinimalEObjectImpl.Container implements MappingElement {
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -64,8 +58,7 @@ public class MappingElementImpl extends MinimalEObjectImpl.Container implements 
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -74,9 +67,7 @@ public class MappingElementImpl extends MinimalEObjectImpl.Container implements 
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTargetElement()
-	 * <em>Target Element</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getTargetElement()
 	 * @generated
@@ -85,8 +76,7 @@ public class MappingElementImpl extends MinimalEObjectImpl.Container implements 
 	protected EClass targetElement;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAttributes()
 	 * @generated
@@ -95,9 +85,7 @@ public class MappingElementImpl extends MinimalEObjectImpl.Container implements 
 	protected EList<MappingAttribute> attributes;
 
 	/**
-	 * The default value of the '{@link #getSourceQualifier()
-	 * <em>Source Qualifier</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getSourceQualifier() <em>Source Qualifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSourceQualifier()
 	 * @generated
@@ -106,9 +94,7 @@ public class MappingElementImpl extends MinimalEObjectImpl.Container implements 
 	protected static final String SOURCE_QUALIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceQualifier()
-	 * <em>Source Qualifier</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getSourceQualifier() <em>Source Qualifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSourceQualifier()
 	 * @generated

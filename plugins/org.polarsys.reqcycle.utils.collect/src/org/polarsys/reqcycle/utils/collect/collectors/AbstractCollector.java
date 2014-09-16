@@ -18,7 +18,6 @@ import org.polarsys.reqcycle.utils.collect.Picker;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-
 /**
  * Basic abstract realization of a collector, that should delegate the collecting job to the pickers.
  */

@@ -22,14 +22,13 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * <p>
- * This is a generic SWT Composite that holds an {@link IEAttrPropsEditor}. When setting the attribute and optionally the javaClass type of the
- * attribute which is to be editing, this class GenericEAttrPropsEditor will instantiate the correct IEAttrPropsEditor to use and show to the end
- * user. The IEAttrPropsEditor which is used is search into the available implementations. In order to set the attribute which will trigger this class
- * to use the correct properties editor, just & simply use the {@link #init(EAttribute, String)} method.
+ * This is a generic SWT Composite that holds an {@link IEAttrPropsEditor}. When setting the attribute and optionally the javaClass type of the attribute which is to be editing, this class GenericEAttrPropsEditor will instantiate the correct
+ * IEAttrPropsEditor to use and show to the end user. The IEAttrPropsEditor which is used is search into the available implementations. In order to set the attribute which will trigger this class to use the correct properties editor, just & simply
+ * use the {@link #init(EAttribute, String)} method.
  * </p>
  * <p>
- * <b>NOTE :</b> It is then by far easier to use this class instead of the trying to use directly a IEAttrPropsEditor which would require to know the
- * type of the attribute first and also know whether or not an IEAttrPropsEditor is available for editing that attribute.
+ * <b>NOTE :</b> It is then by far easier to use this class instead of the trying to use directly a IEAttrPropsEditor which would require to know the type of the attribute first and also know whether or not an IEAttrPropsEditor is available for
+ * editing that attribute.
  * </p>
  * 
  * @author Papa Issa DIAKHATE
@@ -41,7 +40,7 @@ public class GenericEAttrPropsEditor extends Composite {
 	private Composite currentComponent;
 
 	private String attributeName;
-	
+
 	public GenericEAttrPropsEditor(Composite parent, int style) {
 		super(parent, style);
 		setLayout(new GridLayout(1, false));
@@ -51,26 +50,24 @@ public class GenericEAttrPropsEditor extends Composite {
 	 * Initialize the editor by specifying the attribute to edit and the editor type to use.
 	 * 
 	 * @param eAttribute
-	 *        - The attribute to edit.
+	 *            - The attribute to edit.
 	 * @param javaClassTypeName
-	 *        - The javaClassType of the attribute. Optional, and so may be <tt>null</tt>. If not <code>null</code>, then no further lookup will be
-	 *        done onto the attribute in order to retrieve its
-	 *        java class type, but the specified javaClassType will be used directly instead.
+	 *            - The javaClassType of the attribute. Optional, and so may be <tt>null</tt>. If not <code>null</code>, then no further lookup will be done onto the attribute in order to retrieve its java class type, but the specified javaClassType
+	 *            will be used directly instead.
 	 * @see EAttrPropsEditorPlugin#getStructuralFeatureEditor(EAttribute, String, Composite, int)
 	 */
 	public void init(final String attributeName, final Class type, Collection<Object> possibleValues) {
 		this.attributeName = attributeName;
 		this.propsEditor = EAttrPropsEditorPlugin.getStructuralFeatureEditor(attributeName, type, this, getStyle());
-		if(this.currentComponent != null) {
+		if (this.currentComponent != null) {
 			this.currentComponent.dispose();
 		}
-		if(this.propsEditor != null) {
+		if (this.propsEditor != null) {
 			this.currentComponent = this.propsEditor.getEditor();
 			this.currentComponent.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 			this.layout();
-			this.setSize(this.currentComponent.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT));
-		}		
+			this.setSize(this.currentComponent.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		}
 		this.propsEditor.setPossibleValues(possibleValues);
 	}
 
@@ -85,7 +82,7 @@ public class GenericEAttrPropsEditor extends Composite {
 	 * @return The value that has been set for the eAttribute.
 	 */
 	public Object getEnteredValue() {
-		if(this.propsEditor != null) {
+		if (this.propsEditor != null) {
 			return this.propsEditor.getValue();
 		}
 		return null;

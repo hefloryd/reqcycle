@@ -21,8 +21,7 @@ import com.google.common.collect.Lists;
 import static com.google.common.collect.Iterables.transform;
 
 /**
- * A very basic attribute modifier loading the whole rdf each time. Could be
- * optimized ...
+ * A very basic attribute modifier loading the whole rdf each time. Could be optimized ...
  * 
  * @author tfaure
  * 
@@ -37,8 +36,7 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 	private Reachable reachable;
 	private Object value = null;
 
-	public FromStorageEditableAttribute(Attribute attribute,
-			Reachable reachable, FromStorageEditableAttribute.ILazyStorageProvider lazyStorageProvider) {
+	public FromStorageEditableAttribute(Attribute attribute, Reachable reachable, FromStorageEditableAttribute.ILazyStorageProvider lazyStorageProvider) {
 		this.attribute = attribute;
 		this.reachable = reachable;
 		this.lazyStorageProvider = lazyStorageProvider;
@@ -53,8 +51,7 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 	public Object getValue() {
 		if (value == null) {
 			ITraceabilityStorage storage = lazyStorageProvider.getStorage();
-			String propValue = storage.getProperty(reachable,
-					attribute.getName());
+			String propValue = storage.getProperty(reachable, attribute.getName());
 			value = getObjectValue(propValue, attribute.getType());
 			storage.dispose();
 		}
@@ -64,8 +61,7 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 	@Override
 	public void setValue(Object value) {
 		ITraceabilityStorage storage = lazyStorageProvider.getStorage();
-		storage.addUpdateProperty(reachable, attribute.getName(),
-				getStringValue(value, attribute.getType()));
+		storage.addUpdateProperty(reachable, attribute.getName(), getStringValue(value, attribute.getType()));
 		storage.save();
 		storage.dispose();
 		this.value = value;
@@ -107,15 +103,13 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 
 	@Override
 	public Object[] getPossibleValues() {
-		return Lists.newArrayList(
-				transform(attribute.getPossibleValues(),
-						new Function<String, Object>() {
+		return Lists.newArrayList(transform(attribute.getPossibleValues(), new Function<String, Object>() {
 
-							@Override
-							public Object apply(String arg0) {
-								return getObjectValue(arg0, attribute.getType());
-							}
-						})).toArray();
+			@Override
+			public Object apply(String arg0) {
+				return getObjectValue(arg0, attribute.getType());
+			}
+		})).toArray();
 	}
 
 	@Override

@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.table.view;
 
-
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,7 +76,7 @@ public class TraceabilityTableView extends ViewPart {
 	protected Text filterText;
 
 	protected Refresher refresher = new Refresher();
-	
+
 	public TraceabilityTableView() {
 		ZigguratInject.inject(this);
 	}
@@ -108,7 +107,7 @@ public class TraceabilityTableView extends ViewPart {
 		TraceabilityLazyContentProvider<Link> provider = TraceabilityLazyContentProvider.create(Link.class, viewer);
 		viewer.setContentProvider(provider);
 
-		//Creating the control.
+		// Creating the control.
 		tableControl = new TableController(viewer);
 		ZigguratInject.inject(tableControl);
 
@@ -119,21 +118,22 @@ public class TraceabilityTableView extends ViewPart {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		//Creating the columns.
+		// Creating the columns.
 		createModel();
 
 		hookMenu(table);
 		hookActions();
 		hookListeners();
 
-		//Setting the input.
+		// Setting the input.
 		tableControl.displayAllLinks();
 	}
 
 	private void hookListeners() {
 		TableFilter filter = new TableFilter();
 		viewer.addFilter(filter);
-		filterText.addModifyListener(new ModifyListenerImplementation(filter));;
+		filterText.addModifyListener(new ModifyListenerImplementation(filter));
+		;
 	}
 
 	private void hookMenu(final Table table) {
@@ -149,11 +149,11 @@ public class TraceabilityTableView extends ViewPart {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof Link) {
-					TType kind = ((Link)element).getKind();
+				if (element instanceof Link) {
+					TType kind = ((Link) element).getKind();
 					StringBuilder builder = new StringBuilder(kind.getLabel());
 					TType superKind = kind.getSuperType();
-					if(superKind != null) {
+					if (superKind != null) {
 						builder.append(String.format(" [Transverse : %s]", superKind.getLabel()));
 					}
 					return builder.toString();
@@ -166,9 +166,9 @@ public class TraceabilityTableView extends ViewPart {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof Link) {
-					Set<Reachable> set = ((Link)element).getSources();
-					if(set != null && set.size() == 1) {
+				if (element instanceof Link) {
+					Set<Reachable> set = ((Link) element).getSources();
+					if (set != null && set.size() == 1) {
 						Reachable reachable = Iterables.get(set, 0);
 						return TraceabilityUtils.getText(reachable);
 					}
@@ -181,9 +181,9 @@ public class TraceabilityTableView extends ViewPart {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof Link) {
-					Set<Reachable> set = ((Link)element).getTargets();
-					if(set != null && set.size() == 1) {
+				if (element instanceof Link) {
+					Set<Reachable> set = ((Link) element).getTargets();
+					if (set != null && set.size() == 1) {
 						Reachable reachable = Iterables.get(set, 0);
 						return TraceabilityUtils.getText(reachable);
 					}
@@ -194,7 +194,7 @@ public class TraceabilityTableView extends ViewPart {
 	}
 
 	private void hookActions() {
-		IActionBars bars = ((PartSite)getSite()).getActionBars();
+		IActionBars bars = ((PartSite) getSite()).getActionBars();
 		ExplicitLinksAction explicitAction = new ExplicitLinksAction(viewer, tableControl);
 		AllLinksAction implicitAction = new AllLinksAction(tableControl);
 		ZigguratInject.inject(explicitAction, implicitAction);
@@ -238,15 +238,15 @@ public class TraceabilityTableView extends ViewPart {
 
 		@Override
 		public void modifyText(ModifyEvent e) {
-			if(tt != null) {
-				tt.cancel(); //This cancels the timer as well.
+			if (tt != null) {
+				tt.cancel(); // This cancels the timer as well.
 				t.purge();
 				tt = null;
 			}
 
 			tt = new TimerTask() {
 
-				//The timer thread will yield to the display thread to apply the filter.
+				// The timer thread will yield to the display thread to apply the filter.
 				@Override
 				public void run() {
 					Display.getDefault().syncExec(new Runnable() {
@@ -262,54 +262,52 @@ public class TraceabilityTableView extends ViewPart {
 
 			t.schedule(tt, 800);
 		}
-	
+
 	}
-	
-	private final class Refresher{ 
-		Timer t = new Timer(); 
+
+	private final class Refresher {
+		Timer t = new Timer();
 		TimerTask tt;
-		
-		public void scheduleRefresh(){
-			//LOG.entering("traceabilityTable","schedule refresh");
-			if(tt != null) {
-				tt.cancel(); //This cancels the timer as well.
+
+		public void scheduleRefresh() {
+			// LOG.entering("traceabilityTable","schedule refresh");
+			if (tt != null) {
+				tt.cancel(); // This cancels the timer as well.
 				t.purge();
 				tt = null;
 			}
 			tt = new TimerTask() {
 
-				//The timer thread will yield to the display thread to apply the filter.
+				// The timer thread will yield to the display thread to apply the filter.
 				@Override
 				public void run() {
-					
+
 					IWorkbenchPartSite site = getSite();
 					if (site != null) {
 						Shell shell = site.getShell();
 						if (shell != null) {
 							Display display = shell.getDisplay();
-						
+
 							display.syncExec(new Runnable() {
 								public void run() {
 									tableControl.refreshViewerData();
 								}
 							});
-						} //if shell
+						} // if shell
 					} // if site
-					
+
 				}
 			};
 
 			t.schedule(tt, 1500);
-			//LOG.exiting("traceabilityTable","schedule refresh");
-			
-			
+			// LOG.exiting("traceabilityTable","schedule refresh");
+
 		}
-		
+
 	}
-	
-	
+
 	private final class RefreshAction extends Action {
-		
+
 		private Refresher refresher;
 
 		public RefreshAction(Refresher refresher) {
@@ -317,7 +315,7 @@ public class TraceabilityTableView extends ViewPart {
 			setText("Refresh");
 			setToolTipText("Refresh Links list");
 		}
-		
+
 		@Override
 		public void run() {
 			this.refresher.scheduleRefresh();

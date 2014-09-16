@@ -20,18 +20,15 @@ import org.polarsys.reqcycle.traceability.builder.exceptions.BuilderException;
 import org.polarsys.reqcycle.traceability.builder.impl.ResourceDeltaBuilderVisitor;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class TraceabilityIncrementalProjectBuilder extends
-		IncrementalProjectBuilder {
+public class TraceabilityIncrementalProjectBuilder extends IncrementalProjectBuilder {
 
 	private boolean clean = false;
 
 	@Override
-	protected IProject[] build(int kind, Map<String, String> args,
-			IProgressMonitor monitor) throws CoreException {
+	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
 		try {
 			IResourceDelta delta = getDelta(getProject());
-			ResourceDeltaBuilderVisitor visitor = new ResourceDeltaBuilderVisitor(
-					monitor, clean);
+			ResourceDeltaBuilderVisitor visitor = new ResourceDeltaBuilderVisitor(monitor, clean);
 			ZigguratInject.inject(visitor);
 			if (delta != null) {
 				delta.accept(visitor);

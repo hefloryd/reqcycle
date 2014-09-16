@@ -16,23 +16,20 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.polarsys.reqcycle.repository.data.ScopeConf.provider.ScopeConfEditPlugin;
 
 /**
- * This is the central singleton for the RequirementSourceData edit plugin. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the central singleton for the RequirementSourceData edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public final class RequirementSourceDataEditPlugin extends EMFPlugin {
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final RequirementSourceDataEditPlugin INSTANCE = new RequirementSourceDataEditPlugin();
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -48,8 +45,7 @@ public final class RequirementSourceDataEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the singleton instance.
 	 * @generated
@@ -60,8 +56,7 @@ public final class RequirementSourceDataEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the singleton instance.
 	 * @generated
@@ -71,8 +66,7 @@ public final class RequirementSourceDataEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

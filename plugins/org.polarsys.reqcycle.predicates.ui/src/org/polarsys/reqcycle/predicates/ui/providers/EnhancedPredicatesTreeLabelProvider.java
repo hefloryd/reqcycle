@@ -55,20 +55,20 @@ public class EnhancedPredicatesTreeLabelProvider implements ILabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if(element instanceof IPredicate) {
-			IPredicate predicate = (IPredicate)element;
+		if (element instanceof IPredicate) {
+			IPredicate predicate = (IPredicate) element;
 			String displayName = predicate.getDisplayName();
-			if(displayName != null) {
+			if (displayName != null) {
 				EObject firstContent = this.getFirstElement(predicate.eResource());
-				if(predicate.equals(firstContent)) {
+				if (predicate.equals(firstContent)) {
 					return labelProvider.getText(element);
 				}
 				return displayName;
 			}
-		} else if(element instanceof Resource) {
-			EObject firstContent = this.getFirstElement((Resource)element);
-			if(firstContent instanceof IPredicate) {
-				String displayName = ((IPredicate)firstContent).getDisplayName();
+		} else if (element instanceof Resource) {
+			EObject firstContent = this.getFirstElement((Resource) element);
+			if (firstContent instanceof IPredicate) {
+				String displayName = ((IPredicate) firstContent).getDisplayName();
 				return displayName == null ? "[New predicate] *" : displayName; //$NON-NLS-1$
 			}
 		}
@@ -76,9 +76,9 @@ public class EnhancedPredicatesTreeLabelProvider implements ILabelProvider {
 	}
 
 	private EObject getFirstElement(final Resource resource) {
-		if(resource != null) {
+		if (resource != null) {
 			EList<EObject> contents = resource.getContents();
-			if(!contents.isEmpty()) {
+			if (!contents.isEmpty()) {
 				return contents.get(0);
 			}
 		}

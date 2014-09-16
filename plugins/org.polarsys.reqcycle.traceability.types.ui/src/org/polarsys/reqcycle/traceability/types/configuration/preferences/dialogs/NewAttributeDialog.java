@@ -56,8 +56,7 @@ public class NewAttributeDialog extends TitleAreaDialog {
 	AttributeComposite registeredComposite;
 	private ComboViewer comboViewer;
 
-	private RegisteredAttribute NullRegistered = TypeconfigurationFactory.eINSTANCE
-			.createRegisteredAttribute();
+	private RegisteredAttribute NullRegistered = TypeconfigurationFactory.eINSTANCE.createRegisteredAttribute();
 
 	/**
 	 * Create the dialog.
@@ -87,8 +86,7 @@ public class NewAttributeDialog extends TitleAreaDialog {
 		fl_grpTypeOfAttribute.marginWidth = 5;
 		fl_grpTypeOfAttribute.marginHeight = 5;
 		grpTypeOfAttribute.setLayout(fl_grpTypeOfAttribute);
-		grpTypeOfAttribute.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
-				true, false, 1, 1));
+		grpTypeOfAttribute.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		grpTypeOfAttribute.setText("Type of attribute");
 
 		btnNewAttribute = new Button(grpTypeOfAttribute, SWT.RADIO);
@@ -112,8 +110,7 @@ public class NewAttributeDialog extends TitleAreaDialog {
 
 		grpExistingAttribute = new Group(container, SWT.NONE);
 		grpExistingAttribute.setLayout(new GridLayout(2, false));
-		grpExistingAttribute.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, true, 1, 1));
+		grpExistingAttribute.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		grpExistingAttribute.setText("Attribute");
 
 		Label lblNewLabel = new Label(grpExistingAttribute, SWT.NONE);
@@ -137,8 +134,7 @@ public class NewAttributeDialog extends TitleAreaDialog {
 
 		});
 		comboViewer.setContentProvider(new ArrayContentProvider());
-		ArrayList<RegisteredAttribute> newArrayList = Lists
-				.newArrayList(manager.getAllAttributes());
+		ArrayList<RegisteredAttribute> newArrayList = Lists.newArrayList(manager.getAllAttributes());
 		if (newArrayList.isEmpty()) {
 			newArrayList.add(NullRegistered);
 		}
@@ -147,39 +143,35 @@ public class NewAttributeDialog extends TitleAreaDialog {
 		combo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				registeredComposite
-						.displayAttribute((Attribute) ((IStructuredSelection) comboViewer
-								.getSelection()).getFirstElement());
+				registeredComposite.displayAttribute((Attribute) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement());
 			}
 		});
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1,
-				1));
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		combo.setBounds(0, 0, 91, 23);
 
 		registeredComposite = new AttributeComposite(grpExistingAttribute);
-		registeredComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, true, 2, 1));
+		registeredComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		registeredComposite.setEditable(false);
 		setNewOne();
-		
+
 		// -RFU- recursiveSetEnabled(container, false);
 		recursiveSetEnabled(container, true);
-		
+
 		return container;
 	}
 
 	public void recursiveSetEnabled(Control ctrl, boolean enabled) {
-		   if (ctrl instanceof Composite) {
-		      Composite comp = (Composite) ctrl;
-		      for (Control c : comp.getChildren()) {
-		         recursiveSetEnabled(c, enabled);
-		         c.setEnabled(enabled);
-		      }
-		   } else {
-		      ctrl.setEnabled(enabled);
-		   }
+		if (ctrl instanceof Composite) {
+			Composite comp = (Composite) ctrl;
+			for (Control c : comp.getChildren()) {
+				recursiveSetEnabled(c, enabled);
+				c.setEnabled(enabled);
+			}
+		} else {
+			ctrl.setEnabled(enabled);
 		}
-	
+	}
+
 	/**
 	 * Create contents of the button bar.
 	 * 
@@ -187,12 +179,10 @@ public class NewAttributeDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		Button okButton = createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
+		Button okButton = createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 		// -RFU- okButton.setEnabled(false);
 		okButton.setEnabled(true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**
@@ -206,14 +196,11 @@ public class NewAttributeDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		if (btnRegisteredAttribute.getSelection()) {
-			attribute = (StdAttribute) ((IStructuredSelection) comboViewer
-					.getSelection()).getFirstElement();
+			attribute = (StdAttribute) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement();
 		} else {
 			registeredComposite.saveInAttribute(attribute);
 		}
-		if (attribute == NullRegistered || attribute == null
-				|| attribute.getName() == null || attribute.getType() == null
-				|| !registeredComposite.isValid()) {
+		if (attribute == NullRegistered || attribute == null || attribute.getName() == null || attribute.getType() == null || !registeredComposite.isValid()) {
 			setErrorMessage("Please verify your fields");
 			return;
 		}

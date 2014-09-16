@@ -17,7 +17,6 @@ import org.polarsys.reqcycle.utils.collect.exceptions.CollectionAbortedException
 
 public class DepthCollector<T> extends AbstractCollector<T> {
 
-
 	public DepthCollector(T startingElement, Iterable<? extends Picker<T>> pickers) {
 		super(startingElement, pickers);
 	}
@@ -33,19 +32,19 @@ public class DepthCollector<T> extends AbstractCollector<T> {
 	 * Depth wise collection.
 	 * 
 	 * @param handler
-	 *        the handler that processes each element.
+	 *            the handler that processes each element.
 	 * @param element
-	 *        : the element from which the collection is performed.
+	 *            : the element from which the collection is performed.
 	 * @throws CollectionAbortedException
 	 */
 	protected void collectDepthWise(ResultHandler<T> handler, T element) throws CollectionAbortedException {
 		try {
-			handler.handleResult(element); //send result to the handler.
-			for(Picker<T> picker : this.getPickers()) {
-				Iterable<T> nexts = picker.getNexts(element); //getting children.
-				if(nexts != null) { //some elements do not have any child.
-					for(T next : nexts) {
-						this.collectDepthWise(handler, next); //recurse
+			handler.handleResult(element); // send result to the handler.
+			for (Picker<T> picker : this.getPickers()) {
+				Iterable<T> nexts = picker.getNexts(element); // getting children.
+				if (nexts != null) { // some elements do not have any child.
+					for (T next : nexts) {
+						this.collectDepthWise(handler, next); // recurse
 					}
 				}
 			}
@@ -53,7 +52,7 @@ public class DepthCollector<T> extends AbstractCollector<T> {
 			// if the element cannot be handled, do nothing.
 		} catch (Exception e) {
 			throw new CollectionAbortedException(e);
-		} 
+		}
 	}
 
 }

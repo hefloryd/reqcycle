@@ -23,14 +23,13 @@ import org.eclipse.swt.widgets.TableColumn;
 
 public class PreferenceUiUtil {
 
-
 	/**
 	 * Creates a Group
 	 * 
 	 * @param parent
-	 *        Parent composite
+	 *            Parent composite
 	 * @param name
-	 *        Group Name
+	 *            Group Name
 	 * @return Group with the given name
 	 */
 	public static Group createGroup(Composite parent, String name) {
@@ -45,11 +44,11 @@ public class PreferenceUiUtil {
 	 * Creates a Table Viewer Column
 	 * 
 	 * @param viewer
-	 *        The table Viewer Container
+	 *            The table Viewer Container
 	 * @param title
-	 *        The Column Title
+	 *            The Column Title
 	 * @param style
-	 *        The Column Style
+	 *            The Column Style
 	 * @return Table Column Viewer
 	 */
 	public static TableViewerColumn createTableViewerColumn(TableViewer viewer, String title, int style) {
@@ -65,11 +64,11 @@ public class PreferenceUiUtil {
 	 * Creates a Button
 	 * 
 	 * @param parent
-	 *        Parent Composite
+	 *            Parent Composite
 	 * @param toolTip
-	 *        The button toolTip
+	 *            The button toolTip
 	 * @param image
-	 *        The button image
+	 *            The button image
 	 * @return
 	 */
 	public static Button createButton(Composite parent, String toolTip, Image image) {
@@ -82,9 +81,9 @@ public class PreferenceUiUtil {
 	 * Creates a push Button
 	 * 
 	 * @param parent
-	 *        Parent Composite
+	 *            Parent Composite
 	 * @param toolTip
-	 *        the Button toolTip
+	 *            the Button toolTip
 	 * @return Push button
 	 */
 	private static Button createButton(Composite parent, String toolTip) {

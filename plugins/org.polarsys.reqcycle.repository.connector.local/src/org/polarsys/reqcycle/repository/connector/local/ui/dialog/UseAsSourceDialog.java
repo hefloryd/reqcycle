@@ -41,8 +41,6 @@ public class UseAsSourceDialog extends Dialog {
 
 	protected CreateNewSourceComposite compositeNewSource;
 
-
-
 	public UseAsSourceDialog(Shell parentShell) {
 		super(parentShell);
 		ZigguratInject.inject(this);
@@ -50,7 +48,7 @@ public class UseAsSourceDialog extends Dialog {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite control = (Composite)super.createDialogArea(parent);
+		Composite control = (Composite) super.createDialogArea(parent);
 
 		compositeNewSource = new CreateNewSourceComposite(control, SWT.NONE);
 		compositeNewSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -61,13 +59,9 @@ public class UseAsSourceDialog extends Dialog {
 		return control;
 	}
 
-
-
-
 	public void init(String name) {
 		bean.setSourceName(name);
 	}
-
 
 	public static class Bean extends CreateNewSourceComposite.Bean {
 

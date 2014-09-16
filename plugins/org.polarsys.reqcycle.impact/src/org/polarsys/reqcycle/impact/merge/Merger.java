@@ -80,7 +80,7 @@ public class Merger {
 			throw new MergerException(e);
 		}
 	}
-	
+
 	private static Function<EObject, String> GET_FRAGMENT_FUNCTION = new Function<EObject, String>() {
 
 		@Override
@@ -90,7 +90,7 @@ public class Merger {
 			}
 			return "";
 		}
-		
+
 	};
 
 	public static MergeResult computeMergeResult(IFeaturedModelScope targetScope, IFeaturedModelScope refScope) {

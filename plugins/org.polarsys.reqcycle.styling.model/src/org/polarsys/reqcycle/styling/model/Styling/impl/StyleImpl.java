@@ -21,14 +21,12 @@ import org.polarsys.reqcycle.styling.model.Styling.Style;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Style</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Style</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StyleImpl#getAppliedFonts <em>Applied Fonts</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StyleImpl#getColor <em>Color</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StyleImpl#getAppliedFonts <em>Applied Fonts</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.StyleImpl#getColor <em>Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,16 +34,15 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
  */
 public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The cached value of the '{@link #getAppliedFonts() <em>Applied Fonts</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAppliedFonts() <em>Applied Fonts</em>}' attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAppliedFonts()
 	 * @generated
 	 * @ordered
@@ -53,9 +50,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	protected EList<FontOption> appliedFonts;
 
 	/**
-	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getColor()
 	 * @generated
 	 * @ordered
@@ -63,9 +59,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	protected static final String COLOR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getColor()
 	 * @generated
 	 * @ordered
@@ -73,8 +68,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	protected String color = COLOR_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StyleImpl() {
@@ -82,8 +77,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,8 +87,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FontOption> getAppliedFonts() {
@@ -104,8 +99,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getColor() {
@@ -113,8 +108,8 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setColor(String newColor) {
@@ -125,83 +120,84 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StylingPackage.STYLE__APPLIED_FONTS:
-				return getAppliedFonts();
-			case StylingPackage.STYLE__COLOR:
-				return getColor();
+		case StylingPackage.STYLE__APPLIED_FONTS:
+			return getAppliedFonts();
+		case StylingPackage.STYLE__COLOR:
+			return getColor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StylingPackage.STYLE__APPLIED_FONTS:
-				getAppliedFonts().clear();
-				getAppliedFonts().addAll((Collection<? extends FontOption>)newValue);
-				return;
-			case StylingPackage.STYLE__COLOR:
-				setColor((String)newValue);
-				return;
+		case StylingPackage.STYLE__APPLIED_FONTS:
+			getAppliedFonts().clear();
+			getAppliedFonts().addAll((Collection<? extends FontOption>) newValue);
+			return;
+		case StylingPackage.STYLE__COLOR:
+			setColor((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StylingPackage.STYLE__APPLIED_FONTS:
-				getAppliedFonts().clear();
-				return;
-			case StylingPackage.STYLE__COLOR:
-				setColor(COLOR_EDEFAULT);
-				return;
+		case StylingPackage.STYLE__APPLIED_FONTS:
+			getAppliedFonts().clear();
+			return;
+		case StylingPackage.STYLE__COLOR:
+			setColor(COLOR_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StylingPackage.STYLE__APPLIED_FONTS:
-				return appliedFonts != null && !appliedFonts.isEmpty();
-			case StylingPackage.STYLE__COLOR:
-				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
+		case StylingPackage.STYLE__APPLIED_FONTS:
+			return appliedFonts != null && !appliedFonts.isEmpty();
+		case StylingPackage.STYLE__COLOR:
+			return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (appliedFonts: ");
@@ -212,4 +208,4 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		return result.toString();
 	}
 
-} //StyleImpl
+} // StyleImpl

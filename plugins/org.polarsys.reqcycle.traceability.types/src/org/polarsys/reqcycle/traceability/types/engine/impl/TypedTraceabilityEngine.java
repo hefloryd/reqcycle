@@ -30,9 +30,7 @@ public class TypedTraceabilityEngine implements ITypedTraceabilityEngine {
 	ITraceabilityEngine engine;
 
 	@Override
-	public Iterator<Pair<Link, Reachable>> getTraceability(
-			Configuration typeConfig, Request... requests)
-			throws EngineException {
+	public Iterator<Pair<Link, Reachable>> getTraceability(Configuration typeConfig, Request... requests) throws EngineException {
 		if (typeConfig != null) {
 			for (Request r : requests) {
 				handleFilter(typeConfig, r);
@@ -42,21 +40,17 @@ public class TypedTraceabilityEngine implements ITypedTraceabilityEngine {
 	}
 
 	private void handleFilter(Configuration typeConfig, Request r) {
-		Filter confFilter = new Configuration2Filter(r.getDirection())
-				.apply(typeConfig);
+		Filter confFilter = new Configuration2Filter(r.getDirection()).apply(typeConfig);
 		r.setFilter(new AndFilter(r.getFilter(), confFilter));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine#getTraceability
-	 * (org.polarsys.reqcycle.traceability.engine.Request[])
+	 * @see org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine#getTraceability (org.polarsys.reqcycle.traceability.engine.Request[])
 	 */
 	@Override
-	public Iterator<Pair<Link, Reachable>> getTraceability(Request... requests)
-			throws EngineException {
+	public Iterator<Pair<Link, Reachable>> getTraceability(Request... requests) throws EngineException {
 		return getTraceability(null, requests);
 
 	}

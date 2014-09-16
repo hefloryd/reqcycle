@@ -35,14 +35,12 @@ public class ElementTypeConfigurationPage extends AbstractPreferencePage {
 	@Override
 	protected void addAction() {
 		if (treeViewer.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection selec = (IStructuredSelection) treeViewer
-					.getSelection();
+			IStructuredSelection selec = (IStructuredSelection) treeViewer.getSelection();
 			if (selec.getFirstElement() instanceof Type) {
 				Type type = (Type) selec.getFirstElement();
 				IType javaType = type.getIType();
 				if (javaType != null && javaType.isExtensible()) {
-					NewCustomTypeDialog d = new NewCustomTypeDialog(getShell(),
-							type);
+					NewCustomTypeDialog d = new NewCustomTypeDialog(getShell(), type);
 					ZigguratInject.inject(d);
 					if (d.open() == NewCustomTypeDialog.OK) {
 						CustomType custom = d.getCustomType();
@@ -70,16 +68,14 @@ public class ElementTypeConfigurationPage extends AbstractPreferencePage {
 
 	@Override
 	protected IContentProvider getContentProvider() {
-		preferenceDialogTypesContentProvider = new PreferenceDialogTypesContentProvider(
-				factory, container);
+		preferenceDialogTypesContentProvider = new PreferenceDialogTypesContentProvider(factory, container);
 		ZigguratInject.inject(preferenceDialogTypesContentProvider);
 		return preferenceDialogTypesContentProvider;
 	}
 
 	@Override
 	protected ILabelProvider getLabelProvider() {
-		PreferenceDialogTypeLabelProvider provider = new PreferenceDialogTypeLabelProvider(
-				factory, super.getLabelProvider());
+		PreferenceDialogTypeLabelProvider provider = new PreferenceDialogTypeLabelProvider(factory, super.getLabelProvider());
 		ZigguratInject.inject(provider);
 		return provider;
 
@@ -98,17 +94,15 @@ public class ElementTypeConfigurationPage extends AbstractPreferencePage {
 		return new ViewerFilter() {
 
 			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				return element instanceof TypeConfigContainer
-						|| element instanceof Type;
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return element instanceof TypeConfigContainer || element instanceof Type;
 			}
 		};
 	}
 
 	@Override
 	protected void setInput() {
-		if(preferenceDialogTypesContentProvider != null) {
+		if (preferenceDialogTypesContentProvider != null) {
 			preferenceDialogTypesContentProvider.setTypeConfigContainer(container);
 		}
 		treeViewer.setInput(container.eResource());
@@ -117,8 +111,7 @@ public class ElementTypeConfigurationPage extends AbstractPreferencePage {
 	@Override
 	protected void selectionChanged(SelectionChangedEvent event) {
 		if (event.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection struc = (IStructuredSelection) event
-					.getSelection();
+			IStructuredSelection struc = (IStructuredSelection) event.getSelection();
 			if (struc.getFirstElement() instanceof Type) {
 				Type type = (Type) struc.getFirstElement();
 				if (isExtensible(type, typesManager)) {
@@ -140,8 +133,7 @@ public class ElementTypeConfigurationPage extends AbstractPreferencePage {
 	@Override
 	protected void removeAction() {
 		if (treeViewer.getSelection() instanceof IStructuredSelection) {
-			IStructuredSelection new_name = (IStructuredSelection) treeViewer
-					.getSelection();
+			IStructuredSelection new_name = (IStructuredSelection) treeViewer.getSelection();
 			EObject firstElement = (EObject) new_name.getFirstElement();
 			if (removeCondition(firstElement)) {
 				EcoreUtil.delete(firstElement, true);

@@ -38,14 +38,11 @@ public class LogicalIDManager implements ILogicalIDManager {
 	}
 
 	private static List<IIDContributor> getContributors() {
-		IConfigurationElement[] contributors = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_NAME);
-		List<IIDContributor> result = new ArrayList<IIDContributor>(
-				contributors.length);
+		IConfigurationElement[] contributors = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_NAME);
+		List<IIDContributor> result = new ArrayList<IIDContributor>(contributors.length);
 		for (IConfigurationElement c : contributors) {
 			try {
-				IIDContributor createExecutableExtension = (IIDContributor) c
-						.createExecutableExtension("instance");
+				IIDContributor createExecutableExtension = (IIDContributor) c.createExecutableExtension("instance");
 				ZigguratInject.inject(createExecutableExtension);
 				result.add(createExecutableExtension);
 			} catch (CoreException e) {

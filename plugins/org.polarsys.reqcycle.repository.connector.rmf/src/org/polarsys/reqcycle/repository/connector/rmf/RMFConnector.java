@@ -78,8 +78,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		return new ICallable() {
 
 			@Override
-			public void fillRequirementSource(
-					RequirementSource requirementSource) throws Exception {
+			public void fillRequirementSource(RequirementSource requirementSource) throws Exception {
 
 				Scope scope = null;
 				IDataModel model = null;
@@ -88,40 +87,25 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 				if (settingPageBean != null) {
 					scope = settingPageBean.getScope();
 					model = settingPageBean.getDataPackage();
-					requirementsResourcePath = settingPageBean
-							.getDestinationPath();
-					requirementSource.setProperty("DataModel_NAME",
-							model.getName());
-					requirementSource
-							.setProperty("SCOPE_NAME", scope.getName());
-					requirementSource.setProperty(
-							IRequirementSourceProperties.PROPERTY_URI,
-							settingPageBean.getUri());
+					requirementsResourcePath = settingPageBean.getDestinationPath();
+					requirementSource.setProperty("DataModel_NAME", model.getName());
+					requirementSource.setProperty("SCOPE_NAME", scope.getName());
+					requirementSource.setProperty(IRequirementSourceProperties.PROPERTY_URI, settingPageBean.getUri());
 					Boolean isCopy = settingPageBean.getIsCopy();
-					if (isCopy && requirementsResourcePath != null
-							&& !requirementsResourcePath.isEmpty()) {
-						RequirementsContainer rc = dataManager
-								.createRequirementsContainer(URI
-										.createPlatformResourceURI(
-												requirementsResourcePath, true));
+					if (isCopy && requirementsResourcePath != null && !requirementsResourcePath.isEmpty()) {
+						RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(requirementsResourcePath, true));
 						requirementSource.setContents(rc);
 					}
-					requirementSource.setProperty(
-							IRequirementSourceProperties.IS_LOCAL,
-							isCopy.toString());
+					requirementSource.setProperty(IRequirementSourceProperties.IS_LOCAL, isCopy.toString());
 				}
 
-				if (((settingPageBean != null && !settingPageBean
-						.getSkipMapping()) || edition)
-						&& mapping != null
-						&& !mapping.isEmpty()) {
+				if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition) && mapping != null && !mapping.isEmpty()) {
 					// it's an edition or a creation without skipping the
 					// mapping
 					requirementSource.getMappings().clear();
 					requirementSource.getMappings().addAll(mapping);
 					// requirementSource.getRequirements().clear();
-					RMFUtils.fillRequirements(requirementSource,
-							new NullProgressMonitor(), scope);
+					RMFUtils.fillRequirements(requirementSource, new NullProgressMonitor(), scope);
 				}
 
 			}
@@ -135,15 +119,13 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		// then the mapping page is added instead of settingPage
 		if (edition) {
 			ResourceSet rs = new ResourceSetImpl();
-			Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs,
-					initSource.getRepositoryUri());
+			Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, initSource.getRepositoryUri());
 			EList<MappingElement> mapping = initSource.getMappings();
 			IDataModel dataModel = dataTypeManage.getDataModelByURI(initSource.getDataModelURI());
 			mappingPage = createMappingPage(specTypes, dataModel.getTypes(), mapping);
 			addPage(mappingPage);
 		} else {
-			settingPage = new RMFSettingPage("ReqIF Setting", "",
-					initFileUri != null ? initFileUri.toString() : null);
+			settingPage = new RMFSettingPage("ReqIF Setting", "", initFileUri != null ? initFileUri.toString() : null);
 			settingPageBean = settingPage.getBean();
 			addPage(settingPage);
 		}
@@ -153,13 +135,11 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	public IWizardPage getNextPage(IWizardPage page) {
 		if (page instanceof RMFSettingPage) {
 			ResourceSet rs = new ResourceSetImpl();
-			final Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs,
-					settingPageBean.getUri());
+			final Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, settingPageBean.getUri());
 			// final Collection<EClassifier> eClassifiers =
 			// DataUtil.getTargetEPackage(rs,
 			// "org.polarsys.reqcycle.repository.data/model/CustomDataModel.ecore");
-			Collection<IType> eClassifiers = settingPageBean
-					.getDataPackage().getTypes();
+			Collection<IType> eClassifiers = settingPageBean.getDataPackage().getTypes();
 			mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
 			mappingPage.setWizard(this);
 
@@ -168,10 +148,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		return super.getNextPage(page);
 	}
 
-	private RMFRepositoryMappingPage createMappingPage(
-			final Collection<SpecType> specTypes,
-			final Collection<IType> eClassifiers,
-			final Collection mapping) {
+	private RMFRepositoryMappingPage createMappingPage(final Collection<SpecType> specTypes, final Collection<IType> eClassifiers, final Collection mapping) {
 		return new RMFRepositoryMappingPage("ReqIF Mapping", "") {
 
 			@Override
@@ -228,8 +205,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	@Override
 	public boolean performFinish() {
 		// FIXME : use mapping bean
-		if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition)
-				&& mappingPage != null) {
+		if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition) && mappingPage != null) {
 			mapping = mappingPage.getResult();
 		}
 
@@ -239,8 +215,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	@Override
 	public boolean canFinish() {
 		// TODO : refactor using beans
-		if (settingPage != null && settingPage.isPageComplete()
-				&& settingPageBean != null) {
+		if (settingPage != null && settingPage.isPageComplete() && settingPageBean != null) {
 			if (settingPageBean.getSkipMapping()) {
 				return true;
 			} else {
@@ -253,8 +228,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public void initializeWithRequirementSource(
-			RequirementSource requirementSource) {
+	public void initializeWithRequirementSource(RequirementSource requirementSource) {
 		initSource = requirementSource;
 		edition = true;
 	}
@@ -264,8 +238,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		if (selection instanceof IStructuredSelection) {
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (obj instanceof IFile) {
-				initFileUri = URI.createPlatformResourceURI(((IFile) obj)
-						.getFullPath().toPortableString(), true);
+				initFileUri = URI.createPlatformResourceURI(((IFile) obj).getFullPath().toPortableString(), true);
 			}
 		}
 	}

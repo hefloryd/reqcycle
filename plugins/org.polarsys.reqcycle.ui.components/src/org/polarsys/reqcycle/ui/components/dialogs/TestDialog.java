@@ -43,7 +43,7 @@ public class TestDialog extends Dialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite container = (Composite)super.createDialogArea(parent);
+		Composite container = (Composite) super.createDialogArea(parent);
 		container.setLayout(new GridLayout(1, false));
 
 		CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer.newCheckList(container, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI);

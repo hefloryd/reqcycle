@@ -45,21 +45,17 @@ public class TraceabilityOperations {
 	}
 
 	@IOperation("Is the current requirement covered")
-	boolean isCovered(Requirement req,
-			final @IParameter("traceability type") String traceabilityType) {
+	boolean isCovered(Requirement req, final @IParameter("traceability type") String traceabilityType) {
 		try {
-			Request request = new Request().setDepth(DEPTH.ONE)
-					.setDirection(DIRECTION.DOWNWARD).setFilter(new Filter() {
+			Request request = new Request().setDepth(DEPTH.ONE).setDirection(DIRECTION.DOWNWARD).setFilter(new Filter() {
 
-						@Override
-						public boolean apply(Pair<Link, Reachable> pair) {
-							return pair.getFirst().getKind().getLabel()
-									.equals(traceabilityType);
-						}
-					});
+				@Override
+				public boolean apply(Pair<Link, Reachable> pair) {
+					return pair.getFirst().getKind().getLabel().equals(traceabilityType);
+				}
+			});
 			request.setScope(Scopes.getWorkspaceScope());
-			request.addSource(manager.getHandlerFromObject(req)
-					.getFromObject(req).getReachable(req));
+			request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable(req));
 			try {
 				return engine.getTraceability(request).hasNext();
 			} catch (EngineException e) {
@@ -72,32 +68,24 @@ public class TraceabilityOperations {
 	}
 
 	@IOperation("get the coverage rate the element (for a section)")
-	Result<Float> getCoverageRate(Section selection,
-			final @IParameter("traceability type") String traceabilityType,
-			@IParameter("Workspace Scope") Boolean workspace) {
-		Iterable<Requirement> requirements = Iterables
-				.filter(selection.getChildren(),
-						Requirement.class);
+	Result<Float> getCoverageRate(Section selection, final @IParameter("traceability type") String traceabilityType, @IParameter("Workspace Scope") Boolean workspace) {
+		Iterable<Requirement> requirements = Iterables.filter(selection.getChildren(), Requirement.class);
 		final Set<Object> objectsToListen = Sets.newHashSet();
 		try {
-			Request request = new Request().setDepth(DEPTH.ONE)
-					.setDirection(DIRECTION.DOWNWARD).setFilter(new Filter() {
+			Request request = new Request().setDepth(DEPTH.ONE).setDirection(DIRECTION.DOWNWARD).setFilter(new Filter() {
 
-						@Override
-						public boolean apply(Pair<Link, Reachable> pair) {
-							return pair.getFirst().getKind().getLabel()
-									.equals(traceabilityType);
-						}
-					});
+				@Override
+				public boolean apply(Pair<Link, Reachable> pair) {
+					return pair.getFirst().getKind().getLabel().equals(traceabilityType);
+				}
+			});
 			if (workspace) {
 				request.setScope(Scopes.getWorkspaceScope());
 			} else {
-				request.setScope(Scopes.getProjectScope(WorkspaceSynchronizer
-						.getFile(selection.eResource())));
+				request.setScope(Scopes.getProjectScope(WorkspaceSynchronizer.getFile(selection.eResource())));
 			}
 			for (Requirement r : requirements) {
-				request.addSource(manager.getHandlerFromObject(r)
-						.getFromObject(r).getReachable(r));
+				request.addSource(manager.getHandlerFromObject(r).getFromObject(r).getReachable(r));
 				objectsToListen.add(r);
 			}
 			ArrayList<Pair<Link, Reachable>> list;
@@ -105,8 +93,7 @@ public class TraceabilityOperations {
 				list = Lists.newArrayList(engine.getTraceability(request));
 				Map<Reachable, Integer> map = Maps.newHashMap();
 				for (Pair<Link, Reachable> p : list) {
-					Reachable next = p.getFirst().getSources().iterator()
-							.next();
+					Reachable next = p.getFirst().getSources().iterator().next();
 					Integer i = map.get(next);
 					if (i == null) {
 						map.put(next, 1);
@@ -125,17 +112,19 @@ public class TraceabilityOperations {
 						nb++;
 					}
 				}
-				
+
 				final float rate = (nb / total) * 100;
 				return new Result<Float>() {
 					@Override
 					public Collection<Object> getObjectsToListen() {
 						return objectsToListen;
 					}
+
 					@Override
 					public Float getResult() {
 						return rate;
 					}
+
 					@Override
 					public Class<Float> getResultType() {
 						return Float.class;
@@ -152,10 +141,12 @@ public class TraceabilityOperations {
 			public Collection<Object> getObjectsToListen() {
 				return null;
 			}
+
 			@Override
 			public Float getResult() {
 				return (float) 0;
 			}
+
 			@Override
 			public Class<Float> getResultType() {
 				return Float.class;

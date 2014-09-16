@@ -40,17 +40,14 @@ public class RequirementSourceLabelProvider extends LabelProvider {
 	/** Repository icon */
 	protected static final String ICONS_STATUS_UNSYNCHRONIZED = Messages.YELLOW_STATUS_ICON;
 
-	private @Inject IConnectorManager repositoryConnectorManager = ZigguratInject
-			.make(IConnectorManager.class);
-	
-	private @Inject IDataModelManager dataModelManager = ZigguratInject
-			.make(IDataModelManager.class);
+	private @Inject IConnectorManager repositoryConnectorManager = ZigguratInject.make(IConnectorManager.class);
+
+	private @Inject IDataModelManager dataModelManager = ZigguratInject.make(IDataModelManager.class);
 
 	@Override
 	public String getText(Object obj) {
 		if (obj instanceof String) {
-			ConnectorDescriptor connectorDescriptor = repositoryConnectorManager
-					.get((String) obj);
+			ConnectorDescriptor connectorDescriptor = repositoryConnectorManager.get((String) obj);
 			if (connectorDescriptor != null) {
 				return connectorDescriptor.getName();
 			} else {
@@ -73,11 +70,9 @@ public class RequirementSourceLabelProvider extends LabelProvider {
 	public Image getImage(Object obj) {
 
 		if (obj instanceof String) {
-			ConnectorDescriptor connectorDescriptor = repositoryConnectorManager
-					.get((String) obj);
+			ConnectorDescriptor connectorDescriptor = repositoryConnectorManager.get((String) obj);
 			if (connectorDescriptor != null) {
-				return ConnectorLabelProvider.createImage(connectorDescriptor,
-						16, 16);
+				return ConnectorLabelProvider.createImage(connectorDescriptor, 16, 16);
 			} else {
 				return null;
 			}

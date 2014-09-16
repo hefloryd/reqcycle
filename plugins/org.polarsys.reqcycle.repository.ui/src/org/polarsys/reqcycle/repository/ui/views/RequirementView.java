@@ -72,24 +72,17 @@ public class RequirementView extends CommonNavigator {
 	}
 
 	public IPropertySheetPage getPropertySheetPage() {
-		ExtendedPropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(
-				readOnlyEditingDomain,
-				ExtendedPropertySheetPage.Decoration.NONE, null);
-		propertySheetPage
-				.setPropertySourceProvider(new AdapterFactoryContentProvider(
-						new ReflectiveItemProviderAdapterFactory()));
+		ExtendedPropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(readOnlyEditingDomain, ExtendedPropertySheetPage.Decoration.NONE, null);
+		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(new ReflectiveItemProviderAdapterFactory()));
 		return propertySheetPage;
 	}
 
 	/**
 	 * @param sources
 	 * @param predicates
-	 *            - The collection of predicates to use for filtering the same
-	 *            input.
+	 *            - The collection of predicates to use for filtering the same input.
 	 */
-	public static void openNewRequirementView(
-			final Collection<RequirementSource> sources,
-			final Collection<IPredicate> predicates) {
+	public static void openNewRequirementView(final Collection<RequirementSource> sources, final Collection<IPredicate> predicates) {
 
 		if (!sources.isEmpty()) {
 
@@ -107,21 +100,16 @@ public class RequirementView extends CommonNavigator {
 
 	public void setSources(Collection<RequirementSource> sources) {
 		if (readOnlyEditingDomain == null && !sources.isEmpty()) {
-			ResourceSet rs = sources.iterator().next().eResource()
-					.getResourceSet();
+			ResourceSet rs = sources.iterator().next().eResource().getResourceSet();
 			if (readOnlyEditingDomain == null) {
-				readOnlyEditingDomain = new AdapterFactoryEditingDomain(
-						new ReflectiveItemProviderAdapterFactory(),
-						new BasicCommandStack(), rs) {
+				readOnlyEditingDomain = new AdapterFactoryEditingDomain(new ReflectiveItemProviderAdapterFactory(), new BasicCommandStack(), rs) {
 
 					@Override
 					public boolean isReadOnly(Resource resource) {
 						return true;
 					}
 				};
-				rs.eAdapters().add(
-						new AdapterFactoryEditingDomain.EditingDomainProvider(
-								readOnlyEditingDomain));
+				rs.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(readOnlyEditingDomain));
 			}
 		}
 		root.setSources(sources);
@@ -148,8 +136,7 @@ public class RequirementView extends CommonNavigator {
 	}
 
 	public static IViewPart createNewView() {
-		IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		int nbView = 0;
 		for (IViewReference ref : activePage.getViewReferences()) {
 			if (ref.getId().startsWith(VIEW_ID)) {
@@ -160,8 +147,7 @@ public class RequirementView extends CommonNavigator {
 		nbView++;
 		IViewPart view = null;
 		try {
-			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView,
-					IWorkbenchPage.VIEW_ACTIVATE);
+			view = activePage.showView(VIEW_ID, VIEW_ID + "_" + nbView, IWorkbenchPage.VIEW_ACTIVATE);
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
@@ -182,8 +168,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) element;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(element)
-							.getFromObject(element).getReachable(element);
+					r = manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -198,8 +183,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(object)
-							.getFromObject(object).getReachable(object);
+					r = manager.getHandlerFromObject(object).getFromObject(object).getReachable(object);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -222,8 +206,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(object)
-							.getFromObject(object).getReachable(object);
+					r = manager.getHandlerFromObject(object).getFromObject(object).getReachable(object);
 				} catch (IReachableHandlerException e) {
 					return false;
 				}
@@ -244,8 +227,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) element;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(element)
-							.getFromObject(element).getReachable(element);
+					r = manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}

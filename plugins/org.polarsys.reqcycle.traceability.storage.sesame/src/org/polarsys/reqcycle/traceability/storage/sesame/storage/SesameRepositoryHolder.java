@@ -28,7 +28,7 @@ import com.google.common.cache.LoadingCache;
 public class SesameRepositoryHolder {
 
 	private static final String REPOSITORY_FOLDER = "/binary";
-	
+
 	private LoadingCache<String, Repository> repositories;
 	private LoadingCache<String, ThreadLocal<RepositoryConnection>> connections;
 
@@ -49,7 +49,7 @@ public class SesameRepositoryHolder {
 			connection = repository.getConnection();
 			connectionsThreadLocal.set(connection);
 		}
-	
+
 		return connection;
 	}
 
@@ -63,8 +63,7 @@ public class SesameRepositoryHolder {
 		}
 	}
 
-	private static final class ThreadLocalConnectionsBuilderCallable extends
-			CacheLoader<String, ThreadLocal<RepositoryConnection>> {
+	private static final class ThreadLocalConnectionsBuilderCallable extends CacheLoader<String, ThreadLocal<RepositoryConnection>> {
 		@Override
 		public ThreadLocal<RepositoryConnection> load(String path) {
 			return new ThreadLocal<RepositoryConnection>();

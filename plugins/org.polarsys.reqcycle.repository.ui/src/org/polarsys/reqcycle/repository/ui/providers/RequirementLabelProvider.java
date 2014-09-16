@@ -20,7 +20,6 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractEleme
 
 public class RequirementLabelProvider extends LabelProvider {
 
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,24 +28,23 @@ public class RequirementLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 
-		if(element instanceof RequirementSource) {
-			return ((RequirementSource)element).getName() + " (" + ((RequirementSource)element).getRepositoryUri() + " )";
+		if (element instanceof RequirementSource) {
+			return ((RequirementSource) element).getName() + " (" + ((RequirementSource) element).getRepositoryUri() + " )";
 		}
 
-		if(element instanceof AbstractElement) {
-			String name = ((AbstractElement)element).getText();
-			EList<EStructuralFeature> structuralFeatures = ((AbstractElement)element).eClass().getEStructuralFeatures();
-			String attr = " [ id : " + ((AbstractElement)element).getId() + " ]" + "[ text : " + ((AbstractElement)element).getText() + " ]";
+		if (element instanceof AbstractElement) {
+			String name = ((AbstractElement) element).getText();
+			EList<EStructuralFeature> structuralFeatures = ((AbstractElement) element).eClass().getEStructuralFeatures();
+			String attr = " [ id : " + ((AbstractElement) element).getId() + " ]" + "[ text : " + ((AbstractElement) element).getText() + " ]";
 
-			for(EStructuralFeature eStructuralFeature : structuralFeatures) {
-				attr += "[ " + eStructuralFeature.getName() + " : " + ((AbstractElement)element).eGet(eStructuralFeature) + "]";
+			for (EStructuralFeature eStructuralFeature : structuralFeatures) {
+				attr += "[ " + eStructuralFeature.getName() + " : " + ((AbstractElement) element).eGet(eStructuralFeature) + "]";
 			}
 			return name + attr;
 		}
 
 		return super.getText(element);
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -56,11 +54,11 @@ public class RequirementLabelProvider extends LabelProvider {
 	@Override
 	public Image getImage(Object element) {
 
-		//		if(element instanceof RequirementSource) {
-		//			String connectorId = ((RequirementSource)element).getConnectorID();
-		//			return manager.getImage(connectorId, 20, 20);
-		//		}
-		//		
+		// if(element instanceof RequirementSource) {
+		// String connectorId = ((RequirementSource)element).getConnectorID();
+		// return manager.getImage(connectorId, 20, 20);
+		// }
+		//
 		return super.getImage(element);
 	}
 

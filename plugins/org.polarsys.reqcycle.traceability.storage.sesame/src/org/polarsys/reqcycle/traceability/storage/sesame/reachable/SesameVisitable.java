@@ -78,7 +78,7 @@ public class SesameVisitable implements IVisitable, IAdaptable {
 	@Override
 	public void dispose() {
 		if (this.storage != null) {
-			//this.storage.dispose();
+			// this.storage.dispose();
 		}
 	}
 

@@ -30,10 +30,8 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-
 /**
- * Implementation of the IModelConstraintProvider that converts constraints from the 
- * ocl Pivot metamodel to EMF constraints (IModelConstraint). 
+ * Implementation of the IModelConstraintProvider that converts constraints from the ocl Pivot metamodel to EMF constraints (IModelConstraint).
  */
 public abstract class AbstractOCLtoEMFConstraintProvider implements IModelConstraintProvider {
 
@@ -41,36 +39,35 @@ public abstract class AbstractOCLtoEMFConstraintProvider implements IModelConstr
 	 * The OCL that is used to evaluate the constraints.
 	 */
 	protected OCL ocl;
-	
+
 	/**
 	 * A list to keep the constraints provided by this object.
 	 */
 	protected Collection<IModelConstraint> allConstraints = Lists.newArrayList();
-	
+
 	public AbstractOCLtoEMFConstraintProvider() {
-		//Using the default registry
-		EPackage.Registry registry = EPackage.Registry.INSTANCE ;
+		// Using the default registry
+		EPackage.Registry registry = EPackage.Registry.INSTANCE;
 		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(registry, null);
 		this.ocl = OCL.newInstance(environmentFactory);
-		for (URI uri : getOclUris()){
+		for (URI uri : getOclUris()) {
 			loadConstraintsFromCompleteOCL(uri);
 		}
 	}
-	
-	
+
 	/**
 	 * @see org.eclipse.emf.validation.service.IModelConstraintProvider#getBatchConstraints(org.eclipse.emf.ecore.EObject, java.util.Collection)
 	 */
 	@Override
 	public Collection<IModelConstraint> getBatchConstraints(final EObject eObject, Collection<IModelConstraint> constraints) {
-		Collection<IModelConstraint> result = Collections2.filter(allConstraints, new Predicate<IModelConstraint>(){
+		Collection<IModelConstraint> result = Collections2.filter(allConstraints, new Predicate<IModelConstraint>() {
 
 			@Override
 			public boolean apply(IModelConstraint arg0) {
 				return arg0.getDescriptor().targetsTypeOf(eObject);
 			}
 		});
-		if (constraints != null){
+		if (constraints != null) {
 			constraints.addAll(result);
 			return constraints;
 		}
@@ -82,49 +79,51 @@ public abstract class AbstractOCLtoEMFConstraintProvider implements IModelConstr
 	 */
 	@Override
 	public Collection<IModelConstraint> getLiveConstraints(final Notification notification, Collection<IModelConstraint> constraints) {
-		Collection<IModelConstraint> result = Collections2.filter(allConstraints, new Predicate<IModelConstraint>(){
+		Collection<IModelConstraint> result = Collections2.filter(allConstraints, new Predicate<IModelConstraint>() {
 
 			@Override
 			public boolean apply(IModelConstraint arg0) {
 				return arg0.getDescriptor().targetsEvent(notification);
 			}
 		});
-		if (constraints != null){
+		if (constraints != null) {
 			constraints.addAll(result);
 			return constraints;
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Loads the constraints from an ocl model, converts them to EMF constraints and stores them.
-	 * @param uri the uri of an ocl model.
+	 * 
+	 * @param uri
+	 *            the uri of an ocl model.
 	 */
-	protected void loadConstraintsFromCompleteOCL(URI uri){
-		final Resource oclResource= ocl.parse(uri);
-		Iterable<Constraint> oclConstraints = Iterables.filter(new Iterable<EObject>(){
+	protected void loadConstraintsFromCompleteOCL(URI uri) {
+		final Resource oclResource = ocl.parse(uri);
+		Iterable<Constraint> oclConstraints = Iterables.filter(new Iterable<EObject>() {
 			@Override
 			public Iterator<EObject> iterator() {
 				return oclResource.getAllContents();
 			}
 		}, Constraint.class);
-		
-		Iterable<IModelConstraint> emfConstraints = Iterables.transform(oclConstraints, new Function<Constraint, IModelConstraint>(){
+
+		Iterable<IModelConstraint> emfConstraints = Iterables.transform(oclConstraints, new Function<Constraint, IModelConstraint>() {
 
 			@Override
 			public IModelConstraint apply(Constraint arg0) {
 				return new OCLtoEMFConstraintWrapper(ocl, arg0);
 			}
-			
+
 		});
 		Iterables.addAll(allConstraints, emfConstraints);
 	}
-	
+
 	/**
-	 * Retrieves the uri of the ocl resources that should be parsed to get the constraints
-	 * associated with this provider. 
+	 * Retrieves the uri of the ocl resources that should be parsed to get the constraints associated with this provider.
+	 * 
 	 * @return a possibly unmodifiable iterable of files that are compliant with the CompleteOCL metamodel.
 	 */
 	protected abstract Iterable<URI> getOclUris();
-	
+
 }

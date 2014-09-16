@@ -27,7 +27,7 @@ public class ResourceScope implements IScope {
 			}
 		}
 	}
-	
+
 	public ResourceScope(Iterable<Reachable> reachables) {
 		for (Reachable t : reachables) {
 			if (t != null) {

@@ -28,6 +28,7 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OrPredicateImpl() {
@@ -36,6 +37,7 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,8 +47,8 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	@Override
 	public boolean match(Object input) {
-		for(IPredicate predicate : this.getPredicates()) {
-			if(predicate.match(input))
+		for (IPredicate predicate : this.getPredicates()) {
+			if (predicate.match(input))
 				return true;
 		}
 		return false;

@@ -25,17 +25,17 @@ public class Logger implements ILogger {
 
 	@Override
 	public void log(IStatus status) {
-		
+
 	}
 
 	@Override
 	public void info(String message) {
-		
+
 	}
 
 	@Override
 	public void warning(String message) {
-		
+
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class Logger implements ILogger {
 	public void trace(String message) {
 		Date time = Calendar.getInstance().getTime();
 		String format = new SimpleDateFormat("hh:mm:ss:SS").format(time);
-		System.out.println(String.format("%s\t: %s",format, message));
+		System.out.println(String.format("%s\t: %s", format, message));
 	}
 
 }

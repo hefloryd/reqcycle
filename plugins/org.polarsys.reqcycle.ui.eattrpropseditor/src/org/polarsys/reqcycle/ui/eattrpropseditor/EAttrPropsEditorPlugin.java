@@ -52,12 +52,12 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	private void readEAttrEditorExtensions() {
 		final IExtensionRegistry registry = Platform.getExtensionRegistry();
 		final IConfigurationElement[] elements = registry.getConfigurationElementsFor(PLUGIN_ID, "definition");
-		for(final IConfigurationElement e : elements) {
+		for (final IConfigurationElement e : elements) {
 			try {
 				final Class<?> type = Platform.getBundle(e.getContributor().getName()).loadClass(e.getAttribute("type"));
 				final Object obj = e.createExecutableExtension("class");
-				if(obj instanceof IEAttrPropsEditor) {
-					eAttrEditorManager.put(type, (IEAttrPropsEditor<?>)obj);
+				if (obj instanceof IEAttrPropsEditor) {
+					eAttrEditorManager.put(type, (IEAttrPropsEditor<?>) obj);
 				} else {
 					// TODO: log a warning
 				}
@@ -78,8 +78,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	/**
 	 * <b>NOTE :</b> The returned Map is immutable.
 	 * 
-	 * @return The Map of available {@link IEAttrPropsEditor} editors. The map's key represents the type that an editor
-	 *         supports, and the value represents the instance of the editor itself.
+	 * @return The Map of available {@link IEAttrPropsEditor} editors. The map's key represents the type that an editor supports, and the value represents the instance of the editor itself.
 	 */
 	public static Map<Class<?>, IEAttrPropsEditor<?>> getEAttrEditorManager() {
 		return eAttrEditorManager;
@@ -90,26 +89,25 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	 * 
 	 * @param eAttr
 	 * @param javaClassTypeName
-	 *        - The javaClassType of the attribute. Optional, and so may be <tt>null</tt>. If not <code>null</code>, then no further lookup will be
-	 *        done onto the attribute in order to retrieve its
-	 *        java class type, but the specified javaClassType will be used directly instead.
+	 *            - The javaClassType of the attribute. Optional, and so may be <tt>null</tt>. If not <code>null</code>, then no further lookup will be done onto the attribute in order to retrieve its java class type, but the specified javaClassType
+	 *            will be used directly instead.
 	 * @param container
 	 * @param style
 	 * @return The appropriate instance of {@link IEAttrPropsEditor} to use.
 	 */
-	public static IEAttrPropsEditor<?> getStructuralFeatureEditor(String attributeName, Class type,Composite container, int style) {
+	public static IEAttrPropsEditor<?> getStructuralFeatureEditor(String attributeName, Class type, Composite container, int style) {
 
-//		String editorType = null;
-//		if(javaClassTypeName != null) {
-//			editorType = javaClassTypeName;
-//		} else {
-//			final EClassifier eType = eAttr.getEType();
-//			editorType = getEditorType(eType);
-//		}
+		// String editorType = null;
+		// if(javaClassTypeName != null) {
+		// editorType = javaClassTypeName;
+		// } else {
+		// final EClassifier eType = eAttr.getEType();
+		// editorType = getEditorType(eType);
+		// }
 
 		IEAttrPropsEditor<?> editor = getEditorByTypeInstance(type);
 
-		if(editor != null) {
+		if (editor != null) {
 			editor.setContainer(container);
 			editor.setStyle(style);
 			editor.setAttributeName(attributeName);
@@ -120,18 +118,18 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	}
 
 	public static String getEditorType(final EClassifier eType) {
-		if(eType instanceof EClass) {
+		if (eType instanceof EClass) {
 			throw new UnsupportedOperationException("EClass not yet supported ...");
 		}
 
 		String editorType = eType.getInstanceClassName();
 
-		if(eType instanceof EEnum) {
+		if (eType instanceof EEnum) {
 			editorType = EEnum.class.getName();
 		} else {
 			try {
 				Class<?> javaClass = ClassUtils.getClass(editorType);
-				if(javaClass.isPrimitive()) {
+				if (javaClass.isPrimitive()) {
 					javaClass = ClassUtils.primitiveToWrapper(javaClass);
 				}
 				editorType = javaClass.getName();
@@ -146,16 +144,16 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 	private static IEAttrPropsEditor<?> getEditorByTypeInstance(Class<?> initialClass) {
 		try {
 			Class<?> nearestClass = null;
-			for(final Class<?> currentSupportedClass : getEAttrEditorManager().keySet()) {
-				if(currentSupportedClass.isAssignableFrom(initialClass)) {
-					if(nearestClass == null || (nearestClass.isAssignableFrom(currentSupportedClass))) {
+			for (final Class<?> currentSupportedClass : getEAttrEditorManager().keySet()) {
+				if (currentSupportedClass.isAssignableFrom(initialClass)) {
+					if (nearestClass == null || (nearestClass.isAssignableFrom(currentSupportedClass))) {
 						nearestClass = currentSupportedClass;
 					}
-					if(nearestClass.equals(initialClass))
+					if (nearestClass.equals(initialClass))
 						break;
 				}
 			}
-			if(nearestClass != null) {
+			if (nearestClass != null) {
 				return getEAttrEditorManager().get(nearestClass);
 			}
 		} catch (NullPointerException e) {

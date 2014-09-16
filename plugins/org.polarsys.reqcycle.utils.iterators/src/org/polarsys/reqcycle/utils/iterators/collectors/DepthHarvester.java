@@ -18,7 +18,6 @@ import org.polarsys.reqcycle.utils.iterators.pickers.IPicker;
 
 public class DepthHarvester extends Harvester {
 
-
 	public DepthHarvester() {
 		super();
 	}
@@ -38,19 +37,19 @@ public class DepthHarvester extends Harvester {
 	 * Depth wise collection.
 	 * 
 	 * @param handler
-	 *        the handler that processes each element.
+	 *            the handler that processes each element.
 	 * @param element
-	 *        : the element from which the collection is performed.
+	 *            : the element from which the collection is performed.
 	 * @throws CollectionAbortedException
 	 */
 	protected void collectDepthWise(ResultHandler<Object> handler, Object element) throws CollectionAbortedException {
 		try {
-			handler.handleResult(element); //send result to the handler.
-			for(IPicker picker : this.getPickers()) {
-				Iterable<?> nexts = picker.getNexts(element); //getting children.
-				if(nexts != null) { //some elements do not have any child.
-					for(Object next : nexts) {
-						this.collectDepthWise(handler, next); //recurse
+			handler.handleResult(element); // send result to the handler.
+			for (IPicker picker : this.getPickers()) {
+				Iterable<?> nexts = picker.getNexts(element); // getting children.
+				if (nexts != null) { // some elements do not have any child.
+					for (Object next : nexts) {
+						this.collectDepthWise(handler, next); // recurse
 					}
 				}
 			}

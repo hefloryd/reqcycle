@@ -19,18 +19,14 @@ import org.eclipse.swt.graphics.Image;
 public class XcosLabelProvider extends LabelProvider {
 
 	private static final String ICONS_JMETH_OBJ_GIF = "/icons/jmeth_obj.gif";
-	public static ImageDescriptor desc = Activator.imageDescriptorFromPlugin(
-			Activator.PLUGIN_ID, ICONS_JMETH_OBJ_GIF);
+	public static ImageDescriptor desc = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, ICONS_JMETH_OBJ_GIF);
 
 	@Override
 	public Image getImage(Object element) {
-		Image image = JFaceResources.getImage(Activator.PLUGIN_ID
-				+ ICONS_JMETH_OBJ_GIF);
+		Image image = JFaceResources.getImage(Activator.PLUGIN_ID + ICONS_JMETH_OBJ_GIF);
 		if (image == null) {
-			JFaceResources.getImageRegistry().put(
-					Activator.PLUGIN_ID + ICONS_JMETH_OBJ_GIF, desc);
-			image = JFaceResources.getImage(Activator.PLUGIN_ID
-					+ ICONS_JMETH_OBJ_GIF);
+			JFaceResources.getImageRegistry().put(Activator.PLUGIN_ID + ICONS_JMETH_OBJ_GIF, desc);
+			image = JFaceResources.getImage(Activator.PLUGIN_ID + ICONS_JMETH_OBJ_GIF);
 		}
 		return image;
 	}

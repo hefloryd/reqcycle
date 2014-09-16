@@ -27,8 +27,7 @@ public class TypeCouple {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((checker == null) ? 0 : checker.hashCode());
-		result = prime * result
-				+ ((reachableTested == null) ? 0 : reachableTested.hashCode());
+		result = prime * result + ((reachableTested == null) ? 0 : reachableTested.hashCode());
 		return result;
 	}
 

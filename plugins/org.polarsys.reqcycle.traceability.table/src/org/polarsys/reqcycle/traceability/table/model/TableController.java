@@ -47,9 +47,9 @@ public class TableController {
 
 	@Inject
 	protected IStorageProvider provider;
-	
+
 	@Inject
-	protected IReachableListenerManager listenerManager ;
+	protected IReachableListenerManager listenerManager;
 
 	@Inject
 	protected ITraceabilityEngine engine;
@@ -108,8 +108,8 @@ public class TableController {
 				} catch (EngineException e) {
 					e.printStackTrace();
 				}
-				long duration = new Date().getTime()-start;
-				//System.out.println(" duration getLinks " + duration);
+				long duration = new Date().getTime() - start;
+				// System.out.println(" duration getLinks " + duration);
 				return new ArrayList<Link>().iterator();
 			}
 		};
@@ -119,14 +119,13 @@ public class TableController {
 		final ITraceabilityStorage storage = provider.getProjectStorage(project);
 		final Iterable<Pair<Link, Reachable>> allTraceabilityLinks = storage.getAllTraceability(DIRECTION.DOWNWARD);
 
-		return Iterables.transform(allTraceabilityLinks,
-				new Function<Pair<Link, Reachable>, Link>() {
+		return Iterables.transform(allTraceabilityLinks, new Function<Pair<Link, Reachable>, Link>() {
 
-					@Override
-					public Link apply(Pair<Link, Reachable> arg0) {
-						return new TransverseLink(arg0.getFirst(), project);
-					}
-				});
+			@Override
+			public Link apply(Pair<Link, Reachable> arg0) {
+				return new TransverseLink(arg0.getFirst(), project);
+			}
+		});
 	}
 
 	public void deleteTraceabilityLinks(Iterator<TransverseLink> links) {
@@ -134,16 +133,16 @@ public class TableController {
 		IProject project = null;
 		try {
 			Collection<Reachable> notification = Sets.newHashSet();
-			while(links.hasNext()) {
+			while (links.hasNext()) {
 				TransverseLink link = links.next();
-				if(storage == null) {
+				if (storage == null) {
 					project = link.getProject();
 					storage = provider.getProjectStorage(project);
 					storage.startTransaction();
 				}
 				Reachable source = Iterables.get(link.getSources(), 0);
 				Reachable target = Iterables.get(link.getTargets(), 0);
-				if(storage != null) {
+				if (storage != null) {
 					storage.removeUpwardRelationShip(link.getKind(), null, target, source);
 					notification.add(link.getId());
 					notification.add(source);
@@ -151,9 +150,9 @@ public class TableController {
 					notification.add(link.getId().trimFragment());
 				}
 			}
-			if(storage != null) {
+			if (storage != null) {
 				storage.commit();
-				listenerManager.notifyChanged(notification.toArray(new Reachable[]{}));
+				listenerManager.notifyChanged(notification.toArray(new Reachable[] {}));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -173,9 +172,9 @@ public class TableController {
 			@Override
 			public boolean apply(Object arg0) {
 				ViewerFilter[] filters = TableController.this.viewer.getFilters();
-				for(int i = 0; i < filters.length; i++) {
+				for (int i = 0; i < filters.length; i++) {
 					ViewerFilter filter = filters[i];
-					if(!filter.select(viewer, null, arg0)) {
+					if (!filter.select(viewer, null, arg0)) {
 						return false;
 					}
 				}
@@ -184,32 +183,29 @@ public class TableController {
 		};
 		Iterable<?> input;
 		try {
-			
+
 			input = callable.call();
-			
-			
-			
+
 			Iterable<?> filtered = Iterables.filter(input, filter);
 			long start = new Date().getTime();
-			int count= Iterables.size(filtered);
+			int count = Iterables.size(filtered);
 			viewer.setItemCount(count);
-			long duration = new Date().getTime()-start;
-			
+			long duration = new Date().getTime() - start;
+
 			viewer.setInput(filtered);
-			
+
 			viewer.refresh();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void refreshViewerVisuals() {
-		TraceabilityLazyContentProvider<?> contentProvider = (TraceabilityLazyContentProvider<?>)viewer.getContentProvider();
-		viewer.setItemCount(Iterables.size((Iterable<?>)viewer.getInput()));
+		TraceabilityLazyContentProvider<?> contentProvider = (TraceabilityLazyContentProvider<?>) viewer.getContentProvider();
+		viewer.setItemCount(Iterables.size((Iterable<?>) viewer.getInput()));
 		contentProvider.clearCache();
 		viewer.refresh();
 	}
-
 
 }

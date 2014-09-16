@@ -34,9 +34,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 	private OPERATOR operator;
 	private ComboViewer viewer;
 
-	public PredicateValueEditor(final Shell parentShell,
-			final IPredicate predicate,
-			@SuppressWarnings("rawtypes") final Class c, boolean comparator) {
+	public PredicateValueEditor(final Shell parentShell, final IPredicate predicate, @SuppressWarnings("rawtypes") final Class c, boolean comparator) {
 		super(parentShell);
 		this.predicate = predicate;
 		this.editor = null;
@@ -50,8 +48,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 		setTitle("Edition of predicate : " + predicate.getDisplayName());
 
 		Composite container = new Composite(parent, SWT.None);
-		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		container.setLayout(new GridLayout(2, false));
 
 		Collection<Object> possibleValues = Collections.emptyList();
@@ -67,8 +64,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 			viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 				@Override
 				public void selectionChanged(SelectionChangedEvent event) {
-					IStructuredSelection selection = (IStructuredSelection) event
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 					if (selection.getFirstElement() instanceof OPERATOR) {
 						operator = (OPERATOR) (selection.getFirstElement());
 					}
@@ -79,11 +75,9 @@ public class PredicateValueEditor extends TitleAreaDialog {
 		return container;
 	}
 
-	public void addEditor(Class<?> c, String attName, Composite composite,
-			Collection<Object> possibleValues) {
+	public void addEditor(Class<?> c, String attName, Composite composite, Collection<Object> possibleValues) {
 		this.editor = new GenericEAttrPropsEditor(composite, SWT.NONE);
-		this.editor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 2, 1));
+		this.editor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		this.editor.init(attName, c, possibleValues);
 
 		if (predicate instanceof EqualPredicate) {
@@ -93,8 +87,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 		} else if (predicate instanceof ContainsPatternPredicate) {
 			ContainsPatternPredicate containsPredicate = (ContainsPatternPredicate) predicate;
 			if (containsPredicate.getExpectedPattern() != null) {
-				this.editor.setInitialValue(containsPredicate
-						.getExpectedPattern());
+				this.editor.setInitialValue(containsPredicate.getExpectedPattern());
 			}
 		}
 	}
@@ -103,8 +96,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == IDialogConstants.OK_ID) {
 			if (!editor.isEditionValid()) {
-				MessageDialog.openError(getShell(), "Error",
-						"Some values are not entered or not valid");
+				MessageDialog.openError(getShell(), "Error", "Some values are not entered or not valid");
 				return;
 			}
 		}

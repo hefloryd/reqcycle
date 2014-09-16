@@ -26,14 +26,12 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Section</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Section</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl#getChildren
- * <em>Children</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,8 +39,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
  */
 public class SectionImpl extends AbstractElementImpl implements Section {
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getChildren()
 	 * @generated

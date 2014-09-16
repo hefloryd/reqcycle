@@ -23,29 +23,22 @@ import com.google.common.base.Functions;
 import com.google.common.collect.Maps;
 
 public class JDTPreferences {
-	private static final String JDT_TYPES_CONSTANT = Activator.PLUGIN_ID
-			+ ".jdtType";
+	private static final String JDT_TYPES_CONSTANT = Activator.PLUGIN_ID + ".jdtType";
 
 	public static Map<String, TType> getPreferences() {
-		IConfigurationManager manager = ZigguratInject
-				.make(IConfigurationManager.class);
-		Map<String, Object> map = manager.getSimpleConfiguration(null, null,
-				JDT_TYPES_CONSTANT, false);
+		IConfigurationManager manager = ZigguratInject.make(IConfigurationManager.class);
+		Map<String, Object> map = manager.getSimpleConfiguration(null, null, JDT_TYPES_CONSTANT, false);
 		if (map == null) {
 			return new HashMap<String, TType>();
 		}
-		return new HashMap<String, TType>(Maps.transformValues(map,
-				new MapFunction()));
+		return new HashMap<String, TType>(Maps.transformValues(map, new MapFunction()));
 	}
 
 	public static void savePreferences(Map<String, TType> map) {
-		IConfigurationManager manager = ZigguratInject
-				.make(IConfigurationManager.class);
-		Map<String, Object> newMap = new HashMap<String, Object>(
-				Maps.transformValues(map, Functions.toStringFunction()));
+		IConfigurationManager manager = ZigguratInject.make(IConfigurationManager.class);
+		Map<String, Object> newMap = new HashMap<String, Object>(Maps.transformValues(map, Functions.toStringFunction()));
 		try {
-			manager.saveSimpleConfiguration(newMap, null, null,
-					JDT_TYPES_CONSTANT);
+			manager.saveSimpleConfiguration(newMap, null, null, JDT_TYPES_CONSTANT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

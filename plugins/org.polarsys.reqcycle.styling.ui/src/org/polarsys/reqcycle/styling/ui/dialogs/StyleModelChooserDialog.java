@@ -65,8 +65,7 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 
 		Composite composite = new Composite(container, SWT.NONE);
 		composite.setLayout(new FillLayout(SWT.HORIZONTAL));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		listViewer = new ListViewer(composite, SWT.BORDER | SWT.V_SCROLL);
 		List list = listViewer.getList();
@@ -74,8 +73,7 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 		listViewer.addDoubleClickListener(this);
 
 		Composite composite_1 = new Composite(container, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false,
-				1, 1));
+		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 		composite_1.setLayout(new GridLayout(1, false));
 
 		Button btnAdd = new Button(composite_1, SWT.NONE);
@@ -84,33 +82,26 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				StyleModelNameDialog dialog = new StyleModelNameDialog(Display
-						.getDefault().getActiveShell());
+				StyleModelNameDialog dialog = new StyleModelNameDialog(Display.getDefault().getActiveShell());
 				if (dialog.open() == Window.OK) {
 					if (!dialog.getStyleModelName().equals("")) {
-						StylingModel newStylingModel = StylingFactory.eINSTANCE
-								.createStylingModel();
+						StylingModel newStylingModel = StylingFactory.eINSTANCE.createStylingModel();
 						newStylingModel.setModeName(dialog.getStyleModelName());
 
-						styleManager.getStyling().getModels()
-						.add(newStylingModel);
+						styleManager.getStyling().getModels().add(newStylingModel);
 
 						if (styleManager.getStyling().getModels().size() == 1) {
-							styleManager.setPreferredStylingModel(dialog
-									.getStyleModelName());
+							styleManager.setPreferredStylingModel(dialog.getStyleModelName());
 
 						}
 
-						listViewer.setInput(styleManager.getStyling()
-								.getModels());
-						listViewer.setSelection(new StructuredSelection(
-								newStylingModel));
+						listViewer.setInput(styleManager.getStyling().getModels());
+						listViewer.setSelection(new StructuredSelection(newStylingModel));
 					}
 				}
 			}
 		});
-		btnAdd.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
+		btnAdd.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
 
 		Button btnRemove = new Button(composite_1, SWT.NONE);
 		btnRemove.setToolTipText("Remove the selected style configuration");
@@ -118,30 +109,20 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					StylingModel stylingModel = (StylingModel) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 					if (stylingModel != null) {
-						styleManager.getStyling().getModels()
-						.remove(stylingModel);
+						styleManager.getStyling().getModels().remove(stylingModel);
 
-						if ((styleManager.getPreferredStyleModel()
-								.equals(stylingModel.getModeName()))
-								&& (styleManager.getStyling().getModels()
-										.size() != 0)) {
-							styleManager.setPreferredStylingModel(styleManager
-									.getStyling().getModels().get(0)
-									.getModeName());
+						if ((styleManager.getPreferredStyleModel().equals(stylingModel.getModeName())) && (styleManager.getStyling().getModels().size() != 0)) {
+							styleManager.setPreferredStylingModel(styleManager.getStyling().getModels().get(0).getModeName());
 						}
-						listViewer.setInput(styleManager.getStyling()
-								.getModels());
+						listViewer.setInput(styleManager.getStyling().getModels());
 					}
 				}
 			}
 		});
-		btnRemove.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
+		btnRemove.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
 
 		Button btnEdit = new Button(composite_1, SWT.NONE);
 		btnEdit.setToolTipText("Edit the selected style configuration");
@@ -149,18 +130,15 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					StylingModel stylingModel = (StylingModel) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 					if (stylingModel != null) {
 						editSelectedStylingModel(stylingModel);
 					}
 				}
 			}
 		});
-		btnEdit.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
+		btnEdit.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
 		new Label(composite_1, SWT.NONE);
 
 		Button btnUp = new Button(composite_1, SWT.NONE);
@@ -169,27 +147,21 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					StylingModel stylingModel = (StylingModel) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 					if (stylingModel != null) {
-						int index = styleManager.getStyling().getModels()
-								.indexOf(stylingModel);
+						int index = styleManager.getStyling().getModels().indexOf(stylingModel);
 						if (index != 0) {
-							styleManager.getStyling().getModels()
-							.move(index, index - 1);
+							styleManager.getStyling().getModels().move(index, index - 1);
 						}
 
-						listViewer.setInput(styleManager.getStyling()
-								.getModels());
+						listViewer.setInput(styleManager.getStyling().getModels());
 						listViewer.setSelection(selection);
 					}
 				}
 			}
 		});
-		btnUp.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
+		btnUp.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
 
 		Button btnDown = new Button(composite_1, SWT.NONE);
 		btnDown.setToolTipText("Move down the selected style configuration");
@@ -197,66 +169,51 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					StylingModel stylingModel = (StylingModel) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 					if (stylingModel != null) {
-						int index = styleManager.getStyling().getModels()
-								.indexOf(stylingModel);
-						if (index != (styleManager.getStyling().getModels()
-								.size() - 1)) {
-							styleManager.getStyling().getModels()
-							.move(index, index + 1);
+						int index = styleManager.getStyling().getModels().indexOf(stylingModel);
+						if (index != (styleManager.getStyling().getModels().size() - 1)) {
+							styleManager.getStyling().getModels().move(index, index + 1);
 						}
 
-						listViewer.setInput(styleManager.getStyling()
-								.getModels());
+						listViewer.setInput(styleManager.getStyling().getModels());
 						listViewer.setSelection(selection);
 					}
 				}
 			}
 		});
-		btnDown.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
+		btnDown.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
 
 		Button btnSetPreferred = new Button(composite_1, SWT.NONE);
-		btnSetPreferred
-		.setToolTipText("Activate the selected style configuration");
+		btnSetPreferred.setToolTipText("Activate the selected style configuration");
 		btnSetPreferred.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					StylingModel stylingModel = (StylingModel) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 					if (stylingModel != null) {
-						styleManager.setPreferredStylingModel(stylingModel
-								.getModeName());
-						listViewer.setInput(styleManager.getStyling()
-								.getModels());
+						styleManager.setPreferredStylingModel(stylingModel.getModeName());
+						listViewer.setInput(styleManager.getStyling().getModels());
 						listViewer.setSelection(selection);
 					}
 				}
 			}
 		});
-		btnSetPreferred
-		.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/set_pref.png"));
+		btnSetPreferred.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/set_pref.png"));
 		initProviders(listViewer);
 		return area;
 	}
 
 	private void initProviders(ListViewer listViewer) {
 		AdapterFactory adapterfactory = new StylingAdapterFactory();
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				adapterfactory) {
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterfactory) {
 			@Override
 			public String getText(Object object) {
 				if (object instanceof StylingModel) {
 
-					if (((StylingModel) object).getModeName().equals(
-							styleManager.getPreferredStyleModel())) {
+					if (((StylingModel) object).getModeName().equals(styleManager.getPreferredStyleModel())) {
 						return (((StylingModel) object).getModeName() + " (Selected)");
 					} else {
 						return ((StylingModel) object).getModeName();
@@ -265,8 +222,7 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 				return super.getText(object);
 			}
 		};
-		ArrayContentProvider contentProvider = ArrayContentProvider
-				.getInstance();
+		ArrayContentProvider contentProvider = ArrayContentProvider.getInstance();
 
 		listViewer.setLabelProvider(labelProvider);
 		listViewer.setContentProvider(contentProvider);
@@ -281,10 +237,8 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**
@@ -297,8 +251,7 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 
 	public StylingModel getPreferred() {
 		String preferred = styleManager.getPreferredStyleModel();
-		EList<StylingModel> stylingModelList = styleManager.getStyling()
-				.getModels();
+		EList<StylingModel> stylingModelList = styleManager.getStyling().getModels();
 
 		for (int i = 0; i < stylingModelList.size(); i++) {
 			if (stylingModelList.get(i).getModeName().equals(preferred)) {
@@ -310,38 +263,29 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 	}
 
 	private void editSelectedStylingModel(StylingModel selected) {
-		CaseStyleEditorDialog editor = new CaseStyleEditorDialog(
-				Display.getDefault().getActiveShell(),
-				selected);
-		String currentStylingModelName = selected
-				.getModeName();
+		CaseStyleEditorDialog editor = new CaseStyleEditorDialog(Display.getDefault().getActiveShell(), selected);
+		String currentStylingModelName = selected.getModeName();
 		boolean isDefault = false;
-		if (styleManager.getPreferredStyleModel().equals(
-				currentStylingModelName)) {
+		if (styleManager.getPreferredStyleModel().equals(currentStylingModelName)) {
 			isDefault = true;
 		}
 		int dialogResult = editor.open();
 		if (dialogResult == Window.OK) {
 			// TODO
 			if (isDefault) {
-				styleManager
-				.setPreferredStylingModel(selected
-						.getModeName());
-				listViewer.setInput(styleManager.getStyling()
-						.getModels());
+				styleManager.setPreferredStylingModel(selected.getModeName());
+				listViewer.setInput(styleManager.getStyling().getModels());
 			}
 		} else if (dialogResult == Window.CANCEL) {
 			selected.setModeName(currentStylingModelName);
-		} 
+		}
 	}
-	
+
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
-		final IStructuredSelection selection = (IStructuredSelection) event
-				.getSelection();
+		final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 		if (selection.getFirstElement() instanceof StylingModel) {
-			StylingModel stylingModel = (StylingModel) selection
-					.getFirstElement();
+			StylingModel stylingModel = (StylingModel) selection.getFirstElement();
 			if (stylingModel != null) {
 				editSelectedStylingModel(stylingModel);
 			}

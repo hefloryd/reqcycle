@@ -13,21 +13,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>EReachable</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>EReachable</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getDownwards
- * <em>Downwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getDownwards <em>Downwards</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getTypes
- * <em>Types</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getTypes <em>Types</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getUpwards
- * <em>Upwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.EReachable#getUpwards <em>Upwards</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,13 +40,9 @@ public interface EReachable extends Element {
 	String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * Returns the value of the '<em><b>Downwards</b></em>' reference list. The
-	 * list contents are of type
-	 * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ELink}
-	 * . <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Downwards</b></em>' reference list. The list contents are of type {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ELink} . <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Downwards</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Downwards</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -62,11 +54,9 @@ public interface EReachable extends Element {
 	EList<ELink> getDownwards();
 
 	/**
-	 * Returns the value of the '<em><b>Types</b></em>' attribute list. The list
-	 * contents are of type {@link java.lang.String}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Types</b></em>' attribute list. The list contents are of type {@link java.lang.String}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Types</em>' attribute list isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Types</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -78,13 +68,9 @@ public interface EReachable extends Element {
 	EList<String> getTypes();
 
 	/**
-	 * Returns the value of the '<em><b>Upwards</b></em>' reference list. The
-	 * list contents are of type
-	 * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ELink}
-	 * . <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Upwards</b></em>' reference list. The list contents are of type {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ELink} . <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Upwards</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Upwards</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 

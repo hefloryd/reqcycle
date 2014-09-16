@@ -29,14 +29,13 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Scope</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Scope</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getDataModelName <em>Data Model Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getRequirements <em>Requirements</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.impl.ScopeImpl#getDataModelName <em>Data Model Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,8 +43,8 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage;
  */
 public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -53,8 +52,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -62,9 +61,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataModelName()
 	 * @generated
 	 * @ordered
@@ -72,9 +70,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	protected static final String DATA_MODEL_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDataModelName() <em>Data Model Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataModelName()
 	 * @generated
 	 * @ordered
@@ -83,6 +80,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ScopeImpl() {
@@ -91,6 +89,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,6 +99,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,6 +109,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,8 +184,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDataModelName() {
@@ -192,8 +193,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDataModelName(String newDataModelName) {
@@ -205,79 +206,85 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ScopeConfPackage.SCOPE__NAME:
-				return getName();
-			case ScopeConfPackage.SCOPE__REQUIREMENTS:
-				return getRequirements();
-			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
-				return getDataModelName();
+		case ScopeConfPackage.SCOPE__NAME:
+			return getName();
+		case ScopeConfPackage.SCOPE__REQUIREMENTS:
+			return getRequirements();
+		case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+			return getDataModelName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ScopeConfPackage.SCOPE__NAME:
-				setName((String)newValue);
-				return;
-			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
-				setDataModelName((String)newValue);
-				return;
+		case ScopeConfPackage.SCOPE__NAME:
+			setName((String) newValue);
+			return;
+		case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+			setDataModelName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ScopeConfPackage.SCOPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
-				setDataModelName(DATA_MODEL_NAME_EDEFAULT);
-				return;
+		case ScopeConfPackage.SCOPE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+			setDataModelName(DATA_MODEL_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ScopeConfPackage.SCOPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ScopeConfPackage.SCOPE__REQUIREMENTS:
-				return isSetRequirements();
-			case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
-				return DATA_MODEL_NAME_EDEFAULT == null ? dataModelName != null : !DATA_MODEL_NAME_EDEFAULT.equals(dataModelName);
+		case ScopeConfPackage.SCOPE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case ScopeConfPackage.SCOPE__REQUIREMENTS:
+			return isSetRequirements();
+		case ScopeConfPackage.SCOPE__DATA_MODEL_NAME:
+			return DATA_MODEL_NAME_EDEFAULT == null ? dataModelName != null : !DATA_MODEL_NAME_EDEFAULT.equals(dataModelName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

@@ -29,15 +29,13 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Configuration</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Configuration</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getRelations <em>Relations</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getParent <em>Parent</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getRelations <em>Relations</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.ConfigurationImpl#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,9 +43,8 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
  */
 public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRelations()
 	 * @generated
 	 * @ordered
@@ -55,9 +52,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	protected EList<Relation> relations;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -65,9 +61,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -75,8 +70,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConfigurationImpl() {
@@ -84,8 +79,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,8 +89,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Relation> getRelations() {
@@ -106,8 +101,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -115,8 +110,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -127,28 +122,29 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypeConfigContainer getParent() {
-		if (eContainerFeatureID() != TypeconfigurationPackage.CONFIGURATION__PARENT) return null;
-		return (TypeConfigContainer)eInternalContainer();
+		if (eContainerFeatureID() != TypeconfigurationPackage.CONFIGURATION__PARENT)
+			return null;
+		return (TypeConfigContainer) eInternalContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(TypeConfigContainer newParent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParent, TypeconfigurationPackage.CONFIGURATION__PARENT, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newParent, TypeconfigurationPackage.CONFIGURATION__PARENT, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParent(TypeConfigContainer newParent) {
@@ -159,148 +155,149 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParent != null)
-				msgs = ((InternalEObject)newParent).eInverseAdd(this, TypeconfigurationPackage.TYPE_CONFIG_CONTAINER__CONFIGURATIONS, TypeConfigContainer.class, msgs);
+				msgs = ((InternalEObject) newParent).eInverseAdd(this, TypeconfigurationPackage.TYPE_CONFIG_CONTAINER__CONFIGURATIONS, TypeConfigContainer.class, msgs);
 			msgs = basicSetParent(newParent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TypeconfigurationPackage.CONFIGURATION__PARENT, newParent, newParent));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetParent((TypeConfigContainer)otherEnd, msgs);
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetParent((TypeConfigContainer) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				return basicSetParent(null, msgs);
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			return ((InternalEList<?>) getRelations()).basicRemove(otherEnd, msgs);
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			return basicSetParent(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				return eInternalContainer().eInverseRemove(this, TypeconfigurationPackage.TYPE_CONFIG_CONTAINER__CONFIGURATIONS, TypeConfigContainer.class, msgs);
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			return eInternalContainer().eInverseRemove(this, TypeconfigurationPackage.TYPE_CONFIG_CONTAINER__CONFIGURATIONS, TypeConfigContainer.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				return getRelations();
-			case TypeconfigurationPackage.CONFIGURATION__NAME:
-				return getName();
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				return getParent();
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			return getRelations();
+		case TypeconfigurationPackage.CONFIGURATION__NAME:
+			return getName();
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			return getParent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Relation>)newValue);
-				return;
-			case TypeconfigurationPackage.CONFIGURATION__NAME:
-				setName((String)newValue);
-				return;
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				setParent((TypeConfigContainer)newValue);
-				return;
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			getRelations().clear();
+			getRelations().addAll((Collection<? extends Relation>) newValue);
+			return;
+		case TypeconfigurationPackage.CONFIGURATION__NAME:
+			setName((String) newValue);
+			return;
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			setParent((TypeConfigContainer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				getRelations().clear();
-				return;
-			case TypeconfigurationPackage.CONFIGURATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				setParent((TypeConfigContainer)null);
-				return;
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			getRelations().clear();
+			return;
+		case TypeconfigurationPackage.CONFIGURATION__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			setParent((TypeConfigContainer) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
-				return relations != null && !relations.isEmpty();
-			case TypeconfigurationPackage.CONFIGURATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TypeconfigurationPackage.CONFIGURATION__PARENT:
-				return getParent() != null;
+		case TypeconfigurationPackage.CONFIGURATION__RELATIONS:
+			return relations != null && !relations.isEmpty();
+		case TypeconfigurationPackage.CONFIGURATION__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case TypeconfigurationPackage.CONFIGURATION__PARENT:
+			return getParent() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
@@ -309,4 +306,4 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 		return result.toString();
 	}
 
-} //ConfigurationImpl
+} // ConfigurationImpl

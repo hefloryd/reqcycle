@@ -13,7 +13,6 @@ package org.polarsys.reqcycle.repository.connector.local.ui.editor.util;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
-
 /**
  * The Class CustomDataModelEditorUtil.
  */
@@ -23,12 +22,12 @@ public class CustomDataModelEditorUtil {
 	 * Checks if it is an instance of the given class
 	 * 
 	 * @param selection
-	 *        the selection
+	 *            the selection
 	 * @param clazz
-	 *        the clazz
+	 *            the clazz
 	 * @return true, if it is instance
 	 */
 	public static boolean isInstance(ISelection selection, Class<?> clazz) {
-		return selection instanceof IStructuredSelection && clazz != null && clazz.isInstance(((IStructuredSelection)selection).getFirstElement());
+		return selection instanceof IStructuredSelection && clazz != null && clazz.isInstance(((IStructuredSelection) selection).getFirstElement());
 	}
 }

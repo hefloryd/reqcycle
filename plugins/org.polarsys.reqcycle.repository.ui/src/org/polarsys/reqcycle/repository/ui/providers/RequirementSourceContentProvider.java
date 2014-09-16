@@ -23,9 +23,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class RequirementSourceContentProvider implements ITreeContentProvider, IStructuredContentProvider {
 
-
-	private @Inject
-	IDataManager requirementSourceManager = ZigguratInject.make(IDataManager.class);
+	private @Inject IDataManager requirementSourceManager = ZigguratInject.make(IDataManager.class);
 
 	@Override
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {
@@ -37,8 +35,8 @@ public class RequirementSourceContentProvider implements ITreeContentProvider, I
 
 	@Override
 	public Object[] getElements(Object parent) {
-		if(parent instanceof Set<?>) {
-			return ((Set<?>)parent).toArray();
+		if (parent instanceof Set<?>) {
+			return ((Set<?>) parent).toArray();
 		}
 		return getChildren(parent);
 	}
@@ -50,15 +48,15 @@ public class RequirementSourceContentProvider implements ITreeContentProvider, I
 
 	@Override
 	public Object[] getChildren(Object parent) {
-		Set<RequirementSource> repositories = requirementSourceManager.getRequirementSources((String)parent);
+		Set<RequirementSource> repositories = requirementSourceManager.getRequirementSources((String) parent);
 		return repositories.toArray();
 	}
 
 	@Override
 	public boolean hasChildren(Object parent) {
 
-		if(parent instanceof String) {
-			return !requirementSourceManager.getRequirementSources((String)parent).isEmpty();
+		if (parent instanceof String) {
+			return !requirementSourceManager.getRequirementSources((String) parent).isEmpty();
 		}
 		return false;
 	}

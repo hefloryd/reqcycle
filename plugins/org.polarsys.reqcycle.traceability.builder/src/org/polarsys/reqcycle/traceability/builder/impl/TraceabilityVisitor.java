@@ -29,8 +29,7 @@ public class TraceabilityVisitor extends CompositeVisitor implements IAdaptable 
 	// the {@link ITraceabilityAnalyserDisabler} is used at cosntruction so
 	// @Inject can not be used
 	// the default implementation is not provided so this attribute can be NULL
-	private static ITraceabilityAnalyserDisabler disabler = ZigguratInject
-			.make(ITraceabilityAnalyserDisabler.class);
+	private static ITraceabilityAnalyserDisabler disabler = ZigguratInject.make(ITraceabilityAnalyserDisabler.class);
 	private IBuilderCallBack callBack;
 
 	public TraceabilityVisitor(IBuilderCallBack callBack) {
@@ -39,8 +38,7 @@ public class TraceabilityVisitor extends CompositeVisitor implements IAdaptable 
 	}
 
 	private static Collection<IVisitor> getTraceabilityVisitors() {
-		Iterable<IVisitor> tmp = filter(
-				LabelledVisitor.getRegisteredVisitors(), IVisitor.class);
+		Iterable<IVisitor> tmp = filter(LabelledVisitor.getRegisteredVisitors(), IVisitor.class);
 		return Lists.newArrayList(filter(tmp, new Predicate<IVisitor>() {
 
 			@Override

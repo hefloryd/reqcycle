@@ -18,8 +18,7 @@ public class RelationBasedType extends TType {
 
 	// private static String ATTRIBUTE_PREFIX = "RELATION_BASED_TYPE#";
 
-	public static String RELATION_BASED_NS = Activator.PLUGIN_ID
-			+ ".relations.";
+	public static String RELATION_BASED_NS = Activator.PLUGIN_ID + ".relations.";
 
 	public RelationBasedType(Relation rel) {
 		this(rel, null);

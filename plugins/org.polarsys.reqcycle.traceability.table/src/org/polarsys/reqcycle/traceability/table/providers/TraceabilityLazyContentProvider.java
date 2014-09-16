@@ -21,7 +21,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-
 public class TraceabilityLazyContentProvider<T> implements ILazyContentProvider {
 
 	private TableViewer viewer;
@@ -40,30 +39,29 @@ public class TraceabilityLazyContentProvider<T> implements ILazyContentProvider 
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, final Object newInput) {
-		if(newInput instanceof Iterable<?>) {
+		if (newInput instanceof Iterable<?>) {
 			CacheLoader<Integer, T> loader = new CacheLoader<Integer, T>() {
 
 				private int lastArg = -1;
-				private Iterator<?> iterator; 
-				
+				private Iterator<?> iterator;
+
 				@Override
 				public T load(Integer arg0) throws Exception {
-					T value = null; 
+					T value = null;
 					/*
-					 * Keeps the same iterator between 2 calls if possible, as calling "iterator" on the iterable 
-					 * or invoking Iterables.get(Iterable, Int) are rather costly operations.
+					 * Keeps the same iterator between 2 calls if possible, as calling "iterator" on the iterable or invoking Iterables.get(Iterable, Int) are rather costly operations.
 					 */
-					if (iterator == null || lastArg >= arg0){
+					if (iterator == null || lastArg >= arg0) {
 						iterator = ((Iterable<?>) newInput).iterator();
 						lastArg = -1;
-					} 
-					for (int i = lastArg; i < arg0; i++){
-						if (iterator.hasNext()){
+					}
+					for (int i = lastArg; i < arg0; i++) {
+						if (iterator.hasNext()) {
 							value = clazz.cast(iterator.next());
 						}
 					}
 					lastArg = arg0;
-					return value ;
+					return value;
 				}
 
 			};
@@ -83,8 +81,8 @@ public class TraceabilityLazyContentProvider<T> implements ILazyContentProvider 
 	public static <T> TraceabilityLazyContentProvider<T> create(Class<T> clazz, TableViewer viewer) {
 		return new TraceabilityLazyContentProvider<T>(clazz, viewer);
 	}
-	
-	public void clearCache(){
+
+	public void clearCache() {
 		cache.invalidateAll();
 	}
 }

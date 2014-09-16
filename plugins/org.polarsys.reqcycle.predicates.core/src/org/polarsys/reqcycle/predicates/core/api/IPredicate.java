@@ -15,14 +15,12 @@ package org.polarsys.reqcycle.predicates.core.api;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IPredicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>IPredicate</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.api.IPredicate#getDisplayName <em>Display Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.api.IPredicate#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,12 +31,12 @@ import org.eclipse.emf.ecore.EObject;
 public interface IPredicate extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Display Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Display Name</em>' attribute.
 	 * @see #setDisplayName(String)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getIPredicate_DisplayName()
@@ -48,18 +46,18 @@ public interface IPredicate extends EObject {
 	String getDisplayName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IPredicate#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IPredicate#getDisplayName <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Display Name</em>' attribute.
 	 * @see #getDisplayName()
 	 * @generated
 	 */
 	void setDisplayName(String value);
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */

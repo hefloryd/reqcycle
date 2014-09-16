@@ -22,8 +22,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class JDTReachableHandler implements IReachableHandler, IObjectHandler,
-		ITypeChecker {
+public class JDTReachableHandler implements IReachableHandler, IObjectHandler, ITypeChecker {
 
 	public JDTReachableHandler() {
 	}
@@ -37,7 +36,7 @@ public class JDTReachableHandler implements IReachableHandler, IObjectHandler,
 
 	@Override
 	public boolean handlesReachable(Reachable t) {
-		return t != null && t.getPath() !=null && t.getPath().endsWith("java");
+		return t != null && t.getPath() != null && t.getPath().endsWith("java");
 	}
 
 	@Override

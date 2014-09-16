@@ -9,9 +9,8 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/**
-	 * Keep track of the singleton.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final Activator INSTANCE = new Activator();
@@ -21,7 +20,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -30,6 +29,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
@@ -39,6 +39,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {

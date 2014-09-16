@@ -11,10 +11,8 @@
 package org.polarsys.reqcycle.utils.iterators.pickers;
 
 /**
- * An arc picker is a decorator for IPicker, that allows the transition-based representation
- * of a graph to be iterated on. Every time the getNext() method is called, it will create
- * "arcs", linking the input elements and its children. Therefore, the getNexts() method
- * will return these arcs.
+ * An arc picker is a decorator for IPicker, that allows the transition-based representation of a graph to be iterated on. Every time the getNext() method is called, it will create "arcs", linking the input elements and its children. Therefore, the
+ * getNexts() method will return these arcs.
  * 
  * @author omelois
  * 

@@ -9,7 +9,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.commands;
 
-public interface Command
-{
-    void execute();
+public interface Command {
+	void execute();
 }

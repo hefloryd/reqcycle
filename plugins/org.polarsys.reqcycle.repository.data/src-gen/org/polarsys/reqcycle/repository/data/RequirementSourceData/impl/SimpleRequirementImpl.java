@@ -15,8 +15,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Simple Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Simple Requirement</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *

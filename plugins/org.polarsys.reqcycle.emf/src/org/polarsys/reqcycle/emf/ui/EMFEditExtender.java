@@ -33,25 +33,21 @@ public class EMFEditExtender implements IReachableExtender {
 	private static final String URI_PREFIX = "emf:/";
 	private static String EMF_EDIT_LABEL = URI_PREFIX + "emfEditLabel";
 	private static String EMF_EDIT_ECLASS = URI_PREFIX + "emfEditEclass";
-	private static ComposedAdapterFactory factory = new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	private static ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	public EMFEditExtender() {
 	}
 
 	@Override
-	public Map<String, String> getExtendedProperties(URI uri,
-			Object originalObject) {
+	public Map<String, String> getExtendedProperties(URI uri, Object originalObject) {
 		Map<String, String> result = new HashMap<String, String>();
 		if (originalObject instanceof EObject) {
 			EObject eobj = (EObject) originalObject;
 			if (!eobj.eIsProxy()) {
-				AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-						factory);
+				AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(factory);
 				String label = adapterFactoryLabelProvider.getText(eobj);
 				putLabel(result, label);
-				putImage(result, eobj.eClass().getEPackage().getNsURI() + "#"
-						+ eobj.eClass().getName());
+				putImage(result, eobj.eClass().getEPackage().getNsURI() + "#" + eobj.eClass().getName());
 			}
 
 		}
@@ -68,13 +64,12 @@ public class EMFEditExtender implements IReachableExtender {
 
 	@Override
 	public boolean handles(URI uri, Object object) {
-		return EMFUtils.isEMF(uri) && object instanceof EObject
-				&& !((EObject) object).eIsProxy();
+		return EMFUtils.isEMF(uri) && object instanceof EObject && !((EObject) object).eIsProxy();
 	}
 
 	public static String getLabel(Reachable r) {
 		String result = r.get(EMF_EDIT_LABEL);
-		if (result == null){
+		if (result == null) {
 			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
 			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
 			EObject e = set.getEObject(emfuri, true);
@@ -93,7 +88,7 @@ public class EMFEditExtender implements IReachableExtender {
 
 	public static Image getImage(Reachable r) {
 		String s = r.get(EMF_EDIT_ECLASS);
-		if (s == null){
+		if (s == null) {
 			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
 			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
 			EObject e = set.getEObject(emfuri, true);
@@ -109,15 +104,13 @@ public class EMFEditExtender implements IReachableExtender {
 			if (tab.length == 2) {
 				String epackageURI = tab[0];
 				String eclassName = tab[1];
-				EPackage ep = EPackage.Registry.INSTANCE
-						.getEPackage(epackageURI);
+				EPackage ep = EPackage.Registry.INSTANCE.getEPackage(epackageURI);
 				if (ep != null) {
 					EClassifier e = ep.getEClassifier(eclassName);
 					if (e instanceof EClass) {
 						EClass eclass = (EClass) e;
 						EObject eobj = ep.getEFactoryInstance().create(eclass);
-						AdapterFactoryLabelProvider p = new AdapterFactoryLabelProvider(
-								factory);
+						AdapterFactoryLabelProvider p = new AdapterFactoryLabelProvider(factory);
 						return p.getImage(eobj);
 					}
 				}

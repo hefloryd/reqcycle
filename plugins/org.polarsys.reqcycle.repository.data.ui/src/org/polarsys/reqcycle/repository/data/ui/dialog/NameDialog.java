@@ -32,7 +32,6 @@ import org.eclipse.swt.widgets.Text;
  */
 public class NameDialog extends Dialog implements Listener {
 
-
 	/**
 	 * The popup Bean
 	 */
@@ -56,7 +55,7 @@ public class NameDialog extends Dialog implements Listener {
 		}
 
 		public void handleEvent(Event event) {
-			if(listener != null) {
+			if (listener != null) {
 				listener.handleEvent(event);
 			}
 		}
@@ -85,16 +84,15 @@ public class NameDialog extends Dialog implements Listener {
 		this.bean = bean;
 	}
 
-
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
 		Shell shell = getShell();
-		if(shell != null) {
+		if (shell != null) {
 			shell.setText(title);
 		}
 
-		Composite control = (Composite)super.createDialogArea(parent);
+		Composite control = (Composite) super.createDialogArea(parent);
 
 		Composite composite = new Composite(control, SWT.None);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -113,7 +111,6 @@ public class NameDialog extends Dialog implements Listener {
 		return control;
 	};
 
-
 	/**
 	 * Override this method to add custom Ui
 	 * 
@@ -125,12 +122,11 @@ public class NameDialog extends Dialog implements Listener {
 	@Override
 	protected Button createButton(Composite parent, int id, String label, boolean defaultButton) {
 		Button button = super.createButton(parent, id, label, defaultButton);
-		if(OK == id) {
+		if (OK == id) {
 			button.setEnabled(false);
 		}
 		return button;
 	}
-
 
 	/**
 	 * @return Entered Name
@@ -139,14 +135,13 @@ public class NameDialog extends Dialog implements Listener {
 		return bean.getName();
 	}
 
-
 	/**
 	 * Perfom binding between the popup and the bean
 	 * 
 	 * @return the data binding context
 	 */
 	protected DataBindingContext initDataBindings() {
-		if(bean == null) {
+		if (bean == null) {
 			bean = new NameBean(this);
 		}
 		DataBindingContext bindingContext = new DataBindingContext();
@@ -164,11 +159,10 @@ public class NameDialog extends Dialog implements Listener {
 	 * Override this method to add data binding
 	 * 
 	 * @param bindingContext
-	 *        the binding context
+	 *            the binding context
 	 */
 	protected void doInitDataBindings(DataBindingContext bindingContext) {
 	}
-
 
 	/**
 	 * Enables the button OK
@@ -177,7 +171,7 @@ public class NameDialog extends Dialog implements Listener {
 	 */
 	private void enableOKbtn(boolean enable) {
 		Button okBtn = getButton(OK);
-		if(okBtn != null) {
+		if (okBtn != null) {
 			okBtn.setEnabled(enable);
 		}
 	}
@@ -186,11 +180,11 @@ public class NameDialog extends Dialog implements Listener {
 	public void handleEvent(Event event) {
 		String name = bean.getName();
 		boolean enableOK = true;
-		if(name == null || name.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			enableOK = false;
 		}
 
-		if(!doHandleEvent(event)) {
+		if (!doHandleEvent(event)) {
 			enableOK = false;
 		}
 
@@ -201,19 +195,18 @@ public class NameDialog extends Dialog implements Listener {
 	 * Override this method to handle changes modifications events
 	 * 
 	 * @param event
-	 *        the event which occurred
+	 *            the event which occurred
 	 * @return return false if OK button have to be disabled
 	 */
 	public boolean doHandleEvent(Event event) {
 		return true;
 	}
 
-
 	/**
 	 * Sets the popup bean
 	 * 
 	 * @param bean
-	 *        the bean to set
+	 *            the bean to set
 	 */
 	public void setBean(NameBean bean) {
 		this.bean = bean;

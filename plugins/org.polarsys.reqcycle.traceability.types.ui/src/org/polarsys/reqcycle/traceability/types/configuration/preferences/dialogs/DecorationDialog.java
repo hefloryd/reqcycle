@@ -62,8 +62,7 @@ public class DecorationDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		if (currentColor == null || currentStyle == null
-				|| currentPredicate == null) {
+		if (currentColor == null || currentStyle == null || currentPredicate == null) {
 			setErrorMessage("Please fill all the fields");
 			return;
 		}
@@ -84,15 +83,13 @@ public class DecorationDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label lblStyle = new Label(container, SWT.NONE);
-		lblStyle.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
+		lblStyle.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblStyle.setText("style :");
 
 		textStyle = new Text(container, SWT.BORDER);
 		textStyle.setText("a quick brown fox jumps over the lazy dog");
 		textStyle.setEditable(false);
-		textStyle.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				2, 1));
+		textStyle.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
 		Button button_1 = new Button(container, SWT.NONE);
 		button_1.addSelectionListener(new SelectionAdapter() {
@@ -104,15 +101,12 @@ public class DecorationDialog extends TitleAreaDialog {
 					FontData[] list = font.getFontList();
 					currentStyle = StringConverter.asString(list);
 					JFaceResources.getFontRegistry().put(currentStyle, list);
-					textStyle.setFont(JFaceResources.getFontRegistry().get(
-							currentStyle));
+					textStyle.setFont(JFaceResources.getFontRegistry().get(currentStyle));
 					RGB rgb = font.getRGB();
 					if (rgb != null) {
 						currentColor = StringConverter.asString(rgb);
-						JFaceResources.getColorRegistry()
-								.put(currentColor, rgb);
-						textStyle.setForeground(JFaceResources
-								.getColorRegistry().get(currentColor));
+						JFaceResources.getColorRegistry().put(currentColor, rgb);
+						textStyle.setForeground(JFaceResources.getColorRegistry().get(currentColor));
 					}
 				}
 			}
@@ -120,37 +114,30 @@ public class DecorationDialog extends TitleAreaDialog {
 		button_1.setText("...");
 
 		Label lblPredicate = new Label(container, SWT.NONE);
-		lblPredicate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
+		lblPredicate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblPredicate.setText("predicate : ");
 
 		comboViewer = new ComboViewer(container, SWT.READ_ONLY);
 		predicateCombo = comboViewer.getCombo();
-		predicateCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 3, 1));
+		predicateCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		comboViewer.setContentProvider(ArrayContentProvider.getInstance());
-		comboViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		comboViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		comboViewer.setInput(predicateManager.getPredicates(true));
-		comboViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						if (comboViewer.getSelection() instanceof IStructuredSelection) {
-							IStructuredSelection structured = (IStructuredSelection) comboViewer
-									.getSelection();
-							if (structured.getFirstElement() instanceof IPredicate) {
-								IPredicate p = (IPredicate) structured
-										.getFirstElement();
-								currentPredicate = p;
-								return;
-							}
-						}
-						currentPredicate = null;
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (comboViewer.getSelection() instanceof IStructuredSelection) {
+					IStructuredSelection structured = (IStructuredSelection) comboViewer.getSelection();
+					if (structured.getFirstElement() instanceof IPredicate) {
+						IPredicate p = (IPredicate) structured.getFirstElement();
+						currentPredicate = p;
+						return;
 					}
-				});
+				}
+				currentPredicate = null;
+			}
+		});
 		return area;
 	}
 
@@ -161,10 +148,8 @@ public class DecorationDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**

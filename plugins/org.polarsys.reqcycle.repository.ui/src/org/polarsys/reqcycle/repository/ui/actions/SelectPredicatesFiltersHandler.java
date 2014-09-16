@@ -23,12 +23,7 @@ public class SelectPredicatesFiltersHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Collection<IPredicate> predicates = Collections.emptyList();
-		Collection<IPredicate> selection = PredicatesUIHelper
-				.openPredicatesChooser(
-						predicates,
-						"Requirement filtering",
-						"Select a predicate to apply or press OK to continue without filtering.",
-						false);
+		Collection<IPredicate> selection = PredicatesUIHelper.openPredicatesChooser(predicates, "Requirement filtering", "Select a predicate to apply or press OK to continue without filtering.", false);
 		if (selection != null) {
 			IWorkbenchPart part = HandlerUtil.getActivePart(event);
 			if (part instanceof RequirementView) {

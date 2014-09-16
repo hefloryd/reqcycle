@@ -25,9 +25,7 @@ import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-
 public class AddToSourceComposite extends Composite {
-
 
 	protected Composite compositeAddToSource;
 
@@ -45,9 +43,9 @@ public class AddToSourceComposite extends Composite {
 	}
 
 	protected void createAddComposite(Composite compositeMain) {
-		//		btnAddToSource = new Button(compositeMain, SWT.RADIO);
-		//		btnAddToSource.setText("Add to an existing Requirement Source :");
-		//		btnAddToSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		// btnAddToSource = new Button(compositeMain, SWT.RADIO);
+		// btnAddToSource.setText("Add to an existing Requirement Source :");
+		// btnAddToSource.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		compositeAddToSource = new Composite(compositeMain, SWT.NONE);
 		compositeAddToSource.setLayout(new GridLayout(2, false));
@@ -65,8 +63,8 @@ public class AddToSourceComposite extends Composite {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof RequirementSource) {
-					return ((RequirementSource)element).getName();
+				if (element instanceof RequirementSource) {
+					return ((RequirementSource) element).getName();
 				}
 				return super.getText(element);
 			}

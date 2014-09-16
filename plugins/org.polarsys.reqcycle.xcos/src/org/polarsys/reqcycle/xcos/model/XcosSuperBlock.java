@@ -11,6 +11,6 @@ package org.polarsys.reqcycle.xcos.model;
 
 public interface XcosSuperBlock {
 
-	Iterable <XcosElement> getChildren() throws XcosModelException;
+	Iterable<XcosElement> getChildren() throws XcosModelException;
 
 }

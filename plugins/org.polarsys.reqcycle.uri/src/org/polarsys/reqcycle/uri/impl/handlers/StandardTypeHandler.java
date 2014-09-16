@@ -26,7 +26,7 @@ public class StandardTypeHandler implements IObjectHandler, IReachableHandler {
 
 	@Override
 	public boolean handlesObject(Object object) {
-		if (StandardUtils.arrayToURI(object) != null){
+		if (StandardUtils.arrayToURI(object) != null) {
 			return true;
 		}
 		return object instanceof String || object instanceof Integer || object instanceof URI;

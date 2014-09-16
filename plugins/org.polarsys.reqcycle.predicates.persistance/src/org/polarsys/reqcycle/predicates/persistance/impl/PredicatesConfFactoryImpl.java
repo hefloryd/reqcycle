@@ -22,25 +22,21 @@ import org.polarsys.reqcycle.predicates.persistance.PredicatesConfPackage;
 import org.polarsys.reqcycle.predicates.persistance.api.PredicatesConf;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
 public class PredicatesConfFactoryImpl extends EFactoryImpl implements PredicatesConfFactory {
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static PredicatesConfFactory init() {
 		try {
-			PredicatesConfFactory thePredicatesConfFactory = (PredicatesConfFactory)EPackage.Registry.INSTANCE.getEFactory(PredicatesConfPackage.eNS_URI);
-			if(thePredicatesConfFactory != null) {
+			PredicatesConfFactory thePredicatesConfFactory = (PredicatesConfFactory) EPackage.Registry.INSTANCE.getEFactory(PredicatesConfPackage.eNS_URI);
+			if (thePredicatesConfFactory != null) {
 				return thePredicatesConfFactory;
 			}
 		} catch (Exception exception) {
@@ -50,9 +46,7 @@ public class PredicatesConfFactoryImpl extends EFactoryImpl implements Predicate
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -61,14 +55,13 @@ public class PredicatesConfFactoryImpl extends EFactoryImpl implements Predicate
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
+		switch (eClass.getClassifierID()) {
 		case PredicatesConfPackage.PREDICATES_CONF:
 			return createPredicatesConf();
 		default:
@@ -77,8 +70,7 @@ public class PredicatesConfFactoryImpl extends EFactoryImpl implements Predicate
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -88,18 +80,16 @@ public class PredicatesConfFactoryImpl extends EFactoryImpl implements Predicate
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public PredicatesConfPackage getPredicatesConfPackage() {
-		return (PredicatesConfPackage)getEPackage();
+		return (PredicatesConfPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @deprecated
 	 * @generated
@@ -109,4 +99,4 @@ public class PredicatesConfFactoryImpl extends EFactoryImpl implements Predicate
 		return PredicatesConfPackage.eINSTANCE;
 	}
 
-} //PredicatesConfFactoryImpl
+} // PredicatesConfFactoryImpl

@@ -40,13 +40,10 @@ public class OperationAttributesEditor extends TitleAreaDialog {
 
 		Composite top = new Composite(parent, SWT.None);
 		top.setLayout(new GridLayout(1, true));
-		top.setLayoutData(GridDataFactory.fillDefaults().grab(true, true)
-				.create());
+		top.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 
-		ScrolledComposite scrolledComposite = new ScrolledComposite(top,
-				SWT.BORDER | SWT.V_SCROLL);
-		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true, 1, 1));
+		ScrolledComposite scrolledComposite = new ScrolledComposite(top, SWT.BORDER | SWT.V_SCROLL);
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
@@ -82,10 +79,8 @@ public class OperationAttributesEditor extends TitleAreaDialog {
 	}
 
 	public void addEditor(Class<?> c, String attName, Composite composite) {
-		final GenericEAttrPropsEditor attributeEditor = new GenericEAttrPropsEditor(
-				composite, SWT.NONE);
-		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1));
+		final GenericEAttrPropsEditor attributeEditor = new GenericEAttrPropsEditor(composite, SWT.NONE);
+		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Collection<Object> possibleValues = Collections.emptyList();
 		attributeEditor.init(attName, c, possibleValues);
@@ -96,13 +91,11 @@ public class OperationAttributesEditor extends TitleAreaDialog {
 	@Override
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == IDialogConstants.OK_ID) {
-			Iterator<Map.Entry<String, GenericEAttrPropsEditor>> entries = editors
-					.entrySet().iterator();
+			Iterator<Map.Entry<String, GenericEAttrPropsEditor>> entries = editors.entrySet().iterator();
 			while (entries.hasNext()) {
 				GenericEAttrPropsEditor editor = entries.next().getValue();
 				if (!editor.isEditionValid()) {
-					MessageDialog.openError(getShell(), "Error",
-							"Some values are not entered or not valid");
+					MessageDialog.openError(getShell(), "Error", "Some values are not entered or not valid");
 					return;
 				}
 			}

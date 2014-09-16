@@ -48,8 +48,8 @@ public class EEnumPropsEditorComponent extends AbstractPropsEditorComponent<Stri
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof EEnumLiteral) {
-					return ((EEnumLiteral)element).getLiteral();
+				if (element instanceof EEnumLiteral) {
+					return ((EEnumLiteral) element).getLiteral();
 				}
 				return super.getText(element);
 			}
@@ -59,10 +59,10 @@ public class EEnumPropsEditorComponent extends AbstractPropsEditorComponent<Stri
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if(comboViewer.getSelection() instanceof IStructuredSelection && !comboViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection)comboViewer.getSelection();
+				if (comboViewer.getSelection() instanceof IStructuredSelection && !comboViewer.getSelection().isEmpty()) {
+					IStructuredSelection selection = (IStructuredSelection) comboViewer.getSelection();
 					final Object selectedElement = selection.getFirstElement();
-					if(selectedElement instanceof String) {
+					if (selectedElement instanceof String) {
 						setValue((String) selectedElement);
 					}
 				}

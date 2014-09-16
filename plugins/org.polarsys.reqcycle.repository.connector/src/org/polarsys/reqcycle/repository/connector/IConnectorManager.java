@@ -12,9 +12,7 @@ package org.polarsys.reqcycle.repository.connector;
 
 import java.util.Collection;
 
-
 public interface IConnectorManager {
-
 
 	/**
 	 * Gets all repositories connectors
@@ -27,10 +25,9 @@ public interface IConnectorManager {
 	 * Gets a repository connector by his id
 	 * 
 	 * @param connectorId
-	 *        the connector id
+	 *            the connector id
 	 * @return the corresponding connector
 	 */
 	public ConnectorDescriptor get(String connectorId);
-
 
 }

@@ -11,8 +11,7 @@
 package org.polarsys.reqcycle.utils.iterators.pickers;
 
 /**
- * Describes the link between an element and his children
- * (which are retrieved by the getNexts() method of pickers.
+ * Describes the link between an element and his children (which are retrieved by the getNexts() method of pickers.
  */
 public interface IArc {
 

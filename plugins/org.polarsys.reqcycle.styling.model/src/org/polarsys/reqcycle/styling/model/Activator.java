@@ -19,50 +19,44 @@ import org.eclipse.swt.graphics.RGB;
 import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
 
 /**
- * This is the central singleton for the Styling edit plugin. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the central singleton for the Styling edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public final class Activator extends EMFPlugin {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final Activator INSTANCE = new Activator();
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Activator() {
-		super
-		  (new ResourceLocator [] {
-		     PredicatesUIPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] { PredicatesUIPlugin.INSTANCE, });
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -72,9 +66,8 @@ public final class Activator extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -93,17 +86,16 @@ public final class Activator extends EMFPlugin {
 		return color;
 
 	}
-	
+
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static class Implementation extends EclipsePlugin {
 		/**
-		 * Creates an instance.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		public Implementation() {

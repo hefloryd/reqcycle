@@ -17,12 +17,7 @@ public class OrderByPredicatesHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Collection<IPredicate> predicates = Collections.emptyList();
-		Collection<IPredicate> selection = PredicatesUIHelper
-				.openPredicatesChooser(
-						predicates,
-						"Requirement ordering",
-						"Select predicates to order requirements or press OK to continue without ordering.",
-						true);
+		Collection<IPredicate> selection = PredicatesUIHelper.openPredicatesChooser(predicates, "Requirement ordering", "Select predicates to order requirements or press OK to continue without ordering.", true);
 		if (selection != null) {
 			IWorkbenchPart part = HandlerUtil.getActivePart(event);
 			if (part instanceof RequirementView) {

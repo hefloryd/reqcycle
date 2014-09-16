@@ -33,14 +33,12 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Relations Predicates Mapping</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Relations Predicates Mapping</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.RelationsPredicatesMappingImpl#getRelation <em>Relation</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.RelationsPredicatesMappingImpl#getDecorations <em>Decorations</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.RelationsPredicatesMappingImpl#getRelation <em>Relation</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.impl.RelationsPredicatesMappingImpl#getDecorations <em>Decorations</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,9 +46,8 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
  */
 public class RelationsPredicatesMappingImpl extends EObjectImpl implements RelationsPredicatesMapping {
 	/**
-	 * The cached value of the '{@link #getRelation() <em>Relation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRelation() <em>Relation</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRelation()
 	 * @generated
 	 * @ordered
@@ -58,9 +55,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	protected Relation relation;
 
 	/**
-	 * The cached value of the '{@link #getDecorations() <em>Decorations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDecorations() <em>Decorations</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDecorations()
 	 * @generated
 	 * @ordered
@@ -68,8 +64,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	protected EList<DecorationPredicate> decorations;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RelationsPredicatesMappingImpl() {
@@ -77,8 +73,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,14 +83,14 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Relation getRelation() {
 		if (relation != null && relation.eIsProxy()) {
-			InternalEObject oldRelation = (InternalEObject)relation;
-			relation = (Relation)eResolveProxy(oldRelation);
+			InternalEObject oldRelation = (InternalEObject) relation;
+			relation = (Relation) eResolveProxy(oldRelation);
 			if (relation != oldRelation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION, oldRelation, relation));
@@ -104,8 +100,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Relation basicGetRelation() {
@@ -113,8 +109,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRelation(Relation newRelation) {
@@ -125,8 +121,8 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DecorationPredicate> getDecorations() {
@@ -137,88 +133,89 @@ public class RelationsPredicatesMappingImpl extends EObjectImpl implements Relat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
-				return ((InternalEList<?>)getDecorations()).basicRemove(otherEnd, msgs);
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
+			return ((InternalEList<?>) getDecorations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
-				if (resolve) return getRelation();
-				return basicGetRelation();
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
-				return getDecorations();
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
+			if (resolve)
+				return getRelation();
+			return basicGetRelation();
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
+			return getDecorations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
-				setRelation((Relation)newValue);
-				return;
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
-				getDecorations().clear();
-				getDecorations().addAll((Collection<? extends DecorationPredicate>)newValue);
-				return;
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
+			setRelation((Relation) newValue);
+			return;
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
+			getDecorations().clear();
+			getDecorations().addAll((Collection<? extends DecorationPredicate>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
-				setRelation((Relation)null);
-				return;
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
-				getDecorations().clear();
-				return;
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
+			setRelation((Relation) null);
+			return;
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
+			getDecorations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
-				return relation != null;
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
-				return decorations != null && !decorations.isEmpty();
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__RELATION:
+			return relation != null;
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING__DECORATIONS:
+			return decorations != null && !decorations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //RelationsPredicatesMappingImpl
+} // RelationsPredicatesMappingImpl

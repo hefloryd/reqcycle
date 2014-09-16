@@ -43,20 +43,16 @@ import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>EReachable</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>EReachable</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getDownwards
- * <em>Downwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getDownwards <em>Downwards</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getTypes
- * <em>Types</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getTypes <em>Types</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getUpwards
- * <em>Upwards</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.EReachableImpl#getUpwards <em>Upwards</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,8 +76,7 @@ public class EReachableImpl extends ElementImpl implements EReachable {
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The cached value of the '{@link #getDownwards() <em>Downwards</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDownwards() <em>Downwards</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDownwards()
 	 * @generated
@@ -90,8 +85,7 @@ public class EReachableImpl extends ElementImpl implements EReachable {
 	protected EList<ELink> downwards;
 
 	/**
-	 * The cached value of the '{@link #getTypes() <em>Types</em>}' attribute
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTypes() <em>Types</em>}' attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getTypes()
 	 * @generated
@@ -100,8 +94,7 @@ public class EReachableImpl extends ElementImpl implements EReachable {
 	protected EList<String> types;
 
 	/**
-	 * The cached value of the '{@link #getUpwards() <em>Upwards</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUpwards() <em>Upwards</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUpwards()
 	 * @generated

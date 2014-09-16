@@ -25,24 +25,17 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 
-
-
 public class ExtensionPointReader {
-	public static final ImageDescriptor DEFAULT_ICON = ImageDescriptor
-			.createFromURL(Activator.getDefault().getBundle()
-					.getEntry("/icons/type.gif"));
+	public static final ImageDescriptor DEFAULT_ICON = ImageDescriptor.createFromURL(Activator.getDefault().getBundle().getEntry("/icons/type.gif"));
 
 	public static final String EXT_ID = "types";
 
 	public Map<String, IType> read() {
-		return Maps.uniqueIndex(Iterables.transform(Arrays.asList(Platform
-				.getExtensionRegistry().getConfigurationElementsFor(
-						Activator.PLUGIN_ID, EXT_ID)), new Conf2Type()),
-				new Function<IType, String>() {
-					public String apply(IType type) {
-						return type.getId();
-					}
-				});
+		return Maps.uniqueIndex(Iterables.transform(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID)), new Conf2Type()), new Function<IType, String>() {
+			public String apply(IType type) {
+				return type.getId();
+			}
+		});
 	}
 
 	public class Conf2Type implements Function<IConfigurationElement, IType> {
@@ -51,8 +44,7 @@ public class ExtensionPointReader {
 			Type type = null;
 			try {
 				@SuppressWarnings("unchecked")
-				Class<? extends ITypeChecker> aClass = (Class<? extends ITypeChecker>) bundle
-						.loadClass(c.getAttribute("checker"));
+				Class<? extends ITypeChecker> aClass = (Class<? extends ITypeChecker>) bundle.loadClass(c.getAttribute("checker"));
 				// if (IInjectedTypeChecker.class.isAssignableFrom(aClass)) {
 				// type = new Type.InjectedType();
 				// } else {

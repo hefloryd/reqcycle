@@ -7,7 +7,7 @@ import org.polarsys.reqcycle.repository.data.MappingModel.provider.IDelegateLabe
 public class StylingDelegateLabelProvider implements IDelegateLabelProvider {
 
 	private BasicStylingLabelProvider lp = new BasicStylingLabelProvider();
-	
+
 	@Override
 	public Image getImage(Object element) {
 		return lp.getImage(element);

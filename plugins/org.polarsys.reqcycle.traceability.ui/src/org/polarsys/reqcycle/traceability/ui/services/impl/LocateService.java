@@ -56,12 +56,10 @@ public class LocateService implements ILocateService {
 		}
 		try {
 			String protocol = reachable.getScheme();
-			if ("http".equalsIgnoreCase(protocol)
-					|| "https".equalsIgnoreCase(protocol)) {
+			if ("http".equalsIgnoreCase(protocol) || "https".equalsIgnoreCase(protocol)) {
 				return true;
 			}
-			IReachableHandler handler = reachableManager
-					.getHandlerFromReachable(reachable);
+			IReachableHandler handler = reachableManager.getHandlerFromReachable(reachable);
 			ReachableObject fromReachable = handler.getFromReachable(reachable);
 			IMarker marker = getMarker(fromReachable);
 			if (marker != null) {
@@ -90,12 +88,10 @@ public class LocateService implements ILocateService {
 		}
 		try {
 			String protocol = reachable.getScheme();
-			if ("http".equalsIgnoreCase(protocol)
-					|| "https".equalsIgnoreCase(protocol)) {
+			if ("http".equalsIgnoreCase(protocol) || "https".equalsIgnoreCase(protocol)) {
 				openBrowser(reachable);
 			}
-			IReachableHandler handler = reachableManager
-					.getHandlerFromReachable(reachable);
+			IReachableHandler handler = reachableManager.getHandlerFromReachable(reachable);
 			ReachableObject fromReachable = handler.getFromReachable(reachable);
 			IMarker marker = getMarker(fromReachable);
 			if (marker != null) {
@@ -117,10 +113,8 @@ public class LocateService implements ILocateService {
 	}
 
 	protected void openFileEditor(File f) throws Exception {
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
-		IFileStore fileStore = EFS.getLocalFileSystem().getStore(
-				new Path(f.getAbsolutePath()));
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IFileStore fileStore = EFS.getLocalFileSystem().getStore(new Path(f.getAbsolutePath()));
 		IDE.openEditorOnFileStore(page, fileStore);
 	}
 
@@ -129,17 +123,14 @@ public class LocateService implements ILocateService {
 		openIFileEditor(marker);
 	}
 
-	protected void openIFileEditor(IMarker marker) throws PartInitException,
-			CoreException {
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+	protected void openIFileEditor(IMarker marker) throws PartInitException, CoreException {
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = null;
 		for (IEditorReference ref : page.getEditorReferences()) {
 			IEditorInput input = ref.getEditorInput();
 			IFile fileFromEditor = ResourceUtil.getFile(input);
 			if (fileFromEditor != null) {
-				if (marker.getResource().equals(fileFromEditor)
-						&& OpenStrategy.activateOnOpen()) {
+				if (marker.getResource().equals(fileFromEditor) && OpenStrategy.activateOnOpen()) {
 					editor = ref.getEditor(true);
 					page.activate(editor);
 
@@ -148,8 +139,7 @@ public class LocateService implements ILocateService {
 		}
 		// the same as the first part of the code, but the first is optimized
 		try {
-			editor = IDE
-					.openEditor(page, marker, OpenStrategy.activateOnOpen());
+			editor = IDE.openEditor(page, marker, OpenStrategy.activateOnOpen());
 		} catch (PartInitException e) {
 		}
 		if (editor instanceof IGotoMarker) {
@@ -158,28 +148,22 @@ public class LocateService implements ILocateService {
 	}
 
 	protected void openBrowser(Reachable reachable) throws Exception {
-		IWorkbenchBrowserSupport browserSupport = PlatformUI.getWorkbench()
-				.getBrowserSupport();
+		IWorkbenchBrowserSupport browserSupport = PlatformUI.getWorkbench().getBrowserSupport();
 		IWebBrowser browser;
 		try {
-			browser = browserSupport.createBrowser(
-					IWorkbenchBrowserSupport.LOCATION_BAR
-							| IWorkbenchBrowserSupport.NAVIGATION_BAR,
-					browserSupport.getExternalBrowser().getId(), "Browser", "");
+			browser = browserSupport.createBrowser(IWorkbenchBrowserSupport.LOCATION_BAR | IWorkbenchBrowserSupport.NAVIGATION_BAR, browserSupport.getExternalBrowser().getId(), "Browser", "");
 			URI uri = reachable.getURI();
 			browser.openURL(uri.toURL());
 		} catch (PartInitException e) {
 		} catch (MalformedURLException e) {
-			throw new Exception("impossible to open in browser "
-					+ reachable.toString());
+			throw new Exception("impossible to open in browser " + reachable.toString());
 		}
 	}
 
 	protected IFile getFile(ReachableObject reachable) {
 		IFile res = (IFile) reachable.getAdapter(IFile.class);
 		if (res == null) {
-			res = (IFile) Platform.getAdapterManager().getAdapter(reachable,
-					IFile.class);
+			res = (IFile) Platform.getAdapterManager().getAdapter(reachable, IFile.class);
 		}
 		return res;
 	}
@@ -187,8 +171,7 @@ public class LocateService implements ILocateService {
 	protected File getFileExternal(ReachableObject reachable) {
 		File res = (File) reachable.getAdapter(File.class);
 		if (res == null) {
-			res = (File) Platform.getAdapterManager().getAdapter(reachable,
-					File.class);
+			res = (File) Platform.getAdapterManager().getAdapter(reachable, File.class);
 		}
 		return res;
 	}
@@ -196,8 +179,7 @@ public class LocateService implements ILocateService {
 	protected IMarker getMarker(ReachableObject reachable) {
 		IMarker res = (IMarker) reachable.getAdapter(IMarker.class);
 		if (res == null) {
-			res = (IMarker) Platform.getAdapterManager().getAdapter(reachable,
-					IMarker.class);
+			res = (IMarker) Platform.getAdapterManager().getAdapter(reachable, IMarker.class);
 		}
 		return res;
 	}

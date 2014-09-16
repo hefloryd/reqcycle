@@ -13,13 +13,12 @@ package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 import org.eclipse.emf.common.notify.Adapter;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataItemProviderAdapterFactory;
 
-
 public class CustomDataModelItemProviderAdapterFactory extends RequirementSourceDataItemProviderAdapterFactory {
 
 	@Override
 	public Adapter createRequirementsContainerAdapter() {
-		if(requirementsContainerItemProvider == null) {
-			//Use Custom Requirements Container item provider
+		if (requirementsContainerItemProvider == null) {
+			// Use Custom Requirements Container item provider
 			requirementsContainerItemProvider = new CustomRequirementsContainerItemProvider(this);
 		}
 		return requirementsContainerItemProvider;
@@ -27,17 +26,18 @@ public class CustomDataModelItemProviderAdapterFactory extends RequirementSource
 
 	@Override
 	public Adapter createSimpleRequirementAdapter() {
-		if(simpleRequirementItemProvider == null) {
-			//Use Custom Requirement Item Provider
+		if (simpleRequirementItemProvider == null) {
+			// Use Custom Requirement Item Provider
 			simpleRequirementItemProvider = new CustomSimpleRequirementItemProvider(this);
-		};
+		}
+		;
 		return simpleRequirementItemProvider;
 	}
 
 	@Override
 	public Adapter createSectionAdapter() {
-		if(sectionItemProvider == null) {
-			//Use Custom Section Item Provider
+		if (sectionItemProvider == null) {
+			// Use Custom Section Item Provider
 			sectionItemProvider = new CustomSectionItemProvider(this);
 		}
 		return sectionItemProvider;
@@ -45,8 +45,8 @@ public class CustomDataModelItemProviderAdapterFactory extends RequirementSource
 
 	@Override
 	public Adapter createRequirementAdapter() {
-		if(requirementItemProvider == null) {
-			//Use Custom Requirement Section Item Provider
+		if (requirementItemProvider == null) {
+			// Use Custom Requirement Section Item Provider
 			requirementItemProvider = new CustomRequirementItemProvider(this);
 		}
 		return requirementItemProvider;

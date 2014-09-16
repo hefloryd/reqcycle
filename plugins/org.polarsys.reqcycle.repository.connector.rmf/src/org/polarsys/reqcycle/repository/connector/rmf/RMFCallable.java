@@ -31,8 +31,7 @@ public class RMFCallable implements ICallable {
 	IDataManager dataManager;
 
 	@Override
-	public void fillRequirementSource(RequirementSource requirementSource)
-			throws Exception {
+	public void fillRequirementSource(RequirementSource requirementSource) throws Exception {
 
 		Scope scope = null;
 		IDataModel model = null;
@@ -46,27 +45,20 @@ public class RMFCallable implements ICallable {
 			// requirementSource.setProperty("SCOPE_NAME", scope.getName());
 			// requirementSource.setProperty(IRequirementSourceProperties.PROPERTY_URI,settingPageBean.getUri());
 			Boolean isCopy = settingPageBean.getIsCopy();
-			if (isCopy && requirementsResourcePath != null
-					&& !requirementsResourcePath.isEmpty()) {
-				RequirementsContainer rc = dataManager
-						.createRequirementsContainer(URI
-								.createPlatformResourceURI(
-										requirementsResourcePath, true));
+			if (isCopy && requirementsResourcePath != null && !requirementsResourcePath.isEmpty()) {
+				RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(requirementsResourcePath, true));
 				requirementSource.setContents(rc);
 			}
-			requirementSource.setProperty(
-					IRequirementSourceProperties.IS_LOCAL, isCopy.toString());
+			requirementSource.setProperty(IRequirementSourceProperties.IS_LOCAL, isCopy.toString());
 		}
 
-		if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition)
-				&& mapping != null && !mapping.isEmpty()) {
+		if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition) && mapping != null && !mapping.isEmpty()) {
 			// it's an edition or a creation without skipping the
 			// mapping
 			requirementSource.getMappings().clear();
 			requirementSource.getMappings().addAll(mapping);
 			// requirementSource.getRequirements().clear();
-			RMFUtils.fillRequirements(requirementSource,
-					new NullProgressMonitor(), scope);
+			RMFUtils.fillRequirements(requirementSource, new NullProgressMonitor(), scope);
 		}
 
 	}

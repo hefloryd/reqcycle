@@ -27,8 +27,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class NewConfigurationDialog extends TitleAreaDialog {
 
-	Configuration configuration = TypeconfigurationFactory.eINSTANCE
-			.createConfiguration();
+	Configuration configuration = TypeconfigurationFactory.eINSTANCE.createConfiguration();
 	private Text text;
 
 	/**
@@ -54,8 +53,7 @@ public class NewConfigurationDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label lblNewLabel = new Label(container, SWT.NONE);
-		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
+		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblNewLabel.setText("Name : ");
 
 		text = new Text(container, SWT.BORDER);
@@ -71,8 +69,7 @@ public class NewConfigurationDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		if (configuration.getName() == null
-				|| configuration.getName().length() == 0) {
+		if (configuration.getName() == null || configuration.getName().length() == 0) {
 			setErrorMessage("please set a non empty name");
 		} else {
 			super.okPressed();
@@ -86,10 +83,8 @@ public class NewConfigurationDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**

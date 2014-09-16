@@ -49,8 +49,8 @@ public class SelectConnectorPage extends WizardPage {
 	@Inject
 	private IConnectorManager connectorManager;
 
-	//	@Inject
-	//	private IScopeManager scopeManager;
+	// @Inject
+	// private IScopeManager scopeManager;
 
 	@Inject
 	private ILogger logger;
@@ -59,13 +59,11 @@ public class SelectConnectorPage extends WizardPage {
 
 	private Text requirementSourceNameText;
 
-	//	private ComboViewer scopeComboViewer;
-	//	
-	//	private Scope scope;
+	// private ComboViewer scopeComboViewer;
+	//
+	// private Scope scope;
 
 	private String sourceName;
-
-
 
 	public SelectConnectorPage() {
 		super("Select a requirement source repository type");
@@ -99,22 +97,22 @@ public class SelectConnectorPage extends WizardPage {
 		requirementSourceNameText = new Text(infoComposite, SWT.BORDER);
 		requirementSourceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
-		//		Label lblScope = new Label(infoComposite, SWT.NONE);
-		//		lblScope.setText("Scope :");
+		// Label lblScope = new Label(infoComposite, SWT.NONE);
+		// lblScope.setText("Scope :");
 
-		//		scopeComboViewer = new ComboViewer(infoComposite);
-		//		scopeComboViewer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-		//		scopeComboViewer.setContentProvider(new ArrayContentProvider());
-		//		scopeComboViewer.setLabelProvider(new LabelProvider() {
+		// scopeComboViewer = new ComboViewer(infoComposite);
+		// scopeComboViewer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		// scopeComboViewer.setContentProvider(new ArrayContentProvider());
+		// scopeComboViewer.setLabelProvider(new LabelProvider() {
 		//
-		//			@Override
-		//			public String getText(Object element) {
-		//				return DataUtil.getLabel(element);
-		//			}
-		//		});
+		// @Override
+		// public String getText(Object element) {
+		// return DataUtil.getLabel(element);
+		// }
+		// });
 
-		//FIXME : call data type manager to retrieve scope
-		//		scopeComboViewer.setInput(scopeManager.getAllScopes());
+		// FIXME : call data type manager to retrieve scope
+		// scopeComboViewer.setInput(scopeManager.getAllScopes());
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
 		Dialog.applyDialogFont(container);
@@ -127,10 +125,10 @@ public class SelectConnectorPage extends WizardPage {
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
-					if(selectedElement instanceof ConnectorDescriptor) {
-						connectorDescriptor = (ConnectorDescriptor)selectedElement;
+				if (selection instanceof IStructuredSelection) {
+					Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
+					if (selectedElement instanceof ConnectorDescriptor) {
+						connectorDescriptor = (ConnectorDescriptor) selectedElement;
 						try {
 							connector = connectorDescriptor.createConnector();
 						} catch (CoreException e) {
@@ -146,7 +144,7 @@ public class SelectConnectorPage extends WizardPage {
 
 			public void open(OpenEvent event) {
 				getWizard().getContainer().updateButtons();
-				if(canFlipToNextPage()) {
+				if (canFlipToNextPage()) {
 					getContainer().showPage(getNextPage());
 				}
 			}
@@ -161,25 +159,25 @@ public class SelectConnectorPage extends WizardPage {
 			}
 		});
 
-		//		scopeComboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+		// scopeComboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 		//
-		//			@Override
-		//			public void selectionChanged(SelectionChangedEvent event) {
-		//				ISelection selection = event.getSelection();
-		//				if(selection instanceof IStructuredSelection) {
-		//					Object fElement = ((IStructuredSelection)selection).getFirstElement();
-		//					if(fElement instanceof Scope) {
-		//						scope = (Scope) fElement;
-		//						getWizard().getContainer().updateButtons();
-		//					}
-		//				}
-		//			}
-		//		});
+		// @Override
+		// public void selectionChanged(SelectionChangedEvent event) {
+		// ISelection selection = event.getSelection();
+		// if(selection instanceof IStructuredSelection) {
+		// Object fElement = ((IStructuredSelection)selection).getFirstElement();
+		// if(fElement instanceof Scope) {
+		// scope = (Scope) fElement;
+		// getWizard().getContainer().updateButtons();
+		// }
+		// }
+		// }
+		// });
 	}
 
-	//	public Scope getScope(){
-	//		return scope;
-	//	}
+	// public Scope getScope(){
+	// return scope;
+	// }
 
 	public ConnectorDescriptor getConnectorDescriptor() {
 		return connectorDescriptor;

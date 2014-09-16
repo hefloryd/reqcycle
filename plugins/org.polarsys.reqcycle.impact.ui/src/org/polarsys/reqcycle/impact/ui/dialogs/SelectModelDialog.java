@@ -82,10 +82,8 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog implements IDou
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (((IStructuredSelection) event.getSelection())
-						.getFirstElement() instanceof RequirementSource) {
-					sourceSelected = (RequirementSource) ((IStructuredSelection) event
-							.getSelection()).getFirstElement();
+				if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof RequirementSource) {
+					sourceSelected = (RequirementSource) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					validateInput();
 				}
 			}
@@ -112,8 +110,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog implements IDou
 		return sourceSelected;
 	}
 
-	public class RSContentProvider implements ITreeContentProvider,
-			IStructuredContentProvider {
+	public class RSContentProvider implements ITreeContentProvider, IStructuredContentProvider {
 
 		@Override
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
@@ -138,8 +135,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog implements IDou
 
 		@Override
 		public Object[] getChildren(Object parent) {
-			Set<RequirementSource> repositories = requirementSourceManager
-					.getRequirementSources((String) parent);
+			Set<RequirementSource> repositories = requirementSourceManager.getRequirementSources((String) parent);
 			return repositories.toArray();
 		}
 
@@ -147,8 +143,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog implements IDou
 		public boolean hasChildren(Object parent) {
 
 			if (parent instanceof String) {
-				return !requirementSourceManager.getRequirementSources(
-						(String) parent).isEmpty();
+				return !requirementSourceManager.getRequirementSources((String) parent).isEmpty();
 			}
 			return false;
 		}
@@ -159,8 +154,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog implements IDou
 		@Override
 		public String getText(Object obj) {
 			if (obj instanceof String) {
-				ConnectorDescriptor connectorDescriptor = repositoryConnectorManager
-						.get((String) obj);
+				ConnectorDescriptor connectorDescriptor = repositoryConnectorManager.get((String) obj);
 				if (connectorDescriptor != null) {
 					return connectorDescriptor.getName();
 				} else {

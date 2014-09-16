@@ -43,8 +43,7 @@ import com.google.common.collect.Iterables;
 
 @Singleton
 public class ReachableManager implements IReachableManager {
-	private static final CacheBuilder<Object, Object> BUILDER = CacheBuilder
-			.newBuilder().weakKeys().expireAfterAccess(15, TimeUnit.MINUTES);
+	private static final CacheBuilder<Object, Object> BUILDER = CacheBuilder.newBuilder().weakKeys().expireAfterAccess(15, TimeUnit.MINUTES);
 	private static String EXT_POINT_HANDLER = "reachableHandler";
 	private static String OBJECT_HANDLER = "objectHandler";
 	private static String REACH_HANDLER = EXT_POINT_HANDLER;
@@ -54,23 +53,18 @@ public class ReachableManager implements IReachableManager {
 
 	private List<IHandler> handlers = new ArrayList<IHandler>();
 	IExtensionRegistry registry = Platform.getExtensionRegistry();
-	Cache<Object, IObjectHandler> cacheObjects = BUILDER
-			.build();
-	Cache<Reachable, IReachableHandler> cacheReachables = BUILDER
-			.build();
+	Cache<Object, IObjectHandler> cacheObjects = BUILDER.build();
+	Cache<Reachable, IReachableHandler> cacheReachables = BUILDER.build();
 
 	@PostConstruct
 	public void postConstruct() {
-		for (IConfigurationElement i : registry.getConfigurationElementsFor(
-				Activator.PLUGIN_ID, EXT_POINT_HANDLER)) {
+		for (IConfigurationElement i : registry.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_POINT_HANDLER)) {
 			try {
 				IHandler toAdd = null;
 				if (OBJECT_HANDLER.equals(i.getName())) {
-					toAdd = (IObjectHandler) i
-							.createExecutableExtension("handler");
+					toAdd = (IObjectHandler) i.createExecutableExtension("handler");
 				} else if (REACH_HANDLER.equals(i.getName())) {
-					toAdd = (IReachableHandler) i
-							.createExecutableExtension("handler");
+					toAdd = (IReachableHandler) i.createExecutableExtension("handler");
 
 				}
 				if (toAdd != null) {
@@ -102,24 +96,21 @@ public class ReachableManager implements IReachableManager {
 	}
 
 	@Override
-	public IReachableHandler getHandlerFromReachable(final Reachable t)
-			throws IReachableHandlerException {
+	public IReachableHandler getHandlerFromReachable(final Reachable t) throws IReachableHandlerException {
 		IReachableHandler get;
 		try {
-			get = cacheReachables.get(t,new Callable<IReachableHandler>() {
+			get = cacheReachables.get(t, new Callable<IReachableHandler>() {
 
 				@Override
 				public IReachableHandler call() throws Exception {
-					
-					for (IReachableHandler h : Iterables.filter(handlers,
-							IReachableHandler.class)) {
+
+					for (IReachableHandler h : Iterables.filter(handlers, IReachableHandler.class)) {
 						if (h.handlesReachable(t)) {
 							return h;
 						}
 					}
 					throw new Exception();
-					
-					
+
 				}
 			});
 		} catch (ExecutionException e) {
@@ -133,8 +124,7 @@ public class ReachableManager implements IReachableManager {
 	}
 
 	@Override
-	public IObjectHandler getHandlerFromObject(final Object o)
-			throws IReachableHandlerException {
+	public IObjectHandler getHandlerFromObject(final Object o) throws IReachableHandlerException {
 		if (o == null) {
 			throw new IReachableHandlerException();
 		}
@@ -144,17 +134,16 @@ public class ReachableManager implements IReachableManager {
 
 				@Override
 				public IObjectHandler call() throws Exception {
-					for (IObjectHandler h : Iterables.filter(handlers,
-						IObjectHandler.class)) {
-					if (h.handlesObject(o)) {
-						return h;
+					for (IObjectHandler h : Iterables.filter(handlers, IObjectHandler.class)) {
+						if (h.handlesObject(o)) {
+							return h;
+						}
 					}
-				}
-				throw new Exception();
+					throw new Exception();
 				}
 			});
 		} catch (ExecutionException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			throw new IReachableHandlerException();
 		}
 		if (get == null) {

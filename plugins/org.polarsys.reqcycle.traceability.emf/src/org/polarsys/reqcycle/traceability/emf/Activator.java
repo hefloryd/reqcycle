@@ -24,9 +24,7 @@ public class Activator extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext )
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -36,9 +34,7 @@ public class Activator extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext )
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -58,8 +54,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs a message
 	 * 
 	 * @param severity
-	 *            the severity; one of IStatus.OK, IStatus.ERROR, IStatus.INFO,
-	 *            IStatus.WARNING, or IStatus.CANCEL
+	 *            the severity; one of IStatus.OK, IStatus.ERROR, IStatus.INFO, IStatus.WARNING, or IStatus.CANCEL
 	 * @param message
 	 *            a human-readable message, localized to the current locale
 	 * @param exception

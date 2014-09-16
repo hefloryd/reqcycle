@@ -17,8 +17,7 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Attribute</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 

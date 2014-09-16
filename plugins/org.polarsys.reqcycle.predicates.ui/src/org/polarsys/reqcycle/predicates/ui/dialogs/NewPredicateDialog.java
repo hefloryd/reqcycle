@@ -62,8 +62,7 @@ public class NewPredicateDialog extends TitleAreaDialog {
 
 	private PredicateBean bean = new PredicateBean();
 
-	IPredicatesConfManager predicatesConfManager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	private Combo combo;
 
@@ -99,11 +98,9 @@ public class NewPredicateDialog extends TitleAreaDialog {
 				final String regex = "\\w+[-\\w]*";
 				if (newText == null || newText.isEmpty()) {
 					return "Enter the name of the new predicate";
-				} else if (!Pattern.compile(regex, Pattern.CASE_INSENSITIVE)
-						.matcher(newText).matches()) {
+				} else if (!Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(newText).matches()) {
 					return "The name of the predicate is not valid.";
-				} else if (predicatesConfManager
-						.isPredicateNameAlreadyUsed(newText)) {
+				} else if (predicatesConfManager.isPredicateNameAlreadyUsed(newText)) {
 					return "This predicate's name is already used.";
 				}
 				return null;
@@ -117,8 +114,7 @@ public class NewPredicateDialog extends TitleAreaDialog {
 		Composite control = (Composite) super.createDialogArea(parent);
 
 		Composite composite = new Composite(control, SWT.WRAP);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1,
-				1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		composite.setLayout(new GridLayout(2, false));
 
 		// create message
@@ -153,19 +149,16 @@ public class NewPredicateDialog extends TitleAreaDialog {
 		comboViewer.setContentProvider(comboContentProvider);
 		comboViewer.setLabelProvider(comboILabelProvider);
 		comboViewer.setInput(PredicatesUtil.getDefaultPredicates());
-		comboViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						validateInput();
-					}
-				});
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				validateInput();
+			}
+		});
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		final AdapterFactoryLabelProvider adapterLabelProvider = new AdapterFactoryLabelProvider(
-				adapterFactory);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		final AdapterFactoryLabelProvider adapterLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
 		comboViewer.setLabelProvider(new LabelProvider() {
 
@@ -195,9 +188,7 @@ public class NewPredicateDialog extends TitleAreaDialog {
 
 		if (comboViewer != null && comboViewer.getSelection().isEmpty()) {
 			String msg = "Select a root predicate";
-			errorMessage = errorMessage != null && !errorMessage.isEmpty() ? errorMessage
-					+ "\n" + msg
-					: msg;
+			errorMessage = errorMessage != null && !errorMessage.isEmpty() ? errorMessage + "\n" + msg : msg;
 		}
 
 		setErrorMessage(errorMessage);
@@ -208,8 +199,7 @@ public class NewPredicateDialog extends TitleAreaDialog {
 	}
 
 	@Override
-	protected Button createButton(Composite parent, int id, String label,
-			boolean defaultButton) {
+	protected Button createButton(Composite parent, int id, String label, boolean defaultButton) {
 		Button btn = super.createButton(parent, id, label, defaultButton);
 
 		if (Window.OK == id && btn != null) {
@@ -230,19 +220,13 @@ public class NewPredicateDialog extends TitleAreaDialog {
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeTextTextObserveWidget = WidgetProperties.text(
-				SWT.Modify).observe(text);
-		IObservableValue nameBeanObserveValue = PojoProperties.value("name")
-				.observe(bean);
-		bindingContext.bindValue(observeTextTextObserveWidget,
-				nameBeanObserveValue, null, null);
+		IObservableValue observeTextTextObserveWidget = WidgetProperties.text(SWT.Modify).observe(text);
+		IObservableValue nameBeanObserveValue = PojoProperties.value("name").observe(bean);
+		bindingContext.bindValue(observeTextTextObserveWidget, nameBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionComboViewer = ViewerProperties
-				.singleSelection().observe(comboViewer);
-		IObservableValue rootPredicateBeanObserveValue = PojoProperties.value(
-				"rootPredicate").observe(bean);
-		bindingContext.bindValue(observeSingleSelectionComboViewer,
-				rootPredicateBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionComboViewer = ViewerProperties.singleSelection().observe(comboViewer);
+		IObservableValue rootPredicateBeanObserveValue = PojoProperties.value("rootPredicate").observe(bean);
+		bindingContext.bindValue(observeSingleSelectionComboViewer, rootPredicateBeanObserveValue, null, null);
 		//
 		return bindingContext;
 	}

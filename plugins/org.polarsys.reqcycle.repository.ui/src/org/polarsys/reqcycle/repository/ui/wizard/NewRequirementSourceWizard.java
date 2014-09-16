@@ -27,8 +27,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.ui.wizard.pages.SelectConnectorPage;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class NewRequirementSourceWizard extends Wizard implements
-		IWorkbenchWizard {
+public class NewRequirementSourceWizard extends Wizard implements IWorkbenchWizard {
 
 	/** connector selection wizard page */
 	private SelectConnectorPage selectConnectorPage;
@@ -80,11 +79,9 @@ public class NewRequirementSourceWizard extends Wizard implements
 			if (createRequirementSource == null) {
 				// FIXME : Exception
 
-				throw new Exception(
-						"requirement source is null; Should not occur = bug");
+				throw new Exception("requirement source is null; Should not occur = bug");
 			}
-			RequirementSource source = requirementSourceManager
-					.createRequirementSource();
+			RequirementSource source = requirementSourceManager.createRequirementSource();
 			ConnectorDescriptor connectorDescriptor = getConnectorDescriptor();
 			source.setConnectorId(connectorDescriptor.getId());
 			String sourceName = getSourceName();
@@ -105,17 +102,14 @@ public class NewRequirementSourceWizard extends Wizard implements
 
 	@Override
 	public boolean canFinish() {
-		if (getConnectorDescriptor() == null || getConnector() == null
-				|| getSourceName() == null || getSourceName().isEmpty()) {
+		if (getConnectorDescriptor() == null || getConnector() == null || getSourceName() == null || getSourceName().isEmpty()) {
 			return false;
 		}
 		IConnector connector = getConnector();
-		if (connector instanceof IConnectorWizard
-				&& ((IConnectorWizard) connector).getPageCount() == 0) {
+		if (connector instanceof IConnectorWizard && ((IConnectorWizard) connector).getPageCount() == 0) {
 			return false;
 		}
-		if (connector instanceof IConnectorWizard
-				&& !((IConnectorWizard) connector).canFinish()) {
+		if (connector instanceof IConnectorWizard && !((IConnectorWizard) connector).canFinish()) {
 			return false;
 		}
 		return true;
@@ -124,19 +118,15 @@ public class NewRequirementSourceWizard extends Wizard implements
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
 		IConnector connector = getConnector();
-		if (page instanceof SelectConnectorPage
-				&& connector instanceof IConnectorWizard) {
+		if (page instanceof SelectConnectorPage && connector instanceof IConnectorWizard) {
 			IConnectorWizard connectorWizard = (IConnectorWizard) connector;
-			connectorWizard.init(selection,
-					((SelectConnectorPage) page).getSourceName());
+			connectorWizard.init(selection, ((SelectConnectorPage) page).getSourceName());
 			if (connectorWizard.getPageCount() == 0) {
 				connectorWizard.addPages();
 			}
 			if (connectorWizard.getStartingPage() instanceof AbstractSettingPage) {
-				AbstractSettingPage startingPage = (AbstractSettingPage) connectorWizard
-						.getStartingPage();
-				startingPage.setFileName(((SelectConnectorPage) page)
-						.getSourceName());
+				AbstractSettingPage startingPage = (AbstractSettingPage) connectorWizard.getStartingPage();
+				startingPage.setFileName(((SelectConnectorPage) page).getSourceName());
 			}
 			IWizardPage startingPage = connectorWizard.getStartingPage();
 			if (startingPage != null) {
@@ -146,8 +136,7 @@ public class NewRequirementSourceWizard extends Wizard implements
 		}
 
 		if (connector instanceof IConnectorWizard) {
-			IWizardPage nextPage = ((IConnectorWizard) connector)
-					.getNextPage(page);
+			IWizardPage nextPage = ((IConnectorWizard) connector).getNextPage(page);
 			if (nextPage != null) {
 				nextPage.setWizard(this);
 			}

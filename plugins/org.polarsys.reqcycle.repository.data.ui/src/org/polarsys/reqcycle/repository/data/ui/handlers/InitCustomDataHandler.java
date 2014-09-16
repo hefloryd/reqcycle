@@ -31,11 +31,10 @@ public class InitCustomDataHandler extends AbstractHandler {
 	}
 
 	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
+	 * the command has been executed, so extract extract the needed information from the application context.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		//FIXME : hide the menu when init is performed
+		// FIXME : hide the menu when init is performed
 		ZigguratInject.make(IDataModelManager.class);
 		return null;
 	}

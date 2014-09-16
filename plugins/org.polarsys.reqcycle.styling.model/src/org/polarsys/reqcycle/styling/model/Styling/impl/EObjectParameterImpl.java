@@ -18,13 +18,11 @@ import org.polarsys.reqcycle.styling.model.Styling.EObjectParameter;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EObject Parameter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EObject Parameter</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.EObjectParameterImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.EObjectParameterImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,16 +30,15 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
  */
 public class EObjectParameterImpl extends ParameterImpl implements EObjectParameter {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -49,8 +46,8 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	protected EObject value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EObjectParameterImpl() {
@@ -58,8 +55,8 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,13 +65,13 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject getValue() {
 		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject)value;
+			InternalEObject oldValue = (InternalEObject) value;
 			value = eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
@@ -88,10 +85,10 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	public Object getObjectValue() {
 		return getValue();
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject basicGetValue() {
@@ -99,8 +96,8 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setValue(EObject newValue) {
@@ -111,62 +108,63 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StylingPackage.EOBJECT_PARAMETER__VALUE:
-				if (resolve) return getValue();
-				return basicGetValue();
+		case StylingPackage.EOBJECT_PARAMETER__VALUE:
+			if (resolve)
+				return getValue();
+			return basicGetValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StylingPackage.EOBJECT_PARAMETER__VALUE:
-				setValue((EObject)newValue);
-				return;
+		case StylingPackage.EOBJECT_PARAMETER__VALUE:
+			setValue((EObject) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StylingPackage.EOBJECT_PARAMETER__VALUE:
-				setValue((EObject)null);
-				return;
+		case StylingPackage.EOBJECT_PARAMETER__VALUE:
+			setValue((EObject) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StylingPackage.EOBJECT_PARAMETER__VALUE:
-				return value != null;
+		case StylingPackage.EOBJECT_PARAMETER__VALUE:
+			return value != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //EObjectParameterImpl
+} // EObjectParameterImpl

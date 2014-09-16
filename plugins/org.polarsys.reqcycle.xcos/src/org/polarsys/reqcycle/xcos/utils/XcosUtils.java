@@ -28,15 +28,12 @@ public class XcosUtils {
 	public static final String XcosExtension = "xcos";
 	public static final String PLATFORM = "platform:";
 	public static final String SEPARATOR = "::";
-	private static IReachableCreator creator = ZigguratInject
-			.make(IReachableCreator.class);
+	private static IReachableCreator creator = ZigguratInject.make(IReachableCreator.class);
 
 	public static ReachableObject getReachableObject(IFile cu) {
 		if (XcosExtension.equalsIgnoreCase(cu.getFileExtension())) {
 			try {
-				XcosReachableObject xcosReachableObject = new XcosReachableObject(
-						creator.getReachable(new URI(PLATFORM
-								+ cu.getFullPath().toString()), cu));
+				XcosReachableObject xcosReachableObject = new XcosReachableObject(creator.getReachable(new URI(PLATFORM + cu.getFullPath().toString()), cu));
 				ZigguratInject.inject(xcosReachableObject);
 				return xcosReachableObject;
 			} catch (URISyntaxException e) {
@@ -48,31 +45,27 @@ public class XcosUtils {
 
 	public static ReachableObject getReachable(XcosElement xe) {
 		URI uri;
-		
+
 		try {
 			uri = new URI(getQualifiedURI(xe));
-			XcosReachableObject object = new XcosReachableObject(
-					creator.getReachable(uri, xe));
+			XcosReachableObject object = new XcosReachableObject(creator.getReachable(uri, xe));
 			ZigguratInject.inject(object);
 			return object;
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
 
 	protected static String getQualifiedURI(XcosElement element) {
 		StringBuilder result = new StringBuilder();
-		result.append(PLATFORM)
-				.append(element.getResource().getFullPath().toString())
-				.append("#");
+		result.append(PLATFORM).append(element.getResource().getFullPath().toString()).append("#");
 		List<String> names = new LinkedList<String>();
 		names.add(element.getElementName());
 		XcosElement parent = element.getParent();
-		while (parent != null ) {
+		while (parent != null) {
 			names.add(0, parent.getElementName());
 			parent = parent.getParent();
 		}

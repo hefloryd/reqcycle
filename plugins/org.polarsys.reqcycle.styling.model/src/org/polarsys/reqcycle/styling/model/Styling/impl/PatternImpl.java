@@ -21,9 +21,7 @@ import org.polarsys.reqcycle.styling.model.Styling.Pattern;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pattern</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Pattern</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -31,15 +29,15 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
  */
 public abstract class PatternImpl extends MinimalEObjectImpl.Container implements Pattern {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PatternImpl() {
@@ -47,8 +45,8 @@ public abstract class PatternImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,8 +55,8 @@ public abstract class PatternImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPattern() {
@@ -68,8 +66,8 @@ public abstract class PatternImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPatternValue(Object object) {
@@ -79,19 +77,19 @@ public abstract class PatternImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StylingPackage.PATTERN___GET_PATTERN:
-				return getPattern();
-			case StylingPackage.PATTERN___GET_PATTERN_VALUE__OBJECT:
-				return getPatternValue(arguments.get(0));
+		case StylingPackage.PATTERN___GET_PATTERN:
+			return getPattern();
+		case StylingPackage.PATTERN___GET_PATTERN_VALUE__OBJECT:
+			return getPatternValue(arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //PatternImpl
+} // PatternImpl

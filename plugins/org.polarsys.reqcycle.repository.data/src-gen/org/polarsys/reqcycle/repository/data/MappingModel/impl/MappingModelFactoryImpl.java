@@ -20,15 +20,13 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.polarsys.reqcycle.repository.data.MappingModel.*;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
 public class MappingModelFactoryImpl extends EFactoryImpl implements MappingModelFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -45,8 +43,7 @@ public class MappingModelFactoryImpl extends EFactoryImpl implements MappingMode
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

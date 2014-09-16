@@ -96,13 +96,11 @@ public class ScopesPreferencePage extends DataModelsPreferencePage {
 
 				ISelection selection = event.getSelection();
 				if (selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection) selection)
-							.getFirstElement();
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
 					if (obj instanceof IDataModel) {
 						selectedModel = (IDataModel) obj;
 						btnAddScope.setEnabled(true);
-						inputScopes.addAll(dataModelManager
-								.getScopes(selectedModel));
+						inputScopes.addAll(dataModelManager.getScopes(selectedModel));
 					}
 
 				}
@@ -115,12 +113,10 @@ public class ScopesPreferencePage extends DataModelsPreferencePage {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				NameDialog dialog = new NameDialog(e.display.getActiveShell(),
-						"Add Scope");
+				NameDialog dialog = new NameDialog(e.display.getActiveShell(), "Add Scope");
 				if (dialog.open() == Window.OK) {
 					String name = dialog.getName();
-					Scope scope = dataModelManager.createScope(name,
-							selectedModel);
+					Scope scope = dataModelManager.createScope(name, selectedModel);
 					dataModelManager.addScopes(selectedModel, scope);
 					inputScopes.add(scope);
 					tvScopes.setInput(inputScopes);
@@ -140,8 +136,7 @@ public class ScopesPreferencePage extends DataModelsPreferencePage {
 	protected void createScopesUi(Group parent) {
 		// Table Viewer
 		Composite viewerComposite = new Composite(parent, SWT.None);
-		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true));
+		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		TableColumnLayout dataTypeTVLayout = new TableColumnLayout();
 		viewerComposite.setLayout(dataTypeTVLayout);
 
@@ -152,8 +147,7 @@ public class ScopesPreferencePage extends DataModelsPreferencePage {
 		tScopes.setLinesVisible(true);
 
 		// Columns
-		tvcScopesNames = PreferenceUiUtil.createTableViewerColumn(tvScopes,
-				"Name", SWT.None);
+		tvcScopesNames = PreferenceUiUtil.createTableViewerColumn(tvScopes, "Name", SWT.None);
 		tvcScopesNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
@@ -164,28 +158,21 @@ public class ScopesPreferencePage extends DataModelsPreferencePage {
 				return super.getText(element);
 			}
 		});
-		dataTypeTVLayout.setColumnData(tvcScopesNames.getColumn(),
-				new ColumnWeightData(20, 100, true));
+		dataTypeTVLayout.setColumnData(tvcScopesNames.getColumn(), new ColumnWeightData(20, 100, true));
 
 		tvScopes.setInput(inputScopes);
 
 		Composite btnComposite = new Composite(parent, SWT.None);
 		btnComposite.setLayout(new GridLayout());
-		btnComposite
-				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
+		btnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
 
-		btnAddScope = PreferenceUiUtil.createButton(btnComposite, "Add Scope",
-				Activator.getImageDescriptor("/icons/add.gif").createImage());
+		btnAddScope = PreferenceUiUtil.createButton(btnComposite, "Add Scope", Activator.getImageDescriptor("/icons/add.gif").createImage());
 		btnAddScope.setEnabled(false);
 
-		btnEditScope = PreferenceUiUtil.createButton(btnComposite,
-				"Edit Scope", Activator.getImageDescriptor("/icons/edit.png")
-						.createImage());
+		btnEditScope = PreferenceUiUtil.createButton(btnComposite, "Edit Scope", Activator.getImageDescriptor("/icons/edit.png").createImage());
 		btnEditScope.setEnabled(false);
 
-		btnDeleteScope = PreferenceUiUtil
-				.createButton(btnComposite, "Delete Scope", Activator
-						.getImageDescriptor("/icons/delete.gif").createImage());
+		btnDeleteScope = PreferenceUiUtil.createButton(btnComposite, "Delete Scope", Activator.getImageDescriptor("/icons/delete.gif").createImage());
 		btnDeleteScope.setEnabled(false);
 	}
 

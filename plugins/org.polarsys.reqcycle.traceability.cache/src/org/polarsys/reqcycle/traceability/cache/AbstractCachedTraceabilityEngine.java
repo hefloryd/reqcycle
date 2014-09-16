@@ -49,8 +49,7 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-public abstract class AbstractCachedTraceabilityEngine implements
-		IBuildingTraceabilityEngine {
+public abstract class AbstractCachedTraceabilityEngine implements IBuildingTraceabilityEngine {
 	private String cachePath = determineDataBasePath();
 	public static String HIDDEN_PROJET_NAME = "reqCycleHiddenProject";
 	@Inject
@@ -62,25 +61,22 @@ public abstract class AbstractCachedTraceabilityEngine implements
 	private Set<Reachable> allTraceabilities = new HashSet<Reachable>();
 
 	public AbstractCachedTraceabilityEngine() {
-		PlatformUI.getWorkbench().addWorkbenchListener(
-				new IWorkbenchListener() {
+		PlatformUI.getWorkbench().addWorkbenchListener(new IWorkbenchListener() {
 
-					@Override
-					public boolean preShutdown(IWorkbench workbench,
-							boolean forced) {
-						return true;
-					}
+			@Override
+			public boolean preShutdown(IWorkbench workbench, boolean forced) {
+				return true;
+			}
 
-					@Override
-					public void postShutdown(IWorkbench workbench) {
-						environmentClosed();
-					}
-				});
+			@Override
+			public void postShutdown(IWorkbench workbench) {
+				environmentClosed();
+			}
+		});
 	}
 
 	/**
-	 * This method returns a database path, in case of non Eclipse usage a
-	 * temporary folder is created
+	 * This method returns a database path, in case of non Eclipse usage a temporary folder is created
 	 * 
 	 * @nu
 	 * @return
@@ -107,33 +103,26 @@ public abstract class AbstractCachedTraceabilityEngine implements
 	protected abstract void environmentClosed();
 
 	protected void cacheCheck(Reachable traceable) {
-		boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG,
-				Activator.getDefault());
+		boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG, Activator.getDefault());
 		if (!isCacheOk(traceable)) {
 			if (debug) {
-				logger.trace(String.format(
-						"cache default for %s build starting", traceable
-								.trimFragment().toString()));
+				logger.trace(String.format("cache default for %s build starting", traceable.trimFragment().toString()));
 			}
 			build(traceable);
 			if (debug) {
-				logger.trace(String.format("build for %s ended", traceable
-						.trimFragment().toString()));
+				logger.trace(String.format("build for %s ended", traceable.trimFragment().toString()));
 			}
 		} else {
 			if (debug) {
-				logger.trace(String.format("cache for %s ok", traceable
-						.trimFragment().toString()));
+				logger.trace(String.format("cache for %s ok", traceable.trimFragment().toString()));
 			}
 		}
 	}
 
 	@Override
-	public Iterator<Pair<Link, Reachable>> getTraceability(Request... requests)
-			throws EngineException {
+	public Iterator<Pair<Link, Reachable>> getTraceability(Request... requests) throws EngineException {
 		long timeInNanos = 0;
-		boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG,
-				Activator.getDefault());
+		boolean debug = logger.isDebug(Activator.OPTIONS_DEBUG, Activator.getDefault());
 
 		if (debug) {
 			timeInNanos = System.nanoTime();
@@ -150,31 +139,23 @@ public abstract class AbstractCachedTraceabilityEngine implements
 				long timeInMsc = (System.nanoTime() - timeInNanos) / 1000000;
 				logger.trace(String.format("Cache checked in %d ms", timeInMsc));
 			} else {
-				logger.trace(String
-						.format("Cache checked disabled via request"));
+				logger.trace(String.format("Cache checked disabled via request"));
 			}
 		}
 		Iterator<Pair<Link, Reachable>> result = Iterators.emptyIterator();
 		for (Request request : requests) {
 			// Scope and Filter are used to validate or invalidate paths so
 			// they can be combined
-			Predicate<Pair<Link, Reachable>> requestPredicate = TraceabilityPredicates
-					.newIsInScopePredicate(request.getScope());
+			Predicate<Pair<Link, Reachable>> requestPredicate = TraceabilityPredicates.newIsInScopePredicate(request.getScope());
 			if (request.getFilter() != null) {
-				requestPredicate = Predicates.and(
-						new FilterPredicate(request.getFilter()),
-						requestPredicate);
+				requestPredicate = Predicates.and(new FilterPredicate(request.getFilter()), requestPredicate);
 			}
 			Iterable<Couple> couples = request.getCouples();
 			if (!couples.iterator().hasNext()) {
 				if (request.getDepth() == DEPTH.ONE) {
-					throw new EngineException(
-							"for a couple with source equals to null the request shall be infinite");
+					throw new EngineException("for a couple with source equals to null the request shall be infinite");
 				} else {
-					result = Iterators.concat(
-							result,
-							doGetAllTraceability(request.getDirection(),
-									requestPredicate));
+					result = Iterators.concat(result, doGetAllTraceability(request.getDirection(), requestPredicate));
 				}
 			}
 			// for each couple an traceability iterable is computed
@@ -184,13 +165,9 @@ public abstract class AbstractCachedTraceabilityEngine implements
 				// INFINITE
 				if (c.getSource() == null) {
 					if (request.getDepth() == DEPTH.ONE) {
-						throw new EngineException(
-								"for a couple with source equals to null the request shall be infinite");
+						throw new EngineException("for a couple with source equals to null the request shall be infinite");
 					} else {
-						result = Iterators.concat(
-								result,
-								doGetAllTraceability(request.getDirection(),
-										requestPredicate));
+						result = Iterators.concat(result, doGetAllTraceability(request.getDirection(), requestPredicate));
 					}
 				} else {
 					// when the target is equals to null it is a prospective
@@ -200,42 +177,22 @@ public abstract class AbstractCachedTraceabilityEngine implements
 						// be
 						// complete
 						if (request.getDepth() == DEPTH.INFINITE) {
-							result = Iterators.concat(
-									result,
-									doGetTraceability(c.getSource(),
-											request.getDirection(),
-											requestPredicate));
+							result = Iterators.concat(result, doGetTraceability(c.getSource(), request.getDirection(), requestPredicate));
 							// otherwise just the first level shall be complete
 						} else if (request.getDepth() == DEPTH.ONE) {
-							result = Iterators.concat(
-									result,
-									doGetOneLevelTraceability(c.getSource(),
-											request.getDirection(),
-											requestPredicate));
+							result = Iterators.concat(result, doGetOneLevelTraceability(c.getSource(), request.getDirection(), requestPredicate));
 						}
 						// when the target is different to null a search shall
 						// be
 						// performed
 					} else {
 						if (request.getDepth() == DEPTH.INFINITE) {
-							result = Iterators.concat(
-									result,
-									doGetTraceability(c.getSource(),
-											c.getStopCondition(),
-											request.getDirection(),
-											requestPredicate));
+							result = Iterators.concat(result, doGetTraceability(c.getSource(), c.getStopCondition(), request.getDirection(), requestPredicate));
 						} else {
 							// except when the depth is equals to one in this
 							// case
 							// it can be computed using a filter
-							result = Iterators.concat(
-									result,
-									doGetTraceability(c.getSource(), c
-											.getStopCondition(), request
-											.getDirection(), Predicates.and(
-											requestPredicate,
-											new TargetEqualsPredicate(c
-													.getStopCondition()))));
+							result = Iterators.concat(result, doGetTraceability(c.getSource(), c.getStopCondition(), request.getDirection(), Predicates.and(requestPredicate, new TargetEqualsPredicate(c.getStopCondition()))));
 						}
 					}
 				}
@@ -244,9 +201,7 @@ public abstract class AbstractCachedTraceabilityEngine implements
 		if (debug) {
 			timeInNanos = System.nanoTime() - timeInNanos;
 			long timeInMsc = timeInNanos / 1000000;
-			logger.trace(String.format(
-					"Traceability computed in %d ms (including cache check)",
-					timeInMsc));
+			logger.trace(String.format("Traceability computed in %d ms (including cache check)", timeInMsc));
 		}
 		return result;
 	}
@@ -270,12 +225,11 @@ public abstract class AbstractCachedTraceabilityEngine implements
 	}
 
 	protected IScope getScope(Request[] requests) {
-		CompositeScope compo = new CompositeScope(Iterables.transform(
-				Arrays.asList(requests), new Function<Request, IScope>() {
-					public IScope apply(Request r) {
-						return r.getScope();
-					}
-				}));
+		CompositeScope compo = new CompositeScope(Iterables.transform(Arrays.asList(requests), new Function<Request, IScope>() {
+			public IScope apply(Request r) {
+				return r.getScope();
+			}
+		}));
 		return compo;
 	}
 
@@ -289,21 +243,13 @@ public abstract class AbstractCachedTraceabilityEngine implements
 		}
 	}
 
-	protected abstract Iterator<Pair<Link, Reachable>> doGetAllTraceability(
-			DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> requestPredicate);
+	protected abstract Iterator<Pair<Link, Reachable>> doGetAllTraceability(DIRECTION direction, Predicate<Pair<Link, Reachable>> requestPredicate);
 
-	protected abstract Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> predicate);
+	protected abstract Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> predicate);
 
-	protected abstract Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> predicate);
+	protected abstract Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> predicate);
 
-	protected abstract Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, StopCondition stopCondition, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> predicate);
+	protected abstract Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, StopCondition stopCondition, DIRECTION direction, Predicate<Pair<Link, Reachable>> predicate);
 
 	protected void build(Reachable traceable) {
 		// TODO manage clean of the cache and transaction
@@ -321,8 +267,7 @@ public abstract class AbstractCachedTraceabilityEngine implements
 
 	protected abstract Iterable<Reachable> getEntriesFor(Reachable reachable);
 
-	protected Iterable<Link> getLinksToTag(Iterable<Link> oldLinks,
-			Iterable<Link> newLinks) {
+	protected Iterable<Link> getLinksToTag(Iterable<Link> oldLinks, Iterable<Link> newLinks) {
 		if (newLinks == null) {
 			newLinks = Sets.newHashSet();
 		}
@@ -345,29 +290,21 @@ public abstract class AbstractCachedTraceabilityEngine implements
 	protected abstract boolean isCacheOk(Reachable reachable);
 
 	@Override
-	public void newUpwardRelation(Object traceabilityObject, Object resource,
-			Object source, List<? extends Object> targets, TType kind) {
-		Function<Object, Reachable> obj2RO = URIFunctions
-				.newObject2ReachableFunction();
+	public void newUpwardRelation(Object traceabilityObject, Object resource, Object source, List<? extends Object> targets, TType kind) {
+		Function<Object, Reachable> obj2RO = URIFunctions.newObject2ReachableFunction();
 		Reachable resourceReachable = obj2RO.apply(resource);
 		Reachable sourceR = obj2RO.apply(source);
 		Reachable traceaReachable = obj2RO.apply(traceabilityObject);
-		List<Reachable> targetsR = Lists.newArrayList(Iterables.transform(
-				targets, obj2RO));
-		if (sourceR != null
-				&& Iterables.filter(targetsR, Predicates.notNull()).iterator()
-						.hasNext()) {
+		List<Reachable> targetsR = Lists.newArrayList(Iterables.transform(targets, obj2RO));
+		if (sourceR != null && Iterables.filter(targetsR, Predicates.notNull()).iterator().hasNext()) {
 			allTraceabilities.remove(traceaReachable);
-		
-			newUpwardRelation(traceaReachable, resourceReachable, sourceR,
-					targetsR, kind);
+
+			newUpwardRelation(traceaReachable, resourceReachable, sourceR, targetsR, kind);
 		}
 
 	}
 
-	public abstract void newUpwardRelation(Reachable traceaReachable,
-			Reachable container, Reachable source, List<Reachable> targets,
-			TType kind);
+	public abstract void newUpwardRelation(Reachable traceaReachable, Reachable container, Reachable source, List<Reachable> targets, TType kind);
 
 	@Override
 	public void startBuild(Reachable reachable) {
@@ -401,8 +338,7 @@ public abstract class AbstractCachedTraceabilityEngine implements
 		return !isCacheOk(reachable);
 	}
 
-	private class TargetEqualsPredicate implements
-			Predicate<Pair<Link, Reachable>> {
+	private class TargetEqualsPredicate implements Predicate<Pair<Link, Reachable>> {
 		private StopCondition condition;
 
 		public TargetEqualsPredicate(StopCondition condition) {

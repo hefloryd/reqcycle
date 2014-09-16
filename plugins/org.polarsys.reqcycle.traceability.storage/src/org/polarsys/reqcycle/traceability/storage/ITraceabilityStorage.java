@@ -61,8 +61,7 @@ public interface ITraceabilityStorage {
 	 * @param targets
 	 *            the targets of the upward relationship
 	 */
-	void addOrUpdateUpwardRelationShip(TType kind, Reachable traceaReachable,
-			Reachable container, Reachable source, Reachable... targets);
+	void addOrUpdateUpwardRelationShip(TType kind, Reachable traceaReachable, Reachable container, Reachable source, Reachable... targets);
 
 	void removeTraceabilityLink(Reachable r);
 
@@ -75,8 +74,7 @@ public interface ITraceabilityStorage {
 	Reachable getReachable(String uri);
 
 	/**
-	 * Gets all downward or upward relationships passing originating from a
-	 * reachable.
+	 * Gets all downward or upward relationships passing originating from a reachable.
 	 * 
 	 * @param r
 	 *            The reachable.
@@ -84,8 +82,7 @@ public interface ITraceabilityStorage {
 	 *            {@link DIRECTION#UPWARD} ou {@link DIRECTION#DOWNWARD}.
 	 * @return
 	 */
-	Iterable<Pair<Link, Reachable>> getTraceability(Reachable r,
-			DIRECTION direction);
+	Iterable<Pair<Link, Reachable>> getTraceability(Reachable r, DIRECTION direction);
 
 	/**
 	 * Returns all the traceability link of the {@link ITraceabilityStorage}
@@ -110,8 +107,7 @@ public interface ITraceabilityStorage {
 	 * @param source
 	 * @param targets
 	 */
-	void removeUpwardRelationShip(TType kind, Reachable container,
-			Reachable source, Reachable... targets);
+	void removeUpwardRelationShip(TType kind, Reachable container, Reachable source, Reachable... targets);
 
 	/**
 	 * Update in the storage the given relation ship
@@ -129,8 +125,7 @@ public interface ITraceabilityStorage {
 	 * @param propertyValue
 	 *            set to null to remove the property
 	 */
-	void addUpdateProperty(Reachable reachable, String propertyName,
-			String propertyValue);
+	void addUpdateProperty(Reachable reachable, String propertyName, String propertyValue);
 
 	void removeProperty(Reachable reachable, String propertyName);
 
@@ -144,8 +139,7 @@ public interface ITraceabilityStorage {
 	String getProperty(Reachable reachable, String propertyName);
 
 	/**
-	 * Removes all traceability links registred for a container during previous
-	 * builds.
+	 * Removes all traceability links registred for a container during previous builds.
 	 * 
 	 * @param container
 	 *            The {@link Reachable} that represents the container.

@@ -37,44 +37,38 @@ public class ExtensionPointReader {
 	public static String EXT_ID_ATTRIBUTES = "tattributes";
 	public static String ATT_CLASS_NAME = "provider";
 
-	private final class Conf2Provider implements
-			Function<IConfigurationElement, TTypeProvider> {
+	private final class Conf2Provider implements Function<IConfigurationElement, TTypeProvider> {
 		@Override
 		public TTypeProvider apply(IConfigurationElement arg0) {
 			TTypeProvider t = null;
 			try {
-				t = (TTypeProvider) arg0
-						.createExecutableExtension(ATT_CLASS_NAME);
+				t = (TTypeProvider) arg0.createExecutableExtension(ATT_CLASS_NAME);
 			} catch (CoreException e) {
 			}
 			return t;
 		}
 	}
 
-	private final class Conf2AttProvider implements
-			Function<IConfigurationElement, TAttributeProvider> {
+	private final class Conf2AttProvider implements Function<IConfigurationElement, TAttributeProvider> {
 		@Override
 		public TAttributeProvider apply(IConfigurationElement arg0) {
 			TAttributeProvider t = null;
 			try {
-				t = (TAttributeProvider) arg0
-						.createExecutableExtension(ATT_CLASS_NAME);
+				t = (TAttributeProvider) arg0.createExecutableExtension(ATT_CLASS_NAME);
 			} catch (CoreException e) {
 			}
 			return t;
 		}
 	}
 
-	private final class Provider2TAType implements
-			Function<TAttributeProvider, Iterable<RegisteredAttribute>> {
+	private final class Provider2TAType implements Function<TAttributeProvider, Iterable<RegisteredAttribute>> {
 		@Override
 		public Iterable<RegisteredAttribute> apply(TAttributeProvider arg0) {
 			return arg0.getAttributes();
 		}
 	}
 
-	private final class Provider2TType implements
-			Function<TTypeProvider, Iterable<TType>> {
+	private final class Provider2TType implements Function<TTypeProvider, Iterable<TType>> {
 		@Override
 		public Iterable<TType> apply(TTypeProvider arg0) {
 			return arg0.getTTypes();
@@ -84,42 +78,30 @@ public class ExtensionPointReader {
 	public Map<String, TType> readTTypes() {
 		// get all the configuration elements, filter the IConfigurationElement,
 		// transform them in TType and create the associated map
-		Iterable<IConfigurationElement> allConf = filter(Arrays.asList(Platform
-				.getExtensionRegistry().getConfigurationElementsFor(
-						Activator.PLUGIN_ID, EXT_ID_TTYPES)),
-				IConfigurationElement.class);
-		Iterable<TTypeProvider> allProviders = transform(allConf,
-				new Conf2Provider());
-		Iterable<Iterable<TType>> allTTypes = transform(allProviders,
-				new Provider2TType());
+		Iterable<IConfigurationElement> allConf = filter(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID_TTYPES)), IConfigurationElement.class);
+		Iterable<TTypeProvider> allProviders = transform(allConf, new Conf2Provider());
+		Iterable<Iterable<TType>> allTTypes = transform(allProviders, new Provider2TType());
 		Iterable<TType> allTTypesFlattened = concat(allTTypes);
-		return Maps.uniqueIndex(allTTypesFlattened,
-				new Function<TType, String>() {
+		return Maps.uniqueIndex(allTTypesFlattened, new Function<TType, String>() {
 
-					@Override
-					public String apply(TType arg0) {
-						return arg0.getId();
-					}
-				});
+			@Override
+			public String apply(TType arg0) {
+				return arg0.getId();
+			}
+		});
 	}
 
 	public Map<String, RegisteredAttribute> readAttributes() {
-		Iterable<IConfigurationElement> allConf = filter(Arrays.asList(Platform
-				.getExtensionRegistry().getConfigurationElementsFor(
-						Activator.PLUGIN_ID, EXT_ID_ATTRIBUTES)),
-				IConfigurationElement.class);
-		Iterable<TAttributeProvider> allProviders = transform(allConf,
-				new Conf2AttProvider());
-		Iterable<Iterable<RegisteredAttribute>> allTTypes = transform(
-				allProviders, new Provider2TAType());
+		Iterable<IConfigurationElement> allConf = filter(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID_ATTRIBUTES)), IConfigurationElement.class);
+		Iterable<TAttributeProvider> allProviders = transform(allConf, new Conf2AttProvider());
+		Iterable<Iterable<RegisteredAttribute>> allTTypes = transform(allProviders, new Provider2TAType());
 		Iterable<RegisteredAttribute> allTTypesFlattened = concat(allTTypes);
-		return Maps.uniqueIndex(allTTypesFlattened,
-				new Function<RegisteredAttribute, String>() {
+		return Maps.uniqueIndex(allTTypesFlattened, new Function<RegisteredAttribute, String>() {
 
-					@Override
-					public String apply(RegisteredAttribute arg0) {
-						return arg0.getId();
-					}
-				});
+			@Override
+			public String apply(RegisteredAttribute arg0) {
+				return arg0.getId();
+			}
+		});
 	}
 }

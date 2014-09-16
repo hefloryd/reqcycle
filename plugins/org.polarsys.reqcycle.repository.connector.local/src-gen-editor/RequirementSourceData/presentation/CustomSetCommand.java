@@ -21,8 +21,7 @@ public class CustomSetCommand extends SetCommand {
 
 	private Collection<?> result;
 
-	public CustomSetCommand(EditingDomain domain, Collection<?> result,
-			EStructuralFeature feature, Object value) {
+	public CustomSetCommand(EditingDomain domain, Collection<?> result, EStructuralFeature feature, Object value) {
 		super(domain, null, feature, value);
 		this.result = result;
 	}

@@ -110,13 +110,11 @@ public class Type implements IType {
 	@Override
 	public IType getSuperType() {
 		if (subType == null) {
-			Iterator<IType> iterator = Iterables.filter(
-					TypesManager.allTypes.values(), new Predicate<IType>() {
-						public boolean apply(IType t) {
-							return subTypeOf != null
-									&& subTypeOf.equals(t.getId());
-						}
-					}).iterator();
+			Iterator<IType> iterator = Iterables.filter(TypesManager.allTypes.values(), new Predicate<IType>() {
+				public boolean apply(IType t) {
+					return subTypeOf != null && subTypeOf.equals(t.getId());
+				}
+			}).iterator();
 			if (iterator.hasNext()) {
 				subType = iterator.next();
 			}
@@ -128,7 +126,7 @@ public class Type implements IType {
 	public List<FieldDescriptor> getDescriptors() {
 		List<FieldDescriptor> descriptors = new LinkedList<FieldDescriptor>();
 		for (Field f : getFieldsToInject()) {
-			if(f.isAnnotationPresent(InjectValueName.class)) {
+			if (f.isAnnotationPresent(InjectValueName.class)) {
 				InjectValueName annotation = f.getAnnotation(InjectValueName.class);
 				descriptors.add(new FieldURIDescriptor(f.getName(), f.getType(), annotation.type()));
 			} else {
@@ -163,7 +161,7 @@ public class Type implements IType {
 	public Class<? extends ITypeChecker> getCheckerClass() {
 		return checker;
 	}
-	
+
 	// public static class InjectedType extends Type implements IInjectedType {
 	// @Override
 	// public boolean is(Reachable reachable, IValueInjecter injecter) {

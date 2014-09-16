@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-
 public class ScopeSelectionComposite extends Composite {
 
 	/**
@@ -49,9 +48,6 @@ public class ScopeSelectionComposite extends Composite {
 		Combo cScope = new Combo(control, SWT.NONE);
 		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 	}
-
-
-
 
 	@Override
 	protected void checkSubclass() {

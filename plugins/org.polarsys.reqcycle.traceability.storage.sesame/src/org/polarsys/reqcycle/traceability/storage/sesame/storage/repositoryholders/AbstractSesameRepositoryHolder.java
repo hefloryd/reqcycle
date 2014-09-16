@@ -51,6 +51,7 @@ public abstract class AbstractSesameRepositoryHolder<T> {
 	}
 
 	protected abstract Repository initRepository(T key) throws IOException, OpenRDFException;
+
 	public abstract ISaveTrigger getSaveTrigger(T key);
 
 	private final class InitRepositoryCallable extends CacheLoader<T, Repository> {

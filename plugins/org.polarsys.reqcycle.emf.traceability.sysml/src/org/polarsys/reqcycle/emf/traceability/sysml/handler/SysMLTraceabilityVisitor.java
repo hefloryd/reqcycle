@@ -29,9 +29,7 @@ public class SysMLTraceabilityVisitor implements IVisitor {
 	@Override
 	public boolean visit(Object o, IAdaptable adapable) {
 		if (o instanceof Resource) {
-			return ((Resource) o).getURI() != null
-					&& ((Resource) o).getURI().fileExtension() != null
-					&& ((Resource) o).getURI().fileExtension().equals("uml");
+			return ((Resource) o).getURI() != null && ((Resource) o).getURI().fileExtension() != null && ((Resource) o).getURI().fileExtension().equals("uml");
 		}
 		if (o instanceof Trace) {
 			return visit((Trace) o, adapable);
@@ -49,19 +47,19 @@ public class SysMLTraceabilityVisitor implements IVisitor {
 		return true;
 	}
 
-	private void visit(EObject satis, IAdaptable adaptable,
-			Abstraction abstraction) {
-		
+	private void visit(EObject satis, IAdaptable adaptable, Abstraction abstraction) {
+
 		// -RFa- abstraction might be orphan or incomplete
 		// we must check clients and suppliers.
-		if (abstraction.getClients().isEmpty()) return;
-		if (abstraction.getSuppliers().isEmpty()) return;
-		
+		if (abstraction.getClients().isEmpty())
+			return;
+		if (abstraction.getSuppliers().isEmpty())
+			return;
+
 		Object source = abstraction.getClients().get(0);
 		Object target = abstraction.getSuppliers().get(0);
 		TType tType = SysMLTTypeProvider.get(satis.eClass());
-		getCallBack(adaptable).newUpwardRelation(satis, satis.eResource(),
-				source, Collections.singletonList(target), tType);
+		getCallBack(adaptable).newUpwardRelation(satis, satis.eResource(), source, Collections.singletonList(target), tType);
 	}
 
 	public boolean visit(Trace satis, IAdaptable adaptable) {

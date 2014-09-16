@@ -8,7 +8,6 @@ import org.eclipse.emf.diffmerge.impl.scopes.RootedModelScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
-
 public class CustomRootedModelScope extends RootedModelScope implements ITrackingModelScope {
 
 	protected Set<EObject> addedObjects = new HashSet<EObject>();

@@ -46,8 +46,7 @@ public class ConfigurationBasedFilter implements Filter {
 		boolean result = pair.getFirst().getKind() instanceof RelationBasedType;
 		if (result) {
 			result = false;
-			RelationBasedType relb = (RelationBasedType) pair.getFirst()
-					.getKind();
+			RelationBasedType relb = (RelationBasedType) pair.getFirst().getKind();
 			for (Relation r : config.getRelations()) {
 				// fix me improve the id check
 				result |= (r != null && r.getKind().equals(relb.getLabel()));

@@ -14,8 +14,7 @@ import org.polarsys.reqcycle.utils.collect.exceptions.CannotHandleException;
 import org.polarsys.reqcycle.utils.collect.exceptions.CollectionAbortedException;
 
 /**
- * Defines objects that handle results from a Collector<>, with a function called immediately as
- * each value is gathered.
+ * Defines objects that handle results from a Collector<>, with a function called immediately as each value is gathered.
  */
 public interface ResultHandler<T> {
 
@@ -23,9 +22,9 @@ public interface ResultHandler<T> {
 	 * This method is called by collectors whenever a result is collected.
 	 * 
 	 * @param value
-	 *        The collected result
+	 *            The collected result
 	 * @throws CollectionAbortedException
-	 *         The client code requests that the collection is aborted
+	 *             The client code requests that the collection is aborted
 	 * @throws CannotHandleException
 	 */
 	void handleResult(T value) throws CollectionAbortedException, CannotHandleException;

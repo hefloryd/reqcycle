@@ -51,8 +51,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
-public class StylingLabelProvider implements ILabelProvider,
-		IStyledLabelProvider, EventHandler {
+public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvider, EventHandler {
 
 	@Inject
 	IStylingManager manager;
@@ -76,8 +75,7 @@ public class StylingLabelProvider implements ILabelProvider,
 
 	public void notifyChanged(Object[] objects) {
 		for (ILabelProviderListener listener : listeners) {
-			listener.labelProviderChanged(new LabelProviderChangedEvent(this,
-					objects));
+			listener.labelProviderChanged(new LabelProviderChangedEvent(this, objects));
 		}
 	}
 
@@ -150,8 +148,7 @@ public class StylingLabelProvider implements ILabelProvider,
 					}
 				}
 				if (model.getDefault() != null) {
-					return IconRegistry.getImage(model.getDefault().getIcon()
-							.getImage());
+					return IconRegistry.getImage(model.getDefault().getIcon().getImage());
 				}
 			}
 			return null;
@@ -164,7 +161,7 @@ public class StylingLabelProvider implements ILabelProvider,
 			return new StyledString(((IPredicate) element).getDisplayName());
 		} else if (element instanceof Scope) {
 			return new StyledString(((Scope) element).getName());
-		} else{
+		} else {
 			return getText(element, StyledString.class);
 		}
 	}
@@ -183,9 +180,7 @@ public class StylingLabelProvider implements ILabelProvider,
 			if (label == null) {
 				label = ((RequirementSource) element).getName();
 			} else {
-				label = ((RequirementSource) element).getName() + 
-						" [" + label
-						+ "]";
+				label = ((RequirementSource) element).getName() + " [" + label + "]";
 			}
 			return toT(label, theClass);
 		} else {
@@ -195,12 +190,10 @@ public class StylingLabelProvider implements ILabelProvider,
 				for (CaseStyle styling : list) {
 					StylingPredicate sp = (StylingPredicate) styling;
 					if (sp.getPredicate() != null) {
-						if (predicateEvaluator
-								.match(sp.getPredicate(), element)) {
+						if (predicateEvaluator.match(sp.getPredicate(), element)) {
 							if (StyledString.class.equals(theClass)) {
 								return (T) applyStyle(element, styling);
-							}
-							else {
+							} else {
 								StyledString s = applyStyle(element, styling);
 								return (T) s.getString();
 							}
@@ -210,19 +203,18 @@ public class StylingLabelProvider implements ILabelProvider,
 				if (model.getDefault() != null) {
 					return (T) applyStyle(element, model.getDefault());
 				}
-			}
-			else {
-				// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default				
+			} else {
+				// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default
 				if (element instanceof Requirement) {
 					Requirement req = (Requirement) element;
-					String label = "id=" +req.getId() +"]["+ "text=" + req.getText() ;
-					return toT(" [ " +label+ "]", theClass);
+					String label = "id=" + req.getId() + "][" + "text=" + req.getText();
+					return toT(" [ " + label + "]", theClass);
 
 				}
 				// as Requirement extends section, requirement must be handled first (before section)
 				if (element instanceof Section) {
-					String label = (( Section) element).getId() + "][" + (( Section) element).getText();
-					return toT(" [ " +label+ "]", theClass);
+					String label = ((Section) element).getId() + "][" + ((Section) element).getText();
+					return toT(" [ " + label + "]", theClass);
 				}
 			}
 		}

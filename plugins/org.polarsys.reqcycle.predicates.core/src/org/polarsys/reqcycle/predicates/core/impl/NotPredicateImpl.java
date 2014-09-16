@@ -17,18 +17,17 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.NotPredicate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Not Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Not Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class NotPredicateImpl extends CompositePredicateImpl implements
-		NotPredicate {
+public class NotPredicateImpl extends CompositePredicateImpl implements NotPredicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NotPredicateImpl() {
@@ -37,6 +36,7 @@ public class NotPredicateImpl extends CompositePredicateImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

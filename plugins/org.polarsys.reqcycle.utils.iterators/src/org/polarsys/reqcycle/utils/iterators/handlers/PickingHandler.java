@@ -13,9 +13,7 @@ package org.polarsys.reqcycle.utils.iterators.handlers;
 import org.polarsys.reqcycle.utils.iterators.pickers.ExecutivePicker;
 
 /**
- * Extension that can be added to a picker to perform an additional treatment,
- * such as displaying a console output, or building a data structure. The treatment
- * is performed every time the getNext() method is called.
+ * Extension that can be added to a picker to perform an additional treatment, such as displaying a console output, or building a data structure. The treatment is performed every time the getNext() method is called.
  */
 public interface PickingHandler {
 

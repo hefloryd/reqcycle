@@ -32,8 +32,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 
 /**
- * Wraps an OCL Pivot constraint into an {@link IModelConstraint} to be used in live or batch validation. Also 
- * extends {@link AbstractConstraintDescriptor} so this object can refer to itself as a descriptor.
+ * Wraps an OCL Pivot constraint into an {@link IModelConstraint} to be used in live or batch validation. Also extends {@link AbstractConstraintDescriptor} so this object can refer to itself as a descriptor.
  */
 public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor implements IModelConstraint {
 
@@ -51,15 +50,15 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 	public IStatus validate(IValidationContext ctx) {
 		EObject target = ctx.getTarget();
 		boolean constraintResult = ocl.check(target, constraint);
-		if(constraintResult == false) {
+		if (constraintResult == false) {
 			String message = String.format("Object %s does not comply with constraint %s", target.toString(), getDescriptor().getName()); //$NON-NLS-1$
 			OpaqueExpression specification = constraint.getSpecification();
-			if(specification instanceof ExpressionInOCL) {
-				OCLExpression messageExpression = ((ExpressionInOCL)specification).getBodyExpression();
+			if (specification instanceof ExpressionInOCL) {
+				OCLExpression messageExpression = ((ExpressionInOCL) specification).getBodyExpression();
 				ExpressionInOCL messageQuery = null;
-				if(messageExpression instanceof ExpressionInOCL) {
-					messageQuery = (ExpressionInOCL)messageExpression;
-				} else if(messageExpression != null) {
+				if (messageExpression instanceof ExpressionInOCL) {
+					messageQuery = (ExpressionInOCL) messageExpression;
+				} else if (messageExpression != null) {
 					OCLHelper helper = ocl.createOCLHelper(target.eClass());
 					try {
 						messageQuery = helper.createQuery(messageExpression.toString());
@@ -67,10 +66,10 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 						e.printStackTrace();
 					}
 				}
-				if(messageQuery != null) {
+				if (messageQuery != null) {
 					Object queryResult = ocl.evaluate(target, messageQuery);
-					if(queryResult instanceof String) {
-						message = (String)queryResult;
+					if (queryResult instanceof String) {
+						message = (String) queryResult;
 					}
 				}
 			}
@@ -84,11 +83,11 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 		Namespace context = constraint.getContext();
 		EClassifier eClassifier = ocl.getMetaModelManager().getEcoreOfPivot(EClass.class, context);
 		boolean result = false;
-		if(eClassifier != null) {
-			if(!result) {
+		if (eClassifier != null) {
+			if (!result) {
 				EObject eContainer = eClassifier.eContainer();
-				if(eContainer instanceof EPackage) {
-					String nsURI = ((EPackage)eContainer).getNsURI();
+				if (eContainer instanceof EPackage) {
+					String nsURI = ((EPackage) eContainer).getNsURI();
 					EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
 					EClassifier eClassifier2 = ePackage.getEClassifier(eClassifier.getName());
 					result = eClassifier2.isInstance(object);
@@ -101,8 +100,8 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 	@Override
 	public boolean targetsEvent(Notification notification) {
 		Object notifier = notification.getNotifier();
-		if(notifier instanceof EObject) {
-			return targetsTypeOf((EObject)notifier);
+		if (notifier instanceof EObject) {
+			return targetsTypeOf((EObject) notifier);
 		}
 		return false;
 	}
@@ -140,13 +139,13 @@ public class OCLtoEMFConstraintWrapper extends AbstractConstraintDescriptor impl
 
 	@Override
 	public EvaluationMode<?> getEvaluationMode() {
-		//Note : LIVE also works as batch. 
+		// Note : LIVE also works as batch.
 		return EvaluationMode.LIVE;
 	}
-	
+
 	@Override
 	public String getDescription() {
-		//TODO : find how to generate description from the comments in the ocl source file.
+		// TODO : find how to generate description from the comments in the ocl source file.
 		return null;
 	}
 

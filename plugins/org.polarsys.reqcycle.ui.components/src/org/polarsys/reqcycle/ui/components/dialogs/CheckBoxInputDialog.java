@@ -64,15 +64,15 @@ public class CheckBoxInputDialog extends AbstractCustomDialog {
 		TableViewerColumn column = new TableViewerColumn(checkboxTableViewer, SWT.None);
 		column.getColumn().setResizable(true);
 
-		if(this.contentProvider == null)
+		if (this.contentProvider == null)
 			this.contentProvider = ArrayContentProvider.getInstance();
-		if(this.labelProvider == null)
+		if (this.labelProvider == null)
 			this.labelProvider = this.getDefaultLabelProvider();
 
 		this.checkboxTableViewer.setContentProvider(this.contentProvider);
 		this.checkboxTableViewer.setLabelProvider(this.labelProvider);
 		this.checkboxTableViewer.setInput(getInput());
-		if(initialSelection != null && !initialSelection.isEmpty()) {
+		if (initialSelection != null && !initialSelection.isEmpty()) {
 			this.checkboxTableViewer.setCheckedElements(initialSelection.toArray());
 		}
 	}
@@ -111,7 +111,7 @@ public class CheckBoxInputDialog extends AbstractCustomDialog {
 
 	@Override
 	protected void buttonPressed(int buttonId) {
-		if(buttonId == IDialogConstants.OK_ID) {
+		if (buttonId == IDialogConstants.OK_ID) {
 			this.selectedItems.addAll(Arrays.asList(this.checkboxTableViewer.getCheckedElements()));
 		} else {
 			this.selectedItems.removeAll(selectedItems);

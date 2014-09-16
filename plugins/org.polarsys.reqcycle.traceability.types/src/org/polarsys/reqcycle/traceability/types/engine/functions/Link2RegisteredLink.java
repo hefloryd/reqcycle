@@ -24,8 +24,7 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 
 import com.google.common.base.Function;
 
-public class Link2RegisteredLink implements
-		Function<Pair<Link, Reachable>, Iterable<Pair<Link, Reachable>>> {
+public class Link2RegisteredLink implements Function<Pair<Link, Reachable>, Iterable<Pair<Link, Reachable>>> {
 
 	private Configuration typeConfig;
 	private DIRECTION direction;
@@ -36,18 +35,15 @@ public class Link2RegisteredLink implements
 	}
 
 	@Override
-	public Iterable<Pair<Link, Reachable>> apply(
-			final Pair<Link, Reachable> arg0) {
+	public Iterable<Pair<Link, Reachable>> apply(final Pair<Link, Reachable> arg0) {
 		Link link = arg0.getFirst();
 		TType type = link.getKind();
 		Reachable source = arg0.getFirst().getSources().iterator().next();
 		Reachable target = arg0.getFirst().getTargets().iterator().next();
-		Iterable<Relation> relations = RelationUtils.getAgregatingRelations(
-				type, typeConfig, source, target, direction);
+		Iterable<Relation> relations = RelationUtils.getAgregatingRelations(type, typeConfig, source, target, direction);
 		List<Pair<Link, Reachable>> result = new LinkedList<Pair<Link, Reachable>>();
 		for (Relation r : relations) {
-			result.add(new Pair<Link, Reachable>(new Link(link.getId(),
-					new RelationBasedType(r, type), source, target), target));
+			result.add(new Pair<Link, Reachable>(new Link(link.getId(), new RelationBasedType(r, type), source, target), target));
 		}
 		return result;
 	}

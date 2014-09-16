@@ -21,8 +21,7 @@ import org.polarsys.reqcycle.traceability.model.TType;
 public class SerializationUtils {
 
 	/**
-	 * Returns a serialized version of the given {@link TType}. The resulting
-	 * {@link String} is url safe.
+	 * Returns a serialized version of the given {@link TType}. The resulting {@link String} is url safe.
 	 * 
 	 * @param object
 	 * @return null if an error occurs

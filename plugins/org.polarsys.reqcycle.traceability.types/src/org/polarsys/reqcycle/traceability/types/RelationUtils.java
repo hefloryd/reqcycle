@@ -33,16 +33,12 @@ import com.google.common.collect.Lists;
 public class RelationUtils {
 
 	static ITypesManager manager = ZigguratInject.make(ITypesManager.class);
-	static TraceTypesManager tManager = ZigguratInject
-			.make(TraceTypesManager.class);
+	static TraceTypesManager tManager = ZigguratInject.make(TraceTypesManager.class);
 
-	public static Iterable<Relation> getMatchingRelations(
-			Pair<Link, Reachable> pair, DIRECTION direction,
-			Configuration config) {
+	public static Iterable<Relation> getMatchingRelations(Pair<Link, Reachable> pair, DIRECTION direction, Configuration config) {
 		Reachable source = pair.getFirst().getSources().iterator().next();
 		Reachable target = pair.getFirst().getTargets().iterator().next();
-		return getAgregatingRelations(pair.getFirst().getKind(), config,
-				source, target, direction);
+		return getAgregatingRelations(pair.getFirst().getKind(), config, source, target, direction);
 		// Iterable<IType> allTypesFromSource = manager
 		// .getAllApplicableTypes(source);
 		// Set<Relation> result = new HashSet<Relation>();
@@ -75,8 +71,7 @@ public class RelationUtils {
 		}
 	}
 
-	private static List<Relation> getRelations(Type type, DIRECTION direction,
-			Configuration config) {
+	private static List<Relation> getRelations(Type type, DIRECTION direction, Configuration config) {
 		if (direction == DIRECTION.DOWNWARD) {
 			return filter(type.getOutgoings(), config);
 		} else {
@@ -90,19 +85,15 @@ public class RelationUtils {
 	 * @param incomings
 	 * @return
 	 */
-	private static List<Relation> filter(EList<Relation> incomings,
-			final Configuration config) {
-		return Lists.newArrayList(Iterables.filter(incomings,
-				new Predicate<Relation>() {
-					public boolean apply(Relation r) {
-						return r.eContainer() == config;
-					}
-				}));
+	private static List<Relation> filter(EList<Relation> incomings, final Configuration config) {
+		return Lists.newArrayList(Iterables.filter(incomings, new Predicate<Relation>() {
+			public boolean apply(Relation r) {
+				return r.eContainer() == config;
+			}
+		}));
 	}
 
-	public static Iterable<Relation> getAgregatingRelations(TType type,
-			Configuration config, Reachable source, Reachable target,
-			DIRECTION direction) {
+	public static Iterable<Relation> getAgregatingRelations(TType type, Configuration config, Reachable source, Reachable target, DIRECTION direction) {
 		Set<Relation> relations = new HashSet<Relation>();
 		for (Relation r : config.getRelations()) {
 			for (String s : r.getAgregatedTypes()) {

@@ -14,16 +14,14 @@ package org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Std Attribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Std Attribute</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getPossibleValues <em>Possible Values</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getType <em>Type</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getPossibleValues <em>Possible Values</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,13 +31,12 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StdAttribute extends Attribute {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getStdAttribute_Name()
@@ -49,24 +46,22 @@ public interface StdAttribute extends Attribute {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getName <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Possible Values</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Possible Values</b></em>' attribute list. The list contents are of type {@link java.lang.String}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Possible Values</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Possible Values</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Possible Values</em>' attribute list.
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getStdAttribute_PossibleValues()
 	 * @model
@@ -75,14 +70,12 @@ public interface StdAttribute extends Attribute {
 	EList<String> getPossibleValues();
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.AttributeType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are from the enumeration {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.AttributeType}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.AttributeType
 	 * @see #setType(AttributeType)
@@ -93,10 +86,10 @@ public interface StdAttribute extends Attribute {
 	AttributeType getType();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.StdAttribute#getType <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Type</em>' attribute.
 	 * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.AttributeType
 	 * @see #getType()
 	 * @generated

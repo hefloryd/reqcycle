@@ -69,8 +69,7 @@ public class SelectOperationDialog extends ValidatingTitleAreaDialog {
 
 		initProviders(listViewer);
 
-		text = new Text(area, SWT.BORDER | SWT.READ_ONLY | SWT.WRAP
-				| SWT.V_SCROLL | SWT.MULTI);
+		text = new Text(area, SWT.BORDER | SWT.READ_ONLY | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 
 		text.setEditable(false);
 		GridData gd_text = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
@@ -90,8 +89,7 @@ public class SelectOperationDialog extends ValidatingTitleAreaDialog {
 					ReqCycleOperation reqCycleOp = (ReqCycleOperation) object;
 					String operation = reqCycleOp.getMethod().getName();
 
-					Class<?>[] paramList = reqCycleOp.getMethod()
-							.getParameterTypes();
+					Class<?>[] paramList = reqCycleOp.getMethod().getParameterTypes();
 					operation += "(";
 					if (paramList.length > 1) {
 						for (int i = 1; i < paramList.length; i++) {
@@ -111,8 +109,7 @@ public class SelectOperationDialog extends ValidatingTitleAreaDialog {
 			}
 		};
 
-		ArrayContentProvider contentProvider = ArrayContentProvider
-				.getInstance();
+		ArrayContentProvider contentProvider = ArrayContentProvider.getInstance();
 
 		list.setLabelProvider(labelProvider);
 		list.setContentProvider(contentProvider);
@@ -122,10 +119,8 @@ public class SelectOperationDialog extends ValidatingTitleAreaDialog {
 				validateInput();
 
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
-					ReqCycleOperation op = (ReqCycleOperation) selection
-							.getFirstElement();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
+					ReqCycleOperation op = (ReqCycleOperation) selection.getFirstElement();
 					text.setText("Description : " + op.getDescription());
 					currentOperation = op;
 				}
@@ -133,8 +128,7 @@ public class SelectOperationDialog extends ValidatingTitleAreaDialog {
 		});
 		;
 
-		list.setInput(Lists.newArrayList(Ordering.natural().sortedCopy(
-				reqCycleOperationlManager.getAllOperations())));
+		list.setInput(Lists.newArrayList(Ordering.natural().sortedCopy(reqCycleOperationlManager.getAllOperations())));
 	}
 
 	@Override

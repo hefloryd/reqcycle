@@ -5,21 +5,21 @@ import org.eclipse.core.runtime.IStatus;
 public class StatusUtil {
 
 	public static String getStatusMessage(IStatus status, String prefix) {
-		
+
 		String message = status.getMessage();
 		int severity = status.getSeverity();
 
 		String statusMsg;
 		switch (severity) {
-			case IStatus.ERROR :
-				statusMsg = "[Error] ";
-				break;
-			case IStatus.WARNING :
-				statusMsg = "[Warning] ";
-				break;
-			default :
-				statusMsg = "";
-				break;
+		case IStatus.ERROR:
+			statusMsg = "[Error] ";
+			break;
+		case IStatus.WARNING:
+			statusMsg = "[Warning] ";
+			break;
+		default:
+			statusMsg = "";
+			break;
 		}
 		statusMsg += message;
 
@@ -39,7 +39,7 @@ public class StatusUtil {
 			}
 		}
 		return statusMsg;
-		
+
 	}
-	
+
 }

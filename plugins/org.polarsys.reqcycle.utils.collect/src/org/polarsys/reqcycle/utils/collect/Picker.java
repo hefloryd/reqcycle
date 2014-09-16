@@ -12,19 +12,15 @@ package org.polarsys.reqcycle.utils.collect;
 
 import org.polarsys.reqcycle.utils.collect.exceptions.CannotPickException;
 
-
 /**
- * A picker defines a way to collect children from an element t.he type of children 
- * and the type of parent are not taken into consideration by the interface
- *  meaning that the implementation should make sure that the types are consistent.
+ * A picker defines a way to collect children from an element t.he type of children and the type of parent are not taken into consideration by the interface meaning that the implementation should make sure that the types are consistent.
  */
 public interface Picker<T> {
 
 	/**
 	 * @param element
-	 *        the element from which the children are to be retrieved
-	 * @return
-	 *         the children of the elements
+	 *            the element from which the children are to be retrieved
+	 * @return the children of the elements
 	 * @throws Exception
 	 */
 	public Iterable<T> getNexts(T element) throws CannotPickException;

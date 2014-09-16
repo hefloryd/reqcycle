@@ -19,35 +19,31 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.*;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTracabilityFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static CacheTracabilityFactory init() {
 		try {
-			CacheTracabilityFactory theCacheTracabilityFactory = (CacheTracabilityFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/tracability/1.0"); 
+			CacheTracabilityFactory theCacheTracabilityFactory = (CacheTracabilityFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/tracability/1.0");
 			if (theCacheTracabilityFactory != null) {
 				return theCacheTracabilityFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new CacheTracabilityFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CacheTracabilityFactoryImpl() {
@@ -55,27 +51,33 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case CacheTracabilityPackage.TRACEABILITY_LINK: return createTraceabilityLink();
-			case CacheTracabilityPackage.ATTRIBUTE: return createAttribute();
-			case CacheTracabilityPackage.TRACEABLE_ELEMENT: return createTraceableElement();
-			case CacheTracabilityPackage.MODEL: return createModel();
-			case CacheTracabilityPackage.ANALYZED_RESOURCE: return createAnalyzedResource();
-			case CacheTracabilityPackage.PROPERTY: return createProperty();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case CacheTracabilityPackage.TRACEABILITY_LINK:
+			return createTraceabilityLink();
+		case CacheTracabilityPackage.ATTRIBUTE:
+			return createAttribute();
+		case CacheTracabilityPackage.TRACEABLE_ELEMENT:
+			return createTraceableElement();
+		case CacheTracabilityPackage.MODEL:
+			return createModel();
+		case CacheTracabilityPackage.ANALYZED_RESOURCE:
+			return createAnalyzedResource();
+		case CacheTracabilityPackage.PROPERTY:
+			return createProperty();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TraceabilityLink createTraceabilityLink() {
@@ -84,8 +86,8 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Attribute createAttribute() {
@@ -94,8 +96,8 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TraceableElement createTraceableElement() {
@@ -104,8 +106,8 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Model createModel() {
@@ -114,8 +116,8 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnalyzedResource createAnalyzedResource() {
@@ -124,8 +126,8 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Property createProperty() {
@@ -134,17 +136,17 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CacheTracabilityPackage getCacheTracabilityPackage() {
-		return (CacheTracabilityPackage)getEPackage();
+		return (CacheTracabilityPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -153,4 +155,4 @@ public class CacheTracabilityFactoryImpl extends EFactoryImpl implements CacheTr
 		return CacheTracabilityPackage.eINSTANCE;
 	}
 
-} //CacheTracabilityFactoryImpl
+} // CacheTracabilityFactoryImpl

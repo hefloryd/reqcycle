@@ -26,20 +26,14 @@ import org.polarsys.reqcycle.xcos.model.XcosElement;
 import org.polarsys.reqcycle.xcos.model.XcosTrace;
 import org.polarsys.reqcycle.xcos.traceability.types.XcosTTypeProvider;
 
-
-
-
-
 /**
- * @author Raphael Faudou
- * this class visits interesting elements that are Xcos reachable objects
+ * @author Raphael Faudou this class visits interesting elements that are Xcos reachable objects
  *
  */
 public class XcosTraceabilityVisitor implements IVisitor {
-	
+
 	@Inject
 	IReachableCreator creator;
-
 
 	@Override
 	public void start(IAdaptable adaptable) {
@@ -47,19 +41,17 @@ public class XcosTraceabilityVisitor implements IVisitor {
 
 	@Override
 	public boolean visit(Object o, IAdaptable adaptable) {
-		IBuilderCallBack callBack = (IBuilderCallBack)adaptable.getAdapter(IBuilderCallBack.class);
-		if(o instanceof XcosElement) {
-			XcosElement xce = (XcosElement)o;
-			if( xce instanceof XcosTrace){
+		IBuilderCallBack callBack = (IBuilderCallBack) adaptable.getAdapter(IBuilderCallBack.class);
+		if (o instanceof XcosElement) {
+			XcosElement xce = (XcosElement) o;
+			if (xce instanceof XcosTrace) {
 				XcosTrace trace = (XcosTrace) xce;
-				// do the job: 
-				//  analyse trace and add or update the link in ReqCycle traceability repository
-				
-				computeTraceability(trace,callBack);
+				// do the job:
+				// analyse trace and add or update the link in ReqCycle traceability repository
+
+				computeTraceability(trace, callBack);
 			}
-			
-			
-			
+
 		}
 		// continue to visit
 		return true;
@@ -68,40 +60,31 @@ public class XcosTraceabilityVisitor implements IVisitor {
 	@Override
 	public void end(IAdaptable adaptable) {
 	}
-	
-
 
 	/**
-	 * Retrieves the right reference to trace links from the object, executes it,
-	 * and serialize the links.
+	 * Retrieves the right reference to trace links from the object, executes it, and serialize the links.
 	 * 
 	 * @param callBack
 	 */
-	private  void computeTraceability(XcosTrace link, IBuilderCallBack callBack) {
-		
-		//Downward relation from "from" to "result" == upward relation from "result" to "from";
-		//UUID uniqueID = UUID.randomUUID();
-		TType tType =  XcosTTypeProvider.get(link.getSemantics());
+	private void computeTraceability(XcosTrace link, IBuilderCallBack callBack) {
+
+		// Downward relation from "from" to "result" == upward relation from "result" to "from";
+		// UUID uniqueID = UUID.randomUUID();
+		TType tType = XcosTTypeProvider.get(link.getSemantics());
 		URI uri;
 		Reachable target = null;
 		try {
 			uri = new URI(link.getRef());
-			 target = creator.getReachable(uri);
-			 
-		
-			
-			
+			target = creator.getReachable(uri);
+
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (target != null) {
-		
-			callBack.newUpwardRelation(link,  link.getResource(), link.getSource(), Collections.singletonList(target), tType);
+
+			callBack.newUpwardRelation(link, link.getResource(), link.getSource(), Collections.singletonList(target), tType);
 		}
 	}
-
-	
-
 
 }

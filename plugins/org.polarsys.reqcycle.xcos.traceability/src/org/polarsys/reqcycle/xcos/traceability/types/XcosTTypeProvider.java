@@ -15,26 +15,19 @@ import java.util.Map;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.types.TTypeProvider;
 
-
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 
-public class XcosTTypeProvider implements TTypeProvider{
+public class XcosTTypeProvider implements TTypeProvider {
 
-	
-	private static TType[] TYPES = new XcosTType[] {
-		new XcosTType("COVERS"),
-		new XcosTType("IMPLEMENTS"),
-		new XcosTType("TRACE")
-		 };
+	private static TType[] TYPES = new XcosTType[] { new XcosTType("COVERS"), new XcosTType("IMPLEMENTS"), new XcosTType("TRACE") };
 
-	private static Map<String, TType> MAP = Maps.uniqueIndex(
-			Arrays.asList(TYPES), new Function<TType, String>() {
-				@Override
-				public String apply(TType arg0) {
-					return (((XcosTType) arg0).getMainLabel());
-				}
-			});
+	private static Map<String, TType> MAP = Maps.uniqueIndex(Arrays.asList(TYPES), new Function<TType, String>() {
+		@Override
+		public String apply(TType arg0) {
+			return (((XcosTType) arg0).getMainLabel());
+		}
+	});
 
 	public static TType get(String mainLabel) {
 		TType result = MAP.get(mainLabel);

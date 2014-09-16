@@ -28,8 +28,7 @@ import org.polarsys.reqcycle.utils.collect.exceptions.CollectionAbortedException
 public class SetYieldAdapter<T> implements YieldAdapter<T> {
 
 	/**
-	 * Convert a method that implements the Collector<> class with a standard Iterable<>, by
-	 * collecting the results in a list, and returning an iterator to that list.
+	 * Convert a method that implements the Collector<> class with a standard Iterable<>, by collecting the results in a list, and returning an iterator to that list.
 	 */
 	public YieldAdapterIterable<T> adapt(Collector<T> client) {
 
@@ -39,7 +38,7 @@ public class SetYieldAdapter<T> implements YieldAdapter<T> {
 			client.collect(new ResultHandler<T>() {
 
 				public void handleResult(T value) throws CannotHandleException {
-					if(!results.contains(value)) {
+					if (!results.contains(value)) {
 						results.add(value);
 					}
 				}

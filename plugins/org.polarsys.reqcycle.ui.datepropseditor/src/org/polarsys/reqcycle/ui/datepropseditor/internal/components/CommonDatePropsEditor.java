@@ -109,8 +109,8 @@ class CommonDatePropsEditor extends Composite {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof TimeZone) {
-					return ((TimeZone)element).getID();
+				if (element instanceof TimeZone) {
+					return ((TimeZone) element).getID();
 				}
 				return super.getText(element);
 			}
@@ -120,10 +120,10 @@ class CommonDatePropsEditor extends Composite {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if(comboViewer.getSelection() instanceof IStructuredSelection) {
-					final IStructuredSelection selection = (IStructuredSelection)comboViewer.getSelection();
-					if(!(selection.isEmpty())) {
-						final TimeZone seletedTimezone = (TimeZone)selection.getFirstElement();
+				if (comboViewer.getSelection() instanceof IStructuredSelection) {
+					final IStructuredSelection selection = (IStructuredSelection) comboViewer.getSelection();
+					if (!(selection.isEmpty())) {
+						final TimeZone seletedTimezone = (TimeZone) selection.getFirstElement();
 						calendarValue.setTimeZone(seletedTimezone);
 					}
 				}
@@ -133,7 +133,7 @@ class CommonDatePropsEditor extends Composite {
 
 	private static TimeZone[] getAvailableTimezones() {
 		final Collection<TimeZone> availableTimezones = new TreeSet<TimeZone>(new TimeZoneComparator());
-		for(final String id : TimeZone.getAvailableIDs()) {
+		for (final String id : TimeZone.getAvailableIDs()) {
 			availableTimezones.add(TimeZone.getTimeZone(id));
 		}
 		return availableTimezones.toArray(new TimeZone[availableTimezones.size()]);

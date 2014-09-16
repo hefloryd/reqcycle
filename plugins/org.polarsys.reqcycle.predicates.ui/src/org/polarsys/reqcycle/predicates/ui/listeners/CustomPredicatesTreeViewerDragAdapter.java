@@ -20,7 +20,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.eclipse.swt.dnd.DragSourceEvent;
 
-
 public class CustomPredicatesTreeViewerDragAdapter extends ViewerDragAdapter {
 
 	public CustomPredicatesTreeViewerDragAdapter(Viewer viewer) {
@@ -30,10 +29,10 @@ public class CustomPredicatesTreeViewerDragAdapter extends ViewerDragAdapter {
 	@Override
 	public void dragStart(DragSourceEvent event) {
 		ISelection s = viewer.getSelection();
-		if(s instanceof IStructuredSelection) {
-			Object element = ((IStructuredSelection)s).getFirstElement();
-			if(element instanceof IPredicate) {
-				selection = new StructuredSelection(EcoreUtil.copy((IPredicate)element));
+		if (s instanceof IStructuredSelection) {
+			Object element = ((IStructuredSelection) s).getFirstElement();
+			if (element instanceof IPredicate) {
+				selection = new StructuredSelection(EcoreUtil.copy((IPredicate) element));
 
 			}
 		}

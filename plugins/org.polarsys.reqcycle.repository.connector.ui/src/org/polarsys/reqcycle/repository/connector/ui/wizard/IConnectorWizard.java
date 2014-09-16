@@ -16,8 +16,7 @@ import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 /**
- * If the connector's configuration is made through a wizard, this interface
- * should be used.
+ * If the connector's configuration is made through a wizard, this interface should be used.
  */
 public interface IConnectorWizard extends IConnector, IWizard {
 
@@ -25,8 +24,7 @@ public interface IConnectorWizard extends IConnector, IWizard {
 	public void init(ISelection selection, String name);
 
 	/**
-	 * Called before the callable, used to register specific properties to the
-	 * connector
+	 * Called before the callable, used to register specific properties to the connector
 	 * 
 	 * @param source
 	 */

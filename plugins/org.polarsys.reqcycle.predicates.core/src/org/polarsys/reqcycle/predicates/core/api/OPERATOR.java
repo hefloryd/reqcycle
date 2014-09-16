@@ -19,19 +19,16 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>OPERATOR</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>OPERATOR</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getOPERATOR()
  * @model
  * @generated
  */
 public enum OPERATOR implements Enumerator {
 	/**
-	 * The '<em><b>EQ</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>EQ</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #EQ_VALUE
 	 * @generated
 	 * @ordered
@@ -39,41 +36,36 @@ public enum OPERATOR implements Enumerator {
 	EQ(0, "EQ", "="),
 
 	/**
-	 * The '<em><b>NQ</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>NQ</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #NQ_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	NQ(1, "NQ", "!="), /**
-	 * The '<em><b>GT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>GT</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #GT_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	GT(2, "GT", ">"), /**
-	 * The '<em><b>GET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>GET</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #GET_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	GET(3, "GET", ">="), /**
-	 * The '<em><b>LT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>LT</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #LT_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	LT(4, "LT", "<"), /**
-	 * The '<em><b>LET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>LET</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #LET_VALUE
 	 * @generated
 	 * @ordered
@@ -81,12 +73,12 @@ public enum OPERATOR implements Enumerator {
 	LET(5, "LET", "<=");
 
 	/**
-	 * The '<em><b>EQ</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>EQ</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>EQ</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EQ
 	 * @model literal="="
 	 * @generated
@@ -95,12 +87,12 @@ public enum OPERATOR implements Enumerator {
 	public static final int EQ_VALUE = 0;
 
 	/**
-	 * The '<em><b>NQ</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>NQ</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>NQ</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NQ
 	 * @model literal="!="
 	 * @generated
@@ -109,12 +101,12 @@ public enum OPERATOR implements Enumerator {
 	public static final int NQ_VALUE = 1;
 
 	/**
-	 * The '<em><b>GT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>GT</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>GT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #GT
 	 * @model literal=">"
 	 * @generated
@@ -123,12 +115,12 @@ public enum OPERATOR implements Enumerator {
 	public static final int GT_VALUE = 2;
 
 	/**
-	 * The '<em><b>GET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>GET</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>GET</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #GET
 	 * @model literal=">="
 	 * @generated
@@ -152,12 +144,12 @@ public enum OPERATOR implements Enumerator {
 	public static final int LT_VALUE = 4;
 
 	/**
-	 * The '<em><b>LET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>LET</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>LET</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LET
 	 * @model literal="<="
 	 * @generated
@@ -166,32 +158,22 @@ public enum OPERATOR implements Enumerator {
 	public static final int LET_VALUE = 5;
 
 	/**
-	 * An array of all the '<em><b>OPERATOR</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>OPERATOR</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final OPERATOR[] VALUES_ARRAY = new OPERATOR[] {
-			EQ,
-			NQ,
-			GT,
-			GET,
-			LT,
-			LET,
-		};
+	private static final OPERATOR[] VALUES_ARRAY = new OPERATOR[] { EQ, NQ, GT, GET, LT, LET, };
 
 	/**
-	 * A public read-only list of all the '<em><b>OPERATOR</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>OPERATOR</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<OPERATOR> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static OPERATOR get(String literal) {
@@ -205,9 +187,8 @@ public enum OPERATOR implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static OPERATOR getByName(String name) {
@@ -221,48 +202,52 @@ public enum OPERATOR implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>OPERATOR</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static OPERATOR get(int value) {
 		switch (value) {
-			case EQ_VALUE: return EQ;
-			case NQ_VALUE: return NQ;
-			case GT_VALUE: return GT;
-			case GET_VALUE: return GET;
-			case LT_VALUE: return LT;
-			case LET_VALUE: return LET;
+		case EQ_VALUE:
+			return EQ;
+		case NQ_VALUE:
+			return NQ;
+		case GT_VALUE:
+			return GT;
+		case GET_VALUE:
+			return GET;
+		case LT_VALUE:
+			return LT;
+		case LET_VALUE:
+			return LET;
 		}
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private OPERATOR(int value, String name, String literal) {
@@ -272,36 +257,35 @@ public enum OPERATOR implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -309,4 +293,4 @@ public enum OPERATOR implements Enumerator {
 		return literal;
 	}
 
-} //OPERATOR
+} // OPERATOR

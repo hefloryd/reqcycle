@@ -27,15 +27,12 @@ import com.google.common.base.Joiner;
 public class JDTUtils {
 	public static final String PLATFORM = "platform:";
 	public static final String SEPARATOR = "::";
-	private static IReachableCreator creator = ZigguratInject
-			.make(IReachableCreator.class);
+	private static IReachableCreator creator = ZigguratInject.make(IReachableCreator.class);
 
 	public static ReachableObject getReachable(IFile cu) {
 		if ("java".equalsIgnoreCase(cu.getFileExtension())) {
 			try {
-				JDTReachableObject jdtReachableObject = new JDTReachableObject(
-						creator.getReachable(new URI(PLATFORM
-								+ cu.getFullPath().toString()), cu));
+				JDTReachableObject jdtReachableObject = new JDTReachableObject(creator.getReachable(new URI(PLATFORM + cu.getFullPath().toString()), cu));
 				ZigguratInject.inject(jdtReachableObject);
 				return jdtReachableObject;
 			} catch (URISyntaxException e) {
@@ -49,8 +46,7 @@ public class JDTUtils {
 		URI uri;
 		try {
 			uri = new URI(getQualifiedURI(cu));
-			JDTReachableObject object = new JDTReachableObject(
-					creator.getReachable(uri, cu));
+			JDTReachableObject object = new JDTReachableObject(creator.getReachable(uri, cu));
 			ZigguratInject.inject(object);
 			return object;
 		} catch (URISyntaxException e) {
@@ -62,9 +58,7 @@ public class JDTUtils {
 
 	protected static String getQualifiedURI(IJavaElement element) {
 		StringBuilder result = new StringBuilder();
-		result.append(PLATFORM)
-				.append(element.getResource().getFullPath().toString())
-				.append("#");
+		result.append(PLATFORM).append(element.getResource().getFullPath().toString()).append("#");
 		List<String> names = new LinkedList<String>();
 		names.add(element.getElementName());
 		IJavaElement parent = element.getParent();

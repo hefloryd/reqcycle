@@ -33,11 +33,11 @@ public class ConnectorDescriptor {
 	 * The Constructor
 	 * 
 	 * @param connector
-	 *        The connector
+	 *            The connector
 	 * @param name
-	 *        The connector extension point name attribute
+	 *            The connector extension point name attribute
 	 * @param id
-	 *        The connector extension point id attribute
+	 *            The connector extension point id attribute
 	 */
 	public ConnectorDescriptor(IConfigurationElement connectorConfElement, String name, String id, ImageDescriptor imageDescriptor) {
 		this.connectorConfElement = connectorConfElement;
@@ -53,7 +53,7 @@ public class ConnectorDescriptor {
 	 * @throws CoreException
 	 */
 	public IConnector createConnector() throws CoreException {
-		IConnector connector = (IConnector)connectorConfElement.createExecutableExtension("class");//$NON-NLS-1$
+		IConnector connector = (IConnector) connectorConfElement.createExecutableExtension("class");//$NON-NLS-1$
 		ZigguratInject.inject(connector);
 		return connector;
 	}

@@ -19,8 +19,7 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>String Into Predicate</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>String Into Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -30,6 +29,7 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StringIntoPredicateImpl() {
@@ -38,6 +38,7 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -46,9 +47,8 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,9 +57,8 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific element type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific element type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override

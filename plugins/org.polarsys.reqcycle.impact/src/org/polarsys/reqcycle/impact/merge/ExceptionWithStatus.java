@@ -32,7 +32,7 @@ public class ExceptionWithStatus extends Exception implements IAdaptable {
 		super(cause);
 		handleCause(cause);
 	}
-	
+
 	protected void handleCause(Throwable cause) {
 		if (cause instanceof IAdaptable) {
 			Object possibleStatus = ((IAdaptable) cause).getAdapter(IStatus.class);

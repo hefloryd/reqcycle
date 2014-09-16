@@ -41,8 +41,7 @@ public class LazyMap implements Multimap<Reachable, Link> {
 		}
 	}
 
-	public void addUntil(Predicate<Reachable> predicateToReach,
-			Predicate<Reachable> predicateToLeave) {
+	public void addUntil(Predicate<Reachable> predicateToReach, Predicate<Reachable> predicateToLeave) {
 		boolean reached = false;
 
 		while (resultOfEngine.hasNext()) {
@@ -63,8 +62,7 @@ public class LazyMap implements Multimap<Reachable, Link> {
 		}
 	}
 
-	public void addIf(Predicate<Reachable> firstCondition,
-			Predicate<Reachable> predicateToLeave) {
+	public void addIf(Predicate<Reachable> firstCondition, Predicate<Reachable> predicateToLeave) {
 		boolean first = true;
 		while (resultOfEngine.hasNext()) {
 			next = resultOfEngine.next();
@@ -168,8 +166,7 @@ public class LazyMap implements Multimap<Reachable, Link> {
 	}
 
 	@Override
-	public Collection<Link> replaceValues(Reachable arg0,
-			Iterable<? extends Link> arg1) {
+	public Collection<Link> replaceValues(Reachable arg0, Iterable<? extends Link> arg1) {
 		return delegate.replaceValues(arg0, arg1);
 	}
 

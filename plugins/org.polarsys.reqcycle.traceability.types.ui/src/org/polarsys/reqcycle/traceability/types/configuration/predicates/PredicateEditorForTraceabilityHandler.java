@@ -26,16 +26,13 @@ import com.google.common.collect.Lists;
 
 public class PredicateEditorForTraceabilityHandler extends AbstractHandler {
 
-	IPredicatesConfManager confManager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	IPredicatesConfManager confManager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IPredicate predicate = PredicatesFactory.eINSTANCE.createOrPredicate();
-		EPackage epackage = EPackage.Registry.INSTANCE
-				.getEPackage(ReqCycleDynamicPackage.URI);
-		PredicatesUIHelper.openEditor(Lists.newArrayList(filter(
-				epackage.getEClassifiers(), EClass.class)), predicate);
+		EPackage epackage = EPackage.Registry.INSTANCE.getEPackage(ReqCycleDynamicPackage.URI);
+		PredicatesUIHelper.openEditor(Lists.newArrayList(filter(epackage.getEClassifiers(), EClass.class)), predicate);
 		return null;
 	}
 }

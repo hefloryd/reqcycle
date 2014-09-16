@@ -26,23 +26,22 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import com.google.common.collect.Sets;
 
 public class Scopes {
-	static Set<Reachable> WORKSPACE_REACHABLES = null ;
+	static Set<Reachable> WORKSPACE_REACHABLES = null;
 	static {
 		ResourceVisitor visitor = getVisitor();
 		WORKSPACE_REACHABLES = Sets.newHashSet(visitor.getResult().getReachables());
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
-			
+
 			@Override
 			public void resourceChanged(IResourceChangeEvent event) {
 				try {
 					event.getDelta().accept(new IResourceDeltaVisitor() {
-						
+
 						@Override
 						public boolean visit(IResourceDelta delta) throws CoreException {
-							if (delta.getKind() == IResourceDelta.ADDED){
+							if (delta.getKind() == IResourceDelta.ADDED) {
 								WORKSPACE_REACHABLES.add(ReachableUtils.getReachable(delta.getResource()));
-							}
-							else if (delta.getKind() == IResourceDelta.REMOVED){
+							} else if (delta.getKind() == IResourceDelta.REMOVED) {
 								WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
 							}
 							return true;
@@ -67,7 +66,7 @@ public class Scopes {
 		}
 		return visitor;
 	}
-	
+
 	public static IScope getProjectScope(IResource r) {
 		ResourceVisitor visitor = new ResourceVisitor();
 		ZigguratInject.inject(visitor);

@@ -26,7 +26,6 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
-
 /**
  * The Class CustomSectionItemProvider.
  */
@@ -38,7 +37,7 @@ public class CustomSectionItemProvider extends SectionItemProvider {
 	 * Instantiates a new custom section item provider.
 	 * 
 	 * @param adapterFactory
-	 *        the adapter factory
+	 *            the adapter factory
 	 */
 	public CustomSectionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
@@ -48,19 +47,19 @@ public class CustomSectionItemProvider extends SectionItemProvider {
 	public String getText(Object object) {
 		String result = "";
 
-		String id = ((Section)object).getId();
-		String text = ((Section)object).getText();
+		String id = ((Section) object).getId();
+		String text = ((Section) object).getText();
 
-		if(id != null && !id.isEmpty()) {
+		if (id != null && !id.isEmpty()) {
 			result += "[ id : " + id;
 		}
 
-		if(text != null && !text.isEmpty()) {
+		if (text != null && !text.isEmpty()) {
 			result += result.isEmpty() ? "[ " : " | ";
 			result += "text : " + text;
 		}
 
-		if(!result.isEmpty()) {
+		if (!result.isEmpty()) {
 			result += " ]";
 		}
 
@@ -69,8 +68,8 @@ public class CustomSectionItemProvider extends SectionItemProvider {
 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		//FIXME : Use element Data Model to get possible children
-		//Gets Dynamic Data Model possible children
+		// FIXME : Use element Data Model to get possible children
+		// Gets Dynamic Data Model possible children
 		Collection<IDataModel> dataModels = manager.getCurrentDataModels();
 		List<IType> types = Lists.newArrayList();
 		for (IDataModel dataModel : dataModels) {
@@ -78,7 +77,7 @@ public class CustomSectionItemProvider extends SectionItemProvider {
 		}
 		for (IType type : types) {
 			if (type instanceof IRequirementType) {
-				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.SECTION__CHILDREN, ((IRequirementType)type).createInstance()));
+				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.SECTION__CHILDREN, ((IRequirementType) type).createInstance()));
 			}
 		}
 		newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.SECTION__CHILDREN, RequirementSourceDataFactory.eINSTANCE.createSection()));

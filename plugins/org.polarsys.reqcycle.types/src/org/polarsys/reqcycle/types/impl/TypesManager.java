@@ -38,24 +38,20 @@ public class TypesManager implements ITypesManager {
 
 	@Override
 	public Iterable<IType> getAllTypes() {
-		Iterable<Iterable<IType>> transform = Iterables.transform(providers,
-				new ProviderToITypes());
+		Iterable<Iterable<IType>> transform = Iterables.transform(providers, new ProviderToITypes());
 		Iterable<IType> result = Iterables.concat(transform);
-		return Iterables.unmodifiableIterable(Iterables.concat(
-				allTypes.values(), result));
+		return Iterables.unmodifiableIterable(Iterables.concat(allTypes.values(), result));
 	}
 
 	@Override
 	public IType getType(final String id) {
 		IType result = allTypes.get(id);
 		if (result == null) {
-			result = Iterables.find(Iterables.concat(Iterables.transform(
-					providers, new ProviderToITypes())),
-					new Predicate<IType>() {
-						public boolean apply(IType t) {
-							return id.equals(t.getId());
-						}
-					}, null);
+			result = Iterables.find(Iterables.concat(Iterables.transform(providers, new ProviderToITypes())), new Predicate<IType>() {
+				public boolean apply(IType t) {
+					return id.equals(t.getId());
+				}
+			}, null);
 		}
 		return result;
 	}
@@ -73,8 +69,7 @@ public class TypesManager implements ITypesManager {
 	}
 
 	@Override
-	public IType newInjectedType(String id, IType parent,
-			final IValueInjecter injecter) {
+	public IType newInjectedType(String id, IType parent, final IValueInjecter injecter) {
 		IType newType = new InjectedType(id, parent, injecter);
 		ZigguratInject.inject(newType);
 		return newType;
@@ -99,8 +94,7 @@ public class TypesManager implements ITypesManager {
 			if (instance == null) {
 				if (getSuperType().isExtensible()) {
 					try {
-						ITypeChecker iTypeChecker = instance = getCheckerClass()
-								.newInstance();
+						ITypeChecker iTypeChecker = instance = getCheckerClass().newInstance();
 						ZigguratInject.inject(iTypeChecker);
 						List<Field> fields = getFieldsToInject();
 						for (Field f : fields) {
@@ -108,9 +102,7 @@ public class TypesManager implements ITypesManager {
 							if (!oldAccess) {
 								f.setAccessible(true);
 							}
-							f.set(instance,
-									injecter.getValue(getId(), f.getName(),
-											f.getType()));
+							f.set(instance, injecter.getValue(getId(), f.getName(), f.getType()));
 							if (!oldAccess) {
 								f.setAccessible(false);
 							}
@@ -147,8 +139,7 @@ public class TypesManager implements ITypesManager {
 		providers.remove(provider);
 	}
 
-	private class ProviderToITypes implements
-			Function<IInjectedTypeProvider, Iterable<IType>> {
+	private class ProviderToITypes implements Function<IInjectedTypeProvider, Iterable<IType>> {
 		public Iterable<IType> apply(IInjectedTypeProvider p) {
 			return p.getTypes();
 		}

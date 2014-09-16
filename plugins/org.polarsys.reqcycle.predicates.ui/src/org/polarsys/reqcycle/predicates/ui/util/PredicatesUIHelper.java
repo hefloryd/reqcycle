@@ -42,15 +42,13 @@ import org.polarsys.reqcycle.predicates.ui.providers.PredicatesTableLabelProvide
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * This class contains common UI utilities related to predicates such as for
- * example : opening a dialog chooser in order to select desired predicates.
+ * This class contains common UI utilities related to predicates such as for example : opening a dialog chooser in order to select desired predicates.
  * 
  * @author Papa Issa DIAKHATE
  */
 public class PredicatesUIHelper {
 
-	static IPredicatesConfManager predicatesConfManager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	static IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	static ILogger logger = ZigguratInject.make(ILogger.class);
 
@@ -58,28 +56,20 @@ public class PredicatesUIHelper {
 	}
 
 	/**
-	 * Opens a dialog which proposes to select a predicate to apply for
-	 * filtering.
+	 * Opens a dialog which proposes to select a predicate to apply for filtering.
 	 * 
 	 * @param preSelection
 	 *            predicates to preselect
 	 * 
-	 * @return The selected predicates or an empty list if nothing is selected
-	 *         and null if cancelled.
+	 * @return The selected predicates or an empty list if nothing is selected and null if cancelled.
 	 */
-	public static Collection<IPredicate> openPredicatesChooser(
-			Collection<IPredicate> preSelection, String title, String msg,
-			Boolean multiSelection) {
+	public static Collection<IPredicate> openPredicatesChooser(Collection<IPredicate> preSelection, String title, String msg, Boolean multiSelection) {
 
-		Collection<IPredicate> storedPredicates = predicatesConfManager
-				.getPredicates(false);
-		return openPredicatesChooser(storedPredicates, preSelection, title,
-				msg, multiSelection);
+		Collection<IPredicate> storedPredicates = predicatesConfManager.getPredicates(false);
+		return openPredicatesChooser(storedPredicates, preSelection, title, msg, multiSelection);
 	}
 
-	public static Collection<IPredicate> openPredicatesChooser(
-			Collection<IPredicate> input, Collection<IPredicate> preSelection,
-			String title, String msg, Boolean multiSelection) {
+	public static Collection<IPredicate> openPredicatesChooser(Collection<IPredicate> input, Collection<IPredicate> preSelection, String title, String msg, Boolean multiSelection) {
 		Display display = Display.getCurrent();
 		if (display == null) {
 			display = Display.getDefault();
@@ -88,11 +78,9 @@ public class PredicatesUIHelper {
 		if (multiSelection) {
 			dialog = new CheckBoxInputDialog(display.getActiveShell(), title, //$NON-NLS-1$
 					msg, input, null, (Collection) preSelection); //$NON-NLS-1$
-			((CheckBoxInputDialog) dialog)
-					.setLabelProvider(new PredicatesTableLabelProvider());
+			((CheckBoxInputDialog) dialog).setLabelProvider(new PredicatesTableLabelProvider());
 		} else {
-			dialog = new ComboInputDialog(display.getActiveShell(), title, msg,
-					input, null, true);
+			dialog = new ComboInputDialog(display.getActiveShell(), title, msg, input, null, true);
 			((ComboInputDialog) dialog).setLabelProvider(new LabelProvider() {
 
 				@Override
@@ -124,18 +112,13 @@ public class PredicatesUIHelper {
 	 * @return the root predicate or null
 	 */
 	public static IPredicate selectRootPredicate() {
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		final AdapterFactoryLabelProvider adapterLabelProvider = new AdapterFactoryLabelProvider(
-				adapterFactory);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		final AdapterFactoryLabelProvider adapterLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
 		Display display = Display.getCurrent();
 		if (display == null)
 			display = Display.getDefault();
-		ComboInputDialog dialog = new ComboInputDialog(
-				display.getActiveShell(), "Root Predicate",
-				"Select a root predicate",
-				PredicatesUtil.getDefaultPredicates(), null);
+		ComboInputDialog dialog = new ComboInputDialog(display.getActiveShell(), "Root Predicate", "Select a root predicate", PredicatesUtil.getDefaultPredicates(), null);
 		dialog.setLabelProvider(new LabelProvider() {
 
 			@Override
@@ -157,8 +140,7 @@ public class PredicatesUIHelper {
 	}
 
 	public static void editPredicate() {
-		Collection<IPredicate> predicates = openPredicatesChooser(null, "", "",
-				false);
+		Collection<IPredicate> predicates = openPredicatesChooser(null, "", "", false);
 		if (predicates != null && !predicates.isEmpty()) {
 			openEditor(null, predicates.iterator().next());
 		}
@@ -168,14 +150,11 @@ public class PredicatesUIHelper {
 	 * Opens a new predicates editor.
 	 * 
 	 * @param input
-	 *            - The input of the editor. Typically a Collection of EClass
-	 *            objects. (The EClass of the model to edit/to which the
-	 *            predicates are to applied).
+	 *            - The input of the editor. Typically a Collection of EClass objects. (The EClass of the model to edit/to which the predicates are to applied).
 	 * @param rootPredicate
 	 *            - The root predicate of the tree.
 	 */
-	public static void openEditor(final Object input,
-			final IPredicate rootPredicate) {
+	public static void openEditor(final Object input, final IPredicate rootPredicate) {
 		try {
 			String prefix = "predicate";
 			String name = null;
@@ -188,10 +167,8 @@ public class PredicatesUIHelper {
 
 			Runtime.getRuntime().addShutdownHook(new ShutDownHook(f));
 
-			IWorkbenchPage page = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
-			PredicatesEditor editor = (PredicatesEditor) IDE.openEditor(page,
-					f.toURI(), PredicatesEditor.ID, true);
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			PredicatesEditor editor = (PredicatesEditor) IDE.openEditor(page, f.toURI(), PredicatesEditor.ID, true);
 			editor.setDirty(false);
 			// editor.setPageTitle("Predicates Editor");
 			editor.setRootPredicate(EcoreUtil.copy(rootPredicate));
@@ -202,14 +179,12 @@ public class PredicatesUIHelper {
 
 		} catch (PartInitException e) {
 			e.printStackTrace();
-			logger.error("Unable to open the predicates Editor : "
-					+ e.getMessage());
+			logger.error("Unable to open the predicates Editor : " + e.getMessage());
 			logger.error(e.toString());
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			logger.error("Unable to create the predicates temporary file : "
-					+ e.getMessage());
+			logger.error("Unable to create the predicates temporary file : " + e.getMessage());
 			logger.error(e.toString());
 		}
 	}
@@ -238,23 +213,19 @@ public class PredicatesUIHelper {
 	 * @return Entered String or null if cancelled
 	 */
 	public static String openInputDialog(Shell shell) {
-		InputDialog savePredicateDialog = new InputDialog(shell,
-				"Predicate name", "Enter the name of the new predicate", null,
-				new IInputValidator() {
+		InputDialog savePredicateDialog = new InputDialog(shell, "Predicate name", "Enter the name of the new predicate", null, new IInputValidator() {
 
-					@Override
-					public String isValid(String newText) {
-						final String regex = "\\w+[-\\w]*";
-						if (!Pattern.compile(regex, Pattern.CASE_INSENSITIVE)
-								.matcher(newText).matches()) {
-							return "The name of the predicate is not valid.";
-						} else if (predicatesConfManager
-								.isPredicateNameAlreadyUsed(newText)) {
-							return "This predicate's name is already used.";
-						}
-						return null;
-					}
-				});
+			@Override
+			public String isValid(String newText) {
+				final String regex = "\\w+[-\\w]*";
+				if (!Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(newText).matches()) {
+					return "The name of the predicate is not valid.";
+				} else if (predicatesConfManager.isPredicateNameAlreadyUsed(newText)) {
+					return "This predicate's name is already used.";
+				}
+				return null;
+			}
+		});
 
 		if (savePredicateDialog.open() == Window.OK) {
 			return savePredicateDialog.getValue();

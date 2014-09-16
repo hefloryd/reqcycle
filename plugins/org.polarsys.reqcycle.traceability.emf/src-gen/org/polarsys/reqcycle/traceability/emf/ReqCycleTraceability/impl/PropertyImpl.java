@@ -17,17 +17,14 @@ import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Property;
 import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTraceabilityPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Property</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.PropertyImpl#getName
- * <em>Name</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.PropertyImpl#getName <em>Name</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.PropertyImpl#getValue
- * <em>Value</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.PropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,8 +40,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getName()
 	 * @generated
@@ -53,8 +49,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getName()
 	 * @generated
@@ -63,8 +58,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getValue()
 	 * @generated
@@ -73,8 +67,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	protected static final String VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getValue()
 	 * @generated

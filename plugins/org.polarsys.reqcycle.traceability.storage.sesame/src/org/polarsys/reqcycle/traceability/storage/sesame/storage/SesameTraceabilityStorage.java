@@ -68,17 +68,14 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 		this.saveTrigger = saveTrigger;
 		this.helpers = new StorageHelpersProvider(connection);
 	}
-	
-	private Iterable<Pair<Link, Reachable>> retrieveTraceability(final DIRECTION direction, final URI extremityValue,
-			final Resource context) throws MalformedQueryException, QueryEvaluationException, URISyntaxException,
-			RepositoryException {
+
+	private Iterable<Pair<Link, Reachable>> retrieveTraceability(final DIRECTION direction, final URI extremityValue, final Resource context) throws MalformedQueryException, QueryEvaluationException, URISyntaxException, RepositoryException {
 
 		final URI extremityPredicate = LinksStorageHelper.getDirectionPredicate(direction);
 
 		final List<Pair<Link, Reachable>> result = new LinkedList<Pair<Link, Reachable>>();
 
-		final Collection<LinkRef> linkRefs = this.helpers.getLinksStorageHelper().getStoredLinkRefsByExtremity(extremityPredicate,
-				extremityValue, context);
+		final Collection<LinkRef> linkRefs = this.helpers.getLinksStorageHelper().getStoredLinkRefsByExtremity(extremityPredicate, extremityValue, context);
 
 		for (final LinkRef linkRef : linkRefs) {
 			final Link link = this.helpers.getLinksStorageHelper().getStoredLinkFromRef(linkRef, context);
@@ -133,7 +130,7 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 	@Override
 	public void save() {
 		try {
-			if(saveTrigger != null) {
+			if (saveTrigger != null) {
 				this.saveTrigger.doSave(connection);
 			}
 			this.provider.notifyChanged(ITraceabilityStorageTopics.SAVE, this);
@@ -170,8 +167,7 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 	}
 
 	@Override
-	public void addOrUpdateUpwardRelationShip(final TType ttype, final Reachable traceaReachable, final Reachable container,
-			final Reachable source, final Reachable... targets) {
+	public void addOrUpdateUpwardRelationShip(final TType ttype, final Reachable traceaReachable, final Reachable container, final Reachable source, final Reachable... targets) {
 		try {
 			if (targets != null && targets.length > 0) {
 				this.helpers.getLinksStorageHelper().storeLink(traceaReachable, ttype, source, targets, container);
@@ -248,8 +244,7 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 		try {
 			final URI context = ReachablesStorageHelper.getURI(reachable);
 
-			final Collection<LinkRef> linkRefs = this.helpers.getLinksStorageHelper()
-					.getStoredLinkRefsByExtremity(null, null, context);
+			final Collection<LinkRef> linkRefs = this.helpers.getLinksStorageHelper().getStoredLinkRefsByExtremity(null, null, context);
 
 			final List<Reachable> result = new LinkedList<Reachable>();
 			for (final LinkRef linkRef : linkRefs) {
@@ -272,14 +267,12 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 	}
 
 	@Override
-	public void removeUpwardRelationShip(final TType kind, final Reachable container, final Reachable source,
-			final Reachable... targets) {
+	public void removeUpwardRelationShip(final TType kind, final Reachable container, final Reachable source, final Reachable... targets) {
 		try {
 			final URI kindUri = KindStorageHelper.getURI(kind.getId());
 			final URI sourceUri = ReachablesStorageHelper.getURI(source);
 			final URI containerUri = container != null ? ReachablesStorageHelper.getURI(container) : null;
-			final Collection<Value> targetValues = Collections2.transform(Arrays.asList(targets),
-					new Reachable2StorageURIFunction<Value>());
+			final Collection<Value> targetValues = Collections2.transform(Arrays.asList(targets), new Reachable2StorageURIFunction<Value>());
 
 			this.helpers.getLinksStorageHelper().removeStoredLinks(kindUri, sourceUri, containerUri, targetValues);
 

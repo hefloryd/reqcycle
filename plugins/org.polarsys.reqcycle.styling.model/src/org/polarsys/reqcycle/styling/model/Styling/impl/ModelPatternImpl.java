@@ -18,12 +18,11 @@ import org.polarsys.reqcycle.styling.model.Styling.ModelPattern;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Model Pattern</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Model Pattern</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.ModelPatternImpl#getAttributeName <em>Attribute Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.styling.model.Styling.impl.ModelPatternImpl#getAttributeName <em>Attribute Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,14 +31,14 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingPackage;
 public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2014 AtoS\r\n    All rights reserved. This program and the accompanying materials\r\n    are made available under the terms of the Eclipse Public License v1.0\r\n    which accompanies this distribution, and is available at\r\n    http://www.eclipse.org/legal/epl-v10.html *\r\n    Contributors:\r\n      Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The default value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributeName()
 	 * @generated
 	 * @ordered
@@ -47,9 +46,8 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 	protected static final String ATTRIBUTE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getAttributeName() <em>Attribute Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributeName()
 	 * @generated
 	 * @ordered
@@ -58,6 +56,7 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelPatternImpl() {
@@ -66,6 +65,7 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +75,7 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getAttributeName() {
@@ -83,6 +84,7 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAttributeName(String newAttributeName) {
@@ -94,65 +96,71 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
-				return getAttributeName();
+		case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
+			return getAttributeName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
-				setAttributeName((String)newValue);
-				return;
+		case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
+			setAttributeName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
-				setAttributeName(ATTRIBUTE_NAME_EDEFAULT);
-				return;
+		case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
+			setAttributeName(ATTRIBUTE_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
-				return ATTRIBUTE_NAME_EDEFAULT == null ? attributeName != null : !ATTRIBUTE_NAME_EDEFAULT.equals(attributeName);
+		case StylingPackage.MODEL_PATTERN__ATTRIBUTE_NAME:
+			return ATTRIBUTE_NAME_EDEFAULT == null ? attributeName != null : !ATTRIBUTE_NAME_EDEFAULT.equals(attributeName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (attributeName: ");
@@ -171,8 +179,7 @@ public class ModelPatternImpl extends PatternImpl implements ModelPattern {
 		if (object instanceof EObject) {
 			EObject eobject = (EObject) object;
 			String attributeName = getAttributeName();
-			EStructuralFeature f = eobject.eClass().getEStructuralFeature(
-					attributeName);
+			EStructuralFeature f = eobject.eClass().getEStructuralFeature(attributeName);
 			if (f != null) {
 				Object result = eobject.eGet(f);
 				if (result != null) {

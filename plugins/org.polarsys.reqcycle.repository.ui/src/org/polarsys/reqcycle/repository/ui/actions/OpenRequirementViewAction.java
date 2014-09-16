@@ -40,25 +40,25 @@ public class OpenRequirementViewAction extends Action {
 	@Override
 	public void run() {
 		ISelection selection = viewer.getSelection();
-		if(selection instanceof IStructuredSelection) {
+		if (selection instanceof IStructuredSelection) {
 
 			Collection<Object> selectedObj = new ArrayList<Object>();
-			for(Iterator<?> iterator = ((IStructuredSelection)selection).iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = ((IStructuredSelection) selection).iterator(); iterator.hasNext();) {
 				selectedObj.add(iterator.next());
 			}
 
 			Collection<RequirementSource> input = new ArrayList<RequirementSource>();
-			for(Iterator<Object> iterator = selectedObj.iterator(); iterator.hasNext();) {
+			for (Iterator<Object> iterator = selectedObj.iterator(); iterator.hasNext();) {
 				Object obj = iterator.next();
 				input.addAll(DataUtil.getRepositories(obj));
 			}
 
-			if(!input.isEmpty()) {
+			if (!input.isEmpty()) {
 				try {
-					//					Collection<IPredicate> selectedPredicates = PredicatesUIHelper.openPredicatesChooser(null, "Requirement filtering", "Select a predicate to apply or press OK to continue without filtering.", true);
-					//					if(selectedPredicates != null) {
+					// Collection<IPredicate> selectedPredicates = PredicatesUIHelper.openPredicatesChooser(null, "Requirement filtering", "Select a predicate to apply or press OK to continue without filtering.", true);
+					// if(selectedPredicates != null) {
 					RequirementView.openNewRequirementView(input, null);
-					//					}
+					// }
 				} catch (Exception e) {
 					e.printStackTrace();
 					logger.error("Unable to open the View of filtered requirements : " + e.getMessage());

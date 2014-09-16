@@ -35,28 +35,21 @@ import com.google.common.collect.Lists;
 
 public class ExtenderManager {
 
-
 	private static String EXT_EXTENDER_NAME = "reachableExtender";
 	private static List<IReachableExtender> allRegistered = getAllRegistered();
 
-	LoadingCache<Pair, Iterable<IReachableExtender>> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(10, TimeUnit.MINUTES)
-			.build(	new CacheLoader<Pair, Iterable<IReachableExtender>>() {
+	LoadingCache<Pair, Iterable<IReachableExtender>> cache = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.MINUTES).build(new CacheLoader<Pair, Iterable<IReachableExtender>>() {
 
-				@Override
-				public Iterable<IReachableExtender> load(final Pair pair)
-						throws Exception {
-					return Iterables.filter(allRegistered,
-							new Predicate<IReachableExtender>() {
-								public boolean apply(IReachableExtender ext) {
-									return ext.handles(pair.uri,
-											pair.originalObject);
-								}
-							});
-
+		@Override
+		public Iterable<IReachableExtender> load(final Pair pair) throws Exception {
+			return Iterables.filter(allRegistered, new Predicate<IReachableExtender>() {
+				public boolean apply(IReachableExtender ext) {
+					return ext.handles(pair.uri, pair.originalObject);
 				}
 			});
-	
+
+		}
+	});
 
 	/**
 	 * Returns a list of extenders, can be empty not null
@@ -65,17 +58,16 @@ public class ExtenderManager {
 	 * @param originalObject
 	 * @return
 	 */
-	public Iterable<IReachableExtender> getExtenders(URI uri,
-			Object originalObject) {
+	public Iterable<IReachableExtender> getExtenders(URI uri, Object originalObject) {
 		final Pair pair = new Pair();
 		pair.uri = uri;
 		pair.originalObject = originalObject;
-		
+
 		try {
-			
-			return cache.get(pair); 
-			
-		 } catch (ExecutionException e) {
+
+			return cache.get(pair);
+
+		} catch (ExecutionException e) {
 			return Lists.newArrayList();
 		}
 	}
@@ -88,9 +80,7 @@ public class ExtenderManager {
 		public boolean equals(Object arg0) {
 			if (arg0 instanceof Pair) {
 				Pair pair = (Pair) arg0;
-				return Objects.equal(pair.uri, this.uri)
-						&& Objects.equal(pair.originalObject,
-								this.originalObject);
+				return Objects.equal(pair.uri, this.uri) && Objects.equal(pair.originalObject, this.originalObject);
 			}
 			return Objects.equal(arg0, this);
 		}
@@ -101,24 +91,18 @@ public class ExtenderManager {
 		}
 
 	}
-	
 
 	private static List<IReachableExtender> getAllRegistered() {
-		return Lists.newArrayList(Iterables.filter(Iterables.transform(Arrays
-				.asList(Platform.getExtensionRegistry()
-						.getConfigurationElementsFor(Activator.PLUGIN_ID,
-								EXT_EXTENDER_NAME)),
-				new Function<IConfigurationElement, IReachableExtender>() {
-					public IReachableExtender apply(IConfigurationElement conf) {
-						IReachableExtender ext = null;
-						try {
-							ext = (IReachableExtender) conf
-									.createExecutableExtension("instance");
-							ZigguratInject.inject(ext);
-						} catch (CoreException e) {
-						}
-						return ext;
-					}
-				}), Predicates.notNull()));
+		return Lists.newArrayList(Iterables.filter(Iterables.transform(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_EXTENDER_NAME)), new Function<IConfigurationElement, IReachableExtender>() {
+			public IReachableExtender apply(IConfigurationElement conf) {
+				IReachableExtender ext = null;
+				try {
+					ext = (IReachableExtender) conf.createExecutableExtension("instance");
+					ZigguratInject.inject(ext);
+				} catch (CoreException e) {
+				}
+				return ext;
+			}
+		}), Predicates.notNull()));
 	}
 }

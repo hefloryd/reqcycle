@@ -17,37 +17,36 @@ import org.polarsys.reqcycle.traceability.types.ui.IStylePredicateProvider;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 
-
 public abstract class LinkLabelProvider extends ColumnLabelProvider {
 
 	IStylePredicateProvider styleProvider;
-	
+
 	public LinkLabelProvider(IStylePredicateProvider styleProvider) {
 		this.styleProvider = styleProvider;
 	}
-	
+
 	@Override
 	public Font getFont(Object element) {
-		try{
-			if (element instanceof Link){
+		try {
+			if (element instanceof Link) {
 				return styleProvider.getFontForRelation((Link) element);
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return super.getFont(element);
 	}
-	
+
 	@Override
 	public Color getForeground(Object element) {
-		try{
-			if (element instanceof Link){
+		try {
+			if (element instanceof Link) {
 				return styleProvider.getColorForRelation((Link) element);
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return super.getForeground(element);
 	}
-	
+
 }

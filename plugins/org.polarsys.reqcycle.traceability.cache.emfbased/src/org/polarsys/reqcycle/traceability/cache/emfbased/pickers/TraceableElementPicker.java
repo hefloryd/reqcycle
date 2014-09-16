@@ -44,12 +44,11 @@ public class TraceableElementPicker implements IPicker {
 	private Predicate<Pair<Link, Reachable>> scope;
 	@Inject
 	IReachableManager manager;
-	
+
 	@Inject
 	IReachableCreator creator;
 
-	public TraceableElementPicker(DIRECTION d, Model m,
-			Predicate<Pair<Link, Reachable>> scope) {
+	public TraceableElementPicker(DIRECTION d, Model m, Predicate<Pair<Link, Reachable>> scope) {
 		this.d = d;
 		this.theModel = m;
 		this.scope = scope;
@@ -64,8 +63,7 @@ public class TraceableElementPicker implements IPicker {
 		}
 		if (element instanceof Pair) {
 			Pair<Link, Reachable> pair = (Pair<Link, Reachable>) element;
-			elem = new Traceable2TraceableElement(theModel).apply(pair
-					.getSecond());
+			elem = new Traceable2TraceableElement(theModel).apply(pair.getSecond());
 		}
 		TraceableElement2Traceable traceableElement2Traceable = new TraceableElement2Traceable();
 		ZigguratInject.inject(traceableElement2Traceable);
@@ -86,22 +84,19 @@ public class TraceableElementPicker implements IPicker {
 				for (TraceableElement t : list2) {
 					Reachable source = traceableElement2Traceable.apply(elem);
 					Reachable target = traceableElement2Traceable.apply(t);
-					
+
 					// RFa - fix link creation
 					URI uri = null;
 					try {
 						uri = new URI(l.getResource().getUri());
 					} catch (URISyntaxException e) {
-						
+
 						e.printStackTrace();
 					}
 					Reachable r = creator.getReachable(uri);
-					UUID uniqueID = UUID.randomUUID(); 
-					
-					Pair<Link, Reachable> pair = new Pair<Link, Reachable>(
-							new Link(r,new TType(uniqueID.toString(),l.getLabel()),
-									Collections.singleton(source),
-									Collections.singleton(target)), target);
+					UUID uniqueID = UUID.randomUUID();
+
+					Pair<Link, Reachable> pair = new Pair<Link, Reachable>(new Link(r, new TType(uniqueID.toString(), l.getLabel()), Collections.singleton(source), Collections.singleton(target)), target);
 					if (scope.apply(pair)) {
 						result.add(pair);
 					}

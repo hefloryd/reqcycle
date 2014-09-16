@@ -53,14 +53,13 @@ import com.google.common.collect.Maps;
 import static com.google.common.collect.Iterables.filter;
 
 @Singleton
-public class StorageBasedTraceabilityEngine extends
-		AbstractCachedTraceabilityEngine {
+public class StorageBasedTraceabilityEngine extends AbstractCachedTraceabilityEngine {
 
 	public static final String REVISION = "revisionProperty";
 	private Map<Reachable, String> inMemoryRevision = Maps.newHashMap();
 	@Inject
 	ILogger logger;
-	
+
 	@Inject
 	IStorageProvider storageEngine;
 
@@ -82,8 +81,7 @@ public class StorageBasedTraceabilityEngine extends
 
 	@PostConstruct
 	public void postConstruct() {
-		isDebugging = logger.isDebug(Activator.OPTIONS_DEBUG,
-				Activator.getDefault());
+		isDebugging = logger.isDebug(Activator.OPTIONS_DEBUG, Activator.getDefault());
 		if (isDebugging) {
 			logger.trace("Storage Initialization");
 		}
@@ -95,9 +93,7 @@ public class StorageBasedTraceabilityEngine extends
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		IPicker picker = new GetTraceabilityPicker(direction, storage, scope);
 		ZigguratInject.inject(picker);
 		IPicker[] pickers = new IPicker[] { picker };
@@ -106,32 +102,26 @@ public class StorageBasedTraceabilityEngine extends
 		factory.activateRedundancyAwareness();
 		Iterator<Object> iterator = factory.createIterable(source).iterator();
 		iterator.next();
-		List<Pair<Link, Reachable>> list = Lists.newArrayList(Iterators
-				.transform(iterator,
-						new Function<Object, Pair<Link, Reachable>>() {
-							public Pair<Link, Reachable> apply(Object o) {
-								return (Pair<Link, Reachable>) o;
-							}
-						}));
+		List<Pair<Link, Reachable>> list = Lists.newArrayList(Iterators.transform(iterator, new Function<Object, Pair<Link, Reachable>>() {
+			public Pair<Link, Reachable> apply(Object o) {
+				return (Pair<Link, Reachable>) o;
+			}
+		}));
 		return list.iterator();
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(
-			Reachable source, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		IPicker picker = new GetTraceabilityPicker(direction, storage, scope);
 		ZigguratInject.inject(picker);
 		Iterable<?> nexts;
 		try {
 			nexts = picker.getNexts(source);
-			Iterator<Pair<Link, Reachable>> iterator = Iterators.transform(
-					nexts.iterator(),
-					new Function<Object, Pair<Link, Reachable>>() {
-						public Pair<Link, Reachable> apply(Object o) {
-							return (Pair<Link, Reachable>) o;
-						}
-					});
+			Iterator<Pair<Link, Reachable>> iterator = Iterators.transform(nexts.iterator(), new Function<Object, Pair<Link, Reachable>>() {
+				public Pair<Link, Reachable> apply(Object o) {
+					return (Pair<Link, Reachable>) o;
+				}
+			});
 			return iterator;
 		} catch (PickerExecutionException e) {
 			// TODO Auto-generated catch block
@@ -141,14 +131,11 @@ public class StorageBasedTraceabilityEngine extends
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetTraceability(
-			Reachable source, StopCondition condition, DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> scope) {
+	protected Iterator<Pair<Link, Reachable>> doGetTraceability(Reachable source, StopCondition condition, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		Set<Pair<Link, Reachable>> result = new LinkedHashSet<Pair<Link, Reachable>>();
 		Set<Reachable> visited = new HashSet<Reachable>();
 		if (source != null && condition != null) {
-			IPicker picker = new GetTraceabilityPicker(direction, storage,
-					scope);
+			IPicker picker = new GetTraceabilityPicker(direction, storage, scope);
 			ZigguratInject.inject(picker);
 			result.addAll(search(source, condition, picker, visited));
 		}
@@ -171,8 +158,7 @@ public class StorageBasedTraceabilityEngine extends
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private List<? extends Pair<Link, Reachable>> search(Reachable source,
-			StopCondition condition, IPicker picker, Set<Reachable> visited) {
+	private List<? extends Pair<Link, Reachable>> search(Reachable source, StopCondition condition, IPicker picker, Set<Reachable> visited) {
 		List<Pair<Link, Reachable>> result = new LinkedList<Pair<Link, Reachable>>();
 		if (!visited.contains(source)) {
 			visited.add(source);
@@ -189,8 +175,7 @@ public class StorageBasedTraceabilityEngine extends
 				for (Object o : nexts) {
 					if (o instanceof Pair) {
 						Pair<Link, Reachable> pair = (Pair<Link, Reachable>) o;
-						Collection<? extends Pair<Link, Reachable>> tmp = search(
-								pair.getSecond(), condition, picker, visited);
+						Collection<? extends Pair<Link, Reachable>> tmp = search(pair.getSecond(), condition, picker, visited);
 						if (!tmp.isEmpty()) {
 							result.add(pair);
 							result.addAll(tmp);
@@ -227,42 +212,35 @@ public class StorageBasedTraceabilityEngine extends
 		Reachable trimmedFragment = reachable.trimFragment();
 		String revisionOfObject = null;
 		try {
-			IReachableHandler handler = manager
-					.getHandlerFromReachable(reachable);
+			IReachableHandler handler = manager.getHandlerFromReachable(reachable);
 			ReachableObject object = handler.getFromReachable(reachable);
 			if (object != null) {
 				// NULL means the object can not identify its revision
 				// so the cache must be computed each time
-				revisionOfObject = object
-						.getRevisionIdentification();
+				revisionOfObject = object.getRevisionIdentification();
 			}
 		} catch (IReachableHandlerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String revision = inMemoryRevision.get(trimmedFragment);
-		if (revision == null){
-			Reachable fromStorage = storage
-					.getReachable(trimmedFragment.toString());
+		if (revision == null) {
+			Reachable fromStorage = storage.getReachable(trimmedFragment.toString());
 			if (fromStorage != null) {
 				revision = fromStorage.get(REVISION);
-				inMemoryRevision.put(trimmedFragment,revision);
+				inMemoryRevision.put(trimmedFragment, revision);
 			}
 		}
-		if (revision != null && revisionOfObject != null){
+		if (revision != null && revisionOfObject != null) {
 			return revision.equals(revisionOfObject);
 		}
 		return false;
 	}
 
 	@Override
-	public void newUpwardRelation(Reachable traceaReachable,
-			Reachable container, Reachable source, List<Reachable> targets,
-			TType tType) {
+	public void newUpwardRelation(Reachable traceaReachable, Reachable container, Reachable source, List<Reachable> targets, TType tType) {
 		handleRevision(container);
-		storage.addOrUpdateUpwardRelationShip(tType, traceaReachable,
-				container, source,
-				targets.toArray(new Reachable[targets.size()]));
+		storage.addOrUpdateUpwardRelationShip(tType, traceaReachable, container, source, targets.toArray(new Reachable[targets.size()]));
 	}
 
 	private void handleRevision(Reachable container) {
@@ -308,11 +286,8 @@ public class StorageBasedTraceabilityEngine extends
 	}
 
 	@Override
-	protected Iterator<Pair<Link, Reachable>> doGetAllTraceability(
-			DIRECTION direction,
-			Predicate<Pair<Link, Reachable>> requestPredicate) {
-		return filter(storage.getAllTraceability(direction), requestPredicate)
-				.iterator();
+	protected Iterator<Pair<Link, Reachable>> doGetAllTraceability(DIRECTION direction, Predicate<Pair<Link, Reachable>> requestPredicate) {
+		return filter(storage.getAllTraceability(direction), requestPredicate).iterator();
 	}
 
 	@Override

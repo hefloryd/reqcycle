@@ -27,5 +27,5 @@ public class ReqCyclePreferencePage extends PreferencePage implements IWorkbench
 		Composite composite = new Composite(parent, SWT.NONE);
 		return composite;
 	}
-	
+
 }

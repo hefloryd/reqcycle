@@ -18,18 +18,17 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Enum Equal Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Enum Equal Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class EnumEqualPredicateImpl extends EqualPredicateImpl<String>
-		implements EnumEqualPredicate {
+public class EnumEqualPredicateImpl extends EqualPredicateImpl<String> implements EnumEqualPredicate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EnumEqualPredicateImpl() {
@@ -38,6 +37,7 @@ public class EnumEqualPredicateImpl extends EqualPredicateImpl<String>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -46,8 +46,7 @@ public class EnumEqualPredicateImpl extends EqualPredicateImpl<String>
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
-	 * more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this context.
 	 * 
 	 * @generated
 	 */
@@ -57,8 +56,7 @@ public class EnumEqualPredicateImpl extends EqualPredicateImpl<String>
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
-	 * more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this context.
 	 * 
 	 * @generated
 	 */

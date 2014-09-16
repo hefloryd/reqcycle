@@ -42,13 +42,10 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-public class AnalysersPreferencePage extends PreferencePage implements
-		IWorkbenchPreferencePage {
+public class AnalysersPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
-	IConfigurationManager manager = ZigguratInject
-			.make(IConfigurationManager.class);
-	public static final String PREF_ID = Activator.PLUGIN_ID
-			+ ".disabledEngines";
+	IConfigurationManager manager = ZigguratInject.make(IConfigurationManager.class);
+	public static final String PREF_ID = Activator.PLUGIN_ID + ".disabledEngines";
 
 	private Table table;
 	private Label descriptionLabel;
@@ -59,8 +56,7 @@ public class AnalysersPreferencePage extends PreferencePage implements
 	 * Create the preference page.
 	 */
 	public AnalysersPreferencePage() {
-		Map<String, Object> pref = manager.getSimpleConfiguration(null,
-				Scope.WORKSPACE, PREF_ID, true);
+		Map<String, Object> pref = manager.getSimpleConfiguration(null, Scope.WORKSPACE, PREF_ID, true);
 		if (pref != null) {
 			prefs = pref;
 		}
@@ -82,11 +78,9 @@ public class AnalysersPreferencePage extends PreferencePage implements
 		fd_lblNewLabel.top = new FormAttachment(0);
 		fd_lblNewLabel.left = new FormAttachment(0, 5);
 		lblNewLabel.setLayoutData(fd_lblNewLabel);
-		lblNewLabel
-				.setText("Checked analysers will be used for traceability analysis");
+		lblNewLabel.setText("Checked analysers will be used for traceability analysis");
 
-		checkboxTableViewer = CheckboxTableViewer.newCheckList(container,
-				SWT.BORDER | SWT.FULL_SELECTION);
+		checkboxTableViewer = CheckboxTableViewer.newCheckList(container, SWT.BORDER | SWT.FULL_SELECTION);
 		table = checkboxTableViewer.getTable();
 		FormData fd_table = new FormData();
 		fd_table.top = new FormAttachment(lblNewLabel);
@@ -106,21 +100,18 @@ public class AnalysersPreferencePage extends PreferencePage implements
 			}
 
 		});
-		checkboxTableViewer.setContentProvider(ArrayContentProvider
-				.getInstance());
-		checkboxTableViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		checkboxTableViewer.setContentProvider(ArrayContentProvider.getInstance());
+		checkboxTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						Object firstElement = ((IStructuredSelection) event
-								.getSelection()).getFirstElement();
-						if (firstElement instanceof LabelledVisitor) {
-							LabelledVisitor labelled = (LabelledVisitor) firstElement;
-							descriptionLabel.setText(labelled.getDescription());
-						}
-					}
-				});
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				Object firstElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
+				if (firstElement instanceof LabelledVisitor) {
+					LabelledVisitor labelled = (LabelledVisitor) firstElement;
+					descriptionLabel.setText(labelled.getDescription());
+				}
+			}
+		});
 		checkboxTableViewer.setCheckStateProvider(new ICheckStateProvider() {
 
 			@Override
@@ -134,8 +125,7 @@ public class AnalysersPreferencePage extends PreferencePage implements
 				if (element instanceof LabelledVisitor) {
 					LabelledVisitor labelled = (LabelledVisitor) element;
 
-					return !(Boolean.FALSE.equals(prefs.get(labelled
-							.getVisitorClass().getName())));
+					return !(Boolean.FALSE.equals(prefs.get(labelled.getVisitorClass().getName())));
 				}
 				return true;
 			}
@@ -147,8 +137,7 @@ public class AnalysersPreferencePage extends PreferencePage implements
 				Object element = event.getElement();
 				if (element instanceof LabelledVisitor) {
 					LabelledVisitor labelled = (LabelledVisitor) element;
-					prefs.put(labelled.getVisitorClass().getName(),
-							event.getChecked());
+					prefs.put(labelled.getVisitorClass().getName(), event.getChecked());
 				}
 			}
 		});
@@ -164,16 +153,14 @@ public class AnalysersPreferencePage extends PreferencePage implements
 		grpDescription.setText("Description");
 
 		descriptionLabel = new Label(grpDescription, SWT.WRAP);
-		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true, 1, 1));
+		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		return container;
 	}
 
 	@Override
 	protected void performDefaults() {
-		Map<String, Object> pref = manager.getSimpleConfiguration(null,
-				Scope.WORKSPACE, PREF_ID, true);
+		Map<String, Object> pref = manager.getSimpleConfiguration(null, Scope.WORKSPACE, PREF_ID, true);
 		if (pref != null) {
 			prefs = pref;
 		}
@@ -184,8 +171,7 @@ public class AnalysersPreferencePage extends PreferencePage implements
 	@Override
 	public boolean performOk() {
 		try {
-			manager.saveSimpleConfiguration(prefs, null, Scope.WORKSPACE,
-					PREF_ID);
+			manager.saveSimpleConfiguration(prefs, null, Scope.WORKSPACE, PREF_ID);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

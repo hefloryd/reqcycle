@@ -15,11 +15,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.uri.model.ProxyResolver;
 
 /**
- * A {@link ProxyResolver} that can resolve proxy {@link EObject} (wich have
- * {@link EObject#eIsProxy()} is <code>true</code>).
+ * A {@link ProxyResolver} that can resolve proxy {@link EObject} (wich have {@link EObject#eIsProxy()} is <code>true</code>).
  * <p>
- * Each {@link EMFProxyResolver} instance owns an internal {@link ResourceSet},
- * that should be unloaded by calling {@link #dispose()}.
+ * Each {@link EMFProxyResolver} instance owns an internal {@link ResourceSet}, that should be unloaded by calling {@link #dispose()}.
  * </p>
  * 
  * @author rsemlal

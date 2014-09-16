@@ -47,24 +47,24 @@ public class PictureChooserDialog extends TitleAreaDialog {
 		Composite container = new Composite(area, SWT.NONE);
 		container.setLayout(new GridLayout(1, false));
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
-		
+
 		ScrolledComposite scrolledComposite = new ScrolledComposite(container, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
-		
+
 		Composite composite = new Composite(scrolledComposite, SWT.NONE);
 		composite.setLayout(new GridLayout(9, true));
-		
-		for (Descriptor i : IconRegistry.getRegisteredImages()){
+
+		for (Descriptor i : IconRegistry.getRegisteredImages()) {
 			Button btnCheckButton = new Button(composite, SWT.RADIO);
 			btnCheckButton.setImage(IconRegistry.getImage(i.id));
 			btnCheckButton.setData(i);
-			if(imageSelected.equals(i.id)) {
+			if (imageSelected.equals(i.id)) {
 				btnCheckButton.setSelection(true);
 			}
-			
-			btnCheckButton.addSelectionListener(new SelectionAdapter(){
+
+			btnCheckButton.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					Object source = e.getSource();
@@ -73,13 +73,13 @@ public class PictureChooserDialog extends TitleAreaDialog {
 						Object data = btn.getData();
 						if (data instanceof Descriptor) {
 							Descriptor desc = (Descriptor) data;
-							imageSelected = desc.id ;
+							imageSelected = desc.id;
 						}
 					}
 				}
 			});
 		}
-		
+
 		scrolledComposite.setContent(composite);
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
@@ -88,14 +88,13 @@ public class PictureChooserDialog extends TitleAreaDialog {
 
 	/**
 	 * Create contents of the button bar.
+	 * 
 	 * @param parent
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**

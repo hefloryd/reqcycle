@@ -38,8 +38,7 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 	IReachableListenerManager listener;
 
 	@Override
-	public void build(Reachable t, IBuilderCallBack callBack, boolean forceBuild)
-			throws BuilderException {
+	public void build(Reachable t, IBuilderCallBack callBack, boolean forceBuild) throws BuilderException {
 		callBack = new DelegatedAndDecoratedBuilderCallBack(callBack);
 		IReachableHandler h;
 		try {
@@ -49,49 +48,44 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 				if (object != null) {
 					// A proxy resolver will be used if available
 					final ProxyResolver proxyResolver = h.getProxyResolver();
-					if(proxyResolver != null) {
+					if (proxyResolver != null) {
 						callBack = new ProxyResolutionBuilderCallbackWrapper(callBack, proxyResolver);
 					}
-					
+
 					Reachable reachable = object.getReachable(null);
 					if (forceBuild || callBack.needsBuild(reachable)) {
 						if (Activator.getDefault().isDebugging()) {
-							logger.trace(String.format("build for %s starting",
-									t.toString()));
+							logger.trace(String.format("build for %s starting", t.toString()));
 						}
 						callBack.startBuild(reachable);
 						IVisitable visitable;
 						try {
 							visitable = object.getVisitable();
-							TraceabilityVisitor visitor = new TraceabilityVisitor(
-									callBack);
+							TraceabilityVisitor visitor = new TraceabilityVisitor(callBack);
 							ZigguratInject.inject(visitor);
 							visitable.accept(visitor);
 							visitable.dispose();
 							// Proxy resolver MUST be disposed
-							if(proxyResolver != null) {
+							if (proxyResolver != null) {
 								proxyResolver.dispose();
 							}
 							callBack.endBuild(reachable);
-							listener.notifyChanged(new Reachable[]{reachable});
+							listener.notifyChanged(new Reachable[] { reachable });
 							if (Activator.getDefault().isDebugging()) {
-								logger.trace(String.format(
-										"build for %s ended", t.toString()));
+								logger.trace(String.format("build for %s ended", t.toString()));
 							}
 						} catch (VisitableException e) {
 							callBack.errorOccurs(reachable, e);
 							// TODO error management
 							if (Activator.getDefault().isDebugging()) {
-								logger.trace(String.format(
-										"build for %s failed", t.toString()));
+								logger.trace(String.format("build for %s failed", t.toString()));
 							}
 						} catch (Throwable e2) {
 							callBack.errorOccurs(reachable, e2);
 						}
 					} else {
 						if (Activator.getDefault().isDebugging()) {
-							logger.trace(String.format(
-									"build for %s unnecessary", t.toString()));
+							logger.trace(String.format("build for %s unnecessary", t.toString()));
 						}
 					}
 				}

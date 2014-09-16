@@ -20,20 +20,16 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.uri.model.Reachable;
 
 /**
- * A Typed traceability engine will compute traceability links according to
- * typed defined by user. The getTraceability (Request...) from
- * {@link ITraceabilityEngine} uses a default configuration otherwise the
- * getTraceability (Configuration, Request...) will use the given config
+ * A Typed traceability engine will compute traceability links according to typed defined by user. The getTraceability (Request...) from {@link ITraceabilityEngine} uses a default configuration otherwise the getTraceability (Configuration,
+ * Request...) will use the given config
  * 
  * @author tfaure
  * 
  */
 public interface ITypedTraceabilityEngine extends ITraceabilityEngine {
 	/**
-	 * @return a traceability {@link Iterator} from the {@link Request} and the
-	 *         {@link Configuration}
+	 * @return a traceability {@link Iterator} from the {@link Request} and the {@link Configuration}
 	 * 
 	 */
-	Iterator<Pair<Link, Reachable>> getTraceability(Configuration typeConfig,
-			Request... requests) throws EngineException;
+	Iterator<Pair<Link, Reachable>> getTraceability(Configuration typeConfig, Request... requests) throws EngineException;
 }

@@ -27,8 +27,7 @@ public class Configuration2Filter implements Function<Configuration, Filter> {
 
 	@Override
 	public Filter apply(Configuration arg0) {
-		ConfigurationBasedFilter configurationBasedFilter = new ConfigurationBasedFilter(
-				direction, arg0);
+		ConfigurationBasedFilter configurationBasedFilter = new ConfigurationBasedFilter(direction, arg0);
 		ZigguratInject.inject(configurationBasedFilter);
 		return configurationBasedFilter;
 	}

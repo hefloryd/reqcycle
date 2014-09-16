@@ -14,11 +14,8 @@ package org.polarsys.reqcycle.predicates.core.api;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>In Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>In Predicate</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
@@ -35,9 +32,7 @@ import org.eclipse.emf.common.util.EList;
 public interface InPredicate<T> extends IEAttrPredicate {
 
 	/**
-	 * Returns the value of the '<em><b>Input</b></em>' attribute list.
-	 * The list contents are of type {@link T}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Input</b></em>' attribute list. The list contents are of type {@link T}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -51,8 +46,7 @@ public interface InPredicate<T> extends IEAttrPredicate {
 	EList<T> getInput();
 
 	/**
-	 * Returns the value of the '<em><b>Object To Search</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Object To Search</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object To Search</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -67,12 +61,10 @@ public interface InPredicate<T> extends IEAttrPredicate {
 	Object getObjectToSearch();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.InPredicate#getObjectToSearch <em>Object To Search</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.InPredicate#getObjectToSearch <em>Object To Search</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Object To Search</em>' attribute.
+	 *            the new value of the '<em>Object To Search</em>' attribute.
 	 * @see #getObjectToSearch()
 	 * @generated
 	 */

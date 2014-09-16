@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-
 public class TraceabilityPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
 	public TraceabilityPreferencePage() {

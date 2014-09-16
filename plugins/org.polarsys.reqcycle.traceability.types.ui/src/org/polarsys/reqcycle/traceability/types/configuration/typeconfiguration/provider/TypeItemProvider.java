@@ -35,18 +35,15 @@ import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type} object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class TypeItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class TypeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	ITypesManager manager = ZigguratInject.make(ITypesManager.class);
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -55,8 +52,7 @@ public class TypeItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -74,96 +70,48 @@ public class TypeItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Type Id feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Type Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addTypeIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Type_typeId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Type_typeId_feature", "_UI_Type_type"),
-				 TypeconfigurationPackage.Literals.TYPE__TYPE_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Type_typeId_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Type_typeId_feature", "_UI_Type_type"), TypeconfigurationPackage.Literals.TYPE__TYPE_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Outgoings feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Outgoings feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addOutgoingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Type_outgoings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Type_outgoings_feature", "_UI_Type_type"),
-				 TypeconfigurationPackage.Literals.TYPE__OUTGOINGS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Type_outgoings_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Type_outgoings_feature", "_UI_Type_type"), TypeconfigurationPackage.Literals.TYPE__OUTGOINGS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Incomings feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Incomings feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addIncomingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Type_incomings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Type_incomings_feature", "_UI_Type_type"),
-				 TypeconfigurationPackage.Literals.TYPE__INCOMINGS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Type_incomings_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Type_incomings_feature", "_UI_Type_type"), TypeconfigurationPackage.Literals.TYPE__INCOMINGS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Extensible feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Is Extensible feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addIsExtensiblePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Type_isExtensible_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Type_isExtensible_feature", "_UI_Type_type"),
-				 TypeconfigurationPackage.Literals.TYPE__IS_EXTENSIBLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Type_isExtensible_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Type_isExtensible_feature", "_UI_Type_type"), TypeconfigurationPackage.Literals.TYPE__IS_EXTENSIBLE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns Type.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Type.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,8 +120,7 @@ public class TypeItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -188,10 +135,8 @@ public class TypeItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,30 +144,26 @@ public class TypeItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Type.class)) {
-			case TypeconfigurationPackage.TYPE__TYPE_ID:
-			case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case TypeconfigurationPackage.TYPE__TYPE_ID:
+		case TypeconfigurationPackage.TYPE__IS_EXTENSIBLE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

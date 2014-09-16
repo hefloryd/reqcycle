@@ -119,7 +119,6 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 	private BaseResource resource;
 
 	private DataBindingContext bindingContext;
-	
 
 	@Override
 	public void createControl(Composite parent) {
@@ -139,13 +138,12 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 		createTypesUi(containerComposite);
 		createAttribuesUi(containerComposite);
-		
 
 		hookListeners();
 		bindingContext = initDataBindings();
 		AbstractSettingPage.observeBean(bindingContext, this);
 		setControl(containerComposite);
-		if (bean.getDataModel() != null){
+		if (bean.getDataModel() != null) {
 			tvTypes.setInput(bean.getDataModel().getTypes());
 		}
 	}
@@ -155,7 +153,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		label.setLayoutData(new GridData(SWT.LEFT, SWT.NONE, false, false, 3, 1));
 		label.setText("Requirement types");
 
-		//Table viewer
+		// Table viewer
 		Composite viewerComposite = new Composite(parent, SWT.NONE);
 		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
@@ -170,14 +168,14 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		tTypes.setHeaderVisible(true);
 		tTypes.setLinesVisible(true);
 
-		//Columns
+		// Columns
 		tvcTypesNames = createTableViewerColumn(tvTypes, "Name", SWT.None);
 		tvcTypesNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IRequirementType) {
-					return ((IRequirementType)element).getName();
+				if (element instanceof IRequirementType) {
+					return ((IRequirementType) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -189,11 +187,11 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IRequirementType) {
-					if(resource == null) {
+				if (element instanceof IRequirementType) {
+					if (resource == null) {
 						return "An ocl file has to be selected and must compile";
 					}
-					IStatus testPresentForDataType = OCLUtilities.isOperationPresent((IRequirementType)element, resource);
+					IStatus testPresentForDataType = OCLUtilities.isOperationPresent((IRequirementType) element, resource);
 					return testPresentForDataType.getMessage();
 				}
 				return "No need for an operation";
@@ -208,7 +206,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 	@Override
 	public boolean isPageComplete() {
-		if (resource == null){
+		if (resource == null) {
 			return false;
 		}
 		try {
@@ -220,13 +218,13 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		setErrorMessage(null);
 		return true;
 	}
-	
+
 	private void createAttribuesUi(Composite parent) {
 		Label label = new Label(parent, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.LEFT, SWT.NONE, false, false, 3, 1));
 		label.setText("Requirement attributes");
 
-		//Table Viewer
+		// Table Viewer
 		Composite viewerComposite = new Composite(parent, SWT.NONE);
 		viewerComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
@@ -240,16 +238,16 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		tAttributes.setHeaderVisible(true);
 		tAttributes.setLinesVisible(true);
 
-		//Columns
+		// Columns
 		tvcAttributesNames = createTableViewerColumn(tvAttributes, "Name", SWT.None);
 		tvcAttributesNames.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IAttribute) {
-					return ((IAttribute)element).getName();
-				} else if(element instanceof IEnumerator) {
-					return ((IEnumerator)element).getName();
+				if (element instanceof IAttribute) {
+					return ((IAttribute) element).getName();
+				} else if (element instanceof IEnumerator) {
+					return ((IEnumerator) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -261,15 +259,15 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IAttribute) {
-					if(resource == null) {
+				if (element instanceof IAttribute) {
+					if (resource == null) {
 						return "An ocl file has to be selected and must compile";
 					}
-					IAttribute attribute = (IAttribute)element;
+					IAttribute attribute = (IAttribute) element;
 					IStatus testPresentForDataType = OCLUtilities.isOperationPresent(attribute, resource);
 					return testPresentForDataType.getMessage();
 				}
-				if(element instanceof IEnumerator) {
+				if (element instanceof IEnumerator) {
 					return "-";
 				}
 				return super.getText(element);
@@ -281,7 +279,6 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 	}
 
-
 	public void hookListeners() {
 
 		tvTypes.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -291,17 +288,17 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 				inputAttributes.clear();
 
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					if(obj instanceof IRequirementType) {
-						selectedType = (IRequirementType)obj;
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj instanceof IRequirementType) {
+						selectedType = (IRequirementType) obj;
 						Collection<? extends IAttribute> attributes = selectedType.getAttributes();
 						Iterable<? extends IAttribute> filtered = Iterables.filter(attributes, new Predicate<IAttribute>() {
 
 							@Override
 							public boolean apply(IAttribute arg0) {
-								if(arg0 instanceof IAttribute) {
-									if("uri".equals(((IAttribute)arg0).getName())) {
+								if (arg0 instanceof IAttribute) {
+									if ("uri".equals(((IAttribute) arg0).getName())) {
 										return false;
 									}
 								}
@@ -328,15 +325,15 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 				dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
 				dialog.setValidator(validator);
 				int open = dialog.open();
-				if(open == 0) {
+				if (open == 0) {
 					IFile iFile = dialog.getSelectedFiles()[0];
 					String location = iFile.getFullPath().toOSString();
 					URI oclURI = URI.createPlatformResourceURI(location, true);
 					ResourceSet resourceSet = new ResourceSetImpl();
-					
+
 					// we can have error in OCL file selection - let it go to user
 					OCLPage.this.resource = OCLUtilities.loadOCLResource(resourceSet, oclURI);
-					
+
 					tFile.setText(location);
 					tvTypes.refresh();
 					tvAttributes.refresh();
@@ -345,8 +342,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 				}
 			}
 		});
-		
-		
+
 	}
 
 	protected DataBindingContext initDataBindings() {
@@ -355,7 +351,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(tFile);
 		IObservableValue uriBeanObserveValue = PojoProperties.value("oclUri").observe(bean);
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
-		
+
 		//
 		return bindingContext;
 	}
@@ -371,7 +367,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 	private void updateDataTypes() {
 		IDataModel dataPackage = bean.getDataModel();
-		if(dataPackage != null) {
+		if (dataPackage != null) {
 			Collection<IType> dataTypes = dataPackage.getTypes();
 			inputTypes.clear();
 			inputTypes.addAll(dataTypes);
@@ -390,9 +386,9 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 		@Override
 		public IStatus validate(Object[] selection) {
-			if(selection.length == 1) {
+			if (selection.length == 1) {
 				Object o = selection[0];
-				if(o instanceof IFile && "ocl".equals(((IFile)o).getFileExtension())) {
+				if (o instanceof IFile && "ocl".equals(((IFile) o).getFileExtension())) {
 					return Status.OK_STATUS;
 				}
 			}
@@ -416,13 +412,12 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		}
 	};
 
-
 	@Override
 	public void handleChange(ChangeEvent event) {
 		bindingContext.updateModels();
 		bindingContext.updateTargets();
 		updateDataTypes();
-		if(tvTypes != null) {
+		if (tvTypes != null) {
 			tvTypes.refresh();
 		}
 		getWizard().getContainer().updateButtons();
@@ -432,11 +427,10 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 	@Override
 	public void hasChanged() {
 		// TODO Auto-generated method stub
-		if (tvTypes != null){
-			if (bean.getDataModel() != null){
+		if (tvTypes != null) {
+			if (bean.getDataModel() != null) {
 				tvTypes.setInput(bean.getDataModel().getTypes());
-			}
-			else {
+			} else {
 				tvTypes.setInput(Lists.newArrayList());
 			}
 		}

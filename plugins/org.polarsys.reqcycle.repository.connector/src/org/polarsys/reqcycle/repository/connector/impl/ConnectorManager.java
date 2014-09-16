@@ -25,6 +25,7 @@ import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+
 //import org.polarsys.reqcycle.repository.connector.IRequirementSourceRepository;
 
 @Singleton
@@ -39,12 +40,12 @@ public class ConnectorManager implements IConnectorManager {
 	ConnectorManager() {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] extensions = reg.getConfigurationElementsFor(Activator.PLUGIN_ID, "connectorCore");
-		for(IConfigurationElement iConfigurationElement : extensions) {
+		for (IConfigurationElement iConfigurationElement : extensions) {
 			String name = iConfigurationElement.getAttribute("name");
 			String id = iConfigurationElement.getAttribute("id");
 			String icon = iConfigurationElement.getAttribute("icon");
 			ImageDescriptor imageDescriptor = null;
-			if(icon != null && !icon.isEmpty()) {
+			if (icon != null && !icon.isEmpty()) {
 				imageDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(iConfigurationElement.getNamespaceIdentifier(), icon);
 			}
 			ConnectorDescriptor repositoryConnectorDescriptor = new ConnectorDescriptor(iConfigurationElement, name, id, imageDescriptor);
@@ -57,10 +58,10 @@ public class ConnectorManager implements IConnectorManager {
 	 * Adds a connector descriptor
 	 * 
 	 * @param connectorDescriptor
-	 *        the connector descriptor
+	 *            the connector descriptor
 	 */
 	protected void addConnector(ConnectorDescriptor connectorDescriptor, String connectorID) {
-		if(!connectors.values().contains(connectorDescriptor)) {
+		if (!connectors.values().contains(connectorDescriptor)) {
 			connectors.put(connectorID, connectorDescriptor);
 		}
 	}

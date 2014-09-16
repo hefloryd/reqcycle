@@ -12,12 +12,13 @@ package org.polarsys.reqcycle.utils.ocl;
 
 /**
  * Simply a holder of the evaluator.
+ * 
  * @author omelois
  */
 public interface OCLEvaluatorHolder {
 
 	public OCLEvaluator getOCLEvaluator();
-	
+
 	public OCLEvaluator createOCLEvaluator();
-	
+
 }

@@ -25,21 +25,15 @@ import com.google.common.collect.Maps;
 
 public class SysMLTTypeProvider implements TTypeProvider {
 
-	private static TType[] TYPES = new SysMLType[] {
-			new SysMLType(RequirementsPackage.Literals.COPY),
-			new SysMLType(RequirementsPackage.Literals.DERIVE_REQT),
-			new SysMLType(RequirementsPackage.Literals.SATISFY),
-			new SysMLType(RequirementsPackage.Literals.VERIFY),
-			new SysMLType(StandardPackage.Literals.TRACE),
-			new SysMLType(AllocationsPackage.Literals.ALLOCATE) };
+	private static TType[] TYPES = new SysMLType[] { new SysMLType(RequirementsPackage.Literals.COPY), new SysMLType(RequirementsPackage.Literals.DERIVE_REQT), new SysMLType(RequirementsPackage.Literals.SATISFY),
+			new SysMLType(RequirementsPackage.Literals.VERIFY), new SysMLType(StandardPackage.Literals.TRACE), new SysMLType(AllocationsPackage.Literals.ALLOCATE) };
 
-	private static Map<EClass, TType> MAP = Maps.uniqueIndex(
-			Arrays.asList(TYPES), new Function<TType, EClass>() {
-				@Override
-				public EClass apply(TType arg0) {
-					return (((SysMLType) arg0).getEClass());
-				}
-			});
+	private static Map<EClass, TType> MAP = Maps.uniqueIndex(Arrays.asList(TYPES), new Function<TType, EClass>() {
+		@Override
+		public EClass apply(TType arg0) {
+			return (((SysMLType) arg0).getEClass());
+		}
+	});
 
 	public static TType get(EClass eclass) {
 		TType result = MAP.get(eclass);

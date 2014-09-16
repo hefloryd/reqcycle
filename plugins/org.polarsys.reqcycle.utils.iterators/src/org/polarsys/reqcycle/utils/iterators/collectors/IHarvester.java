@@ -15,8 +15,7 @@ import org.polarsys.reqcycle.utils.iterators.handlers.ResultHandler;
 import org.polarsys.reqcycle.utils.iterators.pickers.IPicker;
 
 /**
- * A harvester gathers and organizes pickers that collect the data needed
- * to compute an iterator.
+ * A harvester gathers and organizes pickers that collect the data needed to compute an iterator.
  */
 public interface IHarvester extends Collector<Object> {
 
@@ -38,7 +37,6 @@ public interface IHarvester extends Collector<Object> {
 	 * @param pickers
 	 */
 	public void setPickers(Iterable<IPicker> pickers);
-
 
 	/**
 	 * Getter for the starting element.

@@ -15,14 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TraceabilityType determines the type of the relation according to a possible
- * supertype
+ * TraceabilityType determines the type of the relation according to a possible supertype
  * 
  * 2 {@link TType} are equals if their ids are equals
  * 
- * Take care that this class is {@link Serializable} this means all the
- * attributes contained shall be {@link Serializable} you can also override
- * write/read method if you want to use at your own risk
+ * Take care that this class is {@link Serializable} this means all the attributes contained shall be {@link Serializable} you can also override write/read method if you want to use at your own risk
  * 
  * @see ObjectOutputStream
  * @author tfaure

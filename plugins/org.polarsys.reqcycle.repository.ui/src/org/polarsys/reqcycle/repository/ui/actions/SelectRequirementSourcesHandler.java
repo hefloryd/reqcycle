@@ -47,16 +47,11 @@ public class SelectRequirementSourcesHandler extends AbstractHandler {
 		return null;
 	}
 
-	protected Collection<RequirementSource> openRequirementSourceChooser(
-			Collection<RequirementSource> initialSelection) {
-		Set<RequirementSource> repositories = requirementSourceManager
-				.getRequirementSources();
+	protected Collection<RequirementSource> openRequirementSourceChooser(Collection<RequirementSource> initialSelection) {
+		Set<RequirementSource> repositories = requirementSourceManager.getRequirementSources();
 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		CheckBoxInputDialog dialog = new CheckBoxInputDialog(Display
-				.getDefault().getActiveShell(), "Requirement filtering",
-				"Select Requirement Sources to filter", repositories, null,
-				(Collection) initialSelection);
+		CheckBoxInputDialog dialog = new CheckBoxInputDialog(Display.getDefault().getActiveShell(), "Requirement filtering", "Select Requirement Sources to filter", repositories, null, (Collection) initialSelection);
 
 		if (dialog.open() == Window.OK) {
 			Collection<RequirementSource> selectedSources = new ArrayList<RequirementSource>();

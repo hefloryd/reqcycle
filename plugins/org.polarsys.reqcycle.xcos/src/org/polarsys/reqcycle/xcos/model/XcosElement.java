@@ -9,14 +9,12 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.xcos.model;
 
-
 import org.eclipse.core.resources.IResource;
-
 
 public class XcosElement {
 	private String name = "NONAME";
 	private IResource resource = null;
-	
+
 	public XcosElement(String aName, IResource res) {
 		this.name = aName;
 		this.resource = res;
@@ -34,7 +32,5 @@ public class XcosElement {
 	public XcosElement getParent() {
 		return null;
 	}
-
-
 
 }

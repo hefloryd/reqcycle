@@ -9,7 +9,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.xcos.types;
 
-
 import org.polarsys.reqcycle.types.ITypeChecker;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
@@ -21,19 +20,19 @@ public class XcosRequirementRefChecker implements ITypeChecker {
 
 	@Override
 	public boolean apply(Reachable reachable) {
-//		XcosReachableHandler xcosReachableHandler = new XcosReachableHandler();
-//		if (!xcosReachableHandler.apply(arg0)) {
-//			return false;
-//		}
-//		ReachableObject handler = jdtReachableHandler.getFromReachable(arg0);
-//		if (handler == null) {
-//			return false;
-//		}
-//		XcosElement adapter = (XcosElement) handler
-//				.getAdapter(XcosElement.class);
-//		return adapter != null && adapter instanceof XcosRequirementRef;
-		
-		//TODO do real impl
+		// XcosReachableHandler xcosReachableHandler = new XcosReachableHandler();
+		// if (!xcosReachableHandler.apply(arg0)) {
+		// return false;
+		// }
+		// ReachableObject handler = jdtReachableHandler.getFromReachable(arg0);
+		// if (handler == null) {
+		// return false;
+		// }
+		// XcosElement adapter = (XcosElement) handler
+		// .getAdapter(XcosElement.class);
+		// return adapter != null && adapter instanceof XcosRequirementRef;
+
+		// TODO do real impl
 		return true;
 	}
 }

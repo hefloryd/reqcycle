@@ -30,7 +30,6 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
-
 /**
  * The Class CustomRequirementSourceItemProvider.
  */
@@ -42,7 +41,7 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 	 * Instantiates a new custom requirement source item provider.
 	 * 
 	 * @param adapterFactory
-	 *        the adapter factory
+	 *            the adapter factory
 	 */
 	public CustomRequirementSourceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
@@ -50,7 +49,7 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if(childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			childrenFeatures = new ArrayList<EStructuralFeature>();
 			childrenFeatures.add(RequirementSourceConfPackage.Literals.REQUIREMENT_SOURCE__CONTENTS);
 		}
@@ -61,13 +60,13 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 	public String getText(Object object) {
 		String text = "";
 
-		String label = ((RequirementSource)object).getName();
-		if(label != null && !label.isEmpty()) {
+		String label = ((RequirementSource) object).getName();
+		if (label != null && !label.isEmpty()) {
 			text += label;
 		}
 
-		String uri = ((RequirementSource)object).getRepositoryUri();
-		if(uri != null && !uri.isEmpty()) {
+		String uri = ((RequirementSource) object).getRepositoryUri();
+		if (uri != null && !uri.isEmpty()) {
 			text += " [ " + uri + " ] ";
 		}
 
@@ -76,8 +75,8 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		//FIXME : Use element Data Model to get possible children
-		//Gets Dynamic Data Model possible children
+		// FIXME : Use element Data Model to get possible children
+		// Gets Dynamic Data Model possible children
 		// TODO
 	}
 

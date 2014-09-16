@@ -31,8 +31,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-public class TraceabilityBuildersPreferencePage extends PreferencePage
-		implements IWorkbenchPreferencePage {
+public class TraceabilityBuildersPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
 	public TraceabilityBuildersPreferencePage() {
 		super();
@@ -50,15 +49,12 @@ public class TraceabilityBuildersPreferencePage extends PreferencePage
 		c.setLayout(new GridLayout(1, false));
 
 		Label lblTheCheckedProjects = new Label(c, SWT.NONE);
-		lblTheCheckedProjects
-				.setText("The checked projects will be analyzed by ReqCycle traceability engine");
+		lblTheCheckedProjects.setText("The checked projects will be analyzed by ReqCycle traceability engine");
 
-		CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer
-				.newCheckList(c, SWT.BORDER);
+		CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer.newCheckList(c, SWT.BORDER);
 		Table table = checkboxTableViewer.getTable();
 		checkboxTableViewer.setLabelProvider(new WorkbenchLabelProvider());
-		checkboxTableViewer
-				.setContentProvider(new BaseWorkbenchContentProvider());
+		checkboxTableViewer.setContentProvider(new BaseWorkbenchContentProvider());
 		checkboxTableViewer.setInput(ResourcesPlugin.getWorkspace().getRoot());
 		checkboxTableViewer.setCheckStateProvider(new ICheckStateProvider() {
 
@@ -79,10 +75,8 @@ public class TraceabilityBuildersPreferencePage extends PreferencePage
 		checkboxTableViewer.addFilter(new ViewerFilter() {
 
 			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				return element instanceof IProject
-						&& ((IProject) element).isAccessible();
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return element instanceof IProject && ((IProject) element).isAccessible();
 			}
 		});
 		checkboxTableViewer.addCheckStateListener(new ICheckStateListener() {

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Papa Issa DIAKHATE
  * 
  * @param <T>
- *        - The type of the object for which this editor is to be used.
+ *            - The type of the object for which this editor is to be used.
  */
 public interface IEAttrPropsEditor<T> {
 
@@ -33,12 +33,11 @@ public interface IEAttrPropsEditor<T> {
 	 */
 	T getValue();
 
-	
 	/**
 	 * Sets the initial value of the editor.
 	 */
 	void setInitialValue(Object object);
-	
+
 	/**
 	 * @return <code>true</code> if the edition is valid, <code>false</code> otherwise.
 	 */
@@ -67,12 +66,12 @@ public interface IEAttrPropsEditor<T> {
 	 * @param style
 	 */
 	void setStyle(final int style);
-	
-	String getAttributeName ();
-	
-	void setAttributeName (String name);
-	
-	Collection<Object> getPossibleValues ();
-	
-	void setPossibleValues (Collection<Object> values);
+
+	String getAttributeName();
+
+	void setAttributeName(String name);
+
+	Collection<Object> getPossibleValues();
+
+	void setPossibleValues(Collection<Object> values);
 }

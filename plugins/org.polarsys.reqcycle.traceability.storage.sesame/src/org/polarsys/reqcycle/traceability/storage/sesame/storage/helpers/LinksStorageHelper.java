@@ -54,14 +54,11 @@ public class LinksStorageHelper {
 
 	/**
 	 * @param direction
-	 *            Direction of a link (can be {@link DIRECTION#UPWARD} or
-	 *            {@link DIRECTION#DOWNWARD}).
+	 *            Direction of a link (can be {@link DIRECTION#UPWARD} or {@link DIRECTION#DOWNWARD}).
 	 * @return {@link URI} of the corresponding predicate.
 	 *         <ul>
-	 *         <li> {@link ReqVoc#HAS_DOWNSTREAM} if the direction is
-	 *         {@link DIRECTION#UPWARD}.</li>
-	 *         <li>{@link ReqVoc#HAS_UPSTREAM} if the direction is
-	 *         {@link DIRECTION#UPWARD}.</li>
+	 *         <li> {@link ReqVoc#HAS_DOWNSTREAM} if the direction is {@link DIRECTION#UPWARD}.</li>
+	 *         <li>{@link ReqVoc#HAS_UPSTREAM} if the direction is {@link DIRECTION#UPWARD}.</li>
 	 *         <li><code>null</code> if the direction is <code>null</code>.</li>
 	 *         </ul>
 	 */
@@ -96,8 +93,7 @@ public class LinksStorageHelper {
 	 * @throws URISyntaxException
 	 *             on error.
 	 */
-	public URI storeLink(Reachable traceability, TType ttype, Reachable downstream, Reachable[] upstreams, Reachable container)
-			throws RepositoryException, URISyntaxException {
+	public URI storeLink(Reachable traceability, TType ttype, Reachable downstream, Reachable[] upstreams, Reachable container) throws RepositoryException, URISyntaxException {
 		final ReachablesStorageHelper reachablesStorageHelper = helpers.getReachablesStorageHelper();
 
 		final Reachable kind = helpers.getKindsStorageHelper().toReachable(ttype);
@@ -126,17 +122,14 @@ public class LinksStorageHelper {
 	}
 
 	/**
-	 * List of links that have the element <code>extremity</code> as source or
-	 * target (depending on the value of <code>direction</code>).
+	 * List of links that have the element <code>extremity</code> as source or target (depending on the value of <code>direction</code>).
 	 * 
 	 * @param conn
 	 *            A valid {@link RepositoryConnection} object.
 	 * @param direction
-	 *            Relationship direction, if <code>null</code> both directions
-	 *            are taken into account.
+	 *            Relationship direction, if <code>null</code> both directions are taken into account.
 	 * @param extremity
-	 *            The element in the extremity, if <code>null</code> all links
-	 *            will be retrieved.
+	 *            The element in the extremity, if <code>null</code> all links will be retrieved.
 	 * @param context
 	 *            A containing resource, or <code>null</code>.
 	 * @return List of {@link LinkRef} that references selected links.
@@ -147,8 +140,7 @@ public class LinksStorageHelper {
 	 * @throws QueryEvaluationException
 	 *             on error.
 	 */
-	public Collection<LinkRef> getStoredLinkRefsByExtremity(final URI direction, final URI extremity, final Resource context)
-			throws RepositoryException, MalformedQueryException, QueryEvaluationException {
+	public Collection<LinkRef> getStoredLinkRefsByExtremity(final URI direction, final URI extremity, final Resource context) throws RepositoryException, MalformedQueryException, QueryEvaluationException {
 
 		final String queryString = Queries.buildLinkSelectQuery(context);
 		final TupleQuery query = this.conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -190,8 +182,7 @@ public class LinksStorageHelper {
 	 * @param conn
 	 *            A valid {@link RepositoryConnection} object.
 	 * @param direction
-	 *            Relationship direction, if <code>null</code> both directions
-	 *            are taken into account.
+	 *            Relationship direction, if <code>null</code> both directions are taken into account.
 	 * @param link
 	 *            Link identifier.
 	 * @param context
@@ -204,8 +195,7 @@ public class LinksStorageHelper {
 	 * @throws QueryEvaluationException
 	 *             on error.
 	 */
-	public Collection<URI> getStoredLinkExtremities(final URI direction, final URI link, final Resource context)
-			throws RepositoryException, MalformedQueryException, QueryEvaluationException {
+	public Collection<URI> getStoredLinkExtremities(final URI direction, final URI link, final Resource context) throws RepositoryException, MalformedQueryException, QueryEvaluationException {
 
 		final String queryString = Queries.buildLinkSelectQuery(context);
 		final TupleQuery query = this.conn.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
@@ -251,8 +241,7 @@ public class LinksStorageHelper {
 	 * @throws URISyntaxException
 	 *             on error.
 	 */
-	public Link getStoredLinkFromRef(final LinkRef linkRef, final Resource context) throws RepositoryException,
-			MalformedQueryException, QueryEvaluationException, URISyntaxException {
+	public Link getStoredLinkFromRef(final LinkRef linkRef, final Resource context) throws RepositoryException, MalformedQueryException, QueryEvaluationException, URISyntaxException {
 		final URI linkUri = linkRef.getId();
 		final URI kindUri = linkRef.getKind();
 
@@ -292,14 +281,11 @@ public class LinksStorageHelper {
 	 * Removes stored links from the repository if it match some criteria.
 	 * 
 	 * @param kindUri
-	 *            The {@link TType} of the links to remove (can be
-	 *            <code>null</code> to ignore this field in filtering).
+	 *            The {@link TType} of the links to remove (can be <code>null</code> to ignore this field in filtering).
 	 * @param downwstreamUri
-	 *            The downstream side of the links to remove (can be
-	 *            <code>null</code> to ignore this field in filtering).
+	 *            The downstream side of the links to remove (can be <code>null</code> to ignore this field in filtering).
 	 * @param containerUri
-	 *            The container of the links to remove (can be <code>null</code>
-	 *            to ignore this field in filtering).
+	 *            The container of the links to remove (can be <code>null</code> to ignore this field in filtering).
 	 * @param upstreams
 	 *            The upstream side of links to remove.
 	 * @throws RepositoryException
@@ -309,8 +295,7 @@ public class LinksStorageHelper {
 	 * @throws QueryEvaluationException
 	 *             on error.
 	 */
-	public void removeStoredLinks(final URI kindUri, final URI downwstreamUri, final URI containerUri,
-			final Collection<Value> upstreams) throws RepositoryException, MalformedQueryException, QueryEvaluationException {
+	public void removeStoredLinks(final URI kindUri, final URI downwstreamUri, final URI containerUri, final Collection<Value> upstreams) throws RepositoryException, MalformedQueryException, QueryEvaluationException {
 		final String strquery = Queries.buildLinkSelectQuery2(containerUri);
 
 		final TupleQuery query = conn.prepareTupleQuery(QueryLanguage.SPARQL, strquery);

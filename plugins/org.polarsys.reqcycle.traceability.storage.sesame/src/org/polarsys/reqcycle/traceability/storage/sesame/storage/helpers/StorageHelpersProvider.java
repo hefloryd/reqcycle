@@ -23,7 +23,7 @@ public class StorageHelpersProvider {
 	public StorageHelpersProvider(final RepositoryConnection conn) {
 		this.connection = conn;
 		this.propertiesStorageHelper = new PropertiesStorageHelper(conn, this);
-		this.linksStorageHelper = new LinksStorageHelper(conn, this); 
+		this.linksStorageHelper = new LinksStorageHelper(conn, this);
 		this.reachablesStorageHelper = new ReachablesStorageHelper(conn, this);
 		this.kindsStorageHelper = new KindStorageHelper(conn, this);
 
@@ -60,6 +60,7 @@ public class StorageHelpersProvider {
 	public final LinksStorageHelper getLinksStorageHelper() {
 		return this.linksStorageHelper;
 	}
+
 	/**
 	 * @return the kindsStorageHelper
 	 */

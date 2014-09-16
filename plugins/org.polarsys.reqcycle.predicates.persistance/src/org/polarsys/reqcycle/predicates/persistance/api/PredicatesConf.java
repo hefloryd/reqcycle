@@ -17,9 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Predicates Conf</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Predicates Conf</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
@@ -35,9 +33,7 @@ import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 public interface PredicatesConf extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Predicates</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.predicates.core.api.IPredicate}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Predicates</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.predicates.core.api.IPredicate}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predicates</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>

@@ -4,7 +4,7 @@ import org.eclipse.jface.viewers.ILazyContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 
-public class ImpactTraceabilityContentProvider implements ILazyContentProvider  {
+public class ImpactTraceabilityContentProvider implements ILazyContentProvider {
 	private TableViewer viewer;
 
 	public ImpactTraceabilityContentProvider(TableViewer viewer) {

@@ -26,9 +26,7 @@ import org.polarsys.reqcycle.predicates.persistance.PredicatesConfPackage;
 import org.polarsys.reqcycle.predicates.persistance.api.PredicatesConf;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Predicates Conf</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Predicates Conf</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -41,9 +39,7 @@ import org.polarsys.reqcycle.predicates.persistance.api.PredicatesConf;
 public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements PredicatesConf {
 
 	/**
-	 * The cached value of the '{@link #getPredicates() <em>Predicates</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPredicates() <em>Predicates</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getPredicates()
 	 * @generated
@@ -52,8 +48,7 @@ public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements 
 	protected EList<IPredicate> predicates;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -62,8 +57,7 @@ public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -73,42 +67,39 @@ public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public EList<IPredicate> getPredicates() {
-		if(predicates == null) {
+		if (predicates == null) {
 			predicates = new EObjectContainmentEList<IPredicate>(IPredicate.class, this, PredicatesConfPackage.PREDICATES_CONF__PREDICATES);
 		}
 		return predicates;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
+		switch (featureID) {
 		case PredicatesConfPackage.PREDICATES_CONF__PREDICATES:
-			return ((InternalEList<?>)getPredicates()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getPredicates()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
+		switch (featureID) {
 		case PredicatesConfPackage.PREDICATES_CONF__PREDICATES:
 			return getPredicates();
 		}
@@ -116,32 +107,30 @@ public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
+		switch (featureID) {
 		case PredicatesConfPackage.PREDICATES_CONF__PREDICATES:
 			getPredicates().clear();
-			getPredicates().addAll((Collection<? extends IPredicate>)newValue);
+			getPredicates().addAll((Collection<? extends IPredicate>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
+		switch (featureID) {
 		case PredicatesConfPackage.PREDICATES_CONF__PREDICATES:
 			getPredicates().clear();
 			return;
@@ -150,18 +139,17 @@ public class PredicatesConfImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
+		switch (featureID) {
 		case PredicatesConfPackage.PREDICATES_CONF__PREDICATES:
 			return predicates != null && !predicates.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PredicatesConfImpl
+} // PredicatesConfImpl

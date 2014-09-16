@@ -43,8 +43,7 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 			if (iter.hasNext()) {
 				Object obj = iter.next();
 				if (obj instanceof DummyInput) {
-					return ArrayContentProvider.getInstance().getElements(
-							inputElement);
+					return ArrayContentProvider.getInstance().getElements(inputElement);
 				}
 			}
 		}
@@ -54,16 +53,13 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 	@Override
 	public Object[] getChildren(final Object object) {
 		if (object instanceof DummyInput) {
-			Object[] children = Collections2.transform(
-					((DummyInput) object).getInput(),
-					new Function<RequirementSource, DummyObject>() {
+			Object[] children = Collections2.transform(((DummyInput) object).getInput(), new Function<RequirementSource, DummyObject>() {
 
-						@Override
-						public DummyObject apply(RequirementSource reqSource) {
-							return new DummyObject(((DummyInput) object)
-									.getPredicate(), reqSource);
-						};
-					}).toArray();
+				@Override
+				public DummyObject apply(RequirementSource reqSource) {
+					return new DummyObject(((DummyInput) object).getPredicate(), reqSource);
+				};
+			}).toArray();
 			return children;
 		}
 		if (object instanceof DummyObject) {
@@ -77,29 +73,26 @@ public class DummyInputContentProvider extends AdapterFactoryContentProvider {
 				elements = ((Section) obj).getChildren();
 			}
 
-			Collection<DummyObject> transform = Collections2.transform(
-					elements, new Function<EObject, DummyObject>() {
+			Collection<DummyObject> transform = Collections2.transform(elements, new Function<EObject, DummyObject>() {
 
-						@Override
-						public DummyObject apply(EObject eObj) {
-							IPredicate predicate = dummyObject.getPredicate();
-							DummyObject dObj = new DummyObject(predicate, eObj);
-							if (dObj.getEobj() instanceof Section
-									&& !(dObj.getEobj() instanceof SimpleRequirement)) {
-								return dObj; // do not use predicate filter for
-												// sections which are not
-												// requirements
-							}
-							if (predicate != null) {
-								return predicate.match(eObj) ? dObj : null;
-							} else {
-								return dObj;
-							}
-						}
-					});
+				@Override
+				public DummyObject apply(EObject eObj) {
+					IPredicate predicate = dummyObject.getPredicate();
+					DummyObject dObj = new DummyObject(predicate, eObj);
+					if (dObj.getEobj() instanceof Section && !(dObj.getEobj() instanceof SimpleRequirement)) {
+						return dObj; // do not use predicate filter for
+										// sections which are not
+										// requirements
+					}
+					if (predicate != null) {
+						return predicate.match(eObj) ? dObj : null;
+					} else {
+						return dObj;
+					}
+				}
+			});
 
-			Iterable<DummyObject> result = Iterables.filter(transform,
-					Predicates.notNull());
+			Iterable<DummyObject> result = Iterables.filter(transform, Predicates.notNull());
 			return Iterables.toArray(result, DummyObject.class);
 		}
 		return super.getChildren(object);

@@ -32,14 +32,12 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Requirements Container</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirements Container</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl#getRequirements
- * <em>Requirements</em>}</li>
+ * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl#getRequirements <em>Requirements</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,9 +45,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
  */
 public class RequirementsContainerImpl extends MinimalEObjectImpl.Container implements RequirementsContainer {
 	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}
-	 * ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>} ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRequirements()
 	 * @generated

@@ -11,8 +11,7 @@
 package org.polarsys.reqcycle.utils.iterators.exceptions;
 
 /**
- * An exception class that can be thrown by collectors or results handlers in order to abort or
- * signal abortion of the collecting process, for any reason.
+ * An exception class that can be thrown by collectors or results handlers in order to abort or signal abortion of the collecting process, for any reason.
  */
 public class CollectionAbortedException extends Exception {
 

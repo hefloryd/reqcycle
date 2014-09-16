@@ -29,9 +29,7 @@ import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Property;
 import org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.ReqCycleTraceabilityPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Property}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.Property} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -44,8 +42,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -54,8 +51,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -71,27 +67,23 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Property_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"), ReqCycleTraceabilityPackage.Literals.PROPERTY__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"), ReqCycleTraceabilityPackage.Literals.PROPERTY__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Property_value_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_value_feature", "_UI_Property_type"), ReqCycleTraceabilityPackage.Literals.PROPERTY__VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_value_feature", "_UI_Property_type"), ReqCycleTraceabilityPackage.Literals.PROPERTY__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -105,8 +97,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -117,10 +108,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -138,9 +126,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -150,8 +136,7 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

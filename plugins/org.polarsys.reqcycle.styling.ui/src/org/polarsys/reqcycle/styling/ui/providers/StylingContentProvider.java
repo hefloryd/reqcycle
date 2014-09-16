@@ -69,21 +69,18 @@ public class StylingContentProvider implements ITreeContentProvider {
 			scopes = ((NavigatorRoot) inputElement).getScopes();
 			filtered = ((NavigatorRoot) inputElement).isViewFiltered();
 			ordered = ((NavigatorRoot) inputElement).isViewOrdered();
-			scope  = ((NavigatorRoot) inputElement).isViewByScopes();
+			scope = ((NavigatorRoot) inputElement).isViewByScopes();
 
 			if (ordered && (predicates.size() != 0)) {
 				return predicates.toArray();
 			} else if (filtered && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
 
-				return Iterators.toArray(Iterators.filter(
-						((NavigatorRoot) inputElement).getSources().iterator(),
-						new PPredicate(predicate)), Object.class);
+				return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), new PPredicate(predicate)), Object.class);
 			} else if (scope && (scopes.size() != 0)) {
 				return scopes.toArray();
 			} else {
-				List<RequirementSource> sources = ((NavigatorRoot) inputElement)
-						.getSources();
+				List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
 				return sources.toArray();
 			}
 		}
@@ -98,29 +95,21 @@ public class StylingContentProvider implements ITreeContentProvider {
 			if (filtered && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
 
-				return Iterators.toArray(Iterators.filter(
-						((RequirementSource) object).getRequirements()
-						.iterator(), new PPredicate(predicate)),
-						Object.class);
+				return Iterators.toArray(Iterators.filter(((RequirementSource) object).getRequirements().iterator(), new PPredicate(predicate)), Object.class);
 			} else {
 				elements = ((RequirementSource) object).getRequirements();
 			}
 		} else if (object instanceof IPredicate) {
-			return Iterators.toArray(Iterators.filter(Iterators
-					.concat(Iterators.transform(navigatorRoot.getSources()
-							.iterator(), new Source2Reqs())), new PPredicate(
-									(IPredicate) object)), Object.class);
+			return Iterators.toArray(Iterators.filter(Iterators.concat(Iterators.transform(navigatorRoot.getSources().iterator(), new Source2Reqs())), new PPredicate((IPredicate) object)), Object.class);
 		} else if (object instanceof Section) {
 			if (filtered && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
-				return Iterators.toArray(Iterators.filter(((Section) object)
-						.getChildren().iterator(), new PPredicate(predicate)),
-						Object.class);
+				return Iterators.toArray(Iterators.filter(((Section) object).getChildren().iterator(), new PPredicate(predicate)), Object.class);
 			} else {
 				elements = ((Section) object).getChildren();
 			}
 		} else if (object instanceof Scope) {
-			return ((Scope)object).getRequirements().toArray();
+			return ((Scope) object).getRequirements().toArray();
 		}
 
 		if (elements.size() != 0) {
@@ -142,36 +131,27 @@ public class StylingContentProvider implements ITreeContentProvider {
 				IPredicate predicate = predicates.get(0);
 				List<RequirementSource> list = new LinkedList<RequirementSource>();
 				list.add((RequirementSource) object);
-				return Iterators.filter(
-						Iterators.concat(Iterators.transform(list.iterator(),
-								new Source2Reqs())),
-								new PPredicate(predicate)).hasNext();
+				return Iterators.filter(Iterators.concat(Iterators.transform(list.iterator(), new Source2Reqs())), new PPredicate(predicate)).hasNext();
 			} else {
-				return !((RequirementSource) object).getRequirements()
-						.isEmpty();
+				return !((RequirementSource) object).getRequirements().isEmpty();
 			}
 		} else if (object instanceof IPredicate) {
-			return Iterators.filter(
-					Iterators.concat(Iterators.transform(navigatorRoot
-							.getSources().iterator(), new Source2Reqs())),
-							new PPredicate((IPredicate) object)).hasNext();
+			return Iterators.filter(Iterators.concat(Iterators.transform(navigatorRoot.getSources().iterator(), new Source2Reqs())), new PPredicate((IPredicate) object)).hasNext();
 		} else if (object instanceof Section) {
 			return !((Section) object).getChildren().isEmpty();
 		} else if (object instanceof Scope) {
-			return !((Scope)object).getRequirements().isEmpty();
+			return !((Scope) object).getRequirements().isEmpty();
 		}
 		return false;
 	}
 
-	private static class Source2Reqs implements
-	Function<RequirementSource, Iterator<Requirement>> {
+	private static class Source2Reqs implements Function<RequirementSource, Iterator<Requirement>> {
 
 		@Override
 		public Iterator<Requirement> apply(RequirementSource arg0) {
 			Iterator<Requirement> result = Iterators.emptyIterator();
 			for (AbstractElement a : arg0.getRequirements()) {
-				result = Iterators.concat(result,
-						Iterators.filter(a.eAllContents(), Requirement.class));
+				result = Iterators.concat(result, Iterators.filter(a.eAllContents(), Requirement.class));
 			}
 			return result;
 		}
@@ -190,9 +170,9 @@ public class StylingContentProvider implements ITreeContentProvider {
 				return true;
 			}
 			if (arg0 instanceof RequirementSource) {
-				for(AbstractElement elt : ((RequirementSource)arg0).getRequirements()) {
-					if(elt instanceof Section) {
-						for(AbstractElement element : ((Section)elt).getChildren()) {
+				for (AbstractElement elt : ((RequirementSource) arg0).getRequirements()) {
+					if (elt instanceof Section) {
+						for (AbstractElement element : ((Section) elt).getChildren()) {
 							if (predicateEvaluator.match(p, element)) {
 								return true;
 							}
@@ -202,8 +182,7 @@ public class StylingContentProvider implements ITreeContentProvider {
 					}
 				}
 				return false;
-			} else
-			if (arg0 instanceof Section && ! (arg0 instanceof Requirement)) {
+			} else if (arg0 instanceof Section && !(arg0 instanceof Requirement)) {
 				for (AbstractElement elt : ((Section) arg0).getChildren()) {
 					if (predicateEvaluator.match(p, elt)) {
 						return true;

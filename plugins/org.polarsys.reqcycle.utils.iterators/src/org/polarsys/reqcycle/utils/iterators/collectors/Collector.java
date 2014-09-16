@@ -14,8 +14,7 @@ import org.polarsys.reqcycle.utils.iterators.exceptions.CollectionAbortedExcepti
 import org.polarsys.reqcycle.utils.iterators.handlers.ResultHandler;
 
 /**
- * Defines a class that collects values of type T and submits each value to a ResultHandler<>
- * object immediately on collection.
+ * Defines a class that collects values of type T and submits each value to a ResultHandler<> object immediately on collection.
  */
 public interface Collector<T> {
 
@@ -23,9 +22,9 @@ public interface Collector<T> {
 	 * Perform the collection operation.
 	 * 
 	 * @param handler
-	 *        The processor object to return results to.
+	 *            The processor object to return results to.
 	 * @throws CollectionAbortedException
-	 *         The collection operation was aborted part way through.
+	 *             The collection operation was aborted part way through.
 	 */
 	void collect(ResultHandler<T> handler) throws CollectionAbortedException;
 }

@@ -112,8 +112,7 @@ public class EMFVisitable implements IVisitable, IAdaptable {
 		long timeStamp = 0;
 		boolean error = false;
 		if (uri.isPlatformResource()) {
-			IFile file = ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(new Path(uri.toPlatformString(true)));
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 			if (file != null && file.exists()) {
 				timeStamp = file.getLocalTimeStamp();
 			} else {
@@ -136,12 +135,9 @@ public class EMFVisitable implements IVisitable, IAdaptable {
 			resource = getResource(uri);
 			timeStamp = resource.getTimeStamp();
 		}
-		if (!error
-				&& (timeStamp == URIConverter.NULL_TIME_STAMP || timeStamp == 0)) {
+		if (!error && (timeStamp == URIConverter.NULL_TIME_STAMP || timeStamp == 0)) {
 			try {
-				return ReachableUtils
-						.hashStream(resource.getResourceSet().getURIConverter()
-								.createInputStream(resource.getURI()));
+				return ReachableUtils.hashStream(resource.getResourceSet().getURIConverter().createInputStream(resource.getURI()));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -46,8 +46,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 	private ComboViewer comboViewer;
 
 	/**
-	 * The selected item when the OK button is pressed, <code>null</code> otherwise (no selection, or when cancel button
-	 * is pressed instead.
+	 * The selected item when the OK button is pressed, <code>null</code> otherwise (no selection, or when cancel button is pressed instead.
 	 */
 	private Object selectedItem;
 
@@ -91,7 +90,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 		this.comboViewer = this.readOnly ? new ComboViewer(parent, SWT.READ_ONLY) : new ComboViewer(parent);
 		Combo combo = comboViewer.getCombo();
 		combo.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
-		if(!readOnly) {
+		if (!readOnly) {
 			combo.addModifyListener(new ModifyListener() {
 
 				public void modifyText(ModifyEvent e) {
@@ -99,9 +98,9 @@ public class ComboInputDialog extends AbstractCustomDialog {
 				}
 			});
 		}
-		if(this.comboContentProvider == null)
+		if (this.comboContentProvider == null)
 			this.comboContentProvider = ArrayContentProvider.getInstance();
-		if(this.comboILabelProvider == null)
+		if (this.comboILabelProvider == null)
 			this.comboILabelProvider = new LabelProvider();
 		this.comboViewer.setContentProvider(this.comboContentProvider);
 		this.comboViewer.setLabelProvider(this.comboILabelProvider);
@@ -111,7 +110,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 
 	protected void validateInput() {
 		String errorMessage = null;
-		if(getValidator() != null) {
+		if (getValidator() != null) {
 			errorMessage = getValidator().isValid(this.comboViewer.getCombo().getText());
 		}
 		setErrorMessage(errorMessage);
@@ -119,8 +118,8 @@ public class ComboInputDialog extends AbstractCustomDialog {
 
 	@Override
 	protected void buttonPressed(int buttonId) {
-		if(buttonId == IDialogConstants.OK_ID) {
-			this.selectedItem = ((IStructuredSelection)this.comboViewer.getSelection()).getFirstElement();
+		if (buttonId == IDialogConstants.OK_ID) {
+			this.selectedItem = ((IStructuredSelection) this.comboViewer.getSelection()).getFirstElement();
 		} else {
 			this.selectedItem = null;
 		}
@@ -129,12 +128,11 @@ public class ComboInputDialog extends AbstractCustomDialog {
 
 	/**
 	 * 
-	 * @return The selected item when the OK button is pressed, <code>null</code> otherwise (no selection, or when
-	 *         cancel button is pressed instead.
+	 * @return The selected item when the OK button is pressed, <code>null</code> otherwise (no selection, or when cancel button is pressed instead.
 	 */
 	public Object getSelectedItem() {
 		Iterator<Object> iter = this.getSelectedItems().iterator();
-		if(iter.hasNext()) {
+		if (iter.hasNext()) {
 			return iter.next();
 		}
 		return null;
@@ -142,7 +140,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 
 	@Override
 	public Collection<Object> getSelectedItems() {
-		return Arrays.asList(new Object[]{ this.selectedItem });
+		return Arrays.asList(new Object[] { this.selectedItem });
 	}
 
 	/**
@@ -170,7 +168,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 	@Override
 	protected Button createButton(Composite parent, int id, String label, boolean defaultButton) {
 		Button btn = super.createButton(parent, id, label, defaultButton);
-		if(OK == id && btn != null) {
+		if (OK == id && btn != null) {
 			btn.setEnabled(false);
 		}
 		return btn;
@@ -178,7 +176,7 @@ public class ComboInputDialog extends AbstractCustomDialog {
 
 	@Override
 	public void handleEvent(Event event) {
-		if(comboViewer == null) {
+		if (comboViewer == null) {
 			return;
 		}
 		enableOkButton(comboViewer.getSelection() != null);

@@ -41,7 +41,7 @@ public class CreateRelationCommand implements Command {
 
 	@Inject
 	IReachableCreator creator;
-	
+
 	@Inject
 	IReachableListenerManager listenerManager;
 
@@ -73,11 +73,8 @@ public class CreateRelationCommand implements Command {
 		// get the storage for the project
 		ITraceabilityStorage traceaStorage = provider.getProjectStorage(p);
 		try {
-			Reachable container = manager.
-					getHandlerFromObject(projectURI).
-						getFromObject(projectURI).
-							getReachable(projectURI);
-			Object id = new Object[]{ container, getNextId() };
+			Reachable container = manager.getHandlerFromObject(projectURI).getFromObject(projectURI).getReachable(projectURI);
+			Object id = new Object[] { container, getNextId() };
 			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable(id);
 			traceaStorage.startTransaction();
 			// FIX ME
@@ -86,7 +83,7 @@ public class CreateRelationCommand implements Command {
 			// source,
 			// new Reachable[] { target });
 			// }
-			traceaStorage.addOrUpdateUpwardRelationShip(relation.getTType(), tracea, container, source, new Reachable[]{ target });
+			traceaStorage.addOrUpdateUpwardRelationShip(relation.getTType(), tracea, container, source, new Reachable[] { target });
 			toUpdate.add(tracea);
 			toUpdate.add(container);
 			toUpdate.add(source);
@@ -94,9 +91,7 @@ public class CreateRelationCommand implements Command {
 			traceaStorage.addUpdateProperty(tracea, "relationKind", relation.getKind()); //$NON-NLS-1$
 			traceaStorage.commit();
 			traceaStorage.save();
-			
-			
-			
+
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			traceaStorage.rollback();
@@ -105,7 +100,7 @@ public class CreateRelationCommand implements Command {
 		} finally {
 			traceaStorage.dispose();
 		}
-		listenerManager.notifyChanged(toUpdate.toArray(new Reachable[]{}));
+		listenerManager.notifyChanged(toUpdate.toArray(new Reachable[] {}));
 	}
 
 	private String getNextId() {

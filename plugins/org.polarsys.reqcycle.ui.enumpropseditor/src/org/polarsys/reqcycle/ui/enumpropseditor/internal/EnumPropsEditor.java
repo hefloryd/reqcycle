@@ -18,7 +18,7 @@ public class EnumPropsEditor extends AbstractPropsEditor<Enum> {
 
 	@Override
 	protected AbstractPropsEditorComponent<Enum> initAndGetComponent() {
-		return new EnumPropsEditorComponent(getAttributeName(), getContainer(), getStyle(),getPossibleValues());
+		return new EnumPropsEditorComponent(getAttributeName(), getContainer(), getStyle(), getPossibleValues());
 	}
 
 }

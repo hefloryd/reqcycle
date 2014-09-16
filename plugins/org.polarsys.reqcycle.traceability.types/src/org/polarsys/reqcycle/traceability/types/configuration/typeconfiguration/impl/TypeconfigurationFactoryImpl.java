@@ -30,35 +30,31 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.types.IType;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeconfigurationFactoryImpl extends EFactoryImpl implements TypeconfigurationFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static TypeconfigurationFactory init() {
 		try {
-			TypeconfigurationFactory theTypeconfigurationFactory = (TypeconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(TypeconfigurationPackage.eNS_URI);
+			TypeconfigurationFactory theTypeconfigurationFactory = (TypeconfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(TypeconfigurationPackage.eNS_URI);
 			if (theTypeconfigurationFactory != null) {
 				return theTypeconfigurationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new TypeconfigurationFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypeconfigurationFactoryImpl() {
@@ -66,69 +62,79 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case TypeconfigurationPackage.TYPE_CONFIG_CONTAINER: return createTypeConfigContainer();
-			case TypeconfigurationPackage.TYPE: return createType();
-			case TypeconfigurationPackage.RELATION: return createRelation();
-			case TypeconfigurationPackage.CONFIGURATION: return createConfiguration();
-			case TypeconfigurationPackage.CUSTOM_TYPE: return createCustomType();
-			case TypeconfigurationPackage.ENTRY: return createEntry();
-			case TypeconfigurationPackage.REGISTERED_ATTRIBUTE: return createRegisteredAttribute();
-			case TypeconfigurationPackage.STD_ATTRIBUTE: return createStdAttribute();
-			case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING: return createRelationsPredicatesMapping();
-			case TypeconfigurationPackage.DECORATION_PREDICATE: return createDecorationPredicate();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case TypeconfigurationPackage.TYPE_CONFIG_CONTAINER:
+			return createTypeConfigContainer();
+		case TypeconfigurationPackage.TYPE:
+			return createType();
+		case TypeconfigurationPackage.RELATION:
+			return createRelation();
+		case TypeconfigurationPackage.CONFIGURATION:
+			return createConfiguration();
+		case TypeconfigurationPackage.CUSTOM_TYPE:
+			return createCustomType();
+		case TypeconfigurationPackage.ENTRY:
+			return createEntry();
+		case TypeconfigurationPackage.REGISTERED_ATTRIBUTE:
+			return createRegisteredAttribute();
+		case TypeconfigurationPackage.STD_ATTRIBUTE:
+			return createStdAttribute();
+		case TypeconfigurationPackage.RELATIONS_PREDICATES_MAPPING:
+			return createRelationsPredicatesMapping();
+		case TypeconfigurationPackage.DECORATION_PREDICATE:
+			return createDecorationPredicate();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case TypeconfigurationPackage.ATTRIBUTE_TYPE:
-				return createAttributeTypeFromString(eDataType, initialValue);
-			case TypeconfigurationPackage.ITYPE:
-				return createITypeFromString(eDataType, initialValue);
-			case TypeconfigurationPackage.TTYPE:
-				return createTTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case TypeconfigurationPackage.ATTRIBUTE_TYPE:
+			return createAttributeTypeFromString(eDataType, initialValue);
+		case TypeconfigurationPackage.ITYPE:
+			return createITypeFromString(eDataType, initialValue);
+		case TypeconfigurationPackage.TTYPE:
+			return createTTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case TypeconfigurationPackage.ATTRIBUTE_TYPE:
-				return convertAttributeTypeToString(eDataType, instanceValue);
-			case TypeconfigurationPackage.ITYPE:
-				return convertITypeToString(eDataType, instanceValue);
-			case TypeconfigurationPackage.TTYPE:
-				return convertTTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case TypeconfigurationPackage.ATTRIBUTE_TYPE:
+			return convertAttributeTypeToString(eDataType, instanceValue);
+		case TypeconfigurationPackage.ITYPE:
+			return convertITypeToString(eDataType, instanceValue);
+		case TypeconfigurationPackage.TTYPE:
+			return convertTTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypeConfigContainer createTypeConfigContainer() {
@@ -137,8 +143,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Type createType() {
@@ -147,8 +153,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Relation createRelation() {
@@ -157,8 +163,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Configuration createConfiguration() {
@@ -167,8 +173,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CustomType createCustomType() {
@@ -177,8 +183,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Entry createEntry() {
@@ -187,8 +193,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RegisteredAttribute createRegisteredAttribute() {
@@ -197,8 +203,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StdAttribute createStdAttribute() {
@@ -207,8 +213,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RelationsPredicatesMapping createRelationsPredicatesMapping() {
@@ -217,8 +223,8 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DecorationPredicate createDecorationPredicate() {
@@ -227,19 +233,20 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttributeType createAttributeTypeFromString(EDataType eDataType, String initialValue) {
 		AttributeType result = AttributeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertAttributeTypeToString(EDataType eDataType, Object instanceValue) {
@@ -247,17 +254,17 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IType createITypeFromString(EDataType eDataType, String initialValue) {
-		return (IType)super.createFromString(eDataType, initialValue);
+		return (IType) super.createFromString(eDataType, initialValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertITypeToString(EDataType eDataType, Object instanceValue) {
@@ -265,17 +272,17 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TType createTTypeFromString(EDataType eDataType, String initialValue) {
-		return (TType)super.createFromString(eDataType, initialValue);
+		return (TType) super.createFromString(eDataType, initialValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertTTypeToString(EDataType eDataType, Object instanceValue) {
@@ -283,17 +290,17 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypeconfigurationPackage getTypeconfigurationPackage() {
-		return (TypeconfigurationPackage)getEPackage();
+		return (TypeconfigurationPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -302,4 +309,4 @@ public class TypeconfigurationFactoryImpl extends EFactoryImpl implements Typeco
 		return TypeconfigurationPackage.eINSTANCE;
 	}
 
-} //TypeconfigurationFactoryImpl
+} // TypeconfigurationFactoryImpl

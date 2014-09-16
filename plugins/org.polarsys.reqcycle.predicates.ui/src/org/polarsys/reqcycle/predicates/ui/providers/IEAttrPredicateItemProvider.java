@@ -24,18 +24,14 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 
 /**
- * This is the item provider adapter for a
- * {@link org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class IEAttrPredicateItemProvider extends
-		IPredicateContainerItemProvider {
+public class IEAttrPredicateItemProvider extends IPredicateContainerItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -44,8 +40,7 @@ public class IEAttrPredicateItemProvider extends
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -60,39 +55,27 @@ public class IEAttrPredicateItemProvider extends
 	}
 
 	/**
-	 * This adds a property descriptor for the Typed Element feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Typed Element feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addTypedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ITypedPredicate_typedElement_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ITypedPredicate_typedElement_feature",
-						"_UI_ITypedPredicate_type"),
-				PredicatesPackage.Literals.ITYPED_PREDICATE__TYPED_ELEMENT,
-				true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ITypedPredicate_typedElement_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ITypedPredicate_typedElement_feature", "_UI_ITypedPredicate_type"), PredicatesPackage.Literals.ITYPED_PREDICATE__TYPED_ELEMENT, true, false, false, null, null, null));
 	}
 
 	/**
-	 * This returns EqualPredicate.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns EqualPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/IEAttrPredicate"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IEAttrPredicate"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated not
 	 */
@@ -100,15 +83,11 @@ public class IEAttrPredicateItemProvider extends
 	public String getText(Object object) {
 		IEAttrPredicate p = ((IEAttrPredicate) object);
 		String label = p.getDisplayName();
-		return label == null || label.length() == 0 ? getString("_UI_IEAttrPredicate_type")
-				: getString("_UI_IEAttrPredicate_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_IEAttrPredicate_type") : getString("_UI_IEAttrPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -118,23 +97,19 @@ public class IEAttrPredicateItemProvider extends
 
 		switch (notification.getFeatureID(IEAttrPredicate.class)) {
 		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

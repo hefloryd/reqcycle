@@ -22,11 +22,9 @@ import com.google.common.collect.Iterables;
 
 public class WidthHarvester extends Harvester {
 
-
 	public WidthHarvester(Object startingElement) {
 		super(startingElement);
 	}
-
 
 	public void collect(ResultHandler<Object> handler) throws CollectionAbortedException {
 		collectWidthWise(handler, start);
@@ -36,32 +34,32 @@ public class WidthHarvester extends Harvester {
 	 * Width wise collection.
 	 * 
 	 * @param handler
-	 *        the handler that processes each element.
+	 *            the handler that processes each element.
 	 * @param element
-	 *        : the element from which the collection is performed.
+	 *            : the element from which the collection is performed.
 	 * @throws CollectionAbortedException
 	 */
 	protected void collectWidthWise(ResultHandler<Object> handler, Object element) throws CollectionAbortedException {
 		Iterable<?> currentLayer = Collections.singletonList(element);
 		Iterable<?> nextLayer = Collections.EMPTY_LIST;
-		while(currentLayer != null && !Iterables.isEmpty(currentLayer)) {
-			for(Object currentElement : currentLayer) {
+		while (currentLayer != null && !Iterables.isEmpty(currentLayer)) {
+			for (Object currentElement : currentLayer) {
 				try {
 					handler.handleResult(currentElement);
-					//Building the next layer.
-					for(IPicker picker : this.getPickers()) {
-						Iterable<?> nexts = picker.getNexts(currentElement); //getting children.
-						if(nexts != null) {
+					// Building the next layer.
+					for (IPicker picker : this.getPickers()) {
+						Iterable<?> nexts = picker.getNexts(currentElement); // getting children.
+						if (nexts != null) {
 							nextLayer = Iterables.concat(nextLayer, nexts);
 						}
 					}
 				} catch (CannotHandleException e) {
-					//do nothing
+					// do nothing
 				} catch (Exception e) {
 					Activator.logError(e);
 				}
 			}
-			//The current layer has been processed. Going through the next one.
+			// The current layer has been processed. Going through the next one.
 			currentLayer = nextLayer;
 			nextLayer = Collections.EMPTY_LIST;
 		}

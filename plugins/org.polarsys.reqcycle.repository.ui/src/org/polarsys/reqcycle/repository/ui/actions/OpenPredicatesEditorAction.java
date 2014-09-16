@@ -23,5 +23,4 @@ public class OpenPredicatesEditorAction extends Action {
 		PredicatesUIHelper.openNewPredicateEditor();
 	}
 
-
 }

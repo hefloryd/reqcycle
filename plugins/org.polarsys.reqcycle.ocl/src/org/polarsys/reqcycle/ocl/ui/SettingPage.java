@@ -54,15 +54,14 @@ public class SettingPage extends AbstractSettingPage {
 
 	private SettingBean bean;
 
-	//private String nameFile;
+	// private String nameFile;
 
 	protected SettingPage(SettingBean bean) {
-		super("OCL Connector settings");		
+		super("OCL Connector settings");
 		setDescription("Connector settings");
-		this.bean = bean ;
-		
-	}
+		this.bean = bean;
 
+	}
 
 	@Override
 	protected Composite doCreateSpecific(Composite parent) {
@@ -80,30 +79,22 @@ public class SettingPage extends AbstractSettingPage {
 		setControl(containerComposite);
 		return containerComposite;
 	}
-	
+
 	@Override
 	protected void specificHookListeners() {
-		
+
 		getDestinationFileSelectionListener();
-		
+
 		browseButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				/*BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider();
-				WorkspaceResourceDialog dialog = new WorkspaceResourceDialog(Display.getCurrent().getActiveShell(), labelProvider, contentProvider);
-				dialog.addFilter(filter);
-				dialog.setAllowMultiple(false);
-				dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
-				dialog.setValidator(validator);
-				int open = dialog.open();
-				if(open == 0) {
-					IFile iFile = dialog.getSelectedFiles()[0];
-					String location = iFile.getFullPath().toOSString();
-					tFile.setText(location);
-				}	*/	
-				ResourceDialog dialog = new ResourceDialog(getShell(),
-						"Select a model", SWT.NONE);
+				/*
+				 * BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider(); WorkspaceResourceDialog dialog = new WorkspaceResourceDialog(Display.getCurrent().getActiveShell(), labelProvider, contentProvider);
+				 * dialog.addFilter(filter); dialog.setAllowMultiple(false); dialog.setInput(ResourcesPlugin.getWorkspace().getRoot()); dialog.setValidator(validator); int open = dialog.open(); if(open == 0) { IFile iFile =
+				 * dialog.getSelectedFiles()[0]; String location = iFile.getFullPath().toOSString(); tFile.setText(location); }
+				 */
+				ResourceDialog dialog = new ResourceDialog(getShell(), "Select a model", SWT.NONE);
 				int res = dialog.open();
 				if (res == ResourceDialog.OK) {
 					List<URI> uris = dialog.getURIs();
@@ -111,53 +102,47 @@ public class SettingPage extends AbstractSettingPage {
 						tFile.setText(uris.get(0).toString());
 					}
 				}
-		
-				 getWizard().getContainer().updateMessage();
-				 getWizard().getContainer().updateButtons();
+
+				getWizard().getContainer().updateMessage();
+				getWizard().getContainer().updateButtons();
 			}
 		});
-		
+
 	}
-	
 
 	@Override
 	protected Boolean specificIsPageComplete(Boolean result) {
-		if (tFile.getText() == null || tFile.getText()== "") {			  
-			  return result = false; 
-			  }	
-		 else
-		 {
-			 String uriString = tFile.getText();
-				if(uriString != null && !uriString.isEmpty()) {
-					URI uri = URI.createURI(uriString);
-					if(!EMFUtils.isEMF(uri, false)) {
-						return result = false;
-						}
-					}
-				} 
-		 return result;
-		 }
-
-	@Override
-	protected StringBuffer specificIsPageComplete(Boolean result,StringBuffer error) {
-		if ( result == false) {
-			return  new StringBuffer("Choose an EMF model \n");
-			}	
-		else
-		{
+		if (tFile.getText() == null || tFile.getText() == "") {
+			return result = false;
+		} else {
 			String uriString = tFile.getText();
-				
-			if(uriString != null && !uriString.isEmpty()) {
-					URI uri = URI.createURI(uriString);
-					if(!EMFUtils.isEMF(uri, false)) {
-						return  new StringBuffer("Selected file is not an EMF resource");
-					}
+			if (uriString != null && !uriString.isEmpty()) {
+				URI uri = URI.createURI(uriString);
+				if (!EMFUtils.isEMF(uri, false)) {
+					return result = false;
 				}
-			} 
-			return error;
+			}
+		}
+		return result;
 	}
 
-	
+	@Override
+	protected StringBuffer specificIsPageComplete(Boolean result, StringBuffer error) {
+		if (result == false) {
+			return new StringBuffer("Choose an EMF model \n");
+		} else {
+			String uriString = tFile.getText();
+
+			if (uriString != null && !uriString.isEmpty()) {
+				URI uri = URI.createURI(uriString);
+				if (!EMFUtils.isEMF(uri, false)) {
+					return new StringBuffer("Selected file is not an EMF resource");
+				}
+			}
+		}
+		return error;
+	}
+
 	/**
 	 * Label provider for the workspace resource dialog.
 	 */
@@ -186,13 +171,13 @@ public class SettingPage extends AbstractSettingPage {
 
 		@Override
 		public IStatus validate(Object[] selection) {
-			if(selection.length == 1) {
-				Object o = selection[0];			
+			if (selection.length == 1) {
+				Object o = selection[0];
 				// RFa we do not want to restrict to UML files
 				if (o instanceof IFile) {
 					URI uri = URI.createPlatformResourceURI(((IFile) o).getFullPath().toOSString(), true);
-					System.out.println("uri: "+ uri);
-					if(EMFUtils.isEMF(uri,false)) {
+					System.out.println("uri: " + uri);
+					if (EMFUtils.isEMF(uri, false)) {
 						return Status.OK_STATUS;
 					}
 				}
@@ -200,14 +185,13 @@ public class SettingPage extends AbstractSettingPage {
 			return new Status(IStatus.ERROR, ReqcycleOCLPlugin.PLUGIN_ID, "Select a single EMF file");
 		}
 	};
-	
+
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
-	
+
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(tFile);
 		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(bean);
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
 	}
-
 
 	@Override
 	public AbstractStorageBean getBean() {

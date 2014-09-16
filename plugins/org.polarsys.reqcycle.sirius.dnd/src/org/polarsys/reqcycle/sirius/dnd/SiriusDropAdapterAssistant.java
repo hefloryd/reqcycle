@@ -31,24 +31,22 @@ public class SiriusDropAdapterAssistant extends CommonDropAdapterAssistant {
 	public SiriusDropAdapterAssistant() {
 		ZigguratInject.inject(this);
 	}
-	
+
 	@Override
-	public IStatus validateDrop(Object target, int operation,
-			TransferData transferType) {
-		if (objectHandler.getFromObject(target).getReachable(target) != null){
+	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
+		if (objectHandler.getFromObject(target).getReachable(target) != null) {
 			return Status.OK_STATUS;
 		}
 		return Status.CANCEL_STATUS;
 	}
 
 	@Override
-	public IStatus handleDrop(CommonDropAdapter aDropAdapter,
-			DropTargetEvent aDropTargetEvent, Object aTarget) {
-		if (LocalSelectionTransfer.getTransfer().isSupportedType(aDropAdapter.getCurrentTransfer())){
-			if (!(aTarget instanceof EObject)){
+	public IStatus handleDrop(CommonDropAdapter aDropAdapter, DropTargetEvent aDropTargetEvent, Object aTarget) {
+		if (LocalSelectionTransfer.getTransfer().isSupportedType(aDropAdapter.getCurrentTransfer())) {
+			if (!(aTarget instanceof EObject)) {
 				if (aTarget instanceof IAdaptable) {
 					IAdaptable adaptable = (IAdaptable) aTarget;
-					if (adaptable.getAdapter(EObject.class) != null){
+					if (adaptable.getAdapter(EObject.class) != null) {
 						aTarget = adaptable.getAdapter(EObject.class);
 					}
 				}
@@ -59,10 +57,10 @@ public class SiriusDropAdapterAssistant extends CommonDropAdapterAssistant {
 				selection = select.getFirstElement();
 			}
 			DropRequirementDelegate req = new DropRequirementDelegate();
-			IFile file = WorkspaceSynchronizer.getFile(((EObject)aTarget).eResource());
+			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
 			List<Reachable> reachables = Lists.newArrayList();
 			reachables.add(objectHandler.getFromObject(selection).getReachable(selection));
-			req.handleDrop(reachables, objectHandler.getFromObject(aTarget).getReachable(aTarget),file);
+			req.handleDrop(reachables, objectHandler.getFromObject(aTarget).getReachable(aTarget), file);
 		}
 		return Status.OK_STATUS;
 	}

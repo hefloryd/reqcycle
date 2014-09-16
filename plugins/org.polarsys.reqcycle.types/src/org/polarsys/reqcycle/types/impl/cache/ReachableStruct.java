@@ -27,8 +27,7 @@ public class ReachableStruct {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((couples == null) ? 0 : couples.hashCode());
-		result = prime * result
-				+ ((resource == null) ? 0 : resource.hashCode());
+		result = prime * result + ((resource == null) ? 0 : resource.hashCode());
 		return result;
 	}
 

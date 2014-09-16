@@ -16,15 +16,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Scope</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Scope</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName <em>Data Model Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements <em>Requirements</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName <em>Data Model Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,11 +33,9 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractEleme
  */
 public interface Scope extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -51,23 +48,22 @@ public interface Scope extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getName <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Requirements</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirements</b></em>' reference list. The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Requirements</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Requirements</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Requirements</em>' reference list.
 	 * @see #isSetRequirements()
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage#getScope_Requirements()
@@ -77,9 +73,8 @@ public interface Scope extends EObject {
 	EList<AbstractElement> getRequirements();
 
 	/**
-	 * Returns whether the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements <em>Requirements</em>}' reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns whether the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getRequirements <em>Requirements</em>}' reference list is set. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return whether the value of the '<em>Requirements</em>' reference list is set.
 	 * @see #getRequirements()
 	 * @generated
@@ -87,13 +82,12 @@ public interface Scope extends EObject {
 	boolean isSetRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Data Model Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Data Model Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Data Model Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Data Model Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Data Model Name</em>' attribute.
 	 * @see #setDataModelName(String)
 	 * @see org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfPackage#getScope_DataModelName()
@@ -103,10 +97,10 @@ public interface Scope extends EObject {
 	String getDataModelName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName <em>Data Model Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Model Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.ScopeConf.Scope#getDataModelName <em>Data Model Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Data Model Name</em>' attribute.
 	 * @see #getDataModelName()
 	 * @generated
 	 */

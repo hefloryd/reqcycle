@@ -64,9 +64,9 @@ public abstract class AbstractCustomDialog extends Dialog implements Listener {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
-		Composite container = (Composite)super.createDialogArea(parent);
+		Composite container = (Composite) super.createDialogArea(parent);
 
-		if(this.message != null) {
+		if (this.message != null) {
 			Label label = new Label(container, SWT.WRAP);
 			label.setText(this.message);
 			GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
@@ -104,7 +104,7 @@ public abstract class AbstractCustomDialog extends Dialog implements Listener {
 
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		if(title != null) {
+		if (title != null) {
 			shell.setText(title);
 		}
 	}
@@ -117,11 +117,11 @@ public abstract class AbstractCustomDialog extends Dialog implements Listener {
 	 * Sets or clears the error message. If not <code>null</code>, the OK button is disabled.
 	 * 
 	 * @param errorMessage
-	 *        the error message, or <code>null</code> to clear
+	 *            the error message, or <code>null</code> to clear
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
-		if(errorMessageText != null && !errorMessageText.isDisposed()) {
+		if (errorMessageText != null && !errorMessageText.isDisposed()) {
 			errorMessageText.setText(errorMessage == null ? " \n " : errorMessage); //$NON-NLS-1$
 			// Disable the error message text control if there is no error, or
 			// no error text (empty or whitespace only). Hide it also to avoid color change.
@@ -131,7 +131,7 @@ public abstract class AbstractCustomDialog extends Dialog implements Listener {
 			errorMessageText.getParent().update();
 			// Access the ok button by id, in case clients have overridden button creation.
 			Control button = getButton(IDialogConstants.OK_ID);
-			if(button != null) {
+			if (button != null) {
 				button.setEnabled(errorMessage == null);
 			}
 		}
@@ -152,7 +152,7 @@ public abstract class AbstractCustomDialog extends Dialog implements Listener {
 
 	protected void enableOkButton(boolean enable) {
 		Button okBtn = getButton(OK);
-		if(okBtn != null) {
+		if (okBtn != null) {
 			okBtn.setEnabled(enable);
 		}
 	}

@@ -63,8 +63,7 @@ import com.google.common.collect.Lists;
 
 public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleClickListener {
 	IStylingManager styleManager = ZigguratInject.make(IStylingManager.class);
-	IPredicatesConfManager predicatesConfManager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	private ListViewer listViewer;
 	private StyledText styledText;
@@ -79,11 +78,9 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 	 * 
 	 * @param parentShell
 	 */
-	public StyleModelEditorDialog(Shell parentShell, CaseStyle style,
-			StylingModel styling) {
+	public StyleModelEditorDialog(Shell parentShell, CaseStyle style, StylingModel styling) {
 		super(parentShell);
-		setShellStyle(SWT.DIALOG_TRIM | SWT.MAX | SWT.RESIZE
-				| SWT.PRIMARY_MODAL);
+		setShellStyle(SWT.DIALOG_TRIM | SWT.MAX | SWT.RESIZE | SWT.PRIMARY_MODAL);
 		caseStyle = style;
 		if (caseStyle.getIcon() == null) {
 			caseStyle.setIcon(StylingFactory.eINSTANCE.createIcon());
@@ -107,21 +104,18 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 
 		if (caseStyle instanceof StylingPredicate) {
 			Label lblName = new Label(container, SWT.NONE);
-			lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-					false, 1, 1));
+			lblName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 			lblName.setText("Predicate : ");
 
 			comboViewer = new ComboViewer(container, SWT.READ_ONLY);
 			combo = comboViewer.getCombo();
-			combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-					1, 1));
+			combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		}
 
 		Group composite = new Group(container, SWT.NONE);
 		composite.setText("Segments");
 		composite.setLayout(new GridLayout(2, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
-				2));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 2));
 		composite.setBounds(0, 0, 64, 64);
 
 		listViewer = new ListViewer(composite, SWT.BORDER | SWT.FULL_SELECTION);
@@ -129,10 +123,9 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 		list.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		listViewer.addDoubleClickListener(this);
-		
+
 		Composite compositeBtn = new Composite(composite, SWT.NONE);
-		compositeBtn.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false,
-				false, 1, 1));
+		compositeBtn.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 		GridLayout gl_compositeBtn = new GridLayout(1, false);
 		gl_compositeBtn.marginHeight = 0;
 		gl_compositeBtn.verticalSpacing = 0;
@@ -147,8 +140,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				EList<Segment> segmentList = caseStyle.getSegments();
 				Segment newSegment = StylingFactory.eINSTANCE.createSegment();
 
-				ConstantPattern pattern = StylingFactory.eINSTANCE
-						.createConstantPattern();
+				ConstantPattern pattern = StylingFactory.eINSTANCE.createConstantPattern();
 				pattern.setValue("New segment");
 				newSegment.setPattern(pattern);
 				newSegment.setStyle(StylingFactory.eINSTANCE.createStyle());
@@ -160,8 +152,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				handlePreview();
 			}
 		});
-		btnAdd.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
+		btnAdd.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/add_obj.gif"));
 
 		Button btnRemove = new Button(compositeBtn, SWT.NONE);
 		btnRemove.setToolTipText("Remove selected segment");
@@ -169,8 +160,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
 					Segment segment = (Segment) selection.getFirstElement();
 					if (segment != null) {
 						EList<Segment> segmentList = caseStyle.getSegments();
@@ -182,8 +172,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				}
 			}
 		});
-		btnRemove.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
+		btnRemove.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/delete_obj.gif"));
 
 		Button btnEdit = new Button(compositeBtn, SWT.NONE);
 		btnEdit.setToolTipText("Edit selected segment");
@@ -191,8 +180,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
 					Segment segment = (Segment) selection.getFirstElement();
 					if (segment != null) {
 						editSegment(segment);
@@ -200,8 +188,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				}
 			}
 		});
-		btnEdit.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
+		btnEdit.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/edit_obj.png"));
 		btnEdit.setBounds(0, 0, 75, 25);
 
 		Button btnUp = new Button(compositeBtn, SWT.NONE);
@@ -210,8 +197,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
 					Segment segment = (Segment) selection.getFirstElement();
 					if (segment != null) {
 						EList<Segment> segmentList = caseStyle.getSegments();
@@ -226,8 +212,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				}
 			}
 		});
-		btnUp.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
+		btnUp.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/prev_nav-1.gif"));
 		btnUp.setBounds(0, 0, 75, 25);
 
 		Button btnDown = new Button(compositeBtn, SWT.NONE);
@@ -236,8 +221,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (!listViewer.getSelection().isEmpty()) {
-					IStructuredSelection selection = (IStructuredSelection) listViewer
-							.getSelection();
+					IStructuredSelection selection = (IStructuredSelection) listViewer.getSelection();
 					Segment segment = (Segment) selection.getFirstElement();
 					if (segment != null) {
 						EList<Segment> segmentList = caseStyle.getSegments();
@@ -252,16 +236,13 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				}
 			}
 		});
-		btnDown.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
+		btnDown.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.styling.ui", "icons/next_nav-1.gif"));
 
 		if (caseStyle instanceof StylingPredicate) {
 			comboViewer.setContentProvider(ArrayContentProvider.getInstance());
 
-			AdapterFactory adapterfactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-					adapterfactory) {
+			AdapterFactory adapterfactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterfactory) {
 				@Override
 				public String getText(Object object) {
 					if (object instanceof IPredicate) {
@@ -273,44 +254,36 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 
 			comboViewer.setLabelProvider(labelProvider);
 
-			Collection<IPredicate> predicates = predicatesConfManager
-					.getPredicates(false);
+			Collection<IPredicate> predicates = predicatesConfManager.getPredicates(false);
 
-			final Iterable<IPredicate> alreadyUsed = Iterables.filter(Iterables
-					.transform(stylingModel.getStyles(),
-							new Function<CaseStyle, IPredicate>() {
+			final Iterable<IPredicate> alreadyUsed = Iterables.filter(Iterables.transform(stylingModel.getStyles(), new Function<CaseStyle, IPredicate>() {
 
-								@Override
-								public IPredicate apply(CaseStyle arg0) {
-									if (arg0 instanceof StylingPredicate) {
-										StylingPredicate sp = (StylingPredicate) arg0;
-										return sp.getPredicate();
-									}
-									return null;
-								}
+				@Override
+				public IPredicate apply(CaseStyle arg0) {
+					if (arg0 instanceof StylingPredicate) {
+						StylingPredicate sp = (StylingPredicate) arg0;
+						return sp.getPredicate();
+					}
+					return null;
+				}
 
-							}), Predicates.notNull());
+			}), Predicates.notNull());
 
-			Collection<IPredicate> selectionPredicates = Lists
-					.newArrayList(Iterables.filter(predicates,
-							new Predicate<IPredicate>() {
-								public boolean apply(IPredicate arg0) {
-									for (IPredicate p : alreadyUsed) {
-										if (p.getDisplayName().equals(
-												arg0.getDisplayName())) {
-											return false;
-										}
-									}
-									return true;
-								};
-							}));
+			Collection<IPredicate> selectionPredicates = Lists.newArrayList(Iterables.filter(predicates, new Predicate<IPredicate>() {
+				public boolean apply(IPredicate arg0) {
+					for (IPredicate p : alreadyUsed) {
+						if (p.getDisplayName().equals(arg0.getDisplayName())) {
+							return false;
+						}
+					}
+					return true;
+				};
+			}));
 
-			selectionPredicates.add(((StylingPredicate) caseStyle)
-					.getPredicate());
+			selectionPredicates.add(((StylingPredicate) caseStyle).getPredicate());
 
 			comboViewer.setInput(selectionPredicates);
-			comboViewer.setSelection(new StructuredSelection(
-					((StylingPredicate) caseStyle).getPredicate()));
+			comboViewer.setSelection(new StructuredSelection(((StylingPredicate) caseStyle).getPredicate()));
 
 		}
 
@@ -325,16 +298,14 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PictureChooserDialog d = new PictureChooserDialog(getShell(),
-						caseStyle.getIcon().getImage());
+				PictureChooserDialog d = new PictureChooserDialog(getShell(), caseStyle.getIcon().getImage());
 
 				if (d.open() == Window.OK) {
 					caseStyle.getIcon().setImage(d.imageSelected);
 
 					Display.getDefault().syncExec(new Runnable() {
 						public void run() {
-							iconLabel.setImage(IconRegistry.getImage(caseStyle
-									.getIcon().getImage()));
+							iconLabel.setImage(IconRegistry.getImage(caseStyle.getIcon().getImage()));
 						}
 					});
 
@@ -343,8 +314,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 		});
 
 		Group grpPreview = new Group(container, SWT.NONE);
-		GridData gd_grpPreview = new GridData(SWT.LEFT, SWT.CENTER, false,
-				false, 2, 1);
+		GridData gd_grpPreview = new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1);
 		gd_grpPreview.widthHint = 393;
 		grpPreview.setLayoutData(gd_grpPreview);
 		grpPreview.setText("Preview");
@@ -353,23 +323,19 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 		iconLabel = new Label(grpPreview, SWT.NONE);
 
 		if (caseStyle.getIcon().getImage().equals("")) {
-			Collection<Descriptor> listDesc = IconRegistry
-					.getRegisteredImages();
+			Collection<Descriptor> listDesc = IconRegistry.getRegisteredImages();
 			if (listDesc.size() != 0) {
 				Descriptor desc = listDesc.iterator().next();
 				caseStyle.getIcon().setImage(desc.id);
 				iconLabel.setImage(IconRegistry.getImage(desc.id));
 			}
 		} else {
-			iconLabel.setImage(IconRegistry.getImage(caseStyle.getIcon()
-					.getImage()));
+			iconLabel.setImage(IconRegistry.getImage(caseStyle.getIcon().getImage()));
 		}
 
 		styledText = new StyledText(grpPreview, SWT.NONE);
-		styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
-				1, 1));
-		styledText.setBackground(SWTResourceManager
-				.getColor(SWT.COLOR_WIDGET_BACKGROUND));
+		styledText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+		styledText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
 		styledText.setAlignment(SWT.CENTER);
 		styledText.setEditable(false);
 		styledText.setEnabled(false);
@@ -396,16 +362,13 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			if (segment.getStyle().getAppliedFonts().contains(FontOption.BOLD)) {
 				font |= SWT.BOLD;
 			}
-			if (segment.getStyle().getAppliedFonts()
-					.contains(FontOption.ITALIC)) {
+			if (segment.getStyle().getAppliedFonts().contains(FontOption.ITALIC)) {
 				font |= SWT.ITALIC;
 			}
-			if (segment.getStyle().getAppliedFonts()
-					.contains(FontOption.UNDERLINE)) {
+			if (segment.getStyle().getAppliedFonts().contains(FontOption.UNDERLINE)) {
 				style.underline = true;
 			}
-			if (segment.getStyle().getAppliedFonts()
-					.contains(FontOption.STRIKE)) {
+			if (segment.getStyle().getAppliedFonts().contains(FontOption.STRIKE)) {
 				style.strikeout = true;
 			}
 			style.font = SWTResourceManager.getFont("Segoe UI", 9, font);
@@ -417,8 +380,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 
 	private void initProviders(ListViewer list) {
 		AdapterFactory adapterfactory = new StylingAdapterFactory();
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				adapterfactory) {
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterfactory) {
 			@Override
 			public String getText(Object object) {
 				if (object instanceof Segment) {
@@ -428,8 +390,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			}
 		};
 
-		ArrayContentProvider contentProvider = ArrayContentProvider
-				.getInstance();
+		ArrayContentProvider contentProvider = ArrayContentProvider.getInstance();
 
 		list.setLabelProvider(labelProvider);
 		list.setContentProvider(contentProvider);
@@ -444,10 +405,8 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 		if (caseStyle instanceof StylingPredicate) {
 			initDataBindings();
 		}
@@ -464,33 +423,28 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
-		IObservableValue observeSingleSelectionComboViewer = ViewerProperties
-				.singleSelection().observe(comboViewer);
-		IObservableValue caseStylePredicateObserveValue = EMFObservables
-				.observeValue(caseStyle, Literals.STYLING_PREDICATE__PREDICATE);
-		bindingContext.bindValue(observeSingleSelectionComboViewer,
-				caseStylePredicateObserveValue, null, null);
+		IObservableValue observeSingleSelectionComboViewer = ViewerProperties.singleSelection().observe(comboViewer);
+		IObservableValue caseStylePredicateObserveValue = EMFObservables.observeValue(caseStyle, Literals.STYLING_PREDICATE__PREDICATE);
+		bindingContext.bindValue(observeSingleSelectionComboViewer, caseStylePredicateObserveValue, null, null);
 		//
 		return bindingContext;
 	}
-	
+
 	private void editSegment(Segment segment) {
-		SegmentEditorDialog editor = new SegmentEditorDialog(
-				Display.getDefault().getActiveShell(), segment);
+		SegmentEditorDialog editor = new SegmentEditorDialog(Display.getDefault().getActiveShell(), segment);
 		if (editor.open() == Window.OK) {
 			// TODO
-			
+
 			listViewer.setInput(caseStyle.getSegments());
 			handlePreview();
 		}
 	}
-	
+
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
-		final IStructuredSelection selection = (IStructuredSelection) event
-				.getSelection();
+		final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 		if (selection.getFirstElement() instanceof Segment) {
-			editSegment((Segment)selection.getFirstElement());
+			editSegment((Segment) selection.getFirstElement());
 		}
 	}
 }

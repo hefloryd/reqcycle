@@ -12,10 +12,8 @@ package org.polarsys.reqcycle.utils.iterators.collectors;
 
 import org.polarsys.reqcycle.utils.iterators.pickers.IPicker;
 
-
 /**
- * Basic abstract realization of a IHarvester,
- * that adds the concept of starting element.
+ * Basic abstract realization of a IHarvester, that adds the concept of starting element.
  */
 public abstract class Harvester implements IHarvester {
 
@@ -30,7 +28,7 @@ public abstract class Harvester implements IHarvester {
 	protected Iterable<IPicker> pickers;
 
 	public Harvester() {
-		//Empty constructor
+		// Empty constructor
 	}
 
 	public Harvester(Object startingElement) {

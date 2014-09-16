@@ -28,10 +28,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.MappingComposite;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
 
-
 public abstract class MappingDialogPage extends Dialog {
-
-
 
 	private MappingComposite mappingComposite;
 
@@ -44,7 +41,7 @@ public abstract class MappingDialogPage extends Dialog {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite composite = (Composite)super.createDialogArea(parent);
+		Composite composite = (Composite) super.createDialogArea(parent);
 		Control result = build(composite);
 		return result;
 	}
@@ -102,7 +99,6 @@ public abstract class MappingDialogPage extends Dialog {
 		return mappingComposite;
 	}
 
-
 	protected abstract String getResultDetail();
 
 	protected abstract Object getTargetInput();
@@ -122,7 +118,7 @@ public abstract class MappingDialogPage extends Dialog {
 	public abstract ILabelProvider getSourceLabelProvider();
 
 	public Collection<EObject> getResult() {
-		if(mappingComposite != null) {
+		if (mappingComposite != null) {
 			return mappingComposite.getResult();
 		}
 		return null;

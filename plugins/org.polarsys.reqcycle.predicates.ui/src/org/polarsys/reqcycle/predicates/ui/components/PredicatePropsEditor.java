@@ -37,8 +37,7 @@ public class PredicatePropsEditor extends Composite {
 
 	private final Map<EAttribute, GenericEAttrPropsEditor> editors;
 
-	public PredicatePropsEditor(final ITypedPredicate<?> predicate,
-			final Composite parent, final int style) {
+	public PredicatePropsEditor(final ITypedPredicate<?> predicate, final Composite parent, final int style) {
 
 		super(parent, style);
 		setLayout(new GridLayout(1, false));
@@ -54,13 +53,10 @@ public class PredicatePropsEditor extends Composite {
 		// of the IPredicate to edit.
 		// NOTE: Only the attributes annotated with the expected source
 		// annotation will be proposed for edition.
-		final Collection<EAttribute> inputAttrs = PredicatesUtil
-				.getEAllAttributesAnnotatedBy(predicate.eClass(),
-						IPredicatesAnnotationSources.EANNOTATION_SOURCE_INPUT);
+		final Collection<EAttribute> inputAttrs = PredicatesUtil.getEAllAttributesAnnotatedBy(predicate.eClass(), IPredicatesAnnotationSources.EANNOTATION_SOURCE_INPUT);
 
 		for (EAttribute attr : inputAttrs) {
-			String javaClassType = EAttrPropsEditorPlugin.getEditorType(attr
-					.getEType());
+			String javaClassType = EAttrPropsEditorPlugin.getEditorType(attr.getEType());
 			this.addEditor(attr, javaClassType);
 		}
 	}
@@ -76,27 +72,21 @@ public class PredicatePropsEditor extends Composite {
 		this.addEditor(attribute, null);
 	}
 
-	public void addEditor(final EAttribute attribute,
-			final String javaClassTypeName) {
-		final GenericEAttrPropsEditor attributeEditor = new GenericEAttrPropsEditor(
-				this, SWT.NONE);
-		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false, 1, 1));
+	public void addEditor(final EAttribute attribute, final String javaClassTypeName) {
+		final GenericEAttrPropsEditor attributeEditor = new GenericEAttrPropsEditor(this, SWT.NONE);
+		attributeEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		Collection<Object> possibleValues = Collections.emptyList();
 		if (attribute.getEType() instanceof EEnum) {
-			possibleValues = Lists.newArrayList(Iterables.transform(
-					((EEnum) attribute.getEType()).getELiterals(),
-					new Function<EEnumLiteral, Object>() {
+			possibleValues = Lists.newArrayList(Iterables.transform(((EEnum) attribute.getEType()).getELiterals(), new Function<EEnumLiteral, Object>() {
 
-						@Override
-						public Object apply(EEnumLiteral arg0) {
-							return arg0;
-						}
+				@Override
+				public Object apply(EEnumLiteral arg0) {
+					return arg0;
+				}
 
-					}));
+			}));
 		}
-		attributeEditor.init(attribute.getName(), attribute.getEType()
-				.getInstanceClass(), possibleValues);
+		attributeEditor.init(attribute.getName(), attribute.getEType().getInstanceClass(), possibleValues);
 		this.editors.put(attribute, attributeEditor);
 		this.layout();
 	}

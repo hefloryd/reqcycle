@@ -21,9 +21,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 
 /**
- * Delegate wrapper around {@link IBuilderCallBack} that uses a
- * {@link ProxyResolver} to resolve the source and target objects before calling
- * {@link #newUpwardRelation(Object, Object, Object, List, TType)}.
+ * Delegate wrapper around {@link IBuilderCallBack} that uses a {@link ProxyResolver} to resolve the source and target objects before calling {@link #newUpwardRelation(Object, Object, Object, List, TType)}.
  * 
  * <p>
  * The behavior of the other methods is unmodified.
@@ -69,8 +67,7 @@ public class ProxyResolutionBuilderCallbackWrapper implements IBuilderCallBack {
 	}
 
 	@Override
-	public void newUpwardRelation(final Object traceabilityObject, final Object resource, final Object source,
-			final List<? extends Object> targets, final TType label) {
+	public void newUpwardRelation(final Object traceabilityObject, final Object resource, final Object source, final List<? extends Object> targets, final TType label) {
 		final Object newSource = this.proxyResolverFunction.apply(source);
 		final List<Object> newTargets = new LinkedList<Object>(Collections2.transform(targets, this.proxyResolverFunction));
 		this.callBack.newUpwardRelation(traceabilityObject, resource, newSource, newTargets, label);

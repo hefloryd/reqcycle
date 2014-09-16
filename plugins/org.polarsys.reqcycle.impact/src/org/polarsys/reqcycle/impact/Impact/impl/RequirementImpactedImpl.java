@@ -26,15 +26,13 @@ import org.polarsys.reqcycle.impact.Impact.RequirementImpacted;
 import org.polarsys.reqcycle.impact.Impact.TraceabilityLink;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Requirement Impacted</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Requirement Impacted</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getId <em>Id</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getLinkList <em>Link List</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getAttributesImpacted <em>Attributes Impacted</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getId <em>Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getLinkList <em>Link List</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.RequirementImpactedImpl#getAttributesImpacted <em>Attributes Impacted</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,9 +40,8 @@ import org.polarsys.reqcycle.impact.Impact.TraceabilityLink;
  */
 public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implements RequirementImpacted {
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -52,9 +49,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -62,9 +58,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	protected String id = ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLinkList() <em>Link List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLinkList() <em>Link List</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkList()
 	 * @generated
 	 * @ordered
@@ -72,9 +67,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	protected EList<TraceabilityLink> linkList;
 
 	/**
-	 * The cached value of the '{@link #getAttributesImpacted() <em>Attributes Impacted</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributesImpacted() <em>Attributes Impacted</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributesImpacted()
 	 * @generated
 	 * @ordered
@@ -82,8 +76,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	protected EList<AttributeImpacted> attributesImpacted;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementImpactedImpl() {
@@ -91,8 +85,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,8 +95,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getId() {
@@ -110,8 +104,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(String newId) {
@@ -122,8 +116,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<TraceabilityLink> getLinkList() {
@@ -134,8 +128,8 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AttributeImpacted> getAttributesImpacted() {
@@ -146,13 +140,13 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public AttributeImpacted getImpactedAttribute(String attributeName) {
-		
-		for(AttributeImpacted att : this.getAttributesImpacted()) {
+
+		for (AttributeImpacted att : this.getAttributesImpacted()) {
 			if (att.getId().equals(attributeName)) {
 				return att;
 			}
@@ -161,124 +155,125 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
-				return ((InternalEList<?>)getLinkList()).basicRemove(otherEnd, msgs);
-			case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
-				return ((InternalEList<?>)getAttributesImpacted()).basicRemove(otherEnd, msgs);
+		case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
+			return ((InternalEList<?>) getLinkList()).basicRemove(otherEnd, msgs);
+		case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
+			return ((InternalEList<?>) getAttributesImpacted()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED__ID:
-				return getId();
-			case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
-				return getLinkList();
-			case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
-				return getAttributesImpacted();
+		case ImpactPackage.REQUIREMENT_IMPACTED__ID:
+			return getId();
+		case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
+			return getLinkList();
+		case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
+			return getAttributesImpacted();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED__ID:
-				setId((String)newValue);
-				return;
-			case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
-				getLinkList().clear();
-				getLinkList().addAll((Collection<? extends TraceabilityLink>)newValue);
-				return;
-			case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
-				getAttributesImpacted().clear();
-				getAttributesImpacted().addAll((Collection<? extends AttributeImpacted>)newValue);
-				return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__ID:
+			setId((String) newValue);
+			return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
+			getLinkList().clear();
+			getLinkList().addAll((Collection<? extends TraceabilityLink>) newValue);
+			return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
+			getAttributesImpacted().clear();
+			getAttributesImpacted().addAll((Collection<? extends AttributeImpacted>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED__ID:
-				setId(ID_EDEFAULT);
-				return;
-			case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
-				getLinkList().clear();
-				return;
-			case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
-				getAttributesImpacted().clear();
-				return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__ID:
+			setId(ID_EDEFAULT);
+			return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
+			getLinkList().clear();
+			return;
+		case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
+			getAttributesImpacted().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
-				return linkList != null && !linkList.isEmpty();
-			case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
-				return attributesImpacted != null && !attributesImpacted.isEmpty();
+		case ImpactPackage.REQUIREMENT_IMPACTED__ID:
+			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+		case ImpactPackage.REQUIREMENT_IMPACTED__LINK_LIST:
+			return linkList != null && !linkList.isEmpty();
+		case ImpactPackage.REQUIREMENT_IMPACTED__ATTRIBUTES_IMPACTED:
+			return attributesImpacted != null && !attributesImpacted.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ImpactPackage.REQUIREMENT_IMPACTED___GET_IMPACTED_ATTRIBUTE__STRING:
-				return getImpactedAttribute((String)arguments.get(0));
+		case ImpactPackage.REQUIREMENT_IMPACTED___GET_IMPACTED_ATTRIBUTE__STRING:
+			return getImpactedAttribute((String) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
@@ -287,4 +282,4 @@ public class RequirementImpactedImpl extends MinimalEObjectImpl.Container implem
 		return result.toString();
 	}
 
-} //RequirementImpactedImpl
+} // RequirementImpactedImpl

@@ -26,7 +26,7 @@ public class PredicatesTreeViewerDropAdapter extends EditingDomainViewerDropAdap
 	@Override
 	public void dragOver(DropTargetEvent event) {
 		Object target = determineTarget(event);
-		if(target == null || validateDrop(target)) {
+		if (target == null || validateDrop(target)) {
 			super.dragOver(event);
 		} else {
 			event.detail = DND.DROP_NONE;
@@ -37,7 +37,7 @@ public class PredicatesTreeViewerDropAdapter extends EditingDomainViewerDropAdap
 	 * Returns the target item of the given drop event.
 	 * 
 	 * @param event
-	 *        the event
+	 *            the event
 	 * @return The target of the drop, may be <code>null</code>.
 	 */
 	protected Object determineTarget(DropTargetEvent event) {

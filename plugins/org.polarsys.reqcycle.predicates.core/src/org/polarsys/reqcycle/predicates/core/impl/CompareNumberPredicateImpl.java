@@ -24,26 +24,24 @@ import org.polarsys.reqcycle.predicates.core.api.CompareNumberPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OPERATOR;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Compare Number Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Compare Number Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getDisplayName <em>Display Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getInput <em>Input</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getExpectedValue <em>Expected Value</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getOperator <em>Operator</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getDisplayName <em>Display Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getInput <em>Input</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getExpectedValue <em>Expected Value</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl#getOperator <em>Operator</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
-		implements CompareNumberPredicate {
+public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container implements CompareNumberPredicate {
 
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -51,8 +49,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -60,8 +58,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -69,8 +67,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final Number INPUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -78,9 +76,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected Number input = INPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getExpectedValue() <em>Expected Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getExpectedValue() <em>Expected Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExpectedValue()
 	 * @generated
 	 * @ordered
@@ -88,9 +85,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final Number EXPECTED_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExpectedValue() <em>Expected Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getExpectedValue() <em>Expected Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExpectedValue()
 	 * @generated
 	 * @ordered
@@ -98,8 +94,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected Number expectedValue = EXPECTED_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -107,8 +103,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 	protected static final OPERATOR OPERATOR_EDEFAULT = OPERATOR.EQ;
 
 	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -117,6 +113,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompareNumberPredicateImpl() {
@@ -125,6 +122,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,6 +132,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,6 +142,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,6 +165,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,6 +178,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,6 +188,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,6 +201,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,6 +211,7 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,109 +252,115 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
-				return getDisplayName();
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
-				return getInput();
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
-				return getExpectedValue();
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
-				return getOperator();
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
+			return getDisplayName();
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
+			return getInput();
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
+			return getExpectedValue();
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
+			return getOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
-				setInput((Number)newValue);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
-				setExpectedValue((Number)newValue);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
-				setOperator((OPERATOR)newValue);
-				return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
+			setDisplayName((String) newValue);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
+			setInput((Number) newValue);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
+			setExpectedValue((Number) newValue);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
+			setOperator((OPERATOR) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
-				setInput(INPUT_EDEFAULT);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
-				setExpectedValue(EXPECTED_VALUE_EDEFAULT);
-				return;
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
-				setOperator(OPERATOR_EDEFAULT);
-				return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
+			setDisplayName(DISPLAY_NAME_EDEFAULT);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
+			setInput(INPUT_EDEFAULT);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
+			setExpectedValue(EXPECTED_VALUE_EDEFAULT);
+			return;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
+			setOperator(OPERATOR_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
-				return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
-				return EXPECTED_VALUE_EDEFAULT == null ? expectedValue != null : !EXPECTED_VALUE_EDEFAULT.equals(expectedValue);
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
-				return operator != OPERATOR_EDEFAULT;
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__DISPLAY_NAME:
+			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__INPUT:
+			return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__EXPECTED_VALUE:
+			return EXPECTED_VALUE_EDEFAULT == null ? expectedValue != null : !EXPECTED_VALUE_EDEFAULT.equals(expectedValue);
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE__OPERATOR:
+			return operator != OPERATOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case PredicatesPackage.COMPARE_NUMBER_PREDICATE___MATCH__OBJECT:
-				return match(arguments.get(0));
+		case PredicatesPackage.COMPARE_NUMBER_PREDICATE___MATCH__OBJECT:
+			return match(arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayName: ");

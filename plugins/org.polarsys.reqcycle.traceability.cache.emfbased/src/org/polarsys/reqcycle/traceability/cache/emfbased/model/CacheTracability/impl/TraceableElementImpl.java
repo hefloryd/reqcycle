@@ -21,23 +21,22 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import com.google.common.base.Objects;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Traceable Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Traceable Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getOutgoings <em>Outgoings</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getIncomings <em>Incomings</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getOutgoings <em>Outgoings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getIncomings <em>Incomings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.TraceableElementImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TraceableElementImpl extends URIElementImpl implements
-		TraceableElement {
+public class TraceableElementImpl extends URIElementImpl implements TraceableElement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TraceableElementImpl() {
@@ -46,6 +45,7 @@ public class TraceableElementImpl extends URIElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,29 +55,32 @@ public class TraceableElementImpl extends URIElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TraceabilityLink> getOutgoings() {
-		return (EList<TraceabilityLink>)eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__OUTGOINGS, true);
+		return (EList<TraceabilityLink>) eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__OUTGOINGS, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TraceabilityLink> getIncomings() {
-		return (EList<TraceabilityLink>)eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__INCOMINGS, true);
+		return (EList<TraceabilityLink>) eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__INCOMINGS, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Property> getProperties() {
-		return (EList<Property>)eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__PROPERTIES, true);
+		return (EList<Property>) eGet(CacheTracabilityPackage.Literals.TRACEABLE_ELEMENT__PROPERTIES, true);
 	}
 
 	/*

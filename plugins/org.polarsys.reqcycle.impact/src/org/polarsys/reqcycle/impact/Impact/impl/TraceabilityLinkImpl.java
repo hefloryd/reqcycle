@@ -20,15 +20,13 @@ import org.polarsys.reqcycle.impact.Impact.ImpactPackage;
 import org.polarsys.reqcycle.impact.Impact.TraceabilityLink;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Traceability Link</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Traceability Link</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkType <em>Link Type</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkDirection <em>Link Direction</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkedElement <em>Linked Element</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkType <em>Link Type</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkDirection <em>Link Direction</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.impl.TraceabilityLinkImpl#getLinkedElement <em>Linked Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,9 +34,8 @@ import org.polarsys.reqcycle.impact.Impact.TraceabilityLink;
  */
 public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implements TraceabilityLink {
 	/**
-	 * The default value of the '{@link #getLinkType() <em>Link Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getLinkType() <em>Link Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkType()
 	 * @generated
 	 * @ordered
@@ -46,9 +43,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected static final String LINK_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLinkType() <em>Link Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLinkType() <em>Link Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkType()
 	 * @generated
 	 * @ordered
@@ -56,9 +52,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected String linkType = LINK_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLinkDirection() <em>Link Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getLinkDirection() <em>Link Direction</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkDirection()
 	 * @generated
 	 * @ordered
@@ -66,9 +61,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected static final String LINK_DIRECTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLinkDirection() <em>Link Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLinkDirection() <em>Link Direction</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkDirection()
 	 * @generated
 	 * @ordered
@@ -76,9 +70,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected String linkDirection = LINK_DIRECTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLinkedElement() <em>Linked Element</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getLinkedElement() <em>Linked Element</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkedElement()
 	 * @generated
 	 * @ordered
@@ -86,9 +79,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected static final String LINKED_ELEMENT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLinkedElement() <em>Linked Element</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLinkedElement() <em>Linked Element</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLinkedElement()
 	 * @generated
 	 * @ordered
@@ -96,8 +88,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	protected String linkedElement = LINKED_ELEMENT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TraceabilityLinkImpl() {
@@ -105,8 +97,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,8 +107,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLinkType() {
@@ -124,8 +116,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLinkType(String newLinkType) {
@@ -136,8 +128,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLinkDirection() {
@@ -145,8 +137,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLinkDirection(String newLinkDirection) {
@@ -157,8 +149,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLinkedElement() {
@@ -166,8 +158,8 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLinkedElement(String newLinkedElement) {
@@ -178,91 +170,92 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
-				return getLinkType();
-			case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
-				return getLinkDirection();
-			case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
-				return getLinkedElement();
+		case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
+			return getLinkType();
+		case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
+			return getLinkDirection();
+		case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
+			return getLinkedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
-				setLinkType((String)newValue);
-				return;
-			case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
-				setLinkDirection((String)newValue);
-				return;
-			case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
-				setLinkedElement((String)newValue);
-				return;
+		case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
+			setLinkType((String) newValue);
+			return;
+		case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
+			setLinkDirection((String) newValue);
+			return;
+		case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
+			setLinkedElement((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
-				setLinkType(LINK_TYPE_EDEFAULT);
-				return;
-			case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
-				setLinkDirection(LINK_DIRECTION_EDEFAULT);
-				return;
-			case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
-				setLinkedElement(LINKED_ELEMENT_EDEFAULT);
-				return;
+		case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
+			setLinkType(LINK_TYPE_EDEFAULT);
+			return;
+		case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
+			setLinkDirection(LINK_DIRECTION_EDEFAULT);
+			return;
+		case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
+			setLinkedElement(LINKED_ELEMENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
-				return LINK_TYPE_EDEFAULT == null ? linkType != null : !LINK_TYPE_EDEFAULT.equals(linkType);
-			case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
-				return LINK_DIRECTION_EDEFAULT == null ? linkDirection != null : !LINK_DIRECTION_EDEFAULT.equals(linkDirection);
-			case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
-				return LINKED_ELEMENT_EDEFAULT == null ? linkedElement != null : !LINKED_ELEMENT_EDEFAULT.equals(linkedElement);
+		case ImpactPackage.TRACEABILITY_LINK__LINK_TYPE:
+			return LINK_TYPE_EDEFAULT == null ? linkType != null : !LINK_TYPE_EDEFAULT.equals(linkType);
+		case ImpactPackage.TRACEABILITY_LINK__LINK_DIRECTION:
+			return LINK_DIRECTION_EDEFAULT == null ? linkDirection != null : !LINK_DIRECTION_EDEFAULT.equals(linkDirection);
+		case ImpactPackage.TRACEABILITY_LINK__LINKED_ELEMENT:
+			return LINKED_ELEMENT_EDEFAULT == null ? linkedElement != null : !LINKED_ELEMENT_EDEFAULT.equals(linkedElement);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (linkType: ");
@@ -275,4 +268,4 @@ public class TraceabilityLinkImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
-} //TraceabilityLinkImpl
+} // TraceabilityLinkImpl

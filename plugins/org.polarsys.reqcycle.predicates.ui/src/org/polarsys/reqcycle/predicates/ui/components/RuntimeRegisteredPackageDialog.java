@@ -48,7 +48,7 @@ public class RuntimeRegisteredPackageDialog extends ElementListSelectionDialog {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite result = (Composite)super.createDialogArea(parent);
+		Composite result = (Composite) super.createDialogArea(parent);
 
 		updateElements();
 

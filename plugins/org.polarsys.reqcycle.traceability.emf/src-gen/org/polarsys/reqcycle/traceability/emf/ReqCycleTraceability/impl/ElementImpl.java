@@ -30,17 +30,14 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ElementImpl#getURI
- * <em>URI</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ElementImpl#getURI <em>URI</em>}</li>
  * <li>
- * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ElementImpl#getLabel
- * <em>Label</em>}</li>
+ * {@link org.polarsys.reqcycle.traceability.emf.ReqCycleTraceability.impl.ElementImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,8 +60,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	public static final String copyright = "Copyright (c) 2013 AtoS\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html *\r\nContributors:\r\n Abdellah EL AYADI (AtoS) - initial API and implementation and/or initial documentation";
 
 	/**
-	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getURI()
 	 * @generated
@@ -73,8 +69,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	protected static final String URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getURI() <em>URI</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getURI() <em>URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getURI()
 	 * @generated
@@ -83,8 +78,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	protected String uri = URI_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getLabel()
 	 * @generated
@@ -93,8 +87,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getLabel()
 	 * @generated

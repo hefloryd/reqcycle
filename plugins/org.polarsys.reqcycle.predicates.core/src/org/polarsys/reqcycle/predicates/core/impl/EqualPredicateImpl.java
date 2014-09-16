@@ -23,25 +23,23 @@ import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.EqualPredicate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Equal Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Equal Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getDisplayName <em>Display Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getInput <em>Input</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getExpectedObject <em>Expected Object</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getDisplayName <em>Display Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getInput <em>Input</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.predicates.core.impl.EqualPredicateImpl#getExpectedObject <em>Expected Object</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class EqualPredicateImpl<T extends Object> extends
-		MinimalEObjectImpl.Container implements EqualPredicate<T> {
+public abstract class EqualPredicateImpl<T extends Object> extends MinimalEObjectImpl.Container implements EqualPredicate<T> {
 
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -49,8 +47,8 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -58,8 +56,8 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -67,9 +65,8 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 	protected T input;
 
 	/**
-	 * The cached value of the '{@link #getExpectedObject() <em>Expected Object</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getExpectedObject() <em>Expected Object</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExpectedObject()
 	 * @generated
 	 * @ordered
@@ -78,6 +75,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EqualPredicateImpl() {
@@ -86,6 +84,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,6 +94,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,6 +104,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,6 +117,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,6 +127,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,6 +158,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,6 +168,7 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,100 +181,106 @@ public abstract class EqualPredicateImpl<T extends Object> extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
-				return getDisplayName();
-			case PredicatesPackage.EQUAL_PREDICATE__INPUT:
-				return getInput();
-			case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
-				return getExpectedObject();
+		case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
+			return getDisplayName();
+		case PredicatesPackage.EQUAL_PREDICATE__INPUT:
+			return getInput();
+		case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
+			return getExpectedObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
-			case PredicatesPackage.EQUAL_PREDICATE__INPUT:
-				setInput((T)newValue);
-				return;
-			case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
-				setExpectedObject((T)newValue);
-				return;
+		case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
+			setDisplayName((String) newValue);
+			return;
+		case PredicatesPackage.EQUAL_PREDICATE__INPUT:
+			setInput((T) newValue);
+			return;
+		case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
+			setExpectedObject((T) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
-			case PredicatesPackage.EQUAL_PREDICATE__INPUT:
-				setInput((T)null);
-				return;
-			case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
-				setExpectedObject((T)null);
-				return;
+		case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
+			setDisplayName(DISPLAY_NAME_EDEFAULT);
+			return;
+		case PredicatesPackage.EQUAL_PREDICATE__INPUT:
+			setInput((T) null);
+			return;
+		case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
+			setExpectedObject((T) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
-			case PredicatesPackage.EQUAL_PREDICATE__INPUT:
-				return input != null;
-			case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
-				return expectedObject != null;
+		case PredicatesPackage.EQUAL_PREDICATE__DISPLAY_NAME:
+			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
+		case PredicatesPackage.EQUAL_PREDICATE__INPUT:
+			return input != null;
+		case PredicatesPackage.EQUAL_PREDICATE__EXPECTED_OBJECT:
+			return expectedObject != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case PredicatesPackage.EQUAL_PREDICATE___MATCH__OBJECT:
-				return match(arguments.get(0));
+		case PredicatesPackage.EQUAL_PREDICATE___MATCH__OBJECT:
+			return match(arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayName: ");

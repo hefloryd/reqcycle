@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class AddTypeDialog extends NameDialog {
 
 	/**
@@ -56,7 +55,6 @@ public class AddTypeDialog extends NameDialog {
 		}
 	}
 
-
 	private Button btnReqRadio;
 
 	private Button btnEnumRadio;
@@ -85,34 +83,33 @@ public class AddTypeDialog extends NameDialog {
 		btnEnumRadio.setText("Enumeration");
 
 		btnReqRadio.setSelection(true);
-		((Bean)bean).setType(TYPE.REQUIREMENT);
+		((Bean) bean).setType(TYPE.REQUIREMENT);
 	};
-
 
 	/**
 	 * @return true if Requirement has been chosen instead of Enumeration
 	 */
 	public boolean isRequirement() {
-		return TYPE.REQUIREMENT.equals(((Bean)bean).getType());
+		return TYPE.REQUIREMENT.equals(((Bean) bean).getType());
 	}
 
 	/**
 	 * @return true if Enumeration has been chosen instead of Requirement
 	 */
 	public boolean isEnumeration() {
-		return TYPE.ENUMERATION.equals(((Bean)bean).getType());
+		return TYPE.ENUMERATION.equals(((Bean) bean).getType());
 	}
 
 	@Override
 	protected void doInitDataBindings(DataBindingContext bindingContext) {
-		//Create the Select Observable for our enum type  
+		// Create the Select Observable for our enum type
 		SelectObservableValue typeRadioObservable = new SelectObservableValue(TYPE.class);
 
-		//bind the requirement radio button selection to the right enum value  
+		// bind the requirement radio button selection to the right enum value
 		IObservableValue btnRequirementObserverSelection = SWTObservables.observeSelection(btnReqRadio);
 		typeRadioObservable.addOption(TYPE.REQUIREMENT, btnRequirementObserverSelection);
 
-		//bind the enumeration radio button selection to the right enum value 
+		// bind the enumeration radio button selection to the right enum value
 		IObservableValue btnEnumerationObserverSelection = SWTObservables.observeSelection(btnEnumRadio);
 		typeRadioObservable.addOption(TYPE.ENUMERATION, btnEnumerationObserverSelection);
 
@@ -121,7 +118,7 @@ public class AddTypeDialog extends NameDialog {
 
 	@Override
 	public boolean doHandleEvent(Event event) {
-		if(((Bean)bean).getType() == null) {
+		if (((Bean) bean).getType() == null) {
 			return false;
 		}
 		return true;

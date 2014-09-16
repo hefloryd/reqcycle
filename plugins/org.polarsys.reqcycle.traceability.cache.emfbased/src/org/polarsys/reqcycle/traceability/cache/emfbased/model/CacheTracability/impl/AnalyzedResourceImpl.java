@@ -18,15 +18,13 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceabilityLink;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Analyzed Resource</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Analyzed Resource</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getModificationTime <em>Modification Time</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getContained <em>Contained</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getLinks <em>Links</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getModificationTime <em>Modification Time</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getContained <em>Contained</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.AnalyzedResourceImpl#getLinks <em>Links</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,8 +32,8 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
  */
 public class AnalyzedResourceImpl extends URIElementImpl implements AnalyzedResource {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnalyzedResourceImpl() {
@@ -43,8 +41,8 @@ public class AnalyzedResourceImpl extends URIElementImpl implements AnalyzedReso
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,17 +51,17 @@ public class AnalyzedResourceImpl extends URIElementImpl implements AnalyzedReso
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getModificationTime() {
-		return (String)eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__MODIFICATION_TIME, true);
+		return (String) eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__MODIFICATION_TIME, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModificationTime(String newModificationTime) {
@@ -71,17 +69,17 @@ public class AnalyzedResourceImpl extends URIElementImpl implements AnalyzedReso
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TraceabilityLink getContained() {
-		return (TraceabilityLink)eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__CONTAINED, true);
+		return (TraceabilityLink) eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__CONTAINED, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContained(TraceabilityLink newContained) {
@@ -89,13 +87,13 @@ public class AnalyzedResourceImpl extends URIElementImpl implements AnalyzedReso
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TraceabilityLink> getLinks() {
-		return (EList<TraceabilityLink>)eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__LINKS, true);
+		return (EList<TraceabilityLink>) eGet(CacheTracabilityPackage.Literals.ANALYZED_RESOURCE__LINKS, true);
 	}
 
-} //AnalyzedResourceImpl
+} // AnalyzedResourceImpl

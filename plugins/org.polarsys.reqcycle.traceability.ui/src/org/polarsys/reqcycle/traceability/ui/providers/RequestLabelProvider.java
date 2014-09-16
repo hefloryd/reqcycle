@@ -23,8 +23,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 
-public class RequestLabelProvider extends LabelProvider implements
-		IFontProvider, IColorProvider {
+public class RequestLabelProvider extends LabelProvider implements IFontProvider, IColorProvider {
 
 	@Inject
 	IStylePredicateProvider provider;

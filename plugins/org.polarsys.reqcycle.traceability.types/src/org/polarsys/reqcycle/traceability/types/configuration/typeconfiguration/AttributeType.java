@@ -18,18 +18,16 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Attribute Type</b></em>', and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Attribute Type</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage#getAttributeType()
  * @model
  * @generated
  */
 public enum AttributeType implements Enumerator {
 	/**
-	 * The '<em><b>String</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The '<em><b>String</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #STRING_VALUE
 	 * @generated
 	 * @ordered
@@ -37,9 +35,8 @@ public enum AttributeType implements Enumerator {
 	STRING(0, "String", "String"),
 
 	/**
-	 * The '<em><b>Boolean</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Boolean</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #BOOLEAN_VALUE
 	 * @generated
 	 * @ordered
@@ -47,9 +44,8 @@ public enum AttributeType implements Enumerator {
 	BOOLEAN(1, "Boolean", "Boolean"),
 
 	/**
-	 * The '<em><b>Int</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The '<em><b>Int</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #INT_VALUE
 	 * @generated
 	 * @ordered
@@ -57,13 +53,12 @@ public enum AttributeType implements Enumerator {
 	INT(2, "Int", "Int");
 
 	/**
-	 * The '<em><b>String</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>String</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>String</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>String</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #STRING
 	 * @model name="String"
 	 * @generated
@@ -72,13 +67,12 @@ public enum AttributeType implements Enumerator {
 	public static final int STRING_VALUE = 0;
 
 	/**
-	 * The '<em><b>Boolean</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Boolean</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #BOOLEAN
 	 * @model name="Boolean"
 	 * @generated
@@ -87,13 +81,12 @@ public enum AttributeType implements Enumerator {
 	public static final int BOOLEAN_VALUE = 1;
 
 	/**
-	 * The '<em><b>Int</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Int</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Int</b></em>' literal object isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of '<em><b>Int</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #INT
 	 * @model name="Int"
 	 * @generated
@@ -102,27 +95,22 @@ public enum AttributeType implements Enumerator {
 	public static final int INT_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Attribute Type</b></em>' enumerators. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * An array of all the '<em><b>Attribute Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	private static final AttributeType[] VALUES_ARRAY = new AttributeType[] {
-			STRING,
-			BOOLEAN,
-			INT,
-		};
+	private static final AttributeType[] VALUES_ARRAY = new AttributeType[] { STRING, BOOLEAN, INT, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Attribute Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Attribute Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<AttributeType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AttributeType get(String literal) {
@@ -136,8 +124,8 @@ public enum AttributeType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AttributeType getByName(String name) {
@@ -151,41 +139,46 @@ public enum AttributeType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Attribute Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AttributeType get(int value) {
 		switch (value) {
-			case STRING_VALUE: return STRING;
-			case BOOLEAN_VALUE: return BOOLEAN;
-			case INT_VALUE: return INT;
+		case STRING_VALUE:
+			return STRING;
+		case BOOLEAN_VALUE:
+			return BOOLEAN;
+		case INT_VALUE:
+			return INT;
 		}
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private AttributeType(int value, String name, String literal) {
@@ -196,31 +189,34 @@ public enum AttributeType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

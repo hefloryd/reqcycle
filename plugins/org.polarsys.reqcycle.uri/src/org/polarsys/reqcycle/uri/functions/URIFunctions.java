@@ -15,15 +15,15 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import com.google.common.base.Function;
 
 public class URIFunctions {
-	private static Function<Reachable, Reachable> TRIM_FRAGMENT_FUNCTION ;
-	private static Function<Object, Reachable> OBJECT_TO_REACHABLE_FUNCTION ;
-	
+	private static Function<Reachable, Reachable> TRIM_FRAGMENT_FUNCTION;
+	private static Function<Object, Reachable> OBJECT_TO_REACHABLE_FUNCTION;
+
 	static {
 		TRIM_FRAGMENT_FUNCTION = new TrimFragmentFunction();
 		OBJECT_TO_REACHABLE_FUNCTION = new Object2Reachable();
-		ZigguratInject.inject(TRIM_FRAGMENT_FUNCTION,OBJECT_TO_REACHABLE_FUNCTION);
+		ZigguratInject.inject(TRIM_FRAGMENT_FUNCTION, OBJECT_TO_REACHABLE_FUNCTION);
 	}
-	
+
 	public static Function<Reachable, Reachable> newTrimFragmentFunction() {
 		return TRIM_FRAGMENT_FUNCTION;
 	}

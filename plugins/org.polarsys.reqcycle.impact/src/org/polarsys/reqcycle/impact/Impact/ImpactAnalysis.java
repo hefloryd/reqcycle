@@ -15,16 +15,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Analysis</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Analysis</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsAdded <em>Requirements Added</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsDeleted <em>Requirements Deleted</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsModified <em>Requirements Modified</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsAdded <em>Requirements Added</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsDeleted <em>Requirements Deleted</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.impact.Impact.ImpactAnalysis#getRequirementsModified <em>Requirements Modified</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,22 +33,20 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 public interface ImpactAnalysis extends EObject {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model targetNameDataType="org.polarsys.reqcycle.impact.Impact.URI"
 	 * @generated
 	 */
 	void saveAnalysis(URI targetName);
 
 	/**
-	 * Returns the value of the '<em><b>Requirements Added</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirements Added</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Requirements Added</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Requirements Added</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Requirements Added</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getImpactAnalysis_RequirementsAdded()
 	 * @model containment="true"
@@ -59,14 +55,12 @@ public interface ImpactAnalysis extends EObject {
 	EList<RequirementImpacted> getRequirementsAdded();
 
 	/**
-	 * Returns the value of the '<em><b>Requirements Deleted</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirements Deleted</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Requirements Deleted</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Requirements Deleted</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Requirements Deleted</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getImpactAnalysis_RequirementsDeleted()
 	 * @model containment="true"
@@ -75,14 +69,12 @@ public interface ImpactAnalysis extends EObject {
 	EList<RequirementImpacted> getRequirementsDeleted();
 
 	/**
-	 * Returns the value of the '<em><b>Requirements Modified</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirements Modified</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.impact.Impact.RequirementImpacted}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Requirements Modified</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Requirements Modified</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Requirements Modified</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.impact.Impact.ImpactPackage#getImpactAnalysis_RequirementsModified()
 	 * @model containment="true"
@@ -91,11 +83,11 @@ public interface ImpactAnalysis extends EObject {
 	EList<RequirementImpacted> getRequirementsModified();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
 	void launchAnalysis(RequirementSource rsFrom, RequirementSource rstTo);
-	
+
 } // ImpactAnalysis

@@ -138,8 +138,7 @@ public class RequirementSourcesView extends ViewPart {
 	}
 
 	/**
-	 * This is a callback that will allow us to create the viewer and initialize
-	 * it.
+	 * This is a callback that will allow us to create the viewer and initialize it.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -168,9 +167,7 @@ public class RequirementSourcesView extends ViewPart {
 						reqSourceItems.add(item);
 					}
 				}
-				viewer.getTree().setSelection(
-						reqSourceItems.toArray(new TreeItem[reqSourceItems
-								.size()]));
+				viewer.getTree().setSelection(reqSourceItems.toArray(new TreeItem[reqSourceItems.size()]));
 			}
 		});
 
@@ -191,17 +188,14 @@ public class RequirementSourcesView extends ViewPart {
 	public void refreshButton(ISelection iSelection) {
 		Object selectedElement = null;
 		if (iSelection instanceof IStructuredSelection) {
-			selectedElement = ((IStructuredSelection) iSelection)
-					.getFirstElement();
+			selectedElement = ((IStructuredSelection) iSelection).getFirstElement();
 		}
 
 		if (deleteRequirementSourceAction != null) {
 			deleteRequirementSourceAction.setEnabled(selectedElement != null);
 		}
 		if (editMappingAction != null) {
-			editMappingAction
-					.setEnabled(selectedElement instanceof RequirementSource ? canEditSource((RequirementSource) selectedElement)
-							: false);
+			editMappingAction.setEnabled(selectedElement instanceof RequirementSource ? canEditSource((RequirementSource) selectedElement) : false);
 		}
 	}
 
@@ -214,8 +208,7 @@ public class RequirementSourcesView extends ViewPart {
 		if (connectorID == null) {
 			return false;
 		}
-		ConnectorDescriptor connectorDescriptor = connectorManager
-				.get(connectorID);
+		ConnectorDescriptor connectorDescriptor = connectorManager.get(connectorID);
 		if (connectorDescriptor == null) {
 			return false;
 		}
@@ -243,8 +236,7 @@ public class RequirementSourcesView extends ViewPart {
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
 				if (selection instanceof IStructuredSelection) {
-					Object element = ((IStructuredSelection) selection)
-							.getFirstElement();
+					Object element = ((IStructuredSelection) selection).getFirstElement();
 					if (element instanceof RequirementSource) {
 						RequirementSource source = (RequirementSource) element;
 						// synchResourceAction.setEnabled(Boolean.parseBoolean(source.getProperty(IRequirementSourceProperties.IS_LOCAL)));
@@ -341,17 +333,13 @@ public class RequirementSourcesView extends ViewPart {
 		ZigguratInject.inject(addRepoAction);
 		addRepoAction.setText(Messages.ADD_RESOURCE_TEXT);
 		addRepoAction.setToolTipText(Messages.ADD_RESOURCE_TEXT);
-		addRepoAction.setImageDescriptor(Activator
-				.getImageDescriptor(ICON_ADD_LOCATION));
+		addRepoAction.setImageDescriptor(Activator.getImageDescriptor(ICON_ADD_LOCATION));
 
-		deleteRequirementSourceAction = new DeleteRequirementSourceAction(
-				viewer);
+		deleteRequirementSourceAction = new DeleteRequirementSourceAction(viewer);
 		ZigguratInject.inject(deleteRequirementSourceAction);
 		deleteRequirementSourceAction.setText(Messages.REMOVE_RESOURCE_TEXT);
-		deleteRequirementSourceAction
-				.setToolTipText(Messages.REMOVE_RESOURCE_TEXT);
-		deleteRequirementSourceAction.setImageDescriptor(Activator
-				.getImageDescriptor(ICON_DELETE_LOCATION));
+		deleteRequirementSourceAction.setToolTipText(Messages.REMOVE_RESOURCE_TEXT);
+		deleteRequirementSourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_DELETE_LOCATION));
 		deleteRequirementSourceAction.setEnabled(false);
 
 		// openPredicatesEditorAction = new OpenPredicatesEditorAction();
@@ -364,22 +352,18 @@ public class RequirementSourcesView extends ViewPart {
 		openRequirementViewAction = new OpenRequirementViewAction(viewer);
 		openRequirementViewAction.setText("Open Requirements View");
 		openRequirementViewAction.setToolTipText("Open Requirements View");
-		openRequirementViewAction.setImageDescriptor(Activator
-				.getImageDescriptor(ICON_OPEN)); // TODO: replace icon
+		openRequirementViewAction.setImageDescriptor(Activator.getImageDescriptor(ICON_OPEN)); // TODO: replace icon
 
 		openImpactAnalysisViewAction = new OpenImpactAnalysisViewAction(viewer);
 		openImpactAnalysisViewAction.setText("Open Impact Analysis View");
-		openImpactAnalysisViewAction
-				.setToolTipText("Open Impact Analysis View");
-		openImpactAnalysisViewAction.setImageDescriptor(Activator
-				.getImageDescriptor(ICON_IMPACT));
+		openImpactAnalysisViewAction.setToolTipText("Open Impact Analysis View");
+		openImpactAnalysisViewAction.setImageDescriptor(Activator.getImageDescriptor(ICON_IMPACT));
 
 		synchResourceAction = new SynchronizeRequirementSourceAction(viewer);
 		ZigguratInject.inject(synchResourceAction);
 		synchResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
 		synchResourceAction.setToolTipText("Synchronization not available");// Messages.SYNC_RESOURCE_TEXT);
-		synchResourceAction.setImageDescriptor(Activator
-				.getImageDescriptor(ICON_SYNCHRONIZE));
+		synchResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_SYNCHRONIZE));
 		synchResourceAction.setEnabled(false);
 
 		editMappingAction = new EditMappingAction(viewer);
@@ -392,8 +376,7 @@ public class RequirementSourcesView extends ViewPart {
 
 		refreshViewAction = new RefreshViewAction(viewer);
 		refreshViewAction.setToolTipText("Refresh View");
-		refreshViewAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/refresh.gif"));
+		refreshViewAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
 		refreshViewAction.setEnabled(true);
 	}
 
@@ -412,8 +395,7 @@ public class RequirementSourcesView extends ViewPart {
 
 	@Inject
 	@Optional
-	void reactOnElementAddition(
-			@UIEventTopic(IDataTopics.NEW_SOURCE) RequirementSource object) {
+	void reactOnElementAddition(@UIEventTopic(IDataTopics.NEW_SOURCE) RequirementSource object) {
 
 		if (object == null) {
 			return;

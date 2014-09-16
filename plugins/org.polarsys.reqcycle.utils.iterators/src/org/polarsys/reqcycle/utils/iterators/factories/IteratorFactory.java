@@ -25,8 +25,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
 /**
- * Creates a factory that creates iterators and iterables, depending on the
- * pickers that were chosen to instantiate this factory.
+ * Creates a factory that creates iterators and iterables, depending on the pickers that were chosen to instantiate this factory.
  */
 public class IteratorFactory {
 
@@ -35,8 +34,6 @@ public class IteratorFactory {
 	protected IHarvester harvester;
 
 	protected YieldAdapter<Object> yieldAdapter;
-
-
 
 	/**
 	 * Constructor.
@@ -47,7 +44,6 @@ public class IteratorFactory {
 		this(pickers, new DepthHarvester(null));
 	}
 
-
 	/**
 	 * Constructor.
 	 * 
@@ -56,10 +52,10 @@ public class IteratorFactory {
 	 */
 	public IteratorFactory(Iterable<IPicker> pickers, IHarvester harvester) {
 		this.pickers = pickers;
-		//instantiating a default harvester.
+		// instantiating a default harvester.
 		this.harvester = harvester;
 		this.harvester.setPickers(pickers);
-		//instantiating a default yield adapter;
+		// instantiating a default yield adapter;
 		this.yieldAdapter = new ThreadedYieldAdapter<Object>();
 	}
 
@@ -67,7 +63,7 @@ public class IteratorFactory {
 	 * Depending on the factory configuration, returning an iterable;
 	 * 
 	 * @param element
-	 *        the starting element.
+	 *            the starting element.
 	 */
 	public Iterable<Object> createIterable(Object element) {
 		harvester.setStartingElement(element);
@@ -78,7 +74,7 @@ public class IteratorFactory {
 	 * 
 	 */
 	public void activateWidthWisdom() {
-		//Changing the harvester so the iterator will go width-wise.
+		// Changing the harvester so the iterator will go width-wise.
 		this.harvester = new WidthHarvester(null);
 		this.harvester.setPickers(pickers);
 	}
@@ -87,18 +83,18 @@ public class IteratorFactory {
 	 * 
 	 */
 	public void activateDepthWisdom() {
-		//Changing the harvester so the iterator will go width-wise.
+		// Changing the harvester so the iterator will go width-wise.
 		this.harvester = new DepthHarvester(null);
 		this.harvester.setPickers(pickers);
 	}
 
 	public void activateRedundancyAwareness() {
-		//Changing the adapter so that it avoids redundancy.
+		// Changing the adapter so that it avoids redundancy.
 		this.yieldAdapter = new RedundancyAwareThreadedYieldAdapter<Object>();
 	}
 
 	public void deactivateRedundancyAwareness() {
-		//Changing the adapter so that it avoids redundancy.
+		// Changing the adapter so that it avoids redundancy.
 		this.yieldAdapter = new ThreadedYieldAdapter<Object>();
 	}
 
@@ -109,14 +105,12 @@ public class IteratorFactory {
 		return Iterables.transform(arcIterable, new Function<Object, Object>() {
 
 			public Object apply(Object from) {
-				if(from instanceof IArc) {
-					return ((IArc)from).getDestination();
+				if (from instanceof IArc) {
+					return ((IArc) from).getDestination();
 				}
 				return from;
 			}
 		});
 	}
-
-
 
 }

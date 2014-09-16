@@ -51,10 +51,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.wb.swt.ResourceManager;
 
-public class TTypeDecorationPreferencePage extends PreferencePage implements
-		IWorkbenchPreferencePage {
-	private ITypesConfigurationProvider typeConfProvider = ZigguratInject
-			.make(ITypesConfigurationProvider.class);
+public class TTypeDecorationPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
+	private ITypesConfigurationProvider typeConfProvider = ZigguratInject.make(ITypesConfigurationProvider.class);
 	private Configuration defaultConfiguration;
 	private Table tableOfMappings;
 	private Table listOfRelations;
@@ -82,34 +80,27 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 		container.setLayout(new GridLayout(1, false));
 
 		Label lblNewLabel = new Label(container, SWT.NONE);
-		lblNewLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true,
-				false, 1, 1));
-		lblNewLabel
-				.setText("To add predicates use the menu Predicate Editor for Traceability Relation");
+		lblNewLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+		lblNewLabel.setText("To add predicates use the menu Predicate Editor for Traceability Relation");
 
 		Label lblIfARelation = new Label(container, SWT.NONE);
-		lblIfARelation
-				.setText("The predicates will be checked in the order they are displayed");
+		lblIfARelation.setText("The predicates will be checked in the order they are displayed");
 
 		Composite composite = new Composite(container, SWT.NONE);
 		composite.setLayout(new GridLayout(4, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true,
-				1, 1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
 
 		Label lblPredicates = new Label(composite, SWT.NONE);
 		lblPredicates.setBounds(0, 0, 55, 15);
 		lblPredicates.setText("Traceability Relations");
 
 		Label lblMappings = new Label(composite, SWT.NONE);
-		lblMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true,
-				false, 3, 1));
+		lblMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 3, 1));
 		lblMappings.setText("Decorations");
 
-		listOfRelationsViewer = new TableViewer(composite, SWT.BORDER
-				| SWT.V_SCROLL);
+		listOfRelationsViewer = new TableViewer(composite, SWT.BORDER | SWT.V_SCROLL);
 		listOfRelations = listOfRelationsViewer.getTable();
-		listOfRelations.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false,
-				true, 2, 1));
+		listOfRelations.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 2, 1));
 
 		Composite composite_2 = new Composite(composite, SWT.NONE);
 		GridLayout gl_composite_2 = new GridLayout(2, false);
@@ -117,45 +108,34 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 		gl_composite_2.marginWidth = 0;
 		gl_composite_2.verticalSpacing = 0;
 		composite_2.setLayout(gl_composite_2);
-		composite_2.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
-				2, 1));
+		composite_2.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-		tableOfMappingViewer = new TableViewer(composite_2, SWT.BORDER
-				| SWT.FULL_SELECTION);
+		tableOfMappingViewer = new TableViewer(composite_2, SWT.BORDER | SWT.FULL_SELECTION);
 		tableOfMappings = tableOfMappingViewer.getTable();
-		tableOfMappings.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true, 1, 1));
+		tableOfMappings.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		tableOfMappings.setLinesVisible(true);
 
 		Composite composite_1 = new Composite(composite_2, SWT.NONE);
-		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true,
-				1, 1));
+		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true, 1, 1));
 		composite_1.setBounds(0, 0, 64, 64);
 		GridLayout gl_composite_1 = new GridLayout(1, false);
 		gl_composite_1.marginHeight = 0;
 		composite_1.setLayout(gl_composite_1);
 
 		btnAdd = new Button(composite_1, SWT.NONE);
-		btnAdd.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.traceability.types.ui",
-				"icons/add_obj.gif"));
-		btnAdd.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
-				1, 1));
+		btnAdd.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.types.ui", "icons/add_obj.gif"));
+		btnAdd.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnAdd.setBounds(0, 0, 75, 25);
 
 		btnRemove = new Button(composite_1, SWT.NONE);
-		btnRemove.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.traceability.types.ui",
-				"icons/delete_obj.gif"));
+		btnRemove.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.types.ui", "icons/delete_obj.gif"));
 		btnRemove.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (tableOfMappingViewer.getSelection() instanceof IStructuredSelection) {
-					IStructuredSelection structured = (IStructuredSelection) tableOfMappingViewer
-							.getSelection();
+					IStructuredSelection structured = (IStructuredSelection) tableOfMappingViewer.getSelection();
 					if (structured.getFirstElement() instanceof EObject) {
-						EObject eobject = (EObject) structured
-								.getFirstElement();
+						EObject eobject = (EObject) structured.getFirstElement();
 						if (!(eobject instanceof Relation)) {
 							EcoreUtil.delete(eobject);
 						}
@@ -166,24 +146,17 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 		});
 
 		btnUp = new Button(composite_1, SWT.NONE);
-		btnUp.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1,
-				1));
-		btnUp.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.traceability.types.ui",
-				"icons/prev_nav-1.gif"));
+		btnUp.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnUp.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.types.ui", "icons/prev_nav-1.gif"));
 
 		btnDown = new Button(composite_1, SWT.NONE);
-		btnDown.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
-				1, 1));
-		btnDown.setImage(ResourceManager.getPluginImage(
-				"org.polarsys.reqcycle.traceability.types.ui",
-				"icons/next_nav-1.gif"));
+		btnDown.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnDown.setImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.types.ui", "icons/next_nav-1.gif"));
 		initProviders();
 
 		defaultConfiguration = typeConfProvider.getDefaultConfiguration();
 		if (defaultConfiguration != null) {
-			TypeConfigContainer configContainer = typeConfProvider
-					.getContainer();
+			TypeConfigContainer configContainer = typeConfProvider.getContainer();
 			listOfRelationsViewer.setInput(defaultConfiguration.getRelations());
 		} else {
 			setErrorMessage("A default configuration has to be set");
@@ -193,23 +166,19 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 	}
 
 	private void initListeners() {
-		listOfRelationsViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						tableOfMappingViewer.setInput(Collections.emptyList());
-						final Relation rel = getFromSelection(
-								listOfRelationsViewer.getSelection(),
-								Relation.class);
-						if (rel != null) {
-							RelationsPredicatesMapping m = getMapping(rel);
-							if (m != null) {
-								tableOfMappingViewer.setInput(m
-										.getDecorations());
-							}
-						}
+		listOfRelationsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				tableOfMappingViewer.setInput(Collections.emptyList());
+				final Relation rel = getFromSelection(listOfRelationsViewer.getSelection(), Relation.class);
+				if (rel != null) {
+					RelationsPredicatesMapping m = getMapping(rel);
+					if (m != null) {
+						tableOfMappingViewer.setInput(m.getDecorations());
 					}
-				});
+				}
+			}
+		});
 
 		ISelectionChangedListener listener = new ISelectionChangedListener() {
 
@@ -224,13 +193,10 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 				}
 				if (!tableOfMappingViewer.getSelection().isEmpty()) {
 					deleteEnabled = true;
-					DecorationPredicate dec = getFromSelection(
-							tableOfMappingViewer.getSelection(),
-							DecorationPredicate.class);
+					DecorationPredicate dec = getFromSelection(tableOfMappingViewer.getSelection(), DecorationPredicate.class);
 					if (dec != null) {
 						@SuppressWarnings("unchecked")
-						java.util.List<DecorationPredicate> decorations = (java.util.List) tableOfMappingViewer
-								.getInput();
+						java.util.List<DecorationPredicate> decorations = (java.util.List) tableOfMappingViewer.getInput();
 						int index = decorations.indexOf(dec);
 						if (index > 0) {
 							upEnabled = true;
@@ -255,11 +221,8 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 				DecorationDialog d = new DecorationDialog(getShell());
 				ZigguratInject.inject(d);
 				if (d.open() == DecorationDialog.OK) {
-					RelationsPredicatesMapping m = getMapping(getFromSelection(
-							listOfRelationsViewer.getSelection(),
-							Relation.class));
-					DecorationPredicate p = TypeconfigurationFactory.eINSTANCE
-							.createDecorationPredicate();
+					RelationsPredicatesMapping m = getMapping(getFromSelection(listOfRelationsViewer.getSelection(), Relation.class));
+					DecorationPredicate p = TypeconfigurationFactory.eINSTANCE.createDecorationPredicate();
 					p.setStyle(d.getStyle());
 					p.setColor(d.getColor());
 					p.setPredicate(d.getPredicate());
@@ -274,9 +237,7 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				DecorationPredicate dec = getFromSelection(
-						tableOfMappingViewer.getSelection(),
-						DecorationPredicate.class);
+				DecorationPredicate dec = getFromSelection(tableOfMappingViewer.getSelection(), DecorationPredicate.class);
 				EcoreUtil.delete(dec);
 				tableOfMappingViewer.refresh();
 			}
@@ -286,11 +247,8 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				EList<DecorationPredicate> mappings = (EList<DecorationPredicate>) tableOfMappingViewer
-						.getInput();
-				DecorationPredicate d = getFromSelection(
-						tableOfMappingViewer.getSelection(),
-						DecorationPredicate.class);
+				EList<DecorationPredicate> mappings = (EList<DecorationPredicate>) tableOfMappingViewer.getInput();
+				DecorationPredicate d = getFromSelection(tableOfMappingViewer.getSelection(), DecorationPredicate.class);
 				int index = mappings.indexOf(d);
 				mappings.move(index - 1, d);
 				tableOfMappingViewer.refresh();
@@ -300,11 +258,8 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				EList<DecorationPredicate> mappings = (EList<DecorationPredicate>) tableOfMappingViewer
-						.getInput();
-				DecorationPredicate d = getFromSelection(
-						tableOfMappingViewer.getSelection(),
-						DecorationPredicate.class);
+				EList<DecorationPredicate> mappings = (EList<DecorationPredicate>) tableOfMappingViewer.getInput();
+				DecorationPredicate d = getFromSelection(tableOfMappingViewer.getSelection(), DecorationPredicate.class);
 				int index = mappings.indexOf(d);
 				mappings.move(index + 1, d);
 				tableOfMappingViewer.refresh();
@@ -314,14 +269,12 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 	}
 
 	protected RelationsPredicatesMapping getMapping(Relation rel) {
-		for (RelationsPredicatesMapping m : defaultConfiguration.getParent()
-				.getMappings()) {
+		for (RelationsPredicatesMapping m : defaultConfiguration.getParent().getMappings()) {
 			if (rel.equals(m.getRelation())) {
 				return m;
 			}
 		}
-		RelationsPredicatesMapping m = TypeconfigurationFactory.eINSTANCE
-				.createRelationsPredicatesMapping();
+		RelationsPredicatesMapping m = TypeconfigurationFactory.eINSTANCE.createRelationsPredicatesMapping();
 		m.setRelation(rel);
 		defaultConfiguration.getParent().getMappings().add(m);
 		return m;
@@ -338,56 +291,41 @@ public class TTypeDecorationPreferencePage extends PreferencePage implements
 	}
 
 	private void initProviders() {
-		AdapterFactory factory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		listOfRelationsViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				factory));
-		listOfRelationsViewer.setContentProvider(ArrayContentProvider
-				.getInstance());
-		tableOfMappingViewer.setContentProvider(ArrayContentProvider
-				.getInstance());
-		tableOfMappingViewer
-				.setLabelProvider(new AdapterFactoryLabelProvider.FontAndColorProvider(
-						factory, tableOfMappingViewer) {
+		AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		listOfRelationsViewer.setLabelProvider(new AdapterFactoryLabelProvider(factory));
+		listOfRelationsViewer.setContentProvider(ArrayContentProvider.getInstance());
+		tableOfMappingViewer.setContentProvider(ArrayContentProvider.getInstance());
+		tableOfMappingViewer.setLabelProvider(new AdapterFactoryLabelProvider.FontAndColorProvider(factory, tableOfMappingViewer) {
 
-					@Override
-					public Font getFont(Object object, int columnIndex) {
-						if (object instanceof DecorationPredicate) {
-							DecorationPredicate d = (DecorationPredicate) object;
-							Font font = JFaceResources.getFontRegistry().get(
-									d.getStyle());
-							if (font == null) {
-								JFaceResources.getFontRegistry().put(
-										d.getStyle(),
-										StringConverter.asFontDataArray(d
-												.getStyle()));
-								font = JFaceResources.getFontRegistry().get(
-										d.getStyle());
-							}
-							return font;
-						}
-						return super.getFont(object, columnIndex);
+			@Override
+			public Font getFont(Object object, int columnIndex) {
+				if (object instanceof DecorationPredicate) {
+					DecorationPredicate d = (DecorationPredicate) object;
+					Font font = JFaceResources.getFontRegistry().get(d.getStyle());
+					if (font == null) {
+						JFaceResources.getFontRegistry().put(d.getStyle(), StringConverter.asFontDataArray(d.getStyle()));
+						font = JFaceResources.getFontRegistry().get(d.getStyle());
 					}
+					return font;
+				}
+				return super.getFont(object, columnIndex);
+			}
 
-					@Override
-					public Color getForeground(Object object, int columnIndex) {
-						if (object instanceof DecorationPredicate) {
-							DecorationPredicate d = (DecorationPredicate) object;
-							Color color = JFaceResources.getColorRegistry()
-									.get(d.getColor());
-							if (color == null) {
-								JFaceResources.getColorRegistry().put(
-										d.getColor(),
-										StringConverter.asRGB(d.getColor()));
-								color = JFaceResources.getColorRegistry().get(
-										d.getColor());
-							}
-							return color;
-						}
-						return super.getForeground(object, columnIndex);
+			@Override
+			public Color getForeground(Object object, int columnIndex) {
+				if (object instanceof DecorationPredicate) {
+					DecorationPredicate d = (DecorationPredicate) object;
+					Color color = JFaceResources.getColorRegistry().get(d.getColor());
+					if (color == null) {
+						JFaceResources.getColorRegistry().put(d.getColor(), StringConverter.asRGB(d.getColor()));
+						color = JFaceResources.getColorRegistry().get(d.getColor());
 					}
+					return color;
+				}
+				return super.getForeground(object, columnIndex);
+			}
 
-				});
+		});
 	}
 
 	@Override

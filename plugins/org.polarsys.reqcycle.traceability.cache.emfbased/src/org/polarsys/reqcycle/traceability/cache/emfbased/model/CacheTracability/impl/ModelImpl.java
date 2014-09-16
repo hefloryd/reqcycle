@@ -20,14 +20,12 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
 import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.TraceableElement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.ModelImpl#getTraceables <em>Traceables</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.ModelImpl#getResources <em>Resources</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.ModelImpl#getTraceables <em>Traceables</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.impl.ModelImpl#getResources <em>Resources</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,8 +33,8 @@ import org.polarsys.reqcycle.traceability.cache.emfbased.model.CacheTracability.
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelImpl() {
@@ -44,8 +42,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -54,8 +52,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,23 +62,23 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TraceableElement> getTraceables() {
-		return (EList<TraceableElement>)eGet(CacheTracabilityPackage.Literals.MODEL__TRACEABLES, true);
+		return (EList<TraceableElement>) eGet(CacheTracabilityPackage.Literals.MODEL__TRACEABLES, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AnalyzedResource> getResources() {
-		return (EList<AnalyzedResource>)eGet(CacheTracabilityPackage.Literals.MODEL__RESOURCES, true);
+		return (EList<AnalyzedResource>) eGet(CacheTracabilityPackage.Literals.MODEL__RESOURCES, true);
 	}
 
-} //ModelImpl
+} // ModelImpl

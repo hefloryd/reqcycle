@@ -12,17 +12,16 @@ package org.polarsys.reqcycle.xcos.traceability.types;
 import org.polarsys.reqcycle.traceability.model.TType;
 
 /**
- * Traceability type which instances are not necessarily object. 
+ * Traceability type which instances are not necessarily object.
  */
 public class XcosTType extends TType {
-
 
 	private static final long serialVersionUID = 1L;
 
 	private static final String ID_PREFIX = "Xcos"; //$NON-NLS-1$
 
 	private static final String underscore = "_"; //$NON-NLS-1$
-	
+
 	private String mainLabel = "trace";
 
 	public XcosTType(String label) {
@@ -38,8 +37,4 @@ public class XcosTType extends TType {
 		return mainLabel;
 	}
 
-	
-
-
-	
 }

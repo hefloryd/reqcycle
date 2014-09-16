@@ -28,7 +28,6 @@ public interface ITraceabilityEngine {
 	 * @return a traceability {@link Iterator} from the {@link Request}
 	 * 
 	 */
-	Iterator<Pair<Link, Reachable>> getTraceability(Request... requests)
-			throws EngineException;
+	Iterator<Pair<Link, Reachable>> getTraceability(Request... requests) throws EngineException;
 
 }

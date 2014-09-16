@@ -62,8 +62,7 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 
 	private boolean useExtendedFeature;
 
-	IPredicatesConfManager manager = ZigguratInject
-			.make(IPredicatesConfManager.class);
+	IPredicatesConfManager manager = ZigguratInject.make(IPredicatesConfManager.class);
 
 	/**
 	 * @param editor
@@ -72,9 +71,7 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 	 *            - The collection of EClass.
 	 * @param useExtendedFeature
 	 */
-	public PredicatesTreeDoubleClickListener(final PredicatesEditor editor,
-			final Collection<EClass> eClassesOfModelToEdit,
-			final boolean useExtendedFeature) {
+	public PredicatesTreeDoubleClickListener(final PredicatesEditor editor, final Collection<EClass> eClassesOfModelToEdit, final boolean useExtendedFeature) {
 		this.editor = editor;
 		this.eClasses = eClassesOfModelToEdit;
 		this.useExtendedFeature = useExtendedFeature;
@@ -83,51 +80,42 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
 		final Shell parent = event.getViewer().getControl().getShell();
-		final IStructuredSelection selection = (IStructuredSelection) event
-				.getSelection();
+		final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 		if (selection.getFirstElement() instanceof CompositePredicate) {
-			MessageDialog.openInformation(parent, "Info",
-					"Unable to edit a Composite Predicate.");
+			MessageDialog.openInformation(parent, "Info", "Unable to edit a Composite Predicate.");
 			return; // quit
 		}
 
 		if (selection.getFirstElement() instanceof OperationPredicate) {
-			OperationPredicate predicate = ((OperationPredicate) selection
-					.getFirstElement());
-			OperationDialog dialog = new OperationDialog(predicate, Display
-					.getDefault().getActiveShell());
+			OperationPredicate predicate = ((OperationPredicate) selection.getFirstElement());
+			OperationDialog dialog = new OperationDialog(predicate, Display.getDefault().getActiveShell());
 			int result = dialog.open();
 			if (result == Window.OK) {
 				predicate.setOperationName(dialog.getOperationName());
 				predicate.getParameters().clear();
 
-				for (Map.Entry<String, GenericEAttrPropsEditor> entry : dialog
-						.getEditors().entrySet()) {
+				for (Map.Entry<String, GenericEAttrPropsEditor> entry : dialog.getEditors().entrySet()) {
 					GenericEAttrPropsEditor editor = entry.getValue();
 
 					Object obj = editor.getEnteredValue();
 
 					if (obj instanceof String) {
-						StringParameter param = PredicatesFactory.eINSTANCE
-								.createStringParameter();
+						StringParameter param = PredicatesFactory.eINSTANCE.createStringParameter();
 						param.setName(entry.getKey());
 						param.setValue((String) obj);
 						predicate.getParameters().add(param);
 					} else if (obj instanceof Integer) {
-						IntParameter param = PredicatesFactory.eINSTANCE
-								.createIntParameter();
+						IntParameter param = PredicatesFactory.eINSTANCE.createIntParameter();
 						param.setName(entry.getKey());
 						param.setValue((Integer) obj);
 						predicate.getParameters().add(param);
 					} else if (obj instanceof Boolean) {
-						BooleanParameter param = PredicatesFactory.eINSTANCE
-								.createBooleanParameter();
+						BooleanParameter param = PredicatesFactory.eINSTANCE.createBooleanParameter();
 						param.setName(entry.getKey());
 						param.setValue((Boolean) obj);
 						predicate.getParameters().add(param);
 					} else if (obj instanceof EObject) {
-						EObjectParameter param = PredicatesFactory.eINSTANCE
-								.createEObjectParameter();
+						EObjectParameter param = PredicatesFactory.eINSTANCE.createEObjectParameter();
 						param.setName(entry.getKey());
 						param.setValue((EObject) obj);
 						predicate.getParameters().add(param);
@@ -139,25 +127,19 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 
 		if (selection.getFirstElement() instanceof EqualPredicate) {
 			@SuppressWarnings("unchecked")
-			EqualPredicate<Object> predicate = (EqualPredicate<Object>) selection
-					.getFirstElement();
+			EqualPredicate<Object> predicate = (EqualPredicate<Object>) selection.getFirstElement();
 			PredicateValueEditor dialog = null;
 			if (selection.getFirstElement() instanceof StringEqualPredicate) {
-				dialog = new PredicateValueEditor(parent, predicate,
-						String.class, false);
+				dialog = new PredicateValueEditor(parent, predicate, String.class, false);
 			} else if (selection.getFirstElement() instanceof BooleanEqualPredicate) {
-				dialog = new PredicateValueEditor(parent, predicate,
-						Boolean.class, false);
+				dialog = new PredicateValueEditor(parent, predicate, Boolean.class, false);
 			} else if (selection.getFirstElement() instanceof EnumEqualPredicate) {
-				dialog = new PredicateValueEditor(parent, predicate,
-						Enum.class, false);
+				dialog = new PredicateValueEditor(parent, predicate, Enum.class, false);
 			} else if (selection.getFirstElement() instanceof DateEqualPredicate) {
-				dialog = new PredicateValueEditor(parent, predicate,
-						Date.class, false);
+				dialog = new PredicateValueEditor(parent, predicate, Date.class, false);
 			}
 			if ((dialog != null) && (dialog.open() == Window.OK)) {
-				predicate.setExpectedObject(dialog.getEditor()
-						.getEnteredValue());
+				predicate.setExpectedObject(dialog.getEditor().getEnteredValue());
 			}
 
 			return; // quit
@@ -166,33 +148,24 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 		if (selection.getFirstElement() instanceof IntoPredicate) {
 			PredicateValueEditor dialog = null;
 			if (selection.getFirstElement() instanceof StringIntoPredicate) {
-				dialog = new PredicateValueEditor(parent,
-						(IPredicate) selection.getFirstElement(), String.class,
-						false);
+				dialog = new PredicateValueEditor(parent, (IPredicate) selection.getFirstElement(), String.class, false);
 			} else if (selection.getFirstElement() instanceof EnumIntoPredicate) {
-				dialog = new PredicateValueEditor(parent,
-						(IPredicate) selection.getFirstElement(), Enum.class,
-						false);
+				dialog = new PredicateValueEditor(parent, (IPredicate) selection.getFirstElement(), Enum.class, false);
 			}
 			if ((dialog != null) && (dialog.open() == Window.OK)) {
 				@SuppressWarnings("unchecked")
-				IntoPredicate<Object> predicate = (IntoPredicate<Object>) selection
-						.getFirstElement();
-				predicate.getAllowedEntries().add(
-						dialog.getEditor().getEnteredValue());
+				IntoPredicate<Object> predicate = (IntoPredicate<Object>) selection.getFirstElement();
+				predicate.getAllowedEntries().add(dialog.getEditor().getEnteredValue());
 			}
 
 			return; // quit
 		}
 
 		if (selection.getFirstElement() instanceof ContainsPatternPredicate) {
-			final PredicateValueEditor dialog = new PredicateValueEditor(
-					parent, (IPredicate) selection.getFirstElement(),
-					String.class, false);
+			final PredicateValueEditor dialog = new PredicateValueEditor(parent, (IPredicate) selection.getFirstElement(), String.class, false);
 			if (dialog.open() == Window.OK) {
 				String value = (String) dialog.getEditor().getEnteredValue();
-				ContainsPatternPredicate predicate = (ContainsPatternPredicate) selection
-						.getFirstElement();
+				ContainsPatternPredicate predicate = (ContainsPatternPredicate) selection.getFirstElement();
 				Pattern pattern = Pattern.compile(value);
 				predicate.setExpectedPattern(pattern);
 			}
@@ -201,34 +174,27 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 		}
 
 		if (selection.getFirstElement() instanceof CompareNumberPredicate) {
-			final PredicateValueEditor dialog = new PredicateValueEditor(
-					parent, (IPredicate) selection.getFirstElement(),
-					Number.class, true);
+			final PredicateValueEditor dialog = new PredicateValueEditor(parent, (IPredicate) selection.getFirstElement(), Number.class, true);
 			if (dialog.open() == Window.OK) {
-				CompareNumberPredicate predicate = (CompareNumberPredicate) selection
-						.getFirstElement();
+				CompareNumberPredicate predicate = (CompareNumberPredicate) selection.getFirstElement();
 				predicate.setOperator(dialog.getOperator());
-				predicate.setExpectedValue((Number) dialog.getEditor()
-						.getEnteredValue());
+				predicate.setExpectedValue((Number) dialog.getEditor().getEnteredValue());
 			}
 
 			return; // quit
 		}
 
 		if (this.eClasses == null || this.eClasses.isEmpty()) {
-			MessageDialog.openError(parent, "Error",
-					"You must load a model to edit.");
+			MessageDialog.openError(parent, "Error", "You must load a model to edit.");
 			return; // quit
 		}
 
 		if (selection.getFirstElement() instanceof IsTypeOfPredicate) {
-			final SelectTypeDialog dialog = new SelectTypeDialog(parent,
-					this.eClasses);
+			final SelectTypeDialog dialog = new SelectTypeDialog(parent, this.eClasses);
 			if (dialog.open() == Window.OK) {
 				Object type = dialog.getResult();
 				Boolean isStrict = dialog.getIsStrictTypeOf();
-				IsTypeOfPredicate predicate = (IsTypeOfPredicate) selection
-						.getFirstElement();
+				IsTypeOfPredicate predicate = (IsTypeOfPredicate) selection.getFirstElement();
 				predicate.setType(type);
 				predicate.setIsStrictTypeOf(isStrict);
 			}
@@ -236,24 +202,19 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 		}
 
 		if (selection.getFirstElement() instanceof ITypedPredicate) {
-			ITypedPredicate<?> predicate = (ITypedPredicate<?>) selection
-					.getFirstElement();
+			ITypedPredicate<?> predicate = (ITypedPredicate<?>) selection.getFirstElement();
 			if (predicate instanceof IEAttrPredicate) {
-				final IEAttrPredicatesNodeEditorDialog dialog = new IEAttrPredicatesNodeEditorDialog(
-						parent, (IEAttrPredicate) predicate, this.eClasses,
-						this.useExtendedFeature);
+				final IEAttrPredicatesNodeEditorDialog dialog = new IEAttrPredicatesNodeEditorDialog(parent, (IEAttrPredicate) predicate, this.eClasses, this.useExtendedFeature);
 				if (dialog.open() == Window.OK) {
 
 					if (selection.getFirstElement() instanceof IEAttrPredicate) {
 
-						((IEAttrPredicate) selection.getFirstElement())
-								.setTypedElement(dialog.getSelectedEAttribute());
+						((IEAttrPredicate) selection.getFirstElement()).setTypedElement(dialog.getSelectedEAttribute());
 
 					}
 				}
 			} else {
-				MessageDialog.openError(parent, "Error",
-						"Only IEAttrPredicate is currently supported.");
+				MessageDialog.openError(parent, "Error", "Only IEAttrPredicate is currently supported.");
 			}
 		}
 	}
