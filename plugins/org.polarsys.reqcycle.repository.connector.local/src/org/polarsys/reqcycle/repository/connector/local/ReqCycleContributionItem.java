@@ -10,8 +10,10 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.local;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -38,11 +40,14 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class ReqCycleContributionItem extends CompoundContributionItem {
@@ -148,11 +153,15 @@ public class ReqCycleContributionItem extends CompoundContributionItem {
 		Set<EClass> classes = new HashSet<EClass>();
 
 		//Gets Requirement Types EClasses
-		Collection<IRequirementType> dataTypes = dataModelManager.getAllRequirementTypes();
-		classes.addAll(Collections2.transform(dataTypes, new Function<IRequirementType, EClass>() {
+		Collection<IDataModel> dataModels = dataModelManager.getCurrentDataModels();
+		List<IType> types = Lists.newArrayList();
+		for (IDataModel dataModel : dataModels) {
+			types.addAll(dataModel.getTypes());
+		}
+		classes.addAll(Collections2.transform(types, new Function<IType, EClass>() {
 
 			@Override
-			public EClass apply(IRequirementType arg0) {
+			public EClass apply(IType arg0) {
 				if(arg0 instanceof IAdaptable) {
 					return (EClass)((IAdaptable)arg0).getAdapter(EClass.class);
 				}

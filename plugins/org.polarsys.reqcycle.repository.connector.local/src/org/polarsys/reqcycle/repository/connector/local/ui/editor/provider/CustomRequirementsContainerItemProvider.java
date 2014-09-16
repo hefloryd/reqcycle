@@ -11,6 +11,7 @@
 package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,8 +25,12 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementsContainerItemProvider;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
+import com.google.common.collect.Lists;
 
 public class CustomRequirementsContainerItemProvider extends RequirementsContainerItemProvider {
 
@@ -78,8 +83,15 @@ public class CustomRequirementsContainerItemProvider extends RequirementsContain
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		// FIXME : Use element Data Model to get possible children
 		// Gets Dynamic Data Model possible children
-		for (IRequirementType type : dataManager.getAllRequirementTypes()) {
-			newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, type.createInstance()));
+		Collection<IDataModel> dataModels = dataManager.getCurrentDataModels();
+		List<IType> types = Lists.newArrayList();
+		for (IDataModel dataModel : dataModels) {
+			types.addAll(dataModel.getTypes());
+		}
+		for (IType type : types) {
+			if (type instanceof IRequirementType) {
+				newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, ((IRequirementType)type).createInstance()));
+			}
 		}
 		newChildDescriptors.add(createChildParameter(RequirementSourceDataPackage.Literals.REQUIREMENTS_CONTAINER__REQUIREMENTS, RequirementSourceDataFactory.eINSTANCE.createSection()));
 	}

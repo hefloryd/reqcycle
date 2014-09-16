@@ -32,8 +32,12 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementItemProvider;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
+import com.google.common.collect.Lists;
 
 /**
  * The Class CustomRequirementItemProvider.
@@ -114,12 +118,20 @@ public class CustomRequirementItemProvider extends RequirementItemProvider {
 
 		Scope scope = getScope(object);
 
-		for (IRequirementType type : manager.getAllRequirementTypes()) {
-			Requirement instance = type.createInstance();
-			instance.getScopes().add(scope);
-			newChildDescriptors.add(createChildParameter(
-					RequirementSourceDataPackage.Literals.SECTION__CHILDREN,
-					instance));
+		Collection<IDataModel> dataModels = manager.getCurrentDataModels();
+		List<IType> types = Lists.newArrayList();
+		for (IDataModel dataModel : dataModels) {
+			types.addAll(dataModel.getTypes());
+		}
+
+		for (IType type : types) {
+			if (type instanceof IRequirementType) {
+				Requirement instance = ((IRequirementType)type).createInstance();
+				instance.getScopes().add(scope);
+				newChildDescriptors.add(createChildParameter(
+						RequirementSourceDataPackage.Literals.SECTION__CHILDREN,
+						instance));
+			}
 		}
 		newChildDescriptors.add(createChildParameter(
 				RequirementSourceDataPackage.Literals.SECTION__CHILDREN,

@@ -12,6 +12,7 @@ package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -20,9 +21,14 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceItemProvider;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
+import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
+import com.google.common.collect.Lists;
 
 
 /**
@@ -72,12 +78,7 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		//FIXME : Use element Data Model to get possible children
 		//Gets Dynamic Data Model possible children
-		for(IRequirementType type : manager.getAllRequirementTypes()) {
-			newChildDescriptors.add(createChildParameter(RequirementSourceConfPackage.Literals.REQUIREMENT_SOURCE__CONTENTS, type.createInstance()));
-		}
-		Section section = RequirementSourceDataFactory.eINSTANCE.createSection();
-		section.setId("");
-		newChildDescriptors.add(createChildParameter(RequirementSourceConfPackage.Literals.REQUIREMENT_SOURCE__CONTENTS, section));
+		// TODO
 	}
 
 }
