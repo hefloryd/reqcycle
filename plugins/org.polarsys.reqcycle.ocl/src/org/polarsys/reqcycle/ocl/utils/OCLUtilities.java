@@ -41,7 +41,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.ocl.OCLEvaluator;
 
 import com.google.common.base.Predicate;
@@ -198,7 +197,7 @@ public class OCLUtilities {
 		});
 	}
 
-	public static String getOperationRequiredName(IType type) {
+	public static String getOperationRequiredName(IRequirementType type) {
 		String dataTypeName = type.getName();
 		return getOperationRequiredName(dataTypeName);
 	}
@@ -226,7 +225,7 @@ public class OCLUtilities {
 		return getOperationRequiredName(attribute) + "() : " + lookupType; //$NON-NLS-1$
 	}
 
-	public static boolean isDataType(OCLEvaluator evaluator, EObject eObject, IType type) {
+	public static boolean isDataType(OCLEvaluator evaluator, EObject eObject, IRequirementType type) {
 		String operationName = OCLUtilities.getOperationRequiredName(type);
 		EOperation eOperation = evaluator.getCompiledOperation(operationName, eObject);
 		if(eOperation != null) {

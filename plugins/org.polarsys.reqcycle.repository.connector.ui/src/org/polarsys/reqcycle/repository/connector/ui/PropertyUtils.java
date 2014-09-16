@@ -46,7 +46,8 @@ public class PropertyUtils {
 
 	public static IDataModel getDataModelFromSource(RequirementSource source) {
 		String datamodelURI = source.getProperty(DATAMODEL_ID_KEY);
-		return modelManager.getDataModelByURI(datamodelURI);
+		return modelManager
+				.getDataModelByURI(datamodelURI);
 	}
 
 	public static void setScopeInSource(RequirementSource source, Scope scope) {
@@ -84,6 +85,7 @@ public class PropertyUtils {
 					Collections.emptyMap());
 			String s = new String(byteArrayOutputStream.toByteArray());
 			source.setProperty(key, s);
+			byteArrayOutputStream.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,8 +99,10 @@ public class PropertyUtils {
 			String key) {
 		XMIResource res = new XMIResourceImpl();
 		try {
-			res.load(new BufferedInputStream(new ByteArrayInputStream(source
-					.getProperty(key).getBytes())), Collections.emptyMap());
+			BufferedInputStream inputStream = new BufferedInputStream(
+					new ByteArrayInputStream(source.getProperty(key).getBytes()));
+			res.load(inputStream, Collections.emptyMap());
+			inputStream.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

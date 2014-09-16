@@ -273,9 +273,7 @@ public abstract class AbstractSettingPage extends WizardPage implements
 
 	protected final DataBindingContext initDataBindings(
 			DataBindingContext bindingContext) {
-		// this.bean = bean;
-		// DataBindingContext bindingContext = new DataBindingContext();
-		//
+
 		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties
 				.singleSelection().observe(cvDataModel);
 		IObservableValue dataPackageBeanObserveValue = PojoProperties.value(

@@ -41,10 +41,9 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
-
-import com.google.common.collect.Lists;
 
 public class RMFConnector extends Wizard implements IConnectorWizard {
 
@@ -91,8 +90,10 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 					model = settingPageBean.getDataPackage();
 					requirementsResourcePath = settingPageBean
 							.getDestinationPath();
-					requirementSource.setDataModelURI(model.getDataModelURI());
-					requirementSource.setDefaultScope(scope);
+					requirementSource.setProperty("DataModel_NAME",
+							model.getName());
+					requirementSource
+							.setProperty("SCOPE_NAME", scope.getName());
 					requirementSource.setProperty(
 							IRequirementSourceProperties.PROPERTY_URI,
 							settingPageBean.getUri());
@@ -136,12 +137,9 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 			ResourceSet rs = new ResourceSetImpl();
 			Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs,
 					initSource.getRepositoryUri());
-			Collection<IType> eClassifiers = Lists.newArrayList();
-			for (IDataModel dataModel : dataTypeManage.getCurrentDataModels()) {
-				eClassifiers.addAll(dataModel.getTypes());
-			}
 			EList<MappingElement> mapping = initSource.getMappings();
-			mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
+			IDataModel dataModel = dataTypeManage.getDataModelByURI(initSource.getDataModelURI());
+			mappingPage = createMappingPage(specTypes, dataModel.getTypes(), mapping);
 			addPage(mappingPage);
 		} else {
 			settingPage = new RMFSettingPage("ReqIF Setting", "",
@@ -160,8 +158,8 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 			// final Collection<EClassifier> eClassifiers =
 			// DataUtil.getTargetEPackage(rs,
 			// "org.polarsys.reqcycle.repository.data/model/CustomDataModel.ecore");
-			Collection<IType> eClassifiers = settingPageBean.getDataPackage()
-					.getTypes();
+			Collection<IType> eClassifiers = settingPageBean
+					.getDataPackage().getTypes();
 			mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
 			mappingPage.setWizard(this);
 
@@ -172,7 +170,8 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 	private RMFRepositoryMappingPage createMappingPage(
 			final Collection<SpecType> specTypes,
-			final Collection<IType> eClassifiers, final Collection mapping) {
+			final Collection<IType> eClassifiers,
+			final Collection mapping) {
 		return new RMFRepositoryMappingPage("ReqIF Mapping", "") {
 
 			@Override

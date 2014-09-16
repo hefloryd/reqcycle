@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.ui;
 
+import java.util.List;
+
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -18,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
@@ -40,7 +43,6 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
-import org.polarsys.reqcycle.ocl.ui.OCLConnector.SettingBean;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 
@@ -88,7 +90,7 @@ public class SettingPage extends AbstractSettingPage {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider();
+				/*BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider();
 				WorkspaceResourceDialog dialog = new WorkspaceResourceDialog(Display.getCurrent().getActiveShell(), labelProvider, contentProvider);
 				dialog.addFilter(filter);
 				dialog.setAllowMultiple(false);
@@ -99,7 +101,17 @@ public class SettingPage extends AbstractSettingPage {
 					IFile iFile = dialog.getSelectedFiles()[0];
 					String location = iFile.getFullPath().toOSString();
 					tFile.setText(location);
-				}				
+				}	*/	
+				ResourceDialog dialog = new ResourceDialog(getShell(),
+						"Select a model", SWT.NONE);
+				int res = dialog.open();
+				if (res == ResourceDialog.OK) {
+					List<URI> uris = dialog.getURIs();
+					if (!uris.isEmpty()) {
+						tFile.setText(uris.get(0).toString());
+					}
+				}
+		
 				 getWizard().getContainer().updateMessage();
 				 getWizard().getContainer().updateButtons();
 			}
@@ -117,7 +129,7 @@ public class SettingPage extends AbstractSettingPage {
 		 {
 			 String uriString = tFile.getText();
 				if(uriString != null && !uriString.isEmpty()) {
-					URI uri = URI.createPlatformResourceURI(uriString, true);
+					URI uri = URI.createURI(uriString);
 					if(!EMFUtils.isEMF(uri, false)) {
 						return result = false;
 						}
@@ -136,7 +148,7 @@ public class SettingPage extends AbstractSettingPage {
 			String uriString = tFile.getText();
 				
 			if(uriString != null && !uriString.isEmpty()) {
-					URI uri = URI.createPlatformResourceURI(uriString, true);
+					URI uri = URI.createURI(uriString);
 					if(!EMFUtils.isEMF(uri, false)) {
 						return  new StringBuffer("Selected file is not an EMF resource");
 					}

@@ -60,7 +60,6 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
-import org.polarsys.reqcycle.ocl.ui.OCLConnector.SettingBean;
 import org.polarsys.reqcycle.ocl.utils.OCLUtilities;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.IUpdatablePage;

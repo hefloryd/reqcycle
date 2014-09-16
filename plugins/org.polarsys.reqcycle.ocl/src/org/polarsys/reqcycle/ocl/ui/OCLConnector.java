@@ -14,15 +14,10 @@ package org.polarsys.reqcycle.ocl.ui;
 import javax.inject.Inject;
 
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.polarsys.reqcycle.ocl.IOCLConstants;
 import org.polarsys.reqcycle.ocl.OCLCallable;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
@@ -38,7 +33,7 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 	
 	protected OCLPage oclMappingPage;
 	
-	protected SettingBean bean = new SettingBean();
+	protected SettingBean bean = new SettingBean(this);
 
 	private RequirementSource requirementSource = null;
 
@@ -74,49 +69,6 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 	@Override
 	public boolean performFinish() {
 		return true;
-	}
-
-	public class SettingBean extends AbstractStorageBean {
-
-		private String oclUri = "";
-		
-		public SettingBean() {
-		}
-
-		public String getOclUri() {
-			return oclUri;
-		}
-
-		public void setOclUri(String oclUri) {
-			this.oclUri = oclUri;
-			notifyChange();
-		}
-
-
-		public void notifyChange() {
-			IWizardPage[] pages = getPages();
-			if(pages != null) {
-				for(int i = 0; i < pages.length; i++) {
-					IWizardPage iWizardPage = pages[i];
-					iWizardPage.getWizard().getContainer().updateButtons();
-					if(iWizardPage instanceof Listener) {
-						((Listener)iWizardPage).handleEvent(new Event());
-					}
-				}
-			}
-		}
-
-		@Override
-		public void storeProperties(RequirementSource source) {
-			super.storeProperties(source);
-			try {
-				source.setProperty(IOCLConstants.OCL_URI, this.getOclUri());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
 	}
 
 	@Override

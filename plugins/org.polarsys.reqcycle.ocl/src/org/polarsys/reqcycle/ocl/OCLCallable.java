@@ -50,7 +50,7 @@ public class OCLCallable implements ICallable{
 
 	protected TreeIterator<EObject> getIterator (RequirementSource requirementSource, ResourceSet resourceSet){
 		String repositoryUri = requirementSource.getRepositoryUri();
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(repositoryUri, true), true);
+		Resource resource = resourceSet.getResource(URI.createURI(repositoryUri), true);
 		TreeIterator<EObject> contents = resource.getAllContents();
 		return contents;
 	}
@@ -73,15 +73,12 @@ protected void fillRequirements(RequirementSource requirementSource) throws Exce
 					sections.put(eObject, section);
 					addToSection(requirementSource, eObject, section);
 				}
-				for(IType type : types) {
-					if (type instanceof IRequirementType) {
-						IRequirementType reqType = (IRequirementType)type;
-						if(OCLUtilities.isDataType(evaluator, eObject, reqType)) {
-							AbstractElement requirement = createRequirement(evaluator, mapping, eObject, reqType);
-							addToSection(requirementSource, eObject, requirement);
-						}
-					}
-				}
+		for(IType type : types) {
+			if(type instanceof IRequirementType && OCLUtilities.isDataType(evaluator, eObject, (IRequirementType) type)) {
+				AbstractElement requirement = createRequirement(evaluator, mapping, eObject, (IRequirementType) type);
+						addToSection(requirementSource, eObject, requirement);
+			}
+		}
 	}
 		}
 	
