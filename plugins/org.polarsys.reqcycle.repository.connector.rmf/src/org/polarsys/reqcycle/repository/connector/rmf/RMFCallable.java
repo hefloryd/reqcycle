@@ -8,13 +8,13 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage;
-import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage.RMFSettingPageBean;
+import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.ISourceConstants;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
 
 public class RMFCallable implements ICallable {
 
@@ -22,10 +22,6 @@ public class RMFCallable implements ICallable {
 	protected RMFSettingPage settingPage;
 
 	protected Collection mapping;
-
-	protected RMFSettingPageBean settingPageBean;
-
-	protected boolean edition = false;
 
 	@Inject
 	IDataManager dataManager;
@@ -37,22 +33,21 @@ public class RMFCallable implements ICallable {
 		IDataModel model = null;
 		String requirementsResourcePath = null;
 
-		if (settingPageBean != null) {
-			scope = settingPageBean.getScope();
-			model = settingPageBean.getDataPackage();
-			requirementsResourcePath = settingPageBean.getDestinationPath();
-			// requirementSource.setProperty("DataModel_NAME", model.getName());
-			// requirementSource.setProperty("SCOPE_NAME", scope.getName());
-			// requirementSource.setProperty(IRequirementSourceProperties.PROPERTY_URI,settingPageBean.getUri());
-			Boolean isCopy = settingPageBean.getIsCopy();
-			if (isCopy && requirementsResourcePath != null && !requirementsResourcePath.isEmpty()) {
-				RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(requirementsResourcePath, true));
-				requirementSource.setContents(rc);
-			}
-			requirementSource.setProperty(IRequirementSourceProperties.IS_LOCAL, isCopy.toString());
+		scope = PropertyUtils.getScopeFromSource(requirementSource);
+		model = PropertyUtils.getDataModelFromSource(requirementSource);
+		requirementsResourcePath = requirementSource.getProperty(ISourceConstants.DESTINATION_PATH);
+		// requirementSource.setProperty("DataModel_NAME", model.getName());
+		// requirementSource.setProperty("SCOPE_NAME", scope.getName());
+		// requirementSource.setProperty(IRequirementSourceProperties.PROPERTY_URI,settingPageBean.getUri());
+		Boolean isCopy = Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_COPY));
+		if (isCopy && requirementsResourcePath != null && !requirementsResourcePath.isEmpty()) {
+			RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(requirementsResourcePath, true));
+			requirementSource.setContents(rc);
 		}
+		// requirementSource.setProperty(IRequirementSourceProperties.IS_LOCAL,
+		// isCopy.toString());
 
-		if (((settingPageBean != null && !settingPageBean.getSkipMapping()) || edition) && mapping != null && !mapping.isEmpty()) {
+		if ((!Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_SKIP_MAPPING)) || Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_SKIP_MAPPING)) && mapping != null && !mapping.isEmpty())) {
 			// it's an edition or a creation without skipping the
 			// mapping
 			requirementSource.getMappings().clear();
@@ -62,5 +57,4 @@ public class RMFCallable implements ICallable {
 		}
 
 	}
-
 }
