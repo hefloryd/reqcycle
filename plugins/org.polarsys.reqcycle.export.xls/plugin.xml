@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            category="org.polarsys.reqcycle.core.ui.export"
+            class="org.polarsys.reqcycle.export.xls.wizard.TraceabilityExportWizard"
+            icon="icons/toc_open.gif"
+            id="org.polarsys.reqcycle.export.xls.wizard"
+            name="xls and csv">
+      </wizard>
+   </extension>
+
+</plugin>

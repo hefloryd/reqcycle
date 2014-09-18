@@ -80,7 +80,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.local</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf</module>
-		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf.export</module>
+		<module>../../plugins/org.polarsys.reqcycle.export.rmf</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui</module>
@@ -108,8 +108,8 @@
 		<module>../../plugins/org.polarsys.reqcycle.traceability.cache.storagebased</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.emf</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.emf.edit</module>
-		<module>../../plugins/org.polarsys.reqcycle.traceability.export</module>
-		<module>../../plugins/org.polarsys.reqcycle.traceability.export.xls</module>
+		<module>../../plugins/org.polarsys.reqcycle.export</module>
+		<module>../../plugins/org.polarsys.reqcycle.export.xls</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.sesame</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.table</module>

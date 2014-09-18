@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<reqexp:Export
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:reqexp="http://www.polarsys.org/reqcycle/reqexport/1.0"
+    xsi:schemaLocation="http://www.polarsys.org/reqcycle/reqexport/1.0 export.ecore"
+    date="2014-1608"
+    path="output.xls">
+  <models name="DS1">
+    <attributes
+        name="priority"/>
+    <attributes
+        name="section"/>
+    <requirements
+        ID="Req01">
+      <values
+          attribute="//@models.0/@attributes.0"
+          value="5"/>
+      <values
+          attribute="//@models.0/@attributes.1"
+          value="Toto\Titi"/>
+    </requirements>
+  </models>
+</reqexp:Export>

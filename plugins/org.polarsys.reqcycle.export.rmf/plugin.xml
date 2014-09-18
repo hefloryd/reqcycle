@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            category="org.polarsys.reqcycle.core.ui.export"
+            class="org.polarsys.reqcycle.export.rmf.wizard.ReqIFExportWizard"
+            icon="icons/export_reqif.gif"
+            id="org.polarsys.reqcycle.export.rmf.reqif.wizard"
+            name="ReqIF">
+      </wizard>
+   </extension>
+
+</plugin>
