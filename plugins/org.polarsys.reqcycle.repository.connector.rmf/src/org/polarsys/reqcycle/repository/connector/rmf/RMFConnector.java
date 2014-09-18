@@ -48,7 +48,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	/** Page containing the ReqIF file and skip mapping check box */
 	protected RMFSettingPage settingPage;
 
-	protected Collection mapping;
+	protected static Collection mapping;
 
 	protected RequirementSource initSource;
 
@@ -72,6 +72,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 		// return new ICallable() {
 		RMFCallable callable = ZigguratInject.make(RMFCallable.class);
+		callable.setMapping(mapping);
 		return callable;
 	}
 
@@ -187,8 +188,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean performFinish() {
-		// FIXME : use mapping bean
-		if (((bean != null && !bean.getSkipMapping()) || edition) && mappingPage != null) {
+		if (!edition && mappingPage != null) {
 			mapping = mappingPage.getResult();
 		}
 
@@ -198,12 +198,8 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	@Override
 	public boolean canFinish() {
 		// TODO : refactor using beans
-		if (settingPage != null && settingPage.isPageComplete() && bean != null) {
-			if (bean.getSkipMapping()) {
-				return true;
-			} else {
-				return mappingPage != null && mappingPage.isPageComplete();
-			}
+		if (settingPage != null && settingPage.isPageComplete() && bean != null && mappingPage != null && mappingPage.isPageComplete()) {
+			return true;
 		} else if (initSource != null) {
 			return mappingPage != null && mappingPage.isPageComplete();
 		}
@@ -214,17 +210,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 		private Boolean isCopy = true;
 
-		private boolean skipMapping = false;
-
 		public RMFSettingBean() {
-		}
-
-		public boolean getSkipMapping() {
-			return skipMapping;
-		}
-
-		public void setSkipMapping(boolean skipMapping) {
-			this.skipMapping = skipMapping;
 		}
 
 		public Boolean getIsCopy() {
@@ -239,11 +225,11 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		public void storeProperties(RequirementSource source) {
 			super.storeProperties(source);
 			try {
-				source.setProperty(IRMFConstants.RMF_IS_SKIP_MAPPING, Boolean.toString(getSkipMapping()));
 				source.setProperty(IRMFConstants.RMF_IS_COPY, Boolean.toString(getIsCopy()));
 				source.setProperty(IRMFConstants.RMF_EDITION, Boolean.toString(edition));
+				// PropertyUtils.setEObjectsInSource(source, IRMFConstants.RMF_MAPPING, (List<EObject>) mapping);
+
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

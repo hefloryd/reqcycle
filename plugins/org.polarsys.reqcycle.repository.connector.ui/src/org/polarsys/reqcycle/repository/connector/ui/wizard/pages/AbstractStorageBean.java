@@ -16,12 +16,14 @@ public class AbstractStorageBean {
 
 	public void storeProperties(RequirementSource source) {
 		try {
+
 			source.setProperty(ISourceConstants.PROPERTY_URI, getUri());
 			source.setProperty(ISourceConstants.DESTINATION_PATH, getOutputPath());
 			// setName(value)
-			source.setProperty(ISourceConstants.NAME, getName());
+			// source.setProperty(ISourceConstants.NAME, getName());
 			source.setProperty(ISourceConstants.DATA_MODEL, getDataModel().getName());
 			source.setProperty(ISourceConstants.DATA_MODEL_URI, getDataModel().getDataModelURI());
+			source.setDataModelURI(getDataModel().getDataModelURI());
 			PropertyUtils.setScopeInSource(source, getScope());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
