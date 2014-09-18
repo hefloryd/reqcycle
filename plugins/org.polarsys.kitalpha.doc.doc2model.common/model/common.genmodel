@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.polarsys.kitalpha.doc.doc2model.common/src" editorDirectory=""
+    modelPluginID="org.polarsys.kitalpha.doc.doc2model.common" modelName="Common" editorPluginClass=""
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory=""
+    testSuiteClass="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" editorPluginID="org.polarsys.kitalpha.doc.doc2model.common.editor"
+    testsPluginID="org.polarsys.kitalpha.doc.doc2model.common.editor" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>common.ecore</foreignModel>
+  <genPackages prefix="Common" basePackage="org.polarsys.kitalpha.doc.doc2model.common"
+      disposableProviderFactory="true" generateExampleClass="false" ecorePackage="common.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="common.ecore#//StyleEnum">
+      <genEnumLiterals ecoreEnumLiteral="common.ecore#//StyleEnum/BOLD"/>
+      <genEnumLiterals ecoreEnumLiteral="common.ecore#//StyleEnum/ITALIC"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="common.ecore#//ContentElement" labelFeature="#//Common/ContentElement/textContent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//ContentElement/textContent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//ContentElement/styleName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference common.ecore#//ContentElement/style"/>
+      <genOperations ecoreOperation="common.ecore#//ContentElement/regex">
+        <genParameters ecoreParameter="common.ecore#//ContentElement/regex/regex"/>
+      </genOperations>
+      <genOperations ecoreOperation="common.ecore#//ContentElement/siblings">
+        <genParameters ecoreParameter="common.ecore#//ContentElement/siblings/regex"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="common.ecore#//Regex">
+      <genOperations ecoreOperation="common.ecore#//Regex/g">
+        <genParameters ecoreParameter="common.ecore#//Regex/g/i"/>
+      </genOperations>
+      <genOperations ecoreOperation="common.ecore#//Regex/matches"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="common.ecore#//DocumentModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference common.ecore#//DocumentModel/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="common.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//Attribute/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="common.ecore#//Style">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//Style/enums"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

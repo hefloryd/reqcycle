@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.polarsys.reqcycle.repository.connector.connectorCore">
+      <connectorCore
+            class="org.polarsys.reqcycle.repository.connector.document.DocConnector"
+            icon="icons/toc_open.gif"
+            id="org.polarsys.reqcycle.repository.connector.document.DocConnector"
+            name="Document (using .types files)">
+      </connectorCore>
+   </extension>
+
+</plugin>
