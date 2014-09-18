@@ -79,6 +79,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 	public OCLPage(SettingBean bean) {
 		super("OCL queries");
 		setDescription("An OCL file, from which operations will be used from model analysis, has to be provided. " + "You can check whether all the operations needed by ReqCycle have been implemented, or if some are missing");
+		setTitle("Connector OCL: Mapping page");
 		this.bean = bean;
 	}
 
@@ -351,7 +352,6 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(tFile);
 		IObservableValue uriBeanObserveValue = PojoProperties.value("oclUri").observe(bean);
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
-
 		//
 		return bindingContext;
 	}

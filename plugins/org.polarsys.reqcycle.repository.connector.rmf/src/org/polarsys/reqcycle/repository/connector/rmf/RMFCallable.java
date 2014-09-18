@@ -23,6 +23,14 @@ public class RMFCallable implements ICallable {
 
 	protected Collection mapping;
 
+	public Collection getMapping() {
+		return mapping;
+	}
+
+	public void setMapping(Collection mapping) {
+		this.mapping = mapping;
+	}
+
 	@Inject
 	IDataManager dataManager;
 
@@ -36,23 +44,19 @@ public class RMFCallable implements ICallable {
 		scope = PropertyUtils.getScopeFromSource(requirementSource);
 		model = PropertyUtils.getDataModelFromSource(requirementSource);
 		requirementsResourcePath = requirementSource.getProperty(ISourceConstants.DESTINATION_PATH);
-		// requirementSource.setProperty("DataModel_NAME", model.getName());
-		// requirementSource.setProperty("SCOPE_NAME", scope.getName());
-		// requirementSource.setProperty(IRequirementSourceProperties.PROPERTY_URI,settingPageBean.getUri());
+
 		Boolean isCopy = Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_COPY));
 		if (isCopy && requirementsResourcePath != null && !requirementsResourcePath.isEmpty()) {
 			RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(requirementsResourcePath, true));
 			requirementSource.setContents(rc);
 		}
-		// requirementSource.setProperty(IRequirementSourceProperties.IS_LOCAL,
-		// isCopy.toString());
 
-		if ((!Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_SKIP_MAPPING)) || Boolean.parseBoolean(requirementSource.getProperty(IRMFConstants.RMF_IS_SKIP_MAPPING)) && mapping != null && !mapping.isEmpty())) {
+		// Collection mapping = PropertyUtils.getEObjectsInSource(requirementSource, IRMFConstants.RMF_MAPPING);
+		if (mapping != null && !mapping.isEmpty()) {
 			// it's an edition or a creation without skipping the
 			// mapping
 			requirementSource.getMappings().clear();
 			requirementSource.getMappings().addAll(mapping);
-			// requirementSource.getRequirements().clear();
 			RMFUtils.fillRequirements(requirementSource, new NullProgressMonitor(), scope);
 		}
 

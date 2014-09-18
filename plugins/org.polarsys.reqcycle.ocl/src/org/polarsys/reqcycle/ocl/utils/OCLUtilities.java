@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -250,11 +251,11 @@ public class OCLUtilities {
 
 	public static Object getAttributeValue(OCLEvaluator evaluator, EObject eObject, IAttribute attribute) {
 		String operationName = OCLUtilities.getOperationRequiredName(attribute);
-		EDataType type = getDataType(attribute);
+		EClassifier type = getDataType(attribute);
 		return getAttributeValue(evaluator, eObject, operationName, type);
 	}
 
-	public static Object getAttributeValue(OCLEvaluator evaluator, EObject eObject, String operationName, EDataType type) {
+	public static Object getAttributeValue(OCLEvaluator evaluator, EObject eObject, String operationName, EClassifier type) {
 		EOperation eOperation = evaluator.getCompiledOperation(operationName, eObject);
 		if (eOperation != null) {
 			Object result = evaluator.evaluateOperation(eOperation, eObject, new Object[0]);
@@ -275,15 +276,15 @@ public class OCLUtilities {
 		return null;
 	}
 
-	private static EDataType getDataType(IAttribute attribute) {
-		EDataType type = null;
-		if (attribute instanceof IAdaptable) {
-			type = (EDataType) ((IAdaptable) attribute).getAdapter(EDataType.class);
+	private static EClassifier getDataType(IAttribute attribute) {
+		EClassifier type = null;
+		if (attribute.getType() instanceof IAdaptable) {
+			type = (EClassifier) ((IAdaptable) attribute.getType()).getAdapter(EClassifier.class);
 		}
 		return type;
 	}
 
-	protected static Object convertResult(Object result, EDataType type) {
+	protected static Object convertResult(Object result, EClassifier type) {
 
 		if (type == null) {
 			return null;

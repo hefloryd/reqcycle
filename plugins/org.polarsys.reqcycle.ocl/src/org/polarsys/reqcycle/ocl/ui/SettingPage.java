@@ -59,6 +59,7 @@ public class SettingPage extends AbstractSettingPage {
 	protected SettingPage(SettingBean bean) {
 		super("OCL Connector settings");
 		setDescription("Connector settings");
+		setTitle("Connector OCL: settings page");
 		this.bean = bean;
 
 	}

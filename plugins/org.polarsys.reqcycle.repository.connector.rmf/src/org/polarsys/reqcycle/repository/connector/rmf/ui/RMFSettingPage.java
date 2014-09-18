@@ -45,10 +45,6 @@ public class RMFSettingPage extends AbstractSettingPage {
 
 	private Button browseFileBtn;
 
-	// private String uri;
-
-	private Button btnSkipMapping;
-
 	private RMFSettingBean bean;
 
 	@Inject
@@ -67,54 +63,16 @@ public class RMFSettingPage extends AbstractSettingPage {
 		this.bean = bean;
 	}
 
-	/**
-	 * @param title
-	 *            Page title
-	 * @param description
-	 *            Page description
-	 * @param uri
-	 *            input uri
-	 */
-	/*
-	 * public RMFSettingPage(String title, String description, String uri) { this(title, description); this.uri = uri; }
-	 */
-
-	/*
-	 * @Override public boolean canFlipToNextPage() { return isPageComplete() && !bean.skipMapping; }
-	 */
-
-	/*
-	 * @Override public boolean isPageComplete() { StringBuffer error = new StringBuffer(); boolean result = true; if (bean.getUri() == null || bean.getUri().isEmpty()) { error.append("Choose a ReqIF File.\n"); result = false; }
-	 * 
-	 * if (!result) { setErrorMessage(error.toString()); } else { setErrorMessage(null); }
-	 * 
-	 * return result; }
-	 */
-
 	public boolean preFinish(RequirementSource repository) {
 		return true;
 	}
 
-	/*
-	 * private void init() { if (uri != null && !uri.isEmpty()) { bean.setUri(uri); if (fileURIText != null) { fileURIText.setText(uri); } } }
-	 */
-
-	/*
-	 * @Override public void handleEvent(Event event) { getWizard().getContainer().updateButtons(); }
-	 * 
-	 * public RMFSettingPageBean getBean() { return bean; }
-	 */
 	@Override
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
 		//
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(fileURIText);
 		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(bean);
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
-		//
-		IObservableValue observeSelectionBtnSkipMappingObserveWidget = WidgetProperties.selection().observe(btnSkipMapping);
-		IObservableValue skipMappingBeanObserveValue = PojoProperties.value("skipMapping").observe(bean);
-		bindingContext.bindValue(observeSelectionBtnSkipMappingObserveWidget, skipMappingBeanObserveValue, null, null);
-		//
 
 	}
 
@@ -135,16 +93,6 @@ public class RMFSettingPage extends AbstractSettingPage {
 		browseFileBtn = new Button(compositeContainer, SWT.NONE);
 		browseFileBtn.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
 		browseFileBtn.setText("Browse");
-
-		Label lblSeparator = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-		lblSeparator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
-
-		btnSkipMapping = new Button(compositeContainer, SWT.CHECK);
-
-		Label lblSkipMapping = new Label(compositeContainer, SWT.NONE);
-		lblSkipMapping.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
-		lblSkipMapping.setText("Skip mapping (Perform mapping later)");
-		new Label(compositeContainer, SWT.NONE);
 
 		return compositeContainer;
 	}
