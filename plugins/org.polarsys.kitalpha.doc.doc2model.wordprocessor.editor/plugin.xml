@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated wp -->
+      <factory
+            uri="http://www.polarsys.org/reqcycle/0.1/wp"
+            class="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.provider.WordprocessorItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated wp -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.presentation.WordprocessorModelWizardID"
+            name="%_UI_WordprocessorModelWizard_label"
+            class="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.presentation.WordprocessorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/WordprocessorModelFile.gif">
+         <description>%_UI_WordprocessorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated wp -->
+      <editor
+            id="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.presentation.WordprocessorEditorID"
+            name="%_UI_WordprocessorEditor_label"
+            icon="icons/full/obj16/WordprocessorModelFile.gif"
+            extensions="wp"
+            class="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.presentation.WordprocessorEditor"
+            contributorClass="org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.presentation.WordprocessorActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated initTypes -->
+      <package
+            uri="http://www.polarsys.org/inittypes/1.0"
+            class="org.polarsys.reqcycle.inittypes.inittypes.InittypesPackage"
+            genModel="model/initTypes.genmodel"/>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.reqcycle.typesmodel.handler.IniManager"
+            interface="org.polarsys.reqcycle.typesmodel.handler.ITypeManager">
+      </binding>
+   </extension>
+
+</plugin>

@@ -1,0 +1,25 @@
+[Types]
+Names=PTS,ALL_DFS_NV
+
+[PTS]
+Requirement1Name=Exigence A350
+Requirement1=^(V_PTS_\d+-\d+_\d+)
+Requirement2Name=Exigence A400M
+Requirement2=^(M-AF-PTSFWS-\d+)
+Requirement3Name=Exigence A380
+Requirement3=^(CA-PTS-FWS-\d+)
+
+
+
+[ALL_DFS_NV]
+Requirement1Name=Exigence ALL
+Requirement1=^((?:V-|V_|A350)[^\s]+)
+
+
+
+[ALL_DFS_NV_stakeholder]
+Requirement1Name=Exigence stakeholder
+Requirement1=^((?:V-|V_|A350)[^\s]+)
+Requirement1Name=Exigence stakeholder 88
+Requirement1=^((?:V-|V_|A350)[^\s]+)88
+

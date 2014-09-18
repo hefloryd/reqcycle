@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFContentHandler
+Bundle-SymbolicName: org.polarsys.kitalpha.doc.doc2model.emfContentHandler;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Activator: org.polarsys.kitalpha.doc.doc2model.emfcontenthandler.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.polarsys.kitalpha.doc.doc2model.core,
+ org.polarsys.kitalpha.doc.doc2model.wordprocessor,
+ org.polarsys.kitalpha.doc.doc2model.common,
+ org.polarsys.kitalpha.doc.doc2model.spreadsheet
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.polarsys.kitalpha.doc.doc2model.emfcontenthandler.ssh,
+ org.polarsys.kitalpha.doc.doc2model.emfcontenthandler.word
