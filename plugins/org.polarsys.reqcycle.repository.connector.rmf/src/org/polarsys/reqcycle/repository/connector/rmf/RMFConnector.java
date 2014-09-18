@@ -37,7 +37,6 @@ import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -84,8 +83,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		if (edition) {
 			ResourceSet rs = new ResourceSetImpl();
 			Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, initSource.getRepositoryUri());
-			IDataModel dataModel = dataTypeManage.getDataModelByURI(initSource.getDataModelURI());
-			Collection<IType> eClassifiers = dataModel.getTypes();
+			Collection<IType> eClassifiers = bean.getDataModel().getTypes();
 			EList<MappingElement> mapping = initSource.getMappings();
 			mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
 			addPage(mappingPage);
@@ -105,6 +103,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 				final Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, bean.getUri());
 
 				if (bean.getDataModel() != null) {
+
 					Collection<IType> eClassifiers = bean.getDataModel().getTypes();
 					mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
 					mappingPage.setWizard(this);
