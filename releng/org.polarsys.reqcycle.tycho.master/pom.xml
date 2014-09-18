@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	Copyright (c) 2014 AtoS
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+    
+    Contributors:
+      Abdellah El Ayadi (AtoS) - initial API and implementation and/or initial documentation
+      
+ -->
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.polarsys.reqcycle</groupId>
@@ -69,6 +80,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.local</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf.export</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui</module>
@@ -127,8 +139,8 @@
 		<module>../../plugins/org.polarsys.reqcycle.windows.ini</module>
 		<module>../../plugins/org.topcased.typesmodel</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document</module>
-		<!-- Features -->
 		
+		<!-- Features -->		
 		<module>../../features/org.polarsys.reqcycle.core.feature</module>
 		<module>../../features/org.polarsys.reqcycle.jdt.feature</module>
 		<module>../../features/org.polarsys.reqcycle.ocl.feature</module>
