@@ -331,4 +331,9 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 		return null;
 	}
+
+	@Override
+	public ResourceSet getConfigurationResourceSet() {
+		return internalRestrictedResourceSet;
+	}
 }

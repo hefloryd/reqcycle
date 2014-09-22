@@ -103,6 +103,8 @@ public interface IConfigurationManager {
 	 * @throws IOException
 	 */
 	void saveSimpleConfiguration(Map<String, Object> conf, IResource context, Scope scope, String id) throws IOException;
+	
+	ResourceSet getConfigurationResourceSet();
 
 	/**
 	 * @return the extension used by default for configuration resources

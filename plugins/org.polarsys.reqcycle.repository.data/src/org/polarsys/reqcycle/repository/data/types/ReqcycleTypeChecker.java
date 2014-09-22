@@ -11,11 +11,9 @@
 package org.polarsys.reqcycle.repository.data.types;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.emf.types.EMFTypeChecker;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
@@ -45,10 +43,6 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 
 	@Inject
 	IDataModelManager dataModelManager;
-
-	@Inject
-	@Named("confResourceSet")
-	ResourceSet rs;
 
 	@Override
 	public boolean apply(Reachable reachable) {
@@ -94,8 +88,8 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 					if (found && requirementScope != null) {
 						found = false;
 						for (Scope s : type.getScopes()) {
-							if (s.eIsProxy()) {
-								EObject newObj = EcoreUtil.resolve(s, rs);
+							if (s.eIsProxy() && s.eResource() != null) {
+								EObject newObj = EcoreUtil.resolve(s, s.eResource().getResourceSet());
 								if (newObj instanceof Scope) {
 									s = (Scope) newObj;
 								}
