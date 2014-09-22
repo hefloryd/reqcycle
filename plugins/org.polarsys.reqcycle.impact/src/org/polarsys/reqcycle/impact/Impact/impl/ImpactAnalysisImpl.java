@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -124,10 +123,6 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 
 	@Inject
 	IDataManager dataManager;
-
-	@Inject
-	@Named("confResourceSet")
-	ResourceSet rs;
 
 	@Inject
 	IVersionManager versionManager;

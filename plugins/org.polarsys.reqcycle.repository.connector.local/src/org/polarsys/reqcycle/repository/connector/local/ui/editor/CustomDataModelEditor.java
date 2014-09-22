@@ -14,7 +14,6 @@ import java.util.EventObject;
 import java.util.Iterator;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
@@ -25,7 +24,6 @@ import org.eclipse.emf.common.ui.ViewerPane;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain.EditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -52,8 +50,8 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.CustomDataModelItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.connector.local.ui.editor.provider.RequirementSourceItemProviderAdapterFactory;
-import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import RequirementSourceData.presentation.RequirementSourceDataEditor;
@@ -73,16 +71,12 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 	/** The input Object uri. */
 	protected URI inputURI;
 
-	@Inject
-	@Named("confResourceSet")
-	ResourceSet rs;
-
 	/** The logger. */
 	@Inject
 	ILogger logger;
 
 	@Inject
-	IDataManager dataManager;
+	IConfigurationManager confManager;
 
 	EditingDomainProvider editingDomainAdapter;
 
@@ -161,11 +155,9 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 		});
 
 		// Create the editing domain with a special command stack initialized with ReqCycle ResourceSet.
-		//
-
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, rs);
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, confManager.getConfigurationResourceSet());
 		editingDomainAdapter = new AdapterFactoryEditingDomain.EditingDomainProvider(editingDomain);
-		rs.eAdapters().add(editingDomainAdapter);
+		confManager.getConfigurationResourceSet().eAdapters().add(editingDomainAdapter);
 	}
 
 	@Override
@@ -321,7 +313,7 @@ public class CustomDataModelEditor extends RequirementSourceDataEditor {
 
 	@Override
 	public void dispose() {
-		rs.eAdapters().remove(editingDomainAdapter);
+		confManager.getConfigurationResourceSet().eAdapters().remove(editingDomainAdapter);
 		super.dispose();
 	}
 
