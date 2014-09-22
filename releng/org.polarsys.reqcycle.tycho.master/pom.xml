@@ -135,9 +135,8 @@
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor.editor</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document.ocl</module>
-		<module>../../plugins/org.polarsys.reqcycle.typesmodel</module>
 		<module>../../plugins/org.polarsys.reqcycle.windows.ini</module>
-		<module>../../plugins/org.topcased.typesmodel</module>
+		<module>../../plugins/org.polarsys.reqcycle.typesmodel</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document</module>
 		
 		<!-- Features -->		
