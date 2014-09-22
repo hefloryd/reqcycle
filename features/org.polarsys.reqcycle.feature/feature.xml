@@ -8,7 +8,7 @@
       ReqCycle feature contains requirement engineering and traceability
    </description>
 
-  <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013-2014 AtoS and Samares Engineering
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License
@@ -16,7 +16,6 @@ v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
-
 
    <license url="">
       Eclipse Public License - v 1.0
@@ -491,6 +490,48 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugin
          id="org.polarsys.reqcycle.traceability.emf.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.export"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.impact"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.impact.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.export.xls"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.styling.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.reqcycle.styling.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
