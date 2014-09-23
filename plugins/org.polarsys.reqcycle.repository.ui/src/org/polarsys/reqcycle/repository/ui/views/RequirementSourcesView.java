@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -177,6 +178,14 @@ public class RequirementSourcesView extends ViewPart {
 		hookContextMenu();
 		contributeToActionBars();
 		hookListeners();
+	}
+
+	@Override
+	public Object getAdapter(Class adapter) {
+		if (Viewer.class.isAssignableFrom(adapter)) {
+			return viewer;
+		}
+		return super.getAdapter(adapter);
 	}
 
 	/**

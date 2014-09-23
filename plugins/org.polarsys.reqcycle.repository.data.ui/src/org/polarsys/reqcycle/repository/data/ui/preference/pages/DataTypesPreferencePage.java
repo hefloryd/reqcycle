@@ -363,7 +363,6 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 						type = dataModelManager.createEnumerationType(name);
 					}
 					selectedModel.addType(type);
-
 					inputTypes.add(type);
 					tvTypes.refresh();
 					dirty = true;
@@ -376,7 +375,14 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 			public void widgetSelected(SelectionEvent e) {
 				if (selectedType != null) {
 					if (MessageDialog.openConfirm(e.display.getActiveShell(), "Delete type", "A new version of the meta model needs to be created when deleting a type, do you confirm ?")) {
+						if (selectedType instanceof IRequirementType) {
+							((IRequirementType) selectedType).getAttributes().clear();
+						}
 						selectedModel.removeType(selectedType);
+						inputTypes.remove(selectedType);
+						tvAttributes.refresh();
+						tvTypes.refresh();
+						dirty = true;
 					}
 				}
 			}
@@ -425,6 +431,9 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 				if (selectedAttribute != null && selectedType instanceof IRequirementType
 						&& MessageDialog.openConfirm(e.display.getActiveShell(), "Delete type", "A new version of the meta model needs to be created when deleting an attribute, do you confirm ?")) {
 					((IRequirementType) selectedType).removeAttribute(selectedAttribute);
+					inputAttributes.remove(selectedAttribute);
+					tvAttributes.refresh();
+					dirty = true;
 				}
 			}
 		});
@@ -435,6 +444,18 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 		boolean result = super.performOk();
 		if (dirty) {
 			MessageDialog.openWarning(getShell(), "Eclipse Restart", "Please relaunch Eclipse to use newly added Requirements types and attributes");
+			tvModels.refresh();
+			btnAddType.setEnabled(false);
+			btnAddAttribute.setEnabled(false);
+			inputTypes.clear();
+			if (tvTypes != null) {
+				tvTypes.refresh();
+			}
+
+			inputAttributes.clear();
+			if (tvAttributes != null) {
+				tvAttributes.refresh();
+			}
 			dirty = false;
 		}
 

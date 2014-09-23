@@ -22,6 +22,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
@@ -53,6 +58,20 @@ public class UpdateMetaModelHandler extends AbstractHandler {
 					IDataModel updatedDataModel = dataModelManager.getCurrentDataModel(outdatedDataModel.getName());
 					if (updatedDataModel.getVersion() > outdatedDataModel.getVersion()) {
 						migrate((RequirementSource) obj, outdatedDataModel, updatedDataModel);
+					}
+				}
+			}
+		}
+
+		for (IWorkbenchPage p : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPages()) {
+			for (IViewReference vr : p.getViewReferences()) {
+				if (vr.getId().equals("org.polarsys.reqcycle.repository.ui.views.sources")) {
+					IViewPart v = vr.getView(false);
+					if (v != null) {
+						Viewer viewer = (Viewer) v.getAdapter(Viewer.class);
+						if (viewer != null) {
+							viewer.refresh();
+						}
 					}
 				}
 			}

@@ -229,9 +229,15 @@ public class DataModelImpl implements IDataModel, IAdaptable {
 
 	@Override
 	public void removeType(IType type) {
-		if (types.remove(type)) {
-			needsNewVersionOnSave = true;
+		if (type instanceof IAdaptable) {
+			EClassifier classifier = (EClassifier) ((IAdaptable) type).getAdapter(EClassifier.class);
+			if (classifier != null) {
+				if (ePackage.getEClassifiers().remove(classifier)) {
+					needsNewVersionOnSave = true;
+				}
+			}
 		}
+		types.remove(type);
 	}
 
 	public DataModelImpl prepareSave() {

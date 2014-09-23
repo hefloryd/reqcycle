@@ -71,17 +71,16 @@ public class RequirementTypeImpl extends ETypeImpl implements IRequirementType, 
 
 	@Override
 	public void removeAttribute(IAttribute att) {
-		attributes.remove(att);
-		EStructuralFeature feature = null;
 		if (att instanceof IAdaptable) {
-			feature = (EStructuralFeature) ((IAdaptable) att).getAdapter(EStructuralFeature.class);
-		}
-		if (feature != null) {
-			getEType().getEStructuralFeatures().remove(feature);
-			if (dataModel instanceof DataModelImpl) {
-				((DataModelImpl) dataModel).needsNewVersionOnSave = true;
+			EStructuralFeature feature = (EStructuralFeature) ((IAdaptable) att).getAdapter(EStructuralFeature.class);
+
+			if (feature != null) {
+				if (getEType().getEStructuralFeatures().remove(feature)) {
+					((DataModelImpl) dataModel).needsNewVersionOnSave = true;
+				}
 			}
 		}
+		attributes.remove(att);
 	}
 
 	@Override
