@@ -14,7 +14,7 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeConfigContainer;
 
 public interface ITypesConfigurationProvider {
-	public static String CONF_PREF_ID = "org.polarsys.reqcycle.traceability.types.conf";
+	public static String CONF_PREF_ID = "org.polarsys.reqcycle.traceability.types";
 
 	/**
 	 * Returns the root model

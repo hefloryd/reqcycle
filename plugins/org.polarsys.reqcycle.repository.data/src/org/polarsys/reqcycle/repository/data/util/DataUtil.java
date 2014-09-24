@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,8 +42,11 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractEleme
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
 public class DataUtil {
 
@@ -112,6 +116,51 @@ public class DataUtil {
 		}
 
 		return result;
+	}
+
+	static Joiner joiner = Joiner.on("::");
+	static Splitter splitter = Splitter.on("::");
+
+	public static List<String> getQualifiedPath(AbstractElement element) {
+		EObject currentElement = element;
+		List<String> res = Lists.newArrayList();
+		while (currentElement != null) {
+			if (currentElement instanceof AbstractElement) {
+				res.add(0, ((AbstractElement) currentElement).getId());
+			}
+			currentElement = currentElement.eContainer();
+		}
+		return res;
+	}
+
+	public static String getFlattenedQualifiedPath(AbstractElement element) {
+		return joiner.join(getQualifiedPath(element));
+	}
+
+	public static AbstractElement getElement(Resource r, String flattenedQualifiedNamePath) {
+		return getElement(r.getContents(), splitter.splitToList(flattenedQualifiedNamePath));
+	}
+
+	public static AbstractElement getElement(EObject root, List<String> qualifiedNamePath) {
+		return getElement(root.eContents(), qualifiedNamePath);
+	}
+
+	public static AbstractElement getElement(Collection<EObject> roots, List<String> qualifiedNamePath) {
+		if (!qualifiedNamePath.isEmpty()) {
+			String firstName = qualifiedNamePath.get(0);
+			for (EObject obj : roots) {
+				if (obj instanceof AbstractElement && firstName.equals(((AbstractElement) obj).getId())) {
+					if (qualifiedNamePath.size() > 1) {
+						ArrayList<String> newQualifiedNamePath = Lists.newArrayList(qualifiedNamePath);
+						newQualifiedNamePath.remove(0);
+						return getElement(obj.eContents(), newQualifiedNamePath);
+					} else {
+						return (AbstractElement) obj;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	/**

@@ -6,6 +6,7 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ *    Malick WADE (Atos) - add update requirement option - 19/09/2014
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui;
@@ -43,6 +44,11 @@ public class Messages extends NLS {
 	public static String SYNC_RESOURCE_TEXT;
 
 	public static String YELLOW_STATUS_ICON;
+
+	public static String UPDATE_RESOURCE_ICON;
+
+	public static String UPDATE_RESOURCE_TEXT;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

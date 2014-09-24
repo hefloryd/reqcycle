@@ -70,7 +70,8 @@ public class DataManagerImpl implements IDataManager {
 
 	ResourceSet resourceSet = new ResourceSetImpl();
 
-	public static final String ID = "org.polarsys.reqcycle.repositories";
+	public static final String SOURCES_CONF_ID = "org.polarsys.reqcycle.repositories";
+	public static final String CONTENTS_CONF_ID = "org.polarsys.reqcycle.repositories.contents";
 
 	@Inject
 	IEventBroker broker;
@@ -85,7 +86,7 @@ public class DataManagerImpl implements IDataManager {
 	DataManagerImpl(IConfigurationManager confManager) {
 		this.confManager = confManager;
 
-		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, ID, resourceSet, null, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, SOURCES_CONF_ID, resourceSet, null, true);
 
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
@@ -191,39 +192,21 @@ public class DataManagerImpl implements IDataManager {
 	}
 
 	protected void saveSources() throws IOException {
-		confManager.saveConfiguration(Collections.singleton(sources), null, null, ID, resourceSet, null);
+		confManager.saveConfiguration(Collections.singleton(sources), null, null, SOURCES_CONF_ID, resourceSet, null);
 	}
 
 	protected void saveContents() throws IOException {
 		for (RequirementSource source : sources.getRequirementSources()) {
-			RequirementsContainer requirementsContainer = source.getContents();
-			// If requirement container is Set, save it
-			if (requirementsContainer != null) {
-				Resource eResource = requirementsContainer.eResource();
+			if (source.getDestinationURI() == null) {
+				confManager.saveConfiguration(Collections.singleton(source.getContents()), null, null, CONTENTS_CONF_ID + "." + source.getName(), null, "reqcycle");
+			} else {
+				Resource eResource = source.getContents().eResource();
 
 				if (eResource instanceof EMFConfResource) {
 					((EMFConfResource) eResource).manualSave(SAVE_OPTIONS);
 				} else if (eResource != null) {
 					eResource.save(SAVE_OPTIONS);
 				}
-
-			} else {
-				// TODO check with Anass : wrong ??
-				// If the requirement container isn't set (null), remove the
-				// corresponding resource if it exist.
-				// URI configurationFileURI = ((ConfigurationManagerImpl) confManager).getConfigurationFileURI(null, null, ID, null);
-				// Resource resource = resourceSet.getResource(configurationFileURI, false);
-				// if (resource != null) {
-				// try {
-				// if (resource.isLoaded()) {
-				// resource.unload();
-				// }
-				// resource.delete(Collections.emptyMap());
-				// } catch (IOException e) {
-				// // FIXME : use logger
-				// e.printStackTrace();
-				// }
-				// }
 			}
 		}
 	}
@@ -251,7 +234,7 @@ public class DataManagerImpl implements IDataManager {
 		Assert.isNotNull(repositoryUri);
 		if (repositoryMap.containsKey(connectorId)) {
 			for (RequirementSource repository : repositoryMap.get(connectorId)) {
-				if (repository.getRepositoryUri().equals(repositoryUri)) {
+				if (repository.getRepositoryURI().equals(repositoryUri)) {
 					return repository;
 				}
 			}

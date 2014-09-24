@@ -12,6 +12,7 @@ package org.polarsys.reqcycle.repository.ui.wizard;
 
 import javax.inject.Inject;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -24,6 +25,7 @@ import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.ui.wizard.pages.SelectConnectorPage;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -89,6 +91,10 @@ public class NewRequirementSourceWizard extends Wizard implements IWorkbenchWiza
 			if (connector instanceof IConnectorWizard) {
 				IConnectorWizard wiz = (IConnectorWizard) connector;
 				wiz.storeProperties(source);
+			}
+			if (source.getDestinationURI() != null) {
+				RequirementsContainer content = requirementSourceManager.createRequirementsContainer(URI.createURI(source.getDestinationURI()));
+				source.setContents(content);
 			}
 			createRequirementSource.fillRequirementSource(source);
 			getRequirementSourceManager().addRequirementSource(source);

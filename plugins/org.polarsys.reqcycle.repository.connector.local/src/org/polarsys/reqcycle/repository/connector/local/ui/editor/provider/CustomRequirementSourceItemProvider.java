@@ -12,7 +12,6 @@ package org.polarsys.reqcycle.repository.connector.local.ui.editor.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -20,15 +19,7 @@ import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceItemProvider;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
-import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-
-import com.google.common.collect.Lists;
 
 /**
  * The Class CustomRequirementSourceItemProvider.
@@ -65,7 +56,7 @@ public class CustomRequirementSourceItemProvider extends RequirementSourceItemPr
 			text += label;
 		}
 
-		String uri = ((RequirementSource) object).getRepositoryUri();
+		String uri = ((RequirementSource) object).getRepositoryURI();
 		if (uri != null && !uri.isEmpty()) {
 			text += " [ " + uri + " ] ";
 		}

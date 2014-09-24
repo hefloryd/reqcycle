@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.polarsys.reqcycle.repository.connector.rmf.RMFConnector.RMFSettingBean;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
@@ -45,7 +44,7 @@ public class RMFSettingPage extends AbstractSettingPage {
 
 	private Button browseFileBtn;
 
-	private RMFSettingBean bean;
+	private AbstractStorageBean bean;
 
 	@Inject
 	IDataModelManager dataManager;
@@ -57,7 +56,7 @@ public class RMFSettingPage extends AbstractSettingPage {
 	 *            page description
 	 * @wbp.parser.constructor
 	 */
-	public RMFSettingPage(RMFSettingBean bean) {
+	public RMFSettingPage(AbstractStorageBean bean) {
 		super("RMF Connector settings");
 		setTitle("Connector RMF: settings page");
 		this.bean = bean;

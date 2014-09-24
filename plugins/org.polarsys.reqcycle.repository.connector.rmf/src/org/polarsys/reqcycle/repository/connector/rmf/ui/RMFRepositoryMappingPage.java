@@ -192,6 +192,7 @@ public abstract class RMFRepositoryMappingPage extends WizardPage implements Lis
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				RMFRepositoryMappingPage.this.generateMapping();
+
 			}
 		});
 	}
@@ -387,6 +388,7 @@ public abstract class RMFRepositoryMappingPage extends WizardPage implements Lis
 	}
 
 	public boolean preFinish(RequirementSource repository) {
+
 		return true;
 	}
 
@@ -400,19 +402,6 @@ public abstract class RMFRepositoryMappingPage extends WizardPage implements Lis
 			return mappingComposite.getResult();
 		}
 		return null;
-	}
-
-	public static class RMFMappingBean {
-
-		private Collection<MappingElement> mapping;
-
-		public void setMapping(Collection<MappingElement> mapping) {
-			this.mapping = mapping;
-		}
-
-		public Collection<MappingElement> getMapping() {
-			return mapping;
-		}
 	}
 
 	@Override

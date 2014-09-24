@@ -19,10 +19,8 @@ import org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.SectionCo
 import org.polarsys.reqcycle.inittypes.inittypes.Requirement;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.ISourceConstants;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class DocCallable implements ICallable {
@@ -71,9 +69,6 @@ public class DocCallable implements ICallable {
 			e1.printStackTrace();
 		}
 
-		RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(source.getProperty(ISourceConstants.DESTINATION_PATH), true));
-		source.setContents(rc);
-		
 		try {
 			parser.run(source);
 		} catch (Exception e) {
@@ -90,8 +85,8 @@ public class DocCallable implements ICallable {
 	
 	protected StringBuffer getDocumentFromModele(RequirementSource source) {
 		StringBuffer doc = new StringBuffer();
-		if(source.getProperty(ISourceConstants.PROPERTY_URI) != null){
-			URI docUri = URI.createURI(source.getProperty(ISourceConstants.PROPERTY_URI));	
+		if(source.getRepositoryURI() != null){
+			URI docUri = URI.createURI(source.getRepositoryURI());	
 			String fileString = CommonPlugin.asLocalURI(docUri).toFileString();
 			Doc2Model<DocumentModel> doc2model = new Doc2Model<DocumentModel>();
 			String fileType = doc2model.getFileType(fileString);

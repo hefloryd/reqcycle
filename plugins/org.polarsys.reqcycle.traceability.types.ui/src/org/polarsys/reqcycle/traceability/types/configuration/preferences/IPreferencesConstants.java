@@ -10,5 +10,5 @@
 package org.polarsys.reqcycle.traceability.types.configuration.preferences;
 
 public interface IPreferencesConstants {
-	public static final String CONF_PREF_ID = "org.polarsys.reqcycle.traceability.types.conf";
+	public static final String CONF_PREF_ID = "org.polarsys.reqcycle.traceability.types";
 }

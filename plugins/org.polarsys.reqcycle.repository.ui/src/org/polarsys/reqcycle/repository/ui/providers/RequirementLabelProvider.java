@@ -29,7 +29,7 @@ public class RequirementLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 
 		if (element instanceof RequirementSource) {
-			return ((RequirementSource) element).getName() + " (" + ((RequirementSource) element).getRepositoryUri() + " )";
+			return ((RequirementSource) element).getName() + " (" + ((RequirementSource) element).getRepositoryURI() + " )";
 		}
 
 		if (element instanceof AbstractElement) {

@@ -5,14 +5,12 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.ISourceConstants;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
@@ -38,8 +36,7 @@ public class PropertyUtils {
 	}
 
 	public static String getURI(RequirementSource source) {
-		String uri = source.getProperty(ISourceConstants.PROPERTY_URI);
-		return uri;
+		return source.getRepositoryURI();
 	}
 
 	public static IDataModel getDataModelFromSource(RequirementSource source) {
