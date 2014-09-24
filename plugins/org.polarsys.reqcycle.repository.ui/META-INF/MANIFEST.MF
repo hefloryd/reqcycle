@@ -35,8 +35,7 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.repository.connector.ui,
  org.polarsys.reqcycle.commands,
  org.polarsys.reqcycle.uri,
- org.polarsys.reqcycle.impact.ui,
- org.polarsys.reqcycle.repository.connector.update.rs
+ org.polarsys.reqcycle.impact.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0"

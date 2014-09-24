@@ -58,7 +58,6 @@ import org.polarsys.reqcycle.repository.ui.actions.OpenImpactAnalysisViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenRequirementViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.RefreshViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.SynchronizeRequirementSourceAction;
-import org.polarsys.reqcycle.repository.ui.actions.UpdateRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceContentProvider;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceLabelProvider;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -397,13 +396,6 @@ public class RequirementSourcesView extends ViewPart {
 		refreshViewAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
 		refreshViewAction.setEnabled(true);
 
-		// update
-		updateResourceAction = new UpdateRequirementSourceAction(viewer);
-		ZigguratInject.inject(updateResourceAction);
-		// updateResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
-		updateResourceAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);// Messages.SYNC_RESOURCE_TEXT);
-		updateResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_UPDATE));
-		updateResourceAction.setEnabled(true);
 	}
 
 	/**
