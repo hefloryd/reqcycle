@@ -100,7 +100,7 @@ public class RMFUtils {
 		}
 
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createURI(requirementSource.getRepositoryUri(), false), true);
+		Resource resource = resourceSet.getResource(URI.createURI(requirementSource.getRepositoryURI(), false), true);
 
 		EList<EObject> contents = resource.getContents();
 		for (EObject eObject : contents) {

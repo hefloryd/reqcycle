@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.rmf;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -48,13 +48,9 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 	/** Page containing the ReqIF file and skip mapping check box */
 	protected RMFSettingPage settingPage;
 
-	protected static Collection mapping;
-
 	protected RequirementSource initSource;
 
-	protected RMFSettingBean bean;
-
-	protected static boolean edition = false;
+	protected AbstractStorageBean bean;
 
 	@Inject
 	IDataModelManager dataTypeManage;
@@ -72,7 +68,6 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 		// return new ICallable() {
 		RMFCallable callable = ZigguratInject.make(RMFCallable.class);
-		callable.setMapping(mapping);
 		return callable;
 	}
 
@@ -81,19 +76,10 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		// if the wizard is initialized with a requirement source (requirement
 		// source edition)
 		// then the mapping page is added instead of settingPage
-		if (edition) {
-			ResourceSet rs = new ResourceSetImpl();
-			Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, initSource.getRepositoryUri());
-			Collection<IType> eClassifiers = bean.getDataModel().getTypes();
-			EList<MappingElement> mapping = initSource.getMappings();
-			mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
-			addPage(mappingPage);
-		} else {
-			bean = new RMFSettingBean();
-			settingPage = new RMFSettingPage(bean);
+		bean = new AbstractStorageBean();
+		settingPage = new RMFSettingPage(bean);
 
-			addPage(settingPage);
-		}
+		addPage(settingPage);
 	}
 
 	@Override
@@ -106,7 +92,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 				if (bean.getDataModel() != null) {
 
 					Collection<IType> eClassifiers = bean.getDataModel().getTypes();
-					mappingPage = createMappingPage(specTypes, eClassifiers, mapping);
+					mappingPage = createMappingPage(specTypes, eClassifiers);
 					mappingPage.setWizard(this);
 				}
 			}
@@ -116,7 +102,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		return super.getNextPage(page);
 	}
 
-	private RMFRepositoryMappingPage createMappingPage(final Collection<SpecType> specTypes, final Collection<IType> eClassifiers, final Collection mapping) {
+	private RMFRepositoryMappingPage createMappingPage(final Collection<SpecType> specTypes, final Collection<IType> eClassifiers) {
 		return new RMFRepositoryMappingPage("ReqIF Mapping", "") {
 
 			@Override
@@ -165,15 +151,16 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 			@Override
 			protected Collection<EObject> addToMapping() {
-				return mapping;
+				// TODO Auto-generated method stub
+				return null;
 			}
+
 		};
 	}
 
 	@Override
 	public void initializeWithRequirementSource(RequirementSource requirementSource) {
 		initSource = requirementSource;
-		edition = true;
 	}
 
 	@Override
@@ -188,9 +175,6 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean performFinish() {
-		if (!edition && mappingPage != null) {
-			mapping = mappingPage.getResult();
-		}
 
 		return true;
 	}
@@ -206,39 +190,17 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 		return false;
 	}
 
-	public static class RMFSettingBean extends AbstractStorageBean {
-
-		private Boolean isCopy = true;
-
-		public RMFSettingBean() {
-		}
-
-		public Boolean getIsCopy() {
-			return isCopy;
-		}
-
-		public void setIsCopy(Boolean isCopy) {
-			this.isCopy = isCopy;
-		}
-
-		@Override
-		public void storeProperties(RequirementSource source) {
-			super.storeProperties(source);
-			try {
-				source.setProperty(IRMFConstants.RMF_IS_COPY, Boolean.toString(getIsCopy()));
-				source.setProperty(IRMFConstants.RMF_EDITION, Boolean.toString(edition));
-				// PropertyUtils.setEObjectsInSource(source, IRMFConstants.RMF_MAPPING, (List<EObject>) mapping);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
-
 	@Override
 	public void storeProperties(RequirementSource source) {
 		bean.storeProperties(source);
+
+		if (mappingPage != null && mappingPage.getResult() != null) {
+			Collection<MappingElement> mapElements = new ArrayList<MappingElement>();
+			for (EObject eo : mappingPage.getResult()) {
+				mapElements.add((MappingElement) eo);
+			}
+			source.getMappings().addAll(mapElements);
+		}
 
 	}
 

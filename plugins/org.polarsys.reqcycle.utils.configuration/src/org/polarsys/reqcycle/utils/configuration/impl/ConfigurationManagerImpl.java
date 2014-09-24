@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 import java.util.Set;
 
 import javax.inject.Singleton;
@@ -120,6 +121,12 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 		return null;
 	}
+	
+	protected static final Pattern SANE_FILENAME_PATTERN = Pattern.compile("[^a-zA-Z0-9\\._]+");
+	
+	protected String sanatizeForFilename(String name) {
+		return SANE_FILENAME_PATTERN.matcher(name).replaceAll("_");
+	}
 
 	protected boolean isSelfContained(EObject eObj) {
 		// Set<EObject> containedObjs = Sets.newHashSet();
@@ -160,6 +167,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 	}
 
 	public URI getConfigurationFileURI(IResource context, Scope scope, String id, String resourceExtension) {
+		id = sanatizeForFilename(id);
 		if (resourceExtension == null || "".equals(resourceExtension)) {
 			resourceExtension = CONF_RESOURCE_EXTENSION;
 		}

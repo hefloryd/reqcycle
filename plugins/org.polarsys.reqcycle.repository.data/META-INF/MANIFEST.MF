@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.polarsys.reqcycle.repository.data;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataEditPlugin$Implementation
+Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceConfEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -41,6 +41,7 @@ Export-Package: org.polarsys.reqcycle.repository.data,
  org.polarsys.reqcycle.repository.data.MappingModel.provider,
  org.polarsys.reqcycle.repository.data.MappingModel.util,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf,
+ org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.util,
  org.polarsys.reqcycle.repository.data.RequirementSourceData,

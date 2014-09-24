@@ -57,7 +57,7 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 		}
 
 		if (element instanceof RequirementSource) {
-			String label = ((RequirementSource) element).getRepositoryUri();
+			String label = ((RequirementSource) element).getRepositoryURI();
 			if (label == null) {
 				label = ((RequirementSource) element).getName();
 			} else {

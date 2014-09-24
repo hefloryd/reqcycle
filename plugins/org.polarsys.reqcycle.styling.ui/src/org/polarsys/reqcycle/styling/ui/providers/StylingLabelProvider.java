@@ -176,7 +176,7 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 		}
 
 		if (element instanceof RequirementSource) {
-			String label = ((RequirementSource) element).getRepositoryUri();
+			String label = ((RequirementSource) element).getRepositoryURI();
 			if (label == null) {
 				label = ((RequirementSource) element).getName();
 			} else {

@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.databinding,
  org.eclipse.core.databinding.property,
  org.eclipse.core.databinding.beans,
- org.eclipse.swt
+ org.eclipse.swt,
+ org.eclipse.emf.common.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.repository.connector.ui,

@@ -19,5 +19,7 @@
         eType="ecore:EClass MappingModel.ecore#//MappingElement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataModelURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultScope" eType="ecore:EClass ScopeConf.ecore#//Scope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repositoryURI" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationURI" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -14,6 +14,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -61,8 +62,8 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 
 	private Button btnBrowseDestinationFile;
 
-	private Button btnCopyImport;
-	private Button btnReferenceImport;
+	private Button radioBtnCopyImport;
+	private Button radioBtnReferenceImport;
 	private Label lblMode;
 	private Composite radioBtnComposite;
 
@@ -83,8 +84,8 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 
 		createModele(compositeContainer, "Model");
 		createScope(compositeContainer, "Scope");
-		createDestinationFile(compositeContainer);
 		createCopyOrRefMode(compositeContainer);
+		createDestinationFile(compositeContainer);
 		hookListeners();
 		bindingContext = new DataBindingContext();
 		initDataBindings(bindingContext);
@@ -160,16 +161,14 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 		lblMode = new Label(radioBtnComposite, SWT.None);
 		lblMode.setText("Import Mode :");
 
-		btnCopyImport = new Button(radioBtnComposite, SWT.RADIO);
-		btnCopyImport.setText("Copy");
-		btnCopyImport.setSelection(true);
+		radioBtnCopyImport = new Button(radioBtnComposite, SWT.RADIO);
+		radioBtnCopyImport.setText("Copy");
+		radioBtnCopyImport.setSelection(true);
 
-		btnReferenceImport = new Button(radioBtnComposite, SWT.RADIO);
-		btnReferenceImport.setText("Reference");
-		btnReferenceImport.setEnabled(false);
+		radioBtnReferenceImport = new Button(radioBtnComposite, SWT.RADIO);
+		radioBtnReferenceImport.setText("Reference");
+		radioBtnReferenceImport.setEnabled(true);
 		new Label(radioBtnComposite, SWT.NONE);
-		lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-		lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
 
 	}
 
@@ -237,10 +236,9 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 					if (result != null && result.length > 0) {
 						if (result[0] instanceof IPath) {
 							IPath path = (IPath) result[0];
-							txtFile.setText(path.append(getBean().getFileName()).addFileExtension("reqcycle").toString());
+							txtFile.setText(URI.createPlatformResourceURI(path.append(getBean().getFileName()).addFileExtension("reqcycle").toString(), true).toString());
 						}
 					}
-
 				}
 			}
 		});
@@ -259,7 +257,11 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 		IObservableValue observeTextTxtFileObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtFile);
 		IObservableValue modelPathBeanObserveValue = PojoProperties.value("outputPath").observe(getBean());
 		bindingContext.bindValue(observeTextTxtFileObserveWidget, modelPathBeanObserveValue, null, null);
-
+		//
+		IObservableValue observeSelectionRadioBtnReferenceImportObserveWidget = WidgetProperties.selection().observe(radioBtnReferenceImport);
+		IObservableValue isReferenceBeanObserveValue = PojoProperties.value("isReference").observe(getBean());
+		bindingContext.bindValue(observeSelectionRadioBtnReferenceImportObserveWidget, isReferenceBeanObserveValue, null, null);
+		//
 		doSpecificInitDataBindings(bindingContext);
 		return bindingContext;
 	}

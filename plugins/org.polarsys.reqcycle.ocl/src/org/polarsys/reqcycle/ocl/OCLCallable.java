@@ -16,13 +16,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.polarsys.reqcycle.ocl.utils.OCLUtilities;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.ISourceConstants;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
@@ -43,13 +41,11 @@ public class OCLCallable implements ICallable {
 	@Override
 	public void fillRequirementSource(RequirementSource source) throws Exception {
 		// RFU add ReqContainer based on req source destination file
-		RequirementsContainer rc = dataManager.createRequirementsContainer(URI.createPlatformResourceURI(source.getProperty(ISourceConstants.DESTINATION_PATH), true));
-		source.setContents(rc);
 		fillRequirements(source);
 	}
 
 	protected TreeIterator<EObject> getIterator(RequirementSource requirementSource, ResourceSet resourceSet) {
-		String repositoryUri = requirementSource.getRepositoryUri();
+		String repositoryUri = requirementSource.getRepositoryURI();
 		Resource resource = resourceSet.getResource(URI.createURI(repositoryUri), true);
 		TreeIterator<EObject> contents = resource.getAllContents();
 		return contents;

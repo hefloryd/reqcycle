@@ -13,16 +13,14 @@ public class AbstractStorageBean {
 	private String name;
 	private String fileName;
 	private String dataModelUri;
+	private Boolean isReference = false;
 
 	public void storeProperties(RequirementSource source) {
 		try {
-
-			source.setProperty(ISourceConstants.PROPERTY_URI, getUri());
-			source.setProperty(ISourceConstants.DESTINATION_PATH, getOutputPath());
-			// setName(value)
-			// source.setProperty(ISourceConstants.NAME, getName());
-			source.setProperty(ISourceConstants.DATA_MODEL, getDataModel().getName());
-			source.setProperty(ISourceConstants.DATA_MODEL_URI, getDataModel().getDataModelURI());
+			source.setRepositoryURI(getUri());
+			if (!getIsReference()) {
+				source.setDestinationURI(getOutputPath());
+			}
 			source.setDataModelURI(getDataModel().getDataModelURI());
 			PropertyUtils.setScopeInSource(source, getScope());
 		} catch (Exception e) {
@@ -85,6 +83,14 @@ public class AbstractStorageBean {
 
 	public void setDataModelUri(String dataModelUri) {
 		this.dataModelUri = dataModelUri;
+	}
+
+	public Boolean getIsReference() {
+		return isReference;
+	}
+
+	public void setIsReference(Boolean isReference) {
+		this.isReference = isReference;
 	}
 
 }

@@ -6,6 +6,7 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ *   Malick WADE (Atos) - add update requirement option - 19/09/2014
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.views;
@@ -56,6 +57,7 @@ import org.polarsys.reqcycle.repository.ui.actions.OpenImpactAnalysisViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenRequirementViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.RefreshViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.SynchronizeRequirementSourceAction;
+import org.polarsys.reqcycle.repository.ui.actions.UpdateRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceContentProvider;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceLabelProvider;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -92,6 +94,9 @@ public class RequirementSourcesView extends ViewPart {
 	/** Synchronize Resource Stub Action */
 	private Action synchResourceAction;
 
+	/** update Resource Action */
+	private Action updateResourceAction;
+
 	/** Open Predicates Editor Action */
 	// private OpenPredicatesEditorAction openPredicatesEditorAction;
 
@@ -115,6 +120,9 @@ public class RequirementSourcesView extends ViewPart {
 
 	/** Open ImpactAnalysis View button icon */
 	private static final String ICON_IMPACT = "icons/compare_view.gif";
+
+	/** Open ImpactAnalysis View button icon */
+	private static final String ICON_UPDATE = Messages.UPDATE_RESOURCE_ICON;
 
 	/** Requirement Source Manager */
 	@Inject
@@ -318,6 +326,7 @@ public class RequirementSourcesView extends ViewPart {
 	 */
 	private void fillLocalToolBar(IToolBarManager manager) {
 		manager.add(addRepoAction);
+		manager.add(updateResourceAction);
 		manager.add(deleteRequirementSourceAction);
 		// manager.add(synchResourceAction);
 		manager.add(refreshViewAction);
@@ -378,6 +387,14 @@ public class RequirementSourcesView extends ViewPart {
 		refreshViewAction.setToolTipText("Refresh View");
 		refreshViewAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
 		refreshViewAction.setEnabled(true);
+
+		// update
+		updateResourceAction = new UpdateRequirementSourceAction(viewer);
+		ZigguratInject.inject(updateResourceAction);
+		// updateResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
+		updateResourceAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);// Messages.SYNC_RESOURCE_TEXT);
+		updateResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_UPDATE));
+		updateResourceAction.setEnabled(true);
 	}
 
 	/**
