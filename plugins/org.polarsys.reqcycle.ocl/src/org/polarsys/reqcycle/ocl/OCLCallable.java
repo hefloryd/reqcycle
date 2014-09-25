@@ -22,6 +22,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.IType;
@@ -40,8 +41,9 @@ public class OCLCallable implements ICallable {
 
 	@Override
 	public void fillRequirementSource(RequirementSource source) throws Exception {
+		Scope scope = PropertyUtils.getScopeFromSource(source);
 		// RFU add ReqContainer based on req source destination file
-		fillRequirements(source);
+		fillRequirements(source, scope);
 	}
 
 	protected TreeIterator<EObject> getIterator(RequirementSource requirementSource, ResourceSet resourceSet) {
@@ -51,7 +53,7 @@ public class OCLCallable implements ICallable {
 		return contents;
 	}
 
-	protected void fillRequirements(RequirementSource requirementSource) throws Exception {
+	protected void fillRequirements(RequirementSource requirementSource, Scope scope) throws Exception {
 		requirementSource.clearContent();
 		Collection<MappingElement> mapping = requirementSource.getMappings();
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -72,6 +74,7 @@ public class OCLCallable implements ICallable {
 			for (IType type : types) {
 				if (type instanceof IRequirementType && OCLUtilities.isDataType(evaluator, eObject, (IRequirementType) type)) {
 					AbstractElement requirement = createRequirement(evaluator, mapping, eObject, (IRequirementType) type);
+					requirement.getScopes().add(scope);
 					addToSection(requirementSource, eObject, requirement);
 				}
 			}

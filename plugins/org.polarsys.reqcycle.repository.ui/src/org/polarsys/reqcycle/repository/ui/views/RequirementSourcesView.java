@@ -57,6 +57,7 @@ import org.polarsys.reqcycle.repository.ui.actions.EditMappingAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenImpactAnalysisViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenRequirementViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.RefreshViewAction;
+import org.polarsys.reqcycle.repository.ui.actions.UpdateRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceContentProvider;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceLabelProvider;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -89,9 +90,6 @@ public class RequirementSourcesView extends ViewPart {
 
 	/** Navigation bar adapter for the tree viewer */
 	// private DrillDownAdapter drillDownAdapter;
-
-	/** Synchronize Resource Stub Action */
-	private Action synchResourceAction;
 
 	/** update Resource Action */
 	private Action updateResourceAction;
@@ -316,7 +314,6 @@ public class RequirementSourcesView extends ViewPart {
 		// manager.add(addRepoAction);
 		// manager.add(deleteRequirementSourceAction);
 		manager.add(new Separator(IWorkbenchActionConstants.NEW_EXT));
-		manager.add(synchResourceAction);
 		// manager.add(editMappingAction);
 		manager.add(openRequirementViewAction);
 		manager.add(new Separator());
@@ -388,6 +385,13 @@ public class RequirementSourcesView extends ViewPart {
 		refreshViewAction.setImageDescriptor(Activator.getImageDescriptor("icons/refresh.gif"));
 		refreshViewAction.setEnabled(true);
 
+		// update
+		updateResourceAction = new UpdateRequirementSourceAction(viewer);
+		ZigguratInject.inject(updateResourceAction);
+		// updateResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
+		updateResourceAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);// Messages.SYNC_RESOURCE_TEXT);
+		updateResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_UPDATE));
+		updateResourceAction.setEnabled(true);
 	}
 
 	/**

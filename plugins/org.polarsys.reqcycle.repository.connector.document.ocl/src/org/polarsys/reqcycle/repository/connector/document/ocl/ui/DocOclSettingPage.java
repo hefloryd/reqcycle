@@ -1,8 +1,19 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document.ocl.ui;
 
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -31,7 +42,6 @@ import org.polarsys.kitalpha.doc.doc2model.core.Doc2Model;
 import org.polarsys.kitalpha.doc.doc2model.core.IContentHandler;
 import org.polarsys.reqcycle.ocl.ui.SettingBean;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 
 public class DocOclSettingPage extends AbstractSettingPage{
 
@@ -40,17 +50,18 @@ public class DocOclSettingPage extends AbstractSettingPage{
 
 	private Button btnBrowseDoc;
 	
-	private OCLDocBean bean;
+	private ComboViewer cImportType;
+	
 
-	private ComboViewer viewer;
+	
+
+
 
 	public DocOclSettingPage(SettingBean bean) {
-		super("Document OCL Connector settings");
-		this.bean = (OCLDocBean) bean ;
+		super("Document OCL Connector settings", bean);
 		setTitle("Connector DOCUMENT with OCL configuration: settings page");
 		
 		setDescription("Connector settings");
-		
 	}
 
 
@@ -74,9 +85,9 @@ public class DocOclSettingPage extends AbstractSettingPage{
 		Label lblType = new Label(compositeContainer, SWT.NONE);
 		lblType.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		lblType.setText("Import Type :");
-		viewer = new ComboViewer(compositeContainer);
-		viewer.setContentProvider(ArrayContentProvider.getInstance());
-		viewer.setLabelProvider(new LabelProvider(){
+		cImportType = new ComboViewer(compositeContainer);
+		cImportType.setContentProvider(ArrayContentProvider.getInstance());
+		cImportType.setLabelProvider(new LabelProvider(){
 			@Override
 			public String getText(Object element) {
 				if (element instanceof IContentHandler) {
@@ -86,88 +97,94 @@ public class DocOclSettingPage extends AbstractSettingPage{
 				return super.getText(element);
 			}
 		});
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+		cImportType.addSelectionChangedListener(new ISelectionChangedListener() {
 			
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
 					IStructuredSelection structured = (IStructuredSelection) event.getSelection();
 					IContentHandler<DocumentModel> handler = (IContentHandler<DocumentModel>) structured.getFirstElement();
-					bean.setHandlerClassName (handler.getClass().getName());
+					getBean().setHandlerClassName (handler.getClass().getName());
 				}
 			}
 		});
-		viewer.setInput(Collections.emptyList());
-		viewer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		cImportType.setInput(Collections.emptyList());
+		cImportType.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		return compositeContainer;
 	}
 	
 	@Override
-	protected void specificHookListeners() {
+	protected void hookListeners() {
+		super.hookListeners();
 		getDestinationFileSelectionListener();
 		
 		btnBrowseDoc.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ResourceDialog dialog = new ResourceDialog(getShell(), "Select a document", SWT.NONE);
-				
-				if(Window.OK == dialog.open()){
-					List<URI> uris = dialog.getURIs();
-					
-					if(!uris.isEmpty()) {
-						//asking doc2Modele if the file extension is 
+
+				if (Window.OK == dialog.open()) {
+					final List<URI> uris = dialog.getURIs();
+
+					if (!uris.isEmpty()) {
+						// asking doc2Modele if the file extension is correct
 						String fileString = CommonPlugin.asLocalURI(uris.get(0)).toFileString();
-					    Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
+						Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
 						String fileType = doc2Model.getFileType(fileString);
-						if (fileType.toString() != null){
-							txtSelectedDoc.setText(uris.get(0).toString());	
-							viewer.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
-					    }
-					    else{
-						txtSelectedDoc.setText("");
-						setErrorMessage("Your document is not supported. Retry and choose document file");
+						if (fileType.toString() != null) {
+							txtSelectedDoc.setText(uris.get(0).toString());
+							cImportType.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
+						} else {
+							txtSelectedDoc.setText("");
+							setErrorMessage("Your document is not supported. Retry and choose document file");
 						}
-					    getWizard().getContainer().updateMessage();
-					    getWizard().getContainer().updateButtons();
+
+						getWizard().getContainer().updateMessage();
+						getWizard().getContainer().updateButtons();
 					}
-			
-		}
+
+				}
 			}
 		});
 	}
 
-
 	@Override
-	protected Boolean specificIsPageComplete(Boolean result) {
-		  if (txtSelectedDoc.getText() == null || txtSelectedDoc.getText()== "") {
-		  
-		  return result = false; 
-		  }	
-		 return result;
-	}
-	
-	@Override
-	protected StringBuffer specificIsPageComplete(Boolean result, StringBuffer error) {
-		if ( result == false) {
-		return  new StringBuffer("Choose a document Input\n");
+	public boolean isPageComplete() {
+		boolean result = super.isPageComplete();
+		String msg = getErrorMessage();
+		if (msg == null) {
+			msg = "";
 		}
-		return error;
-	}
 
+		if (txtSelectedDoc.getText() == null || txtSelectedDoc.getText() == "") {
+			result = false;
+			msg += "Choose a document Input\n";
+		}
+
+		if (!result) {
+			setErrorMessage(msg);
+		}
+		return result;
+	}
 
 	@Override
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
 		IObservableValue observeTextTxtSelectedDocObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtSelectedDoc);
-		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(bean);
-		bindingContext.bindValue(observeTextTxtSelectedDocObserveWidget, uriBeanObserveValue, null, null);
+		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(getBean());
+		Binding bind =bindingContext.bindValue(observeTextTxtSelectedDocObserveWidget, uriBeanObserveValue, null, null);
+		
 	}
 
 
 	@Override
-	public AbstractStorageBean getBean() {
-		return bean;
+	public OCLDocBean getBean() {
+		return (OCLDocBean) super.getBean();
 	}
-
+	
+	
 
 	
+
+
+
 }

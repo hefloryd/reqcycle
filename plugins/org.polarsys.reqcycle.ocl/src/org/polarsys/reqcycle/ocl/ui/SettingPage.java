@@ -180,4 +180,5 @@ public class SettingPage extends AbstractSettingPage {
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
 	}
 
+
 }

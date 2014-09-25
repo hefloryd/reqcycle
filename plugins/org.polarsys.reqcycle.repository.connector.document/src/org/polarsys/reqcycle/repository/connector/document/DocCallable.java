@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document;
 
 import java.util.ArrayList;
@@ -36,47 +46,17 @@ public class DocCallable implements ICallable {
 	@Override
 	public void fillRequirementSource(RequirementSource source){
 		RequirementSource reqSource = source;
-			
-			// set valide requirement for extraction
-		/*	List<Requirement> list = new ArrayList<Requirement>();
-			List<EObject> listEo = PropertyUtils.getEObjectsInSource(source, IDOCConstants.LIST_VALIDE_REQ);
-			
-			for(EObject req : listEo){
-				if( req instanceof Requirement){
-					list.add((Requirement) req);
-				}
-			}*/
-		//	if(list != null){
-				parser.setInputRequirements(DocUtils.finalListRequirement(listValideRequirements, PropertyUtils.getDataModelFromSource(source).getTypes()));
-			//}
-			//transform doc to modele
-			//extract requirement in document
-			//parser.setDocSettingPage(docSettingPage);
-			// TODO change bean
-			
-			parser.setDocument(getDocumentFromModele(reqSource));
-			parser.setSections(sections);
-			//setParser(parser);		
-		
-		//setDefaultScope(value)
-		source.setDefaultScope(PropertyUtils.getScopeFromSource(source));
-		
-		//setProperty(property, newValue);
-		try {
-			//source.setProperty("DATA_MODEL_NAME", docSettingPage.getBean().getDataPackage().getName());
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
+		//transform doc to modele
+		parser.setDocument(getDocumentFromModele(reqSource));
+		parser.setSections(sections);		
+		source.setDefaultScope(PropertyUtils.getScopeFromSource(source));
 		try {
 			parser.run(source);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	
+			
 	}
 	
 	public void setParser(DocParser parser) {

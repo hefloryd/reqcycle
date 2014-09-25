@@ -8,6 +8,8 @@
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage types and align
  * 		connector on other connectors with a destination file
+ *    Malick WADE (AtoS) - restructuring of the connector architecture
+ *    
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.ui;
 

@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document;
 
 import java.util.ArrayList;
@@ -15,7 +25,10 @@ import org.polarsys.reqcycle.inittypes.inittypes.Attribute;
 import org.polarsys.reqcycle.inittypes.inittypes.Requirement;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.IType;
@@ -26,7 +39,7 @@ import com.google.common.collect.Iterables;
 
 public class DocParser {
 
-	private  List<Requirement> inputRequirements; 
+	//private  List<Requirement> inputRequirements; 
 	private StringBuffer document; 
 	//private DocSettingPage docSettingPage;
 	private List<Section> sections;
@@ -36,6 +49,7 @@ public class DocParser {
 	@Inject
 	IDataManager manager;
 	public void run(RequirementSource requirementSource) throws Exception {
+		Scope scope = PropertyUtils.getScopeFromSource(requirementSource);
 		requirementSource.clearContent();
 		ArrayList<DocRequirementModele> listReqModele = new ArrayList<DocRequirementModele>();
 		List<DocSectionModele> listSectionModele = new ArrayList<DocSectionModele>();
@@ -59,11 +73,11 @@ public class DocParser {
 		
 		
 		//--------------------- PART2 - sorting all requirements in document----------------------//
-		if (inputRequirements != null){
+		if (requirementSource.getMappings() != null){
 		//transform a requirement input to model requirement. A model requirement is a requirement plus a position in document
-				for(Requirement reqIn : inputRequirements){
+				for(MappingElement reqIn : requirementSource.getMappings()){
 													
-					Pattern pattern = Pattern.compile(reqIn.getRegexReq().getExpression(),Pattern.MULTILINE|Pattern.DOTALL);
+					Pattern pattern = Pattern.compile(reqIn.getSourceQualifier(),Pattern.MULTILINE|Pattern.DOTALL);
 					Matcher matcher = pattern.matcher(finalDoc);
 					    // check all occurrence of a requirement
 					    while (matcher.find()) {
@@ -97,9 +111,10 @@ public class DocParser {
 		//-------------------PART3 -- parsing all requirements and attributes ------------------------// 
 	
 		for (int i=0; i<listReqModele.size(); i++){
-			IRequirementType requirementType = (IRequirementType) PropertyUtils.getDataModelFromSource(requirementSource).getType(listReqModele.get(i).getRequirement().getNameReq());
+			IRequirementType requirementType = (IRequirementType) PropertyUtils.getDataModelFromSource(requirementSource).getType(listReqModele.get(i).getRequirement().getDescription());
 			if (requirementType == null) {
-				// error
+				//error
+				System.out.println("the requirementType "+ requirementType +" is nul");
 			}
 						
 			
@@ -126,7 +141,7 @@ public class DocParser {
 			    }
 			
 			
-			Pattern pattern= Pattern.compile(listReqModele.get(i).getRequirement().getRegexReq().getExpression(),Pattern.MULTILINE|Pattern.DOTALL);
+			Pattern pattern= Pattern.compile(listReqModele.get(i).getRequirement().getSourceQualifier(),Pattern.MULTILINE|Pattern.DOTALL);
 			Matcher matcher = pattern.matcher(documentSection);
 			    // check all occurrence of a requirement
 			    while (matcher.find()) {
@@ -138,25 +153,28 @@ public class DocParser {
 		    	   	else {
 		    	   		System.out.println(matcher.group());
 				    	requirement.setId(matcher.group());	
-		    	   	}	    			    	
+		    	   	}	  
+			    //add scope in requirement
+			    	requirement.getScopes().add(scope);
 			    
 			    //check all attributes of a current requirement
-					    	List<Attribute> Attributes = listReqModele.get(i).getRequirement().getAttributesReq();
+					    	List<MappingAttribute> Attributes = listReqModele.get(i).getRequirement().getAttributes();
 					    	
-					    	for(final Attribute att : Attributes){
-					    		Pattern patternAtt = Pattern.compile(att.getRegexAttribute().getExpression(),Pattern.MULTILINE|Pattern.DOTALL);
+					    	for(final MappingAttribute att : Attributes){
+					    		Pattern patternAtt = Pattern.compile(att.getSourceId(),Pattern.MULTILINE|Pattern.DOTALL);
 								Matcher matcherAtt = patternAtt.matcher(documentSection);
 								 while (matcherAtt.find()) {
 									 IAttribute attFromType = Iterables.find(requirementType.getAttributes(), new Predicate<IAttribute>() {
 										 @Override
 										public boolean apply(IAttribute arg0) {
-											return arg0.getName().equals(att.getNameAttribute());
+											return arg0.getName().equals(att.getDescription());
 										}
 									 }
 									,null);
 									 Object value = null;
 									if (attFromType == null){
 										// error
+										System.out.println("the attFromType "+ attFromType +" is nul");
 									}
 									else {
 										String stringFromDocument = null;
@@ -167,7 +185,7 @@ public class DocParser {
 							    	   		stringFromDocument = matcherAtt.group();
 							    	   	}
 										
-										System.out.println("att : "+ att.getNameAttribute()+" :"+stringFromDocument);
+										System.out.println("att : "+ att.getDescription()+" :"+stringFromDocument);
 										value = getValueFromString(stringFromDocument ,attFromType.getType());
 									}
 									manager.addAttributeValue(requirement, attFromType, value );
@@ -288,17 +306,6 @@ public class DocParser {
 	public void setDocument(StringBuffer document) {
 		this.document = document;
 	}
-	
-
-	public List<Requirement> getInputRequirements() {
-		return inputRequirements;
-	}
-
-
-	public void setInputRequirements(List<Requirement> inputRequirements) {
-		this.inputRequirements = inputRequirements;
-	}
-
 
 	public void setSections(List<Section> sections) {
 		this.sections = sections;

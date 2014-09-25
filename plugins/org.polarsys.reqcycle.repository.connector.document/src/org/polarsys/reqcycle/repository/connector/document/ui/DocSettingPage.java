@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document.ui;
 
 import java.util.List;
@@ -34,29 +44,25 @@ import org.polarsys.reqcycle.inittypes.inittypes.Type;
 import org.polarsys.reqcycle.repository.connector.document.DocConnector.DOCSettingBean;
 import org.polarsys.reqcycle.repository.connector.document.DocUtils;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
-
 
 public class DocSettingPage extends AbstractSettingPage {
 
 	private DOCSettingBean bean;
-	
+
 	private Combo cTypeFile;
 
 	private Text txtSelectedDoc;
-	
+
 	private Button btnBrowseDoc;
-	
+
 	private List<FileType> listFileTypeInWorkspace = null;
 	private ComboViewer cvTypeFile;
 
-
 	public DocSettingPage(DOCSettingBean bean) {
-		super("Document Connector settings");		
+		super("Document Connector settings", bean);
 		setTitle("Connector DOCUMENT: settings page");
-		this.bean = bean ;
+		this.bean = bean;
 	}
-
 
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
 		//
@@ -67,12 +73,12 @@ public class DocSettingPage extends AbstractSettingPage {
 		IObservableValue observeSingleSelectionCvTypeFile = ViewerProperties.singleSelection().observe(cvTypeFile);
 		IObservableValue listTypeBeanObserveValue = PojoProperties.value("fileType").observe(bean);
 		bindingContext.bindValue(observeSingleSelectionCvTypeFile, listTypeBeanObserveValue, null, null);
-		
+
 	}
 
 	@Override
 	protected Composite doCreateSpecific(Composite parent) {
-	
+
 		Composite compositeContainer = parent;
 		compositeContainer.setLayout(new GridLayout(4, false));
 		setControl(compositeContainer);
@@ -84,27 +90,27 @@ public class DocSettingPage extends AbstractSettingPage {
 		txtSelectedDoc = new Text(compositeContainer, SWT.BORDER);
 		txtSelectedDoc.setEnabled(false);
 		txtSelectedDoc.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		
+
 		btnBrowseDoc = new Button(compositeContainer, SWT.NONE);
 		btnBrowseDoc.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		btnBrowseDoc.setText("Browse");
-		
+
 		Label lbltypeFile = new Label(compositeContainer, SWT.NONE);
 		lbltypeFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		lbltypeFile.setText(".types file");
-		
+
 		cvTypeFile = new ComboViewer(compositeContainer, SWT.READ_ONLY);
 		cTypeFile = cvTypeFile.getCombo();
 		cTypeFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		cvTypeFile.setContentProvider(ArrayContentProvider.getInstance());
-		cvTypeFile.setLabelProvider(new LabelProvider(){
+		cvTypeFile.setLabelProvider(new LabelProvider() {
 			@Override
-			public String getText(Object element){
-				if (element instanceof FileType){
+			public String getText(Object element) {
+				if (element instanceof FileType) {
 					return ((FileType) element).getName();
 				}
 				return super.getText(element);
-				
+
 			}
 		});
 		listFileTypeInWorkspace = DocUtils.getAllFilesInProject();
@@ -113,69 +119,63 @@ public class DocSettingPage extends AbstractSettingPage {
 	}
 
 	@Override
-	protected void specificHookListeners() {
-		
+	protected void hookListeners() {
+		super.hookListeners();
+
 		getDestinationFileSelectionListener();
 
 		btnBrowseDoc.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ResourceDialog dialog = new ResourceDialog(getShell(), "Select a document", SWT.NONE);
-				
-				if(Window.OK == dialog.open()){
+
+				if (Window.OK == dialog.open()) {
 					List<URI> uris = dialog.getURIs();
-					
-					if(!uris.isEmpty()) {
-						//asking doc2Modele if the file extension is 
+
+					if (!uris.isEmpty()) {
 						String fileString = CommonPlugin.asLocalURI(uris.get(0)).toFileString();
-					    if (new Doc2Model<Object>().getFileType(fileString).toString() != null) {
-					    txtSelectedDoc.setText(uris.get(0).toString());	
-					    }
-					    else
-					    {
-						txtSelectedDoc.setText("");
-						setErrorMessage("Your document is not supported. Retry and choose document file");
+						if (new Doc2Model<Object>().getFileType(fileString).toString() != null) {
+							txtSelectedDoc.setText(uris.get(0).toString());
+						} else {
+							txtSelectedDoc.setText("");
+							setErrorMessage("Your document is not supported. Retry and choose document file");
 						}
-					    }
 					}
+				}
 			}
 		});
 
 		cvTypeFile.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
-				if(selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection)selection).getFirstElement();
-					if (obj !=null && obj instanceof FileType){
-						List<Type> types = DocUtils.getListTypes(((FileType)obj).getName());	
+				if (selection instanceof IStructuredSelection) {
+					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					if (obj != null && obj instanceof FileType) {
+						List<Type> types = DocUtils.getListTypes(((FileType) obj).getName());
 						bean.setListType(types);
 					}
 				}
 			}
-		});	
+		});
 	}
 
-	
 	@Override
-	protected Boolean specificIsPageComplete(Boolean result) {
-		  if (txtSelectedDoc.getText() == null || txtSelectedDoc.getText()== "") {
-		  
-		  return result = false; 
-		  }	
-		 return result;
-	}
-	
-	@Override
-	protected StringBuffer specificIsPageComplete(Boolean result, StringBuffer error) {
-		if ( result == false) {
-		return  new StringBuffer("Choose a document Input\n");
+	public boolean isPageComplete() {
+		boolean result = super.isPageComplete();
+		String msg = getErrorMessage();
+		if (msg == null) {
+			msg = "";
 		}
-		return error;
+
+		if (txtSelectedDoc.getText() == null || txtSelectedDoc.getText() == "") {
+			result = false;
+			msg += "Choose a document Input\n";
+		}
+
+		if (!result) {
+			setErrorMessage(msg);
+		}
+		return result;
 	}
 
-	
-	@Override
-	public AbstractStorageBean getBean() {
-		return bean;
-	}
 }

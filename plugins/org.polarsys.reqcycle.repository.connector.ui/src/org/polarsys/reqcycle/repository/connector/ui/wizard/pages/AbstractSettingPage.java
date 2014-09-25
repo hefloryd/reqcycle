@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.ui.wizard.pages;
 
 import java.util.ArrayList;
@@ -43,7 +53,7 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class AbstractSettingPage extends WizardPage implements IChangeListener {
+public abstract class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	@Inject
 	protected IDataModelManager dataManager;
@@ -66,7 +76,7 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 	private Button radioBtnReferenceImport;
 	private Label lblMode;
 	private Composite radioBtnComposite;
-
+	private Label lblCopyFile;
 	private DataBindingContext bindingContext;
 
 	private AbstractStorageBean bean;
@@ -179,6 +189,8 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	protected void hookListeners() {
 		getDataModelSelectionChangedListener();
+		getBtnReferenceImportSelectionListener();
+		getBtnCopyImportSelectionListener();
 	}
 
 	protected void createDestinationFile(Composite compositeContainer) {
@@ -194,7 +206,7 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		compositeCopy.setLayout(new GridLayout(3, false));
 		compositeCopy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
-		Label lblCopyFile = new Label(compositeCopy, SWT.NONE);
+		lblCopyFile = new Label(compositeCopy, SWT.NONE);
 		lblCopyFile.setText("Repository Folder :");
 
 		txtFile = new Text(compositeCopy, SWT.BORDER);
@@ -248,6 +260,26 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		});
 	}
 
+	protected void getBtnReferenceImportSelectionListener() {
+		radioBtnReferenceImport.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				btnBrowseDestinationFile.setEnabled(false);
+				lblCopyFile.setEnabled(false);
+			}
+		});
+	}
+
+	protected void getBtnCopyImportSelectionListener() {
+		radioBtnCopyImport.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				btnBrowseDestinationFile.setEnabled(true);
+				lblCopyFile.setEnabled(true);
+			}
+		});
+	}
+
 	protected final DataBindingContext initDataBindings(DataBindingContext bindingContext) {
 
 		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties.singleSelection().observe(cvDataModel);
@@ -291,7 +323,7 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 			result = false;
 		}
 
-		if ((getBean().getOutputPath() == null) || (getBean().getOutputPath() == "")) {
+		if (!(getBean().getIsReference()) && ((getBean().getOutputPath() == null) || (getBean().getOutputPath() == ""))) {
 			error.append("Choose a destination path\n");
 			result = false;
 		}

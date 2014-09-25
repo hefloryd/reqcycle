@@ -8,6 +8,7 @@
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage types and align
  * 		connector on other connectors with a destination file
+ *    Malick WADE (AtoS) - restructuring of the connector architecture
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.ui;
 
@@ -72,7 +73,13 @@ public class OCLConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean canFinish() {
-		return bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty() && !bean.getOutputPath().isEmpty();
+		if (bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty()) {
+			if (bean.getIsReference()) {
+				return true;
+			} else
+				return !bean.getOutputPath().isEmpty();
+		}
+		return false;
 	}
 
 	@Override
