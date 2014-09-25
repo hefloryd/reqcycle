@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -21,11 +19,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
-
 import org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate;
-
 import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
 
 /**
@@ -111,7 +106,15 @@ public class ContainsPatternPredicateItemProvider extends PredicatesItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ContainsPatternPredicate) object).getDisplayName();
+		ContainsPatternPredicate patternPredicate = (ContainsPatternPredicate) object;
+		String label = patternPredicate.getDisplayName();
+		if ((patternPredicate.getExpectedPattern() != null) && (patternPredicate.getExpectedPattern().pattern().length() != 0)) {
+			if (label != null) {
+				label += "(" + patternPredicate.getExpectedPattern().pattern() + ")";
+			} else {
+				label = "(" + patternPredicate.getExpectedPattern().pattern() + ")";
+			}
+		}
 		return label == null || label.length() == 0 ? getString("_UI_ContainsPatternPredicate_type") : getString("_UI_ContainsPatternPredicate_type") + " " + label;
 	}
 

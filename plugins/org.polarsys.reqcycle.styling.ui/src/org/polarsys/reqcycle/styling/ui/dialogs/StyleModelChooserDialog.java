@@ -27,6 +27,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.ResourceManager;
+import org.polarsys.reqcycle.styling.model.Styling.Basic;
+import org.polarsys.reqcycle.styling.model.Styling.Default;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.util.StylingAdapterFactory;
@@ -87,6 +89,11 @@ public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleC
 					if (!dialog.getStyleModelName().equals("")) {
 						StylingModel newStylingModel = StylingFactory.eINSTANCE.createStylingModel();
 						newStylingModel.setModeName(dialog.getStyleModelName());
+
+						Default defaultStyle = StylingFactory.eINSTANCE.createDefault();
+						newStylingModel.setDefault(defaultStyle);
+						Basic basicStyle = StylingFactory.eINSTANCE.createBasic();
+						newStylingModel.setBasic(basicStyle);
 
 						styleManager.getStyling().getModels().add(newStylingModel);
 

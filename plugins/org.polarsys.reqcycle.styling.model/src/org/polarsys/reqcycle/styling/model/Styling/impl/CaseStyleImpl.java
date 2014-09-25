@@ -24,8 +24,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.StyledString.Styler;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.TextStyle;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
@@ -79,6 +81,24 @@ public abstract class CaseStyleImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	protected CaseStyleImpl() {
 		super();
+
+		FontData fontDataN = new FontData("Segoe UI", 8, SWT.NORMAL);
+		FontData[] fontDataTableN = new FontData[1];
+		fontDataTableN[0] = fontDataN;
+		FontData fontDataNB = new FontData("Segoe UI", 8, SWT.NORMAL | SWT.BOLD);
+		FontData[] fontDataTableNB = new FontData[1];
+		fontDataTableNB[0] = fontDataNB;
+		FontData fontDataNI = new FontData("Segoe UI", 8, SWT.NORMAL | SWT.ITALIC);
+		FontData[] fontDataTableNI = new FontData[1];
+		fontDataTableNI[0] = fontDataNI;
+		FontData fontDataNBI = new FontData("Segoe UI", 8, SWT.NORMAL | SWT.BOLD | SWT.ITALIC);
+		FontData[] fontDataTableNBI = new FontData[1];
+		fontDataTableNBI[0] = fontDataNBI;
+
+		JFaceResources.getFontRegistry().put("Segoe UI + N", fontDataTableN);
+		JFaceResources.getFontRegistry().put("Segoe UI + NB", fontDataTableNB);
+		JFaceResources.getFontRegistry().put("Segoe UI + NI", fontDataTableNI);
+		JFaceResources.getFontRegistry().put("Segoe UI + NBI", fontDataTableNBI);
 	}
 
 	/**

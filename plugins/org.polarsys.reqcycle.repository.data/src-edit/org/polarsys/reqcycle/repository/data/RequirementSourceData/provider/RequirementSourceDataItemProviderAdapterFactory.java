@@ -15,7 +15,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.util.RequirementSourceDataAdapterFactory;
 
 /**
@@ -160,6 +159,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -169,6 +169,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -180,7 +181,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
+		return supportedTypes.contains(type) || super.isFactoryForType(type) || (type instanceof EPackage && ((EPackage) type).getNsURI().startsWith("http://www.polarsys.org/ReqCycle/CustomDataModels"));
 	}
 
 	/**
@@ -215,6 +216,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -224,6 +226,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -233,6 +236,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -246,6 +250,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (sectionItemProvider != null)
 			sectionItemProvider.dispose();
