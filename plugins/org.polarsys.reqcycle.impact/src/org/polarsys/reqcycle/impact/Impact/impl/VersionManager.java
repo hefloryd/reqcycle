@@ -1,6 +1,5 @@
 package org.polarsys.reqcycle.impact.Impact.impl;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +31,6 @@ import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
-import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
@@ -139,13 +137,8 @@ public class VersionManager implements IVersionManager {
 					source.setDefaultScope(scope);
 
 					source.setContents((RequirementsContainer) eObject);
-					source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
 				}
 			}
-		} catch (CoreException e2) {
-			e2.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

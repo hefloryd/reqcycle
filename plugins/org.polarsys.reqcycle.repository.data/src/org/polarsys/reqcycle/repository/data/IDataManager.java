@@ -14,11 +14,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 
@@ -41,13 +39,6 @@ public interface IDataManager {
 	 * @return the requirement source
 	 */
 	public RequirementSource createRequirementSource();
-
-	/**
-	 * Creates an empty requirements Container.
-	 * 
-	 * @return the requirements container
-	 */
-	public RequirementsContainer createRequirementsContainer(URI uri);
 
 	/**
 	 * Adds a newly created repository to repositories list

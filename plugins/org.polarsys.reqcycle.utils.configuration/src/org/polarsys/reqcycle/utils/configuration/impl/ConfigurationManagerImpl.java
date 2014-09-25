@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.polarsys.reqcycle.utils.configuration.Activator;
@@ -56,7 +57,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 	public static final String CONF_RESOURCE_EXTENSION = "emfconf";
 
-	public RestrictedResourceSet internalRestrictedResourceSet = new RestrictedResourceSet();
+	public ResourceSet internalResourceSet = new ResourceSetImpl();
 
 	public void saveConfiguration(Collection<? extends EObject> conf, IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension) throws IOException {
 		if (context == null && Scope.PROJECT.equals(scope)) {
@@ -68,7 +69,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		if (resourceSet == null) {
-			resourceSet = internalRestrictedResourceSet;
+			resourceSet = internalResourceSet;
 		} else {
 			resourceExtension = null;
 		}
@@ -94,7 +95,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 	public Collection<EObject> getConfiguration(IResource context, Scope scope, String id, ResourceSet resourceSet, String resourceExtension, boolean reload) {
 		if (resourceSet == null) {
-			resourceSet = internalRestrictedResourceSet;
+			resourceSet = internalResourceSet;
 		} else {
 			resourceExtension = null;
 		}
@@ -197,7 +198,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 	public Map<String, Object> getSimpleConfiguration(IResource context, Scope scope, String id, boolean reload) {
 		EObject confEObj = null;
 
-		Collection<EObject> conf = getConfiguration(context, scope, id, internalRestrictedResourceSet, null, reload);
+		Collection<EObject> conf = getConfiguration(context, scope, id, internalResourceSet, null, reload);
 		if (conf != null && !conf.isEmpty()) {
 			confEObj = conf.iterator().next();
 		}
@@ -293,7 +294,7 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		URI mmFileUri = getConfigurationFileURI(context, scope, id, "ecore");
-		Resource mmResource = internalRestrictedResourceSet.createResource(mmFileUri);
+		Resource mmResource = internalResourceSet.createResource(mmFileUri);
 		mmResource.getContents().add(ePackage);
 		mmResource.save(null);
 
@@ -342,6 +343,6 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 
 	@Override
 	public ResourceSet getConfigurationResourceSet() {
-		return internalRestrictedResourceSet;
+		return internalResourceSet;
 	}
 }

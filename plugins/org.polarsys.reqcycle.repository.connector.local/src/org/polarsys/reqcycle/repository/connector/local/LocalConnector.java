@@ -12,18 +12,16 @@ package org.polarsys.reqcycle.repository.connector.local;
 
 import javax.inject.Inject;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.polarsys.reqcycle.repository.connector.ICallable;
-import org.polarsys.reqcycle.repository.connector.local.ui.LocalSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
+import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
-import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
 
 public class LocalConnector extends Wizard implements IConnectorWizard {
 
@@ -32,7 +30,7 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	@Inject
 	IDataManager manager;
 
-	private LocalSettingPage localSettingPage;
+	private AbstractSettingPage settingPage;
 
 	private IDataModel dataModel;
 
@@ -53,11 +51,7 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 			@Override
 			public void fillRequirementSource(RequirementSource source) throws Exception {
-				RequirementsContainer rc = manager.createRequirementsContainer(URI.createPlatformResourceURI(destination, true));
-				source.setContents(rc);
-				source.setDataModelURI(dataModel.getDataModelURI());
-				source.setDefaultScope(scope);
-				source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
+				// source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
 			}
 		};
 	}
@@ -69,19 +63,19 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean performFinish() {
-		if (localSettingPage == null) {
+		if (settingPage == null) {
 			return false;
 		}
-		dataModel = localSettingPage.bean.getDataModel();
-		scope = localSettingPage.bean.getScope();
-		destination = localSettingPage.bean.getDestination();
+		dataModel = settingPage.getBean().getDataModel();
+		scope = settingPage.getBean().getScope();
+		destination = settingPage.getBean().getOutputPath();
 		return true;
 	}
 
 	@Override
 	public void addPages() {
-		localSettingPage = new LocalSettingPage("Setting Page");
-		addPage(localSettingPage);
+		settingPage = new AbstractSettingPage("Setting Page", new AbstractStorageBean());
+		addPage(settingPage);
 	}
 
 	@Override

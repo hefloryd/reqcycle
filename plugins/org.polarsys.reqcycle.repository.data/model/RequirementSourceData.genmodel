@@ -6,8 +6,9 @@
     modelPluginID="org.polarsys.reqcycle.repository.data" modelName="RequirementSourceData"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory=""
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    editorPluginID="org.polarsys.reqcycle.repository.connector.local" usedGenPackages="ScopeConf.genmodel#//ScopeConf"
-    classNamePattern="" operationReflection="true" importOrganizing="true">
+    editorPluginID="org.polarsys.reqcycle.repository.connector.local" testsPluginID="org.polarsys.reqcycle.repository.data.tests"
+    usedGenPackages="ScopeConf.genmodel#//ScopeConf" classNamePattern="" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>RequirementSourceData.ecore</foreignModel>
   <genPackages prefix="RequirementSourceData" basePackage="org.polarsys.reqcycle.repository.data"
       resource="XMI" disposableProviderFactory="true" ecorePackage="RequirementSourceData.ecore#/">

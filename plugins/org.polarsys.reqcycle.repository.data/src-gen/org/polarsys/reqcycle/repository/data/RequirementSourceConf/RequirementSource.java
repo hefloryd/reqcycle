@@ -79,7 +79,7 @@ public interface RequirementSource extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage#getRequirementSource_Name()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -119,7 +119,7 @@ public interface RequirementSource extends EObject {
 	 * @return the value of the '<em>Connector Id</em>' attribute.
 	 * @see #setConnectorId(String)
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage#getRequirementSource_ConnectorId()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model
 	 * @generated
 	 */
 	String getConnectorId();

@@ -43,7 +43,7 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public abstract class AbstractSettingPage extends WizardPage implements IChangeListener {
+public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	@Inject
 	protected IDataModelManager dataManager;
@@ -69,12 +69,17 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 
 	private DataBindingContext bindingContext;
 
-	protected AbstractSettingPage(String pageName) {
+	private AbstractStorageBean bean;
+
+	public AbstractSettingPage(String pageName, AbstractStorageBean bean) {
 		super(pageName);
 		ZigguratInject.inject(this);
+		this.bean = bean;
 	}
 
-	public abstract AbstractStorageBean getBean();
+	public AbstractStorageBean getBean() {
+		return bean;
+	}
 
 	@Override
 	public void createControl(Composite parent) {
@@ -173,7 +178,6 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 	}
 
 	protected void hookListeners() {
-		specificHookListeners();
 		getDataModelSelectionChangedListener();
 	}
 
@@ -277,10 +281,6 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 		StringBuffer error = new StringBuffer();
 		boolean result = true;
 
-		result = specificIsPageComplete(result);
-
-		error.append(specificIsPageComplete(result, error));
-
 		if ((getBean().getDataModel() == null)) {
 			error.append("Choose a Data Model\n");
 			result = false;
@@ -305,13 +305,9 @@ public abstract class AbstractSettingPage extends WizardPage implements IChangeL
 		return result;
 	}
 
-	protected abstract Composite doCreateSpecific(Composite parent);
-
-	protected abstract void specificHookListeners();
-
-	protected abstract Boolean specificIsPageComplete(Boolean result);
-
-	protected abstract StringBuffer specificIsPageComplete(Boolean result, StringBuffer error);
+	protected Composite doCreateSpecific(Composite parent) {
+		return parent;
+	}
 
 	@Override
 	public void handleChange(ChangeEvent event) {

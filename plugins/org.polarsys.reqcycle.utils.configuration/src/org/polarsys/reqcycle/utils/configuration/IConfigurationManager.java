@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -104,6 +105,8 @@ public interface IConfigurationManager {
 	 */
 	void saveSimpleConfiguration(Map<String, Object> conf, IResource context, Scope scope, String id) throws IOException;
 	
+	URI getConfigurationFileURI(IResource context, Scope scope, String id, String resourceExtension);
+
 	ResourceSet getConfigurationResourceSet();
 
 	/**

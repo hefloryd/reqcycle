@@ -17,11 +17,9 @@ import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
-import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -39,12 +37,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
-import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 
 public class SettingPage extends AbstractSettingPage {
 
@@ -52,15 +48,10 @@ public class SettingPage extends AbstractSettingPage {
 
 	private Text tFile;
 
-	private SettingBean bean;
-
-	// private String nameFile;
-
 	protected SettingPage(SettingBean bean) {
-		super("OCL Connector settings");
+		super("OCL Connector settings", bean);
 		setDescription("Connector settings");
 		setTitle("Connector OCL: settings page");
-		this.bean = bean;
 
 	}
 
@@ -82,7 +73,8 @@ public class SettingPage extends AbstractSettingPage {
 	}
 
 	@Override
-	protected void specificHookListeners() {
+	protected void hookListeners() {
+		super.hookListeners();
 
 		getDestinationFileSelectionListener();
 
@@ -110,38 +102,32 @@ public class SettingPage extends AbstractSettingPage {
 		});
 
 	}
-
+	
 	@Override
-	protected Boolean specificIsPageComplete(Boolean result) {
+	public boolean isPageComplete() {
+		boolean result = super.isPageComplete();
+		String msg = getErrorMessage();
+		if (msg == null) {
+			msg = "";
+		}
 		if (tFile.getText() == null || tFile.getText() == "") {
-			return result = false;
+			result = false;
+			msg += "Choose an EMF model \n";
 		} else {
 			String uriString = tFile.getText();
 			if (uriString != null && !uriString.isEmpty()) {
 				URI uri = URI.createURI(uriString);
 				if (!EMFUtils.isEMF(uri, false)) {
-					return result = false;
+					result = false;
+					msg += "Selected file is not an EMF resource\n";
 				}
 			}
+		}
+
+		if (!result) {
+			setErrorMessage(msg);
 		}
 		return result;
-	}
-
-	@Override
-	protected StringBuffer specificIsPageComplete(Boolean result, StringBuffer error) {
-		if (result == false) {
-			return new StringBuffer("Choose an EMF model \n");
-		} else {
-			String uriString = tFile.getText();
-
-			if (uriString != null && !uriString.isEmpty()) {
-				URI uri = URI.createURI(uriString);
-				if (!EMFUtils.isEMF(uri, false)) {
-					return new StringBuffer("Selected file is not an EMF resource");
-				}
-			}
-		}
-		return error;
 	}
 
 	/**
@@ -190,13 +176,8 @@ public class SettingPage extends AbstractSettingPage {
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
 
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(tFile);
-		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(bean);
+		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(getBean());
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
-	}
-
-	@Override
-	public AbstractStorageBean getBean() {
-		return bean;
 	}
 
 }

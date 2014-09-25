@@ -33,7 +33,6 @@ import org.polarsys.reqcycle.repository.connector.local.ui.dialog.UseAsSourceDia
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
-import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class UseAsSourceHandler extends AbstractHandler {
@@ -72,12 +71,8 @@ public class UseAsSourceHandler extends AbstractHandler {
 							source.setDefaultScope(dialog.bean.getScope());
 							source.setConnectorId(LocalConnector.LOCAL_CONNECTOR_ID);
 							source.setContents((RequirementsContainer) eObject);
-							try {
-								source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
-							} catch (Exception e) {
-								// FIXME : use logger
-								e.printStackTrace();
-							}
+							source.setDestinationURI(eObject.eResource().getURI().toString());
+
 							dataManager.addRequirementSource(source);
 						}
 					}

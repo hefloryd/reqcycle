@@ -34,8 +34,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.polarsys.reqcycle.core.ILogger;
@@ -68,8 +66,6 @@ public class DataManagerImpl implements IDataManager {
 	@Inject
 	IConfigurationManager confManager;
 
-	ResourceSet resourceSet = new ResourceSetImpl();
-
 	public static final String SOURCES_CONF_ID = "org.polarsys.reqcycle.repositories";
 	public static final String CONTENTS_CONF_ID = "org.polarsys.reqcycle.repositories.contents";
 
@@ -86,7 +82,7 @@ public class DataManagerImpl implements IDataManager {
 	DataManagerImpl(IConfigurationManager confManager) {
 		this.confManager = confManager;
 
-		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, SOURCES_CONF_ID, resourceSet, null, true);
+		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, SOURCES_CONF_ID, null, null, true);
 
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
@@ -192,7 +188,7 @@ public class DataManagerImpl implements IDataManager {
 	}
 
 	protected void saveSources() throws IOException {
-		confManager.saveConfiguration(Collections.singleton(sources), null, null, SOURCES_CONF_ID, resourceSet, null);
+		confManager.saveConfiguration(Collections.singleton(sources), null, null, SOURCES_CONF_ID, null, null);
 	}
 
 	protected void saveContents() throws IOException {
@@ -200,7 +196,12 @@ public class DataManagerImpl implements IDataManager {
 			if (source.getDestinationURI() == null) {
 				confManager.saveConfiguration(Collections.singleton(source.getContents()), null, null, CONTENTS_CONF_ID + "." + source.getName(), null, "reqcycle");
 			} else {
-				Resource eResource = source.getContents().eResource();
+				RequirementsContainer reqContainer = source.getContents();
+				Resource eResource = reqContainer.eResource();
+				if (eResource == null) {
+					eResource = confManager.getConfigurationResourceSet().createResource(URI.createURI(source.getDestinationURI()));
+					eResource.getContents().add(reqContainer);
+				}
 
 				if (eResource instanceof EMFConfResource) {
 					((EMFConfResource) eResource).manualSave(SAVE_OPTIONS);
@@ -276,8 +277,7 @@ public class DataManagerImpl implements IDataManager {
 
 	@Override
 	public RequirementSource createRequirementSource(String name, String connectorId) {
-		RequirementSource source = RequirementSourceConfFactory.eINSTANCE.createRequirementSource();
-		;
+		RequirementSource source = createRequirementSource();
 		source.setName(name);
 		source.setConnectorId(connectorId);
 		return source;
@@ -329,14 +329,6 @@ public class DataManagerImpl implements IDataManager {
 		} else {
 			element.eSet(eFeature, value);
 		}
-	}
-
-	@Override
-	public RequirementsContainer createRequirementsContainer(URI uri) {
-		RequirementsContainer requirementsContainer = RequirementSourceDataFactory.eINSTANCE.createRequirementsContainer();
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(requirementsContainer);
-		return requirementsContainer;
 	}
 
 	@Override

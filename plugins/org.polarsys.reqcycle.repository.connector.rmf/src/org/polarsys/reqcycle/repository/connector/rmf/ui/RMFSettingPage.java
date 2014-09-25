@@ -44,8 +44,6 @@ public class RMFSettingPage extends AbstractSettingPage {
 
 	private Button browseFileBtn;
 
-	private AbstractStorageBean bean;
-
 	@Inject
 	IDataModelManager dataManager;
 
@@ -57,9 +55,8 @@ public class RMFSettingPage extends AbstractSettingPage {
 	 * @wbp.parser.constructor
 	 */
 	public RMFSettingPage(AbstractStorageBean bean) {
-		super("RMF Connector settings");
+		super("RMF Connector settings", bean);
 		setTitle("Connector RMF: settings page");
-		this.bean = bean;
 	}
 
 	public boolean preFinish(RequirementSource repository) {
@@ -70,7 +67,7 @@ public class RMFSettingPage extends AbstractSettingPage {
 	protected void doSpecificInitDataBindings(DataBindingContext bindingContext) {
 		//
 		IObservableValue observeTextFileURITextObserveWidget = WidgetProperties.text(SWT.Modify).observe(fileURIText);
-		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(bean);
+		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(getBean());
 		bindingContext.bindValue(observeTextFileURITextObserveWidget, uriBeanObserveValue, null, null);
 
 	}
@@ -97,7 +94,8 @@ public class RMFSettingPage extends AbstractSettingPage {
 	}
 
 	@Override
-	protected void specificHookListeners() {
+	protected void hookListeners() {
+		super.hookListeners();
 
 		getDestinationFileSelectionListener();
 
@@ -119,25 +117,18 @@ public class RMFSettingPage extends AbstractSettingPage {
 	}
 
 	@Override
-	protected Boolean specificIsPageComplete(Boolean result) {
+	public boolean isPageComplete() {
+		boolean result = super.isPageComplete();
 		if (fileURIText.getText() == null || fileURIText.getText().isEmpty()) {
-
+			String msg = getErrorMessage();
+			if (msg == null) {
+				msg = "";
+			}
+			msg += "Choose a ReqIF File.\n";
+			setErrorMessage(msg);
 			result = false;
 		}
 		return result;
 	}
 
-	@Override
-	protected StringBuffer specificIsPageComplete(Boolean result, StringBuffer error) {
-		if (result == false) {
-			return new StringBuffer("Choose a ReqIF File.\n");
-		}
-		return error;
-	}
-
-	@Override
-	public AbstractStorageBean getBean() {
-		// TODO Auto-generated method stub
-		return bean;
-	}
 }

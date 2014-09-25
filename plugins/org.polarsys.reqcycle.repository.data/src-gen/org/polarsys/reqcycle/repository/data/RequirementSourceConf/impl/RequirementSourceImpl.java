@@ -14,6 +14,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
@@ -41,7 +42,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractEleme
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
-import org.polarsys.reqcycle.repository.data.util.IRequirementSourceProperties;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 
@@ -84,6 +85,15 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProperties()
@@ -101,6 +111,15 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	protected static final String CONNECTOR_ID_EDEFAULT = null;
 
+	/**
+	 * The cached value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectorId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String connectorId = CONNECTOR_ID_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -139,8 +158,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * The default value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRepositoryURI()
 	 * @generated
 	 * @ordered
@@ -148,8 +166,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String REPOSITORY_URI_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRepositoryURI()
 	 * @generated
 	 * @ordered
@@ -157,8 +174,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected String repositoryURI = REPOSITORY_URI_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDestinationURI()
 	 * @generated
 	 * @ordered
@@ -166,8 +182,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String DESTINATION_URI_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDestinationURI()
 	 * @generated
 	 * @ordered
@@ -230,24 +245,24 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated not
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	@Override
 	public String getName() {
-		String label = getProperties().get(IRequirementSourceProperties.PROPERTY_LABEL);
-		return label != null ? label : "No Label";
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated not
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
-		getProperties().put(IRequirementSourceProperties.PROPERTY_LABEL, newName);
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME, oldName, name));
 	}
 
 	/**
@@ -263,24 +278,24 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated not
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	@Override
 	public String getConnectorId() {
-		String type = getProperties().get(IRequirementSourceProperties.PROPERTY_CONNECTOR_ID);
-		return type != null ? type : IRequirementSourceProperties.TYPE_UNKNOWN;
+		return connectorId;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated not
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	@Override
 	public void setConnectorId(String newConnectorId) {
-		getProperties().put(IRequirementSourceProperties.PROPERTY_CONNECTOR_ID, newConnectorId);
+		String oldConnectorId = connectorId;
+		connectorId = newConnectorId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID, oldConnectorId, connectorId));
 	}
 
 	/**
@@ -354,19 +369,19 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRepositoryURI() {
 		return repositoryURI;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepositoryURI(String newRepositoryURI) {
 		String oldRepositoryURI = repositoryURI;
 		repositoryURI = newRepositoryURI;
@@ -375,19 +390,19 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDestinationURI() {
 		return destinationURI;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDestinationURI(String newDestinationURI) {
 		String oldDestinationURI = destinationURI;
 		destinationURI = newDestinationURI;
@@ -530,11 +545,11 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
 				return contents != null;
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-				return CONNECTOR_ID_EDEFAULT == null ? getConnectorId() != null : !CONNECTOR_ID_EDEFAULT.equals(getConnectorId());
+				return CONNECTOR_ID_EDEFAULT == null ? connectorId != null : !CONNECTOR_ID_EDEFAULT.equals(connectorId);
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
 			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
