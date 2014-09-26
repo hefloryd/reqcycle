@@ -17,9 +17,9 @@ public class NoProjectStorageException extends Exception {
 		super();
 	}
 
-	public NoProjectStorageException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	/*public NoProjectStorageException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
-	}
+	}*/
 
 	public NoProjectStorageException(String message, Throwable cause) {
 		super(message, cause);
