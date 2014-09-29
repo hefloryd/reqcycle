@@ -67,7 +67,15 @@ public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BooleanEqualPredicate) object).getDisplayName();
+		BooleanEqualPredicate eqPredicate = (BooleanEqualPredicate) object;
+		String label = eqPredicate.getDisplayName();
+		if (eqPredicate.getExpectedObject() != null) {
+			if (label != null) {
+				label += "(" + eqPredicate.getExpectedObject() + ")";
+			} else {
+				label = "(" + eqPredicate.getExpectedObject() + ")";
+			}
+		}
 		return label == null || label.length() == 0 ? getString("_UI_BooleanEqualPredicate_type") : getString("_UI_BooleanEqualPredicate_type") + " " + label;
 	}
 

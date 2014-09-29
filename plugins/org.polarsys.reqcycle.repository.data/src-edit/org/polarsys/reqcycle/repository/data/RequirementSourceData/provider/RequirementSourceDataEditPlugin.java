@@ -10,10 +10,7 @@
 package org.polarsys.reqcycle.repository.data.RequirementSourceData.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.polarsys.reqcycle.repository.data.ScopeConf.provider.ScopeConfEditPlugin;
 
 /**
  * This is the central singleton for the RequirementSourceData edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -41,7 +38,7 @@ public final class RequirementSourceDataEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public RequirementSourceDataEditPlugin() {
-		super(new ResourceLocator[] { ScopeConfEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] {});
 	}
 
 	/**

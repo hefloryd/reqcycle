@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
 
 /**
@@ -58,7 +56,15 @@ public class StringIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StringIntoPredicate) object).getDisplayName();
+		StringIntoPredicate intoPredicate = (StringIntoPredicate) object;
+		String label = intoPredicate.getDisplayName();
+		if ((intoPredicate.getInput() != null) && (intoPredicate.getInput().length() != 0)) {
+			if (label != null) {
+				label += "(" + intoPredicate.getInput() + ")";
+			} else {
+				label = "(" + intoPredicate.getInput() + ")";
+			}
+		}
 		return label == null || label.length() == 0 ? getString("_UI_StringIntoPredicate_type") : getString("_UI_StringIntoPredicate_type") + " " + label;
 	}
 

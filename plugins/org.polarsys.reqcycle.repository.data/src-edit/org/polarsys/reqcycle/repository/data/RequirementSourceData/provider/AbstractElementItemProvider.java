@@ -14,9 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -27,9 +25,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.polarsys.reqcycle.repository.data.MappingModel.provider.IDelegateLabelProvider;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
  * This is the item provider adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement} object. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,6 +36,9 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSo
  * @generated
  */
 public class AbstractElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
+	protected IDelegateLabelProvider delegate = ZigguratInject.make(IDelegateLabelProvider.class);
+
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
