@@ -118,7 +118,7 @@ public class EMFReachableObject implements ReachableObject {
 
 					@Override
 					public boolean isSubtypeOf(String superType) throws CoreException {
-						return false;
+						return true;
 					}
 
 					@Override

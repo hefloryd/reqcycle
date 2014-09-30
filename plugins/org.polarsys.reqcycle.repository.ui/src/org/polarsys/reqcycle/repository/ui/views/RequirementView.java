@@ -3,8 +3,6 @@ package org.polarsys.reqcycle.repository.ui.views;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,8 +11,11 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Item;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -46,6 +47,8 @@ public class RequirementView extends CommonNavigator {
 
 	private AdapterFactoryEditingDomain readOnlyEditingDomain;
 
+	IReachableManager manager = ZigguratInject.make(IReachableManager.class);
+
 	@Override
 	protected IAdaptable getInitialInput() {
 		this.getCommonViewer().refresh();
@@ -64,9 +67,44 @@ public class RequirementView extends CommonNavigator {
 	}
 
 	@Override
+	protected CommonViewer createCommonViewerObject(Composite aParent) {
+		return new CommonViewer(getViewSite().getId(), aParent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL) {
+			@Override
+			protected void mapElement(Object element, Widget item) {
+				super.mapElement(element, item);
+				if (!(element instanceof Reachable)) {
+					try {
+						super.mapElement(getReachable(element), item);
+					} catch (IReachableHandlerException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			@Override
+			protected void unmapElement(Object element, Widget item) {
+				// TODO Auto-generated method stub
+				super.unmapElement(element, item);
+				if (!(element instanceof Reachable)) {
+					try {
+						if (getReachable(element) != null) {
+							super.unmapElement(getReachable(element), item);
+						}
+					} catch (IReachableHandlerException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+	}
+
+	@Override
 	public Object getAdapter(Class adapter) {
-		if (IPropertySheetPage.class.equals(adapter)) {
+		if (IPropertySheetPage.class.isAssignableFrom(adapter)) {
 			return getPropertySheetPage();
+		}
+		if (Viewer.class.isAssignableFrom(adapter)) {
+			return getCommonViewer();
 		}
 		return super.getAdapter(adapter);
 	}
@@ -83,16 +121,13 @@ public class RequirementView extends CommonNavigator {
 	 *            - The collection of predicates to use for filtering the same input.
 	 */
 	public static void openNewRequirementView(final Collection<RequirementSource> sources, final Collection<IPredicate> predicates) {
-
 		if (!sources.isEmpty()) {
-
 			IViewPart view = createNewView();
 			if (view == null) {
 				return;
 			}
 
 			RequirementView reqView = (RequirementView) view;
-
 			reqView.setPredicates(predicates);
 			reqView.setSources(sources);
 		}
@@ -135,6 +170,10 @@ public class RequirementView extends CommonNavigator {
 		root.setViewByScopes(scope);
 	}
 
+	protected Reachable getReachable(Object element) throws IReachableHandlerException {
+		return manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
+	}
+
 	public static IViewPart createNewView() {
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		int nbView = 0;
@@ -157,8 +196,6 @@ public class RequirementView extends CommonNavigator {
 
 	private class ReachableMapper implements ICommonViewerMapper {
 
-		@Inject
-		IReachableManager manager;
 		Map<Reachable, Item> items = Maps.newHashMap();
 
 		@Override
@@ -168,7 +205,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) element;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
+					r = getReachable(element);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -183,7 +220,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(object).getFromObject(object).getReachable(object);
+					r = getReachable(object);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -206,7 +243,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(object).getFromObject(object).getReachable(object);
+					r = getReachable(object);
 				} catch (IReachableHandlerException e) {
 					return false;
 				}
@@ -227,7 +264,7 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) element;
 			} else {
 				try {
-					r = manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
+					r = getReachable(element);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -235,4 +272,5 @@ public class RequirementView extends CommonNavigator {
 			items.put(r, item);
 		}
 	}
+
 }
