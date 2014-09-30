@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="pathVariable" name="Path Variable" schema="schema/pathVariable.exsd"/>
    <extension
          point="org.polarsys.reqcycle.utils.inject.binding">
       <binding
             impl="org.polarsys.reqcycle.traceability.storage.impl.UndefinedTraceabilityStorage"
             interface="org.polarsys.reqcycle.traceability.storage.IStorageProvider">
       </binding>
+      <binding
+            impl="org.polarsys.reqcycle.traceability.storage.impl.VarStoragePathProvider"
+            interface="org.polarsys.reqcycle.traceability.storage.IStoragePathProvider"
+            priority="1">
+      </binding>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.storage.pathVariable">
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.UserVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.YearVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.MonthVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.DayVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.HourVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.MinuteVariable">
+      </Variable>
+      <Variable
+            instance="org.polarsys.reqcycle.traceability.storage.vars.SecondVariable">
+      </Variable>
    </extension>
 
 </plugin>

@@ -111,6 +111,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.export</module>
 		<module>../../plugins/org.polarsys.reqcycle.export.xls</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.sesame</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.table</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.types</module>

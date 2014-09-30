@@ -8,15 +8,13 @@
  *    Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
  *   
  *******************************************************************************/
-package org.polarsys.reqcycle.traceability.storage;
+package org.polarsys.reqcycle.traceability.storage.ui;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
-	public static String PLUGIN_ID = "org.polarsys.reqcycle.traceability.storage" ;
-	
 	private static BundleContext context;
 
 	static BundleContext getContext() {
