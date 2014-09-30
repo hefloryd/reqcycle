@@ -57,7 +57,6 @@ import org.polarsys.reqcycle.repository.ui.actions.EditMappingAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenImpactAnalysisViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.OpenRequirementViewAction;
 import org.polarsys.reqcycle.repository.ui.actions.RefreshViewAction;
-import org.polarsys.reqcycle.repository.ui.actions.SynchronizeRequirementSourceAction;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceContentProvider;
 import org.polarsys.reqcycle.repository.ui.providers.RequirementSourceLabelProvider;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -375,13 +374,6 @@ public class RequirementSourcesView extends ViewPart {
 		openImpactAnalysisViewAction.setText("Open Impact Analysis View");
 		openImpactAnalysisViewAction.setToolTipText("Open Impact Analysis View");
 		openImpactAnalysisViewAction.setImageDescriptor(Activator.getImageDescriptor(ICON_IMPACT));
-
-		synchResourceAction = new SynchronizeRequirementSourceAction(viewer);
-		ZigguratInject.inject(synchResourceAction);
-		synchResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
-		synchResourceAction.setToolTipText("Synchronization not available");// Messages.SYNC_RESOURCE_TEXT);
-		synchResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_SYNCHRONIZE));
-		synchResourceAction.setEnabled(false);
 
 		editMappingAction = new EditMappingAction(viewer);
 		ZigguratInject.inject(editMappingAction);
