@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
@@ -149,12 +150,19 @@ public class StylingContentProvider implements ITreeContentProvider {
 
 		@Override
 		public Iterator<Requirement> apply(RequirementSource arg0) {
-			Iterator<Requirement> result = Iterators.emptyIterator();
-			for (AbstractElement a : arg0.getRequirements()) {
-				result = Iterators.concat(result, Iterators.filter(a.eAllContents(), Requirement.class));
-			}
+			Iterator<Requirement> result = Iterators.filter(arg0.getRequirements().iterator(), Requirement.class);
+			Iterator<Iterator<EObject>> allChildren = Iterators.transform(arg0.getRequirements().iterator(), new Function<AbstractElement, Iterator<EObject>>() {
+
+				@Override
+				public Iterator<EObject> apply(AbstractElement arg0) {
+					return arg0.eAllContents();
+				}
+			});
+			Iterator<Requirement> allReqChildren = Iterators.filter(Iterators.concat(allChildren), Requirement.class);
+			result = Iterators.concat(result, allReqChildren);
 			return result;
 		}
+
 	}
 
 	private class PPredicate implements Predicate<Object> {
@@ -172,26 +180,31 @@ public class StylingContentProvider implements ITreeContentProvider {
 			if (arg0 instanceof RequirementSource) {
 				for (AbstractElement elt : ((RequirementSource) arg0).getRequirements()) {
 					if (elt instanceof Section) {
-						for (AbstractElement element : ((Section) elt).getChildren()) {
-							if (predicateEvaluator.match(p, element)) {
-								return true;
-							}
+						if (apply(elt)) {
+							return true;
 						}
 					} else if (predicateEvaluator.match(p, elt)) {
 						return true;
 					}
 				}
 				return false;
-			} else if (arg0 instanceof Section && !(arg0 instanceof Requirement)) {
+			} else if (arg0 instanceof Requirement) {
+				return predicateEvaluator.match(p, arg0);
+			} else if (arg0 instanceof Section) {
 				for (AbstractElement elt : ((Section) arg0).getChildren()) {
-					if (predicateEvaluator.match(p, elt)) {
-						return true;
+					if (elt instanceof Requirement) {
+						if (predicateEvaluator.match(p, elt)) {
+							return true;
+						}
+					} else {
+						if (apply(elt)) {
+							return true;
+						}
 					}
 				}
 				return false;
-			} else {
-				return predicateEvaluator.match(p, arg0);
 			}
+			return false;
 		}
 	}
 }

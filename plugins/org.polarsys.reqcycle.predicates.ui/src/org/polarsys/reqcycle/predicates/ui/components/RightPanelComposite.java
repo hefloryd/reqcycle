@@ -26,7 +26,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
@@ -40,15 +39,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
-import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-import org.polarsys.reqcycle.predicates.core.util.PredicatesUtil;
-import org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager;
-import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
-import org.polarsys.reqcycle.predicates.ui.dialogs.NewPredicateDialog;
-import org.polarsys.reqcycle.predicates.ui.listeners.CustomPredicatesTreeViewerDragAdapter;
-import org.polarsys.reqcycle.predicates.ui.presentation.PredicatesEditor;
-import org.polarsys.reqcycle.predicates.ui.providers.PredicatesTableLabelProvider;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
@@ -65,6 +55,15 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.predicates.core.util.PredicatesUtil;
+import org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager;
+import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
+import org.polarsys.reqcycle.predicates.ui.dialogs.NewPredicateDialog;
+import org.polarsys.reqcycle.predicates.ui.listeners.CustomPredicatesTreeViewerDragAdapter;
+import org.polarsys.reqcycle.predicates.ui.presentation.PredicatesEditor;
+import org.polarsys.reqcycle.predicates.ui.providers.PredicatesTableLabelProvider;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class RightPanelComposite extends Composite {
 
@@ -75,8 +74,6 @@ public class RightPanelComposite extends Composite {
 	private TableViewer tableViewerOfDefautPredicates;
 
 	private TableViewer tableViewerOfCustomPredicates;
-
-	private InputDialog savePredicateDialog;
 
 	IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
 
@@ -418,7 +415,8 @@ public class RightPanelComposite extends Composite {
 			IPredicate rootPredicate = dialog.getRootPredicate();
 			IPredicate newPredicate = EcoreUtil.copy(rootPredicate);
 			newPredicate.setDisplayName(name);
-			predicatesEditor.setRootPredicate(newPredicate);
+			predicatesEditor.setRootPredicate(EcoreUtil.copy(newPredicate));
+			predicatesEditor.setEditorTitle(newPredicate.getDisplayName());
 			predicatesEditor.setDirty(false);
 			added = predicatesConfManager.storePredicate(newPredicate);
 			if (added) {

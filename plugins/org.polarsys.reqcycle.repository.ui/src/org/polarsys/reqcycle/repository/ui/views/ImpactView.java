@@ -44,6 +44,8 @@ public class ImpactView extends ViewPart {
 
 	private RequirementSource requirementSource;
 
+	private String FileExtension = "xmi";
+
 	protected EList<Requirement> requirementsAdded;
 	protected EList<Requirement> requirementsDeleted;
 	protected EList<Requirement> requirementsModified;
@@ -182,7 +184,12 @@ public class ImpactView extends ViewPart {
 				SaveAsDialog d = new SaveAsDialog(Display.getDefault().getActiveShell()) {
 				};
 				if (d.open() == ResourceSelectionDialog.OK) {
-					impact.saveAnalysis(URI.createPlatformResourceURI(d.getResult().toString(), true));
+					String extension = d.getResult().getFileExtension();
+					String path = d.getResult().toString();
+					if ((extension == null) || (extension.equals(FileExtension))) {
+						path += "." + FileExtension;
+					}
+					impact.saveAnalysis(URI.createPlatformResourceURI(path, true));
 					try {
 						ResourcesPlugin.getWorkspace().getRoot().getFile(d.getResult()).getParent().refreshLocal(IResource.DEPTH_ONE, null);
 					} catch (CoreException e) {

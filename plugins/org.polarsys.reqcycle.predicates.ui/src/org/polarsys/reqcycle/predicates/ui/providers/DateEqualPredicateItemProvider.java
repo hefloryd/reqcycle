@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
 
 /**
@@ -58,7 +56,15 @@ public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DateEqualPredicate) object).getDisplayName();
+		DateEqualPredicate eqPredicate = (DateEqualPredicate) object;
+		String label = eqPredicate.getDisplayName();
+		if (eqPredicate.getExpectedObject() != null) {
+			if (label != null) {
+				label += "(" + eqPredicate.getExpectedObject().toString() + ")";
+			} else {
+				label = "(" + eqPredicate.getExpectedObject().toString() + ")";
+			}
+		}
 		return label == null || label.length() == 0 ? getString("_UI_DateEqualPredicate_type") : getString("_UI_DateEqualPredicate_type") + " " + label;
 	}
 

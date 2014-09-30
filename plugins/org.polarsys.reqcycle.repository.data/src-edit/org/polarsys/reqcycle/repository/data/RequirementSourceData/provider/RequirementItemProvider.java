@@ -14,12 +14,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
@@ -89,6 +86,9 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if (delegate != null) {
+			return delegate.getImage(object);
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Requirement"));
 	}
 
@@ -99,6 +99,9 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
+		if (delegate != null) {
+			return delegate.getText(object);
+		}
 		String label = ((Requirement) object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_Requirement_type") : getString("_UI_Requirement_type") + " " + label;
 	}

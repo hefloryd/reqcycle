@@ -1792,9 +1792,6 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 		}
 
 		this.treeDoubleClickListener.setEClasses(getInput());
-		if (this.selectionViewer != null) {
-			this.selectionViewer.refresh();
-		}
 	}
 
 	/**
