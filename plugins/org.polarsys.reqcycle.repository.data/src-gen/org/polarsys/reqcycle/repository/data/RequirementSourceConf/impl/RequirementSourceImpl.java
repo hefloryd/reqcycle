@@ -51,15 +51,15 @@ import com.google.common.collect.Collections2;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getContents <em>Contents</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getConnectorId <em>Connector Id</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getMappings <em>Mappings</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDataModelURI <em>Data Model URI</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDefaultScope <em>Default Scope</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getRepositoryURI <em>Repository URI</em>}</li>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDestinationURI <em>Destination URI</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getContents <em>Contents</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getConnectorId <em>Connector Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getMappings <em>Mappings</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDataModelURI <em>Data Model URI</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDefaultScope <em>Default Scope</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getRepositoryURI <em>Repository URI</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl.RequirementSourceImpl#getDestinationURI <em>Destination URI</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,8 +67,8 @@ import com.google.common.collect.Collections2;
  */
 public class RequirementSourceImpl extends MinimalEObjectImpl.Container implements RequirementSource {
 	/**
-	 * The cached value of the '{@link #getContents() <em>Contents</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getContents() <em>Contents</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getContents()
 	 * @generated
 	 * @ordered
@@ -76,8 +76,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected RequirementsContainer contents;
 	protected Set<PropertyChangeListener> propertyChangeListeners = new HashSet<PropertyChangeListener>();
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -85,17 +85,16 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -103,8 +102,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected EMap<String, String> properties;
 
 	/**
-	 * The default value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConnectorId()
 	 * @generated
 	 * @ordered
@@ -112,17 +111,16 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String CONNECTOR_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConnectorId() <em>Connector Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConnectorId()
 	 * @generated
 	 * @ordered
 	 */
 	protected String connectorId = CONNECTOR_ID_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMappings()
 	 * @generated
 	 * @ordered
@@ -130,8 +128,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected EList<MappingElement> mappings;
 
 	/**
-	 * The default value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataModelURI()
 	 * @generated
 	 * @ordered
@@ -139,8 +137,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String DATA_MODEL_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDataModelURI() <em>Data Model URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataModelURI()
 	 * @generated
 	 * @ordered
@@ -148,8 +146,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected String dataModelURI = DATA_MODEL_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDefaultScope() <em>Default Scope</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDefaultScope() <em>Default Scope</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultScope()
 	 * @generated
 	 * @ordered
@@ -157,32 +155,32 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	protected Scope defaultScope;
 
 	/**
-	 * The default value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRepositoryURI()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String REPOSITORY_URI_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRepositoryURI() <em>Repository URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRepositoryURI()
 	 * @generated
 	 * @ordered
 	 */
 	protected String repositoryURI = REPOSITORY_URI_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDestinationURI()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String DESTINATION_URI_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDestinationURI() <em>Destination URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDestinationURI()
 	 * @generated
 	 * @ordered
@@ -192,6 +190,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RequirementSourceImpl() {
@@ -200,6 +199,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,13 +209,14 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public RequirementsContainer getContents() {
 		if (contents != null && contents.eIsProxy()) {
-			InternalEObject oldContents = (InternalEObject)contents;
-			contents = (RequirementsContainer)eResolveProxy(oldContents);
+			InternalEObject oldContents = (InternalEObject) contents;
+			contents = (RequirementsContainer) eResolveProxy(oldContents);
 			if (contents != oldContents) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS, oldContents, contents));
@@ -226,6 +227,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsContainer basicGetContents() {
@@ -234,6 +236,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,8 +248,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -254,8 +257,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -267,19 +270,20 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EMap<String, String> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES);
+			properties = new EcoreEMap<String, String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES);
 		}
 		return properties;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getConnectorId() {
@@ -287,8 +291,8 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setConnectorId(String newConnectorId) {
@@ -300,6 +304,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -312,6 +317,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -321,6 +327,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -333,13 +340,14 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Scope getDefaultScope() {
 		if (defaultScope != null && defaultScope.eIsProxy()) {
-			InternalEObject oldDefaultScope = (InternalEObject)defaultScope;
-			defaultScope = (Scope)eResolveProxy(oldDefaultScope);
+			InternalEObject oldDefaultScope = (InternalEObject) defaultScope;
+			defaultScope = (Scope) eResolveProxy(oldDefaultScope);
 			if (defaultScope != oldDefaultScope) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE, oldDefaultScope, defaultScope));
@@ -350,6 +358,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Scope basicGetDefaultScope() {
@@ -358,6 +367,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -370,6 +380,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -379,6 +390,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -391,6 +403,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -400,6 +413,7 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -412,154 +426,163 @@ public class RequirementSourceImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
+			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
+			return ((InternalEList<?>) getMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
-				if (resolve) return getContents();
-				return basicGetContents();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-				return getName();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-				if (coreType) return getProperties();
-				else return getProperties().map();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-				return getConnectorId();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-				return getMappings();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
-				return getDataModelURI();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
-				if (resolve) return getDefaultScope();
-				return basicGetDefaultScope();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
-				return getRepositoryURI();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
-				return getDestinationURI();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
+			if (resolve)
+				return getContents();
+			return basicGetContents();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
+			return getName();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
+			if (coreType)
+				return getProperties();
+			else
+				return getProperties().map();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
+			return getConnectorId();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
+			return getMappings();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
+			return getDataModelURI();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
+			if (resolve)
+				return getDefaultScope();
+			return basicGetDefaultScope();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
+			return getRepositoryURI();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
+			return getDestinationURI();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
-				setContents((RequirementsContainer)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-				setName((String)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-				((EStructuralFeature.Setting)getProperties()).set(newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-				setConnectorId((String)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-				getMappings().clear();
-				getMappings().addAll((Collection<? extends MappingElement>)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
-				setDataModelURI((String)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
-				setDefaultScope((Scope)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
-				setRepositoryURI((String)newValue);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
-				setDestinationURI((String)newValue);
-				return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
+			setContents((RequirementsContainer) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
+			setName((String) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
+			((EStructuralFeature.Setting) getProperties()).set(newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
+			setConnectorId((String) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
+			getMappings().clear();
+			getMappings().addAll((Collection<? extends MappingElement>) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
+			setDataModelURI((String) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
+			setDefaultScope((Scope) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
+			setRepositoryURI((String) newValue);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
+			setDestinationURI((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
-				setContents((RequirementsContainer)null);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-				getProperties().clear();
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-				setConnectorId(CONNECTOR_ID_EDEFAULT);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-				getMappings().clear();
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
-				setDataModelURI(DATA_MODEL_URI_EDEFAULT);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
-				setDefaultScope((Scope)null);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
-				setRepositoryURI(REPOSITORY_URI_EDEFAULT);
-				return;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
-				setDestinationURI(DESTINATION_URI_EDEFAULT);
-				return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
+			setContents((RequirementsContainer) null);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
+			getProperties().clear();
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
+			setConnectorId(CONNECTOR_ID_EDEFAULT);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
+			getMappings().clear();
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
+			setDataModelURI(DATA_MODEL_URI_EDEFAULT);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
+			setDefaultScope((Scope) null);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
+			setRepositoryURI(REPOSITORY_URI_EDEFAULT);
+			return;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
+			setDestinationURI(DESTINATION_URI_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
-				return contents != null;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
-				return properties != null && !properties.isEmpty();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
-				return CONNECTOR_ID_EDEFAULT == null ? connectorId != null : !CONNECTOR_ID_EDEFAULT.equals(connectorId);
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
-				return mappings != null && !mappings.isEmpty();
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
-				return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null : !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
-				return defaultScope != null;
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
-				return REPOSITORY_URI_EDEFAULT == null ? repositoryURI != null : !REPOSITORY_URI_EDEFAULT.equals(repositoryURI);
-			case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
-				return DESTINATION_URI_EDEFAULT == null ? destinationURI != null : !DESTINATION_URI_EDEFAULT.equals(destinationURI);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONTENTS:
+			return contents != null;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__PROPERTIES:
+			return properties != null && !properties.isEmpty();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__CONNECTOR_ID:
+			return CONNECTOR_ID_EDEFAULT == null ? connectorId != null : !CONNECTOR_ID_EDEFAULT.equals(connectorId);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__MAPPINGS:
+			return mappings != null && !mappings.isEmpty();
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DATA_MODEL_URI:
+			return DATA_MODEL_URI_EDEFAULT == null ? dataModelURI != null : !DATA_MODEL_URI_EDEFAULT.equals(dataModelURI);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DEFAULT_SCOPE:
+			return defaultScope != null;
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__REPOSITORY_URI:
+			return REPOSITORY_URI_EDEFAULT == null ? repositoryURI != null : !REPOSITORY_URI_EDEFAULT.equals(repositoryURI);
+		case RequirementSourceConfPackage.REQUIREMENT_SOURCE__DESTINATION_URI:
+			return DESTINATION_URI_EDEFAULT == null ? destinationURI != null : !DESTINATION_URI_EDEFAULT.equals(destinationURI);
 		}
 		return super.eIsSet(featureID);
 	}
