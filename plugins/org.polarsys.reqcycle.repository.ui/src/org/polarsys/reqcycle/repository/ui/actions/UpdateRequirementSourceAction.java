@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.polarsys.reqcycle.repository.connector.update.rs.pages.DialogUpdatePage;
+//import org.polarsys.reqcycle.repository.connector.update.rs.pages.DialogUpdatePage;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
@@ -51,7 +52,6 @@ public class UpdateRequirementSourceAction extends Action {
 			if (rs instanceof RequirementSource) {
 				requirementsSources.add(rs);
 			}
-
 		}
 
 		Shell shell = Display.getDefault().getActiveShell();
@@ -59,7 +59,5 @@ public class UpdateRequirementSourceAction extends Action {
 		DialogUpdatePage updatePage = new DialogUpdatePage(shell);
 		updatePage.setReqSources(requirementsSources);
 		updatePage.open();
-
 	}
-
 }

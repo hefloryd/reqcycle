@@ -24,6 +24,7 @@ import org.polarsys.reqcycle.commands.CreateRelationCommand;
 import org.polarsys.reqcycle.commands.utils.RelationCommandUtils;
 import org.polarsys.reqcycle.commands.utils.RelationCreationDescriptor;
 import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
 import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.IReachableManager;
@@ -133,6 +134,9 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			MenuItem item = new MenuItem(newMenu, SWT.NONE);
 			final CreateRelationCommand command = allCommands.get(desc);
 			item.setText(desc.getLabel());
+			if ((desc.getRelation().getIcon() != null) && (desc.getRelation().getIcon().length() > 0)) {
+				item.setImage(IconRegistry.getImage(desc.getRelation().getIcon()));
+			}
 			item.addSelectionListener(new SelectionAdapter() {
 
 				@Override

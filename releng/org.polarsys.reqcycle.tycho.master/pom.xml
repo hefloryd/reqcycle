@@ -140,6 +140,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.windows.ini</module>
 		<module>../../plugins/org.polarsys.reqcycle.typesmodel</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.document</module>
+		<module>../../plugins/org.polarsys.reqcycle.styling.manager</module>
 		
 		<!-- Features -->		
 		<module>../../features/org.polarsys.reqcycle.core.feature</module>

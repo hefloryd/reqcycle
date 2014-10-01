@@ -14,7 +14,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.ui.dialogs.StyleModelChooserDialog;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -23,12 +23,11 @@ public class StyleModelChooserHandler extends AbstractHandler {
 	@Inject
 	IDataManager requirementSourceManager;
 	@Inject
-	IStylingManager styleManager;
+	IStylingManager styleManager = ZigguratInject.make(IStylingManager.class);
 	protected Collection<RequirementSource> sources;
 
 	public StyleModelChooserHandler() {
 		super();
-		ZigguratInject.inject(this);
 	}
 
 	@Override

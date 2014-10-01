@@ -33,7 +33,10 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.dnd,
  org.eclipse.emf.workspace,
  org.polarsys.reqcycle.repository.data,
- org.polarsys.reqcycle.repository.ui
+ org.polarsys.reqcycle.repository.ui,
+ org.polarsys.reqcycle.ui.eattrpropseditor,
+ org.polarsys.reqcycle.predicates.ui,
+ org.polarsys.reqcycle.styling.manager
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.styling.ui,

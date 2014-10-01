@@ -15,8 +15,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
-import org.polarsys.reqcycle.traceability.model.Link;
-import org.polarsys.reqcycle.traceability.model.Pair;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
@@ -34,34 +32,6 @@ public class RelationUtils {
 
 	static ITypesManager manager = ZigguratInject.make(ITypesManager.class);
 	static TraceTypesManager tManager = ZigguratInject.make(TraceTypesManager.class);
-
-	public static Iterable<Relation> getMatchingRelations(Pair<Link, Reachable> pair, DIRECTION direction, Configuration config) {
-		Reachable source = pair.getFirst().getSources().iterator().next();
-		Reachable target = pair.getFirst().getTargets().iterator().next();
-		return getAgregatingRelations(pair.getFirst().getKind(), config, source, target, direction);
-		// Iterable<IType> allTypesFromSource = manager
-		// .getAllApplicableTypes(source);
-		// Set<Relation> result = new HashSet<Relation>();
-		// for (IType t : allTypesFromSource) {
-		// Type type = ConfigUtils.getType(config, t.getId());
-		// if (type != null) {
-		// List<Relation> relations = getRelations(type, direction, config);
-		// for (Relation r : relations) {
-		// if (r.getKind()
-		// .equals(pair.getFirst().getKind().getSuperType()
-		// .getLabel())) {
-		// Type typeTarget = getTypeTarget(r, direction);
-		// IType targetTypeFromManager = typeTarget.getIType();
-		// if (targetTypeFromManager != null
-		// && targetTypeFromManager.is(pair.getSecond())) {
-		// result.add(r);
-		// }
-		// }
-		// }
-		// }
-		// }
-		// return result;
-	}
 
 	private static Type getTypeTarget(Relation r, DIRECTION direction) {
 		if (direction == DIRECTION.DOWNWARD) {
@@ -129,6 +99,22 @@ public class RelationUtils {
 	public static Relation getRelation(String kind, Configuration conf) {
 		for (Relation r : conf.getRelations()) {
 			if (r.getKind().equals(kind)) {
+				return r;
+			}
+		}
+		return null;
+	}
+
+	public static Relation getMatchingRelation(Configuration config, TType kind, Reachable down, Reachable up) {
+		for (Relation r : config.getRelations()) {
+			boolean sourceAndTargetOk = kind.is(r.getTType()) ;
+			if (sourceAndTargetOk){
+				sourceAndTargetOk &= r.getDownstreamType().getIType().is(down);
+			}
+			if (sourceAndTargetOk){
+				sourceAndTargetOk &= r.getUpstreamType().getIType().is(up);
+			}
+			if (sourceAndTargetOk) {
 				return r;
 			}
 		}

@@ -42,6 +42,7 @@ import org.eclipse.wb.swt.ResourceManager;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.ConstantPattern;
 import org.polarsys.reqcycle.styling.model.Styling.FontOption;
@@ -51,7 +52,6 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPackage.Literals;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
 import org.polarsys.reqcycle.styling.model.Styling.util.StylingAdapterFactory;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
 import org.polarsys.reqcycle.styling.ui.dialogs.IconRegistry.Descriptor;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 

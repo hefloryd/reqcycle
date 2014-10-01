@@ -22,6 +22,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.osgi.framework.Bundle;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 
@@ -31,9 +32,9 @@ public class ExtensionPointReader {
 	public static final String EXT_ID = "types";
 
 	public Map<String, IType> read() {
-		return Maps.uniqueIndex(Iterables.transform(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID)), new Conf2Type()), new Function<IType, String>() {
+		return Maps.uniqueIndex(Iterables.filter(Iterables.transform(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_ID)), new Conf2Type()), Predicates.notNull()), new Function<IType, String>() {
 			public String apply(IType type) {
-				return type.getId();
+				return type != null ? type.getId() : "";
 			}
 		});
 	}

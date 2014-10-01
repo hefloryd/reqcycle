@@ -18,8 +18,10 @@ import org.eclipse.jdt.core.ITypeRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.ui.actions.NewWizardAction;
 import org.polarsys.reqcycle.jdt.utils.JDTUtils;
 import org.polarsys.reqcycle.uri.exceptions.VisitableException;
+import org.polarsys.reqcycle.uri.model.IBusinessObject;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.uri.visitors.EmptyVisitable;
@@ -29,25 +31,27 @@ public class JDTReachableObject implements ReachableObject {
 
 	private Reachable reachable;
 	IFile file = null;
-	private IJavaElement element;
+	private IJavaElement javaElement = null;
 
 	public JDTReachableObject(Reachable t) {
 		this.reachable = t;
 		String path = t.trimFragment().toString().replaceFirst(JDTUtils.PLATFORM, "");
 		file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path));
-		element = JavaCore.create(file);
-		if (element instanceof ITypeRoot) {
-			ITypeRoot aClass = (ITypeRoot) element;
-			String fragment = t.getFragment();
-			if (fragment != null && fragment.length() > 0) {
-				String[] splitted = fragment.split(JDTUtils.SEPARATOR);
-				if (splitted.length > 0) {
-					element = findMethodRecursively(aClass, splitted);
+		if (file != null){
+			IJavaElement element = JavaCore.create(file);
+			if (element instanceof ITypeRoot) {
+				ITypeRoot aClass = (ITypeRoot) element;
+				String fragment = t.getFragment();
+				if (fragment != null && fragment.length() > 0) {
+					String[] splitted = fragment.split(JDTUtils.SEPARATOR);
+					if (splitted.length > 0) {
+						javaElement = findMethodRecursively(aClass, splitted);
+					} else {
+						javaElement = aClass;
+					}
 				} else {
-					element = aClass;
+					javaElement = aClass;
 				}
-			} else {
-				element = aClass;
 			}
 		}
 	}
@@ -86,19 +90,25 @@ public class JDTReachableObject implements ReachableObject {
 
 	@Override
 	public Object getAdapter(Class adapter) {
+		if (IBusinessObject.class.equals(adapter)){
+			return new IBusinessObject.DefaultBusinessObject(javaElement != null);
+		}
 		if (ILabelProvider.class.equals(adapter)) {
 			return new JDTLabelProvider();
 		}
 		if (IJavaElement.class.equals(adapter)) {
-			return element;
+			return javaElement;
+		}
+		if (IFile.class.equals(adapter)){
+			return file;
 		}
 		return null;
 	}
 
 	@Override
 	public IVisitable getVisitable() throws VisitableException {
-		if (element != null) {
-			return new JDTVisitable(element);
+		if (javaElement != null) {
+			return new JDTVisitable(javaElement);
 		} else {
 			return new EmptyVisitable();
 		}

@@ -15,18 +15,26 @@ import javax.inject.Inject;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.polarsys.reqcycle.traceability.model.Link;
-import org.polarsys.reqcycle.traceability.types.ui.IStylePredicateProvider;
-import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
-import org.polarsys.reqcycle.uri.model.Reachable;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
+import org.polarsys.reqcycle.traceability.model.Link;
+import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
+import org.polarsys.reqcycle.traceability.types.RelationUtils;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
+import org.polarsys.reqcycle.traceability.types.ui.IStylePredicateProvider;
+import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
+import org.polarsys.reqcycle.uri.model.Reachable;
 
 public class RequestLabelProvider extends LabelProvider implements IFontProvider, IColorProvider {
 
 	@Inject
 	IStylePredicateProvider provider;
+
+	@Inject
+	ITypesConfigurationProvider typeConfProvider;
 
 	@Override
 	public String getText(Object element) {
@@ -46,6 +54,15 @@ public class RequestLabelProvider extends LabelProvider implements IFontProvider
 	public Image getImage(Object element) {
 		if (element instanceof BusinessDeffered) {
 			element = ((BusinessDeffered) element).getBusinessElement();
+
+			if (element instanceof Link) {
+				Link link = (Link) element;
+				Configuration config = typeConfProvider.getDefaultConfiguration();
+				Relation relation = RelationUtils.getMatchingRelation(config, link.getKind(), link.getSources().iterator().next(), link.getTargets().iterator().next());
+				if(relation != null) {
+					return IconRegistry.getImage(relation.getIcon());
+				}
+			}
 		}
 		if (element instanceof Reachable) {
 			Reachable reach = (Reachable) element;

@@ -12,6 +12,7 @@ package org.polarsys.reqcycle.traceability.ui.views;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -37,32 +38,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.polarsys.reqcycle.dnd.DNDReqCycle;
-import org.polarsys.reqcycle.traceability.builder.IBuildingTraceabilityEngine;
-import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
-import org.polarsys.reqcycle.traceability.engine.Request;
-import org.polarsys.reqcycle.traceability.engine.Request.DEPTH;
-import org.polarsys.reqcycle.traceability.model.Link;
-import org.polarsys.reqcycle.traceability.model.scopes.CompositeScope;
-import org.polarsys.reqcycle.traceability.model.scopes.Scopes;
-import org.polarsys.reqcycle.traceability.types.conditions.TypeConditions;
-import org.polarsys.reqcycle.traceability.types.scopes.ConfigurationScope;
-import org.polarsys.reqcycle.traceability.ui.Activator;
-import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
-import org.polarsys.reqcycle.traceability.ui.providers.BusinessDeffered;
-import org.polarsys.reqcycle.traceability.ui.providers.RequestContentProvider;
-import org.polarsys.reqcycle.traceability.ui.providers.RequestLabelProvider;
-import org.polarsys.reqcycle.traceability.ui.services.ILocateService;
-import org.polarsys.reqcycle.types.IType;
-import org.polarsys.reqcycle.types.ITypesManager;
-import org.polarsys.reqcycle.types.ui.providers.IterableOfTypesContentProvider;
-import org.polarsys.reqcycle.types.ui.providers.TypeLabelProvider;
-import org.polarsys.reqcycle.uri.IReachableManager;
-import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
-import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.uri.model.ReachableObject;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
@@ -101,6 +76,40 @@ import org.eclipse.ui.part.PluginTransferData;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.wb.swt.ResourceManager;
+import org.polarsys.reqcycle.dnd.DNDReqCycle;
+import org.polarsys.reqcycle.traceability.builder.IBuildingTraceabilityEngine;
+import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
+import org.polarsys.reqcycle.traceability.engine.Request;
+import org.polarsys.reqcycle.traceability.engine.Request.DEPTH;
+import org.polarsys.reqcycle.traceability.model.Link;
+import org.polarsys.reqcycle.traceability.model.scopes.CompositeScope;
+import org.polarsys.reqcycle.traceability.model.scopes.Scopes;
+import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
+import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
+import org.polarsys.reqcycle.traceability.storage.NoProjectStorageException;
+import org.polarsys.reqcycle.traceability.types.conditions.TypeConditions;
+import org.polarsys.reqcycle.traceability.types.scopes.ConfigurationScope;
+import org.polarsys.reqcycle.traceability.ui.Activator;
+import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
+import org.polarsys.reqcycle.traceability.ui.providers.BusinessDeffered;
+import org.polarsys.reqcycle.traceability.ui.providers.RequestContentProvider;
+import org.polarsys.reqcycle.traceability.ui.providers.RequestLabelProvider;
+import org.polarsys.reqcycle.traceability.ui.services.ILocateService;
+import org.polarsys.reqcycle.types.IType;
+import org.polarsys.reqcycle.types.ITypesManager;
+import org.polarsys.reqcycle.types.ui.providers.IterableOfTypesContentProvider;
+import org.polarsys.reqcycle.types.ui.providers.TypeLabelProvider;
+import org.polarsys.reqcycle.uri.IReachableListenerManager;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
+import org.polarsys.reqcycle.uri.model.IObjectHandler;
+import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
+//polarsys.org/gitroot/reqcycle/reqcycle.git
 
 public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 
@@ -129,9 +138,16 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 	private Button btnFilterOnCurrent;
 	private Action locateAction;
 	private Action deleteAction;
-	
+
+	@Inject
+	protected IStorageProvider provider;
+
+	@Inject
+	protected IReachableListenerManager listenerManager;
+
 	public TraceabilityViewer() {
 		setTitleImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.ui", "icons/path.gif"));
+		ZigguratInject.inject(this);
 	}
 
 	@Override
@@ -234,6 +250,50 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 
 		};
 		menuManager.add(locateAction);
+		menuManager.add(new Separator());
+
+		deleteAction = new Action("Delete link", ResourceManager.getPluginImageDescriptor("org.polarsys.reqcycle.traceability.ui", "icons/delete_obj.gif")) {
+			@Override
+			public void run() {
+
+				ISelection selec = traceabilityTreeViewer.getSelection();
+				if (selec instanceof IStructuredSelection) {
+					IStructuredSelection structured = (IStructuredSelection) selec;
+					if (structured.getFirstElement() instanceof BusinessDeffered) {
+						BusinessDeffered busi = (BusinessDeffered) structured.getFirstElement();
+						if (busi.getBusinessElement() instanceof Link) {
+							Link link = (Link) busi.getBusinessElement();
+
+							Reachable source = Iterables.get(link.getSources(), 0);
+							Reachable target = Iterables.get(link.getTargets(), 0);
+
+							ITraceabilityStorage storage = null;
+							Collection<Reachable> notification = Sets.newHashSet();
+
+							try {
+								storage = provider.getProjectStorageFromLinkId(link.getId());
+								if (storage != null) {
+									storage.startTransaction();
+									storage.removeTraceabilityLink(link.getId());
+									notification.add(link.getId());
+									notification.add(source);
+									notification.add(target);
+									notification.add(link.getId().trimFragment());
+									storage.commit();
+									listenerManager.notifyChanged(notification.toArray(new Reachable[] {}));
+								}
+							} catch (NoProjectStorageException e) {
+								e.printStackTrace();
+							} finally {
+								storage.save();
+							}
+						}
+					}
+				}
+			}
+
+		};
+		menuManager.add(deleteAction);
 		menuManager.add(new Separator());
 		menuManager.add(new Action("Show Properties view", ResourceManager.getPluginImageDescriptor("org.polarsys.reqcycle.traceability.ui", "icons/properties-1.gif")) {
 			@Override
@@ -706,6 +766,18 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			}
 		} else if (part == this) {
 			locateAction.setEnabled(locateService.isOpenable(getSelectedReachable()));
+		}
+
+		if (selection instanceof IStructuredSelection) {
+			IStructuredSelection structured = (IStructuredSelection) selection;
+			if (structured.getFirstElement() instanceof BusinessDeffered) {
+				BusinessDeffered busi = (BusinessDeffered) structured.getFirstElement();
+				if (busi.getBusinessElement() instanceof Link) {
+					deleteAction.setEnabled(true);
+				} else {
+					deleteAction.setEnabled(false);
+				}
+			}
 		}
 	}
 

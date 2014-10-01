@@ -27,12 +27,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.ResourceManager;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.Default;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.util.StylingAdapterFactory;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class StyleModelChooserDialog extends TitleAreaDialog implements IDoubleClickListener {

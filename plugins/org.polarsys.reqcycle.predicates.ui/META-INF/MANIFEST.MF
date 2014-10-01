@@ -36,6 +36,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt,
  org.polarsys.reqcycle.core.ui,
  org.polarsys.reqcycle.operations,
- org.polarsys.reqcycle.operations.ui
+ org.polarsys.reqcycle.operations.ui,
+ org.polarsys.reqcycle.styling.manager;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject;version="1.0.0"

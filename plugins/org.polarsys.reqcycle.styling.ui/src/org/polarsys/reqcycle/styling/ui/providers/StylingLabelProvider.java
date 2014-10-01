@@ -38,11 +38,11 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.ITopic;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
 import org.polarsys.reqcycle.styling.ui.dialogs.IconRegistry;
 //import org.polarsys.reqcycle.styling.ui.providers.StylingContentProvider.PredicateInput;
 import org.polarsys.reqcycle.uri.IReachableManager;
@@ -147,7 +147,7 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 						return IconRegistry.getImage(sp.getIcon().getImage());
 					}
 				}
-				if (model.getDefault() != null) {
+				if ((model.getDefault() != null) && (model.getDefault().getIcon() != null)) {
 					return IconRegistry.getImage(model.getDefault().getIcon().getImage());
 				}
 			}
@@ -192,32 +192,52 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 					if (sp.getPredicate() != null) {
 						if (predicateEvaluator.match(sp.getPredicate(), element)) {
 							if (StyledString.class.equals(theClass)) {
-								return (T) applyStyle(element, styling);
+								StyledString styledString = applyStyle(element, styling);
+								if (styledString.length() != 0) {
+									return (T) applyStyle(element, styling);
+								} else {
+									return (T) getDefaultText(element, theClass);
+								}
 							} else {
 								StyledString s = applyStyle(element, styling);
-								return (T) s.getString();
+								if (s.length() != 0) {
+									return (T) s.getString();
+								} else {
+									return (T) getDefaultText(element, theClass);
+								}
 							}
 						}
 					}
 				}
 				if (model.getDefault() != null) {
-					return (T) applyStyle(element, model.getDefault());
+					StyledString styledString = applyStyle(element, model.getDefault());
+					if (styledString.length() != 0) {
+						return (T) applyStyle(element, model.getDefault());
+					} else {
+						return (T) getDefaultText(element, theClass);
+					}
 				}
 			} else {
-				// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default
-				if (element instanceof Requirement) {
-					Requirement req = (Requirement) element;
-					String label = "id=" + req.getId() + "][" + "text=" + req.getText();
-					return toT(" [ " + label + "]", theClass);
-
-				}
-				// as Requirement extends section, requirement must be handled first (before section)
-				if (element instanceof Section) {
-					String label = ((Section) element).getId() + "][" + ((Section) element).getText();
-					return toT(" [ " + label + "]", theClass);
-				}
+				return (T) getDefaultText(element, theClass);
 			}
 		}
+		return toT(element.toString(), theClass);
+	}
+	
+	protected <T> T getDefaultText(Object element, Class<T> theClass) {
+		// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default
+		if (element instanceof Requirement) {
+			Requirement req = (Requirement) element;
+			String label = "id=" + req.getId() + "][" + "text=" + req.getText();
+			return toT(" [ " + label + "]", theClass);
+
+		}
+		// as Requirement extends section, requirement must be handled first (before section)
+		if (element instanceof Section) {
+			String label = ((Section) element).getId() + "][" + ((Section) element).getText();
+			return toT(" [ " + label + "]", theClass);
+		}
+		
 		return toT(element.toString(), theClass);
 	}
 

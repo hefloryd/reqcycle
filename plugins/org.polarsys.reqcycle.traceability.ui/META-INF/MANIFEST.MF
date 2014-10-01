@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.filesystem,
  org.eclipse.ui.ide,
  org.eclipse.core.resources,
- javax.inject
+ javax.inject,
+ org.polarsys.reqcycle.traceability.storage
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.traceability.ui,

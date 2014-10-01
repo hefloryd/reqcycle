@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.workspace,
  org.polarsys.reqcycle.utils.inject,
  com.google.guava,
- org.eclipse.ui.navigator
+ org.eclipse.ui.navigator,
+ org.polarsys.reqcycle.traceability.types.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject;version="1.0.0"

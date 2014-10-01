@@ -1,4 +1,4 @@
-package org.polarsys.reqcycle.styling.ui.impl;
+package org.polarsys.reqcycle.styling.manager.impl;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -9,11 +9,16 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.styling.manager.Activator;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
+import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.Styling;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
-import org.polarsys.reqcycle.styling.ui.Activator;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
+import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
+import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 
 import com.google.common.collect.Maps;
@@ -54,6 +59,26 @@ public class StylingManager implements IStylingManager {
 		return preferredStylingModel;
 	}
 
+	public void suppressPredicate(IPredicate predicate) {
+		CaseStyle caseStyle = null;
+		for(StylingModel model : currentModel.getModels()) {
+			for(CaseStyle style : model.getStyles()) {
+				if(style instanceof StylingPredicate) {
+					StylingPredicate stylingPredicate = (StylingPredicate)style;
+					if (stylingPredicate.getPredicate().equals(predicate)) {
+						caseStyle = style;
+						break;
+					}
+				}
+			}
+			if (caseStyle != null) {
+				EList<CaseStyle> casesStyle = model.getStyles();
+				casesStyle.remove(caseStyle);
+				caseStyle = null;
+			}
+		}
+	}
+	
 	public void save() {
 		try {
 			confManager.saveConfiguration(Collections.singleton(currentModel), null, null, PREF_ID, null, null);

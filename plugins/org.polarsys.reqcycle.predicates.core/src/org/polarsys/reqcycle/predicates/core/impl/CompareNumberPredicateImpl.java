@@ -245,6 +245,8 @@ public class CompareNumberPredicateImpl extends MinimalEObjectImpl.Container imp
 			default:
 				throw new UnsupportedOperationException("Unknown operator ...");
 			}
+		} catch (ClassCastException e) {
+			return false;
 		} catch (NullPointerException e) {
 			return false;
 		}

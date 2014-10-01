@@ -5,6 +5,7 @@
 -->
 
 <plugin>
+   <extension-point id="relationpic" name="Relation Picture" schema="schema/relationpic.exsd"/>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.org.polarsys.reqcycle/typeconfiguration/1.0"
@@ -94,6 +95,84 @@
             impl="org.polarsys.reqcycle.traceability.types.ui.impl.StylePredicateProvider"
             interface="org.polarsys.reqcycle.traceability.types.ui.IStylePredicateProvider">
       </binding>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.traceability.types.ui.relationpic">
+      <Picture
+            path="regIcons/addrepo_rep-3.gif">
+      </Picture>
+      <Picture
+            path="regIcons/addrepo_rep-4.gif">
+      </Picture>
+      <Picture
+            path="regIcons/addrepo_rep-5.gif">
+      </Picture>
+      <Picture
+            path="regIcons/bottom_source.bmp">
+      </Picture>
+      <Picture
+            path="regIcons/callee_co.gif">
+      </Picture>
+      <Picture
+            path="regIcons/caller_co.gif">
+      </Picture>
+      <Picture
+            path="regIcons/classpath.gif">
+      </Picture>
+      <Picture
+            path="regIcons/conflict_synch-2.gif">
+      </Picture>
+      <Picture
+            path="regIcons/conflict_synch-3.gif">
+      </Picture>
+      <Picture
+            path="regIcons/conflict_synch-7.gif">
+      </Picture>
+      <Picture
+            path="regIcons/EParameter.gif">
+      </Picture>
+      <Picture
+            path="regIcons/EReference.gif">
+      </Picture>
+      <Picture
+            path="regIcons/ETypeParameter.gif">
+      </Picture>
+      <Picture
+            path="regIcons/incom_stat.gif">
+      </Picture>
+      <Picture
+            path="regIcons/nav_backward-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/nav_backward.gif">
+      </Picture>
+      <Picture
+            path="regIcons/nav_forward.gif">
+      </Picture>
+      <Picture
+            path="regIcons/prev_nav-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/prev_nav.gif">
+      </Picture>
+      <Picture
+            path="regIcons/skip_task-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/skip_task.gif">
+      </Picture>
+      <Picture
+            path="regIcons/statusGreen.png">
+      </Picture>
+      <Picture
+            path="regIcons/statusGrey.png">
+      </Picture>
+      <Picture
+            path="regIcons/statusRed.png">
+      </Picture>
+      <Picture
+            path="regIcons/statusYellow.png">
+      </Picture>
    </extension>
 
 </plugin>

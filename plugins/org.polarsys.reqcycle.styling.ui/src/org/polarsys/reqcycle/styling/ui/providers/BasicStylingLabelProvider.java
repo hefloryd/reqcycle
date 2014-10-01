@@ -2,7 +2,6 @@ package org.polarsys.reqcycle.styling.ui.providers;
 
 import javax.inject.Inject;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
@@ -10,12 +9,9 @@ import org.eclipse.swt.graphics.Image;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
-import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
 import org.polarsys.reqcycle.styling.ui.dialogs.IconRegistry;
-import org.polarsys.reqcycle.styling.ui.providers.StylingLabelProvider.StylingAdapter;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class BasicStylingLabelProvider extends StylingLabelProvider {
@@ -38,7 +34,7 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 		} else {
 			StylingModel model = getStylingModel();
 			if (model != null) {
-				if (model.getBasic() != null) {
+				if ((model.getBasic() != null) && (model.getBasic().getIcon() != null)) {
 					return IconRegistry.getImage(model.getBasic().getIcon().getImage());
 				}
 			}
@@ -77,6 +73,6 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 				}
 			}
 		}
-		return toT(element.toString(), theClass);
+		return (T) getDefaultText(element, theClass);
 	}
 }
