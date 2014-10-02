@@ -17,8 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section#getChildren <em>Children</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Section extends AbstractElement {
 	/**
-	 * Returns the value of the '<em><b>Children</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement} . <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>

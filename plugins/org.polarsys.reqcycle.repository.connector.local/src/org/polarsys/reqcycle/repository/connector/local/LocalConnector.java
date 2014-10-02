@@ -17,7 +17,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
@@ -74,7 +73,7 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public void addPages() {
-		settingPage = new AbstractSettingPage("Setting Page", new AbstractStorageBean());
+		// settingPage = new AbstractSettingPage("Setting Page", new AbstractStorageBean());
 		addPage(settingPage);
 	}
 

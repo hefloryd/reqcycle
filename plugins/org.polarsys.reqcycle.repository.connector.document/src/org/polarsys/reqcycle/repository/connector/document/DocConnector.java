@@ -1,6 +1,17 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,6 +32,7 @@ import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -67,8 +79,6 @@ public class DocConnector extends Wizard implements IConnectorWizard{
 	@Override
 	public ICallable getRequirementsCreator() {
 		DocCallable callable = ZigguratInject.make(DocCallable.class);
-		
-		callable.setListVReq(bean.getListValideRequirements());
 		return callable;
 	}
 	
@@ -158,16 +168,8 @@ public class DocConnector extends Wizard implements IConnectorWizard{
 		public void storeProperties(RequirementSource source) {
 			super.storeProperties(source);
 			try {
-				/*List<EObject> list= new ArrayList<EObject>();
-				for(Requirement req : this.getListValideRequirements()){
-					if( req instanceof EObject){
-						list.add((EObject) req);
-					}
-				}
-			*/
-				
+
 				source.setProperty(IDOCConstants.DOC_NAME,this.getType().getName());
-				//PropertyUtils.setEObjectsInSource(source, IDOCConstants.LIST_VALIDE_REQ,list);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -184,6 +186,12 @@ public class DocConnector extends Wizard implements IConnectorWizard{
 	public void storeProperties(RequirementSource source) {
 	
 		bean.storeProperties(source);
+
+		Collection<MappingElement> mapElements = new ArrayList<MappingElement>();
+		if (bean.getListValideRequirements() != null) {
+			mapElements = DocUtils.mappingElements(bean.getListValideRequirements(), PropertyUtils.getDataModelFromSource(source).getTypes());
+		}
+		source.getMappings().addAll(mapElements);
 		
 	}
 

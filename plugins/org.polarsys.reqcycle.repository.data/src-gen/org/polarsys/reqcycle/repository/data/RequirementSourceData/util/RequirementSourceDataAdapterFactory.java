@@ -112,7 +112,7 @@ public class RequirementSourceDataAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement <em>Abstract Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement <em>Abstract Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -124,7 +124,7 @@ public class RequirementSourceDataAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section <em>Section</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section <em>Section</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -136,7 +136,7 @@ public class RequirementSourceDataAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement <em>Simple Requirement</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement <em>Simple Requirement</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -148,7 +148,7 @@ public class RequirementSourceDataAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement <em>Requirement</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement <em>Requirement</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -160,7 +160,7 @@ public class RequirementSourceDataAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer <em>Requirements Container</em>}'. <!-- begin-user-doc --> This default implementation returns null so that
+	 * Creates a new adapter for an object of class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer <em>Requirements Container</em>}'. <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.

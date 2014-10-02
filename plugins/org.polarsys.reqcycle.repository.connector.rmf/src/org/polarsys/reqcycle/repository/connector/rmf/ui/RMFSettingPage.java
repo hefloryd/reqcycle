@@ -6,6 +6,7 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ *    Malick WADE (AtoS) - restructuring of the connector architecture (2014)
  *   
  *******************************************************************************/
 

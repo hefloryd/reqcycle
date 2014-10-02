@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
+            class="org.polarsys.reqcycle.traceability.storage.ui.prefs.StoragePathPreferencePage"
+            id="org.polarsys.reqcycle.traceability.storage.ui.path"
+            name="Path For Traceability Storage">
+      </page>
+   </extension>
+
+</plugin>

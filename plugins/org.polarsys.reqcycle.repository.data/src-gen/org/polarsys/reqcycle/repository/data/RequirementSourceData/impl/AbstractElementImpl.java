@@ -32,14 +32,10 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getId <em>Id</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getText <em>Text</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getUri <em>Uri</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getScopes <em>Scopes</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getId <em>Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getText <em>Text</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getUri <em>Uri</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl#getScopes <em>Scopes</em>}</li>
  * </ul>
  * </p>
  *

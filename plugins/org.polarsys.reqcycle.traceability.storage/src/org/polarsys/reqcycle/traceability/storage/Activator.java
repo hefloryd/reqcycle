@@ -15,6 +15,8 @@ import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
+	public static String PLUGIN_ID = "org.polarsys.reqcycle.traceability.storage" ;
+	
 	private static BundleContext context;
 
 	static BundleContext getContext() {

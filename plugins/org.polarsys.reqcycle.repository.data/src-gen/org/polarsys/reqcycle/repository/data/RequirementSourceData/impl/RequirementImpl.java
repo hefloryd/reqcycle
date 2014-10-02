@@ -31,8 +31,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl#getChildren <em>Children</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  *

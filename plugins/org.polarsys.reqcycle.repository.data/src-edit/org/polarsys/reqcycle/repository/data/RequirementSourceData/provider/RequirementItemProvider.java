@@ -72,8 +72,7 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -86,9 +85,6 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		if (delegate != null) {
-			return delegate.getImage(object);
-		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Requirement"));
 	}
 
@@ -99,9 +95,6 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		if (delegate != null) {
-			return delegate.getText(object);
-		}
 		String label = ((Requirement) object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_Requirement_type") : getString("_UI_Requirement_type") + " " + label;
 	}

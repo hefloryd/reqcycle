@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.polarsys.reqcycle.repository.data;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider.RequirementSourceConfEditPlugin$Implementation
+Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

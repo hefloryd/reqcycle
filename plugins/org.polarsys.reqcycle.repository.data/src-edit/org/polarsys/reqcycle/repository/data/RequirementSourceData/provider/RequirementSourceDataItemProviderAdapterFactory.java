@@ -11,11 +11,9 @@ package org.polarsys.reqcycle.repository.data.RequirementSourceData.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -78,7 +76,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	protected SectionItemProvider sectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section} . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -99,7 +97,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	protected SimpleRequirementItemProvider simpleRequirementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement} . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -120,7 +118,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	protected RequirementItemProvider requirementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement} . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -141,7 +139,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	protected RequirementsContainerItemProvider requirementsContainerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer} . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,7 +179,7 @@ public class RequirementSourceDataItemProviderAdapterFactory extends Requirement
 	 */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type) || (type instanceof EPackage && ((EPackage) type).getNsURI().startsWith("http://www.polarsys.org/ReqCycle/CustomDataModels"));
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
 	/**

@@ -127,13 +127,15 @@ public class LocateService implements ILocateService {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = null;
 		for (IEditorReference ref : page.getEditorReferences()) {
-			IEditorInput input = ref.getEditorInput();
-			IFile fileFromEditor = ResourceUtil.getFile(input);
-			if (fileFromEditor != null) {
-				if (marker.getResource().equals(fileFromEditor) && OpenStrategy.activateOnOpen()) {
-					editor = ref.getEditor(true);
-					page.activate(editor);
+			if (ref.getEditor(false) != null) {
+				IEditorInput input = ref.getEditorInput();
+				IFile fileFromEditor = ResourceUtil.getFile(input);
+				if (fileFromEditor != null) {
+					if (marker.getResource().equals(fileFromEditor) && OpenStrategy.activateOnOpen()) {
+						editor = ref.getEditor(true);
+						page.activate(editor);
 
+					}
 				}
 			}
 		}

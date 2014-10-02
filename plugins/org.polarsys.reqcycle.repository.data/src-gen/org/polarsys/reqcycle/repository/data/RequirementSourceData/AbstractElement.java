@@ -21,14 +21,10 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getScopes <em>Scopes</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getScopes <em>Scopes</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,13 +43,13 @@ public interface AbstractElement extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage#getAbstractElement_Id()
-	 * @model
+	 * @model id="true"
 	 * @generated
 	 */
 	String getId();
 
 	/**
-	 * Sets the value of the ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>Id</em>' attribute.
@@ -78,7 +74,7 @@ public interface AbstractElement extends EObject {
 	String getText();
 
 	/**
-	 * Sets the value of the ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>Text</em>' attribute.
@@ -103,7 +99,7 @@ public interface AbstractElement extends EObject {
 	String getUri();
 
 	/**
-	 * Sets the value of the ' {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *            the new value of the '<em>Uri</em>' attribute.

@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *  Copyright (c) 2013, 2014 AtoS and others
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document;
 
 import java.net.URL;
@@ -15,6 +25,9 @@ import org.polarsys.reqcycle.inittypes.inittypes.Attribute;
 import org.polarsys.reqcycle.inittypes.inittypes.FileType;
 import org.polarsys.reqcycle.inittypes.inittypes.Requirement;
 import org.polarsys.reqcycle.inittypes.inittypes.Type;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelFactory;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.IType;
@@ -83,6 +96,31 @@ public class DocUtils {
 			}
 		return listReq;
 	}
+	
+	public static Collection<MappingElement> mappingElements(List<Requirement> requirements, Collection<IType> confTypes) {
+		Collection<MappingElement> mappingElements =  new ArrayList<MappingElement>();
+		List<Requirement> lstRequirements = new ArrayList<Requirement>();
+		lstRequirements.addAll(finalListRequirement(requirements, confTypes));
+		
+		for (Requirement reqIn : lstRequirements){
+				MappingElement elementMapping = MappingModelFactory.eINSTANCE.createMappingElement();
+				elementMapping.setDescription(reqIn.getNameReq());
+				elementMapping.setSourceQualifier(reqIn.getRegexReq().getExpression());
+				elementMapping.setTargetElement(reqIn.eClass());
+				
+				for (Attribute att : reqIn.getAttributesReq()){
+					MappingAttribute mappingAttribute = MappingModelFactory.eINSTANCE.createMappingAttribute();
+					mappingAttribute.setSourceId(att.getRegexAttribute().getExpression());
+					mappingAttribute.setDescription(att.getNameAttribute());
+					elementMapping.getAttributes().add(mappingAttribute);
+				}		
+				mappingElements.add(elementMapping);
+				
+			}
+		return mappingElements;
+	}
 
 	
+	
+
 }

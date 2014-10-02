@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSources#getRequirementSources <em>Requirement Sources</em>}</li>
+ * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSources#getRequirementSources <em>Requirement Sources</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,13 +28,12 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface RequirementSources extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Requirement Sources</b></em>' containment reference list.
-	 * The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirement Sources</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requirement Sources</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Requirement Sources</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage#getRequirementSources_RequirementSources()
 	 * @model containment="true"

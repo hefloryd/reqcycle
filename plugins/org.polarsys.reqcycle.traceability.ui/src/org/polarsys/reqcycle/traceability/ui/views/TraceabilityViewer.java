@@ -17,6 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -40,6 +42,7 @@ import org.polarsys.reqcycle.traceability.builder.IBuildingTraceabilityEngine;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
 import org.polarsys.reqcycle.traceability.engine.Request;
 import org.polarsys.reqcycle.traceability.engine.Request.DEPTH;
+import org.polarsys.reqcycle.traceability.model.Link;
 import org.polarsys.reqcycle.traceability.model.scopes.CompositeScope;
 import org.polarsys.reqcycle.traceability.model.scopes.Scopes;
 import org.polarsys.reqcycle.traceability.types.conditions.TypeConditions;
@@ -125,7 +128,8 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 	private Action changeViewName;
 	private Button btnFilterOnCurrent;
 	private Action locateAction;
-
+	private Action deleteAction;
+	
 	public TraceabilityViewer() {
 		setTitleImage(ResourceManager.getPluginImage("org.polarsys.reqcycle.traceability.ui", "icons/path.gif"));
 	}
@@ -212,6 +216,23 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			}
 
 		};
+		deleteAction = new Action("Delete", ResourceManager.getPluginImageDescriptor("org.polarsys.reqcycle.traceability.ui", "icons/delete_obj.gif")) {
+			@Override
+			public void run() {
+				Link link = getSelectedLink();
+				try {
+					//TODO
+					//ITraceabilityStorage traceabilityStorage = storageProvider.getProjectStorageFromLinkId(reachable);
+					//traceabilityStorage.removeTraceabilityLink(reachable);
+					//System.out.println(reachable);
+					runRefresh();
+					//locateService.open(reachable);
+				} catch (Exception e) {
+					ErrorDialog.openError(Display.getDefault().getActiveShell(), "Error", e.getMessage(), Status.OK_STATUS);
+				}
+			}
+
+		};
 		menuManager.add(locateAction);
 		menuManager.add(new Separator());
 		menuManager.add(new Action("Show Properties view", ResourceManager.getPluginImageDescriptor("org.polarsys.reqcycle.traceability.ui", "icons/properties-1.gif")) {
@@ -225,6 +246,8 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			}
 
 		});
+		menuManager.add(new Separator());
+		menuManager.add(deleteAction);
 		Menu menu = menuManager.createContextMenu(treeTraceability);
 		getSite().registerContextMenu(MENU_ID, menuManager, traceabilityTreeViewer);
 		treeTraceability.setMenu(menu);
@@ -742,6 +765,20 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 				if (busi.getBusinessElement() instanceof Reachable) {
 					Reachable reach = (Reachable) busi.getBusinessElement();
 					return reach;
+				}
+			}
+		}
+		return null;
+	}
+	
+	private Link getSelectedLink() {
+		ISelection selec = traceabilityTreeViewer.getSelection();
+		if (selec instanceof IStructuredSelection) {
+			IStructuredSelection structured = (IStructuredSelection) selec;
+			if (structured.getFirstElement() instanceof BusinessDeffered) {
+				BusinessDeffered busi = (BusinessDeffered) structured.getFirstElement();
+				if (busi.getBusinessElement() instanceof Link) {
+					return (Link) busi.getBusinessElement();
 				}
 			}
 		}

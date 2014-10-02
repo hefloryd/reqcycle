@@ -82,6 +82,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf</module>
 		<module>../../plugins/org.polarsys.reqcycle.export.rmf</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.update.rs</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui.components</module>
@@ -111,6 +112,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.export</module>
 		<module>../../plugins/org.polarsys.reqcycle.export.xls</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage</module>
+		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.storage.sesame</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.table</module>
 		<module>../../plugins/org.polarsys.reqcycle.traceability.types</module>
