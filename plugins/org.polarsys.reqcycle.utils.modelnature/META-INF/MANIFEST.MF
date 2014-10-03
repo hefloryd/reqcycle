@@ -6,7 +6,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.utils.modelnature.ModelNaturePlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.guava,
+ com.google.guava;bundle-version="15.0.0",
  org.eclipse.emf.ecore,
  org.polarsys.reqcycle.utils.inject;visibility:=reexport,
  org.eclipse.emf.transaction,

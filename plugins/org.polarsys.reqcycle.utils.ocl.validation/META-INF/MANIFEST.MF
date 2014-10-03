@@ -6,7 +6,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.utils.ocl.validation.ZigguratOCLValidationPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.examples.pivot,
- com.google.guava
+ com.google.guava;bundle-version="15.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.utils.ocl.validation

@@ -165,6 +165,14 @@
 		<tycho-version>0.21.0</tycho-version>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
+		</dependency>
+	</dependencies>
+
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -208,6 +216,11 @@
 	</repositories>
 
 	<pluginRepositories>
+		<pluginRepository>
+			<id>guava</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/</url>
+		</pluginRepository>
 		<pluginRepository>
 			<id>central</id>
 			<url>http://repo1.maven.org/maven2</url>
