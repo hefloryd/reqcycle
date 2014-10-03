@@ -16,6 +16,10 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import feature="org.eclipse.papyrus.sdk.feature"/>
+   </requires>
+
    <plugin
          id="org.polarsys.reqcycle.emf.uml"
          download-size="0"

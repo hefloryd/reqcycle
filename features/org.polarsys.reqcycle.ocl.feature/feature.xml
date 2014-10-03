@@ -16,6 +16,10 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import feature="org.eclipse.ocl.all.sdk"/>
+   </requires>
+
    <plugin
          id="org.polarsys.reqcycle.ocl"
          download-size="0"
