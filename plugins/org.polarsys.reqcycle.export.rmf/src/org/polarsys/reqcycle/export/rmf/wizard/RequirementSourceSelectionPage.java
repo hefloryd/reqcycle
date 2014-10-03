@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
-import org.polarsys.reqcycle.export.ProviderUtils;
+import org.polarsys.reqcycle.export.rmf.ProviderUtils;
 import org.polarsys.reqcycle.export.rmf.page.WizardController;
 import org.polarsys.reqcycle.export.rmf.transform.RequirementSourceReqProvider;
 import org.polarsys.reqcycle.repository.data.IDataManager;
