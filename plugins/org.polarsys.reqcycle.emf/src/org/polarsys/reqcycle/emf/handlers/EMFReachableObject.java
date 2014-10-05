@@ -32,6 +32,7 @@ import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.emf.visitors.EMFVisitable;
 import org.polarsys.reqcycle.uri.Activator;
 import org.polarsys.reqcycle.uri.exceptions.VisitableException;
+import org.polarsys.reqcycle.uri.model.IBusinessObject;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.uri.visitors.IVisitable;
@@ -41,6 +42,8 @@ public class EMFReachableObject implements ReachableObject {
 	private final Reachable t;
 	@Inject
 	ILogger logger;
+	@Inject
+	IEMFProxyRegistry registry ;
 
 	public EMFReachableObject(Reachable t) {
 		this.t = t;
@@ -81,6 +84,16 @@ public class EMFReachableObject implements ReachableObject {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
+		if (IBusinessObject.class.equals(adapter)){
+			URI createURI = URI.createURI(t.toString());
+			if (createURI.isPlatformResource()){
+				return new IBusinessObject.DefaultBusinessObject(!registry.isProxy(createURI));
+			}
+			else {
+				EObject obj = (EObject) getAdapter(EObject.class);
+				return new IBusinessObject.DefaultBusinessObject(obj != null && !obj.eIsProxy());
+			}
+		}
 		if (EObject.class.equals(adapter)) {
 			if (t.getFragment() != null && t.getFragment().length() > 0) {
 				Resource r = (Resource) getAdapter(Resource.class);

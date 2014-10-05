@@ -8,9 +8,9 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.polarsys.reqcycle.impact.ui.views.ImpactView;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
-import org.polarsys.reqcycle.repository.ui.views.ImpactView;
 
 public class OpenImpactAnalysisViewAction extends Action {
 
@@ -37,7 +37,6 @@ public class OpenImpactAnalysisViewAction extends Action {
 			}
 
 			if (!input.isEmpty()) {
-				// TODO
 				ImpactView.openNewImpactView(input);
 			}
 		}

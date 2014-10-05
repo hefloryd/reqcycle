@@ -12,6 +12,8 @@ package org.polarsys.reqcycle.traceability.types.configuration.preferences;
 import java.util.Collection;
 import java.util.Comparator;
 
+import javax.swing.Icon;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -32,14 +34,17 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
 import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.NewConfigurationDialog;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Configuration;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeConfigContainer;
 import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -170,7 +175,19 @@ public abstract class AbstractPreferencePage extends PreferencePage implements I
 	}
 
 	protected ILabelProvider getLabelProvider() {
-		return new AdapterFactoryLabelProvider(factory);
+		return new AdapterFactoryLabelProvider(factory){
+			@Override
+			public Image getImage(Object object) {
+				if (object instanceof Relation) {
+					Relation relation = (Relation) object;
+					String icon = relation.getIcon();
+					if (icon != null && icon.length() > 0){
+						return IconRegistry.getImage(icon);
+					}
+				}
+				return super.getImage(object);
+			}
+		};
 	}
 
 	protected abstract void removeAction();
@@ -183,11 +200,16 @@ public abstract class AbstractPreferencePage extends PreferencePage implements I
 		fd_grpProperties.right = new FormAttachment(100);
 		fd_grpProperties.left = new FormAttachment(0, 5);
 		grpProperties.setLayoutData(fd_grpProperties);
-		grpProperties.setLayout(new GridLayout(1, false));
+		grpProperties.setLayout(new GridLayout(2, false));
 		grpProperties.setText("Properties");
 
 		labelProperties = new Label(grpProperties, SWT.NONE | SWT.WRAP);
 		labelProperties.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		
+//		iconLabel = new Label(grpProperties, SWT.NONE | SWT.WRAP);
+//		iconLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+//		iconProperty = new Label(grpProperties, SWT.NONE | SWT.WRAP);
+//		iconProperty.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 	}
 
 	protected String getAddLabel() {

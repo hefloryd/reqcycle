@@ -16,7 +16,6 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
-import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
 
 /**
  * This is the central singleton for the Styling edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -51,7 +50,7 @@ public final class Activator extends EMFPlugin {
 	 * @generated
 	 */
 	public Activator() {
-		super(new ResourceLocator[] { PredicatesUIPlugin.INSTANCE, });
+		super(new ResourceLocator[] {});
 	}
 
 	/**

@@ -35,6 +35,16 @@ public class NavigatorRoot extends PlatformObject {
 		}
 	}
 
+	public void removeSource(RequirementSource source) {
+		if (sources.contains(source)) {
+			sources.remove(source);
+		}
+	}
+
+	public void addSource(RequirementSource source) {
+		sources.add(source);
+	}
+
 	public List<RequirementSource> getSources() {
 		return Collections.unmodifiableList(sources);
 	}

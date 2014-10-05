@@ -10,6 +10,10 @@ public class PredicateEvaluator implements IPredicateEvaluator {
 
 	@Override
 	public boolean match(IPredicate p, Object input) {
+		if (p == null) {
+			// TODO LOG
+			return false;
+		}
 		return p.match(input);
 	}
 

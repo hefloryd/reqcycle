@@ -1,4 +1,4 @@
-package org.polarsys.reqcycle.repository.ui.views;
+package org.polarsys.reqcycle.impact.ui.views;
 
 import java.util.Collection;
 
@@ -29,16 +29,16 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.polarsys.reqcycle.impact.Impact.ImpactAnalysis;
 import org.polarsys.reqcycle.impact.Impact.ImpactFactory;
+import org.polarsys.reqcycle.impact.ui.Activator;
 import org.polarsys.reqcycle.impact.ui.dialogs.ImpactAnalysisComposites;
 import org.polarsys.reqcycle.impact.ui.dialogs.ImpactAnalysisInputSelectorDialog;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
-import org.polarsys.reqcycle.repository.ui.Activator;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class ImpactView extends ViewPart {
 	/** View ID */
-	public static final String VIEW_ID = "org.polarsys.reqcycle.repository.ui.views.impact";
+	public static final String VIEW_ID = "org.polarsys.reqcycle.impact.ui.views.impact";
 
 	private ImpactAnalysis impact;
 

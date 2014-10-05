@@ -38,13 +38,13 @@ import org.polarsys.reqcycle.core.ui.dialogs.ValidatingTitleAreaDialog;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.persistance.util.IPredicatesConfManager;
 import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.Basic;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.Default;
 import org.polarsys.reqcycle.styling.model.Styling.StylingFactory;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
-import org.polarsys.reqcycle.styling.ui.IStylingManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Function;

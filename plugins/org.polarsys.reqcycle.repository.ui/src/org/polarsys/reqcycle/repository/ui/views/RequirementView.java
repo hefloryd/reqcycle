@@ -1,9 +1,13 @@
 package org.polarsys.reqcycle.repository.ui.views;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -25,18 +29,23 @@ import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonViewerMapper;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.repository.connector.update.rs.IUpdateListener;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
+import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Maps;
 
-public class RequirementView extends CommonNavigator {
+public class RequirementView extends CommonNavigator implements EventHandler {
 
 	/** View ID */
 	public static final String VIEW_ID = "org.polarsys.reqcycle.repository.ui.views.requirements";
@@ -46,6 +55,15 @@ public class RequirementView extends CommonNavigator {
 	NavigatorRoot root = new NavigatorRoot();
 
 	private AdapterFactoryEditingDomain readOnlyEditingDomain;
+
+	@Inject
+	IEventBroker broker;
+
+	public RequirementView() {
+		super();
+		ZigguratInject.inject(this);
+		broker.subscribe(IUpdateListener.LISTENER, this);
+	}
 
 	IReachableManager manager = ZigguratInject.make(IReachableManager.class);
 
@@ -74,7 +92,9 @@ public class RequirementView extends CommonNavigator {
 				super.mapElement(element, item);
 				if (!(element instanceof Reachable)) {
 					try {
-						super.mapElement(getReachable(element), item);
+						if (getReachable(element) != null) {
+							super.mapElement(getReachable(element), item);
+						}
 					} catch (IReachableHandlerException e) {
 						e.printStackTrace();
 					}
@@ -83,7 +103,6 @@ public class RequirementView extends CommonNavigator {
 
 			@Override
 			protected void unmapElement(Object element, Widget item) {
-				// TODO Auto-generated method stub
 				super.unmapElement(element, item);
 				if (!(element instanceof Reachable)) {
 					try {
@@ -148,6 +167,12 @@ public class RequirementView extends CommonNavigator {
 			}
 		}
 		root.setSources(sources);
+
+		this.getCommonViewer().refresh();
+	}
+
+	public Collection<RequirementSource> getSources() {
+		return root.getSources();
 	}
 
 	public void setPredicates(Collection<IPredicate> predicates) {
@@ -205,7 +230,13 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) element;
 			} else {
 				try {
-					r = getReachable(element);
+					IObjectHandler handlerFromObject = manager.getHandlerFromObject(element);
+					if (handlerFromObject != null) {
+						ReachableObject fromObject = handlerFromObject.getFromObject(element);
+						if (fromObject != null) {
+							r = fromObject.getReachable(element);
+						}
+					}
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -220,7 +251,13 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = getReachable(object);
+					IObjectHandler handlerFromObject = manager.getHandlerFromObject(object);
+					if (handlerFromObject != null) {
+						ReachableObject fromObject = handlerFromObject.getFromObject(object);
+						if (fromObject != null) {
+							r = fromObject.getReachable(object);
+						}
+					}
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -243,7 +280,13 @@ public class RequirementView extends CommonNavigator {
 				r = (Reachable) object;
 			} else {
 				try {
-					r = getReachable(object);
+					IObjectHandler handlerFromObject = manager.getHandlerFromObject(object);
+					if (handlerFromObject != null) {
+						ReachableObject fromObject = handlerFromObject.getFromObject(object);
+						if (fromObject != null) {
+							r = fromObject.getReachable(object);
+						}
+					}
 				} catch (IReachableHandlerException e) {
 					return false;
 				}
@@ -273,4 +316,23 @@ public class RequirementView extends CommonNavigator {
 		}
 	}
 
+	@Override
+	public void handleEvent(Event event) {
+		Object data = event.getProperty(IEventBroker.DATA);
+		if (data instanceof List<?>) {
+			List<?> dataList = (List<?>) data;
+			if ((dataList.size() > 1) && (dataList.get(0) instanceof RequirementSource) && (dataList.get(1) instanceof RequirementSource)) {
+				RequirementSource oldrs = (RequirementSource) dataList.get(0);
+				RequirementSource newrs = (RequirementSource) dataList.get(1);
+
+				List<RequirementSource> list = root.getSources();
+				if (list.contains(oldrs)) {
+					root.removeSource(oldrs);
+					root.addSource(newrs);
+
+					this.getCommonViewer().refresh();
+				}
+			}
+		}
+	}
 }

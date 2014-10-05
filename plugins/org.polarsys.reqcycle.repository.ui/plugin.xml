@@ -33,15 +33,6 @@
             name="Requirement Scope"
             restorable="true">
       </view>
-      <view
-            allowMultiple="false"
-            category="org.polarsys.reqcycle"
-            class="org.polarsys.reqcycle.repository.ui.views.ImpactView"
-            icon="icons/open.png"
-            id="org.polarsys.reqcycle.repository.ui.views.impact"
-            name="Impact Analysis"
-            restorable="true">
-      </view>
    </extension>
   <extension
         point="org.eclipse.ui.importWizards">

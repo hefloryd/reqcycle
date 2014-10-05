@@ -28,19 +28,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.polarsys.reqcycle.traceability.model.TType;
-import org.polarsys.reqcycle.traceability.types.ITraceTypesManager;
-import org.polarsys.reqcycle.traceability.types.configuration.preferences.providers.PreferenceDialogTypeLabelProvider;
-import org.polarsys.reqcycle.traceability.types.configuration.preferences.providers.PreferenceDialogTypesContentProvider;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeConfigContainer;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationFactory;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
-import org.polarsys.reqcycle.types.ITypesManager;
-import org.polarsys.reqcycle.types.ui.providers.TypeLabelProvider;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -60,6 +48,19 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
+import org.polarsys.reqcycle.traceability.model.TType;
+import org.polarsys.reqcycle.traceability.types.ITraceTypesManager;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.providers.PreferenceDialogTypeLabelProvider;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.providers.PreferenceDialogTypesContentProvider;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.CustomType;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeConfigContainer;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationFactory;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.TypeconfigurationPackage;
+import org.polarsys.reqcycle.types.ITypesManager;
+import org.polarsys.reqcycle.types.ui.providers.TypeLabelProvider;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
@@ -76,8 +77,8 @@ public class NewRelationDialog extends TitleAreaDialog {
 	private AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 	private Text textKind;
 	private CheckboxTableViewer listOfTTViewer;
-	private Text textIcon;
-
+	private Label iconLabel;
+	
 	/**
 	 * Create the dialog.
 	 * 
@@ -168,15 +169,22 @@ public class NewRelationDialog extends TitleAreaDialog {
 
 		Label lblIcon = new Label(grpProperties, SWT.NONE);
 		lblIcon.setText("Icon : ");
-
-		textIcon = new Text(grpProperties, SWT.BORDER);
-		textIcon.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		iconLabel = new Label(grpProperties, SWT.NONE);
+		iconLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		iconLabel.setText("No Icon selected");
 
 		Button btnNewButton = new Button(grpProperties, SWT.NONE);
+		btnNewButton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// image serialization
+				PictureChooserDialog d = new PictureChooserDialog(getShell());
+				if (d.open() == Window.OK) {
+					rel.setIcon(d.imageSelected);
+					iconLabel.setImage(IconRegistry.getImage(rel.getIcon()));
+				}
 			}
 		});
 		btnNewButton.setText("...");

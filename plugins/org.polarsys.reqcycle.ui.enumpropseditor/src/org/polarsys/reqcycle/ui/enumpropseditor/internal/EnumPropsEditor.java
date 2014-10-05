@@ -14,10 +14,10 @@ import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditor;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 import org.polarsys.reqcycle.ui.enumpropseditor.internal.components.EnumPropsEditorComponent;
 
-public class EnumPropsEditor extends AbstractPropsEditor<Enum> {
+public class EnumPropsEditor extends AbstractPropsEditor<String> {
 
 	@Override
-	protected AbstractPropsEditorComponent<Enum> initAndGetComponent() {
+	protected AbstractPropsEditorComponent<String> initAndGetComponent() {
 		return new EnumPropsEditorComponent(getAttributeName(), getContainer(), getStyle(), getPossibleValues());
 	}
 

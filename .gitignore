@@ -93,3 +93,5 @@
 /plugins/org.polarsys.reqcycle.windows.ini/target
 /plugins/org.polarsys.reqcycle.xcos.traceability/target
 /plugins/org.polarsys.reqcycle.xcos/target
+/plugins/org.polarsys.reqcycle.traceability.storage.ui/target
+/plugins/org.polarsys.reqcycle.repository.connector.update.rs/target

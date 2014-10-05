@@ -82,13 +82,6 @@
    </command>
 </extension>
 <extension
-      point="org.polarsys.reqcycle.utils.inject.binding">
-   <binding
-         impl="org.polarsys.reqcycle.styling.ui.impl.StylingManager"
-         interface="org.polarsys.reqcycle.styling.ui.IStylingManager">
-   </binding>
-</extension>
-<extension
       point="org.polarsys.reqcycle.styling.ui.stylingpic">
    <Picture
          path="regIcons/smartmode_co-1.gif">

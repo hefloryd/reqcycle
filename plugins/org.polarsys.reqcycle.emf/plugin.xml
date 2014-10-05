@@ -33,5 +33,9 @@
             interface="org.polarsys.reqcycle.uri.model.IObjectHandler"
             priority="0">
       </binding>
+      <binding
+            impl="org.polarsys.reqcycle.emf.handlers.EMFProxyRegistry"
+            interface="org.polarsys.reqcycle.emf.handlers.IEMFProxyRegistry">
+      </binding>
    </extension>
 </plugin>

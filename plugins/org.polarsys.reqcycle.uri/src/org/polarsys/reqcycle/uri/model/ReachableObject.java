@@ -14,6 +14,12 @@ import org.polarsys.reqcycle.uri.exceptions.VisitableException;
 import org.polarsys.reqcycle.uri.visitors.IVisitable;
 import org.polarsys.reqcycle.uri.visitors.IVisitor;
 
+/**
+ * Abstract {@link IAdaptable} representation of a {@link Reachable}
+ * can not be null : use {@link NullReachableObject} in this case, if the object behind does not exist
+ * @author tfaure
+ *
+ */
 public interface ReachableObject extends IAdaptable {
 
 	/**

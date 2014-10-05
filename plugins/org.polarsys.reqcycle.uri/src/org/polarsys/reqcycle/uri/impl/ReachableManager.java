@@ -33,7 +33,10 @@ import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IHandler;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.IReachableHandler;
+import org.polarsys.reqcycle.uri.model.NullReachableObject;
+import org.polarsys.reqcycle.uri.model.ProxyResolver;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.cache.Cache;
@@ -104,14 +107,16 @@ public class ReachableManager implements IReachableManager {
 				@Override
 				public IReachableHandler call() throws Exception {
 
-					for (IReachableHandler h : Iterables.filter(handlers, IReachableHandler.class)) {
+					for (final IReachableHandler h : Iterables.filter(handlers, IReachableHandler.class)) {
 						if (h.handlesReachable(t)) {
-							return h;
+							return getProxy(h);
 						}
 					}
 					throw new Exception();
 
 				}
+
+				
 			});
 		} catch (ExecutionException e) {
 			e.printStackTrace();
@@ -121,6 +126,49 @@ public class ReachableManager implements IReachableManager {
 			throw new IReachableHandlerException();
 		}
 		return get;
+	}
+	
+	private IReachableHandler getProxy(final IReachableHandler h) {
+		return new IReachableHandler() {
+			
+			@Override
+			public boolean handlesReachable(Reachable t) {
+				return h.handlesReachable(t);
+			}
+			
+			@Override
+			public ProxyResolver getProxyResolver() {
+				return h.getProxyResolver();
+			}
+			
+			@Override
+			public ReachableObject getFromReachable(Reachable t) {
+				ReachableObject object = h.getFromReachable(t);
+				if (object == null){
+					return new NullReachableObject();
+				}
+				return object;
+			}
+		};
+	}
+	
+	private IObjectHandler getProxy(final IObjectHandler h) {
+		return new IObjectHandler() {
+			
+			@Override
+			public boolean handlesObject(Object object) {
+				return h.handlesObject(object);
+			}
+			
+			@Override
+			public ReachableObject getFromObject(Object object) {
+				ReachableObject rObject = h.getFromObject(object);
+				if (rObject == null){
+					return new NullReachableObject();
+				}
+				return rObject;
+			}
+		};
 	}
 
 	@Override
@@ -136,11 +184,13 @@ public class ReachableManager implements IReachableManager {
 				public IObjectHandler call() throws Exception {
 					for (IObjectHandler h : Iterables.filter(handlers, IObjectHandler.class)) {
 						if (h.handlesObject(o)) {
-							return h;
+							return getProxy(h);
 						}
 					}
 					throw new Exception();
 				}
+
+				
 			});
 		} catch (ExecutionException e) {
 			// e.printStackTrace();

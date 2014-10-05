@@ -63,6 +63,7 @@ import org.polarsys.reqcycle.predicates.ui.dialogs.NewPredicateDialog;
 import org.polarsys.reqcycle.predicates.ui.listeners.CustomPredicatesTreeViewerDragAdapter;
 import org.polarsys.reqcycle.predicates.ui.presentation.PredicatesEditor;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesTableLabelProvider;
+import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class RightPanelComposite extends Composite {
@@ -76,6 +77,8 @@ public class RightPanelComposite extends Composite {
 	private TableViewer tableViewerOfCustomPredicates;
 
 	IPredicatesConfManager predicatesConfManager = ZigguratInject.make(IPredicatesConfManager.class);
+
+	IStylingManager stylingManager = ZigguratInject.make(IStylingManager.class);
 
 	private Button buttonRemove;
 
@@ -284,7 +287,7 @@ public class RightPanelComposite extends Composite {
 							}
 						}
 
-						final StringBuilder confirmMessage = new StringBuilder("Do you really want to remove the following predicates :");
+						final StringBuilder confirmMessage = new StringBuilder("Do you really want to remove the following predicates (Styling Models associated to these predicates will also be removed) :");
 						final String lineSeparator = System.getProperty("line.separator");
 						confirmMessage.append(lineSeparator).append(lineSeparator);
 						for (IPredicate p : predicatesToRemove) {
@@ -300,6 +303,8 @@ public class RightPanelComposite extends Composite {
 								} else {
 									MessageDialog.openError(getShell(), "Removal Error", "Unable to remove the predicate : " + p.getDisplayName());
 								}
+
+								stylingManager.suppressPredicate(p);
 							}
 						}
 					}

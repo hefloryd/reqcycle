@@ -64,9 +64,11 @@ public class VersionManager implements IVersionManager {
 
 		for (RepositoryProvider repo : repos) {
 			IFileHistory history = repo.getFileHistoryProvider().getFileHistoryFor(file, IFileHistoryProvider.NONE, null);
-			IFileRevision[] revs = history.getFileRevisions();
+			if (history != null) {
+				IFileRevision[] revs = history.getFileRevisions();
 
-			versions.put(repo, Arrays.asList(revs));
+				versions.put(repo, Arrays.asList(revs));
+			}
 		}
 
 		return versions;

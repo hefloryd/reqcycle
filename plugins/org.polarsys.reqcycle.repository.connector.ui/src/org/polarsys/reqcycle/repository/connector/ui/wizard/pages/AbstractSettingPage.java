@@ -53,7 +53,7 @@ import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public abstract class AbstractSettingPage extends WizardPage implements IChangeListener {
+public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	@Inject
 	protected IDataModelManager dataManager;

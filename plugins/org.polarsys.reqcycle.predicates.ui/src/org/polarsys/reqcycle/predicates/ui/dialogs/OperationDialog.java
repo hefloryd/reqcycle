@@ -38,8 +38,15 @@ public class OperationDialog extends ValidatingTitleAreaDialog {
 		super(parentShell);
 		setShellStyle(SWT.MIN | SWT.MAX | SWT.TITLE);
 		this.predicate = predicate;
-		operationName = "";
+		operationName = null;
 		editors = null;
+	}
+
+	@Override
+	protected Control createContents(Composite parent) {
+		Control result = super.createContents(parent);
+		validateInput();
+		return result;
 	}
 
 	/**
@@ -123,8 +130,6 @@ public class OperationDialog extends ValidatingTitleAreaDialog {
 				validateInput();
 			}
 		});
-
-		validateInput();
 
 		return area;
 	}

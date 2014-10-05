@@ -69,7 +69,10 @@ public class TType implements Serializable {
 	}
 
 	public boolean is(TType type) {
-		return this.superType.equals(type);
+		if (getId().equals(type.getId())){
+			return true ;
+		}
+		return this.superType != null && this.superType.equals(type);
 	}
 
 	public boolean isBasic() {

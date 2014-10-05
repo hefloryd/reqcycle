@@ -15,8 +15,10 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -25,13 +27,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.polarsys.reqcycle.ui.eattrpropseditor.api.AbstractPropsEditorComponent;
 
-public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum> {
+public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<String> {
 
 	private ComboViewer comboViewer;
-
+	
 	public EnumPropsEditorComponent(String attributeName, Composite parent, int style, Collection<Object> possibleValues) {
 
-		super(Enum.class, parent, style);
+		super(String.class, parent, style);
 		setLayout(new GridLayout(2, false));
 
 		Label lblName = new Label(this, SWT.NONE);
@@ -42,6 +44,14 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum>
 		Combo combo = comboViewer.getCombo();
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		comboViewer.setContentProvider(ArrayContentProvider.getInstance());
+		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				EEnumLiteral value = (EEnumLiteral) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement();
+				setValue(value.getName());
+			}
+		});
 		comboViewer.setLabelProvider(new LabelProvider() {
 
 			@Override
@@ -57,7 +67,7 @@ public class EnumPropsEditorComponent extends AbstractPropsEditorComponent<Enum>
 
 	@Override
 	public boolean isValid() {
-		final IStructuredSelection selectedLiteral = (IStructuredSelection) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement();
+		final EEnumLiteral selectedLiteral = (EEnumLiteral) ((IStructuredSelection) comboViewer.getSelection()).getFirstElement();
 		return selectedLiteral != null;
 	}
 

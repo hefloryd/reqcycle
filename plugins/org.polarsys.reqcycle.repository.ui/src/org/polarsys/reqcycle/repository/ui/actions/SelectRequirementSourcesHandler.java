@@ -34,15 +34,15 @@ public class SelectRequirementSourcesHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Collection<RequirementSource> selectedSources = openRequirementSourceChooser(sources);
-		if (selectedSources != null) {
-			IWorkbenchPart part = HandlerUtil.getActivePart(event);
-			if (part instanceof RequirementView) {
-				RequirementView reqView = (RequirementView) part;
-				reqView.setSources(selectedSources);
-				sources = selectedSources;
-				reqView.getCommonViewer().refresh();
-			}
+		IWorkbenchPart part = HandlerUtil.getActivePart(event);
+		if (part instanceof RequirementView) {
+			RequirementView reqView = (RequirementView) part;
+			sources = reqView.getSources();
+
+			Collection<RequirementSource> selectedSources = openRequirementSourceChooser(sources);
+			reqView.setSources(selectedSources);
+			sources = selectedSources;
+			reqView.getCommonViewer().refresh();
 		}
 		return null;
 	}

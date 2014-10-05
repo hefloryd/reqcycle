@@ -81,20 +81,27 @@ public class RequirementItemProvider extends SimpleRequirementItemProvider {
 	/**
 	 * This returns Requirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if (delegate != null) {
+			return delegate.getImage(object);
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Requirement"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
+		if (delegate != null) {
+			return delegate.getText(object);
+		}
+
 		String label = ((Requirement) object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_Requirement_type") : getString("_UI_Requirement_type") + " " + label;
 	}
