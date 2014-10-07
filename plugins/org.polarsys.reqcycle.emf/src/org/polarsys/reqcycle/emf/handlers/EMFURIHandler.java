@@ -52,23 +52,32 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 	}
 
 	public boolean handles(Object t) {
-		boolean result = false;
-		result |= t instanceof EObject;
-		if (!result) {
-			result |= t instanceof Resource;
-		}
-		if (!result) {
-			if (t instanceof IResource) {
-				result |= handlesURI(URI.createPlatformResourceURI(((IResource) t).getFullPath().toString(), true));
+		if (t instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) t;
+			Object o = adaptable.getAdapter(Resource.class);
+			if (o != null) {
+				t = o;
+			} else {
+				o = adaptable.getAdapter(EObject.class);
+				if (o != null) {
+					t = o;
+				}
 			}
 		}
-		if (!result) {
-			if (t instanceof IAdaptable) {
-				IAdaptable adaptable = (IAdaptable) t;
-				result = (adaptable.getAdapter(EObject.class) != null);
+		if (t instanceof EObject) {
+			Resource r = ((EObject) t).eResource();
+			if (r != null) {
+				t = r;
 			}
 		}
-		return result;
+		if (t instanceof Resource) {
+			return handlesURI(((Resource) t).getURI());
+		}
+		if (t instanceof IResource) {
+			return handlesURI(URI.createPlatformResourceURI(((IResource) t).getFullPath().toString(), true));
+		}
+
+		return false;
 	}
 
 	@Override
@@ -77,7 +86,6 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 		if (o instanceof IResource) {
 			IResource res = (IResource) o;
 			result = doGetReachableObject(EMFUtils.getReachable(URI.createPlatformResourceURI(res.getFullPath().toString(), true)));
-
 		} else if (o instanceof EObject) {
 			result = doGetReachableObject(EMFUtils.getReachable(((EObject) o)));
 		} else if (o instanceof Resource) {

@@ -14,6 +14,8 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -24,8 +26,12 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.polarsys.reqcycle.emf.Activator;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.uri.services.IReachableExtender;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.graphics.Image;
 
 public class EMFEditExtender implements IReachableExtender {
@@ -34,6 +40,7 @@ public class EMFEditExtender implements IReachableExtender {
 	private static String EMF_EDIT_LABEL = URI_PREFIX + "emfEditLabel";
 	private static String EMF_EDIT_ECLASS = URI_PREFIX + "emfEditEclass";
 	private static ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	static IReachableManager manager = ZigguratInject.make(IReachableManager.class);
 
 	public EMFEditExtender() {
 	}
@@ -67,14 +74,30 @@ public class EMFEditExtender implements IReachableExtender {
 		return EMFUtils.isEMF(uri) && object instanceof EObject && !((EObject) object).eIsProxy();
 	}
 
+	public static EObject getEObject (Reachable r){
+		ReachableObject ro;
+		EObject result = null;
+		try {
+			ro = manager.getHandlerFromReachable(r).getFromReachable(r);
+			result = (EObject) ro.getAdapter(EObject.class);
+			if (result == null) {
+				ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
+				org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
+				result = set.getEObject(emfuri, true);
+			}
+		} catch (IReachableHandlerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result ;
+	}
+	
 	public static String getLabel(Reachable r) {
 		String result = r.get(EMF_EDIT_LABEL);
 		if (result == null) {
-			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
-			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
-			EObject e = set.getEObject(emfuri, true);
+			EObject e = getEObject(r);
 			try {
-				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(emfuri.toString()), e));
+				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(r.toString()), e));
 			} catch (URISyntaxException e1) {
 				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, e1.getMessage(), e1));
 			}
@@ -89,11 +112,9 @@ public class EMFEditExtender implements IReachableExtender {
 	public static Image getImage(Reachable r) {
 		String s = r.get(EMF_EDIT_ECLASS);
 		if (s == null) {
-			ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
-			org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
-			EObject e = set.getEObject(emfuri, true);
+			EObject e = getEObject(r);
 			try {
-				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(emfuri.toString()), e));
+				r.putAll(new EMFEditExtender().getExtendedProperties(new java.net.URI(r.toString()), e));
 			} catch (URISyntaxException e1) {
 				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, e1.getMessage(), e1));
 			}

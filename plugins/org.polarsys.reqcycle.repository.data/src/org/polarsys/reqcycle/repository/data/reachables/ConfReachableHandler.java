@@ -10,21 +10,70 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.reachables;
 
+import java.net.URISyntaxException;
+
+import javax.inject.Inject;
+
 import org.eclipse.emf.common.util.URI;
 import org.polarsys.reqcycle.emf.handlers.EMFReachableObject;
 import org.polarsys.reqcycle.emf.handlers.EMFURIHandler;
+import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
 public class ConfReachableHandler extends EMFURIHandler {
 
+	@Inject
+	IDataManager dataManager;
+
+	@Inject
+	IReachableCreator reachableCreator;
+
 	@Override
 	public boolean handlesURI(URI uri) {
-		return super.handlesURI(uri) && (uri.path().endsWith("emfconf") || uri.path().endsWith("reqcycle"));
+		return uri.scheme().equals("reqcycle") || uri.path().endsWith("reqcycle");
 	}
 
 	@Override
 	protected EMFReachableObject doGetReachableObject(Reachable t) {
-		return new ConfReachableObject(t);
+		if (t.getPath().endsWith(".reqcycle")) {
+			URI resourceUri = URI.createURI(t.toString()).trimFragment();
+			for (RequirementSource reqSource : dataManager.getRequirementSources()) {
+				RequirementsContainer content = reqSource.getContents();
+				if (content != null && content.eResource() != null && resourceUri.equals(content.eResource().getURI())) {
+					try {
+						Reachable reqcycleReachable = reachableCreator.getReachable(new java.net.URI("reqcycle://" + URI.encodeSegment(reqSource.getName(), true)));
+						reqcycleReachable.setFragment(t.getFragment());
+						return new ConfReachableObject(reqcycleReachable, t);
+					} catch (URISyntaxException e) {
+						e.printStackTrace();
+						break;
+					}
+				}
+			}
+		}
+		if ("reqcycle".equals(t.getScheme())) {
+			String reqSourceName = URI.decode(t.getHost());
+			for (RequirementSource reqSource : dataManager.getRequirementSources()) {
+				if (reqSourceName.equals(reqSource.getName())) {
+					RequirementsContainer content = reqSource.getContents();
+					if (content != null && content.eResource() != null) {
+						try {
+							Reachable emfReachable = reachableCreator.getReachable(new java.net.URI(content.eResource().getURI().toString()));
+							emfReachable.setFragment(t.getFragment());
+							return new ConfReachableObject(t, emfReachable);
+						} catch (URISyntaxException e) {
+							e.printStackTrace();
+							break;
+						}
+					}
+					break;
+				}
+			}
+		}
+		return new ConfReachableObject(null, t);
 	}
 
 }

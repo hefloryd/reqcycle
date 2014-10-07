@@ -19,8 +19,19 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 
 public class ConfReachableObject extends EMFReachableObject {
 
-	public ConfReachableObject(Reachable t) {
-		super(t);
+	protected Reachable reqcycleReachable;
+
+	public ConfReachableObject(Reachable reqcycleReachable, Reachable emfReachable) {
+		super(emfReachable);
+		if (reqcycleReachable == null) {
+			reqcycleReachable = emfReachable;
+		}
+		this.reqcycleReachable = reqcycleReachable;
+	}
+
+	@Override
+	public Reachable getReachable(Object o) {
+		return reqcycleReachable;
 	}
 
 	@Override

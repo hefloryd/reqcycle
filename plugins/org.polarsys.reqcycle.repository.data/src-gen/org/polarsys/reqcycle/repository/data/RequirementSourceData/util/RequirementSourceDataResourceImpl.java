@@ -10,7 +10,7 @@
 package org.polarsys.reqcycle.repository.data.RequirementSourceData.util;
 
 import org.eclipse.emf.common.util.URI;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
@@ -29,6 +29,17 @@ public class RequirementSourceDataResourceImpl extends XMIResourceImpl {
 	 */
 	public RequirementSourceDataResourceImpl(URI uri) {
 		super(uri);
+	}
+
+	@Override
+	public String getURIFragment(EObject eObject) {
+		String f = super.getURIFragment(eObject);
+		return URI.encodeFragment(f, true);
+	}
+
+	@Override
+	public EObject getEObject(String uriFragment) {
+		return super.getEObject(URI.decode(uriFragment));
 	}
 
 } // RequirementSourceDataResourceImpl
