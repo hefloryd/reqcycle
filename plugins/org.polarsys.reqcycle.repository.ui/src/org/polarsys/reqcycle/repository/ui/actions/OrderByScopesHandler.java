@@ -14,6 +14,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.views.RequirementView;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -43,9 +44,7 @@ public class OrderByScopesHandler extends AbstractHandler {
 
 			RequirementView reqView = (RequirementView) part;
 			reqView.setScopes(scopes);
-			reqView.setViewFiltered(false);
-			reqView.setViewOrdered(false);
-			reqView.setViewByScopes(true);
+			reqView.setDisplay(RequirementViewDisplayType.ORDERBYSCOPE);
 			reqView.getCommonViewer().refresh();
 		}
 

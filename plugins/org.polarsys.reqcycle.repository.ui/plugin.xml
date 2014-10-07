@@ -88,6 +88,20 @@
            allPopups="false"
            locationURI="toolbar:org.polarsys.reqcycle.repository.ui.views.requirements">
         <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
+              icon="icons/insp_sbook.gif"
+              label="Filter Requirements"
+              style="push"
+              tooltip="Filter Requirements by name">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
+              icon="icons/filenav_nav.gif"
+              label="Display requirements only"
+              style="push"
+              tooltip="Display requirements only">
+        </command>
+        <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
               icon="icons/editFilterList.png"
               label="Select Predicates Filters"
@@ -128,10 +142,27 @@
               label="New Instance"
               style="push">
         </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
+              icon="icons/refresh.gif"
+              label="Refresh"
+              style="push"
+              tooltip="Refresh view">
+        </command>
      </menuContribution>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
+           name="Filter Requirements">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
+           name="Display requirements only">
+     </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
@@ -161,6 +192,11 @@
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
            name="New Instance">
+     </command>
+     <command
+           defaultHandler="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
+           id="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
+           name="Refresh">
      </command>
   </extension>
   <!--<extension

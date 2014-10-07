@@ -148,7 +148,7 @@ public class TraceabilityOperations {
 
 			@Override
 			public boolean apply(Pair<Link, Reachable> pair) {
-				return pair.getFirst().getKind().getLabel().equals(traceabilityType);
+				return traceabilityType == null || traceabilityType.length() == 0 || pair.getFirst().getKind().getLabel().equals(traceabilityType);
 			}
 		};
 		

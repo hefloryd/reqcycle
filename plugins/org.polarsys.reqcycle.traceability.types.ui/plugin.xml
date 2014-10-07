@@ -108,9 +108,6 @@
             path="regIcons/addrepo_rep-5.gif">
       </Picture>
       <Picture
-            path="regIcons/bottom_source.bmp">
-      </Picture>
-      <Picture
             path="regIcons/callee_co.gif">
       </Picture>
       <Picture
@@ -172,6 +169,45 @@
       </Picture>
       <Picture
             path="regIcons/statusYellow.png">
+      </Picture>
+      <Picture
+            path="regIcons/checkedout_ov.gif">
+      </Picture>
+      <Picture
+            path="regIcons/ControlFlow.gif">
+      </Picture>
+      <Picture
+            path="regIcons/delete_obj.gif">
+      </Picture>
+      <Picture
+            path="regIcons/dep_loop.gif">
+      </Picture>
+      <Picture
+            path="regIcons/Dependency.gif">
+      </Picture>
+      <Picture
+            path="regIcons/export_wiz-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/Extension.gif">
+      </Picture>
+      <Picture
+            path="regIcons/forward_nav-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/import_wiz-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/link_obj.gif">
+      </Picture>
+      <Picture
+            path="regIcons/outgo_synch-5.gif">
+      </Picture>
+      <Picture
+            path="regIcons/over_co-1.gif">
+      </Picture>
+      <Picture
+            path="regIcons/over_co-2.gif">
       </Picture>
    </extension>
 

@@ -35,6 +35,7 @@ import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.repository.connector.update.rs.IUpdateListener;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
@@ -183,16 +184,16 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 		root.setScopes(scopes);
 	}
 
-	public void setViewFiltered(Boolean filtered) {
-		root.setViewFiltered(filtered);
+	public void setFilter(String filter) {
+		root.setFilter(filter);
 	}
 
-	public void setViewOrdered(Boolean ordered) {
-		root.setViewOrdered(ordered);
+	public String getFilter() {
+		return root.getFilter();
 	}
 
-	public void setViewByScopes(Boolean scope) {
-		root.setViewByScopes(scope);
+	public void setDisplay(RequirementViewDisplayType display) {
+		root.setDisplay(display);
 	}
 
 	protected Reachable getReachable(Object element) throws IReachableHandlerException {

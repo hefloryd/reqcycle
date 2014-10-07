@@ -10,6 +10,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.util.PredicatesUIHelper;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.views.RequirementView;
 
 public class OrderByPredicatesHandler extends AbstractHandler {
@@ -23,18 +24,14 @@ public class OrderByPredicatesHandler extends AbstractHandler {
 			if (part instanceof RequirementView) {
 				RequirementView reqView = (RequirementView) part;
 				reqView.setPredicates(selection);
-				reqView.setViewFiltered(false);
-				reqView.setViewOrdered(true);
-				reqView.setViewByScopes(false);
+				reqView.setDisplay(RequirementViewDisplayType.ORDERBYPREDICATE);
 				reqView.getCommonViewer().refresh(true);
 			}
 		} else {
 			IWorkbenchPart part = HandlerUtil.getActivePart(event);
 			if (part instanceof RequirementView) {
 				RequirementView reqView = (RequirementView) part;
-				reqView.setViewFiltered(false);
-				reqView.setViewOrdered(false);
-				reqView.setViewByScopes(false);
+				reqView.setDisplay(RequirementViewDisplayType.NONE);
 				reqView.getCommonViewer().refresh();
 			}
 		}

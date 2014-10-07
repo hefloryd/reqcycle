@@ -34,6 +34,7 @@ import org.openrdf.sail.memory.MemoryStore;
 import org.polarsys.reqcycle.traceability.storage.IStoragePathProvider;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.savetriggers.ISaveTrigger;
 import org.polarsys.reqcycle.traceability.storage.sesame.storage.savetriggers.XMLSaveTrigger;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 @Singleton
 public class SesameXMLRepositoryHolder extends
@@ -74,22 +75,26 @@ public class SesameXMLRepositoryHolder extends
 		return file;
 	}
 
-	private IFile getTargetIFile(final IProject project) throws RepositoryException {
+	public IFile getTargetIFile(final IProject project) throws RepositoryException {
 		String newPath = storagePathProvider.getStoragePath();
 		if(newPath == null || newPath.isEmpty()) {
 			newPath = DEFAULT_RDF_FILE;
 		}
 		if (path == null) {
 			path = newPath;
-		} else if (newPath != path) {
-			Repository oldRepository = this.repositories.getIfPresent(project);
-			if(oldRepository != null) {
-				oldRepository.shutDown();
-				this.repositories.invalidate(project);
-				this.connections.invalidate(project);
-			}
+		} else if (! newPath.equals(path)) {
+//			Repository oldRepository = this.repositories.getIfPresent(project);
+//			if(oldRepository != null) {
+//				oldRepository.shutDown();
+//				this.repositories.invalidate(project);
+//				this.connections.invalidate(project);
+//			}
 			path = newPath;
 		}
+		if (!path.endsWith(".rdf")){
+			path += ".rdf" ;
+		}
+
 		final IFile ifile = project.getFile(path);
 		return ifile;
 	}
@@ -128,8 +133,8 @@ public class SesameXMLRepositoryHolder extends
 
 	@Override
 	public ISaveTrigger getSaveTrigger(IProject project) throws RepositoryException {
-		final IFile targetIFile = getTargetIFile(project);
-		final File targetFile = getTargetFile(project);
-		return new XMLSaveTrigger(targetIFile, targetFile);
+		final XMLSaveTrigger trigger = new XMLSaveTrigger(this, project);
+		ZigguratInject.inject(trigger);
+		return trigger;
 	}
 }

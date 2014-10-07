@@ -5,19 +5,27 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
+import org.polarsys.reqcycle.predicates.core.PredicatesFactory;
+import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -33,10 +41,9 @@ public class StylingContentProvider implements ITreeContentProvider {
 
 	private List<IPredicate> predicates;
 	private List<Scope> scopes;
+	private String reqFilter;
 
-	private Boolean filtered;
-	private Boolean ordered;
-	private Boolean scope;
+	private RequirementViewDisplayType displayType;
 
 	private NavigatorRoot navigatorRoot;
 
@@ -46,14 +53,12 @@ public class StylingContentProvider implements ITreeContentProvider {
 
 		predicates = new LinkedList<IPredicate>();
 		scopes = new LinkedList<Scope>();
-		filtered = false;
-		ordered = false;
-		scope = false;
+		displayType = RequirementViewDisplayType.NONE;
+		reqFilter = "";
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -68,19 +73,42 @@ public class StylingContentProvider implements ITreeContentProvider {
 		if (inputElement instanceof NavigatorRoot) {
 			predicates = ((NavigatorRoot) inputElement).getPredicates();
 			scopes = ((NavigatorRoot) inputElement).getScopes();
-			filtered = ((NavigatorRoot) inputElement).isViewFiltered();
-			ordered = ((NavigatorRoot) inputElement).isViewOrdered();
-			scope = ((NavigatorRoot) inputElement).isViewByScopes();
+			reqFilter = ((NavigatorRoot) inputElement).getFilter();
+			displayType = ((NavigatorRoot) inputElement).getDisplay();
 
-			if (ordered && (predicates.size() != 0)) {
-				return predicates.toArray();
-			} else if (filtered && (predicates.size() == 1)) {
-				IPredicate predicate = predicates.get(0);
-
-				return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), new PPredicate(predicate)), Object.class);
-			} else if (scope && (scopes.size() != 0)) {
-				return scopes.toArray();
-			} else {
+			switch (displayType) {
+			case FILTERBYNAME:
+				if ((reqFilter != null) && (!reqFilter.equals(""))) {
+					final Pattern p = Pattern.compile(".*" + reqFilter + ".*", Pattern.DOTALL);
+					final Predicate<Object> attPredicate = new Predicate<Object>(){
+						@Override
+						public boolean apply(Object arg0) {
+							if (arg0 instanceof Requirement) {
+								Requirement req = (Requirement) arg0;
+								return req.getId() != null && p.matcher(req.getId()).matches();
+							}
+							return true;
+						}
+					};
+					return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), attPredicate), Object.class);
+				}
+			case FILTERBYPREDICATE:
+				if (predicates.size() == 1) {
+					IPredicate predicate = predicates.get(0);
+					
+					return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), new PPredicate(predicate)), Object.class);
+				}
+			case ORDERBYPREDICATE:
+				if (predicates.size() != 0) {
+					return predicates.toArray();
+				}
+			case ORDERBYSCOPE:
+				if (scopes.size() != 0) {
+					return scopes.toArray();
+				}
+			case REQONLY:
+			case NONE:
+			default:
 				List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
 				return sources.toArray();
 			}
@@ -93,17 +121,36 @@ public class StylingContentProvider implements ITreeContentProvider {
 		Collection<AbstractElement> elements = Collections.emptyList();
 
 		if (object instanceof RequirementSource) {
-			if (filtered && (predicates.size() == 1)) {
+			RequirementSource requirementSource = (RequirementSource) object;
+			if ((displayType.equals(RequirementViewDisplayType.FILTERBYPREDICATE)) && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
 
-				return Iterators.toArray(Iterators.filter(((RequirementSource) object).getRequirements().iterator(), new PPredicate(predicate)), Object.class);
+				return Iterators.toArray(Iterators.filter(requirementSource.getRequirements().iterator(), new PPredicate(predicate)), Object.class);
+			} else if (displayType.equals(RequirementViewDisplayType.FILTERBYNAME)) {
+				final Pattern p = Pattern.compile(".*" + reqFilter + ".*", Pattern.DOTALL);
+				final Predicate<Object> attPredicate = new Predicate<Object>(){
+					@Override
+					public boolean apply(Object arg0) {
+						if (arg0 instanceof Requirement) {
+							Requirement req = (Requirement) arg0;
+							return req.getId() != null && p.matcher(req.getId()).matches();
+						}
+						return false;
+					}
+				};
+				return Iterators.toArray(Iterators.filter(new Source2Reqs().apply(requirementSource), attPredicate), Object.class);
+				//TODO
 			} else {
-				elements = ((RequirementSource) object).getRequirements();
+				if (displayType.equals(RequirementViewDisplayType.REQONLY)) {
+					return Iterators.toArray(Iterators.concat(Iterators.transform(navigatorRoot.getSources().iterator(), new Source2Reqs())), Object.class);
+				} else {
+					elements = requirementSource.getRequirements();
+				}
 			}
 		} else if (object instanceof IPredicate) {
 			return Iterators.toArray(Iterators.filter(Iterators.concat(Iterators.transform(navigatorRoot.getSources().iterator(), new Source2Reqs())), new PPredicate((IPredicate) object)), Object.class);
 		} else if (object instanceof Section) {
-			if (filtered && (predicates.size() == 1)) {
+			if ((displayType.equals(RequirementViewDisplayType.FILTERBYPREDICATE)) && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
 				return Iterators.toArray(Iterators.filter(((Section) object).getChildren().iterator(), new PPredicate(predicate)), Object.class);
 			} else {
@@ -128,7 +175,7 @@ public class StylingContentProvider implements ITreeContentProvider {
 	@Override
 	public boolean hasChildren(Object object) {
 		if (object instanceof RequirementSource) {
-			if (filtered && (predicates.size() == 1)) {
+			if ((displayType.equals(RequirementViewDisplayType.FILTERBYPREDICATE)) && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
 				List<RequirementSource> list = new LinkedList<RequirementSource>();
 				list.add((RequirementSource) object);
@@ -145,7 +192,7 @@ public class StylingContentProvider implements ITreeContentProvider {
 		}
 		return false;
 	}
-
+	
 	private static class Source2Reqs implements Function<RequirementSource, Iterator<Requirement>> {
 
 		@Override

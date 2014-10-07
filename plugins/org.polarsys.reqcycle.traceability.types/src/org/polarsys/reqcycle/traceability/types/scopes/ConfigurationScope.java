@@ -36,7 +36,9 @@ public class ConfigurationScope implements IScope {
 		File location = Activator.getDefault().getStateLocation().toFile();
 		if (location.isDirectory()) {
 			for (File f : location.listFiles()) {
-				result.add(creator.getReachable(f.toURI(), f));
+				if (!f.isDirectory()){
+					result.add(creator.getReachable(f.toURI(), f));
+				}
 			}
 		}
 		return result.iterator();

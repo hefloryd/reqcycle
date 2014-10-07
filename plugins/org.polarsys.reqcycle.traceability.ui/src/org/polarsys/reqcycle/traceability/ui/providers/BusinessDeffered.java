@@ -110,7 +110,7 @@ public class BusinessDeffered implements IDeferredWorkbenchAdapter, IAdaptable {
 
 	@Override
 	public ISchedulingRule getRule(Object object) {
-		return mutexRule;
+		return null;
 	}
 
 	public int getLevel() {

@@ -143,7 +143,7 @@ public class TableController {
 				Reachable source = Iterables.get(link.getSources(), 0);
 				Reachable target = Iterables.get(link.getTargets(), 0);
 				if (storage != null) {
-					storage.removeUpwardRelationShip(link.getKind(), null, target, source);
+					storage.removeTraceabilityLink(link.getId());
 					notification.add(link.getId());
 					notification.add(source);
 					notification.add(target);
