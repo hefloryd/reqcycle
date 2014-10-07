@@ -49,8 +49,8 @@ public class ConfReachableHandler extends EMFURIHandler {
 						return new ConfReachableObject(reqcycleReachable, t);
 					} catch (URISyntaxException e) {
 						e.printStackTrace();
-						break;
 					}
+					break;
 				}
 			}
 		}
@@ -66,7 +66,6 @@ public class ConfReachableHandler extends EMFURIHandler {
 							return new ConfReachableObject(t, emfReachable);
 						} catch (URISyntaxException e) {
 							e.printStackTrace();
-							break;
 						}
 					}
 					break;
