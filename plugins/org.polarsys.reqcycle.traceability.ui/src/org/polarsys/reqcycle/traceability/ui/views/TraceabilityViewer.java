@@ -726,7 +726,7 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			IObjectHandler handler = reachManager.getHandlerFromObject(o);
 			ReachableObject reachableObject = handler.getFromObject(o);
 			if (reachableObject != null) {
-				return reachableObject.getReachable(o);
+				return reachableObject.getReachable();
 			}
 		} catch (IReachableHandlerException e) {
 		}

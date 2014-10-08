@@ -13,9 +13,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.polarsys.reqcycle.traceability.builder.BuilderUtil;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
 import org.polarsys.reqcycle.traceability.storage.ITraceabilityStorage;
 import org.polarsys.reqcycle.traceability.types.ITraceTypesManager;
@@ -25,6 +29,7 @@ import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 
 import com.google.common.collect.Lists;
 
@@ -51,31 +56,61 @@ public class CreateRelationCommand implements Command {
 
 	private Reachable target;
 
-	private IResource res;
-
-	public CreateRelationCommand(Relation relation, Reachable source, Reachable target, IResource res) {
+	public CreateRelationCommand(Relation relation, Reachable source, Reachable target) {
 		this.relation = relation;
 		this.source = source;
 		this.target = target;
-		this.res = res;
+	}
+
+	public IProject getHiddenProject() {
+		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("_ReqCycle_");
+		if (!p.exists()) {
+			try {
+				p.create(new NullProgressMonitor());
+				p.setHidden(true);
+				BuilderUtil.installBuilder(p);
+			} catch (CoreException e) {
+			}
+		}
+		return p;
+	}
+
+	public IProject getProjectFromReachable(Reachable r) {
+		ReachableObject object;
+		try {
+			object = manager.getHandlerFromReachable(r).getFromReachable(r);
+			IFile f = (IFile) object.getAdapter(IFile.class);
+			if (f != null && f.exists()) {
+				return f.getProject();
+			}
+		} catch (IReachableHandlerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void execute() {
 		redo();
-
 	}
 
 	public void redo() {
 		// handle project traceability path
-		IProject p = res.getProject();
+		IProject p = getProjectFromReachable(source);
+		if (p == null) {
+			p = getProjectFromReachable(target);
+		}
+		if (p == null) {
+			p = getHiddenProject();
+		}
 		String projectURI = p.getFullPath().toPortableString() + "/here";
 		List<Reachable> toUpdate = Lists.newArrayList();
 		// get the storage for the project
 		ITraceabilityStorage traceaStorage = provider.getProjectStorage(p);
 		try {
-			Reachable container = manager.getHandlerFromObject(projectURI).getFromObject(projectURI).getReachable(projectURI);
+			Reachable container = manager.getHandlerFromObject(projectURI).getFromObject(projectURI).getReachable();
 			Object id = new Object[] { container, getNextId() };
-			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable(id);
+			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable();
 			traceaStorage.startTransaction();
 			// FIX ME
 			// for (TType type : relation.getAgregated()) {

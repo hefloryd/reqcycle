@@ -23,7 +23,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
 import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
-public class ConfReachableHandler extends EMFURIHandler {
+public class ReqcycleReachableHandler extends EMFURIHandler {
 
 	@Inject
 	IDataManager dataManager;
@@ -46,7 +46,7 @@ public class ConfReachableHandler extends EMFURIHandler {
 					try {
 						Reachable reqcycleReachable = reachableCreator.getReachable(new java.net.URI("reqcycle://" + URI.encodeSegment(reqSource.getName(), true)));
 						reqcycleReachable.setFragment(t.getFragment());
-						return new ConfReachableObject(reqcycleReachable, t);
+						return new ReqcycleReachableObject(reqcycleReachable, t);
 					} catch (URISyntaxException e) {
 						e.printStackTrace();
 					}
@@ -63,7 +63,7 @@ public class ConfReachableHandler extends EMFURIHandler {
 						try {
 							Reachable emfReachable = reachableCreator.getReachable(new java.net.URI(content.eResource().getURI().toString()));
 							emfReachable.setFragment(t.getFragment());
-							return new ConfReachableObject(t, emfReachable);
+							return new ReqcycleReachableObject(t, emfReachable);
 						} catch (URISyntaxException e) {
 							e.printStackTrace();
 						}
@@ -72,7 +72,7 @@ public class ConfReachableHandler extends EMFURIHandler {
 				}
 			}
 		}
-		return new ConfReachableObject(null, t);
+		return new ReqcycleReachableObject(null, t);
 	}
 
 }

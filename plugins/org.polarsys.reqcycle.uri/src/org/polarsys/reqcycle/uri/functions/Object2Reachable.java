@@ -36,7 +36,7 @@ public class Object2Reachable implements Function<Object, Reachable> {
 			IObjectHandler handler = manager.getHandlerFromObject(arg0);
 			ReachableObject obj = handler.getFromObject(arg0);
 			if (obj != null) {
-				return obj.getReachable(arg0);
+				return obj.getReachable();
 			}
 		} catch (IReachableHandlerException e) {
 			e.printStackTrace();

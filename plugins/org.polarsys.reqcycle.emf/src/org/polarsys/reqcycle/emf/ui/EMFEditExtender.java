@@ -14,8 +14,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -24,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.swt.graphics.Image;
 import org.polarsys.reqcycle.emf.Activator;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.uri.IReachableManager;
@@ -32,7 +31,6 @@ import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.uri.services.IReachableExtender;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
-import org.eclipse.swt.graphics.Image;
 
 public class EMFEditExtender implements IReachableExtender {
 

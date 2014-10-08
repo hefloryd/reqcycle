@@ -85,6 +85,6 @@ public class ReachableUtils {
 		if (ro == null) {
 			return null;
 		}
-		return ro.getReachable(null);
+		return ro.getReachable();
 	}
 }

@@ -43,5 +43,5 @@ public interface ReachableObject extends IAdaptable {
 	 * @param o
 	 * @return
 	 */
-	Reachable getReachable(Object o);
+	Reachable getReachable();
 }

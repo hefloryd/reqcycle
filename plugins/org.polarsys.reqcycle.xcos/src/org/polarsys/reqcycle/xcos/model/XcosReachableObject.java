@@ -82,7 +82,7 @@ public class XcosReachableObject implements ReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
+	public Reachable getReachable() {
 		return reachable;
 	}
 

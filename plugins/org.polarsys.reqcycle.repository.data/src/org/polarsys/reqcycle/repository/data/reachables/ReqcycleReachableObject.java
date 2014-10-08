@@ -17,11 +17,11 @@ import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.emf.visitors.EMFVisitable;
 import org.polarsys.reqcycle.uri.model.Reachable;
 
-public class ConfReachableObject extends EMFReachableObject {
+public class ReqcycleReachableObject extends EMFReachableObject {
 
 	protected Reachable reqcycleReachable;
 
-	public ConfReachableObject(Reachable reqcycleReachable, Reachable emfReachable) {
+	public ReqcycleReachableObject(Reachable reqcycleReachable, Reachable emfReachable) {
 		super(emfReachable);
 		if (reqcycleReachable == null) {
 			reqcycleReachable = emfReachable;
@@ -30,7 +30,7 @@ public class ConfReachableObject extends EMFReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
+	public Reachable getReachable() {
 		return reqcycleReachable;
 	}
 

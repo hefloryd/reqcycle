@@ -66,7 +66,7 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			if (file != null) {
 				if (objectHandler.handlesObject(targetEObj)) {
 					{
-						targetReachable = objectHandler.getFromObject(targetEObj).getReachable(targetEObj);
+						targetReachable = objectHandler.getFromObject(targetEObj).getReachable();
 					}
 					byte[] data = (byte[]) source;
 					List<Reachable> reachables = DNDReqCycle.getReachables(data);

@@ -34,7 +34,7 @@ public class SiriusDropAdapterAssistant extends CommonDropAdapterAssistant {
 
 	@Override
 	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
-		if (objectHandler.getFromObject(target).getReachable(target) != null) {
+		if (objectHandler.getFromObject(target).getReachable() != null) {
 			return Status.OK_STATUS;
 		}
 		return Status.CANCEL_STATUS;
@@ -59,8 +59,8 @@ public class SiriusDropAdapterAssistant extends CommonDropAdapterAssistant {
 			DropRequirementDelegate req = new DropRequirementDelegate();
 			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
 			List<Reachable> reachables = Lists.newArrayList();
-			reachables.add(objectHandler.getFromObject(selection).getReachable(selection));
-			req.handleDrop(reachables, objectHandler.getFromObject(aTarget).getReachable(aTarget), file);
+			reachables.add(objectHandler.getFromObject(selection).getReachable());
+			req.handleDrop(reachables, objectHandler.getFromObject(aTarget).getReachable(), file);
 		}
 		return Status.OK_STATUS;
 	}

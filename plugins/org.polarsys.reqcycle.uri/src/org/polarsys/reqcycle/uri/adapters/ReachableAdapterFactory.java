@@ -14,7 +14,7 @@ public class ReachableAdapterFactory implements IAdapterFactory {
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if (Reachable.class.equals(adapterType)) {
 			try {
-				return manager.getHandlerFromObject(adaptableObject).getFromObject(adaptableObject).getReachable(adaptableObject);
+				return manager.getHandlerFromObject(adaptableObject).getFromObject(adaptableObject).getReachable();
 			} catch (IReachableHandlerException e) {
 			}
 		}

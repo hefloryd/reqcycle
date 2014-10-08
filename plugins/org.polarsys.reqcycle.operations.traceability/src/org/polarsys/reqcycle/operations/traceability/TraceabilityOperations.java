@@ -134,7 +134,7 @@ public class TraceabilityOperations {
 			request.setFilter(filter);
 		}
 		request.setScope(Scopes.getWorkspaceScope());
-		request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable(req));
+		request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable());
 		return request;
 	}
 	
@@ -199,7 +199,7 @@ public class TraceabilityOperations {
 				request.setScope(Scopes.getProjectScope(WorkspaceSynchronizer.getFile(selection.eResource())));
 			}
 			for (Requirement r : requirements) {
-				request.addSource(manager.getHandlerFromObject(r).getFromObject(r).getReachable(r));
+				request.addSource(manager.getHandlerFromObject(r).getFromObject(r).getReachable());
 				objectsToListen.add(r);
 			}
 			ArrayList<Pair<Link, Reachable>> list;

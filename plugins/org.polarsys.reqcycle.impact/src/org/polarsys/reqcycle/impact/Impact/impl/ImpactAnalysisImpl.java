@@ -562,7 +562,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 				request.setDepth(DEPTH.ONE);
 				request.setDirection(direction);
 				try {
-					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable(req));
+					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable());
 				} catch (IReachableHandlerException e1) {
 					e1.printStackTrace();
 					return new ArrayList<Link>().iterator();

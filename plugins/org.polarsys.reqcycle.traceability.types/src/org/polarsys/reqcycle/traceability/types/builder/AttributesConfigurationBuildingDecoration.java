@@ -103,9 +103,8 @@ public class AttributesConfigurationBuildingDecoration extends IBuildingDecorati
 	private Reachable getReachable(Object object) {
 		IObjectHandler handler;
 		try {
-
 			handler = manager.getHandlerFromObject(object);
-			return handler.getFromObject(object).getReachable(object);
+			return handler.getFromObject(object).getReachable();
 		} catch (IReachableHandlerException e) {
 			// e.printStackTrace();
 			System.out.println("could not get reachable for " + object);

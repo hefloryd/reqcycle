@@ -63,7 +63,7 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 				Object next = iterator.next();
 				Reachable r;
 				try {
-					r = manager.getHandlerFromObject(next).getFromObject(next).getReachable(next);
+					r = manager.getHandlerFromObject(next).getFromObject(next).getReachable();
 					result.add(r);
 				} catch (IReachableHandlerException e) {
 					// TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
 			for (Reachable r : reachables) {
 				try {
-					req.handleDrop(Lists.newArrayList(r), manager.getHandlerFromObject(aTarget).getFromObject(aTarget).getReachable(aTarget), file);
+					req.handleDrop(Lists.newArrayList(r), manager.getHandlerFromObject(aTarget).getFromObject(aTarget).getReachable(), file);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}

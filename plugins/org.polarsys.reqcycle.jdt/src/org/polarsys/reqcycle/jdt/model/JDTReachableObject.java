@@ -120,7 +120,7 @@ public class JDTReachableObject implements ReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
+	public Reachable getReachable() {
 		return reachable;
 	}
 
