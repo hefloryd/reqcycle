@@ -28,7 +28,6 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AndPredicateImpl() {
@@ -37,7 +36,6 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

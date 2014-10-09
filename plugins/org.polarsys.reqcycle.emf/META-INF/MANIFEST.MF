@@ -20,6 +20,7 @@ Export-Package: org.polarsys.reqcycle.emf,
  org.polarsys.reqcycle.emf.functions,
  org.polarsys.reqcycle.emf.handlers,
  org.polarsys.reqcycle.emf.types,
+ org.polarsys.reqcycle.emf.ui,
  org.polarsys.reqcycle.emf.utils,
  org.polarsys.reqcycle.emf.visitors
 Import-Package: javax.inject;version="1.0.0"

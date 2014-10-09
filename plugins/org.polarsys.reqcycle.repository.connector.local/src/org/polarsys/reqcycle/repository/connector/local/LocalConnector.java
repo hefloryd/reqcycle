@@ -15,9 +15,8 @@ import javax.inject.Inject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.polarsys.reqcycle.repository.connector.ICallable;
+import org.polarsys.reqcycle.repository.connector.local.ui.LocalSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
@@ -30,7 +29,7 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	@Inject
 	IDataManager manager;
 
-	private AbstractSettingPage settingPage;
+	private LocalSettingPage localSettingPage;
 
 	private IDataModel dataModel;
 
@@ -51,7 +50,9 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 			@Override
 			public void fillRequirementSource(RequirementSource source) throws Exception {
-				// source.setProperty(IRequirementSourceProperties.IS_LOCAL, "true");
+				// RequirementsContainer rc = manager.createRequirementsContainer(URI.createPlatformResourceURI(destination, true));
+				// source.setContents(rc);
+
 			}
 		};
 	}
@@ -63,25 +64,28 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 
 	@Override
 	public boolean performFinish() {
-		if (settingPage == null) {
+		if (localSettingPage == null) {
 			return false;
 		}
-		dataModel = settingPage.getBean().getDataModel();
-		scope = settingPage.getBean().getScope();
-		destination = settingPage.getBean().getOutputPath();
+		dataModel = localSettingPage.bean.getDataModel();
+		scope = localSettingPage.bean.getScope();
+		destination = localSettingPage.bean.getDestination();
 		return true;
 	}
 
 	@Override
 	public void addPages() {
-		settingPage = new AbstractSettingPage("Setting Page", new AbstractStorageBean());
-		addPage(settingPage);
+		localSettingPage = new LocalSettingPage("Setting Page");
+		addPage(localSettingPage);
 	}
 
 	@Override
 	public void storeProperties(RequirementSource source) {
-		// TODO Auto-generated method stub
+		// source.setRepositoryURI(getUri());
+		// source.setDestinationURI(getOutputPath());
 
+		source.setDataModelURI(dataModel.getDataModelURI());
+		source.setDefaultScope(scope);
+		source.setDestinationURI(localSettingPage.getBean().getDestination());
 	}
-
 }

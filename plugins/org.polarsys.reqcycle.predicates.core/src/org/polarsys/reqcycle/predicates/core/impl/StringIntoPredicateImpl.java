@@ -29,7 +29,6 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringIntoPredicateImpl() {
@@ -38,7 +37,6 @@ public class StringIntoPredicateImpl extends IntoPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

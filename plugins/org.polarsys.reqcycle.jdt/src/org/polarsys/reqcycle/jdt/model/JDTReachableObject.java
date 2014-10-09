@@ -91,7 +91,7 @@ public class JDTReachableObject implements ReachableObject {
 	@Override
 	public Object getAdapter(Class adapter) {
 		if (IBusinessObject.class.equals(adapter)){
-			return new IBusinessObject.DefaultBusinessObject(javaElement != null);
+			return new IBusinessObject.DefaultBusinessObject(javaElement != null && javaElement.exists());
 		}
 		if (ILabelProvider.class.equals(adapter)) {
 			return new JDTLabelProvider();

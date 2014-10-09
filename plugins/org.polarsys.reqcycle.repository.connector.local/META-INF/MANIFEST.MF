@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.polarsys.reqcycle.repository.data,
+ org.polarsys.reqcycle.repository.data;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -28,9 +28,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.databinding,
  com.ibm.icu,
  org.polarsys.reqcycle.repository.connector.ui,
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.ecore.editor;bundle-version="2.10.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: RequirementSourceData.presentation,
- org.polarsys.reqcycle.repository.connector.local
+Export-Package: org.polarsys.reqcycle.repository.connector.local,
+ org.polarsys.reqcycle.repository.connector.local.ui,
+ org.polarsys.reqcycle.repository.connector.local.ui.dialog,
+ org.polarsys.reqcycle.repository.connector.local.ui.editor.util
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject

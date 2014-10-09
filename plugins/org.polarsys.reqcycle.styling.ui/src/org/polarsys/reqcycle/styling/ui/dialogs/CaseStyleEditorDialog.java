@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.dialogs;
 
 import java.util.Collection;
@@ -136,7 +145,7 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 		btnAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final Collection<IPredicate> predicates = predicatesConfManager.getPredicates(false);
+				final Collection<IPredicate> predicates = predicatesConfManager.getPredicates(true);
 
 				final Iterable<IPredicate> alreadyUsed = Iterables.filter(Iterables.transform(stylingModel.getStyles(), new Function<CaseStyle, IPredicate>() {
 
@@ -314,7 +323,9 @@ public class CaseStyleEditorDialog extends ValidatingTitleAreaDialog implements 
 			public String getText(Object object) {
 				if (object instanceof StylingPredicate) {
 					StylingPredicate stylingPredicate = (StylingPredicate) object;
-
+					if (stylingPredicate.getPredicate() == null){
+						return "" ;
+					}
 					return (stylingPredicate.getPredicate().getDisplayName());
 				}
 				return super.getText(object);

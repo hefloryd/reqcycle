@@ -17,7 +17,8 @@ package org.polarsys.reqcycle.predicates.core.api;
  *
  *
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getEnumIntoPredicate()
- * @model superTypes="org.polarsys.reqcycle.predicates.core.api.IntoPredicate<org.eclipse.emf.ecore.EString>" annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.util.Collection' objectType='java.lang.String'"
+ * @model superTypes="org.polarsys.reqcycle.predicates.core.api.IntoPredicate<org.eclipse.emf.ecore.EString>"
+ *        annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.util.Collection' objectType='java.lang.String'"
  * @generated
  */
 public interface EnumIntoPredicate extends IntoPredicate<String> {

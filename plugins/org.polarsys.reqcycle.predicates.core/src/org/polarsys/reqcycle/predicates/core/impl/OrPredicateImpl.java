@@ -28,7 +28,6 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OrPredicateImpl() {
@@ -37,7 +36,6 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

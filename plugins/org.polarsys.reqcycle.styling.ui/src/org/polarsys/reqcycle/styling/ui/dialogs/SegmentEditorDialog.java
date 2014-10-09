@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.dialogs;
 
 import java.lang.reflect.Method;
@@ -235,8 +244,7 @@ public class SegmentEditorDialog extends ValidatingTitleAreaDialog {
 				SelectModelDialog dialog = new SelectModelDialog(Display.getDefault().getActiveShell());
 				int result = dialog.open();
 				if (result == Window.OK) {
-					IAttribute att = dialog.getResult();
-					String attributeName = att.getName();
+					String attributeName = dialog.getResult();
 					ModelPattern pattern = StylingFactory.eINSTANCE.createModelPattern();
 					pattern.setAttributeName(attributeName);
 					segment.setPattern(pattern);

@@ -1,8 +1,12 @@
 package org.polarsys.reqcycle.repository.ui.actions;
 
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
@@ -26,7 +30,7 @@ public class FilterHandler extends AbstractHandler {
 			if (filter == null) {
 				filter = "";
 			}
-			InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), "Filter requirements", "Enter value to filter requirements", filter, null);
+			InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), "Filter requirements", "Enter value to filter requirements", filter, new FilterValidator());
 			if (dialog.open() == Window.OK) {
 				filter = dialog.getValue();
 				reqView.setFilter(filter);
@@ -36,5 +40,19 @@ public class FilterHandler extends AbstractHandler {
 		}
 
 		return null;
+	}
+
+	protected class FilterValidator implements IInputValidator {
+
+		@Override
+		public String isValid(String newText) {
+			try {
+				Pattern.compile(".*" + newText + ".*", Pattern.DOTALL);
+			} catch (PatternSyntaxException e) {
+				return "Invalid pattern";
+			}
+			return null;
+		}
+
 	}
 }

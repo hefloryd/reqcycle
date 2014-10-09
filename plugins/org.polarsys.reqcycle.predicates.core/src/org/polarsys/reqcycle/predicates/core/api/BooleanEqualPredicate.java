@@ -17,7 +17,8 @@ package org.polarsys.reqcycle.predicates.core.api;
  *
  *
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getBooleanEqualPredicate()
- * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EBooleanObject>" annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.lang.Boolean'"
+ * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EBooleanObject>"
+ *        annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.lang.Boolean'"
  * @generated
  */
 public interface BooleanEqualPredicate extends EqualPredicate<Boolean> {

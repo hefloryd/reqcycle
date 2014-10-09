@@ -34,7 +34,6 @@ import org.osgi.service.event.EventHandler;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory;
-import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
@@ -44,7 +43,6 @@ import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
 import org.polarsys.reqcycle.styling.ui.dialogs.IconRegistry;
-//import org.polarsys.reqcycle.styling.ui.providers.StylingContentProvider.PredicateInput;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -111,7 +109,6 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 	}
 
 	protected StyledString applyStyle(Object element, CaseStyle styling) {
-
 		return styling.getStyledString(element);
 	}
 
@@ -132,9 +129,7 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 
 	@Override
 	public Image getImage(Object object) {
-		if (object instanceof RequirementSource) {
-			return null;
-		} else if (object instanceof IPredicate) {
+		if (object instanceof IPredicate) {
 			PredicatesItemProviderAdapterFactory factory = new PredicatesItemProviderAdapterFactory();
 			return new AdapterFactoryLabelProvider(factory).getImage(object);
 		} else {
@@ -175,55 +170,45 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 			}
 		}
 
-		if (element instanceof RequirementSource) {
-			String label = ((RequirementSource) element).getRepositoryURI();
-			if (label == null) {
-				label = ((RequirementSource) element).getName();
-			} else {
-				label = ((RequirementSource) element).getName() + " [" + label + "]";
-			}
-			return toT(label, theClass);
-		} else {
-			StylingModel model = getStylingModel();
-			if (model != null) {
-				EList<CaseStyle> list = model.getStyles();
-				for (CaseStyle styling : list) {
-					StylingPredicate sp = (StylingPredicate) styling;
-					if (sp.getPredicate() != null) {
-						if (predicateEvaluator.match(sp.getPredicate(), element)) {
-							if (StyledString.class.equals(theClass)) {
-								StyledString styledString = applyStyle(element, styling);
-								if (styledString.length() != 0) {
-									return (T) applyStyle(element, styling);
-								} else {
-									return (T) getDefaultText(element, theClass);
-								}
+		StylingModel model = getStylingModel();
+		if (model != null) {
+			EList<CaseStyle> list = model.getStyles();
+			for (CaseStyle styling : list) {
+				StylingPredicate sp = (StylingPredicate) styling;
+				if (sp.getPredicate() != null) {
+					if (predicateEvaluator.match(sp.getPredicate(), element)) {
+						if (StyledString.class.equals(theClass)) {
+							StyledString styledString = applyStyle(element, styling);
+							if (styledString.length() != 0) {
+								return (T) applyStyle(element, styling);
 							} else {
-								StyledString s = applyStyle(element, styling);
-								if (s.length() != 0) {
-									return (T) s.getString();
-								} else {
-									return (T) getDefaultText(element, theClass);
-								}
+								return (T) getDefaultText(element, theClass);
+							}
+						} else {
+							StyledString s = applyStyle(element, styling);
+							if (s.length() != 0) {
+								return (T) s.getString();
+							} else {
+								return (T) getDefaultText(element, theClass);
 							}
 						}
 					}
 				}
-				if (model.getDefault() != null) {
-					StyledString styledString = applyStyle(element, model.getDefault());
-					if (styledString.length() != 0) {
-						return (T) applyStyle(element, model.getDefault());
-					} else {
-						return (T) getDefaultText(element, theClass);
-					}
-				}
-			} else {
-				return (T) getDefaultText(element, theClass);
 			}
+			if (model.getDefault() != null) {
+				StyledString styledString = applyStyle(element, model.getDefault());
+				if (styledString.length() != 0) {
+					return (T) applyStyle(element, model.getDefault());
+				} else {
+					return (T) getDefaultText(element, theClass);
+				}
+			}
+		} else {
+			return (T) getDefaultText(element, theClass);
 		}
 		return toT(element.toString(), theClass);
 	}
-	
+
 	protected <T> T getDefaultText(Object element, Class<T> theClass) {
 		// in case no sytling model is defined, we display requirement section ID and requirement ID + Text by default
 		if (element instanceof Requirement) {
@@ -237,7 +222,7 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 			String label = ((Section) element).getId() + "][" + ((Section) element).getText();
 			return toT(" [ " + label + "]", theClass);
 		}
-		
+
 		return toT(element.toString(), theClass);
 	}
 
@@ -263,12 +248,16 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 	}
 
 	protected class StylingAdapter extends AdapterImpl {
-
+		@Override
+		public void notifyChanged(Notification msg) {
+			super.notifyChanged(msg);
+			handleModification(msg);
+		}
 	}
 
 	void handleModification(Notification notification) {
 		Object[] listObject = new Object[1];
-		listObject[0] = notification.getFeature();
+		listObject[0] = notification.getNotifier();
 		this.notifyChanged(listObject);
 	}
 

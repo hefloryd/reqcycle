@@ -29,7 +29,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DateEqualPredicateImpl() {
@@ -38,7 +37,6 @@ public class DateEqualPredicateImpl extends EqualPredicateImpl<Date> implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

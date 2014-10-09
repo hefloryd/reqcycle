@@ -28,7 +28,7 @@ import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl#getTypedElement <em>Typed Element</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl#getTypedElement <em>Typed Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,8 +37,8 @@ import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAttrPredicate {
 
 	/**
-	 * The cached value of the '{@link #getTypedElement() <em>Typed Element</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getTypedElement() <em>Typed Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getTypedElement()
 	 * @generated
 	 * @ordered
@@ -47,7 +47,6 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IEAttrPredicateImpl() {
@@ -56,7 +55,6 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,14 +64,13 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EAttribute getTypedElement() {
-		if (typedElement != null && ((EObject) typedElement).eIsProxy()) {
-			InternalEObject oldTypedElement = (InternalEObject) typedElement;
-			typedElement = (EAttribute) eResolveProxy(oldTypedElement);
+		if (typedElement != null && ((EObject)typedElement).eIsProxy()) {
+			InternalEObject oldTypedElement = (InternalEObject)typedElement;
+			typedElement = (EAttribute)eResolveProxy(oldTypedElement);
 			if (typedElement != oldTypedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT, oldTypedElement, typedElement));
@@ -84,7 +81,6 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute basicGetTypedElement() {
@@ -93,7 +89,6 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,60 +130,55 @@ public class IEAttrPredicateImpl extends IPredicateContainerImpl implements IEAt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			if (resolve)
-				return getTypedElement();
-			return basicGetTypedElement();
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				if (resolve) return getTypedElement();
+				return basicGetTypedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			setTypedElement((EAttribute) newValue);
-			return;
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				setTypedElement((EAttribute)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			setTypedElement((EAttribute) null);
-			return;
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				setTypedElement((EAttribute)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
-			return typedElement != null;
+			case PredicatesPackage.IE_ATTR_PREDICATE__TYPED_ELEMENT:
+				return typedElement != null;
 		}
 		return super.eIsSet(featureID);
 	}

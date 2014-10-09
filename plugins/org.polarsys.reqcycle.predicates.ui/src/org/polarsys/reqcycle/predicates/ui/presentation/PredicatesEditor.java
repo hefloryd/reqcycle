@@ -745,8 +745,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 			Runnable runnable = new Runnable() {
 				@Override
 				public void run() {
-					// Try to select the items in the current content viewer of
-					// the editor.
+					// Try to select the items in the current content viewer of the editor.
 					//
 					if (currentViewer != null) {
 						currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
@@ -856,8 +855,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 				// Create the listener on demand.
 				//
 				selectionChangedListener = new ISelectionChangedListener() {
-					// This just notifies those things that are affected by the
-					// section.
+					// This just notifies those things that are affected by the section.
 					//
 					@Override
 					public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
@@ -882,8 +880,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 			//
 			currentViewer = viewer;
 
-			// Set the editors selection based on the current viewer's
-			// selection.
+			// Set the editors selection based on the current viewer's selection.
 			//
 			setSelection(currentViewer == null ? StructuredSelection.EMPTY : currentViewer.getSelection());
 		}
@@ -1222,8 +1219,7 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 				//
 				Object selectedElement = selectedElements.next();
 
-				// If it's the selection viewer, then we want it to select the
-				// same selection as this selection.
+				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
 				if (currentViewerPane.getViewer() == selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
@@ -1281,8 +1277,8 @@ public class PredicatesEditor extends MultiPageEditorPart implements IEditingDom
 			if (displayName != null && !displayName.isEmpty()) {
 				IPredicate p = predicateManager.getPredicateByName(displayName);
 				if (p != null) {
-					EcoreUtil.replace(p, EcoreUtil.copy(newPredicate));
-					predicateManager.save();
+					predicateManager.removePredicate(p);
+					predicateManager.storePredicate(newPredicate);
 				} else {
 					predicateManager.storePredicate(newPredicate);
 				}

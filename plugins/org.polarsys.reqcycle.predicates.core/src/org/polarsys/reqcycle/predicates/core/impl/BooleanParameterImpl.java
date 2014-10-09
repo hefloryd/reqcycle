@@ -13,7 +13,7 @@ import org.polarsys.reqcycle.predicates.core.api.BooleanParameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl#isValue <em>Value</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl#isValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,8 +21,8 @@ import org.polarsys.reqcycle.predicates.core.api.BooleanParameter;
  */
 public class BooleanParameterImpl extends ParameterImpl implements BooleanParameter {
 	/**
-	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isValue()
 	 * @generated
 	 * @ordered
@@ -30,8 +30,8 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 	protected static final boolean VALUE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isValue()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,6 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BooleanParameterImpl() {
@@ -49,7 +48,6 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,7 +57,6 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,7 +66,6 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,71 +83,65 @@ public class BooleanParameterImpl extends ParameterImpl implements BooleanParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
-			return isValue();
+			case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
+				return isValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
-			setValue((Boolean) newValue);
-			return;
+			case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
+				setValue((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
-			return value != VALUE_EDEFAULT;
+			case PredicatesPackage.BOOLEAN_PARAMETER__VALUE:
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");

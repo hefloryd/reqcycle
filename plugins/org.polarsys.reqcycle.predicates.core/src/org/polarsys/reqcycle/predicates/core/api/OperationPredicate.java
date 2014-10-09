@@ -10,8 +10,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getOperationName <em>Operation Name</em>}</li>
- * <li>{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getOperationName <em>Operation Name</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface OperationPredicate extends IPredicateContainer {
 	/**
-	 * Returns the value of the '<em><b>Operation Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operation Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Operation Name</em>' attribute.
 	 * @see #setOperationName(String)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getOperationPredicate_OperationName()
@@ -36,22 +36,22 @@ public interface OperationPredicate extends IPredicateContainer {
 	String getOperationName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getOperationName <em>Operation Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operation Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.OperationPredicate#getOperationName <em>Operation Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operation Name</em>' attribute.
 	 * @see #getOperationName()
 	 * @generated
 	 */
 	void setOperationName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.predicates.core.api.Parameter}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.reqcycle.predicates.core.api.Parameter}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getOperationPredicate_Parameters()
 	 * @model containment="true"

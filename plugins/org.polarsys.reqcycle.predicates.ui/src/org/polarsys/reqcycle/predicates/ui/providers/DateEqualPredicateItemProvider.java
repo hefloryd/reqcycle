@@ -11,14 +11,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.DateEqualPredicate} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DateEqualPredicateItemProvider(AdapterFactory adapterFactory) {
@@ -26,8 +26,8 @@ public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -40,8 +40,8 @@ public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	}
 
 	/**
-	 * This returns DateEqualPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns DateEqualPredicate.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,27 +50,22 @@ public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		DateEqualPredicate eqPredicate = (DateEqualPredicate) object;
-		String label = eqPredicate.getDisplayName();
-		if (eqPredicate.getExpectedObject() != null) {
-			if (label != null) {
-				label += "(" + eqPredicate.getExpectedObject().toString() + ")";
-			} else {
-				label = "(" + eqPredicate.getExpectedObject().toString() + ")";
-			}
-		}
-		return label == null || label.length() == 0 ? getString("_UI_DateEqualPredicate_type") : getString("_UI_DateEqualPredicate_type") + " " + label;
+		String label = ((DateEqualPredicate)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DateEqualPredicate_type") :
+			getString("_UI_DateEqualPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -80,8 +75,9 @@ public class DateEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

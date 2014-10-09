@@ -19,7 +19,8 @@ import java.util.Date;
  *
  *
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getDateEqualPredicate()
- * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EDate>" annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.util.Date'"
+ * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EDate>"
+ *        annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.util.Date'"
  * @generated
  */
 public interface DateEqualPredicate extends EqualPredicate<Date> {

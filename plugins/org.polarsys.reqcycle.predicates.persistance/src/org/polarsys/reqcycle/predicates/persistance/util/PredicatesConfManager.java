@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.persistance.PredicatesConfFactory;
 import org.polarsys.reqcycle.predicates.persistance.api.PredicatesConf;
@@ -31,6 +32,8 @@ import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
  */
 @Singleton
 public class PredicatesConfManager implements IPredicatesConfManager {
+
+	private static final String PREDICATESCONF_EXTENSION = "predicatesconf";
 
 	/**
 	 * The id of the configuration file which contains the name of the stored predicates.
@@ -66,7 +69,7 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 		boolean added = false;
 		try {
 			added = predicates.getPredicates().add(predicate);
-			confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, null);
+			confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, PREDICATESCONF_EXTENSION);
 		} catch (IOException ioe) {
 			// TODO log ...
 			ioe.printStackTrace();
@@ -78,7 +81,7 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 	@Override
 	public void save() {
 		try {
-			confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, null);
+			confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, PREDICATESCONF_EXTENSION);
 		} catch (IOException e) {
 			// TODO log...
 			e.printStackTrace();
@@ -93,7 +96,7 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 			predicates = this.getConf(true);
 			if (predicates == null) {
 				predicates = PredicatesConfFactory.eINSTANCE.createPredicatesConf();
-				confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, null);
+				confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, PREDICATESCONF_EXTENSION);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -103,7 +106,7 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 
 	@Override
 	public Collection<IPredicate> getPredicates(boolean reload) {
-		if (reload) {
+		if (true) {
 			return getStoredPredicates();
 		}
 		return predicates != null ? predicates.getPredicates() : new LinkedList<IPredicate>();
@@ -173,13 +176,18 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 	@Override
 	public boolean removePredicate(IPredicate predicate) {
 		if (predicates != null) {
-			return predicates.getPredicates().remove(predicate);
+			EcoreUtil.delete(predicate, true);
+			if (predicates.getPredicates().contains(predicate)) {
+				return false;
+			}
+			return true;// predicates.getPredicates().remove(predicate);
+
 		}
 		return false;
 	}
 
 	protected PredicatesConf getConf(boolean reload) {
-		Collection<EObject> conf = confManager.getConfiguration(null, null, PREDICATES_ENTRIES_CONF_ID, null, null, reload);
+		Collection<EObject> conf = confManager.getConfiguration(null, null, PREDICATES_ENTRIES_CONF_ID, null, PREDICATESCONF_EXTENSION, reload);
 		EObject element = null;
 		if (conf != null && !conf.isEmpty()) {
 			element = conf.iterator().next();

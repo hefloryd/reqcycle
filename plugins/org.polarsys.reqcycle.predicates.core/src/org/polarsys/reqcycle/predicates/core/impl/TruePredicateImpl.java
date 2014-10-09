@@ -17,7 +17,7 @@ import org.polarsys.reqcycle.predicates.core.api.TruePredicate;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,8 +25,8 @@ import org.polarsys.reqcycle.predicates.core.api.TruePredicate;
  */
 public class TruePredicateImpl extends MinimalEObjectImpl.Container implements TruePredicate {
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -34,8 +34,8 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -44,7 +44,6 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TruePredicateImpl() {
@@ -53,7 +52,6 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +61,6 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +70,6 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,85 +92,78 @@ public class TruePredicateImpl extends MinimalEObjectImpl.Container implements T
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
-			return getDisplayName();
+			case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
+				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
-			setDisplayName((String) newValue);
-			return;
+			case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
+				setDisplayName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
-			setDisplayName(DISPLAY_NAME_EDEFAULT);
-			return;
+			case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
-			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
+			case PredicatesPackage.TRUE_PREDICATE__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case PredicatesPackage.TRUE_PREDICATE___MATCH__OBJECT:
-			return match(arguments.get(0));
+			case PredicatesPackage.TRUE_PREDICATE___MATCH__OBJECT:
+				return match(arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayName: ");

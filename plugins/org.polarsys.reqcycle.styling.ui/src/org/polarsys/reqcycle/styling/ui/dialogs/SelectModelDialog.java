@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.dialogs;
 
 import java.util.ArrayList;
@@ -5,9 +14,13 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Descriptor;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -41,7 +54,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 	private FilteredTree filteredTree;
 	private TreeViewer treeViewer;
 
-	protected IAttribute currentAttribute;
+	protected String currentAttribute;
 
 	public SelectModelDialog(Shell parent) {
 		super(parent);
@@ -84,14 +97,32 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 				validateInput();
 				if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof IAttribute) {
 					IAttribute att = (IAttribute) ((IStructuredSelection) event.getSelection()).getFirstElement();
-					currentAttribute = att;
+					currentAttribute = att.getName();
+				} else if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof EAttribute) {
+					EAttribute att = (EAttribute) ((IStructuredSelection) event.getSelection()).getFirstElement();
+					currentAttribute = att.getName();
 				}
 			}
 		});
 
-		ArrayList<IType> input = new ArrayList<IType>();
+		ArrayList<Object> input = new ArrayList<Object>();
 		for (IDataModel dataModel : dataModelManager.getCurrentDataModels()) {
-			input.addAll(dataModel.getTypes());
+			Collection<IType> list = dataModel.getTypes();
+			for (IType type : list) {
+				if (type instanceof IRequirementType) {
+					input.add(type);
+				}
+			}
+
+			String sourceConf = "http://www.polarsys.org/ReqCycle/RequirementSourceConf";
+			Object objConf = Registry.INSTANCE.get(sourceConf);
+			Collection<EClass> classesConf = getAllEClasses((EPackage) objConf);
+			input.addAll(classesConf);
+			
+			String sourceData = "http://www.polarsys.org/ReqCycle/RequirementSourceData";
+			Object objData = Registry.INSTANCE.get(sourceData);
+			Collection<EClass> classesData = getAllEClasses((EPackage) objData);
+			input.addAll(classesData);
 		}
 		treeViewer.setInput(input);
 
@@ -136,6 +167,8 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof IRequirementType) {
 				return ((IRequirementType) parentElement).getAttributes().toArray();
+			} else if (parentElement instanceof EClass) {
+				return ((EClass) parentElement).getEAllAttributes().toArray();
 			}
 			return null;
 		}
@@ -148,6 +181,9 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		public boolean hasChildren(Object element) {
 			if (element instanceof IRequirementType) {
 				Collection<IAttribute> attr = ((IRequirementType) element).getAttributes();
+				return attr.size() > 0;
+			} else if (element instanceof EClass) {
+				EList<EAttribute> attr = (((EClass) element).getEAllAttributes());
 				return attr.size() > 0;
 			}
 			return false;
@@ -162,6 +198,10 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 				return ((IRequirementType) element).getName();
 			} else if (element instanceof IAttribute) {
 				return (((IAttribute) element).getName());
+			} else if (element instanceof EClass) {
+				return (((EClass) element).getName());
+			} else if (element instanceof EAttribute) {
+				return ((EAttribute) element).getName();
 			}
 			return super.getText(element);
 		}
@@ -176,7 +216,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 					return "An attribute must be selected";
 				}
 				IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-				if (!(selection.getFirstElement() instanceof IAttribute)) {
+				if ((!(selection.getFirstElement() instanceof IAttribute)) && (!(selection.getFirstElement() instanceof EAttribute))) {
 					return "An attribute must be selected";
 				}
 				return null;
@@ -185,7 +225,7 @@ public class SelectModelDialog extends ValidatingTitleAreaDialog {
 		};
 	}
 
-	public IAttribute getResult() {
+	public String getResult() {
 		return currentAttribute;
 	}
 }

@@ -146,7 +146,7 @@ public abstract class AbstractCachedTraceabilityEngine implements IBuildingTrace
 		for (Request request : requests) {
 			// Scope and Filter are used to validate or invalidate paths so
 			// they can be combined
-			Predicate<Pair<Link, Reachable>> requestPredicate = TraceabilityPredicates.newIsInScopePredicate(request.getScope());
+			Predicate<Pair<Link, Reachable>> requestPredicate = Predicates.alwaysTrue();
 			if (request.getFilter() != null) {
 				requestPredicate = Predicates.and(new FilterPredicate(request.getFilter()), requestPredicate);
 			}

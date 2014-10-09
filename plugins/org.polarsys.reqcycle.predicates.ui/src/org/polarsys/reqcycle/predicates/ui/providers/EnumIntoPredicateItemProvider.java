@@ -13,14 +13,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class EnumIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EnumIntoPredicateItemProvider(AdapterFactory adapterFactory) {
@@ -28,8 +28,8 @@ public class EnumIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -42,8 +42,8 @@ public class EnumIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	}
 
 	/**
-	 * This returns EnumIntoPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns EnumIntoPredicate.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,19 +52,22 @@ public class EnumIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EnumIntoPredicate) object).getDisplayName();
-		return label == null || label.length() == 0 ? getString("_UI_EnumIntoPredicate_type") : getString("_UI_EnumIntoPredicate_type") + " " + label;
+		String label = ((EnumIntoPredicate)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_EnumIntoPredicate_type") :
+			getString("_UI_EnumIntoPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,8 +77,9 @@ public class EnumIntoPredicateItemProvider extends IntoPredicateItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

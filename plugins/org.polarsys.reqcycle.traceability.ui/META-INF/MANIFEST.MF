@@ -22,7 +22,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.core.resources,
  javax.inject,
- org.polarsys.reqcycle.traceability.storage
+ org.polarsys.reqcycle.traceability.storage,
+ org.polarsys.reqcycle.commands,
+ org.eclipse.emf.workspace,
+ org.eclipse.emf.edit.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.traceability.ui,

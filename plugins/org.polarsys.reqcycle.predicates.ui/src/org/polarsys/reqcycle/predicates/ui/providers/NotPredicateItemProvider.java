@@ -20,15 +20,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.predicates.core.api.NotPredicate;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.NotPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.NotPredicate} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class NotPredicateItemProvider extends CompositePredicateItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotPredicateItemProvider(AdapterFactory adapterFactory) {
@@ -36,8 +36,8 @@ public class NotPredicateItemProvider extends CompositePredicateItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,8 +50,8 @@ public class NotPredicateItemProvider extends CompositePredicateItemProvider {
 	}
 
 	/**
-	 * This returns NotPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns NotPredicate.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,19 +60,22 @@ public class NotPredicateItemProvider extends CompositePredicateItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((NotPredicate) object).getDisplayName();
-		return label == null || label.length() == 0 ? getString("_UI_NotPredicate_type") : getString("_UI_NotPredicate_type") + " " + label;
+		String label = ((NotPredicate)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_NotPredicate_type") :
+			getString("_UI_NotPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,8 +85,9 @@ public class NotPredicateItemProvider extends CompositePredicateItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

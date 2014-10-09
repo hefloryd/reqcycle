@@ -4,10 +4,12 @@
    <extension
          point="org.polarsys.reqcycle.uri.reachableHandler">
       <reachableHandler
-            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler">
+            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler"
+            priority="20">
       </reachableHandler>
       <objectHandler
-            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler"></objectHandler>
+            handler="org.polarsys.reqcycle.jdt.handlers.JDTReachableHandler"
+            priority="20"></objectHandler>
    </extension>
    <extension
          point="org.polarsys.reqcycle.types.types">

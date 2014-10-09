@@ -1,8 +1,18 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.manager.impl;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +21,7 @@ import javax.inject.Singleton;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.styling.manager.Activator;
 import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.CaseStyle;
@@ -21,6 +31,7 @@ import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.model.Styling.StylingPredicate;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @Singleton
@@ -59,24 +70,25 @@ public class StylingManager implements IStylingManager {
 		return preferredStylingModel;
 	}
 
-	public void suppressPredicate(IPredicate predicate) {
+	public void suppressUselessPredicates() {
 		CaseStyle caseStyle = null;
+		List<CaseStyle> toDelete = Lists.newArrayList();
 		for(StylingModel model : currentModel.getModels()) {
 			for(CaseStyle style : model.getStyles()) {
 				if(style instanceof StylingPredicate) {
 					StylingPredicate stylingPredicate = (StylingPredicate)style;
-					if (stylingPredicate.getPredicate().equals(predicate)) {
+					if (stylingPredicate != null && stylingPredicate.getPredicate() == null) {
 						caseStyle = style;
-						break;
+						EList<CaseStyle> casesStyle = model.getStyles();
+						toDelete.add(caseStyle);
 					}
 				}
 			}
-			if (caseStyle != null) {
-				EList<CaseStyle> casesStyle = model.getStyles();
-				casesStyle.remove(caseStyle);
-				caseStyle = null;
-			}
 		}
+		for (CaseStyle c : toDelete){
+			EcoreUtil.delete(c, true);
+		}
+		save();
 	}
 	
 	public void save() {
