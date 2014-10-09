@@ -36,7 +36,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl#getRequirements <em>Requirements</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,8 +44,8 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsC
  */
 public class RequirementsContainerImpl extends MinimalEObjectImpl.Container implements RequirementsContainer {
 	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRequirements()
 	 * @generated
 	 * @ordered
@@ -54,7 +54,6 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RequirementsContainerImpl() {
@@ -63,7 +62,6 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +71,6 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,74 +83,69 @@ public class RequirementsContainerImpl extends MinimalEObjectImpl.Container impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			return ((InternalEList<?>) getRequirements()).basicRemove(otherEnd, msgs);
+			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
+				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			return getRequirements();
+			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
+				return getRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			getRequirements().clear();
-			getRequirements().addAll((Collection<? extends AbstractElement>) newValue);
-			return;
+			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
+				getRequirements().clear();
+				getRequirements().addAll((Collection<? extends AbstractElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			getRequirements().clear();
-			return;
+			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
+				getRequirements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
-			return requirements != null && !requirements.isEmpty();
+			case RequirementSourceDataPackage.REQUIREMENTS_CONTAINER__REQUIREMENTS:
+				return requirements != null && !requirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

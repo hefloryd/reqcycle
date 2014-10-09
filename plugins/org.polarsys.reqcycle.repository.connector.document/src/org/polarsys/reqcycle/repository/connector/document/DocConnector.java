@@ -17,15 +17,20 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.polarsys.kitalpha.doc.doc2model.common.Common.DocumentModel;
+import org.polarsys.kitalpha.doc.doc2model.core.Doc2Model;
 import org.polarsys.reqcycle.inittypes.inittypes.FileType;
 import org.polarsys.reqcycle.inittypes.inittypes.Requirement;
 import org.polarsys.reqcycle.inittypes.inittypes.Type;
 import org.polarsys.reqcycle.repository.connector.ICallable;
+import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
 import org.polarsys.reqcycle.repository.connector.document.ui.DocMappingPage;
 import org.polarsys.reqcycle.repository.connector.document.ui.DocSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
@@ -37,7 +42,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 
-public class DocConnector extends Wizard implements IConnectorWizard{
+public class DocConnector extends Wizard implements IConnectorWizard, IURIValidatorConnector{
 	
 	//page of wizard
 	protected DocSettingPage docSettingPage;
@@ -176,10 +181,7 @@ public class DocConnector extends Wizard implements IConnectorWizard{
 			}
 			
 		}
-		
-
 	}
-
 
 
 	@Override
@@ -193,6 +195,19 @@ public class DocConnector extends Wizard implements IConnectorWizard{
 		}
 		source.getMappings().addAll(mapElements);
 		
+	}
+
+	@Override
+	public IStatus validate(URI uri) {
+		String fileString = CommonPlugin.asLocalURI(uri).toFileString();
+		Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
+		String fileType = doc2Model.getFileType(fileString);
+		if (fileType != null && fileType.toString() != null) {
+			return Status.OK_STATUS;
+		}
+
+		String extension = uri.path().substring(uri.path().lastIndexOf(".")+1, uri.path().length());
+		return new Status(IStatus.WARNING, Activator.PLUGIN_ID, "extension \"" + extension + "\" is not supported. Retry and choose document file");
 	}
 
 }

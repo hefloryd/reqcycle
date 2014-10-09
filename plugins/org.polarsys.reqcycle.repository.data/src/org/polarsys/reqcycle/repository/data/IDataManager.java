@@ -6,6 +6,7 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *    Anass Radouani (AtoS) - initial API and implementation and/or initial documentation
+ *    Malick WADE (Atos) - add trash section
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data;
@@ -18,6 +19,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Trash;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 
 public interface IDataManager {
@@ -67,6 +69,19 @@ public interface IDataManager {
 	 * @return the section
 	 */
 	public Section createSection(String id, String name, String uri);
+
+	/**
+	 * Creates a Trash section.
+	 * 
+	 * @param id
+	 *            the Trash id
+	 * @param name
+	 *            the Trash name
+	 * @param uri
+	 *            the Trash uri
+	 * @return the Trash
+	 */
+	public Trash createTrash(String id, String name, String uri);
 
 	/**
 	 * Gets an existing repository

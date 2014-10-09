@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.utils.configuration.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,6 +27,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -117,7 +119,12 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 				return r.getContents();
 			}
 		} catch (Throwable e) {
-			// DO NOTHING
+			if (e instanceof WrappedException) {
+				Throwable cause = e.getCause();
+				if (!(cause instanceof FileNotFoundException)) {
+					throw (WrappedException)e;
+				}
+			}
 		}
 
 		return null;
@@ -294,7 +301,12 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 		}
 
 		URI mmFileUri = getConfigurationFileURI(context, scope, id, "ecore");
-		Resource mmResource = internalResourceSet.createResource(mmFileUri);
+		Resource mmResource = internalResourceSet.getResource(mmFileUri, false);
+		if (mmResource == null) {
+			mmResource = internalResourceSet.createResource(mmFileUri);
+		}
+		
+		mmResource.getContents().clear();
 		mmResource.getContents().add(ePackage);
 		mmResource.save(null);
 

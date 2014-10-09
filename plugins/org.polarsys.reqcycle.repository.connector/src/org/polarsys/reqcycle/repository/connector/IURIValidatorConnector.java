@@ -10,25 +10,9 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector;
 
-import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.URI;
 
-/**
- *
- */
-public interface IConnector {
-
-	/**
-	 * Initializes the connector with an already existing requirement source.
-	 */
-	public void initializeWithRequirementSource(RequirementSource requirementSource);
-
-	/**
-	 * Callable that will create the new requirement source repository
-	 * 
-	 * @return new requirement source repository (not null)
-	 */
-	public ICallable getRequirementsCreator();
-
-	void dispose();
-
+public interface IURIValidatorConnector extends IConnector {
+	IStatus validate(URI uri);
 }

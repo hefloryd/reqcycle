@@ -14,13 +14,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,9 +28,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingModelFactory;
-
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
 
@@ -196,8 +191,15 @@ public class RequirementSourceItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RequirementSource) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_RequirementSource_type") : getString("_UI_RequirementSource_type") + " " + label;
+		RequirementSource source = ((RequirementSource) object);
+		String label = source.getName();
+		label = (label == null || label.length() == 0 ? getString("_UI_RequirementSource_type") : getString("_UI_RequirementSource_type") + " " + label);
+		if (source.getDestinationURI() == null) {
+			label += " (reference)";
+		} else {
+			label += " (" + source.getDestinationURI() + ")";
+		}
+		return label;
 	}
 
 	/**

@@ -17,12 +17,11 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TreeItem;
 import org.polarsys.reqcycle.repository.connector.update.rs.pages.DialogUpdatePage;
-//import org.polarsys.reqcycle.repository.connector.update.rs.pages.DialogUpdatePage;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
@@ -35,29 +34,56 @@ public class UpdateRequirementSourceAction extends Action {
 	IDataManager requirementSourceManager;
 
 	private List<RequirementSource> requirementsSources;
+	// action come in context menu
+	Boolean isContextMenuAction = false;
 
-	public UpdateRequirementSourceAction(TreeViewer viewer) {
+	public UpdateRequirementSourceAction(TreeViewer viewer, Boolean isContexMenuAction) {
 		super();
 		this.viewer = viewer;
+		this.isContextMenuAction = isContexMenuAction;
 	}
 
 	@Override
 	public void run() {
 		super.run();
-		requirementsSources = new ArrayList<RequirementSource>();
-		ISelection selection = viewer.getSelection();
-		Set<RequirementSource> listReqSources = requirementSourceManager.getRequirementSources();
 
-		for (RequirementSource rs : listReqSources) {
-			if (rs instanceof RequirementSource) {
-				requirementsSources.add(rs);
+		requirementsSources = new ArrayList<RequirementSource>();
+		if (isContextMenuAction) {
+			TreeItem[] selections = viewer.getTree().getSelection();
+
+			if (selections != null) {
+				for (TreeItem sel : selections) {
+					if (sel.getData() instanceof RequirementSource) {
+						requirementsSources.add((RequirementSource) sel.getData());
+					}
+				}
+			}
+		} else {
+
+			Set<RequirementSource> listReqSources = requirementSourceManager.getRequirementSources();
+
+			for (RequirementSource rs : listReqSources) {
+				if (rs instanceof RequirementSource) {
+					requirementsSources.add(rs);
+				}
 			}
 		}
 
-		Shell shell = Display.getDefault().getActiveShell();
+		if ((requirementsSources != null) && (requirementsSources.size() > 0)) {
+			Shell shell = Display.getDefault().getActiveShell();
 
-		DialogUpdatePage updatePage = new DialogUpdatePage(shell);
-		updatePage.setReqSources(requirementsSources);
-		updatePage.open();
+			DialogUpdatePage updatePage = new DialogUpdatePage(shell);
+			updatePage.setReqSources(requirementsSources);
+			updatePage.open();
+
+		}
+	}
+
+	public Boolean getIsContextMenu() {
+		return isContextMenuAction;
+	}
+
+	public void setIsContextMenu(Boolean isContextMenu) {
+		this.isContextMenuAction = isContextMenu;
 	}
 }

@@ -16,11 +16,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,110 +46,126 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.polarsys.reqcycle.repository.connector.update.rs.IConnectorId;
+import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
+import org.polarsys.reqcycle.repository.connector.IConnector;
+import org.polarsys.reqcycle.repository.connector.IConnectorManager;
+import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
 import org.polarsys.reqcycle.repository.connector.update.rs.UpdateRequirementSourcesHandler;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class DialogUpdatePage extends Dialog {
+import com.google.common.base.Function;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+
+public class DialogUpdatePage extends TitleAreaDialog {
 	// private Text txtResourcePath;
 	private List<RequirementSource> reqSources;
-	private Map<RequirementSource, String> mapSourcesModified;
-	DataBindingContext bindingContext;
+	private Map<RequirementSource, String> mapSourcesToModify;
+	IConnectorManager connManager = ZigguratInject.make(IConnectorManager.class);
+	private Map<Button,Boolean> mapStatus;
 
-	private final String DOC_TITLE = "Document (using .types files)";
-	private final String OCL_TITLE = "OCL Connector";
-	private final String DOD_OCL_TITLE = "Document (using OCL files)";
-	private final String LOCAL_TITLE = "Local";
-	private final String REQIF_TITLE = "ReqIF";
-	
-	
+
 	public DialogUpdatePage(Shell parent) {
-
 		super(parent);
 		setShellStyle(SWT.SHELL_TRIM);
-		parent.setText("Requirement updating");
 		this.reqSources = new ArrayList<RequirementSource>();
-		this.mapSourcesModified = new HashMap<RequirementSource, String>();
-		bindingContext= new DataBindingContext();
+		this.mapSourcesToModify = new HashMap<RequirementSource, String>();
+		mapStatus = new HashMap<Button, Boolean>();
+	}
+	
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		newShell.setText("Requirement updating");
+	}
+
+	@Override
+	public void create() {
+		super.create();
+		setTitle("Requirements sources updating");
+		setMessage("Change requirements sources paths and click OK for updating ");
 	}
 
 
 	@Override
-	protected Control createContents(Composite parent) {
+	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
+		
 		composite.setLayout(new GridLayout(1, false));
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
 		
-		Group groupLocal = null;
-		Group groupDocument = null;
-		Group groupDocOcl = null;
-		Group groupOcl = null;
-		Group groupReqIf = null;
-		for (RequirementSource rs : reqSources) {
-			String idConnector = rs.getConnectorId();
-			
-			if(idConnector.equals(IConnectorId.ID_OCL_CONNECTOR)){				
-				groupOcl = createGroupWidgets(composite, groupOcl, rs, OCL_TITLE);				
-				}
-			else if (idConnector.equals(IConnectorId.ID_DOC_CONNECTOR)){
-				groupDocument = createGroupWidgets(composite, groupDocument, rs, DOC_TITLE);				
-				}
-			else if (idConnector.equals(IConnectorId.ID_DOC_OCL_CONNECTOR)){				
-				groupDocOcl = createGroupWidgets(composite, groupDocOcl, rs, DOD_OCL_TITLE);				
-				}
-			else if (idConnector.equals(IConnectorId.ID_LOCAL_CONNECTOR)){				
-				groupLocal = createGroupWidgets(composite, groupLocal, rs, LOCAL_TITLE);			
-				}
-			else if (idConnector.equals(IConnectorId.ID_RMF_CONNECTOR)){		
-				groupReqIf = createGroupWidgets(composite, groupReqIf, rs, REQIF_TITLE);
-				}
-			
-		}
+		
+	
+		Composite top = new Composite (composite, SWT.None);
+		top.setLayout(new GridLayout(2, false));
+		top.setLayoutData(new GridData(GridData.FILL_BOTH));
+		
+		ScrolledComposite scrolledComposite = new ScrolledComposite(top, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		
+		Composite composite_1 = new Composite(scrolledComposite, SWT.NONE);
+		composite_1.setLayout(new GridLayout(1, false));
+		
+		Multimap<String, RequirementSource> allSourcesByConnector = Multimaps.index(reqSources, new Function<RequirementSource, String>() {
 
-		Control control = super.createContents(composite);
-		control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
-
-		return control;
-
-	}
-
-	private Group createGroupWidgets(Composite composite, Group group, RequirementSource rs, String title) {
-		if(group == null){
-			group = new Group(composite, SWT.NONE);	
+			@Override
+			public String apply(RequirementSource arg0) {
+				return connManager.get(arg0.getConnectorId()).getName();
+			}
+		});
+		
+		for (String connectorId : allSourcesByConnector.keySet()){
+			Group group = new Group(composite_1, SWT.NONE);	
 			group.setLayout(new GridLayout(3, false));
-			group.setText(title);
-			group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+			group.setText(connectorId);
+			group.setLayoutData(new GridData(SWT.FILL, SWT.UP, true, false, 3, 1));
 			
-		
+			for (RequirementSource rs : allSourcesByConnector.get(connectorId)){
+				createGroupWidgets(group, rs);
+			}
 		}
-		group = builControlLine(group, rs);
-		return group;
+		
+		
+		scrolledComposite.setContent(composite_1);
+		scrolledComposite.setMinSize(composite_1.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
+				return composite;
+
 	}
 
+	private void createGroupWidgets(Group group, RequirementSource rs) {
+		builControlLine(group, rs);
+	}
+	
 	private Group builControlLine(Group groupWidgets, final RequirementSource reqSource) {
 		
 		// creation of label
 		Label lblResourceName = new Label(groupWidgets, SWT.NONE);
-		lblResourceName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		lblResourceName.setText(reqSource.getName());
+		lblResourceName.setLayoutData(new GridData(SWT.FILL, SWT.UP, false, false, 1, 1));
+		lblResourceName.setText(reqSource.getName() + " : ");
 
 		// creation of Text
 		final Text txtResourcePath = new Text(groupWidgets, SWT.BORDER);
-		txtResourcePath.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		txtResourcePath.setEnabled(false);
+		final GridData layoutData = new GridData(SWT.FILL, SWT.UP, true, false, 1, 1);
+		layoutData.horizontalIndent = 3 ;
+		txtResourcePath.setLayoutData(layoutData);
 		txtResourcePath.setText(reqSource.getRepositoryURI());
+		mapSourcesToModify.put(reqSource, txtResourcePath.getText());
 		txtResourcePath.addModifyListener(new ModifyListener() {
 
 			@Override
 			public void modifyText(ModifyEvent e) {
-				boolean found = false;
-
-				mapSourcesModified.put(reqSource, txtResourcePath.getText());
+				mapSourcesToModify.put(reqSource, txtResourcePath.getText());
 			}
 		});
-		
+		final ControlDecoration controlDec = new ControlDecoration(txtResourcePath,SWT.TOP | SWT.LEFT);
 
 		// creation of browse button
-		Button Browse = new Button(groupWidgets, SWT.NONE);
+		final Button Browse = new Button(groupWidgets, SWT.NONE);
 		Browse.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		Browse.setText("...");
 		Browse.addSelectionListener(new SelectionAdapter() {
@@ -151,27 +176,51 @@ public class DialogUpdatePage extends Dialog {
 				if (Window.OK == dialog.open()) {
 					List<URI> uris = dialog.getURIs();
 					if (!uris.isEmpty()) {
-						txtResourcePath.setText(uris.get(0).toString());
+						URI uri = uris.get(0);
+						txtResourcePath.setText(uri.toString());
 						Display display = getShell().getDisplay();
 						FontData fontData = display.getSystemFont().getFontData()[0];
 						txtResourcePath.setFont(new Font(display,fontData.getName(),fontData.getHeight(), SWT.BOLD));
 
 						String idconnect = reqSource.getConnectorId();
-						if(idconnect.equals(IConnectorId.ID_OCL_CONNECTOR)){	
-							//ValidateUriConnector.validateEMFSources(uris.get(0));
+						ConnectorDescriptor connectorD = connManager.get(idconnect);
+						IConnector createConnector;
+						try {
+							createConnector = connectorD.createConnector();
 							
+							if (createConnector instanceof IURIValidatorConnector) {
+								IURIValidatorConnector validator = (IURIValidatorConnector) createConnector;
+								IStatus status = validator.validate(uri);
+								mapStatus.put(Browse, true);
+								controlDec.hide();
+								if (!status.isOK()){
+									setMessage("Some requirements sources paths are not supported. Retry and press OK to update");
+									mapStatus.put(Browse, false);
+									controlDec.show();
+									controlDec.setDescriptionText(status.getMessage());
+									if (status.getSeverity() == IStatus.ERROR){
+										FieldDecoration fieldDecoration = FieldDecorationRegistry.getDefault()
+												.getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+										controlDec.setImage(fieldDecoration.getImage());
+									}
+									else {
+										FieldDecoration fieldDecoration = FieldDecorationRegistry.getDefault()
+												.getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+										controlDec.setImage(fieldDecoration.getImage());
+									}
+								}
+								
+							}
+							createConnector.dispose();
+						} catch (CoreException e1) {
+							e1.printStackTrace();
 						}
-						else if (idconnect.equals(IConnectorId.ID_DOC_CONNECTOR)){
-							
-						}
-						else if (idconnect.equals(IConnectorId.ID_DOC_OCL_CONNECTOR)){				
-							
-						}
-						else if (idconnect.equals(IConnectorId.ID_LOCAL_CONNECTOR)){				
-							
-						}
-						else if (idconnect.equals(IConnectorId.ID_RMF_CONNECTOR)){		
-							
+					
+						if (mapStatus != null && mapStatus.containsValue(false)){
+							getButton(OK).setEnabled(false);
+						}else{
+							getButton(OK).setEnabled(true);
+							setMessage("All requirements sources paths are supported. Press OK to update");
 						}
 					}
 					
@@ -180,25 +229,26 @@ public class DialogUpdatePage extends Dialog {
 			}
 		});
 
-		/*
-		IObservableValue observeTextTxtResourcePathObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtResourcePath);
-		IObservableValue uriBeanObserveValue = PojoProperties.value("uri").observe(getBean());
-		Binding bind = bindingContext.bindValue(observeTextTxtSelectedDocObserveWidget, uriBeanObserveValue, null, null);
-		ControlDecorationSupport.create(bind, SWT.TOP | SWT.LEFT);*/
 		return groupWidgets;
 	}
-	
-	protected void dataBindings() {
-	
-		
-	}
-
 
 	@Override
 	protected void okPressed() {
 		super.okPressed();
-		UpdateRequirementSourcesHandler updateRequirementSources = new UpdateRequirementSourcesHandler(mapSourcesModified);
+		Job job = new Job("requirements sources updating") {
+			
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				UpdateRequirementSourcesHandler updateRequirementSources = new UpdateRequirementSourcesHandler(mapSourcesToModify);
+				updateRequirementSources.run(monitor);
+				return Status.OK_STATUS;
+			}
+		};
+		job.setUser(true);
+		job.schedule();
 	}
+	
+	
 
 	public List<RequirementSource> getReqSources() {
 		return reqSources;
@@ -207,5 +257,4 @@ public class DialogUpdatePage extends Dialog {
 	public void setReqSources(List<RequirementSource> reqSources) {
 		this.reqSources = reqSources;
 	}
-
 }

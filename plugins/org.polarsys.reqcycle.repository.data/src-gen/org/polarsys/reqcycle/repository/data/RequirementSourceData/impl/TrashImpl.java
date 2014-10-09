@@ -12,31 +12,35 @@ package org.polarsys.reqcycle.repository.data.RequirementSourceData.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Trash;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Simple Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Trash</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class SimpleRequirementImpl extends AbstractElementImpl implements SimpleRequirement {
+public class TrashImpl extends SectionImpl implements Trash {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SimpleRequirementImpl() {
+	protected TrashImpl() {
 		super();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RequirementSourceDataPackage.Literals.SIMPLE_REQUIREMENT;
+		return RequirementSourceDataPackage.Literals.TRASH;
 	}
 
-} // SimpleRequirementImpl
+} //TrashImpl

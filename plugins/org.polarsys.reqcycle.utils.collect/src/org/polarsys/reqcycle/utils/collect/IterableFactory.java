@@ -54,7 +54,31 @@ public class IterableFactory {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * Creates a depth wise iterable that concats all the iterables created by the call of createIterable on each of the starting elements.
+	 */
+	public static <T> Iterable<T> createIterable(Iterable<T> startingElements, Picker<T> picker) {
+		Iterable<T> result = Collections.emptyList();
+		for (T t : startingElements) {
+			Iterable<T> tIterable = createIterable(t, Collections.singleton(picker));
+			result = Iterables.concat(result, tIterable);
+		}
+		return result;
+	}
+	
+	/**
+	 * Creates a depth wise iterable that concats all the iterables created by the call of createIterable on each of the starting elements.
+	 */
+	public static <T> Iterable<T> createIterable(Iterable<T> startingElements, Picker<T>... pickers) {
+		Iterable<T> result = Collections.emptyList();
+		for (T t : startingElements) {
+			Iterable<T> tIterable = createIterable(t, pickers);
+			result = Iterables.concat(result, tIterable);
+		}
+		return result;
+	}
+	
 	/**
 	 * Creates a depth wise iterable : in the order given by the caller, the first element returned by {@link Picker#getNexts(Object)} call serves as the parameter for the next call before the second element is processed.
 	 */

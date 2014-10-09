@@ -238,9 +238,9 @@ public class IniManagerRegistry implements IResourceVisitor, IResourceDeltaVisit
 
 	public static List<String> parseCommaSeparated(String strToParse) {
 		LinkedList<String> strList = new LinkedList<String>();
-		String[] strs = strToParse.split(","); //$NON-NLS-1$
+		String[] strs = strToParse.split(","); 
 		for (String str : strs) {
-			if (!"".equals(str)) { //$NON-NLS-1$
+			if (!"".equals(str)) { 
 				strList.add(str);
 			}
 		}
@@ -259,111 +259,7 @@ public class IniManagerRegistry implements IResourceVisitor, IResourceDeltaVisit
 		}
 		return b.toString();
 	}
-
-	/*protected static DeletionParameters getOrInitDeletionParameters(DocumentType documentType) {
-		DeletionParameters deletionParameters = documentType.getDeletionParameters();
-		if (deletionParameters == null) {
-			deletionParameters = InittypesFactory.eINSTANCE.createDeletionParameters();
-			documentType.setDeletionParameters(deletionParameters);
-		}
-		return deletionParameters;
-	}
-*/
-	/*public String dump ()
-	{
-		InittypesItemProviderAdapterFactory adapterFactory = new InittypesItemProviderAdapterFactory();
-		DocumentTypeItemProvider provider = new DocumentTypeItemProvider(adapterFactory);
-		RegexItemProvider provider3 = new RegexItemProvider(adapterFactory);
-		StringBuilder builder = new StringBuilder();
-		builder.append("Type Model >\n"); //$NON-NLS-1$
-		for (DocumentType d : typeModel.getDocumentTypes())
-		{
-			builder.append("\tId : ").append(provider.getText(d)).append(" : ").append(d.getTextType()).append(", hierarchical : ").append(d.isHierarchical()).append("\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-			builder.append("\t\t").append(provider3.getText(d.getId())).append("\n"); //$NON-NLS-1$ //$NON-NLS-2$
-			for (Type t : d.getTypes())
-			{
-				builder.append("\t\t").append(provider3.getText(t)).append(", ").append("\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			}
-		}
-		return builder.toString();
-	}
-*/
-	/**
-	 * @param element
-	 * @return
-	 */
-	private static Regex manageId(Entry<String, String> element, EClass eclass, EStructuralFeature feature)
-	{
-
-		Regex type = (Regex) eclass.getEPackage().getEFactoryInstance().create(eclass);
-		type.eSet(feature,element.getValue());
-		return (Regex) type;
-	}
-
-	/**
-	 * @param allElements
-	 * @param element
-	 */
-	private static void manageElement(Map<String, Requirement> allElements, Entry<String, String> element, EClass eclass, EStructuralFeature feature)
-	{
-		if (element.getValue() == null || element.getValue().length() == 0)
-		{
-			Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "the element : " + element.getKey() + "=" + element.getValue() + " was ignored because it's empty")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			return;
-		}
-		String elementId = element.getKey().replace("Name", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		//elementId = elementId.replace("IsText", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		//elementId = elementId.replace("Label", "");//$NON-NLS-1$ //$NON-NLS-2$
-		if (!allElements.containsKey(elementId))
-		{
-			Regex regex = create(eclass);
-			//if (InittypesPackage.Literals.TYPE__IS_TEXT.equals(feature))
-			//{
-			//	regex.eSet(feature,Boolean.parseBoolean(element.getValue()));
-			//} else {
-				regex.eSet(feature,element.getValue());   
-			//}
-		//	allElements.put(elementId, regex);
-		}
-		else if (allElements.containsKey(elementId))
-		{
-			/*//if (InittypesPackage.Literals.TYPE__IS_TEXT.equals(feature))
-			//{
-				(allElements.get(elementId)).eSet(feature,Boolean.parseBoolean(element.getValue()));
-			} else {*/
-				(allElements.get(elementId)).eSet(feature,element.getValue());
-			}
-		//}
-		/*if (allElements.get(elementId) instanceof Column)
-		{
-			Column column = (Column) allElements.get(elementId);
-			column.setNumber(Integer.parseInt(elementId.replace("Column", ""))); //$NON-NLS-1$ //$NON-NLS-2$
-		}*/
-	}
 	
-	
-/*	private static void manageDeletionParameters(Map<String, DeletionParemeter> allDeletionParameters, Entry<String, String> element, EClass eclass, EStructuralFeature feature)
-	{
-		if (element.getValue() == null || element.getValue().length() == 0)
-		{
-			Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "The deletion parameter : " + element.getKey() + "=" + element.getValue() + " has been ignored because it is empty")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			return;
-		}
-		String elementId = element.getKey().replace("Name", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		elementId = elementId.replace("Regex", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		if (!allDeletionParameters.containsKey(elementId))
-		{
-			DeletionParemeter param = create(eclass);
-			param.eSet(feature,element.getValue());   
-			allDeletionParameters.put(elementId, param);
-		}
-		else if (allDeletionParameters.containsKey(elementId))
-		{
-			(allDeletionParameters.get(elementId)).eSet(feature,element.getValue());
-		}
-	}*/
-
-
 	@SuppressWarnings("unchecked")
 	public static <T> T create (EClass eclass)
 	{
@@ -421,18 +317,6 @@ public class IniManagerRegistry implements IResourceVisitor, IResourceDeltaVisit
 	{
 		return typeModel;
 	}
-
-	@SuppressWarnings("unchecked")
-	/*public <T> List<T> getElementsByType(DocumentType documentType, final EClass eclass)
-	{
-		return (List<T>) Lists.newArrayList(Iterables.filter(documentType.getRequirements(), new Predicate<Requirement>()
-			{
-			public boolean apply(Requirement input)
-			{
-				return eclass.equals(input.eClass());
-			}
-			}));
-	}*/
 	
 	public static void save(IFile typesFile, FileType fileType)
 	{
@@ -445,18 +329,8 @@ public class IniManagerRegistry implements IResourceVisitor, IResourceDeltaVisit
 
 		StringBuilder typeNames = new StringBuilder();
 
-		/*if (!fileTypes.isEmpty()) {
-			for (FileType documentType : fileTypes) {
-				//typeNames.append(documentType.getName());
-				//typeNames.append(',');
-				createDocumentTypeSection(ini, documentType);
-			}
-			// remove last ,
-			typeNames.deleteCharAt(typeNames.length() - 1);
-		}*/
-
-		Section section = ini.add("Types"); //$NON-NLS-1$
-		section.add("Names", typeNames); //$NON-NLS-1$
+		Section section = ini.add("Types"); 
+		section.add("Names", typeNames); 
 
 		URI uri = typesFile.getLocationURI();
 
@@ -480,97 +354,5 @@ public class IniManagerRegistry implements IResourceVisitor, IResourceDeltaVisit
 		}
 		
 	}
-
-	//--private static void createDocumentTypeSection(Ini ini, DocumentType documentType) {
-	//--	Section section ;//= ini.add(documentType.getName());
-		//section.add("Hierarchical", documentType.isHierarchical()); //$NON-NLS-1$
-
-		//DeletionParameters deletionParameters = documentType.getDeletionParameters();
-	/*	if (deletionParameters != null) {
-			section.add("DeletionParameterIdRegex", deletionParameters.getRegexId()); //$NON-NLS-1$
-			section.add("DeletionParameterDescriptionRegex", deletionParameters.getRegexDescription()); //$NON-NLS-1$
-			section.add("DeletionIsAnd",deletionParameters.isIsAnd()); //$NON-NLS-1$
-			// All the deletion parameters of the attributes
-			int iAttr = 0;
-			for(DeletionParemeter delParam:documentType.getDeletionParameters().getRegexAttributes()){
-				section.add("DeletionParameterAttribute"+iAttr+"Name", delParam.getNameAttribute()); //$NON-NLS-1$ //$NON-NLS-2$
-				section.add("DeletionParameterAttribute"+iAttr+"Regex", delParam.getRegexAttribute()); //$NON-NLS-1$ //$NON-NLS-2$
-				iAttr++;
-			}
-			for(DeletionParemeter filterParam:documentType.getDeletionParameters().getFilterRegexAttributes()){
-				section.add("FilterParameterAttribute"+iAttr+"Name", filterParam.getNameAttribute()); //$NON-NLS-1$ //$NON-NLS-2$
-				section.add("FilterParameterAttribute"+iAttr+"Regex", filterParam.getRegexAttribute()); //$NON-NLS-1$ //$NON-NLS-2$
-				iAttr++;
-			}
-		}*/
-
-		/*String endText = documentType.getTextType();
-		if (endText != null && endText.length() > 0)
-		{
-			section.add("EndText", endText); //$NON-NLS-1$
-		}
-		String descriptionRegex = documentType.getTextRegex();
-		if (descriptionRegex != null && descriptionRegex.length()>0)
-		{
-			section.add("DescriptionRegex", descriptionRegex); //$NON-NLS-1$
-		}
-
-		Type id = documentType.getId();
-		if (id instanceof Column)
-		{
-			section.add("Requirement" + ((Column)id).getNumber() + "Column", ((Column) id).getExpression()); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		else if (id instanceof Style)
-		{
-			section.add("Requirement1Style", ((Style) id).getLabel()); //$NON-NLS-1$
-			section.add("Requirement1", ((Style) id).getExpression()); //$NON-NLS-1$
-		}
-		else if (id instanceof Regex)
-		{
-			section.add("Requirement1", ((Regex) id).getExpression()); //$NON-NLS-1$
-		}*/
-
-		//int i = 0;
-
-		//for (Requirement type : documentType.getRequirements())
-		//{
-			/*if (type instanceof Column)
-			{
-				Column column = (Column) type;
-				section.add("Column"+column.getNumber()+"Name", column.getName()); //$NON-NLS-1$ //$NON-NLS-2$
-				section.add("Column"+column.getNumber()+"IsText", column.isIsText()); //$NON-NLS-1$ //$NON-NLS-2$
-				if (column.getExpression() != null && column.getExpression().length() > 0)
-				{
-					section.add("Column"+column.getNumber(), column.getExpression()); //$NON-NLS-1$
-				}
-
-			}
-			else if (type instanceof Style)
-			{
-				Style style = (Style) type;
-				section.add("Style" + i + "Name", style.getName()); //$NON-NLS-1$ //$NON-NLS-2$
-				section.add("Style" + i + "Label", style.getLabel()); //$NON-NLS-1$ //$NON-NLS-2$
-				section.add("Style" + i + "IsText", style.isIsText()); //$NON-NLS-1$ //$NON-NLS-2$
-				if (style.getExpression() != null  && style.getExpression().length() > 0)
-				{
-					section.add("Style" + i, style.getExpression()); //$NON-NLS-1$
-				}
-				i++;
-			}*/
-		// if (type instanceof Regex)
-			//{
-			//	Regex regex = (Regex) type;
-				//section.add("Attribute" + i + "Name", regex.getName()); //$NON-NLS-1$ //$NON-NLS-2$
-				//section.add("Attribute" + i, regex.getExpression()); //$NON-NLS-1$
-				//section.add("Attribute" + i + "IsText", regex.isIsText()); //$NON-NLS-1$ //$NON-NLS-2$
-	//			i++;
-		//	}
-	//	}
-//	}*/
-	
-	
-
-	
-			 
 
 }

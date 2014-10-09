@@ -16,6 +16,8 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -29,6 +31,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.rmf.reqif10.SpecType;
 import org.polarsys.reqcycle.repository.connector.ICallable;
+import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFRepositoryMappingPage;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
@@ -40,7 +43,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.types.IType;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-public class RMFConnector extends Wizard implements IConnectorWizard {
+public class RMFConnector extends Wizard implements IConnectorWizard, IURIValidatorConnector {
 
 	/** Page containing mapping information */
 	protected RMFRepositoryMappingPage mappingPage;
@@ -201,6 +204,18 @@ public class RMFConnector extends Wizard implements IConnectorWizard {
 			}
 			source.getMappings().addAll(mapElements);
 		}
+
+	}
+
+	@Override
+	public IStatus validate(URI uri) {
+		String EXTENSIONS = "reqif";
+
+		String extension = uri.path().substring(uri.path().lastIndexOf(".") + 1, uri.path().length());
+		if (EXTENSIONS.contains(extension.toLowerCase())) {
+			return Status.OK_STATUS;
+		}
+		return new Status(IStatus.WARNING, Activator.PLUGIN_ID, "extension \"" + extension + "\" could not be supported");
 
 	}
 
