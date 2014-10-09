@@ -330,7 +330,7 @@ public class DocMappingPage extends WizardPage implements Listener, IUpdatablePa
 		for (IType reqType : getTypes()){
 			if (reqType instanceof IRequirementType){
 				IRequirementType req = (IRequirementType) reqType;
-				if (req.getName().equals((requr).getNameReq())){
+				if ((requr != null) && (req.getName().equals((requr).getNameReq()))){
 					confAttributes.addAll(req.getAttributes());
 					notFound = true;
 					break;

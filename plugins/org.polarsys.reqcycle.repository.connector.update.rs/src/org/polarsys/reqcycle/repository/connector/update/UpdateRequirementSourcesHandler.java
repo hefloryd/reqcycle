@@ -8,7 +8,7 @@
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
  *
  *******************************************************************************/
-package org.polarsys.reqcycle.repository.connector.update.rs;
+package org.polarsys.reqcycle.repository.connector.update;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,8 +42,8 @@ import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.document.DocCallable;
 import org.polarsys.reqcycle.repository.connector.document.ocl.DocOclCallable;
 import org.polarsys.reqcycle.repository.connector.rmf.RMFCallable;
-import org.polarsys.reqcycle.repository.connector.update.rs.pages.DialogImpactAnalysis;
-import org.polarsys.reqcycle.repository.connector.update.rs.preferences.PreferenceController;
+import org.polarsys.reqcycle.repository.connector.update.pages.DialogImpactAnalysis;
+import org.polarsys.reqcycle.repository.connector.update.preferences.PreferenceController;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;

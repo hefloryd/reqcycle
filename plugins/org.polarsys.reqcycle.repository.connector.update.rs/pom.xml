@@ -20,7 +20,7 @@
     <version>0.8.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>org.polarsys.reqcycle.repository.connector.update.rs</artifactId>
+  <artifactId>org.polarsys.reqcycle.repository.connector.update</artifactId>
   <packaging>eclipse-plugin</packaging>
   <groupId>org.polarsys.reqcycle</groupId>
   <name>polarsys reqcycle repository connector ui rs</name>

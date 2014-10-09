@@ -8,7 +8,7 @@
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
  *
  *******************************************************************************/
-package org.polarsys.reqcycle.repository.connector.update.rs;
+package org.polarsys.reqcycle.repository.connector.update;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.ui.IStartup;
 import org.polarsys.reqcycle.impact.Impact.ImpactAnalysis;
-import org.polarsys.reqcycle.repository.connector.update.rs.preferences.PreferenceController;
+import org.polarsys.reqcycle.repository.connector.update.preferences.PreferenceController;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;

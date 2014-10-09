@@ -8,7 +8,7 @@
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
  *
  *******************************************************************************/
-package org.polarsys.reqcycle.repository.connector.update.rs;
+package org.polarsys.reqcycle.repository.connector.update;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -19,7 +19,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.polarsys.reqcycle.repository.connector.update.rs"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.polarsys.reqcycle.repository.connector.update"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

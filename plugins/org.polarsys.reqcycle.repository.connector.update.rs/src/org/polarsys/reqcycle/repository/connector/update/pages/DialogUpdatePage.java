@@ -8,7 +8,7 @@
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
  *
  *******************************************************************************/
-package org.polarsys.reqcycle.repository.connector.update.rs.pages;
+package org.polarsys.reqcycle.repository.connector.update.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
-import org.polarsys.reqcycle.repository.connector.update.rs.UpdateRequirementSourcesHandler;
+import org.polarsys.reqcycle.repository.connector.update.UpdateRequirementSourcesHandler;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 

@@ -32,7 +32,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-import org.polarsys.reqcycle.repository.connector.update.rs.IUpdateListener;
+import org.polarsys.reqcycle.repository.connector.update.IUpdateListener;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;

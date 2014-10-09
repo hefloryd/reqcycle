@@ -1,4 +1,4 @@
-package org.polarsys.reqcycle.repository.connector.update.rs.preferences;
+package org.polarsys.reqcycle.repository.connector.update.preferences;
 
 import java.util.regex.Pattern;
 

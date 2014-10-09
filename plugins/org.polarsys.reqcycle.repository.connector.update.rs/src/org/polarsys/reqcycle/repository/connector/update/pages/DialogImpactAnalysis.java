@@ -8,7 +8,7 @@
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
  *
  *******************************************************************************/
-package org.polarsys.reqcycle.repository.connector.update.rs.pages;
+package org.polarsys.reqcycle.repository.connector.update.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
