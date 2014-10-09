@@ -34,7 +34,7 @@ public class NullReachableObject implements ReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
+	public Reachable getReachable() {
 		return null;
 	}
 

@@ -18,7 +18,6 @@ import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.polarsys.reqcycle.traceability.builder.ui.handlers.AddBuilderHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -30,6 +29,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
+import org.polarsys.reqcycle.traceability.builder.BuilderUtil;
 
 public class TraceabilityBuildersPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
@@ -67,7 +67,7 @@ public class TraceabilityBuildersPreferencePage extends PreferencePage implement
 			public boolean isChecked(Object element) {
 				if (element instanceof IProject) {
 					IProject project = (IProject) element;
-					return AddBuilderHandler.isBuilderInstalled(project);
+					return BuilderUtil.isBuilderInstalled(project);
 				}
 				return false;
 			}
@@ -87,9 +87,9 @@ public class TraceabilityBuildersPreferencePage extends PreferencePage implement
 				if (element instanceof IProject) {
 					IProject project = (IProject) element;
 					if (event.getChecked()) {
-						AddBuilderHandler.installBuilder(project);
+						BuilderUtil.installBuilder(project);
 					} else {
-						AddBuilderHandler.removeBuilder(project);
+						BuilderUtil.removeBuilder(project);
 					}
 				}
 			}

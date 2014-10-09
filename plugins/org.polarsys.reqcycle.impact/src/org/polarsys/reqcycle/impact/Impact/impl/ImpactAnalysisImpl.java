@@ -54,6 +54,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Section;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Trash;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine;
 import org.polarsys.reqcycle.traceability.engine.ITraceabilityEngine.DIRECTION;
 import org.polarsys.reqcycle.traceability.engine.Request;
@@ -194,7 +195,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 			for (AbstractElement e : ((Section) absElt).getChildren()) {
 				if (e instanceof Requirement) {
 					req.add((Requirement) e);
-				} else if (e instanceof Section) {
+				} else if ((e instanceof Section) && !(e instanceof Trash)) {
 					req.addAll(getRequirement(e));
 				}
 			}
@@ -218,11 +219,9 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 			for (AbstractElement elt : sourceTo.getRequirements()) {
 				if (elt instanceof Requirement) {
 					targetObjects.add((Requirement) elt);
-				} else if (elt instanceof Section) {
+				} else if ((elt instanceof Section) && !(elt instanceof Trash)) {
 					targetObjects.addAll(getRequirement(elt));
-					// for (AbstractElement e : ((Section) elt).getChildren()) {
-					// targetObjects.add((Requirement) e);
-					// }
+
 				}
 			}
 			Collections.sort(targetObjects, new Comparator<Requirement>() {
@@ -240,9 +239,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 					refObjects.add((Requirement) elt);
 				} else if (elt instanceof Section) {
 					refObjects.addAll(getRequirement(elt));
-					// for (AbstractElement e : ((Section) elt).getChildren()) {
-					// refObjects.add((Requirement) e);
-					// }
+
 				}
 			}
 			Collections.sort(refObjects, new Comparator<Requirement>() {
@@ -562,7 +559,7 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 				request.setDepth(DEPTH.ONE);
 				request.setDirection(direction);
 				try {
-					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable(req));
+					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable());
 				} catch (IReachableHandlerException e1) {
 					e1.printStackTrace();
 					return new ArrayList<Link>().iterator();

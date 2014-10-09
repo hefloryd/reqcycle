@@ -95,7 +95,7 @@ public class StubbedIdContributor implements IIDContributor {
 		}
 		if (found && current != null) {
 			try {
-				return manager.getHandlerFromObject(current).getFromObject(current).getReachable(current);
+				return manager.getHandlerFromObject(current).getFromObject(current).getReachable();
 			} catch (IReachableHandlerException e) {
 				e.printStackTrace();
 			}

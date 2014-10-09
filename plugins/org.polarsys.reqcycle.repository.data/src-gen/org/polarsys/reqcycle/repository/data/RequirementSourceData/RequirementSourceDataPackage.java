@@ -24,43 +24,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataFactory
  * @model kind="package"
  * @generated
  */
 public interface RequirementSourceDataPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "RequirementSourceData";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://www.polarsys.org/ReqCycle/RequirementSourceData";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "RequirementSourceData";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	RequirementSourceDataPackage eINSTANCE = org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl <em>Abstract Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl <em>Abstract Element</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getAbstractElement()
 	 * @generated
@@ -68,56 +67,56 @@ public interface RequirementSourceDataPackage extends EPackage {
 	int ABSTRACT_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT__TEXT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT__URI = 2;
 
 	/**
-	 * The feature id for the '<em><b>Scopes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Scopes</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT__SCOPES = 3;
 
 	/**
-	 * The number of structural features of the '<em>Abstract Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Abstract Element</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Abstract Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of operations of the '<em>Abstract Element</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl <em>Section</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl <em>Section</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getSection()
 	 * @generated
@@ -125,64 +124,64 @@ public interface RequirementSourceDataPackage extends EPackage {
 	int SECTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__ID = ABSTRACT_ELEMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__TEXT = ABSTRACT_ELEMENT__TEXT;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__URI = ABSTRACT_ELEMENT__URI;
 
 	/**
-	 * The feature id for the '<em><b>Scopes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Scopes</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__SCOPES = ABSTRACT_ELEMENT__SCOPES;
 
 	/**
-	 * The feature id for the '<em><b>Children</b></em>' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__CHILDREN = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Section</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of operations of the '<em>Section</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION_OPERATION_COUNT = ABSTRACT_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl <em>Simple Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl <em>Simple Requirement</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getSimpleRequirement()
 	 * @generated
@@ -190,56 +189,56 @@ public interface RequirementSourceDataPackage extends EPackage {
 	int SIMPLE_REQUIREMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT__ID = ABSTRACT_ELEMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT__TEXT = ABSTRACT_ELEMENT__TEXT;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT__URI = ABSTRACT_ELEMENT__URI;
 
 	/**
-	 * The feature id for the '<em><b>Scopes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Scopes</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT__SCOPES = ABSTRACT_ELEMENT__SCOPES;
 
 	/**
-	 * The number of structural features of the '<em>Simple Requirement</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Simple Requirement</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Simple Requirement</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of operations of the '<em>Simple Requirement</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SIMPLE_REQUIREMENT_OPERATION_COUNT = ABSTRACT_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl <em>Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl <em>Requirement</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getRequirement()
 	 * @generated
@@ -247,64 +246,64 @@ public interface RequirementSourceDataPackage extends EPackage {
 	int REQUIREMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT__ID = SIMPLE_REQUIREMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT__TEXT = SIMPLE_REQUIREMENT__TEXT;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT__URI = SIMPLE_REQUIREMENT__URI;
 
 	/**
-	 * The feature id for the '<em><b>Scopes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Scopes</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT__SCOPES = SIMPLE_REQUIREMENT__SCOPES;
 
 	/**
-	 * The feature id for the '<em><b>Children</b></em>' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT__CHILDREN = SIMPLE_REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Requirement</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Requirement</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT_FEATURE_COUNT = SIMPLE_REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Requirement</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of operations of the '<em>Requirement</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENT_OPERATION_COUNT = SIMPLE_REQUIREMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl <em>Requirements Container</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl <em>Requirements Container</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getRequirementsContainer()
 	 * @generated
@@ -312,32 +311,105 @@ public interface RequirementSourceDataPackage extends EPackage {
 	int REQUIREMENTS_CONTAINER = 4;
 
 	/**
-	 * The feature id for the '<em><b>Requirements</b></em>' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENTS_CONTAINER__REQUIREMENTS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Requirements Container</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Requirements Container</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENTS_CONTAINER_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Requirements Container</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of operations of the '<em>Requirements Container</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REQUIREMENTS_CONTAINER_OPERATION_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement <em>Abstract Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.TrashImpl <em>Trash</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.TrashImpl
+	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getTrash()
+	 * @generated
+	 */
+	int TRASH = 5;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH__ID = SECTION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH__TEXT = SECTION__TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH__URI = SECTION__URI;
+
+	/**
+	 * The feature id for the '<em><b>Scopes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH__SCOPES = SECTION__SCOPES;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH__CHILDREN = SECTION__CHILDREN;
+
+	/**
+	 * The number of structural features of the '<em>Trash</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH_FEATURE_COUNT = SECTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Trash</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASH_OPERATION_COUNT = SECTION_OPERATION_COUNT + 0;
+
+	/**
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement <em>Abstract Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Abstract Element</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement
 	 * @generated
@@ -345,8 +417,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EClass getAbstractElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Id</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getId()
 	 * @see #getAbstractElement()
@@ -355,8 +427,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EAttribute getAbstractElement_Id();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Text</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getText()
 	 * @see #getAbstractElement()
@@ -365,8 +437,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EAttribute getAbstractElement_Text();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri <em>Uri</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Uri</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getUri()
 	 * @see #getAbstractElement()
@@ -375,8 +447,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EAttribute getAbstractElement_Uri();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getScopes <em>Scopes</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getScopes <em>Scopes</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Scopes</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement#getScopes()
 	 * @see #getAbstractElement()
@@ -385,8 +457,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EReference getAbstractElement_Scopes();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section <em>Section</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section <em>Section</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Section</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.Section
 	 * @generated
@@ -394,8 +466,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EClass getSection();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section#getChildren <em>Children</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Section#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Children</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.Section#getChildren()
 	 * @see #getSection()
@@ -404,8 +476,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EReference getSection_Children();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement <em>Simple Requirement</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement <em>Simple Requirement</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Simple Requirement</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement
 	 * @generated
@@ -413,8 +485,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EClass getSimpleRequirement();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement <em>Requirement</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement <em>Requirement</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Requirement</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement
 	 * @generated
@@ -422,8 +494,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EClass getRequirement();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer <em>Requirements Container</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer <em>Requirements Container</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Requirements Container</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer
 	 * @generated
@@ -431,8 +503,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EClass getRequirementsContainer();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer#getRequirements <em>Requirements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer#getRequirements <em>Requirements</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Requirements</em>'.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer#getRequirements()
 	 * @see #getRequirementsContainer()
@@ -441,8 +513,18 @@ public interface RequirementSourceDataPackage extends EPackage {
 	EReference getRequirementsContainer_Requirements();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.Trash <em>Trash</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Trash</em>'.
+	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.Trash
+	 * @generated
+	 */
+	EClass getTrash();
+
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -458,13 +540,12 @@ public interface RequirementSourceDataPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl <em>Abstract Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl <em>Abstract Element</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.AbstractElementImpl
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getAbstractElement()
 		 * @generated
@@ -472,36 +553,36 @@ public interface RequirementSourceDataPackage extends EPackage {
 		EClass ABSTRACT_ELEMENT = eINSTANCE.getAbstractElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_ELEMENT__ID = eINSTANCE.getAbstractElement_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_ELEMENT__TEXT = eINSTANCE.getAbstractElement_Text();
 
 		/**
-		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_ELEMENT__URI = eINSTANCE.getAbstractElement_Uri();
 
 		/**
-		 * The meta object literal for the '<em><b>Scopes</b></em>' reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Scopes</b></em>' reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_ELEMENT__SCOPES = eINSTANCE.getAbstractElement_Scopes();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl <em>Section</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl <em>Section</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SectionImpl
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getSection()
 		 * @generated
@@ -509,15 +590,15 @@ public interface RequirementSourceDataPackage extends EPackage {
 		EClass SECTION = eINSTANCE.getSection();
 
 		/**
-		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SECTION__CHILDREN = eINSTANCE.getSection_Children();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl <em>Simple Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl <em>Simple Requirement</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.SimpleRequirementImpl
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getSimpleRequirement()
 		 * @generated
@@ -525,8 +606,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 		EClass SIMPLE_REQUIREMENT = eINSTANCE.getSimpleRequirement();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl <em>Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl <em>Requirement</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementImpl
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getRequirement()
 		 * @generated
@@ -534,8 +615,8 @@ public interface RequirementSourceDataPackage extends EPackage {
 		EClass REQUIREMENT = eINSTANCE.getRequirement();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl <em>Requirements Container</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl <em>Requirements Container</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementsContainerImpl
 		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getRequirementsContainer()
 		 * @generated
@@ -543,11 +624,21 @@ public interface RequirementSourceDataPackage extends EPackage {
 		EClass REQUIREMENTS_CONTAINER = eINSTANCE.getRequirementsContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference REQUIREMENTS_CONTAINER__REQUIREMENTS = eINSTANCE.getRequirementsContainer_Requirements();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.TrashImpl <em>Trash</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.TrashImpl
+		 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.impl.RequirementSourceDataPackageImpl#getTrash()
+		 * @generated
+		 */
+		EClass TRASH = eINSTANCE.getTrash();
 
 	}
 

@@ -24,7 +24,6 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequire
 public class SimpleRequirementImpl extends AbstractElementImpl implements SimpleRequirement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SimpleRequirementImpl() {
@@ -33,7 +32,6 @@ public class SimpleRequirementImpl extends AbstractElementImpl implements Simple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

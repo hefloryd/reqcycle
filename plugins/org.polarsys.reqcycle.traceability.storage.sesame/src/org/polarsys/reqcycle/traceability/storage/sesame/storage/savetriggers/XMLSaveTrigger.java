@@ -15,26 +15,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.rdfxml.RDFXMLWriter;
+import org.polarsys.reqcycle.traceability.storage.sesame.storage.repositoryholders.SesameXMLRepositoryHolder;
 
 public class XMLSaveTrigger implements ISaveTrigger {
 
-	private final IFile targetIFile;
-	private final File targetFile;
+	private final SesameXMLRepositoryHolder repositoryHolder;
+	private final IProject project;
 
-	public XMLSaveTrigger(final IFile targetIFile, final File targetFile) {
+	public XMLSaveTrigger(SesameXMLRepositoryHolder repositoryHolder, final IProject project) {
 		super();
-		this.targetIFile = targetIFile;
-		this.targetFile = targetFile;
+		this.project = project;
+		this.repositoryHolder = repositoryHolder;
 	}
 
 	@Override
 	public void doSave(RepositoryConnection connection) throws RepositoryException, RDFHandlerException, IOException, CoreException {
+		final IFile targetIFile = repositoryHolder.getTargetIFile(project);
+		final File targetFile = repositoryHolder.getTargetFile(project);
 		final BufferedOutputStream outstream = new BufferedOutputStream(new FileOutputStream(targetFile));
 		try {
 			connection.export(new RDFXMLWriter(outstream));
@@ -42,7 +46,7 @@ public class XMLSaveTrigger implements ISaveTrigger {
 			outstream.close();
 		}
 
-		this.targetIFile.refreshLocal(IResource.DEPTH_ONE, null);
+		targetIFile.refreshLocal(IResource.DEPTH_ONE, null);
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.util.URI;
@@ -38,6 +39,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.polarsys.kitalpha.doc.doc2model.common.Common.DocumentModel;
 import org.polarsys.kitalpha.doc.doc2model.core.Doc2Model;
 import org.polarsys.reqcycle.inittypes.inittypes.FileType;
 import org.polarsys.reqcycle.inittypes.inittypes.Type;
@@ -134,9 +136,11 @@ public class DocSettingPage extends AbstractSettingPage {
 
 					if (!uris.isEmpty()) {
 						String fileString = CommonPlugin.asLocalURI(uris.get(0)).toFileString();
-						if (new Doc2Model<Object>().getFileType(fileString).toString() != null) {
+						Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
+						String fileType = doc2Model.getFileType(fileString);
+						if (fileType != null && fileType.toString() != null) {
 							txtSelectedDoc.setText(uris.get(0).toString());
-						} else {
+						}else {
 							txtSelectedDoc.setText("");
 							setErrorMessage("Your document is not supported. Retry and choose document file");
 						}

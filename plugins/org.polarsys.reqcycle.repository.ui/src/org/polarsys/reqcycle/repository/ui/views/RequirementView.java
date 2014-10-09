@@ -32,15 +32,14 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-import org.polarsys.reqcycle.repository.connector.update.rs.IUpdateListener;
+import org.polarsys.reqcycle.repository.connector.update.IUpdateListener;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Maps;
@@ -183,20 +182,20 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 		root.setScopes(scopes);
 	}
 
-	public void setViewFiltered(Boolean filtered) {
-		root.setViewFiltered(filtered);
+	public void setFilter(String filter) {
+		root.setFilter(filter);
 	}
 
-	public void setViewOrdered(Boolean ordered) {
-		root.setViewOrdered(ordered);
+	public String getFilter() {
+		return root.getFilter();
 	}
 
-	public void setViewByScopes(Boolean scope) {
-		root.setViewByScopes(scope);
+	public void setDisplay(RequirementViewDisplayType display) {
+		root.setDisplay(display);
 	}
 
 	protected Reachable getReachable(Object element) throws IReachableHandlerException {
-		return manager.getHandlerFromObject(element).getFromObject(element).getReachable(element);
+		return manager.getHandlerFromObject(element).getFromObject(element).getReachable();
 	}
 
 	public static IViewPart createNewView() {
@@ -230,13 +229,7 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 				r = (Reachable) element;
 			} else {
 				try {
-					IObjectHandler handlerFromObject = manager.getHandlerFromObject(element);
-					if (handlerFromObject != null) {
-						ReachableObject fromObject = handlerFromObject.getFromObject(element);
-						if (fromObject != null) {
-							r = fromObject.getReachable(element);
-						}
-					}
+					r = getReachable(element);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -251,13 +244,7 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 				r = (Reachable) object;
 			} else {
 				try {
-					IObjectHandler handlerFromObject = manager.getHandlerFromObject(object);
-					if (handlerFromObject != null) {
-						ReachableObject fromObject = handlerFromObject.getFromObject(object);
-						if (fromObject != null) {
-							r = fromObject.getReachable(object);
-						}
-					}
+					r = getReachable(object);
 				} catch (IReachableHandlerException e) {
 					e.printStackTrace();
 				}
@@ -280,13 +267,7 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 				r = (Reachable) object;
 			} else {
 				try {
-					IObjectHandler handlerFromObject = manager.getHandlerFromObject(object);
-					if (handlerFromObject != null) {
-						ReachableObject fromObject = handlerFromObject.getFromObject(object);
-						if (fromObject != null) {
-							r = fromObject.getReachable(object);
-						}
-					}
+					r = getReachable(object);
 				} catch (IReachableHandlerException e) {
 					return false;
 				}

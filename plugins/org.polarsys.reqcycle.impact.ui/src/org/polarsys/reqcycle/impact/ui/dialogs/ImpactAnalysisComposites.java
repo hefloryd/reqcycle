@@ -54,6 +54,7 @@ public class ImpactAnalysisComposites {
 	private Label rsValueLabel;
 	private Label initialVersionValueLabel;
 	private Label finalVersionValueLabel;
+	private Label informationMessage;
 
 	private Collection<TraceabilityLink> links = Lists.newArrayList();
 
@@ -113,11 +114,10 @@ public class ImpactAnalysisComposites {
 	public Composite createImpactComposite(Composite parent) {
 		Composite impactResultComposite = new Composite(parent, SWT.NONE);
 		impactResultComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		impactResultComposite.setLayout(new GridLayout(3, false));
+		impactResultComposite.setLayout(new GridLayout(1, false));
 
 		SashForm form = new SashForm(impactResultComposite, SWT.None);
 		form.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-
 		treeViewer = new TreeViewer(form, SWT.BORDER);
 		Tree tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
@@ -152,7 +152,7 @@ public class ImpactAnalysisComposites {
 		attributeList.setLabelProvider(new AttributeLabelProvider());
 		attributeList.setContentProvider(new AttributeContentProvider());
 
-		linkViewer = new TableViewer(form, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+		linkViewer = new TableViewer(form, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		linkViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		ArrayContentProvider provider = ArrayContentProvider.getInstance();
 		linkViewer.setContentProvider(provider);
@@ -162,6 +162,10 @@ public class ImpactAnalysisComposites {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
+		informationMessage = new Label(impactResultComposite, SWT.None);
+		informationMessage.setText("");
+		informationMessage.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+		
 		// Creating the columns
 		createModel();
 
@@ -187,16 +191,15 @@ public class ImpactAnalysisComposites {
 		linkViewer.refresh();
 		if (impactList.size() != 0) {
 			treeViewer.setInput(impactList);
+			informationMessage.setText("");
 		} else {
 			treeViewer.setInput(null);
-			MessageBox message = new MessageBox(Display.getDefault().getActiveShell());
-			message.setMessage("The versions are identical.");
-			message.open();
+			informationMessage.setText("The versions are identical.");
 		}
 	}
 
 	private void createModel() {
-		createTableViewerColumn("Link type", 100, 0).setLabelProvider(new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Link type", 50 , 0).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
@@ -208,7 +211,7 @@ public class ImpactAnalysisComposites {
 			}
 		});
 
-		createTableViewerColumn("Direction", 100, 1).setLabelProvider(new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Direction", 50, 1).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
@@ -220,7 +223,7 @@ public class ImpactAnalysisComposites {
 			}
 		});
 
-		createTableViewerColumn("Link to", 200, 2).setLabelProvider(new ImpactTraceabilityLabelProvider() {
+		createTableViewerColumn("Link to", 100, 2).setLabelProvider(new ImpactTraceabilityLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
@@ -233,11 +236,13 @@ public class ImpactAnalysisComposites {
 		});
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, int bound, final int colNumber) {
+	private TableViewerColumn createTableViewerColumn(String title, Integer bound, final int colNumber) {
 		final TableViewerColumn viewerColumn = new TableViewerColumn(linkViewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
-		column.setWidth(bound);
+		if (bound != null){
+			column.setWidth(bound);
+		}
 		column.setResizable(true);
 		column.setMoveable(false);
 		return viewerColumn;

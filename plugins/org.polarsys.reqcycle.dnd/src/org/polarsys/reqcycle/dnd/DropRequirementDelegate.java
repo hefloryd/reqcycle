@@ -19,18 +19,8 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.polarsys.reqcycle.commands.CreateRelationCommand;
-import org.polarsys.reqcycle.commands.utils.RelationCommandUtils;
-import org.polarsys.reqcycle.commands.utils.RelationCreationDescriptor;
-import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
-import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
-import org.polarsys.reqcycle.types.ITypesManager;
-import org.polarsys.reqcycle.uri.IReachableCreator;
-import org.polarsys.reqcycle.uri.IReachableManager;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
-import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -38,6 +28,18 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.part.IDropActionDelegate;
+import org.polarsys.reqcycle.commands.CreateRelationCommand;
+import org.polarsys.reqcycle.commands.utils.RelationCommandUtils;
+import org.polarsys.reqcycle.commands.utils.RelationCreationDescriptor;
+import org.polarsys.reqcycle.traceability.types.ITypesConfigurationProvider;
+import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.provider.TypeconfigurationItemProviderAdapterFactory;
+import org.polarsys.reqcycle.types.ITypesManager;
+import org.polarsys.reqcycle.uri.IReachableCreator;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.model.IObjectHandler;
+import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -64,7 +66,7 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			if (file != null) {
 				if (objectHandler.handlesObject(targetEObj)) {
 					{
-						targetReachable = objectHandler.getFromObject(targetEObj).getReachable(targetEObj);
+						targetReachable = objectHandler.getFromObject(targetEObj).getReachable();
 					}
 					byte[] data = (byte[]) source;
 					List<Reachable> reachables = DNDReqCycle.getReachables(data);
@@ -136,6 +138,9 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			item.setText(desc.getLabel());
 			if ((desc.getRelation().getIcon() != null) && (desc.getRelation().getIcon().length() > 0)) {
 				item.setImage(IconRegistry.getImage(desc.getRelation().getIcon()));
+			}
+			else {
+				item.setImage(new AdapterFactoryLabelProvider(new TypeconfigurationItemProviderAdapterFactory()).getImage(desc.getRelation()));
 			}
 			item.addSelectionListener(new SelectionAdapter() {
 

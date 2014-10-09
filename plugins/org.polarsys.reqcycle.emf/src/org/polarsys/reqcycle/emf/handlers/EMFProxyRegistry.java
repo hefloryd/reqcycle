@@ -47,13 +47,16 @@ public class EMFProxyRegistry implements IEMFProxyRegistry {
 		}
 		final URI path = uri.trimFragment();
 		final IFile f = ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(new Path(path.toPlatformString(false)));
+				.getFile(new Path(path.toPlatformString(true)));
 		Long timestamp = stamps.get(path);
 		if (timestamp == null) {
 			timestamp = -1L;
 		}
 		if (f != null && timestamp != null
 				&& timestamp != f.getLocalTimeStamp()) {
+			cache.invalidate(path);
+		}
+		if (!f.exists()){
 			cache.invalidate(path);
 		}
 		Collection<String> eobject;

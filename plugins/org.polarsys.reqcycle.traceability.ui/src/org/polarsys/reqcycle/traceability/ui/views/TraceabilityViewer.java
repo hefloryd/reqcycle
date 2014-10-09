@@ -232,23 +232,6 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			}
 
 		};
-		deleteAction = new Action("Delete", ResourceManager.getPluginImageDescriptor("org.polarsys.reqcycle.traceability.ui", "icons/delete_obj.gif")) {
-			@Override
-			public void run() {
-				Link link = getSelectedLink();
-				try {
-					//TODO
-					//ITraceabilityStorage traceabilityStorage = storageProvider.getProjectStorageFromLinkId(reachable);
-					//traceabilityStorage.removeTraceabilityLink(reachable);
-					//System.out.println(reachable);
-					runRefresh();
-					//locateService.open(reachable);
-				} catch (Exception e) {
-					ErrorDialog.openError(Display.getDefault().getActiveShell(), "Error", e.getMessage(), Status.OK_STATUS);
-				}
-			}
-
-		};
 		menuManager.add(locateAction);
 		menuManager.add(new Separator());
 
@@ -306,8 +289,6 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			}
 
 		});
-		menuManager.add(new Separator());
-		menuManager.add(deleteAction);
 		Menu menu = menuManager.createContextMenu(treeTraceability);
 		getSite().registerContextMenu(MENU_ID, menuManager, traceabilityTreeViewer);
 		treeTraceability.setMenu(menu);
@@ -745,7 +726,7 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 			IObjectHandler handler = reachManager.getHandlerFromObject(o);
 			ReachableObject reachableObject = handler.getFromObject(o);
 			if (reachableObject != null) {
-				return reachableObject.getReachable(o);
+				return reachableObject.getReachable();
 			}
 		} catch (IReachableHandlerException e) {
 		}

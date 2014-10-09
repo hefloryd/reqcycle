@@ -49,10 +49,8 @@ public class TikaParsingFacility implements IParsingFacility {
 		}
 		return result;
 	}
-
-	@Override
-	public String getFileType(String filePath) {
-
+	
+	public String getFileTypeInAnyCase (String filePath) {
 		MediaType mediaType = MediaType.TEXT_PLAIN;
 
 		try {
@@ -70,11 +68,19 @@ public class TikaParsingFacility implements IParsingFacility {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 		
 		// TODO Auto-generated method stub
 		return "";
+	}
+
+	@Override
+	public String getFileType(String filePath) {
+		String result = getFileTypeInAnyCase(filePath);
+		Parser parser = getParser(result);
+		if (parser == null){
+			return null;
+		}
+		return result;
 	}
 	
 	/**
@@ -87,6 +93,9 @@ public class TikaParsingFacility implements IParsingFacility {
 		Metadata metadata = new Metadata();
 		ParseContext context = new ParseContext();
 		Parser parser = getParser(fileType);
+		if (parser == null){
+			return null;
+		}
 		ModelContentHandler<T> contentHandler = handler.getContentHandler();
 		try {
 			parser.parse(content,contentHandler,metadata,context);
@@ -121,7 +130,7 @@ public class TikaParsingFacility implements IParsingFacility {
 		InputStream content;
 		try {
 			content = new FileInputStream(new File(filePath));
-			return transform(content, handler, getFileType(filePath));
+			return transform(content, handler, getFileTypeInAnyCase(filePath));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

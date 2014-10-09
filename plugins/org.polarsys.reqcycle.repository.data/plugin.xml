@@ -30,11 +30,11 @@
    <extension
          point="org.polarsys.reqcycle.uri.reachableHandler">
       <objectHandler
-            handler="org.polarsys.reqcycle.repository.data.reachables.ConfReachableHandler"
+            handler="org.polarsys.reqcycle.repository.data.reachables.ReqcycleReachableHandler"
             priority="10">
       </objectHandler>
       <reachableHandler
-            handler="org.polarsys.reqcycle.repository.data.reachables.ConfReachableHandler"
+            handler="org.polarsys.reqcycle.repository.data.reachables.ReqcycleReachableHandler"
             priority="10">
       </reachableHandler>
    </extension>

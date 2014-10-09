@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.PlatformObject;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 
 public class NavigatorRoot extends PlatformObject {
 
@@ -18,9 +19,8 @@ public class NavigatorRoot extends PlatformObject {
 
 	private List<Scope> scopes = new LinkedList<Scope>();
 
-	private Boolean filterView = false;
-	private Boolean orderView = false;
-	private Boolean scopeView = false;
+	private RequirementViewDisplayType displayType = RequirementViewDisplayType.NONE;
+	private String reqFilter = "";
 
 	public NavigatorRoot() {
 	}
@@ -71,27 +71,19 @@ public class NavigatorRoot extends PlatformObject {
 		return scopes;
 	}
 
-	public Boolean isViewFiltered() {
-		return filterView;
+	public void setFilter(String filter) {
+		reqFilter = filter;
 	}
 
-	public Boolean isViewOrdered() {
-		return orderView;
+	public String getFilter() {
+		return reqFilter;
 	}
 
-	public Boolean isViewByScopes() {
-		return scopeView;
+	public RequirementViewDisplayType getDisplay() {
+		return displayType;
 	}
 
-	public void setViewFiltered(Boolean filtered) {
-		filterView = filtered;
-	}
-
-	public void setViewOrdered(Boolean ordered) {
-		orderView = ordered;
-	}
-
-	public void setViewByScopes(Boolean scope) {
-		scopeView = scope;
+	public void setDisplay(RequirementViewDisplayType display) {
+		this.displayType = display;
 	}
 }

@@ -52,7 +52,7 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 						callBack = new ProxyResolutionBuilderCallbackWrapper(callBack, proxyResolver);
 					}
 
-					Reachable reachable = object.getReachable(null);
+					Reachable reachable = object.getReachable();
 					if (forceBuild || callBack.needsBuild(reachable)) {
 						if (Activator.getDefault().isDebugging()) {
 							logger.trace(String.format("build for %s starting", t.toString()));

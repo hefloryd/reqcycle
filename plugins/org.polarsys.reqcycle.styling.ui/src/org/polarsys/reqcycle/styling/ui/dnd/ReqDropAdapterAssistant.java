@@ -18,7 +18,8 @@ import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.ui.navigator.CommonDropAdapter;
 import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
 import org.polarsys.reqcycle.dnd.DropRequirementDelegate;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -29,7 +30,7 @@ import com.google.common.collect.Lists;
 public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 
 	@Inject
-	IObjectHandler objectHandler;
+	IReachableManager manager;
 
 	public ReqDropAdapterAssistant() {
 		ZigguratInject.inject(this);
@@ -60,8 +61,14 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 			Iterator<?> iterator = strucutred.iterator();
 			while (iterator.hasNext()) {
 				Object next = iterator.next();
-				Reachable r = objectHandler.getFromObject(next).getReachable(next);
-				result.add(r);
+				Reachable r;
+				try {
+					r = manager.getHandlerFromObject(next).getFromObject(next).getReachable();
+					result.add(r);
+				} catch (IReachableHandlerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		return Iterables.filter(result, Predicates.notNull());
@@ -74,7 +81,11 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 			DropRequirementDelegate req = new DropRequirementDelegate();
 			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
 			for (Reachable r : reachables) {
-				req.handleDrop(Lists.newArrayList(r), objectHandler.getFromObject(aTarget).getReachable(aTarget), file);
+				try {
+					req.handleDrop(Lists.newArrayList(r), manager.getHandlerFromObject(aTarget).getFromObject(aTarget).getReachable(), file);
+				} catch (IReachableHandlerException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;

@@ -56,7 +56,7 @@ public class DragRequirementSourceAdapter extends DragSourceAdapter {
 					Object next = iterator.next();
 					if (objectHandler.handlesObject(next)) {
 						ReachableObject fromObject = objectHandler.getFromObject(next);
-						objectURIs.add(fromObject.getReachable(next));
+						objectURIs.add(fromObject.getReachable());
 					} else {
 						// if one object is not handled, do not transfer any
 						return;

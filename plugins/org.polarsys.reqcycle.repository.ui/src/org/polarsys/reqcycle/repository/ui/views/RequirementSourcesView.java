@@ -94,6 +94,9 @@ public class RequirementSourcesView extends ViewPart {
 	/** update Resource Action */
 	private Action updateResourceAction;
 
+	/** update Resource Action. this action come from context menu */
+	private Action updateResourceContextMenuAction;
+
 	/** Open Predicates Editor Action */
 	// private OpenPredicatesEditorAction openPredicatesEditorAction;
 
@@ -320,6 +323,8 @@ public class RequirementSourcesView extends ViewPart {
 		// drillDownAdapter.addNavigationActions(manager);
 		// Other plug-ins can contribute there actions here
 		manager.add(openImpactAnalysisViewAction);
+		manager.add(new Separator(IWorkbenchActionConstants.NEW_EXT));
+		manager.add(updateResourceContextMenuAction);
 	}
 
 	/**
@@ -386,10 +391,17 @@ public class RequirementSourcesView extends ViewPart {
 		refreshViewAction.setEnabled(true);
 
 		// update
-		updateResourceAction = new UpdateRequirementSourceAction(viewer);
+		updateResourceContextMenuAction = new UpdateRequirementSourceAction(viewer, true);
+		ZigguratInject.inject(updateResourceContextMenuAction);
+		updateResourceContextMenuAction.setText(Messages.UPDATE_RESOURCE_TEXT);
+		updateResourceContextMenuAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);
+		updateResourceContextMenuAction.setImageDescriptor(Activator.getImageDescriptor(ICON_UPDATE));
+		updateResourceContextMenuAction.setEnabled(true);
+
+		updateResourceAction = new UpdateRequirementSourceAction(viewer, false);
 		ZigguratInject.inject(updateResourceAction);
-		// updateResourceAction.setText(Messages.SYNC_RESOURCE_TEXT);
-		updateResourceAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);// Messages.SYNC_RESOURCE_TEXT);
+		updateResourceAction.setText(Messages.UPDATE_RESOURCE_TEXT);
+		updateResourceAction.setToolTipText(Messages.UPDATE_RESOURCE_TEXT);
 		updateResourceAction.setImageDescriptor(Activator.getImageDescriptor(ICON_UPDATE));
 		updateResourceAction.setEnabled(true);
 	}

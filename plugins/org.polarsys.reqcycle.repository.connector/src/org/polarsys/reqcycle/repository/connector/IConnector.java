@@ -29,4 +29,6 @@ public interface IConnector {
 	 */
 	public ICallable getRequirementsCreator();
 
+	void dispose();
+
 }

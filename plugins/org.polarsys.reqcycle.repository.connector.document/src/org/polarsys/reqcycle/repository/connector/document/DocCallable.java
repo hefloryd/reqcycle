@@ -75,6 +75,9 @@ public class DocCallable implements ICallable {
 			
 			if (fileType != null && fileType.length() > 0){
 				DocumentModel result = doc2model.transform(fileString, DocumentModel.class).getDocModel();
+				if (result == null){
+					return new StringBuffer("");
+				}
 				listContentElement = new ArrayList<ContentElement>();
 				
 				TreeIterator<EObject> i = result.eAllContents();

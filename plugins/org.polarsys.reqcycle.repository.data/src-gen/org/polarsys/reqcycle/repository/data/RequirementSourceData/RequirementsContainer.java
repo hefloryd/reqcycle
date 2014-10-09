@@ -19,7 +19,7 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer#getRequirements <em>Requirements</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,12 +29,13 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
  */
 public interface RequirementsContainer extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list. The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requirements</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Requirements</em>' containment reference list.
 	 * @see org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage#getRequirementsContainer_Requirements()
 	 * @model containment="true"

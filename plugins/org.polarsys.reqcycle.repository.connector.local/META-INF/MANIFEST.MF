@@ -30,6 +30,7 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.repository.connector.ui,
  org.eclipse.emf.transaction
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: RequirementSourceData.presentation
+Export-Package: RequirementSourceData.presentation,
+ org.polarsys.reqcycle.repository.connector.local
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject

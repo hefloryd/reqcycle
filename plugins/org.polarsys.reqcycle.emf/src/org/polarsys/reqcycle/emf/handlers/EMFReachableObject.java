@@ -230,22 +230,8 @@ public class EMFReachableObject implements ReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
-		if (o == null || o instanceof Resource) {
-			return t;
-		}
-		if (o instanceof EObject) {
-			return EMFUtils.getReachable((EObject) o);
-		}
-		if (o instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) o;
-			EObject e = (EObject) adaptable.getAdapter(EObject.class);
-			if (e != null) {
-				return EMFUtils.getReachable(e);
-			}
-
-		}
-		return null;
+	public Reachable getReachable() {
+		return t;
 	}
 
 }

@@ -84,6 +84,69 @@
 <extension
       point="org.polarsys.reqcycle.styling.ui.stylingpic">
    <Picture
+         path="regIcons/add_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/alert_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/annotation_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/bkmrk_nav.gif">
+   </Picture>
+   <Picture
+         path="regIcons/conflict_synch-2.gif">
+   </Picture>
+   <Picture
+         path="regIcons/console_view-1.gif">
+   </Picture>
+   <Picture
+         path="regIcons/contended_monitor_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/checkedout_ov.gif">
+   </Picture>
+   <Picture
+         path="regIcons/contents_view.gif">
+   </Picture>
+   <Picture
+         path="regIcons/copy.gif">
+   </Picture>
+   <Picture
+         path="regIcons/cprj_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/deadlock_view-1.gif">
+   </Picture>
+   <Picture
+         path="regIcons/debugtt_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/delete_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/editor.gif">
+   </Picture>
+   <Picture
+         path="regIcons/error.gif">
+   </Picture>
+   <Picture
+         path="regIcons/importdir_wiz-1.gif">
+   </Picture>
+   <Picture
+         path="regIcons/installed_ovr.gif">
+   </Picture>
+   <Picture
+         path="regIcons/quickfix_error_obj.gif">
+   </Picture>
+   <Picture
+         path="regIcons/remove_correction.gif">
+   </Picture>
+   <Picture
+         path="regIcons/set_pref.png">
+   </Picture>
+   <Picture
          path="regIcons/smartmode_co-1.gif">
    </Picture>
    <Picture
@@ -99,22 +162,7 @@
          path="regIcons/statusYellow.png">
    </Picture>
    <Picture
-         path="regIcons/add_obj.gif">
-   </Picture>
-   <Picture
-         path="regIcons/delete_obj.gif">
-   </Picture>
-   <Picture
-         path="regIcons/remove_correction.gif">
-   </Picture>
-   <Picture
-         path="regIcons/set_pref.png">
-   </Picture>
-   <Picture
-         path="regIcons/contents_view.gif">
-   </Picture>
-   <Picture
-         path="regIcons/bkmrk_nav.gif">
+         path="regIcons/clear.gif">
    </Picture>
 </extension>
 <extension

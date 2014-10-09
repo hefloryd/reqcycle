@@ -11,6 +11,7 @@ package org.polarsys.reqcycle.traceability.model.scopes;
 
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -39,10 +40,12 @@ public class Scopes {
 
 						@Override
 						public boolean visit(IResourceDelta delta) throws CoreException {
-							if (delta.getKind() == IResourceDelta.ADDED) {
-								WORKSPACE_REACHABLES.add(ReachableUtils.getReachable(delta.getResource()));
-							} else if (delta.getKind() == IResourceDelta.REMOVED) {
-								WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
+							if (delta.getResource() instanceof IFile){
+								if (delta.getKind() == IResourceDelta.ADDED) {
+									WORKSPACE_REACHABLES.add(ReachableUtils.getReachable(delta.getResource()));
+								} else if (delta.getKind() == IResourceDelta.REMOVED) {
+									WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
+								}
 							}
 							return true;
 						}

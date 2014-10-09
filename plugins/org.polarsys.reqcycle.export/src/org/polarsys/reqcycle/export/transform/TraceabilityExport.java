@@ -281,7 +281,7 @@ public class TraceabilityExport {
 
 	private Reachable getReachable(Requirement req) {
 		try {
-			return manager.getHandlerFromObject(req).getFromObject(req).getReachable(req);
+			return manager.getHandlerFromObject(req).getFromObject(req).getReachable();
 		} catch (IReachableHandlerException e) {
 			e.printStackTrace();
 		}

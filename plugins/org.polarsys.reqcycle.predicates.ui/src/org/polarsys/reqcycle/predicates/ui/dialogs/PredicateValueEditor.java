@@ -1,8 +1,9 @@
 package org.polarsys.reqcycle.predicates.ui.dialogs;
 
 import java.util.Collection;
-import java.util.Collections;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -19,10 +20,14 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.polarsys.reqcycle.predicates.core.api.ContainsPatternPredicate;
+import org.polarsys.reqcycle.predicates.core.api.EnumEqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.EqualPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OPERATOR;
 import org.polarsys.reqcycle.ui.eattrpropseditor.GenericEAttrPropsEditor;
+
+import com.google.common.collect.Lists;
 
 public class PredicateValueEditor extends TitleAreaDialog {
 
@@ -51,7 +56,17 @@ public class PredicateValueEditor extends TitleAreaDialog {
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		container.setLayout(new GridLayout(2, false));
 
-		Collection<Object> possibleValues = Collections.emptyList();
+		Collection<Object> possibleValues = Lists.newArrayList();
+		if (predicate instanceof EnumEqualPredicate) {
+			EnumEqualPredicate equalPredicate = (EnumEqualPredicate) predicate;
+			if (equalPredicate.eContainer() instanceof IEAttrPredicate) {
+				IEAttrPredicate pParent = (IEAttrPredicate) equalPredicate.eContainer();
+				EAttribute a = pParent.getTypedElement();
+				if (a != null && a.getEAttributeType() instanceof EEnum) {
+					possibleValues.addAll(((EEnum) a.getEAttributeType()).getELiterals());
+				}
+			}
+		}
 		addEditor(this.predicateClass, "Value : ", container, possibleValues);
 
 		if (comparator) {
@@ -78,6 +93,7 @@ public class PredicateValueEditor extends TitleAreaDialog {
 	public void addEditor(Class<?> c, String attName, Composite composite, Collection<Object> possibleValues) {
 		this.editor = new GenericEAttrPropsEditor(composite, SWT.NONE);
 		this.editor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+
 		this.editor.init(attName, c, possibleValues);
 
 		if (predicate instanceof EqualPredicate) {

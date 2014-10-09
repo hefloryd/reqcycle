@@ -12,6 +12,8 @@ package org.polarsys.reqcycle.repository.connector.document.ocl;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,6 +25,7 @@ import org.polarsys.reqcycle.ocl.ui.OCLConnector;
 import org.polarsys.reqcycle.ocl.ui.OCLPage;
 import org.polarsys.reqcycle.ocl.ui.SettingBean;
 import org.polarsys.reqcycle.repository.connector.ICallable;
+import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
 import org.polarsys.reqcycle.repository.connector.document.ocl.ui.DocOclSettingPage;
 import org.polarsys.reqcycle.repository.connector.document.ocl.ui.OCLDocBean;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
@@ -34,7 +37,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 
 
-public class DocOclConnector extends Wizard implements IConnectorWizard {
+public class DocOclConnector extends Wizard implements IConnectorWizard, IURIValidatorConnector {
 	
 	protected DocOclSettingPage docOclSettingPage;
 	
@@ -105,6 +108,17 @@ public class DocOclConnector extends Wizard implements IConnectorWizard {
 		bean.storeProperties(source);
 	}
 	
+	@Override
+	public IStatus validate(URI uri) {
+		String fileString = CommonPlugin.asLocalURI(uri).toFileString();
+		Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
+		String fileType = doc2Model.getFileType(fileString);
+		if (fileType.toString() != null) {
+			return Status.OK_STATUS;
+		}
+		String extension = uri.path().substring(uri.path().lastIndexOf(".")+1, uri.path().length());
+		return new Status(IStatus.WARNING, Activator.PLUGIN_ID, "extension " + extension + " is not supported. Retry and choose document file");
+	}
 
 
 }

@@ -47,7 +47,7 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				Object next = iterator.next();
 				if (objectHandler.handlesObject(next)) {
 					ReachableObject fromObject = objectHandler.getFromObject(next);
-					objectURIs.add(fromObject.getReachable(next));
+					objectURIs.add(fromObject.getReachable());
 				} else {
 					// if one object is not handled, do not transfer any
 					anEvent.doit = false;
@@ -82,7 +82,7 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 					Object next = iterator.next();
 					if (objectHandler.handlesObject(next)) {
 						ReachableObject fromObject = objectHandler.getFromObject(next);
-						objectURIs.add(fromObject.getReachable(next));
+						objectURIs.add(fromObject.getReachable());
 					} else {
 						// if one object is not handled, do not transfer any
 						return false;

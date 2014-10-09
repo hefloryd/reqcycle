@@ -20,14 +20,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.repository.data.RequirementSourceData.SimpleRequirement} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class SimpleRequirementItemProvider extends AbstractElementItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SimpleRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -35,8 +35,8 @@ public class SimpleRequirementItemProvider extends AbstractElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -49,8 +49,8 @@ public class SimpleRequirementItemProvider extends AbstractElementItemProvider {
 	}
 
 	/**
-	 * This returns SimpleRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns SimpleRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,19 +59,22 @@ public class SimpleRequirementItemProvider extends AbstractElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SimpleRequirement) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_SimpleRequirement_type") : getString("_UI_SimpleRequirement_type") + " " + label;
+		String label = ((SimpleRequirement)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SimpleRequirement_type") :
+			getString("_UI_SimpleRequirement_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,8 +84,9 @@ public class SimpleRequirementItemProvider extends AbstractElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -46,7 +46,7 @@ public class StandardReachableObject implements ReachableObject {
 			};
 		}
 		if (IResource.class.equals(adapter) || IFile.class.equals(adapter)) {
-			Reachable reachable = this.getReachable(this.object);
+			Reachable reachable = getReachable();
 			String path = reachable.getPath();
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path));
 		}
@@ -64,11 +64,11 @@ public class StandardReachableObject implements ReachableObject {
 	}
 
 	@Override
-	public Reachable getReachable(Object o) {
+	public Reachable getReachable() {
 		if (object instanceof Reachable) {
 			return (Reachable) object;
 		} else {
-			return StandardUtils.getReachable(o);
+			return StandardUtils.getReachable(object);
 		}
 	}
 

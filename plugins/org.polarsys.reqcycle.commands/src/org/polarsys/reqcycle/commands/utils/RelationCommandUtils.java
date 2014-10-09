@@ -59,7 +59,7 @@ public class RelationCommandUtils {
 			Iterable<RelationCreationDescriptor> descs = match(relation, sourceReachable, targetReachable);
 			if (descs != null) {
 				for (RelationCreationDescriptor desc : descs) {
-					CreateRelationCommand command = new CreateRelationCommand(relation, desc.getSource(), desc.getTarget(), resource);
+					CreateRelationCommand command = new CreateRelationCommand(relation, desc.getSource(), desc.getTarget());
 					ZigguratInject.inject(command);
 					map.put(desc, command);
 				}
