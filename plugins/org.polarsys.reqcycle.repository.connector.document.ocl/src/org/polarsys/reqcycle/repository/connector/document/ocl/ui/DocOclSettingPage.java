@@ -131,16 +131,13 @@ public class DocOclSettingPage extends AbstractSettingPage{
 						String fileString = CommonPlugin.asLocalURI(uris.get(0)).toFileString();
 						Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
 						String fileType = doc2Model.getFileType(fileString);
-						if (fileType.toString() != null) {
+						if (fileType != null && fileType.toString() != null) {
 							txtSelectedDoc.setText(uris.get(0).toString());
-							cImportType.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
-						} else {
+							//cImportType.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
+						}else {
 							txtSelectedDoc.setText("");
 							setErrorMessage("Your document is not supported. Retry and choose document file");
 						}
-
-						getWizard().getContainer().updateMessage();
-						getWizard().getContainer().updateButtons();
 					}
 
 				}

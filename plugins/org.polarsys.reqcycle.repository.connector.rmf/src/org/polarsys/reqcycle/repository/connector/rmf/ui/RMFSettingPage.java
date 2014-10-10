@@ -45,6 +45,8 @@ public class RMFSettingPage extends AbstractSettingPage {
 
 	private Button browseFileBtn;
 
+	private final String EXTENSIONS = "reqif";
+
 	@Inject
 	IDataModelManager dataManager;
 
@@ -109,7 +111,17 @@ public class RMFSettingPage extends AbstractSettingPage {
 				if (res == ResourceDialog.OK) {
 					List<URI> uris = dialog.getURIs();
 					if (!uris.isEmpty()) {
-						fileURIText.setText(uris.get(0).toString());
+						URI uri = uris.get(0);
+						String extension = uri.path().substring(uri.path().lastIndexOf(".") + 1, uri.path().length());
+						if (EXTENSIONS.contains(extension.toLowerCase())) {
+
+							fileURIText.setText(uri.toString());
+						} else {
+							fileURIText.setText("");
+							setErrorMessage("Your document is not supported. Retry and choose reqIF file");
+
+						}
+
 					}
 				}
 			}

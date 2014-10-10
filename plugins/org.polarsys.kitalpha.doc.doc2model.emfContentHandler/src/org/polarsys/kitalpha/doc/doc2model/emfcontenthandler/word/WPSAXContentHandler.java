@@ -83,7 +83,6 @@ public class WPSAXContentHandler implements ModelContentHandler<WPFile>{
 	public void characters(char[] ch, int start, int length) throws SAXException {
 
 		String charStr = new String(ch, start,length);
-
 		switch (_lastTagType) {
 		case Section:
 			String title = _lastSection.getTitle().getTextContent();
@@ -240,7 +239,6 @@ public class WPSAXContentHandler implements ModelContentHandler<WPFile>{
 			_lastCell.setTextContent("");
 			_lastRow.getCell().add(_lastCell);
 		}else {
-
 		}
 	}
 

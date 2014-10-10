@@ -57,6 +57,8 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class UpdateRequirementSourcesHandler {
 
+	private static final String FileExtension = "_impact_analysis.xmi";
+
 	IConnectorManager connManager = ZigguratInject.make(IConnectorManager.class);
 	
 	//Requirement Source Manager
@@ -233,10 +235,11 @@ public class UpdateRequirementSourcesHandler {
 
 	}
 	
-	protected void saveImpactAnalysis(String destinationPath, ImpactAnalysis analysis){
-		URI destPath = getURI(PreferenceController.getPathForImpactAnalysis());
+	protected void saveImpactAnalysis(String destinationPath, ImpactAnalysis analysis, String fileName){
+		String destPath = fileName;
 		if (analysis != null){
-			analysis.saveAnalysis(destPath);			
+			destPath = PreferenceController.getPathForImpactAnalysis() + "/" + destPath + "." + FileExtension;
+			analysis.saveAnalysis(getURI(destPath));			
 		}
 		
 	}

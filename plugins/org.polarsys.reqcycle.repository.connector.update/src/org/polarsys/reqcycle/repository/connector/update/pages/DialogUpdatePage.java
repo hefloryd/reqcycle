@@ -50,6 +50,7 @@ import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
 import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
+import org.polarsys.reqcycle.repository.connector.update.MutexRule;
 import org.polarsys.reqcycle.repository.connector.update.UpdateRequirementSourcesHandler;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -244,6 +245,7 @@ public class DialogUpdatePage extends TitleAreaDialog {
 				return Status.OK_STATUS;
 			}
 		};
+		job.setRule(MutexRule.INSTANCE);
 		job.setUser(true);
 		job.schedule();
 	}

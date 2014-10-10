@@ -85,7 +85,7 @@ public class UpdateJobPreferencePage extends PreferencePage implements IWorkbenc
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				boolean newValue = btnCheckButton.getSelection() ;
-				pathForImpactAnalysis.setEnabled(newValue);
+				pathForImpactAnalysis.setEnabled(false);
 				btnBrowse.setEnabled(newValue);
 				if (newValue && (pathForImpactAnalysis.getText()== null || pathForImpactAnalysis.getText().isEmpty())){
 					setErrorMessage("please fill a path");
@@ -147,6 +147,12 @@ public class UpdateJobPreferencePage extends PreferencePage implements IWorkbenc
 			refreshTime.setText(String.valueOf(PreferenceController.getRefreshTime()));
 		}
 		btnCheckButton.setSelection(PreferenceController.isImpactAnalysis());
+		btnBrowse.setEnabled(false);
+		if (btnCheckButton.getSelection()){
+			pathForImpactAnalysis.setText(PreferenceController.getPathForImpactAnalysis());
+			pathForImpactAnalysis.setEnabled(false);
+			btnBrowse.setEnabled(true);
+		}
 	}
 
 	@Override

@@ -210,7 +210,6 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 	@Override
 	public IStatus validate(URI uri) {
 		String EXTENSIONS = "reqif";
-
 		String extension = uri.path().substring(uri.path().lastIndexOf(".") + 1, uri.path().length());
 		if (EXTENSIONS.contains(extension.toLowerCase())) {
 			return Status.OK_STATUS;

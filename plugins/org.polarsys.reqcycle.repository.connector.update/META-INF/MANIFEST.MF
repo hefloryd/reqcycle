@@ -35,5 +35,6 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.utils.configuration
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: org.polarsys.reqcycle.repository.connector.update,
+Export-Package: 
+ org.polarsys.reqcycle.repository.connector.update,
  org.polarsys.reqcycle.repository.connector.update.pages

@@ -32,70 +32,74 @@ public class JobUpdateReference extends Job implements IStartup {
 	IConfigurationManager configurationManager = ZigguratInject.make(IConfigurationManager.class);
 	// Requirement Source Manager
 	IDataManager dataManager = ZigguratInject.make(IDataManager.class);
-
+	
 	List<RequirementSource> listReqSourcesInRef;
 
 
 	public JobUpdateReference() {
-		super("test job update reference");
+		super("Job update reference");
+		setRule(MutexRule.INSTANCE);
 	}
 
 	@Override
 	public void earlyStartup() {
-		IProgressMonitor monitor = Job.getJobManager().createProgressGroup();
-		run(monitor);
-
+		schedule();
 	}
 
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 		//	monitor.beginTask("Begin updating requirement source in reference mode", totalWork);
-		System.out.println("Update reference job running...");
 		int timer = PreferenceController.getRefreshTime() * 1000;
-		Boolean isImpactAnalysis = PreferenceController.isImpactAnalysis();
-		
-		//get all requirement resource
-		if(dataManager != null){
-			Set<RequirementSource> listReqSources = dataManager.getRequirementSources();
-			UpdateRequirementSourcesHandler updateReqSourceHandler = new UpdateRequirementSourcesHandler();
+		try {
 			
-
-			if (listReqSources != null){
-				//get all requirement resource in reference mode
-				listReqSourcesInRef = new ArrayList<RequirementSource>();
-				for (RequirementSource reqS : listReqSources){
-					//a requirement source is in reference mode if his destination URI is null
-					if (reqS.getDestinationURI() == null){
-						listReqSourcesInRef.add(reqS);				
+			Boolean isImpactAnalysis = PreferenceController.isImpactAnalysis();
+			
+			//get all requirement resource
+			if(dataManager != null){
+				Set<RequirementSource> listReqSources = dataManager.getRequirementSources();
+				UpdateRequirementSourcesHandler updateReqSourceHandler = new UpdateRequirementSourcesHandler();
+				
+				
+				if (listReqSources != null){
+					//get all requirement resource in reference mode
+					listReqSourcesInRef = new ArrayList<RequirementSource>();
+					for (RequirementSource reqS : listReqSources){
+						//a requirement source is in reference mode if his destination URI is null
+						if (reqS.getDestinationURI() == null){
+							listReqSourcesInRef.add(reqS);				
+						}
 					}
 				}
+				
+				// Step1 -- get a copy of all requirements sources
+				Map<RequirementSource, RequirementSource> storageOldNewReqSources = new HashMap<RequirementSource, RequirementSource>();
+				storageOldNewReqSources = updateReqSourceHandler.createCopyReqSrc(listReqSourcesInRef, dataManager);
+				
+				// Step2 -- generate all impacts analysis
+				Map<RequirementSource, ImpactAnalysis> mapReqSourcesWithImpactAna = new HashMap<RequirementSource, ImpactAnalysis>();
+				mapReqSourcesWithImpactAna = updateReqSourceHandler.generateAllImpacts(storageOldNewReqSources, monitor);
+				
+				// Step3 -- updating all requirements
+				String destinationPath = PreferenceController.getPathForImpactAnalysis();
+				for (Map.Entry<RequirementSource, ImpactAnalysis> reqSrcWithImpact : mapReqSourcesWithImpactAna.entrySet()) {
+					updateReqSourceHandler.finalizedUpdateReqSrc(reqSrcWithImpact.getKey(), reqSrcWithImpact.getValue(), dataManager, storageOldNewReqSources);
+					
+					//Step 4 -- Save impact analysis
+					if(isImpactAnalysis && destinationPath != null && !destinationPath.isEmpty()){
+						updateReqSourceHandler.saveImpactAnalysis(destinationPath, reqSrcWithImpact.getValue(), reqSrcWithImpact.getKey().getName());
+					}
+					
+				}			
+				
 			}
-
-			// Step1 -- get a copy of all requirements sources
-			Map<RequirementSource, RequirementSource> storageOldNewReqSources = new HashMap<RequirementSource, RequirementSource>();
-			storageOldNewReqSources = updateReqSourceHandler.createCopyReqSrc(listReqSourcesInRef, dataManager);
-
-			// Step2 -- generate all impacts analysis
-			Map<RequirementSource, ImpactAnalysis> mapReqSourcesWithImpactAna = new HashMap<RequirementSource, ImpactAnalysis>();
-			mapReqSourcesWithImpactAna = updateReqSourceHandler.generateAllImpacts(storageOldNewReqSources, monitor);
-
-			// Step3 -- updating all requirements
-			String destinationPath = PreferenceController.getPathForImpactAnalysis();
-			for (Map.Entry<RequirementSource, ImpactAnalysis> reqSrcWithImpact : mapReqSourcesWithImpactAna.entrySet()) {
-				updateReqSourceHandler.finalizedUpdateReqSrc(reqSrcWithImpact.getKey(), reqSrcWithImpact.getValue(), dataManager, storageOldNewReqSources);
-
-				//Step 4 -- Save impact analysis
-				/*if(isImpactAnalysis && destinationPath != null && !destinationPath.isEmpty()){
-					updateReqSourceHandler.saveImpactAnalysis(destinationPath, reqSrcWithImpact.getValue());
-				}*/
-
-			}
-			
-		
 		}
-		System.out.println("Update reference job finished");
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			schedule(timer);
+		}
 		
-		schedule(timer);
 		return Status.OK_STATUS;
 	}
 
