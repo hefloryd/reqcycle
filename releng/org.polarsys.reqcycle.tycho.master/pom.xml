@@ -82,7 +82,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.rmf</module>
 		<module>../../plugins/org.polarsys.reqcycle.export.rmf</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.connector.ui</module>
-		<module>../../plugins/org.polarsys.reqcycle.repository.connector.update.rs</module>
+		<module>../../plugins/org.polarsys.reqcycle.repository.connector.update</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.repository.data.ui.components</module>
