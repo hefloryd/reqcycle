@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            category="org.polarsys.reqcycle.core.ui.export"
+            class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsExportWizard"
+            id="org.polarsys.reqcycle.prefs.ui.export"
+            name="Export ReqCycle preferences">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <wizard
+            category="org.polarsys.reqcycle.core.ui.import"
+            class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsImportWizard"
+            id="org.polarsys.reqcycle.prefs.ui.import"
+            name="Import ReqCycle preferences">
+      </wizard>
+   </extension>
+
+</plugin>

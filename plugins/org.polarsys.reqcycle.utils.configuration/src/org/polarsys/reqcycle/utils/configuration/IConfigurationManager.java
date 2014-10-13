@@ -113,4 +113,6 @@ public interface IConfigurationManager {
 	 * @return the extension used by default for configuration resources
 	 */
 	String getConfigurationResourceExtension();
+	
+	public void unload();
 }

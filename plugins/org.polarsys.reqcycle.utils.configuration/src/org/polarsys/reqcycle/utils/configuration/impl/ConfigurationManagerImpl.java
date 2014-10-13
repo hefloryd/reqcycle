@@ -357,4 +357,9 @@ public class ConfigurationManagerImpl implements IConfigurationManager {
 	public ResourceSet getConfigurationResourceSet() {
 		return internalResourceSet;
 	}
+
+	@Override
+	public void unload() {
+		internalResourceSet = new ResourceSetImpl();
+	}
 }

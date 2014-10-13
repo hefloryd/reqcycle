@@ -125,6 +125,7 @@
 		<module>../../plugins/org.polarsys.reqcycle.xcos.traceability</module>
 		<module>../../plugins/org.polarsys.reqcycle.impact</module>
 		<module>../../plugins/org.polarsys.reqcycle.impact.ui</module>
+		<module>../../plugins/org.polarsys.reqcycle.prefs.ui</module>
 		
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common.edit</module>
