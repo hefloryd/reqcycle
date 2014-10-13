@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 import org.polarsys.reqcycle.impact.Impact.ImpactAnalysis;
 import org.polarsys.reqcycle.impact.ui.dialogs.ImpactAnalysisComposites;
+import org.polarsys.reqcycle.repository.connector.update.preferences.PreferenceController;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 
 public class DialogImpactAnalysis extends TitleAreaDialog {
@@ -58,6 +59,7 @@ public class DialogImpactAnalysis extends TitleAreaDialog {
 	Map<RequirementSource, ImpactAnalysis> reqSourceWithImpAnalysis;
 	// this map contains the final requirements sources selected in window DialogUpdatePage
 	private Map<RequirementSource, ImpactAnalysis> finalMapReqSourcesWithImpactAna;
+	final String suffixName = "_impact_analysis.xmi";
 
 	CheckboxTableViewer cbReqSourceTv;
 	List<String> selections;
@@ -152,37 +154,36 @@ public class DialogImpactAnalysis extends TitleAreaDialog {
 		btnSaveAnalysis.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-
 				ContainerSelectionDialog dialog = new ContainerSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), true, "select location for save");
-				URI destinationPath = null;
+				IPath path = null;
+
 				if (Window.OK == dialog.open()) {
 					Object[] result = dialog.getResult();
 					if (result != null && result.length > 0) {
 						if (result[0] instanceof IPath) {
-							IPath path = (IPath) result[0];
-							destinationPath = URI.createPlatformResourceURI(path.toString(), true);
+							path = (IPath) result[0];
 						}
 					}
 				}
 
-				if (destinationPath != null) {
-					// transmit a selected requirements
-					finalMapReqSourcesWithImpactAna.clear();
-					finalMapReqSourcesWithImpactAna = getSelectedRequirementSrc(selections, reqSourceWithImpAnalysis);
-					// save impact analysis of selected requirements sources
-					for (Map.Entry<RequirementSource, ImpactAnalysis> finalMap : finalMapReqSourcesWithImpactAna.entrySet()) {
-						finalMap.getValue().saveAnalysis(destinationPath);
-					}
-
+				// transmit a selected requirements
+				finalMapReqSourcesWithImpactAna.clear();
+				finalMapReqSourcesWithImpactAna = getSelectedRequirementSrc(selections, reqSourceWithImpAnalysis);
+				// save impact analysis of selected requirements sources
+				for (Map.Entry<RequirementSource, ImpactAnalysis> finalMap : finalMapReqSourcesWithImpactAna.entrySet()) {
+					String fileName = "/" + finalMap.getKey().getName() + suffixName;
+					URI destinationPath = URI.createPlatformResourceURI(path.toString() + fileName, true);
+					finalMap.getValue().saveAnalysis(destinationPath);
 				}
+
 			}
 		});
-		
+
 		btnSaveAnalysis.setToolTipText("");
 		btnSaveAnalysis.setAlignment(SWT.RIGHT);
 		btnSaveAnalysis.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1));
 		btnSaveAnalysis.setText("Save impacts analysis");
-	
+
 		return composite;
 	}
 	

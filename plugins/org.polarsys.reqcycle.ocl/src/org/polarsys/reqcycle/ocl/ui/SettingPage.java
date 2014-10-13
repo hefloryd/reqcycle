@@ -12,6 +12,7 @@
 package org.polarsys.reqcycle.ocl.ui;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
@@ -82,22 +83,23 @@ public class SettingPage extends AbstractSettingPage {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				/*
-				 * BaseWorkbenchContentProvider contentProvider = new BaseWorkbenchContentProvider(); WorkspaceResourceDialog dialog = new WorkspaceResourceDialog(Display.getCurrent().getActiveShell(), labelProvider, contentProvider);
-				 * dialog.addFilter(filter); dialog.setAllowMultiple(false); dialog.setInput(ResourcesPlugin.getWorkspace().getRoot()); dialog.setValidator(validator); int open = dialog.open(); if(open == 0) { IFile iFile =
-				 * dialog.getSelectedFiles()[0]; String location = iFile.getFullPath().toOSString(); tFile.setText(location); }
-				 */
 				ResourceDialog dialog = new ResourceDialog(getShell(), "Select a model", SWT.NONE);
 				int res = dialog.open();
 				if (res == ResourceDialog.OK) {
 					List<URI> uris = dialog.getURIs();
 					if (!uris.isEmpty()) {
-						tFile.setText(uris.get(0).toString());
+						URI uri = uris.get(0);
+						Set<String> EXTENSIONS = OCLConnector.loadExtensions();
+						String extension = uri.path().substring(uri.path().lastIndexOf(".")+1, uri.path().length());				
+						if (EXTENSIONS.contains(extension.toLowerCase())){
+							tFile.setText(uris.get(0).toString());
+						}else{
+							tFile.setText("");
+							setErrorMessage("Your document is not supported. Retry and choose EMF file");
+						}
+					
 					}
 				}
-
-				getWizard().getContainer().updateMessage();
-				getWizard().getContainer().updateButtons();
 			}
 		});
 

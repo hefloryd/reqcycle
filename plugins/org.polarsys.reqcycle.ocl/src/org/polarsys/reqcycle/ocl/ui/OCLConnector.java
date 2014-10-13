@@ -107,7 +107,7 @@ public class OCLConnector extends Wizard implements IConnectorWizard,IURIValidat
 		bean.storeProperties(source);
 	}
 
-	private static Set<String> loadExtensions() {
+	public static Set<String> loadExtensions() {
 		final IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.emf.ecore","extension_parser");
 		HashSet<String> set = Sets.newHashSet(
 				Iterables.transform(Arrays.asList(elements), new Function<IConfigurationElement, String>() {
