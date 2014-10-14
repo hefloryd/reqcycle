@@ -59,14 +59,14 @@ public interface SpreadsheetPackage extends EPackage {
 	SpreadsheetPackage eINSTANCE = org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.ExcelFileImpl <em>Excel File</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetFileImpl <em>File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.ExcelFileImpl
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetPackageImpl#getExcelFile()
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetFileImpl
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetPackageImpl#getSpreadsheetFile()
 	 * @generated
 	 */
-	int EXCEL_FILE = 0;
+	int SPREADSHEET_FILE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -75,7 +75,7 @@ public interface SpreadsheetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEL_FILE__ATTRIBUTES = CommonPackage.DOCUMENT_MODEL__ATTRIBUTES;
+	int SPREADSHEET_FILE__ATTRIBUTES = CommonPackage.DOCUMENT_MODEL__ATTRIBUTES;
 
 	/**
 	 * The feature id for the '<em><b>Sheet</b></em>' containment reference list.
@@ -84,7 +84,7 @@ public interface SpreadsheetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEL_FILE__SHEET = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 0;
+	int SPREADSHEET_FILE__SHEET = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Nb Sheet</b></em>' attribute.
@@ -93,25 +93,25 @@ public interface SpreadsheetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEL_FILE__NB_SHEET = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 1;
+	int SPREADSHEET_FILE__NB_SHEET = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Excel File</em>' class.
+	 * The number of structural features of the '<em>File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEL_FILE_FEATURE_COUNT = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 2;
+	int SPREADSHEET_FILE_FEATURE_COUNT = CommonPackage.DOCUMENT_MODEL_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Excel File</em>' class.
+	 * The number of operations of the '<em>File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEL_FILE_OPERATION_COUNT = CommonPackage.DOCUMENT_MODEL_OPERATION_COUNT + 0;
+	int SPREADSHEET_FILE_OPERATION_COUNT = CommonPackage.DOCUMENT_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SheetImpl <em>Sheet</em>}' class.
@@ -673,36 +673,36 @@ public interface SpreadsheetPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile <em>Excel File</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Excel File</em>'.
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile
+	 * @return the meta object for class '<em>File</em>'.
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile
 	 * @generated
 	 */
-	EClass getExcelFile();
+	EClass getSpreadsheetFile();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile#getSheet <em>Sheet</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile#getSheet <em>Sheet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Sheet</em>'.
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile#getSheet()
-	 * @see #getExcelFile()
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile#getSheet()
+	 * @see #getSpreadsheetFile()
 	 * @generated
 	 */
-	EReference getExcelFile_Sheet();
+	EReference getSpreadsheetFile_Sheet();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile#getNbSheet <em>Nb Sheet</em>}'.
+	 * Returns the meta object for the attribute '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile#getNbSheet <em>Nb Sheet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Nb Sheet</em>'.
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile#getNbSheet()
-	 * @see #getExcelFile()
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile#getNbSheet()
+	 * @see #getSpreadsheetFile()
 	 * @generated
 	 */
-	EAttribute getExcelFile_NbSheet();
+	EAttribute getSpreadsheetFile_NbSheet();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Sheet <em>Sheet</em>}'.
@@ -1079,14 +1079,14 @@ public interface SpreadsheetPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.ExcelFileImpl <em>Excel File</em>}' class.
+		 * The meta object literal for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetFileImpl <em>File</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.ExcelFileImpl
-		 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetPackageImpl#getExcelFile()
+		 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetFileImpl
+		 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetPackageImpl#getSpreadsheetFile()
 		 * @generated
 		 */
-		EClass EXCEL_FILE = eINSTANCE.getExcelFile();
+		EClass SPREADSHEET_FILE = eINSTANCE.getSpreadsheetFile();
 
 		/**
 		 * The meta object literal for the '<em><b>Sheet</b></em>' containment reference list feature.
@@ -1094,7 +1094,7 @@ public interface SpreadsheetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXCEL_FILE__SHEET = eINSTANCE.getExcelFile_Sheet();
+		EReference SPREADSHEET_FILE__SHEET = eINSTANCE.getSpreadsheetFile_Sheet();
 
 		/**
 		 * The meta object literal for the '<em><b>Nb Sheet</b></em>' attribute feature.
@@ -1102,7 +1102,7 @@ public interface SpreadsheetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXCEL_FILE__NB_SHEET = eINSTANCE.getExcelFile_NbSheet();
+		EAttribute SPREADSHEET_FILE__NB_SHEET = eINSTANCE.getSpreadsheetFile_NbSheet();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SheetImpl <em>Sheet</em>}' class.

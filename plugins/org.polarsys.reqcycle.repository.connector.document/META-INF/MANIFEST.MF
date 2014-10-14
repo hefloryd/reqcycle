@@ -30,7 +30,8 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.kitalpha.doc.doc2model.spreadsheet;bundle-version="0.1.0",
  org.eclipse.emf.common,
  org.polarsys.kitalpha.doc.doc2model.common,
- org.polarsys.reqcycle.repository.connector.ui
+ org.polarsys.reqcycle.repository.connector.ui,
+ org.polarsys.reqcycle.core;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.repository.connector.document

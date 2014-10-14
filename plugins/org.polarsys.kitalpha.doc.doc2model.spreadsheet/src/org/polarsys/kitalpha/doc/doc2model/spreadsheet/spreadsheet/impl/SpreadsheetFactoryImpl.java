@@ -53,7 +53,7 @@ public class SpreadsheetFactoryImpl extends EFactoryImpl implements SpreadsheetF
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SpreadsheetPackage.EXCEL_FILE: return createExcelFile();
+			case SpreadsheetPackage.SPREADSHEET_FILE: return createSpreadsheetFile();
 			case SpreadsheetPackage.SHEET: return createSheet();
 			case SpreadsheetPackage.TEXT: return createText();
 			case SpreadsheetPackage.TITLE: return createTitle();
@@ -73,9 +73,9 @@ public class SpreadsheetFactoryImpl extends EFactoryImpl implements SpreadsheetF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExcelFile createExcelFile() {
-		ExcelFileImpl excelFile = new ExcelFileImpl();
-		return excelFile;
+	public SpreadsheetFile createSpreadsheetFile() {
+		SpreadsheetFileImpl spreadsheetFile = new SpreadsheetFileImpl();
+		return spreadsheetFile;
 	}
 
 	/**

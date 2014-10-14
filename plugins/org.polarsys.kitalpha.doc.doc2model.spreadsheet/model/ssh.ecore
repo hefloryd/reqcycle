@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="spreadsheet" nsURI="http://www.polarsys.org/reqcycle/0.1/ssh"
     nsPrefix="ssh">
-  <eClassifiers xsi:type="ecore:EClass" name="ExcelFile" eSuperTypes="../../org.polarsys.kitalpha.doc.doc2model.common/model/common.ecore#//DocumentModel">
+  <eClassifiers xsi:type="ecore:EClass" name="SpreadsheetFile" eSuperTypes="../../org.polarsys.kitalpha.doc.doc2model.common/model/common.ecore#//DocumentModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sheet" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Sheet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nbSheet" ordered="false"

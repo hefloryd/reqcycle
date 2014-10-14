@@ -21,8 +21,7 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 import org.polarsys.kitalpha.doc.doc2model.wordprocessor.wordprocessor.Section;
-import org.polarsys.reqcycle.inittypes.inittypes.Attribute;
-import org.polarsys.reqcycle.inittypes.inittypes.Requirement;
+import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
@@ -44,8 +43,9 @@ public class DocParser {
 	//private DocSettingPage docSettingPage;
 	private List<Section> sections;
 	private HashMap<DocSectionModele, org.polarsys.reqcycle.repository.data.RequirementSourceData.Section> sectionMapping = new HashMap<DocSectionModele, org.polarsys.reqcycle.repository.data.RequirementSourceData.Section>();
-
-
+	@Inject
+	ILogger logger;
+	
 	@Inject
 	IDataManager manager;
 	public void run(RequirementSource requirementSource) throws Exception {
@@ -82,11 +82,15 @@ public class DocParser {
 					    // check all occurrence of a requirement
 					    while (matcher.find()) {
 					    	if (matcher.groupCount() > 0){
-					    		System.out.println("req "+matcher.group(1)+" --- position : "+matcher.end());
+					    		if (LogUtils.isDebug()){
+					    			System.out.println("req "+matcher.group(1)+" --- position : "+matcher.end());				    	   			
+				    	   		}
 					    	   	listReqModele.add(new DocRequirementModele(matcher.end(), reqIn, matcher.group(1)));
 				    	   	}
 				    	   	else {
-				    	   		System.out.println("req "+matcher.group()+" --- position : "+matcher.end());
+				    	   		if (LogUtils.isDebug()){
+				    	   			LogUtils.log("req "+matcher.group()+" --- position : "+matcher.end());
+				    	   		}
 						      	listReqModele.add(new DocRequirementModele(matcher.end(), reqIn, matcher.group()));
 				    	   	}
 				    	   	
@@ -114,7 +118,9 @@ public class DocParser {
 			IRequirementType requirementType = (IRequirementType) PropertyUtils.getDataModelFromSource(requirementSource).getType(listReqModele.get(i).getRequirement().getDescription());
 			if (requirementType == null) {
 				//error
-				System.out.println("the requirementType "+ requirementType +" is nul");
+				if (LogUtils.isDebug()){
+    	   			System.out.println("the requirementType "+ requirementType +" is nul");
+    	   		}
 			}
 						
 			
@@ -129,12 +135,16 @@ public class DocParser {
 			String documentSection = " ";
 			 while (matcherS.find()) {	
 				 if (matcherS.groupCount() > 0){
-					 System.out.println("req "+matcherS.group(1)+" ------- position : "+matcherS.end());
+					 if (LogUtils.isDebug()){
+						 System.out.println("req "+matcherS.group(1)+" ------- position : "+matcherS.end());
+		    	   		}
 				    documentSection = matcherS.group(1);
 		    	   	}
 		    	   	else
 		    	   	{
-		    	   	System.out.println("req "+matcherS.group()+" ------- position : "+matcherS.end());
+		    	   	 if (LogUtils.isDebug()){
+		    	   		 System.out.println("req "+matcherS.group()+" ------- position : "+matcherS.end());
+		    	   		}
 				    documentSection = matcherS.group();
 		    	   	}
 			    	
@@ -147,11 +157,15 @@ public class DocParser {
 			    while (matcher.find()) {
 			    	org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement requirement = requirementType.createInstance();
 			    	if (matcher.groupCount() > 0){
-			    		System.out.println(matcher.group(1));
+			    		 if (LogUtils.isDebug()){
+			    			 System.out.println(matcher.group(1));
+			    	   		}
 				    	requirement.setId(matcher.group(1));	
 		    	   	}
 		    	   	else {
-		    	   		System.out.println(matcher.group());
+		    	   	 if (LogUtils.isDebug()){
+		    	   		 System.out.println(matcher.group());
+		    	   		}
 				    	requirement.setId(matcher.group());	
 		    	   	}	  
 			    //add scope in requirement
@@ -174,7 +188,9 @@ public class DocParser {
 									 Object value = null;
 									if (attFromType == null){
 										// error
-										System.out.println("the attFromType "+ attFromType +" is nul");
+										 if (LogUtils.isDebug()){
+											 System.out.println("the attFromType "+ attFromType +" is nul");
+							    	   		}
 									}
 									else {
 										String stringFromDocument = null;
@@ -184,8 +200,9 @@ public class DocParser {
 							    	   	else {
 							    	   		stringFromDocument = matcherAtt.group();
 							    	   	}
-										
-										System.out.println("att : "+ att.getDescription()+" :"+stringFromDocument);
+										 if (LogUtils.isDebug()){
+											 System.out.println("att : "+ att.getDescription()+" :"+stringFromDocument);
+							    	   		}
 										value = getValueFromString(stringFromDocument ,attFromType.getType());
 									}
 									manager.addAttributeValue(requirement, attFromType, value );
@@ -253,44 +270,7 @@ public class DocParser {
 		List<DocSectionModele> listSections = new ArrayList<DocSectionModele>();
 		
 		for (Section sect : sections){
-						
-			Pattern pattern = Pattern.compile(sect.getTitle().getTextContent(),Pattern.MULTILINE|Pattern.DOTALL);
-			Matcher matcher = pattern.matcher(document);
-			    // check all occurrence of a requirement
-			    while (matcher.find()) {
-		    	   	System.out.println("non section "+matcher.group()+" ------- position section: " + matcher.end());
-		    	   
-		    	   	org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement section = null;
-		    		String nameParent = null;
-		    		
-		    		if (sect.getParent() == null){
-		    			DocSectionModele sectionModele = new DocSectionModele(matcher.group(), nameParent, matcher.end(), null);
-		    			listSections.add(sectionModele);
-			    	   	section = manager.createSection(matcher.group(), matcher.group(), null);
-			    		if(section != null) {
-			    			manager.addElementsToSource(requirementSource, section);
-			    			//mapping manager section and section modele
-			    			sectionMapping.put(sectionModele, (org.polarsys.reqcycle.repository.data.RequirementSourceData.Section) section);
-			    		}
-		    		}
-		    		else
-		    		{
-		    	   	nameParent = sect.getParent().getTitle().getTextContent(); 
-		    	   	DocSectionModele sectionModele = new DocSectionModele(matcher.group(), nameParent, matcher.end(), null);
-		    	   	listSections.add(sectionModele);
-		    	   	section = manager.createSection(matcher.group(), matcher.group(), null);
-			    		if(section != null) {
-			    			org.polarsys.reqcycle.repository.data.RequirementSourceData.Section parentSection = (org.polarsys.reqcycle.repository.data.RequirementSourceData.Section) sectionMapping.get(sectionModele);
-			    			if(parentSection != null){
-			    				manager.addElementsToSection(parentSection, section);
-			    			}
-			    			sectionMapping.put(sectionModele, (org.polarsys.reqcycle.repository.data.RequirementSourceData.Section) section);
-			    			
-			    		}
-		    	   	}
-		    
-			    }
-			
+			createHierarchieSections(requirementSource, listSections, sect);		
 		}
 		
 		return listSections;
@@ -298,6 +278,99 @@ public class DocParser {
 	}
 
 
+	private void createHierarchieSections(RequirementSource requirementSource, List<DocSectionModele> listSections, Section parentSection) {
+		//add section parent in manager
+		org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement sectionP = null;
+		if (parentSection.getParent() == null){	
+			Pattern patternP = Pattern.compile(parentSection.getTitle().getTextContent(),Pattern.MULTILINE|Pattern.DOTALL);
+			Matcher matcherP = patternP.matcher(document);
+			// check all occurrence of a requirement
+			while (matcherP.find()) {		
+				String nameParentP = null;
+
+				
+				if(parentSection.getParent() !=null && parentSection.getParent().getTitle()!= null ){
+					nameParentP = parentSection.getParent().getTitle().getTextContent();
+				}
+
+				DocSectionModele sectionModeleP = new DocSectionModele(matcherP.group(), nameParentP, matcherP.end(), null);
+				Boolean alredyInReqSrcP = false;
+				for (DocSectionModele docs : listSections){
+					if ((docs.getName().equals(sectionModeleP.getName())) && docs.getPosition() == sectionModeleP.getPosition()){
+						alredyInReqSrcP = true;
+						break;
+					}
+				}
+
+				if (!alredyInReqSrcP){
+					 if (LogUtils.isDebug()){
+						 System.out.println("non section " + matcherP.group() + " ------- position section: " + matcherP.end());
+		    	   		}
+					listSections.add(sectionModeleP);
+					sectionP = manager.createSection(matcherP.group(), matcherP.group(), null);
+					if(sectionP != null) {
+						manager.addElementsToSource(requirementSource, sectionP);
+						//mapping manager section and section modele
+						sectionMapping.put(sectionModeleP, (org.polarsys.reqcycle.repository.data.RequirementSourceData.Section) sectionP);
+					}
+				}
+		
+			}
+		
+		}
+		
+		if(parentSection.getSections() != null){			
+			createChildrenSections(listSections, parentSection, sectionP);
+		}
+	}
+
+
+	private void createChildrenSections(List<DocSectionModele> listSections, Section parentSection, org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement sectionP) {
+		List<Section> childrenSection = parentSection.getSections();
+		for (Section sect : childrenSection){			
+			//createHierarchieChildrenSections(requirementSource, listSections, sect, sectionP);
+			Pattern pattern = Pattern.compile(sect.getTitle().getTextContent(),Pattern.MULTILINE|Pattern.DOTALL);
+			Matcher matcher = pattern.matcher(document);
+
+			org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement section = null;
+			// check all occurrence of a requirement
+			while (matcher.find()) {
+
+				String nameParent = null;
+				if(sect.getParent() !=null && sect.getParent().getTitle()!= null ){
+					nameParent = sect.getParent().getTitle().getTextContent();
+				}
+
+				DocSectionModele sectionModele = new DocSectionModele(matcher.group(), nameParent, matcher.end(), null);
+				Boolean alredyInReqSrc = false;
+				for (DocSectionModele docs : listSections){
+					if ((docs.getName().equals(sectionModele.getName())) && docs.getPosition() == sectionModele.getPosition()){
+						alredyInReqSrc = true;
+						break;
+					}
+				}
+				if (!alredyInReqSrc){
+					 if (LogUtils.isDebug()){
+						 System.out.println("non section "+matcher.group()+" ------- position section: " + matcher.end());
+		    	   		}
+					listSections.add(sectionModele);
+					section = manager.createSection(matcher.group(), matcher.group(), null);
+					if(section != null) {
+						manager.addElementsToSection((org.polarsys.reqcycle.repository.data.RequirementSourceData.Section)  sectionP, section);
+						//mapping manager section and section modele
+						sectionMapping.put(sectionModele, (org.polarsys.reqcycle.repository.data.RequirementSourceData.Section) section);
+					}
+				}
+			}
+			
+			if(sect.getSections() != null){			
+				createChildrenSections(listSections, sect, section);
+			}
+		}
+	}
+		
+		
+	
 	public StringBuffer getDocument() {
 		return document;
 	}
@@ -312,7 +385,6 @@ public class DocParser {
 		
 	}
 	
-
 	public List<Section> getSections() {
 		return sections;
 	}

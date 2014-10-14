@@ -13,9 +13,9 @@
   <foreignModel>ssh.ecore</foreignModel>
   <genPackages prefix="Spreadsheet" basePackage="org.polarsys.kitalpha.doc.doc2model.spreadsheet"
       disposableProviderFactory="true" fileExtensions="ssh" ecorePackage="ssh.ecore#/">
-    <genClasses ecoreClass="ssh.ecore#//ExcelFile">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssh.ecore#//ExcelFile/sheet"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssh.ecore#//ExcelFile/nbSheet"/>
+    <genClasses ecoreClass="ssh.ecore#//SpreadsheetFile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssh.ecore#//SpreadsheetFile/sheet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ssh.ecore#//SpreadsheetFile/nbSheet"/>
     </genClasses>
     <genClasses ecoreClass="ssh.ecore#//Sheet">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ssh.ecore#//Sheet/text"/>

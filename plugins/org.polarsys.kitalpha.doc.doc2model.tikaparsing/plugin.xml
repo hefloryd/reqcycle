@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="tikaParser" name="Tika Parser" schema="schema/tikaParser.exsd"/>
+   <extension
+         point="org.polarsys.kitalpha.doc.doc2model.core.IParsingFacility">
+      <parsingFacility
+            IParsingFacility="org.polarsys.kitalpha.doc.doc2model.tikaparsing.TikaParsingFacility">
+      </parsingFacility>
+   </extension>
+   <extension
+         point="org.polarsys.reqcycle.utils.inject.binding">
+      <binding
+            impl="org.polarsys.kitalpha.doc.doc2model.tikaparsing.TikaParsingFacility"
+            interface="org.polarsys.kitalpha.doc.doc2model.core.IParsingFacility">
+      </binding>
+   </extension>
+   <extension
+         point="org.polarsys.kitalpha.doc.doc2model.tikaparsing.tikaParser">
+      <parser
+            instance="org.polarsys.kitalpha.doc.doc2model.tikaparsing.pdf.PDFTikaParser">
+      </parser>
+      <parser
+            instance="org.polarsys.kitalpha.doc.doc2model.tikaparsing.xls.XLSTikaParser">
+      </parser>
+      <parser
+            instance="org.polarsys.kitalpha.doc.doc2model.tikaparsing.doc.DocTikaParser">
+      </parser>
+   </extension>
+
+</plugin>
