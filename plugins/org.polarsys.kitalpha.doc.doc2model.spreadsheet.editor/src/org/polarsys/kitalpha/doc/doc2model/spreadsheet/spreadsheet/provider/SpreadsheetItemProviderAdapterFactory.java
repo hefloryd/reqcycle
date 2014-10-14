@@ -70,26 +70,26 @@ public class SpreadsheetItemProviderAdapterFactory extends SpreadsheetAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile} instances.
+	 * This keeps track of the one adapter used for all {@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExcelFileItemProvider excelFileItemProvider;
+	protected SpreadsheetFileItemProvider spreadsheetFileItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile}.
+	 * This creates an adapter for a {@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createExcelFileAdapter() {
-		if (excelFileItemProvider == null) {
-			excelFileItemProvider = new ExcelFileItemProvider(this);
+	public Adapter createSpreadsheetFileAdapter() {
+		if (spreadsheetFileItemProvider == null) {
+			spreadsheetFileItemProvider = new SpreadsheetFileItemProvider(this);
 		}
 
-		return excelFileItemProvider;
+		return spreadsheetFileItemProvider;
 	}
 
 	/**
@@ -398,7 +398,7 @@ public class SpreadsheetItemProviderAdapterFactory extends SpreadsheetAdapterFac
 	 * @generated
 	 */
 	public void dispose() {
-		if (excelFileItemProvider != null) excelFileItemProvider.dispose();
+		if (spreadsheetFileItemProvider != null) spreadsheetFileItemProvider.dispose();
 		if (sheetItemProvider != null) sheetItemProvider.dispose();
 		if (textItemProvider != null) textItemProvider.dispose();
 		if (titleItemProvider != null) titleItemProvider.dispose();

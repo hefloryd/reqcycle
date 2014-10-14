@@ -10,13 +10,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.polarsys.kitalpha.doc.doc2model.common.Common.CommonPackage;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Cell;
-import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Header;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Image;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Point;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Row;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Sheet;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFactory;
+import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetPackage;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Table;
 import org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.Text;
@@ -34,7 +34,7 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass excelFileEClass = null;
+	private EClass spreadsheetFileEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,8 +168,8 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExcelFile() {
-		return excelFileEClass;
+	public EClass getSpreadsheetFile() {
+		return spreadsheetFileEClass;
 	}
 
 	/**
@@ -177,8 +177,8 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExcelFile_Sheet() {
-		return (EReference)excelFileEClass.getEStructuralFeatures().get(0);
+	public EReference getSpreadsheetFile_Sheet() {
+		return (EReference)spreadsheetFileEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -186,8 +186,8 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExcelFile_NbSheet() {
-		return (EAttribute)excelFileEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSpreadsheetFile_NbSheet() {
+		return (EAttribute)spreadsheetFileEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -515,9 +515,9 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 		isCreated = true;
 
 		// Create classes and their features
-		excelFileEClass = createEClass(EXCEL_FILE);
-		createEReference(excelFileEClass, EXCEL_FILE__SHEET);
-		createEAttribute(excelFileEClass, EXCEL_FILE__NB_SHEET);
+		spreadsheetFileEClass = createEClass(SPREADSHEET_FILE);
+		createEReference(spreadsheetFileEClass, SPREADSHEET_FILE__SHEET);
+		createEAttribute(spreadsheetFileEClass, SPREADSHEET_FILE__NB_SHEET);
 
 		sheetEClass = createEClass(SHEET);
 		createEReference(sheetEClass, SHEET__TEXT);
@@ -593,14 +593,14 @@ public class SpreadsheetPackageImpl extends EPackageImpl implements SpreadsheetP
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		excelFileEClass.getESuperTypes().add(theCommonPackage.getDocumentModel());
+		spreadsheetFileEClass.getESuperTypes().add(theCommonPackage.getDocumentModel());
 		titleEClass.getESuperTypes().add(theCommonPackage.getContentElement());
 		cellEClass.getESuperTypes().add(theCommonPackage.getContentElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(excelFileEClass, ExcelFile.class, "ExcelFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExcelFile_Sheet(), this.getSheet(), null, "sheet", null, 1, -1, ExcelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getExcelFile_NbSheet(), ecorePackage.getEInt(), "nbSheet", null, 1, 1, ExcelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(spreadsheetFileEClass, SpreadsheetFile.class, "SpreadsheetFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpreadsheetFile_Sheet(), this.getSheet(), null, "sheet", null, 1, -1, SpreadsheetFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSpreadsheetFile_NbSheet(), ecorePackage.getEInt(), "nbSheet", null, 1, 1, SpreadsheetFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(sheetEClass, Sheet.class, "Sheet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSheet_Text(), this.getText(), null, "text", null, 0, -1, Sheet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

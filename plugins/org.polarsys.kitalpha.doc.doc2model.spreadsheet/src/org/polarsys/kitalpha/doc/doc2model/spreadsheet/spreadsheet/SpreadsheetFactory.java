@@ -22,13 +22,13 @@ public interface SpreadsheetFactory extends EFactory {
 	SpreadsheetFactory eINSTANCE = org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.impl.SpreadsheetFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Excel File</em>'.
+	 * Returns a new object of class '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Excel File</em>'.
+	 * @return a new object of class '<em>File</em>'.
 	 * @generated
 	 */
-	ExcelFile createExcelFile();
+	SpreadsheetFile createSpreadsheetFile();
 
 	/**
 	 * Returns a new object of class '<em>Sheet</em>'.

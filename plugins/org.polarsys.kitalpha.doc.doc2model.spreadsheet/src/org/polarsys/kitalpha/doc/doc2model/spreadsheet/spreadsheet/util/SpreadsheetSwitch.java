@@ -66,10 +66,10 @@ public class SpreadsheetSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SpreadsheetPackage.EXCEL_FILE: {
-				ExcelFile excelFile = (ExcelFile)theEObject;
-				T result = caseExcelFile(excelFile);
-				if (result == null) result = caseDocumentModel(excelFile);
+			case SpreadsheetPackage.SPREADSHEET_FILE: {
+				SpreadsheetFile spreadsheetFile = (SpreadsheetFile)theEObject;
+				T result = caseSpreadsheetFile(spreadsheetFile);
+				if (result == null) result = caseDocumentModel(spreadsheetFile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,17 +134,17 @@ public class SpreadsheetSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Excel File</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Excel File</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>File</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExcelFile(ExcelFile object) {
+	public T caseSpreadsheetFile(SpreadsheetFile object) {
 		return null;
 	}
 

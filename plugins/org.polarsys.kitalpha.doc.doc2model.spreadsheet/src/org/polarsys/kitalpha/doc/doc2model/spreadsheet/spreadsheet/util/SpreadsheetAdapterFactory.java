@@ -67,8 +67,8 @@ public class SpreadsheetAdapterFactory extends AdapterFactoryImpl {
 	protected SpreadsheetSwitch<Adapter> modelSwitch =
 		new SpreadsheetSwitch<Adapter>() {
 			@Override
-			public Adapter caseExcelFile(ExcelFile object) {
-				return createExcelFileAdapter();
+			public Adapter caseSpreadsheetFile(SpreadsheetFile object) {
+				return createSpreadsheetFileAdapter();
 			}
 			@Override
 			public Adapter caseSheet(Sheet object) {
@@ -135,16 +135,16 @@ public class SpreadsheetAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile <em>Excel File</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.ExcelFile
+	 * @see org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet.SpreadsheetFile
 	 * @generated
 	 */
-	public Adapter createExcelFileAdapter() {
+	public Adapter createSpreadsheetFileAdapter() {
 		return null;
 	}
 

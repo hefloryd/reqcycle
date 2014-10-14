@@ -4,6 +4,5 @@
    <extension-point id="IUserInterface" name="userInterface" schema="schema/interface.exsd"/>
    <extension-point id="IParsingFacility" name="ParsingFacility" schema="schema/IParsingFacility.exsd"/>
    <extension-point id="IContentHandler" name="IContentHandler" schema="schema/IContentHandler.exsd"/>
-   <extension-point id="IDefaultContentHandler" name="Default Content Handler" schema="schema/IDefaultContentHandler.exsd"/>
 
 </plugin>

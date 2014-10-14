@@ -53,10 +53,6 @@ public class DocOclSettingPage extends AbstractSettingPage{
 	private ComboViewer cImportType;
 	
 
-	
-
-
-
 	public DocOclSettingPage(SettingBean bean) {
 		super("Document OCL Connector settings", bean);
 		setTitle("Connector DOCUMENT with OCL configuration: settings page");
@@ -133,7 +129,7 @@ public class DocOclSettingPage extends AbstractSettingPage{
 						String fileType = doc2Model.getFileType(fileString);
 						if (fileType != null && fileType.toString() != null) {
 							txtSelectedDoc.setText(uris.get(0).toString());
-							//cImportType.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
+							cImportType.setInput(doc2Model.getContentHandlers(fileString, DocumentModel.class));
 						}else {
 							txtSelectedDoc.setText("");
 							setErrorMessage("Your document is not supported. Retry and choose document file");
