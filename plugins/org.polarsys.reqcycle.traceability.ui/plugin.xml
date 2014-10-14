@@ -16,6 +16,14 @@
             id="org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer"
             name="TraceabilityViewer">
       </view>
+      <view
+            category="org.polarsys.reqcycle.traceability.ui"
+            class="org.polarsys.reqcycle.traceability.ui.views.TraceabilityCreator"
+            icon="icons/synced-1.gif"
+            id="org.polarsys.reqcycle.traceability.ui.views.TraceabilityCreator"
+            name="Traceability Creator"
+            restorable="true">
+      </view>
       <!--<view
             class="org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer"
             id="org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer"

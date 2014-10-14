@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.traceability.table.view;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.Timer;
@@ -22,7 +20,6 @@ import javax.inject.Inject;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -31,8 +28,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -73,11 +68,9 @@ import org.polarsys.reqcycle.traceability.types.ui.IStylePredicateProvider;
 import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
 import org.polarsys.reqcycle.traceability.ui.services.ILocateService;
 import org.polarsys.reqcycle.uri.IReachableManager;
-import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 

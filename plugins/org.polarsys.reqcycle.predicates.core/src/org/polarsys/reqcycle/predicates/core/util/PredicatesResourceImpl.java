@@ -13,21 +13,20 @@
 package org.polarsys.reqcycle.predicates.core.util;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package. <!-- end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.predicates.core.util.PredicatesResourceFactoryImpl
  * @generated
  */
 public class PredicatesResourceImpl extends XMIResourceImpl {
 
 	/**
-	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param uri
-	 *            the URI of the new resource.
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
 	public PredicatesResourceImpl(URI uri) {
@@ -36,7 +35,18 @@ public class PredicatesResourceImpl extends XMIResourceImpl {
 
 	@Override
 	protected boolean useUUIDs() {
-		return true;
+		return false;
+	}
+
+	@Override
+	public String getURIFragment(EObject eObject) {
+		String f = super.getURIFragment(eObject);
+		return URI.encodeFragment(f, true);
+	}
+
+	@Override
+	public EObject getEObject(String uriFragment) {
+		return super.getEObject(URI.decode(uriFragment));
 	}
 
 } // PredicatesResourceImpl

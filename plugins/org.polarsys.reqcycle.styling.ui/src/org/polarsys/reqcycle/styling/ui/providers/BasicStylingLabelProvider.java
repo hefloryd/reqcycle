@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.providers;
 
 import javax.inject.Inject;
@@ -9,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.styling.manager.IStylingManager;
 import org.polarsys.reqcycle.styling.model.Styling.StylingModel;
 import org.polarsys.reqcycle.styling.ui.dialogs.IconRegistry;
@@ -52,7 +62,10 @@ public class BasicStylingLabelProvider extends StylingLabelProvider {
 			}
 		}
 
-		if (element instanceof RequirementSource) {
+		if (element instanceof RequirementsContainer) {
+			String label = "Requirements container";
+			return toT(label, theClass);
+		} else if (element instanceof RequirementSource) {
 			String label = ((RequirementSource) element).getRepositoryURI();
 			if (label == null) {
 				label = ((RequirementSource) element).getName();

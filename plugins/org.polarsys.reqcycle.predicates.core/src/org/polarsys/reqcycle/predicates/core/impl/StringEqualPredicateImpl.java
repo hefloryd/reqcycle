@@ -27,7 +27,6 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringEqualPredicateImpl() {
@@ -36,7 +35,6 @@ public class StringEqualPredicateImpl extends EqualPredicateImpl<String> impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

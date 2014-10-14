@@ -59,5 +59,13 @@
           name="Update MetaModel">
     </command>
  </extension>
-
+ <extension
+       point="org.eclipse.ui.importWizards">
+    <wizard
+          class="org.polarsys.reqcycle.repository.data.ui.wizard.ImportDataModel"
+          id="org.polarsys.reqcycle.repository.data.ui.import.datamodel"
+          name="Import Data Model">
+    </wizard>
+ </extension>
+ 
 </plugin>

@@ -38,6 +38,7 @@ public class ReqCyclePerspective implements IPerspectiveFactory {
 		{
 			IFolderLayout folderLayout = layout.createFolder("folder_2", IPageLayout.RIGHT, 0.60f, IPageLayout.ID_EDITOR_AREA);
 			addView("org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer", folderLayout);
+			addView("org.polarsys.reqcycle.traceability.ui.views.TraceabilityCreator", folderLayout);
 			addView("org.polarsys.reqcycle.traceability.table.partdescriptor.traceability.table", folderLayout);
 		}
 		{

@@ -193,10 +193,12 @@ public class PredicatesTreeDoubleClickListener implements IDoubleClickListener {
 			final SelectTypeDialog dialog = new SelectTypeDialog(parent, this.eClasses);
 			if (dialog.open() == Window.OK) {
 				Object type = dialog.getResult();
-				Boolean isStrict = dialog.getIsStrictTypeOf();
-				IsTypeOfPredicate predicate = (IsTypeOfPredicate) selection.getFirstElement();
-				predicate.setType(type);
-				predicate.setIsStrictTypeOf(isStrict);
+				if (type instanceof EClass) {
+					Boolean isStrict = dialog.getIsStrictTypeOf();
+					IsTypeOfPredicate predicate = (IsTypeOfPredicate) selection.getFirstElement();
+					predicate.setType((EClass) type);
+					predicate.setIsStrictTypeOf(isStrict);
+				}
 			}
 			return; // quit
 		}

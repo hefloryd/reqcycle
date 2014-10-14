@@ -27,7 +27,6 @@ public class NotPredicateImpl extends CompositePredicateImpl implements NotPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotPredicateImpl() {
@@ -36,7 +35,6 @@ public class NotPredicateImpl extends CompositePredicateImpl implements NotPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

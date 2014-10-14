@@ -23,11 +23,21 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -35,6 +45,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.Activator;
@@ -54,8 +65,11 @@ import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.configuration.impl.EMFConfResourceFactory.EMFConfResource;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Maps;
+
 @Singleton
-public class DataManagerImpl implements IDataManager {
+public class DataManagerImpl implements IDataManager, IResourceChangeListener, IResourceDeltaVisitor {
 
 	protected static final Map<?, ?> SAVE_OPTIONS = Collections.emptyMap(); // Collections.singletonMap(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
@@ -106,6 +120,11 @@ public class DataManagerImpl implements IDataManager {
 		} else {
 			sources = RequirementSourceConfFactory.eINSTANCE.createRequirementSources();
 		}
+		initWorkspaceListener();
+	}
+
+	private void initWorkspaceListener() {
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	@Override
@@ -363,4 +382,45 @@ public class DataManagerImpl implements IDataManager {
 		}
 	}
 
+	@Override
+	public void resourceChanged(IResourceChangeEvent event) {
+		try {
+			event.getDelta().accept(this);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean visit(IResourceDelta delta) throws CoreException {
+		IResource res = delta.getResource();
+		if (res instanceof IFile && ((IFile) res).getFileExtension().equals("reqcycle")) {
+			Map<URI, RequirementSource> setSources = Maps.uniqueIndex(sources.getRequirementSources(), new Function<RequirementSource, URI>() {
+
+				@Override
+				public URI apply(RequirementSource arg0) {
+					return URI.createURI(arg0.getDestinationURI());
+				}
+
+			});
+			URI platform = URI.createPlatformResourceURI(res.getFullPath().toString(), true);
+			if (setSources.keySet().contains(platform)) {
+				final RequirementSource s = setSources.get(platform);
+				try {
+					s.getContents().eResource().unload();
+					s.getContents().eResource().load(Collections.emptyMap());
+					ViewerNotification notification = new ViewerNotification(new NotificationImpl(Notification.SET, s.getContents().eResource(), s.getContents().eResource()) {
+						@Override
+						public Object getNotifier() {
+							return s;
+						}
+					}, s.getContents());
+					s.eNotify(notification);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return true;
+	}
 }

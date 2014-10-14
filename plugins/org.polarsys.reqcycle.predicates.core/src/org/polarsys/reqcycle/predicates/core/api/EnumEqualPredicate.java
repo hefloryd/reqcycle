@@ -17,7 +17,8 @@ package org.polarsys.reqcycle.predicates.core.api;
  *
  *
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getEnumEqualPredicate()
- * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EString>" annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='org.eclipse.emf.common.util.Enumerator'"
+ * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EString>"
+ *        annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='org.eclipse.emf.common.util.Enumerator'"
  * @generated
  */
 public interface EnumEqualPredicate extends EqualPredicate<String> {

@@ -58,9 +58,11 @@ public class RequestLabelProvider extends LabelProvider implements IFontProvider
 			if (element instanceof Link) {
 				Link link = (Link) element;
 				Configuration config = typeConfProvider.getDefaultConfiguration();
-				Relation relation = RelationUtils.getMatchingRelation(config, link.getKind(), link.getSources().iterator().next(), link.getTargets().iterator().next());
-				if(relation != null) {
-					return IconRegistry.getImage(relation.getIcon());
+				if (config != null) {
+					Relation relation = RelationUtils.getMatchingRelation(config, link.getKind(), link.getSources().iterator().next(), link.getTargets().iterator().next());
+					if(relation != null) {
+						return IconRegistry.getImage(relation.getIcon());
+					}
 				}
 			}
 		}

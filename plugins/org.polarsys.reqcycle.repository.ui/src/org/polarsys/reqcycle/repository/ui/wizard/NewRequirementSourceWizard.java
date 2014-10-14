@@ -20,6 +20,7 @@ import org.eclipse.ui.IWorkbenchWizard;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.IConnector;
+import org.polarsys.reqcycle.repository.connector.local.ui.LocalSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractSettingPage;
 import org.polarsys.reqcycle.repository.data.IDataManager;
@@ -126,6 +127,10 @@ public class NewRequirementSourceWizard extends Wizard implements IWorkbenchWiza
 			}
 			if (connectorWizard.getStartingPage() instanceof AbstractSettingPage) {
 				AbstractSettingPage startingPage = (AbstractSettingPage) connectorWizard.getStartingPage();
+				startingPage.setFileName(((SelectConnectorPage) page).getSourceName());
+			}
+			if (connectorWizard.getStartingPage() instanceof LocalSettingPage) {
+				LocalSettingPage startingPage = (LocalSettingPage) connectorWizard.getStartingPage();
 				startingPage.setFileName(((SelectConnectorPage) page).getSourceName());
 			}
 			IWizardPage startingPage = connectorWizard.getStartingPage();

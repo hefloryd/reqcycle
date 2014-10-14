@@ -28,7 +28,6 @@ public class EnumEqualPredicateImpl extends EqualPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumEqualPredicateImpl() {
@@ -37,7 +36,6 @@ public class EnumEqualPredicateImpl extends EqualPredicateImpl<String> implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

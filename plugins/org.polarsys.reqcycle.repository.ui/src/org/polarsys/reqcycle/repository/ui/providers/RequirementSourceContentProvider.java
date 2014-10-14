@@ -12,8 +12,6 @@ package org.polarsys.reqcycle.repository.ui.providers;
 
 import java.util.Set;
 
-import javax.inject.Inject;
-
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -23,7 +21,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class RequirementSourceContentProvider implements ITreeContentProvider, IStructuredContentProvider {
 
-	private @Inject IDataManager requirementSourceManager = ZigguratInject.make(IDataManager.class);
+	private IDataManager requirementSourceManager = ZigguratInject.make(IDataManager.class);
 
 	@Override
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {

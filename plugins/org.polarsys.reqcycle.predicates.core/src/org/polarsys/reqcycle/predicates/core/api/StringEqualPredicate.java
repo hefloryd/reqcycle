@@ -17,7 +17,8 @@ package org.polarsys.reqcycle.predicates.core.api;
  *
  *
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getStringEqualPredicate()
- * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EString>" annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.lang.String'"
+ * @model superTypes="org.polarsys.reqcycle.predicates.core.api.EqualPredicate<org.eclipse.emf.ecore.EString>"
+ *        annotation="www.eclipse.org/reqcycle/predicates/input_javaclass_type inputType='java.lang.String'"
  * @generated
  */
 public interface StringEqualPredicate extends EqualPredicate<String> {

@@ -23,6 +23,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -34,7 +36,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 
 	private static BundleContext context;
 
-	private static Map<Class<?>, IEAttrPropsEditor<?>> eAttrEditorManager = new HashMap<Class<?>, IEAttrPropsEditor<?>>();
+	private static Map<Class<?>, Instantiator> eAttrEditorManager = new HashMap<Class<?>, Instantiator>();
 
 	static BundleContext getContext() {
 		return context;
@@ -55,15 +57,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 		for (final IConfigurationElement e : elements) {
 			try {
 				final Class<?> type = Platform.getBundle(e.getContributor().getName()).loadClass(e.getAttribute("type"));
-				final Object obj = e.createExecutableExtension("class");
-				if (obj instanceof IEAttrPropsEditor) {
-					eAttrEditorManager.put(type, (IEAttrPropsEditor<?>) obj);
-				} else {
-					// TODO: log a warning
-				}
-			} catch (CoreException e1) {
-				// TODO: log
-				e1.printStackTrace(System.err);
+				eAttrEditorManager.put(type, (new Instantiator(e)));
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -75,12 +69,30 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 		eAttrEditorManager = Collections.unmodifiableMap(eAttrEditorManager);
 	}
 
+	public static class Instantiator {
+		private IConfigurationElement element;
+
+		public Instantiator(IConfigurationElement element) {
+			this.element = element;
+		}
+		
+		public IEAttrPropsEditor<?> create () {
+			try {
+				return (IEAttrPropsEditor<?>) element.createExecutableExtension("class");
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
+	
 	/**
 	 * <b>NOTE :</b> The returned Map is immutable.
 	 * 
 	 * @return The Map of available {@link IEAttrPropsEditor} editors. The map's key represents the type that an editor supports, and the value represents the instance of the editor itself.
 	 */
-	public static Map<Class<?>, IEAttrPropsEditor<?>> getEAttrEditorManager() {
+	public static Map<Class<?>, Instantiator> getEAttrEditorManager() {
 		return eAttrEditorManager;
 	}
 
@@ -107,7 +119,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 
 		IEAttrPropsEditor<?> editor = getEditorByTypeInstance(type);
 
-		if (editor != null) {
+		if (editor != null) {			
 			editor.setContainer(container);
 			editor.setStyle(style);
 			editor.setAttributeName(attributeName);
@@ -154,7 +166,7 @@ public class EAttrPropsEditorPlugin implements BundleActivator {
 				}
 			}
 			if (nearestClass != null) {
-				return getEAttrEditorManager().get(nearestClass);
+				return getEAttrEditorManager().get(nearestClass).create();
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace(System.err); // XXX Change or remove

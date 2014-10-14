@@ -35,14 +35,14 @@ public class RelationCommandUtils {
 	@Inject
 	static ITypesManager typeManager = ZigguratInject.make(ITypesManager.class);
 
-	public static Map<RelationCreationDescriptor, CreateRelationCommand> getAllRelationCommands(List<Reachable> sourceReachables, List<Reachable> targetReachables, IResource resource) {
+	public static Map<RelationCreationDescriptor, CreateRelationCommand> getAllRelationCommands(List<Reachable> sourceReachables, List<Reachable> targetReachables) {
 
 		Map<RelationCreationDescriptor, CreateRelationCommand> map = new HashMap<RelationCreationDescriptor, CreateRelationCommand>();
 		Configuration defaultConfiguration = typeConfigProvider.getContainer().getDefaultConfiguration();
 		if (defaultConfiguration != null) {
 			for (Reachable sourceReachable : sourceReachables) {
 				for (Reachable targetReachable : targetReachables) {
-					map.putAll(getMatches(sourceReachable, targetReachable, defaultConfiguration, resource));
+					map.putAll(getMatches(sourceReachable, targetReachable, defaultConfiguration));
 				}
 			}
 		} else {
@@ -52,7 +52,7 @@ public class RelationCommandUtils {
 		return map;
 	}
 
-	protected static Map<RelationCreationDescriptor, CreateRelationCommand> getMatches(Reachable sourceReachable, Reachable targetReachable, Configuration configuration, IResource resource) {
+	protected static Map<RelationCreationDescriptor, CreateRelationCommand> getMatches(Reachable sourceReachable, Reachable targetReachable, Configuration configuration) {
 		Map<RelationCreationDescriptor, CreateRelationCommand> map = new HashMap<RelationCreationDescriptor, CreateRelationCommand>();
 
 		for (Relation relation : configuration.getRelations()) {

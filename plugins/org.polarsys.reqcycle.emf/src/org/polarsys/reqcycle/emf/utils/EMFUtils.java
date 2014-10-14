@@ -12,6 +12,8 @@ package org.polarsys.reqcycle.emf.utils;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -20,13 +22,15 @@ import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.polarsys.reqcycle.core.ILogger;
+import org.polarsys.reqcycle.emf.Activator;
 import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class EMFUtils {
 	private static final List<URIHandler> DEFAULT_HANDLERS = URIHandler.DEFAULT_HANDLERS;
-
+	private static ILogger logger = ZigguratInject.make(ILogger.class);
 	public static Reachable getReachable(URI uri) {
 		try {
 			IReachableCreator creator = ZigguratInject.make(IReachableCreator.class);
@@ -91,14 +95,19 @@ public class EMFUtils {
 
 			@Override
 			public Resource getResource(URI uri, boolean loadOnDemand) {
-				if (firstURI == null) {
-					firstURI = uri;
+				try  {
+					if (firstURI == null) {
+						firstURI = uri;
+					}
+					if (uri.equals(firstURI)) {
+						return super.getResource(uri, loadOnDemand);
+					}
+					if (uri.isPlatformPlugin() || "pathmap".equals(uri.scheme()) || "http".equals(uri.scheme())) {
+						return super.getResource(uri, loadOnDemand);
+					}
 				}
-				if (uri.equals(firstURI)) {
-					return super.getResource(uri, loadOnDemand);
-				}
-				if (uri.isPlatformPlugin() || "pathmap".equals(uri.scheme()) || "http".equals(uri.scheme())) {
-					return super.getResource(uri, loadOnDemand);
+				catch (Exception e){
+					logger.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage()));
 				}
 				return null;
 			}

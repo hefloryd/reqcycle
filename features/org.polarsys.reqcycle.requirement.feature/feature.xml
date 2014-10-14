@@ -94,13 +94,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.polarsys.reqcycle.repository.connector.update.rs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.polarsys.reqcycle.export"
          download-size="0"
          install-size="0"
@@ -120,5 +113,12 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
+   <plugin
+         id="org.polarsys.reqcycle.repository.connector.update"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

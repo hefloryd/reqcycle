@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.polarsys.reqcycle.export.rmf.page.WizardController;
@@ -54,8 +55,19 @@ public class ReqIFExportWizard extends Wizard implements IExportWizard {
 
 	@Override
 	public boolean performFinish() {
-		ReqIFExport export = new ReqIFExport(controller);
-		export.transform();
+		try {
+			ReqIFExport export = new ReqIFExport(controller);
+			export.transform();
+		}
+		catch (Exception e){
+			if (getContainer().getCurrentPage() instanceof WizardPage) {
+				WizardPage page = (WizardPage) getContainer().getCurrentPage();
+				if (e.getMessage() != null){
+					page.setErrorMessage(e.getMessage());
+				}
+				return false;
+			}
+		}
 		return true;
 	}
 

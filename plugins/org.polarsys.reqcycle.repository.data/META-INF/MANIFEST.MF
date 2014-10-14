@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.polarsys.reqcycle.repository.data;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: org.polarsys.reqcycle.repository.data.RequirementSourceData.provider.RequirementSourceDataEditPlugin$Implementation
+Bundle-Activator: org.polarsys.reqcycle.repository.data.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -38,18 +38,16 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.repository.data,
  org.polarsys.reqcycle.repository.data.MappingModel,
- org.polarsys.reqcycle.repository.data.MappingModel.provider,
+ org.polarsys.reqcycle.repository.data.MappingModel.impl,
  org.polarsys.reqcycle.repository.data.MappingModel.util,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.impl,
- org.polarsys.reqcycle.repository.data.RequirementSourceConf.provider,
  org.polarsys.reqcycle.repository.data.RequirementSourceConf.util,
  org.polarsys.reqcycle.repository.data.RequirementSourceData,
  org.polarsys.reqcycle.repository.data.RequirementSourceData.impl,
- org.polarsys.reqcycle.repository.data.RequirementSourceData.provider,
  org.polarsys.reqcycle.repository.data.RequirementSourceData.util,
  org.polarsys.reqcycle.repository.data.ScopeConf,
- org.polarsys.reqcycle.repository.data.ScopeConf.provider,
+ org.polarsys.reqcycle.repository.data.ScopeConf.impl,
  org.polarsys.reqcycle.repository.data.ScopeConf.util,
  org.polarsys.reqcycle.repository.data.reachables,
  org.polarsys.reqcycle.repository.data.types,

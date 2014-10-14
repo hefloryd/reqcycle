@@ -39,262 +39,253 @@ import org.polarsys.reqcycle.predicates.core.api.TruePredicate;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage
  * @generated
  */
 public interface PredicatesFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	PredicatesFactory eINSTANCE = org.polarsys.reqcycle.predicates.core.impl.PredicatesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>String Equal Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>String Equal Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>String Equal Predicate</em>'.
 	 * @generated
 	 */
 	StringEqualPredicate createStringEqualPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Date Equal Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Date Equal Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Date Equal Predicate</em>'.
 	 * @generated
 	 */
 	DateEqualPredicate createDateEqualPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Enum Equal Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Enum Equal Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enum Equal Predicate</em>'.
 	 * @generated
 	 */
 	EnumEqualPredicate createEnumEqualPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Boolean Equal Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Boolean Equal Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Boolean Equal Predicate</em>'.
 	 * @generated
 	 */
 	BooleanEqualPredicate createBooleanEqualPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Contains Pattern Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Contains Pattern Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Contains Pattern Predicate</em>'.
 	 * @generated
 	 */
 	ContainsPatternPredicate createContainsPatternPredicate();
 
 	/**
-	 * Returns a new object of class '<em>String Into Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>String Into Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>String Into Predicate</em>'.
 	 * @generated
 	 */
 	StringIntoPredicate createStringIntoPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Enum Into Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Enum Into Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enum Into Predicate</em>'.
 	 * @generated
 	 */
 	EnumIntoPredicate createEnumIntoPredicate();
 
 	/**
-	 * Returns a new object of class '<em>And Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>And Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>And Predicate</em>'.
 	 * @generated
 	 */
 	AndPredicate createAndPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Or Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Or Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Or Predicate</em>'.
 	 * @generated
 	 */
 	OrPredicate createOrPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Compare Number Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Compare Number Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Compare Number Predicate</em>'.
 	 * @generated
 	 */
 	CompareNumberPredicate createCompareNumberPredicate();
 
 	/**
-	 * Returns a new object of class '<em>IE Attr Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>IE Attr Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>IE Attr Predicate</em>'.
 	 * @generated
 	 */
 	IEAttrPredicate createIEAttrPredicate();
 
 	/**
-	 * Returns a new object of class '<em>True Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>True Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>True Predicate</em>'.
 	 * @generated
 	 */
 	TruePredicate createTruePredicate();
 
 	/**
-	 * Returns a new object of class '<em>Operation Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Operation Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation Predicate</em>'.
 	 * @generated
 	 */
 	OperationPredicate createOperationPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Int Parameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Int Parameter</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Int Parameter</em>'.
 	 * @generated
 	 */
 	IntParameter createIntParameter();
 
 	/**
-	 * Returns a new object of class '<em>Boolean Parameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Boolean Parameter</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Boolean Parameter</em>'.
 	 * @generated
 	 */
 	BooleanParameter createBooleanParameter();
 
 	/**
-	 * Returns a new object of class '<em>String Parameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>String Parameter</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>String Parameter</em>'.
 	 * @generated
 	 */
 	StringParameter createStringParameter();
 
 	/**
-	 * Returns a new object of class '<em>EObject Parameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>EObject Parameter</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>EObject Parameter</em>'.
 	 * @generated
 	 */
 	EObjectParameter createEObjectParameter();
 
 	/**
-	 * Returns a new object of class '<em>Is Type Of Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Is Type Of Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Is Type Of Predicate</em>'.
 	 * @generated
 	 */
 	IsTypeOfPredicate createIsTypeOfPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Is Null Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Is Null Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Is Null Predicate</em>'.
 	 * @generated
 	 */
 	IsNullPredicate createIsNullPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Not Predicate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Not Predicate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Not Predicate</em>'.
 	 * @generated
 	 */
 	NotPredicate createNotPredicate();
 
 	/**
-	 * Returns an instance of data type '<em>OPERATOR</em>' corresponding the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>OPERATOR</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	OPERATOR createOPERATOR(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '<em>OPERATOR</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>OPERATOR</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertOPERATOR(OPERATOR instanceValue);
 
 	/**
-	 * Returns an instance of data type '<em>Pattern</em>' corresponding the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>Pattern</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	Pattern createPattern(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '<em>Pattern</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>Pattern</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertPattern(Pattern instanceValue);
 
 	/**
-	 * Returns an instance of data type '<em>Char Sequence</em>' corresponding the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>Char Sequence</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	CharSequence createCharSequence(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '<em>Char Sequence</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>Char Sequence</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertCharSequence(CharSequence instanceValue);
 
 	/**
-	 * Returns an instance of data type '<em>Number</em>' corresponding the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>Number</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	Number createNumber(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '<em>Number</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>Number</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertNumber(Number instanceValue);
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

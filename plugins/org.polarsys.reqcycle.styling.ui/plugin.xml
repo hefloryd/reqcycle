@@ -166,11 +166,42 @@
    </Picture>
 </extension>
 <extension
-      point="org.polarsys.reqcycle.utils.inject.binding">
-   <binding
-         impl="org.polarsys.reqcycle.styling.ui.providers.StylingDelegateLabelProvider"
-         interface="org.polarsys.reqcycle.repository.data.MappingModel.provider.IDelegateLabelProvider"
-         priority="10">
-   </binding>
-</extension>
+       point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+    <factory
+          class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"
+          uri="http://www.polarsys.org/ReqCycle/MappingModel">
+    </factory>
+    <factory
+          class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
+          uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource">
+    </factory>
+    <factory
+          class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
+          uri="http://www.polarsys.org/ReqCycle/RequirementSourceData"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource">
+    </factory>
+    <factory
+          class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
+          uri="http://www.polarsys.org/ReqCycle/ScopeConf"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource">
+    </factory>
+ </extension>
 </plugin>

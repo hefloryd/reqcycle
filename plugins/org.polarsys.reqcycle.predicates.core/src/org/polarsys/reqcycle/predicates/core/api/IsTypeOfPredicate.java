@@ -2,14 +2,16 @@
  */
 package org.polarsys.reqcycle.predicates.core.api;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Is Type Of Predicate</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#getType <em>Type</em>}</li>
- * <li>{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#isIsStrictTypeOf <em>Is Strict Type Of</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#isIsStrictTypeOf <em>Is Strict Type Of</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -19,37 +21,37 @@ package org.polarsys.reqcycle.predicates.core.api;
  */
 public interface IsTypeOfPredicate extends IPredicate {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(Object)
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(EClass)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getIsTypeOfPredicate_Type()
 	 * @model
 	 * @generated
 	 */
-	Object getType();
+	EClass getType();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#getType <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#getType <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Object value);
+	void setType(EClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Strict Type Of</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Strict Type Of</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Strict Type Of</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Is Strict Type Of</em>' attribute.
 	 * @see #setIsStrictTypeOf(boolean)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getIsTypeOfPredicate_IsStrictTypeOf()
@@ -59,10 +61,9 @@ public interface IsTypeOfPredicate extends IPredicate {
 	boolean isIsStrictTypeOf();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#isIsStrictTypeOf <em>Is Strict Type Of</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Strict Type Of</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.IsTypeOfPredicate#isIsStrictTypeOf <em>Is Strict Type Of</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Strict Type Of</em>' attribute.
 	 * @see #isIsStrictTypeOf()
 	 * @generated
 	 */

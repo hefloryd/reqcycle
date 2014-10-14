@@ -303,8 +303,8 @@ public class RightPanelComposite extends Composite {
 								} else {
 									MessageDialog.openError(getShell(), "Removal Error", "Unable to remove the predicate : " + p.getDisplayName());
 								}
+								stylingManager.suppressUselessPredicates();
 
-								stylingManager.suppressPredicate(p);
 							}
 						}
 					}

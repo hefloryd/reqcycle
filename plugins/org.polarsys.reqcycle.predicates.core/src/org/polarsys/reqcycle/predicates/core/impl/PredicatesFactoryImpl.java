@@ -40,31 +40,31 @@ import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFactory {
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static PredicatesFactory init() {
 		try {
-			PredicatesFactory thePredicatesFactory = (PredicatesFactory) EPackage.Registry.INSTANCE.getEFactory(PredicatesPackage.eNS_URI);
+			PredicatesFactory thePredicatesFactory = (PredicatesFactory)EPackage.Registry.INSTANCE.getEFactory(PredicatesPackage.eNS_URI);
 			if (thePredicatesFactory != null) {
 				return thePredicatesFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new PredicatesFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PredicatesFactoryImpl() {
@@ -73,102 +73,78 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case PredicatesPackage.STRING_EQUAL_PREDICATE:
-			return createStringEqualPredicate();
-		case PredicatesPackage.DATE_EQUAL_PREDICATE:
-			return createDateEqualPredicate();
-		case PredicatesPackage.ENUM_EQUAL_PREDICATE:
-			return createEnumEqualPredicate();
-		case PredicatesPackage.BOOLEAN_EQUAL_PREDICATE:
-			return createBooleanEqualPredicate();
-		case PredicatesPackage.CONTAINS_PATTERN_PREDICATE:
-			return createContainsPatternPredicate();
-		case PredicatesPackage.STRING_INTO_PREDICATE:
-			return createStringIntoPredicate();
-		case PredicatesPackage.ENUM_INTO_PREDICATE:
-			return createEnumIntoPredicate();
-		case PredicatesPackage.AND_PREDICATE:
-			return createAndPredicate();
-		case PredicatesPackage.OR_PREDICATE:
-			return createOrPredicate();
-		case PredicatesPackage.NOT_PREDICATE:
-			return createNotPredicate();
-		case PredicatesPackage.COMPARE_NUMBER_PREDICATE:
-			return createCompareNumberPredicate();
-		case PredicatesPackage.IE_ATTR_PREDICATE:
-			return createIEAttrPredicate();
-		case PredicatesPackage.TRUE_PREDICATE:
-			return createTruePredicate();
-		case PredicatesPackage.OPERATION_PREDICATE:
-			return createOperationPredicate();
-		case PredicatesPackage.INT_PARAMETER:
-			return createIntParameter();
-		case PredicatesPackage.BOOLEAN_PARAMETER:
-			return createBooleanParameter();
-		case PredicatesPackage.STRING_PARAMETER:
-			return createStringParameter();
-		case PredicatesPackage.EOBJECT_PARAMETER:
-			return createEObjectParameter();
-		case PredicatesPackage.IS_TYPE_OF_PREDICATE:
-			return createIsTypeOfPredicate();
-		case PredicatesPackage.IS_NULL_PREDICATE:
-			return createIsNullPredicate();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case PredicatesPackage.STRING_EQUAL_PREDICATE: return createStringEqualPredicate();
+			case PredicatesPackage.DATE_EQUAL_PREDICATE: return createDateEqualPredicate();
+			case PredicatesPackage.ENUM_EQUAL_PREDICATE: return createEnumEqualPredicate();
+			case PredicatesPackage.BOOLEAN_EQUAL_PREDICATE: return createBooleanEqualPredicate();
+			case PredicatesPackage.CONTAINS_PATTERN_PREDICATE: return createContainsPatternPredicate();
+			case PredicatesPackage.STRING_INTO_PREDICATE: return createStringIntoPredicate();
+			case PredicatesPackage.ENUM_INTO_PREDICATE: return createEnumIntoPredicate();
+			case PredicatesPackage.AND_PREDICATE: return createAndPredicate();
+			case PredicatesPackage.OR_PREDICATE: return createOrPredicate();
+			case PredicatesPackage.NOT_PREDICATE: return createNotPredicate();
+			case PredicatesPackage.COMPARE_NUMBER_PREDICATE: return createCompareNumberPredicate();
+			case PredicatesPackage.IE_ATTR_PREDICATE: return createIEAttrPredicate();
+			case PredicatesPackage.TRUE_PREDICATE: return createTruePredicate();
+			case PredicatesPackage.OPERATION_PREDICATE: return createOperationPredicate();
+			case PredicatesPackage.INT_PARAMETER: return createIntParameter();
+			case PredicatesPackage.BOOLEAN_PARAMETER: return createBooleanParameter();
+			case PredicatesPackage.STRING_PARAMETER: return createStringParameter();
+			case PredicatesPackage.EOBJECT_PARAMETER: return createEObjectParameter();
+			case PredicatesPackage.IS_TYPE_OF_PREDICATE: return createIsTypeOfPredicate();
+			case PredicatesPackage.IS_NULL_PREDICATE: return createIsNullPredicate();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case PredicatesPackage.OPERATOR:
-			return createOPERATORFromString(eDataType, initialValue);
-		case PredicatesPackage.PATTERN:
-			return createPatternFromString(eDataType, initialValue);
-		case PredicatesPackage.CHAR_SEQUENCE:
-			return createCharSequenceFromString(eDataType, initialValue);
-		case PredicatesPackage.NUMBER:
-			return createNumberFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case PredicatesPackage.OPERATOR:
+				return createOPERATORFromString(eDataType, initialValue);
+			case PredicatesPackage.PATTERN:
+				return createPatternFromString(eDataType, initialValue);
+			case PredicatesPackage.CHAR_SEQUENCE:
+				return createCharSequenceFromString(eDataType, initialValue);
+			case PredicatesPackage.NUMBER:
+				return createNumberFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case PredicatesPackage.OPERATOR:
-			return convertOPERATORToString(eDataType, instanceValue);
-		case PredicatesPackage.PATTERN:
-			return convertPatternToString(eDataType, instanceValue);
-		case PredicatesPackage.CHAR_SEQUENCE:
-			return convertCharSequenceToString(eDataType, instanceValue);
-		case PredicatesPackage.NUMBER:
-			return convertNumberToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case PredicatesPackage.OPERATOR:
+				return convertOPERATORToString(eDataType, instanceValue);
+			case PredicatesPackage.PATTERN:
+				return convertPatternToString(eDataType, instanceValue);
+			case PredicatesPackage.CHAR_SEQUENCE:
+				return convertCharSequenceToString(eDataType, instanceValue);
+			case PredicatesPackage.NUMBER:
+				return convertNumberToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StringEqualPredicate createStringEqualPredicate() {
@@ -178,7 +154,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DateEqualPredicate createDateEqualPredicate() {
@@ -188,7 +163,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EnumEqualPredicate createEnumEqualPredicate() {
@@ -198,7 +172,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BooleanEqualPredicate createBooleanEqualPredicate() {
@@ -208,7 +181,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ContainsPatternPredicate createContainsPatternPredicate() {
@@ -218,7 +190,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StringIntoPredicate createStringIntoPredicate() {
@@ -228,7 +199,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EnumIntoPredicate createEnumIntoPredicate() {
@@ -238,7 +208,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AndPredicate createAndPredicate() {
@@ -248,7 +217,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrPredicate createOrPredicate() {
@@ -258,7 +226,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompareNumberPredicate createCompareNumberPredicate() {
@@ -268,7 +235,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IEAttrPredicate createIEAttrPredicate() {
@@ -278,7 +244,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TruePredicate createTruePredicate() {
@@ -288,7 +253,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationPredicate createOperationPredicate() {
@@ -298,7 +262,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IntParameter createIntParameter() {
@@ -308,7 +271,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BooleanParameter createBooleanParameter() {
@@ -318,7 +280,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StringParameter createStringParameter() {
@@ -328,7 +289,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObjectParameter createEObjectParameter() {
@@ -338,7 +298,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IsTypeOfPredicate createIsTypeOfPredicate() {
@@ -348,7 +307,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IsNullPredicate createIsNullPredicate() {
@@ -358,7 +316,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotPredicate createNotPredicate() {
@@ -368,19 +325,16 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OPERATOR createOPERATOR(String literal) {
 		OPERATOR result = OPERATOR.get(literal);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + literal + "' is not a valid enumerator of '" + PredicatesPackage.Literals.OPERATOR.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + literal + "' is not a valid enumerator of '" + PredicatesPackage.Literals.OPERATOR.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OPERATOR createOPERATORFromString(EDataType eDataType, String initialValue) {
@@ -389,7 +343,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertOPERATOR(OPERATOR instanceValue) {
@@ -398,11 +351,10 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertOPERATORToString(EDataType eDataType, Object instanceValue) {
-		return convertOPERATOR((OPERATOR) instanceValue);
+		return convertOPERATOR((OPERATOR)instanceValue);
 	}
 
 	/**
@@ -421,7 +373,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Pattern createPatternFromString(EDataType eDataType, String initialValue) {
@@ -430,7 +381,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertPattern(Pattern instanceValue) {
@@ -439,25 +389,22 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertPatternToString(EDataType eDataType, Object instanceValue) {
-		return convertPattern((Pattern) instanceValue);
+		return convertPattern((Pattern)instanceValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CharSequence createCharSequence(String literal) {
-		return (CharSequence) super.createFromString(PredicatesPackage.Literals.CHAR_SEQUENCE, literal);
+		return (CharSequence)super.createFromString(PredicatesPackage.Literals.CHAR_SEQUENCE, literal);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CharSequence createCharSequenceFromString(EDataType eDataType, String initialValue) {
@@ -466,7 +413,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertCharSequence(CharSequence instanceValue) {
@@ -475,11 +421,10 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertCharSequenceToString(EDataType eDataType, Object instanceValue) {
-		return convertCharSequence((CharSequence) instanceValue);
+		return convertCharSequence((CharSequence)instanceValue);
 	}
 
 	/**
@@ -496,7 +441,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Number createNumberFromString(EDataType eDataType, String initialValue) {
@@ -505,7 +449,6 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertNumber(Number instanceValue) {
@@ -514,25 +457,22 @@ public class PredicatesFactoryImpl extends EFactoryImpl implements PredicatesFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertNumberToString(EDataType eDataType, Object instanceValue) {
-		return convertNumber((Number) instanceValue);
+		return convertNumber((Number)instanceValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PredicatesPackage getPredicatesPackage() {
-		return (PredicatesPackage) getEPackage();
+		return (PredicatesPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

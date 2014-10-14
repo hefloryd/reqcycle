@@ -30,7 +30,6 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumIntoPredicateImpl() {
@@ -39,7 +38,6 @@ public class EnumIntoPredicateImpl extends IntoPredicateImpl<String> implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

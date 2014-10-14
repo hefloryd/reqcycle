@@ -11,14 +11,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.StringEqualPredicate} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class StringEqualPredicateItemProvider extends EqualPredicateItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StringEqualPredicateItemProvider(AdapterFactory adapterFactory) {
@@ -26,8 +26,8 @@ public class StringEqualPredicateItemProvider extends EqualPredicateItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -40,8 +40,8 @@ public class StringEqualPredicateItemProvider extends EqualPredicateItemProvider
 	}
 
 	/**
-	 * This returns StringEqualPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns StringEqualPredicate.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,27 +50,22 @@ public class StringEqualPredicateItemProvider extends EqualPredicateItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		StringEqualPredicate eqPredicate = (StringEqualPredicate) object;
-		String label = eqPredicate.getDisplayName();
-		if ((eqPredicate.getExpectedObject() != null) && (eqPredicate.getExpectedObject().length() != 0)) {
-			if (label != null) {
-				label += "(" + eqPredicate.getExpectedObject() + ")";
-			} else {
-				label = "(" + eqPredicate.getExpectedObject() + ")";
-			}
-		}
-		return label == null || label.length() == 0 ? getString("_UI_StringEqualPredicate_type") : getString("_UI_StringEqualPredicate_type") + " " + label;
+		String label = ((StringEqualPredicate)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_StringEqualPredicate_type") :
+			getString("_UI_StringEqualPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -80,8 +75,9 @@ public class StringEqualPredicateItemProvider extends EqualPredicateItemProvider
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

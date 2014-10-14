@@ -4,8 +4,6 @@ package org.polarsys.reqcycle.predicates.core.impl;
 
 import java.util.Collection;
 
-import javax.inject.Inject;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -29,35 +27,25 @@ import org.polarsys.reqcycle.predicates.core.api.StringParameter;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Operation Predicate</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Operation Predicate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl#getOperationName
- * <em>Operation Name</em>}</li>
- * <li>
- * {@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl#getParameters
- * <em>Parameters</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl#getOperationName <em>Operation Name</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OperationPredicateImpl extends IPredicateContainerImpl implements
-		OperationPredicate {
-	@Inject
-	IReqCycleOperationManager reqCycleOperationlManager;
+public class OperationPredicateImpl extends IPredicateContainerImpl implements OperationPredicate {
+	IReqCycleOperationManager reqCycleOperationlManager = ZigguratInject.make(IReqCycleOperationManager.class);
 
-	@Inject
-	IPredicateEvaluator predicateEvaluator;
+	IPredicateEvaluator predicateEvaluator = ZigguratInject.make(IPredicateEvaluator.class);
 
 	/**
-	 * The default value of the '{@link #getOperationName()
-	 * <em>Operation Name</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperationName()
 	 * @generated
 	 * @ordered
@@ -65,10 +53,8 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 	protected static final String OPERATION_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOperationName()
-	 * <em>Operation Name</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperationName()
 	 * @generated
 	 * @ordered
@@ -76,9 +62,8 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 	protected String operationName = OPERATION_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
@@ -92,12 +77,10 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 	 */
 	protected OperationPredicateImpl() {
 		super();
-		ZigguratInject.inject(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,17 +90,6 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated not
-	 */
-	@Override
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +99,6 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,22 +106,17 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 		String oldOperationName = operationName;
 		operationName = newOperationName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME,
-					oldOperationName, operationName));
+			eNotify(new ENotificationImpl(this, Notification.SET, PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME, oldOperationName, operationName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<Parameter> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<Parameter>(
-					Parameter.class, this,
-					PredicatesPackage.OPERATION_PREDICATE__PARAMETERS);
+			parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, PredicatesPackage.OPERATION_PREDICATE__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -162,7 +128,7 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 	 */
 	@Override
 	public boolean match(Object input) {
-		if (this.operationName != null) {
+		if (getOperationName() != null) {
 			Class<?>[] listTypes = new Class<?>[this.getParameters().size() + 1];
 			Object[] listValues = new Object[this.getParameters().size() + 1];
 			listValues[0] = input;
@@ -184,8 +150,7 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 				listValues[i + 1] = p.getObjectValue();
 			}
 
-			ReqCycleOperation op = reqCycleOperationlManager.getOperation(
-					this.operationName, listTypes);
+			ReqCycleOperation op = reqCycleOperationlManager.getOperation(this.operationName, listTypes);
 			if (op != null) {
 				Object obj = op.execute(listValues);
 				if (obj instanceof Result<?>) {
@@ -193,8 +158,7 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 					if (Boolean.class.equals(result.getResultType())) {
 						return (Boolean) result.getResult();
 					} else if (getResultPredicate() != null) {
-						return predicateEvaluator.match(
-								this.getResultPredicate(), input);
+						return predicateEvaluator.match(this.getResultPredicate(), input);
 					} else {
 						return false;
 					}
@@ -209,100 +173,90 @@ public class OperationPredicateImpl extends IPredicateContainerImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
-			return ((InternalEList<?>) getParameters()).basicRemove(otherEnd,
-					msgs);
+			case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
-			return getOperationName();
-		case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
-			return getParameters();
+			case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
+				return getOperationName();
+			case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
-			setOperationName((String) newValue);
-			return;
-		case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
-			getParameters().clear();
-			getParameters().addAll((Collection<? extends Parameter>) newValue);
-			return;
+			case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
+				setOperationName((String)newValue);
+				return;
+			case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends Parameter>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
-			setOperationName(OPERATION_NAME_EDEFAULT);
-			return;
-		case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
-			getParameters().clear();
-			return;
+			case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
+				setOperationName(OPERATION_NAME_EDEFAULT);
+				return;
+			case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
+				getParameters().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
-			return OPERATION_NAME_EDEFAULT == null ? operationName != null
-					: !OPERATION_NAME_EDEFAULT.equals(operationName);
-		case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
-			return parameters != null && !parameters.isEmpty();
+			case PredicatesPackage.OPERATION_PREDICATE__OPERATION_NAME:
+				return OPERATION_NAME_EDEFAULT == null ? operationName != null : !OPERATION_NAME_EDEFAULT.equals(operationName);
+			case PredicatesPackage.OPERATION_PREDICATE__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (operationName: ");

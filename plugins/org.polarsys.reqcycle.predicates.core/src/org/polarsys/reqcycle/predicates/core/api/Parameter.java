@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.api.Parameter#getName <em>Name</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.api.Parameter#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Parameter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.polarsys.reqcycle.predicates.core.PredicatesPackage#getParameter_Name()
@@ -35,10 +35,9 @@ public interface Parameter extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.Parameter#getName <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link org.polarsys.reqcycle.predicates.core.api.Parameter#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -46,7 +45,6 @@ public interface Parameter extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */

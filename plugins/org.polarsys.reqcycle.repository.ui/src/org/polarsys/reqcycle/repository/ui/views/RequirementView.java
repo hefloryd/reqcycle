@@ -9,6 +9,9 @@ import javax.inject.Inject;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -18,6 +21,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IViewPart;
@@ -37,6 +41,8 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
+import org.polarsys.reqcycle.uri.IReachableListener;
+import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
@@ -151,6 +157,19 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 		}
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+		unregisterSources();
+	}
+
+	protected void unregisterSources() {
+		for (RequirementSource s : getSources()) {
+			SourcesListener l = getListener(s);
+			s.eAdapters().remove(l);
+		}
+	}
+
 	public void setSources(Collection<RequirementSource> sources) {
 		if (readOnlyEditingDomain == null && !sources.isEmpty()) {
 			ResourceSet rs = sources.iterator().next().eResource().getResourceSet();
@@ -165,9 +184,38 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 				rs.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(readOnlyEditingDomain));
 			}
 		}
+		unregisterSources();
 		root.setSources(sources);
-
+		for (RequirementSource s : sources) {
+			SourcesListener l = getListener(s);
+			if (l == null) {
+				s.eAdapters().add(new SourcesListener());
+			}
+		}
 		this.getCommonViewer().refresh();
+	}
+
+	private SourcesListener getListener(RequirementSource s) {
+		for (Adapter a : s.eAdapters()) {
+			if (a instanceof SourcesListener) {
+				return (SourcesListener) a;
+			}
+		}
+		return null;
+	}
+
+	private class SourcesListener extends AdapterImpl {
+		@Override
+		public void notifyChanged(final Notification msg) {
+			super.notifyChanged(msg);
+			Display.getDefault().syncExec(new Runnable() {
+
+				@Override
+				public void run() {
+					getCommonViewer().refresh();
+				}
+			});
+		}
 	}
 
 	public Collection<RequirementSource> getSources() {
@@ -218,9 +266,10 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 	}
 
-	private class ReachableMapper implements ICommonViewerMapper {
+	private class ReachableMapper implements ICommonViewerMapper, IReachableListener {
 
 		Map<Reachable, Item> items = Maps.newHashMap();
+		IReachableListenerManager listenerManager = ZigguratInject.make(IReachableListenerManager.class);
 
 		@Override
 		public void removeFromMap(Object element, Item item) {
@@ -234,6 +283,7 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 					e.printStackTrace();
 				}
 			}
+			listenerManager.removeReachableListener(this, r);
 			items.remove(r);
 		}
 
@@ -249,9 +299,15 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 					e.printStackTrace();
 				}
 			}
-			Item get = items.get(r);
+			final Item get = items.get(r);
 			if (get != null) {
-				RequirementView.this.getCommonViewer().doUpdateItem(get);
+				Display.getDefault().syncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						RequirementView.this.getCommonViewer().doUpdateItem(get);
+					}
+				});
 			}
 		}
 
@@ -293,7 +349,15 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 					e.printStackTrace();
 				}
 			}
+			listenerManager.addReachableListener(r, this);
 			items.put(r, item);
+		}
+
+		@Override
+		public void hasChanged(Reachable[] reachable) {
+			for (Reachable r : reachable) {
+				objectChanged(r);
+			}
 		}
 	}
 

@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.dialogs;
 
 import java.util.Collection;
@@ -272,7 +281,7 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			Collection<IPredicate> selectionPredicates = Lists.newArrayList(Iterables.filter(predicates, new Predicate<IPredicate>() {
 				public boolean apply(IPredicate arg0) {
 					for (IPredicate p : alreadyUsed) {
-						if (p.getDisplayName().equals(arg0.getDisplayName())) {
+						if (p != null && p.getDisplayName() != null &&  p.getDisplayName().equals(arg0.getDisplayName())) {
 							return false;
 						}
 					}
@@ -281,9 +290,10 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 			}));
 
 			selectionPredicates.add(((StylingPredicate) caseStyle).getPredicate());
-
 			comboViewer.setInput(selectionPredicates);
-			comboViewer.setSelection(new StructuredSelection(((StylingPredicate) caseStyle).getPredicate()));
+			if (((StylingPredicate) caseStyle).getPredicate() != null){
+				comboViewer.setSelection(new StructuredSelection(((StylingPredicate) caseStyle).getPredicate()));
+			}
 
 		}
 

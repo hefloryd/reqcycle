@@ -21,15 +21,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.BooleanEqualPredicate} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public BooleanEqualPredicateItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +37,8 @@ public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvide
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,8 +51,8 @@ public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvide
 	}
 
 	/**
-	 * This returns BooleanEqualPredicate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns BooleanEqualPredicate.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,27 +61,22 @@ public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvide
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		BooleanEqualPredicate eqPredicate = (BooleanEqualPredicate) object;
-		String label = eqPredicate.getDisplayName();
-		if (eqPredicate.getExpectedObject() != null) {
-			if (label != null) {
-				label += "(" + eqPredicate.getExpectedObject() + ")";
-			} else {
-				label = "(" + eqPredicate.getExpectedObject() + ")";
-			}
-		}
-		return label == null || label.length() == 0 ? getString("_UI_BooleanEqualPredicate_type") : getString("_UI_BooleanEqualPredicate_type") + " " + label;
+		String label = ((BooleanEqualPredicate)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BooleanEqualPredicate_type") :
+			getString("_UI_BooleanEqualPredicate_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -91,8 +86,9 @@ public class BooleanEqualPredicateItemProvider extends EqualPredicateItemProvide
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

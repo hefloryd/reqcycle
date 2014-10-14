@@ -40,9 +40,11 @@ public class SelectRequirementSourcesHandler extends AbstractHandler {
 			sources = reqView.getSources();
 
 			Collection<RequirementSource> selectedSources = openRequirementSourceChooser(sources);
-			reqView.setSources(selectedSources);
-			sources = selectedSources;
-			reqView.getCommonViewer().refresh();
+			if (selectedSources != null) {
+				reqView.setSources(selectedSources);
+				sources = selectedSources;
+				reqView.getCommonViewer().refresh();
+			}
 		}
 		return null;
 	}

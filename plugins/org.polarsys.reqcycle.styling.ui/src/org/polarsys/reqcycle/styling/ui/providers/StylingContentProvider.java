@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.providers;
 
 import java.util.Collection;
@@ -9,17 +18,11 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
-import org.polarsys.reqcycle.predicates.core.PredicatesFactory;
-import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
-import org.polarsys.reqcycle.predicates.core.api.StringIntoPredicate;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
@@ -91,20 +94,32 @@ public class StylingContentProvider implements ITreeContentProvider {
 						}
 					};
 					return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), attPredicate), Object.class);
+				} else {
+					List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
+					return sources.toArray();
 				}
 			case FILTERBYPREDICATE:
 				if (predicates.size() == 1) {
 					IPredicate predicate = predicates.get(0);
 					
 					return Iterators.toArray(Iterators.filter(((NavigatorRoot) inputElement).getSources().iterator(), new PPredicate(predicate)), Object.class);
+				} else {
+					List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
+					return sources.toArray();
 				}
 			case ORDERBYPREDICATE:
 				if (predicates.size() != 0) {
 					return predicates.toArray();
+				} else {
+					List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
+					return sources.toArray();
 				}
 			case ORDERBYSCOPE:
 				if (scopes.size() != 0) {
 					return scopes.toArray();
+				} else {
+					List<RequirementSource> sources = ((NavigatorRoot) inputElement).getSources();
+					return sources.toArray();
 				}
 			case REQONLY:
 			case NONE:
@@ -115,7 +130,7 @@ public class StylingContentProvider implements ITreeContentProvider {
 		}
 		return null;
 	}
-
+	
 	@Override
 	public Object[] getChildren(final Object object) {
 		Collection<AbstractElement> elements = Collections.emptyList();
@@ -139,10 +154,9 @@ public class StylingContentProvider implements ITreeContentProvider {
 					}
 				};
 				return Iterators.toArray(Iterators.filter(new Source2Reqs().apply(requirementSource), attPredicate), Object.class);
-				//TODO
 			} else {
 				if (displayType.equals(RequirementViewDisplayType.REQONLY)) {
-					return Iterators.toArray(Iterators.concat(Iterators.transform(navigatorRoot.getSources().iterator(), new Source2Reqs())), Object.class);
+					return Iterators.toArray(Iterators.concat(Iterators.transform(Collections.singletonList(requirementSource).iterator(), new Source2Reqs())), Object.class);
 				} else {
 					elements = requirementSource.getRequirements();
 				}
@@ -177,9 +191,7 @@ public class StylingContentProvider implements ITreeContentProvider {
 		if (object instanceof RequirementSource) {
 			if ((displayType.equals(RequirementViewDisplayType.FILTERBYPREDICATE)) && (predicates.size() == 1)) {
 				IPredicate predicate = predicates.get(0);
-				List<RequirementSource> list = new LinkedList<RequirementSource>();
-				list.add((RequirementSource) object);
-				return Iterators.filter(Iterators.concat(Iterators.transform(list.iterator(), new Source2Reqs())), new PPredicate(predicate)).hasNext();
+				return Iterators.filter(Iterators.concat(Iterators.transform(Collections.singletonList((RequirementSource) object).iterator(), new Source2Reqs())), new PPredicate(predicate)).hasNext();
 			} else {
 				return !((RequirementSource) object).getRequirements().isEmpty();
 			}

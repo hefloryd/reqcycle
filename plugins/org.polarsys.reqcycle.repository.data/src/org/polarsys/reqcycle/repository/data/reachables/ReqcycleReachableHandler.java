@@ -33,6 +33,10 @@ public class ReqcycleReachableHandler extends EMFURIHandler {
 
 	@Override
 	public boolean handlesURI(URI uri) {
+		return isReqcycle(uri);
+	}
+
+	public static boolean isReqcycle(URI uri) {
 		return uri.scheme().equals("reqcycle") || uri.path().endsWith("reqcycle");
 	}
 

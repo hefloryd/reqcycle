@@ -66,6 +66,9 @@ public class EMFProxyRegistry implements IEMFProxyRegistry {
 				public Set<String> call() throws Exception {
 					Resource r = EMFUtils.getFAURSWithPathMaps().getResource(
 							path, true);
+					if (r == null){
+						return Sets.newHashSet();
+					}
 					Iterator<String> eobjects = Iterators.transform(
 							r.getAllContents(),
 							new Function<EObject, String>() {

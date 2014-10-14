@@ -99,8 +99,8 @@ public class EMFEditExtender implements IReachableExtender {
 			} catch (URISyntaxException e1) {
 				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, e1.getMessage(), e1));
 			}
+			result = r.get(EMF_EDIT_LABEL);
 		}
-		result = r.get(EMF_EDIT_LABEL);
 		if (result != null && result.length() > 0) {
 			return result;
 		}

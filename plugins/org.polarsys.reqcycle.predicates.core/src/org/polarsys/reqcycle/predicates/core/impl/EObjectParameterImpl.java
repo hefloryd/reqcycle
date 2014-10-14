@@ -15,7 +15,7 @@ import org.polarsys.reqcycle.predicates.core.api.EObjectParameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,6 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EObjectParameterImpl() {
@@ -42,7 +41,6 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,13 +50,12 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject getValue() {
 		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject) value;
+			InternalEObject oldValue = (InternalEObject)value;
 			value = eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
@@ -70,7 +67,6 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObject basicGetValue() {
@@ -79,7 +75,6 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,60 +92,55 @@ public class EObjectParameterImpl extends ParameterImpl implements EObjectParame
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
-			if (resolve)
-				return getValue();
-			return basicGetValue();
+			case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
+				if (resolve) return getValue();
+				return basicGetValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
-			setValue((EObject) newValue);
-			return;
+			case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
+				setValue((EObject)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
-			setValue((EObject) null);
-			return;
+			case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
+				setValue((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
-			return value != null;
+			case PredicatesPackage.EOBJECT_PARAMETER__VALUE:
+				return value != null;
 		}
 		return super.eIsSet(featureID);
 	}

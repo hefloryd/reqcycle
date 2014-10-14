@@ -27,7 +27,6 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BooleanEqualPredicateImpl() {
@@ -36,7 +35,6 @@ public class BooleanEqualPredicateImpl extends EqualPredicateImpl<Boolean> imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
