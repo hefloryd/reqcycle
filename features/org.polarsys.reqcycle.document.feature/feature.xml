@@ -38,13 +38,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.polarsys.kitalpha.doc.doc2model.emfContentHandler"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.polarsys.kitalpha.doc.doc2model.spreadsheet"
          download-size="0"
          install-size="0"
@@ -53,13 +46,6 @@
 
    <plugin
          id="org.polarsys.kitalpha.doc.doc2model.spreadsheet.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.polarsys.kitalpha.doc.doc2model.tikaParsingFacility"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -109,6 +95,20 @@
 
    <plugin
          id="org.polarsys.reqcycle.repository.connector.document"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.kitalpha.doc.doc2model.tikaparsing"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.kitalpha.doc.doc2model.emf"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -130,10 +130,10 @@
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.common.edit</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.core</module>
-		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.emfContentHandler</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.emf</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.spreadsheet</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.spreadsheet.editor</module>
-		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.tikaParsingFacility</module>
+		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.tikaparsing</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.ui</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor</module>
 		<module>../../plugins/org.polarsys.kitalpha.doc.doc2model.wordprocessor.editor</module>
