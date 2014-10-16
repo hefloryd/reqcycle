@@ -404,19 +404,21 @@ public class DataManagerImpl implements IDataManager, IResourceChangeListener, I
 
 			});
 			URI platform = URI.createPlatformResourceURI(res.getFullPath().toString(), true);
-			if (setSources.keySet().contains(platform)) {
-				final RequirementSource s = setSources.get(platform);
+			final RequirementSource reqSource = setSources.get(platform);
+			if (reqSource != null) {
 				try {
-					if (s != null && s.getContents() != null && s.getContents().eResource() != null) {
-						s.getContents().eResource().unload();
-						s.getContents().eResource().load(Collections.emptyMap());
-						ViewerNotification notification = new ViewerNotification(new NotificationImpl(Notification.SET, s.getContents().eResource(), s.getContents().eResource()) {
+					Resource r = confManager.getConfigurationResourceSet().getResource(platform, false);
+					if (r != null && r.isLoaded()) {
+						r.unload();
+						r.load(Collections.emptyMap());
+
+						ViewerNotification notification = new ViewerNotification(new NotificationImpl(Notification.SET, r, r) {
 							@Override
 							public Object getNotifier() {
-								return s;
+								return reqSource;
 							}
-						}, s.getContents());
-						s.eNotify(notification);
+						}, reqSource.getContents());
+						reqSource.eNotify(notification);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

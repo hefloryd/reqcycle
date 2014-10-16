@@ -18,10 +18,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
-import org.polarsys.kitalpha.doc.doc2model.common.Common.DocumentModel;
-import org.polarsys.kitalpha.doc.doc2model.core.Doc2Model;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -58,19 +55,4 @@ public class ValidateUriConnector {
 
 	}
 	
-	 public static IStatus validateDocSources(Object value) {
-		URI uri = URI.createURI((String) value, true);
-		String fileString = CommonPlugin.asLocalURI(uri).toFileString();
-		Doc2Model<DocumentModel> doc2Model = new Doc2Model<DocumentModel>();
-		String fileType = doc2Model.getFileType(fileString);
-		if (fileType.toString() != null) {
-			return Status.OK_STATUS;
-		}
-
-		String extension = uri.path().substring(uri.path().lastIndexOf(".")+1, uri.path().length());
-		return new Status(IStatus.WARNING, Activator.PLUGIN_ID, "extension " + extension + " is not supported. Retry and choose document file");
-
-	
-	}
-
 }

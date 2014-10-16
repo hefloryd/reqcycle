@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -56,6 +55,8 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 
@@ -110,7 +111,12 @@ public class DialogUpdatePage extends TitleAreaDialog {
 		Composite composite_1 = new Composite(scrolledComposite, SWT.NONE);
 		composite_1.setLayout(new GridLayout(1, false));
 		
-		Multimap<String, RequirementSource> allSourcesByConnector = Multimaps.index(reqSources, new Function<RequirementSource, String>() {
+		Multimap<String, RequirementSource> allSourcesByConnector = Multimaps.index(Iterables.filter(reqSources, new Predicate<RequirementSource>() {
+			@Override
+			public boolean apply(RequirementSource arg0) {
+				return arg0.getRepositoryURI() != null && arg0.getRepositoryURI().trim().length() > 0;
+			}
+		}), new Function<RequirementSource, String>() {
 
 			@Override
 			public String apply(RequirementSource arg0) {
@@ -119,14 +125,16 @@ public class DialogUpdatePage extends TitleAreaDialog {
 		});
 		
 		for (String connectorId : allSourcesByConnector.keySet()){
-			Group group = new Group(composite_1, SWT.NONE);	
-			group.setLayout(new GridLayout(3, false));
-			group.setText(connectorId);
-			group.setLayoutData(new GridData(SWT.FILL, SWT.UP, true, false, 3, 1));
+			//a Local requirement source is not available to update
 			
-			for (RequirementSource rs : allSourcesByConnector.get(connectorId)){
-				createGroupWidgets(group, rs);
-			}
+				Group group = new Group(composite_1, SWT.NONE);	
+				group.setLayout(new GridLayout(3, false));
+				group.setText(connectorId);
+				group.setLayoutData(new GridData(SWT.FILL, SWT.UP, true, false, 3, 1));
+
+				for (RequirementSource rs : allSourcesByConnector.get(connectorId)){
+					createGroupWidgets(group, rs);
+				}	
 		}
 		
 		
@@ -246,7 +254,7 @@ public class DialogUpdatePage extends TitleAreaDialog {
 			}
 		};
 		job.setRule(MutexRule.INSTANCE);
-		job.setUser(true);
+		job.setUser(false);
 		job.schedule();
 	}
 	

@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.kitalpha.doc.doc2model.common,
  org.polarsys.kitalpha.doc.doc2model.emf,
  org.polarsys.kitalpha.doc.doc2model.spreadsheet
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.kitalpha.doc.doc2model.ui.views

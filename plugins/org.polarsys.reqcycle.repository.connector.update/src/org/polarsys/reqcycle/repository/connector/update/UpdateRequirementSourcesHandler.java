@@ -34,14 +34,10 @@ import org.eclipse.swt.widgets.Display;
 import org.polarsys.reqcycle.impact.Impact.ImpactAnalysis;
 import org.polarsys.reqcycle.impact.Impact.ImpactFactory;
 import org.polarsys.reqcycle.impact.Impact.RequirementImpacted;
-import org.polarsys.reqcycle.ocl.OCLCallable;
 import org.polarsys.reqcycle.repository.connector.ConnectorDescriptor;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.IConnector;
 import org.polarsys.reqcycle.repository.connector.IConnectorManager;
-import org.polarsys.reqcycle.repository.connector.document.DocCallable;
-import org.polarsys.reqcycle.repository.connector.document.ocl.DocOclCallable;
-import org.polarsys.reqcycle.repository.connector.rmf.RMFCallable;
 import org.polarsys.reqcycle.repository.connector.update.pages.DialogImpactAnalysis;
 import org.polarsys.reqcycle.repository.connector.update.preferences.PreferenceController;
 import org.polarsys.reqcycle.repository.data.IDataManager;
@@ -112,8 +108,9 @@ public class UpdateRequirementSourcesHandler {
 					finalMapReqSourcesWithImpactAna = impactAnaDialog.getFinalMapReqSourcesWithImpactAna();
 					
 					for (Map.Entry<RequirementSource, ImpactAnalysis> reqSrcWithImpact : finalMapReqSourcesWithImpactAna.entrySet()) {
+						if ((reqSrcWithImpact.getValue().getRequirementsAdded().size() > 0) || (reqSrcWithImpact.getValue().getRequirementsDeleted().size() > 0) || (reqSrcWithImpact.getValue().getRequirementsModified().size() > 0)){
 						finalizedUpdateReqSrc(reqSrcWithImpact.getKey(), reqSrcWithImpact.getValue(), requirementSourceManager, storageOldNewReqSources);
-
+						}
 					}
 				}
 			}
