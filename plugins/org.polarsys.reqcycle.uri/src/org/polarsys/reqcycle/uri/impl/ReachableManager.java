@@ -41,7 +41,6 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
 import com.google.common.collect.Iterables;
 
 @Singleton
@@ -101,6 +100,9 @@ public class ReachableManager implements IReachableManager {
 	@Override
 	public IReachableHandler getHandlerFromReachable(final Reachable t) throws IReachableHandlerException {
 		IReachableHandler get;
+		if (t == null){
+			throw new IReachableHandlerException();
+		}
 		try {
 			get = cacheReachables.get(t, new Callable<IReachableHandler>() {
 
@@ -153,7 +155,7 @@ public class ReachableManager implements IReachableManager {
 	}
 	
 	private IObjectHandler getProxy(final IObjectHandler h) {
-		return new IObjectHandler() {
+		return new CachedObjectHandler(new IObjectHandler() {
 			
 			@Override
 			public boolean handlesObject(Object object) {
@@ -168,7 +170,7 @@ public class ReachableManager implements IReachableManager {
 				}
 				return rObject;
 			}
-		};
+		});
 	}
 
 	@Override
@@ -200,5 +202,36 @@ public class ReachableManager implements IReachableManager {
 			throw new IReachableHandlerException();
 		}
 		return get;
+	}
+	
+	private static class CachedObjectHandler implements IObjectHandler {
+		private Cache<Object, ReachableObject> cache = CacheBuilder.newBuilder().weakKeys().expireAfterWrite(5, TimeUnit.MINUTES).build();
+		private IObjectHandler handler;
+
+		public CachedObjectHandler(IObjectHandler handler) {
+			this.handler = handler;
+		}
+		
+		@Override
+		public ReachableObject getFromObject(final Object object) {
+			try {
+				return cache.get(object, new Callable<ReachableObject>() {
+
+					@Override
+					public ReachableObject call() throws Exception {
+						return handler.getFromObject(object);
+					}
+					
+				});
+			} catch (ExecutionException e) {
+				return handler.getFromObject(object);
+			}
+		}
+
+		@Override
+		public boolean handlesObject(Object object) {
+			return handler.handlesObject(object);
+		}
+		
 	}
 }

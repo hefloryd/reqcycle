@@ -193,6 +193,21 @@ public class TraceabilityOperations {
 
 	@IOperation("get the coverage rate the element (for a section)")
 	public Result<Float> getCoverageRate(Section selection, final @IParameter("traceability type") String traceabilityType, @IParameter("Workspace Scope") Boolean workspace) {
+		if (selection instanceof Requirement){
+			return new Result<Float>() {
+				@Override
+				public Collection<Object> getObjectsToListen() {
+					return Lists.newArrayList();
+				}
+				public Float getResult() {
+					return 0F;
+				}
+				@Override
+				public Class<Float> getResultType() {
+					return Float.class;
+				}
+			};
+		}
 		Iterable<Requirement> requirements = Iterables.filter(selection.getChildren(), Requirement.class);
 		final Set<Object> objectsToListen = Sets.newHashSet();
 		try {

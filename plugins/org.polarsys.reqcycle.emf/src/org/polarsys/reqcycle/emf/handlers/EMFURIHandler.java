@@ -37,12 +37,12 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 
 	@Override
 	public ReachableObject getFromReachable(final Reachable t) {
-		EMFReachableObject emfReachableObject = doGetReachableObject(t);
+		ReachableObject emfReachableObject = doGetReachableObject(t);
 		ZigguratInject.inject(emfReachableObject);
 		return emfReachableObject;
 	}
 
-	protected EMFReachableObject doGetReachableObject(final Reachable t) {
+	protected ReachableObject doGetReachableObject(final Reachable t) {
 		return new EMFReachableObject(t);
 	}
 
@@ -82,7 +82,7 @@ public class EMFURIHandler implements IReachableHandler, IObjectHandler {
 
 	@Override
 	public ReachableObject getFromObject(final Object o) {
-		EMFReachableObject result = null;
+		ReachableObject result = null;
 		if (o instanceof IResource) {
 			IResource res = (IResource) o;
 			result = doGetReachableObject(EMFUtils.getReachable(URI.createPlatformResourceURI(res.getFullPath().toString(), true)));

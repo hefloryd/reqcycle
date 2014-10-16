@@ -115,46 +115,6 @@ public interface PredicatesPackage extends EPackage {
 	int COMPOSITE_PREDICATE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PREDICATE__DISPLAY_NAME = IPREDICATE__DISPLAY_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PREDICATE__PREDICATES = IPREDICATE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Composite Predicate</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PREDICATE_FEATURE_COUNT = IPREDICATE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Match</em>' operation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PREDICATE___MATCH__OBJECT = IPREDICATE___MATCH__OBJECT;
-
-	/**
-	 * The number of operations of the '<em>Composite Predicate</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl <em>IE Attr Predicate</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.polarsys.reqcycle.predicates.core.impl.IEAttrPredicateImpl
@@ -216,6 +176,290 @@ public interface PredicatesPackage extends EPackage {
 	 * @generated
 	 */
 	int ITYPED_PREDICATE = 16;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringEqualPredicateImpl <em>String Equal Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.StringEqualPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringEqualPredicate()
+	 * @generated
+	 */
+	int STRING_EQUAL_PREDICATE = 4;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.DateEqualPredicateImpl <em>Date Equal Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.DateEqualPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getDateEqualPredicate()
+	 * @generated
+	 */
+	int DATE_EQUAL_PREDICATE = 5;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EnumEqualPredicateImpl <em>Enum Equal Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.EnumEqualPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEnumEqualPredicate()
+	 * @generated
+	 */
+	int ENUM_EQUAL_PREDICATE = 6;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.BooleanEqualPredicateImpl <em>Boolean Equal Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.BooleanEqualPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getBooleanEqualPredicate()
+	 * @generated
+	 */
+	int BOOLEAN_EQUAL_PREDICATE = 7;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IntoPredicateImpl <em>Into Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IntoPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIntoPredicate()
+	 * @generated
+	 */
+	int INTO_PREDICATE = 9;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringIntoPredicateImpl <em>String Into Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.StringIntoPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringIntoPredicate()
+	 * @generated
+	 */
+	int STRING_INTO_PREDICATE = 10;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EnumIntoPredicateImpl <em>Enum Into Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.EnumIntoPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEnumIntoPredicate()
+	 * @generated
+	 */
+	int ENUM_INTO_PREDICATE = 11;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl <em>Compare Number Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getCompareNumberPredicate()
+	 * @generated
+	 */
+	int COMPARE_NUMBER_PREDICATE = 15;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate <em>IE Classifier Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIEClassifierPredicate()
+	 * @generated
+	 */
+	int IE_CLASSIFIER_PREDICATE = 18;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.NotPredicateImpl <em>Not Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.NotPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getNotPredicate()
+	 * @generated
+	 */
+	int NOT_PREDICATE = 14;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl <em>True Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getTruePredicate()
+	 * @generated
+	 */
+	int TRUE_PREDICATE = 19;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl <em>Operation Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getOperationPredicate()
+	 * @generated
+	 */
+	int OPERATION_PREDICATE = 20;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.ParameterImpl <em>Parameter</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.ParameterImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getParameter()
+	 * @generated
+	 */
+	int PARAMETER = 21;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IntParameterImpl <em>Int Parameter</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IntParameterImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIntParameter()
+	 * @generated
+	 */
+	int INT_PARAMETER = 22;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl <em>Boolean Parameter</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getBooleanParameter()
+	 * @generated
+	 */
+	int BOOLEAN_PARAMETER = 23;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringParameterImpl <em>String Parameter</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.StringParameterImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringParameter()
+	 * @generated
+	 */
+	int STRING_PARAMETER = 24;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl <em>EObject Parameter</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEObjectParameter()
+	 * @generated
+	 */
+	int EOBJECT_PARAMETER = 25;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IPredicateContainerImpl <em>IPredicate Container</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IPredicateContainerImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIPredicateContainer()
+	 * @generated
+	 */
+	int IPREDICATE_CONTAINER = 26;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl <em>Is Type Of Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIsTypeOfPredicate()
+	 * @generated
+	 */
+	int IS_TYPE_OF_PREDICATE = 27;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl <em>Is Null Predicate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIsNullPredicate()
+	 * @generated
+	 */
+	int IS_NULL_PREDICATE = 28;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IListeningPredicateImpl <em>IListening Predicate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.reqcycle.predicates.core.impl.IListeningPredicateImpl
+	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIListeningPredicate()
+	 * @generated
+	 */
+	int ILISTENING_PREDICATE = 29;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILISTENING_PREDICATE__DISPLAY_NAME = IPREDICATE__DISPLAY_NAME;
+
+	/**
+	 * The number of structural features of the '<em>IListening Predicate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILISTENING_PREDICATE_FEATURE_COUNT = IPREDICATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Match</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILISTENING_PREDICATE___MATCH__OBJECT = IPREDICATE___MATCH__OBJECT;
+
+	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILISTENING_PREDICATE___GET_OBJECTS_TO_LISTEN = IPREDICATE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>IListening Predicate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILISTENING_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE__DISPLAY_NAME = ILISTENING_PREDICATE__DISPLAY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE__PREDICATES = ILISTENING_PREDICATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Composite Predicate</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE_FEATURE_COUNT = ILISTENING_PREDICATE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Match</em>' operation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE___MATCH__OBJECT = ILISTENING_PREDICATE___MATCH__OBJECT;
+
+	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE___GET_OBJECTS_TO_LISTEN = ILISTENING_PREDICATE___GET_OBJECTS_TO_LISTEN;
+
+	/**
+	 * The number of operations of the '<em>Composite Predicate</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_PREDICATE_OPERATION_COUNT = ILISTENING_PREDICATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -298,15 +542,6 @@ public interface PredicatesPackage extends EPackage {
 	int EQUAL_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringEqualPredicateImpl <em>String Equal Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.StringEqualPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringEqualPredicate()
-	 * @generated
-	 */
-	int STRING_EQUAL_PREDICATE = 4;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -353,15 +588,6 @@ public interface PredicatesPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_EQUAL_PREDICATE_OPERATION_COUNT = EQUAL_PREDICATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.DateEqualPredicateImpl <em>Date Equal Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.DateEqualPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getDateEqualPredicate()
-	 * @generated
-	 */
-	int DATE_EQUAL_PREDICATE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -412,15 +638,6 @@ public interface PredicatesPackage extends EPackage {
 	int DATE_EQUAL_PREDICATE_OPERATION_COUNT = EQUAL_PREDICATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EnumEqualPredicateImpl <em>Enum Equal Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.EnumEqualPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEnumEqualPredicate()
-	 * @generated
-	 */
-	int ENUM_EQUAL_PREDICATE = 6;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -467,15 +684,6 @@ public interface PredicatesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUM_EQUAL_PREDICATE_OPERATION_COUNT = EQUAL_PREDICATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.BooleanEqualPredicateImpl <em>Boolean Equal Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.BooleanEqualPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getBooleanEqualPredicate()
-	 * @generated
-	 */
-	int BOOLEAN_EQUAL_PREDICATE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -574,15 +782,6 @@ public interface PredicatesPackage extends EPackage {
 	int CONTAINS_PATTERN_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IntoPredicateImpl <em>Into Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.IntoPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIntoPredicate()
-	 * @generated
-	 */
-	int INTO_PREDICATE = 9;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -631,15 +830,6 @@ public interface PredicatesPackage extends EPackage {
 	int INTO_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringIntoPredicateImpl <em>String Into Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.StringIntoPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringIntoPredicate()
-	 * @generated
-	 */
-	int STRING_INTO_PREDICATE = 10;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -686,15 +876,6 @@ public interface PredicatesPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_INTO_PREDICATE_OPERATION_COUNT = INTO_PREDICATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EnumIntoPredicateImpl <em>Enum Into Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.EnumIntoPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEnumIntoPredicate()
-	 * @generated
-	 */
-	int ENUM_INTO_PREDICATE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -777,6 +958,15 @@ public interface PredicatesPackage extends EPackage {
 	int AND_PREDICATE___MATCH__OBJECT = COMPOSITE_PREDICATE___MATCH__OBJECT;
 
 	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_PREDICATE___GET_OBJECTS_TO_LISTEN = COMPOSITE_PREDICATE___GET_OBJECTS_TO_LISTEN;
+
+	/**
 	 * The number of operations of the '<em>And Predicate</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -817,39 +1007,21 @@ public interface PredicatesPackage extends EPackage {
 	int OR_PREDICATE___MATCH__OBJECT = COMPOSITE_PREDICATE___MATCH__OBJECT;
 
 	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_PREDICATE___GET_OBJECTS_TO_LISTEN = COMPOSITE_PREDICATE___GET_OBJECTS_TO_LISTEN;
+
+	/**
 	 * The number of operations of the '<em>Or Predicate</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int OR_PREDICATE_OPERATION_COUNT = COMPOSITE_PREDICATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl <em>Compare Number Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.CompareNumberPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getCompareNumberPredicate()
-	 * @generated
-	 */
-	int COMPARE_NUMBER_PREDICATE = 15;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate <em>IE Classifier Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIEClassifierPredicate()
-	 * @generated
-	 */
-	int IE_CLASSIFIER_PREDICATE = 18;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.NotPredicateImpl <em>Not Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.NotPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getNotPredicate()
-	 * @generated
-	 */
-	int NOT_PREDICATE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -882,6 +1054,15 @@ public interface PredicatesPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_PREDICATE___MATCH__OBJECT = COMPOSITE_PREDICATE___MATCH__OBJECT;
+
+	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_PREDICATE___GET_OBJECTS_TO_LISTEN = COMPOSITE_PREDICATE___GET_OBJECTS_TO_LISTEN;
 
 	/**
 	 * The number of operations of the '<em>Not Predicate</em>' class.
@@ -946,78 +1127,6 @@ public interface PredicatesPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPARE_NUMBER_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl <em>True Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.TruePredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getTruePredicate()
-	 * @generated
-	 */
-	int TRUE_PREDICATE = 19;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl <em>Operation Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.OperationPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getOperationPredicate()
-	 * @generated
-	 */
-	int OPERATION_PREDICATE = 20;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.ParameterImpl <em>Parameter</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.ParameterImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getParameter()
-	 * @generated
-	 */
-	int PARAMETER = 21;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IntParameterImpl <em>Int Parameter</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.IntParameterImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIntParameter()
-	 * @generated
-	 */
-	int INT_PARAMETER = 22;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl <em>Boolean Parameter</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.BooleanParameterImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getBooleanParameter()
-	 * @generated
-	 */
-	int BOOLEAN_PARAMETER = 23;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.StringParameterImpl <em>String Parameter</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.StringParameterImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getStringParameter()
-	 * @generated
-	 */
-	int STRING_PARAMETER = 24;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl <em>EObject Parameter</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.EObjectParameterImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getEObjectParameter()
-	 * @generated
-	 */
-	int EOBJECT_PARAMETER = 25;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IPredicateContainerImpl <em>IPredicate Container</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.IPredicateContainerImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIPredicateContainer()
-	 * @generated
-	 */
-	int IPREDICATE_CONTAINER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -1284,12 +1393,21 @@ public interface PredicatesPackage extends EPackage {
 	int OPERATION_PREDICATE___MATCH__OBJECT = IPREDICATE_CONTAINER___MATCH__OBJECT;
 
 	/**
+	 * The operation id for the '<em>Get Objects To Listen</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_PREDICATE___GET_OBJECTS_TO_LISTEN = IPREDICATE_CONTAINER_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Operation Predicate</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_PREDICATE_OPERATION_COUNT = IPREDICATE_CONTAINER_OPERATION_COUNT + 0;
+	int OPERATION_PREDICATE_OPERATION_COUNT = IPREDICATE_CONTAINER_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1484,15 +1602,6 @@ public interface PredicatesPackage extends EPackage {
 	int EOBJECT_PARAMETER_OPERATION_COUNT = PARAMETER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl <em>Is Type Of Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.IsTypeOfPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIsTypeOfPredicate()
-	 * @generated
-	 */
-	int IS_TYPE_OF_PREDICATE = 27;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1541,15 +1650,6 @@ public interface PredicatesPackage extends EPackage {
 	int IS_TYPE_OF_PREDICATE_OPERATION_COUNT = IPREDICATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl <em>Is Null Predicate</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.polarsys.reqcycle.predicates.core.impl.IsNullPredicateImpl
-	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIsNullPredicate()
-	 * @generated
-	 */
-	int IS_NULL_PREDICATE = 28;
-
-	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1588,7 +1688,7 @@ public interface PredicatesPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getOPERATOR()
 	 * @generated
 	 */
-	int OPERATOR = 29;
+	int OPERATOR = 30;
 
 	/**
 	 * The meta object id for the '<em>Pattern</em>' data type.
@@ -1597,7 +1697,7 @@ public interface PredicatesPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 30;
+	int PATTERN = 31;
 
 	/**
 	 * The meta object id for the '<em>Char Sequence</em>' data type.
@@ -1606,7 +1706,7 @@ public interface PredicatesPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getCharSequence()
 	 * @generated
 	 */
-	int CHAR_SEQUENCE = 31;
+	int CHAR_SEQUENCE = 32;
 
 	/**
 	 * The meta object id for the '<em>Number</em>' data type.
@@ -1615,7 +1715,7 @@ public interface PredicatesPackage extends EPackage {
 	 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getNumber()
 	 * @generated
 	 */
-	int NUMBER = 32;
+	int NUMBER = 33;
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.reqcycle.predicates.core.api.IPredicate <em>IPredicate</em>}'.
@@ -2108,6 +2208,26 @@ public interface PredicatesPackage extends EPackage {
 	EClass getIsNullPredicate();
 
 	/**
+	 * Returns the meta object for class '{@link org.polarsys.reqcycle.predicates.core.api.IListeningPredicate <em>IListening Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IListening Predicate</em>'.
+	 * @see org.polarsys.reqcycle.predicates.core.api.IListeningPredicate
+	 * @generated
+	 */
+	EClass getIListeningPredicate();
+
+	/**
+	 * Returns the meta object for the '{@link org.polarsys.reqcycle.predicates.core.api.IListeningPredicate#getObjectsToListen() <em>Get Objects To Listen</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Objects To Listen</em>' operation.
+	 * @see org.polarsys.reqcycle.predicates.core.api.IListeningPredicate#getObjectsToListen()
+	 * @generated
+	 */
+	EOperation getIListeningPredicate__GetObjectsToListen();
+
+	/**
 	 * Returns the meta object for class '{@link org.polarsys.reqcycle.predicates.core.api.NotPredicate <em>Not Predicate</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Not Predicate</em>'.
@@ -2596,6 +2716,24 @@ public interface PredicatesPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IS_NULL_PREDICATE = eINSTANCE.getIsNullPredicate();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.reqcycle.predicates.core.impl.IListeningPredicateImpl <em>IListening Predicate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.reqcycle.predicates.core.impl.IListeningPredicateImpl
+		 * @see org.polarsys.reqcycle.predicates.core.impl.PredicatesPackageImpl#getIListeningPredicate()
+		 * @generated
+		 */
+		EClass ILISTENING_PREDICATE = eINSTANCE.getIListeningPredicate();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Objects To Listen</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ILISTENING_PREDICATE___GET_OBJECTS_TO_LISTEN = eINSTANCE.getIListeningPredicate__GetObjectsToListen();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.reqcycle.predicates.core.impl.NotPredicateImpl <em>Not Predicate</em>}' class.

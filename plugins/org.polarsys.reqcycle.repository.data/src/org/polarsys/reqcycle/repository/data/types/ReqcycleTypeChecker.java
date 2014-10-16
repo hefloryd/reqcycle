@@ -15,10 +15,10 @@ import javax.inject.Inject;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.polarsys.reqcycle.emf.types.EMFTypeChecker;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
+import org.polarsys.reqcycle.repository.data.reachables.ReqcycleReachableHandler;
 import org.polarsys.reqcycle.types.IInjectedTypeChecker;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
@@ -46,8 +46,8 @@ public class ReqcycleTypeChecker implements IInjectedTypeChecker {
 
 	@Override
 	public boolean apply(Reachable reachable) {
-		EMFTypeChecker emfTypeChecker = new EMFTypeChecker();
-		if (emfTypeChecker.apply(reachable)) {
+		ReqcycleReachableHandler handler = new ReqcycleReachableHandler();
+		if (handler.handlesReachable(reachable)) {
 			try {
 				ReachableObject object = manager.getHandlerFromReachable(reachable).getFromReachable(reachable);
 				IsRequirementTypeVisitor visitor = new IsRequirementTypeVisitor();

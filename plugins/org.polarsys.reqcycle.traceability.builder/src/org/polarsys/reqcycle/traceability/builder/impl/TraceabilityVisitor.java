@@ -38,7 +38,7 @@ public class TraceabilityVisitor extends CompositeVisitor implements IAdaptable 
 	}
 
 	private static Collection<IVisitor> getTraceabilityVisitors() {
-		Iterable<IVisitor> tmp = filter(LabelledVisitor.getRegisteredVisitors(), IVisitor.class);
+		Iterable<IVisitor> tmp = filter(Lists.newArrayList(LabelledVisitor.getRegisteredVisitors()), IVisitor.class);
 		return Lists.newArrayList(filter(tmp, new Predicate<IVisitor>() {
 
 			@Override

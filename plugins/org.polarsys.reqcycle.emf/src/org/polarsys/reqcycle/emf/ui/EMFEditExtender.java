@@ -81,7 +81,9 @@ public class EMFEditExtender implements IReachableExtender {
 			if (result == null) {
 				ResourceSet set = EMFUtils.getFastAndUnresolvingResourceSet();
 				org.eclipse.emf.common.util.URI emfuri = EMFUtils.getEMFURI(r);
-				result = set.getEObject(emfuri, true);
+				if (EMFUtils.isEMF(emfuri)){
+					result = set.getEObject(emfuri, true);
+				}
 			}
 		} catch (IReachableHandlerException e) {
 			// TODO Auto-generated catch block

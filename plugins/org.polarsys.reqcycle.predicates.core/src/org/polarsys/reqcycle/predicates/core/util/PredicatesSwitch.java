@@ -93,6 +93,7 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 			case PredicatesPackage.COMPOSITE_PREDICATE: {
 				CompositePredicate compositePredicate = (CompositePredicate)theEObject;
 				T1 result = caseCompositePredicate(compositePredicate);
+				if (result == null) result = caseIListeningPredicate(compositePredicate);
 				if (result == null) result = caseIPredicate(compositePredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -177,6 +178,7 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 				AndPredicate andPredicate = (AndPredicate)theEObject;
 				T1 result = caseAndPredicate(andPredicate);
 				if (result == null) result = caseCompositePredicate(andPredicate);
+				if (result == null) result = caseIListeningPredicate(andPredicate);
 				if (result == null) result = caseIPredicate(andPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -185,6 +187,7 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 				OrPredicate orPredicate = (OrPredicate)theEObject;
 				T1 result = caseOrPredicate(orPredicate);
 				if (result == null) result = caseCompositePredicate(orPredicate);
+				if (result == null) result = caseIListeningPredicate(orPredicate);
 				if (result == null) result = caseIPredicate(orPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -193,6 +196,7 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 				NotPredicate notPredicate = (NotPredicate)theEObject;
 				T1 result = caseNotPredicate(notPredicate);
 				if (result == null) result = caseCompositePredicate(notPredicate);
+				if (result == null) result = caseIListeningPredicate(notPredicate);
 				if (result == null) result = caseIPredicate(notPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -241,6 +245,7 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 				OperationPredicate operationPredicate = (OperationPredicate)theEObject;
 				T1 result = caseOperationPredicate(operationPredicate);
 				if (result == null) result = caseIPredicateContainer(operationPredicate);
+				if (result == null) result = caseIListeningPredicate(operationPredicate);
 				if (result == null) result = caseIPredicate(operationPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -297,6 +302,13 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 				IsNullPredicate isNullPredicate = (IsNullPredicate)theEObject;
 				T1 result = caseIsNullPredicate(isNullPredicate);
 				if (result == null) result = caseIPredicate(isNullPredicate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PredicatesPackage.ILISTENING_PREDICATE: {
+				IListeningPredicate iListeningPredicate = (IListeningPredicate)theEObject;
+				T1 result = caseIListeningPredicate(iListeningPredicate);
+				if (result == null) result = caseIPredicate(iListeningPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -637,6 +649,21 @@ public class PredicatesSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseIsNullPredicate(IsNullPredicate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IListening Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IListening Predicate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseIListeningPredicate(IListeningPredicate object) {
 		return null;
 	}
 

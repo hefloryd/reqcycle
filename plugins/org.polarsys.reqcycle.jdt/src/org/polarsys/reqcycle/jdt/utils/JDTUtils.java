@@ -19,6 +19,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.internal.core.CompilationUnit;
 import org.polarsys.reqcycle.jdt.model.JDTReachableObject;
 import org.polarsys.reqcycle.uri.IReachableCreator;
+import org.polarsys.reqcycle.uri.model.NullReachableObject;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -45,7 +46,14 @@ public class JDTUtils {
 	public static ReachableObject getReachable(IJavaElement cu) {
 		URI uri;
 		try {
-			uri = new URI(getQualifiedURI(cu));
+			if (cu == null){
+				return new NullReachableObject();
+			}
+			String qualifiedURI = getQualifiedURI(cu);
+			if (qualifiedURI == null){
+				return new NullReachableObject();
+			}
+			uri = new URI(qualifiedURI);
 			JDTReachableObject object = new JDTReachableObject(creator.getReachable(uri, cu));
 			ZigguratInject.inject(object);
 			return object;
@@ -58,6 +66,9 @@ public class JDTUtils {
 
 	protected static String getQualifiedURI(IJavaElement element) {
 		StringBuilder result = new StringBuilder();
+		if ((element == null) || (element.getResource() == null)) {
+			return null;
+		}
 		result.append(PLATFORM).append(element.getResource().getFullPath().toString()).append("#");
 		List<String> names = new LinkedList<String>();
 		names.add(element.getElementName());

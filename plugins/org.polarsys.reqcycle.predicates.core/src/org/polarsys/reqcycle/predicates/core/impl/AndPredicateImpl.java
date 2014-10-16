@@ -15,6 +15,7 @@ package org.polarsys.reqcycle.predicates.core.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.AndPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IListeningPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 
 /**
@@ -28,6 +29,7 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AndPredicateImpl() {
@@ -36,6 +38,7 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,11 +48,18 @@ public class AndPredicateImpl extends CompositePredicateImpl implements AndPredi
 
 	@Override
 	public boolean match(Object input) {
+		toListen.clear();
+		Boolean result = true;
 		for (IPredicate predicate : this.getPredicates()) {
-			if (!predicate.match(input))
-				return false;
+			if (!predicate.match(input)) {
+				result = false;
+			}
+			if (predicate instanceof IListeningPredicate) {
+				IListeningPredicate p2 = (IListeningPredicate) predicate;
+				toListen.addAll(p2.getObjectsToListen());
+			}
 		}
-		return true;
+		return result;
 	}
 
 } // AndPredicateImpl

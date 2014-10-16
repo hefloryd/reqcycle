@@ -205,9 +205,12 @@ public class StorageBasedTraceabilityEngine extends AbstractCachedTraceabilityEn
 
 	@Override
 	protected boolean isCacheOk(Reachable reachable) {
+		if (reachable == null){
+			return false;
+		}
 		String uri = ResourceScope.getURIPath(reachable.trimFragment());
 		if (uri == null) {
-			// TODO error management
+			return false;
 		}
 		Reachable trimmedFragment = reachable.trimFragment();
 		String revisionOfObject = null;

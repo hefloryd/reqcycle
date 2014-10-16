@@ -210,7 +210,7 @@ public abstract class RMFRepositoryMappingPage extends WizardPage implements Lis
 							String ii = inputName;
 							return ii.equalsIgnoreCase(arg0.getName());
 						}
-					});
+					}, null);
 					if (element != null) {
 						MappingElement elementMapping = MappingModelFactory.eINSTANCE.createMappingElement();
 						Collection<IAttribute> allAttributes = element.getAttributes();

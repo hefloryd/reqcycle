@@ -40,6 +40,7 @@ import org.polarsys.reqcycle.predicates.core.api.EnumIntoPredicate;
 import org.polarsys.reqcycle.predicates.core.api.EqualPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IEAttrPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IEClassifierPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IListeningPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicateContainer;
 import org.polarsys.reqcycle.predicates.core.api.ITypedPredicate;
@@ -229,6 +230,13 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	 * @generated
 	 */
 	private EClass isNullPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iListeningPredicateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -737,6 +745,24 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIListeningPredicate() {
+		return iListeningPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getIListeningPredicate__GetObjectsToListen() {
+		return iListeningPredicateEClass.getEOperations().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -883,6 +909,9 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 
 		isNullPredicateEClass = createEClass(IS_NULL_PREDICATE);
 
+		iListeningPredicateEClass = createEClass(ILISTENING_PREDICATE);
+		createEOperation(iListeningPredicateEClass, ILISTENING_PREDICATE___GET_OBJECTS_TO_LISTEN);
+
 		// Create enums
 		operatorEEnum = createEEnum(OPERATOR);
 
@@ -923,7 +952,7 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		equalPredicateEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		compositePredicateEClass.getESuperTypes().add(this.getIPredicate());
+		compositePredicateEClass.getESuperTypes().add(this.getIListeningPredicate());
 		customPredicateEClass.getESuperTypes().add(this.getIPredicate());
 		equalPredicateEClass.getESuperTypes().add(this.getIPredicate());
 		g1 = createEGenericType(this.getEqualPredicate());
@@ -967,6 +996,7 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		ieClassifierPredicateEClass.getEGenericSuperTypes().add(g1);
 		truePredicateEClass.getESuperTypes().add(this.getIPredicate());
 		operationPredicateEClass.getESuperTypes().add(this.getIPredicateContainer());
+		operationPredicateEClass.getESuperTypes().add(this.getIListeningPredicate());
 		intParameterEClass.getESuperTypes().add(this.getParameter());
 		booleanParameterEClass.getESuperTypes().add(this.getParameter());
 		stringParameterEClass.getESuperTypes().add(this.getParameter());
@@ -974,6 +1004,7 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		iPredicateContainerEClass.getESuperTypes().add(this.getIPredicate());
 		isTypeOfPredicateEClass.getESuperTypes().add(this.getIPredicate());
 		isNullPredicateEClass.getESuperTypes().add(this.getIPredicate());
+		iListeningPredicateEClass.getESuperTypes().add(this.getIPredicate());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iPredicateEClass, IPredicate.class, "IPredicate", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1065,6 +1096,10 @@ public class PredicatesPackageImpl extends EPackageImpl implements PredicatesPac
 		initEReference(getIsTypeOfPredicate_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, IsTypeOfPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(isNullPredicateEClass, IsNullPredicate.class, "IsNullPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iListeningPredicateEClass, IListeningPredicate.class, "IListeningPredicate", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getIListeningPredicate__GetObjectsToListen(), ecorePackage.getEJavaObject(), "getObjectsToListen", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(operatorEEnum, org.polarsys.reqcycle.predicates.core.api.OPERATOR.class, "OPERATOR");

@@ -407,15 +407,17 @@ public class DataManagerImpl implements IDataManager, IResourceChangeListener, I
 			if (setSources.keySet().contains(platform)) {
 				final RequirementSource s = setSources.get(platform);
 				try {
-					s.getContents().eResource().unload();
-					s.getContents().eResource().load(Collections.emptyMap());
-					ViewerNotification notification = new ViewerNotification(new NotificationImpl(Notification.SET, s.getContents().eResource(), s.getContents().eResource()) {
-						@Override
-						public Object getNotifier() {
-							return s;
-						}
-					}, s.getContents());
-					s.eNotify(notification);
+					if (s != null && s.getContents() != null && s.getContents().eResource() != null) {
+						s.getContents().eResource().unload();
+						s.getContents().eResource().load(Collections.emptyMap());
+						ViewerNotification notification = new ViewerNotification(new NotificationImpl(Notification.SET, s.getContents().eResource(), s.getContents().eResource()) {
+							@Override
+							public Object getNotifier() {
+								return s;
+							}
+						}, s.getContents());
+						s.eNotify(notification);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

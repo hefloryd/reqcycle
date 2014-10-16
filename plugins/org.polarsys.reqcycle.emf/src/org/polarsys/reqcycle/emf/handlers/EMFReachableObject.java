@@ -97,7 +97,9 @@ public class EMFReachableObject implements ReachableObject {
 		if (EObject.class.equals(adapter)) {
 			if (t.getFragment() != null && t.getFragment().length() > 0) {
 				Resource r = (Resource) getAdapter(Resource.class);
-				return r.getEObject(t.getFragment());
+				if (r != null){
+					return r.getEObject(t.getFragment());
+				}
 			}
 		}
 		if (IMarker.class.equals(adapter)) {

@@ -9,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -21,12 +22,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
+import org.eclipse.ui.dialogs.FileSelectionDialog;
+import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -74,9 +78,10 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 				btnBrowse.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						SaveAsDialog d = new SaveAsDialog(getShell());
-						if (d.open() == ContainerSelectionDialog.OK) {
-							inputPath = d.getResult();
+						ResourceSelectionDialog d = new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "zip selection");
+						int open = d.open();
+						if (open == ResourceSelectionDialog.OK && d.getResult() != null && d.getResult().length > 0) {
+							inputPath = ((IFile) d.getResult()[0]).getFullPath();
 							textInput.setText(inputPath.toString());
 						}
 					}

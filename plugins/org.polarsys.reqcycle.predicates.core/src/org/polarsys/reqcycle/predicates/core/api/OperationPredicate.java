@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OperationPredicate extends IPredicateContainer {
+public interface OperationPredicate extends IPredicateContainer, IListeningPredicate {
 	/**
 	 * Returns the value of the '<em><b>Operation Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

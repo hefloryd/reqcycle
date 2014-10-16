@@ -17,5 +17,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.commons.lang;visibility:=reexport,
  org.polarsys.reqcycle.utils.inject,
  org.polarsys.reqcycle.operations,
- org.eclipse.ui
+ org.eclipse.ui,
+ org.polarsys.reqcycle.uri
 Bundle-ActivationPolicy: lazy

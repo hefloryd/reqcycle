@@ -34,6 +34,9 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.dnd,
  org.polarsys.reqcycle.ui.components,
  org.eclipse.emf.workspace,
- org.polarsys.reqcycle.predicates.ui
+ org.polarsys.reqcycle.predicates.ui,
+ org.eclipse.emf.ecore.editor,
+ org.eclipse.jface
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Export-Package: org.polarsys.reqcycle.repository.data.ui.editors

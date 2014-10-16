@@ -274,7 +274,7 @@ public class TraceabilityTableView extends ViewPart {
 		List<Reachable> reqsToSelect = Lists.newArrayList();
 		List<Reachable> otherObjectsToSelect = Lists.newArrayList();
 		for (Reachable source : reachables) {
-			if (source.getPath().endsWith("reqcycle")) {
+			if ("reqcycle".equals(source.getScheme())) {
 				reqsToSelect.add(source);
 			} else {
 				otherObjectsToSelect.add(source);

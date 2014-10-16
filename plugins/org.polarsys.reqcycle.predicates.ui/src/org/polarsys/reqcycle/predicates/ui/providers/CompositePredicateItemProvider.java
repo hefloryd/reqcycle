@@ -14,34 +14,21 @@ package org.polarsys.reqcycle.predicates.ui.providers;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemColorProvider;
-import org.eclipse.emf.edit.provider.IItemFontProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.polarsys.reqcycle.predicates.core.PredicatesFactory;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
 import org.polarsys.reqcycle.predicates.core.api.CompositePredicate;
-import org.polarsys.reqcycle.predicates.ui.PredicatesUIPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.polarsys.reqcycle.predicates.core.api.CompositePredicate} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class CompositePredicateItemProvider extends PredicatesItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemColorProvider,
-		IItemFontProvider {
+public class CompositePredicateItemProvider extends IListeningPredicateItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -62,30 +49,8 @@ public class CompositePredicateItemProvider extends PredicatesItemProviderAdapte
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IPredicate_displayName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPredicate_displayName_feature", "_UI_IPredicate_type"),
-				 PredicatesPackage.Literals.IPREDICATE__DISPLAY_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -140,9 +105,6 @@ public class CompositePredicateItemProvider extends PredicatesItemProviderAdapte
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositePredicate.class)) {
-			case PredicatesPackage.COMPOSITE_PREDICATE__DISPLAY_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case PredicatesPackage.COMPOSITE_PREDICATE__PREDICATES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -239,16 +201,6 @@ public class CompositePredicateItemProvider extends PredicatesItemProviderAdapte
 			(createChildParameter
 				(PredicatesPackage.Literals.COMPOSITE_PREDICATE__PREDICATES,
 				 PredicatesFactory.eINSTANCE.createIsNullPredicate()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PredicatesUIPlugin.INSTANCE;
 	}
 
 }

@@ -14,6 +14,8 @@ package org.polarsys.reqcycle.predicates.core.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
+import org.polarsys.reqcycle.predicates.core.api.IListeningPredicate;
+import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.core.api.NotPredicate;
 
 /**
@@ -27,6 +29,7 @@ public class NotPredicateImpl extends CompositePredicateImpl implements NotPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NotPredicateImpl() {
@@ -35,6 +38,7 @@ public class NotPredicateImpl extends CompositePredicateImpl implements NotPredi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -44,8 +48,15 @@ public class NotPredicateImpl extends CompositePredicateImpl implements NotPredi
 
 	@Override
 	public boolean match(Object input) {
+		toListen.clear();
 		if (this.getPredicates().size() > 0) {
-			return !this.getPredicates().get(0).match(input);
+			IPredicate iPredicate = this.getPredicates().get(0);
+			boolean result = !iPredicate.match(input);
+			if (iPredicate instanceof IListeningPredicate) {
+				IListeningPredicate listening = (IListeningPredicate) iPredicate;
+				toListen.addAll(listening.getObjectsToListen());
+			}
+			return result;
 		}
 		return false;
 	}

@@ -10,7 +10,7 @@
         iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositePredicate" abstract="true"
-      eSuperTypes="#//IPredicate">
+      eSuperTypes="#//IListeningPredicate">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
         eType="#//IPredicate" containment="true"/>
   </eClassifiers>
@@ -141,7 +141,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="CharSequence" instanceClassName="java.lang.CharSequence"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Number" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EClass" name="TruePredicate" eSuperTypes="#//IPredicate"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationPredicate" eSuperTypes="#//IPredicateContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="OperationPredicate" eSuperTypes="#//IPredicateContainer #//IListeningPredicate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
@@ -172,4 +172,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IsNullPredicate" eSuperTypes="#//IPredicate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IListeningPredicate" abstract="true"
+      eSuperTypes="#//IPredicate">
+    <eOperations name="getObjectsToListen" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
 </ecore:EPackage>

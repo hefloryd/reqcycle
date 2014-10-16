@@ -15,13 +15,14 @@ import java.net.URISyntaxException;
 import javax.inject.Inject;
 
 import org.eclipse.emf.common.util.URI;
-import org.polarsys.reqcycle.emf.handlers.EMFReachableObject;
 import org.polarsys.reqcycle.emf.handlers.EMFURIHandler;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
 import org.polarsys.reqcycle.uri.IReachableCreator;
+import org.polarsys.reqcycle.uri.model.NullReachableObject;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 
 public class ReqcycleReachableHandler extends EMFURIHandler {
 
@@ -41,7 +42,7 @@ public class ReqcycleReachableHandler extends EMFURIHandler {
 	}
 
 	@Override
-	protected EMFReachableObject doGetReachableObject(Reachable t) {
+	protected ReachableObject doGetReachableObject(Reachable t) {
 		if (t.getPath().endsWith(".reqcycle")) {
 			URI resourceUri = URI.createURI(t.toString()).trimFragment();
 			for (RequirementSource reqSource : dataManager.getRequirementSources()) {
@@ -56,6 +57,7 @@ public class ReqcycleReachableHandler extends EMFURIHandler {
 					}
 					break;
 				}
+				return new NullReachableObject();
 			}
 		}
 		if ("reqcycle".equals(t.getScheme())) {
@@ -75,6 +77,7 @@ public class ReqcycleReachableHandler extends EMFURIHandler {
 					break;
 				}
 			}
+			return new NullReachableObject();
 		}
 		return new ReqcycleReachableObject(null, t);
 	}
