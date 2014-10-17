@@ -215,6 +215,9 @@ public class ReachableManager implements IReachableManager {
 		@Override
 		public ReachableObject getFromObject(final Object object) {
 			try {
+				if (object == null){
+					return new NullReachableObject();
+				}
 				return cache.get(object, new Callable<ReachableObject>() {
 
 					@Override
