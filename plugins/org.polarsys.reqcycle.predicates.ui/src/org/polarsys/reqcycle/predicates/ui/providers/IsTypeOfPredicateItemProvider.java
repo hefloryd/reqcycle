@@ -55,8 +55,8 @@ public class IsTypeOfPredicateItemProvider extends PredicatesItemProviderAdapter
 			super.getPropertyDescriptors(object);
 
 			addDisplayNamePropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
 			addIsStrictTypeOfPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,8 +97,8 @@ public class IsTypeOfPredicateItemProvider extends PredicatesItemProviderAdapter
 				 PredicatesPackage.Literals.IS_TYPE_OF_PREDICATE__TYPE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -159,7 +159,6 @@ public class IsTypeOfPredicateItemProvider extends PredicatesItemProviderAdapter
 
 		switch (notification.getFeatureID(IsTypeOfPredicate.class)) {
 			case PredicatesPackage.IS_TYPE_OF_PREDICATE__DISPLAY_NAME:
-			case PredicatesPackage.IS_TYPE_OF_PREDICATE__TYPE:
 			case PredicatesPackage.IS_TYPE_OF_PREDICATE__IS_STRICT_TYPE_OF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -49,6 +49,9 @@ public class ReachablesStorageHelper {
 	 * @return A {@link URI}.
 	 */
 	public static URI getURI(final Reachable reachable) {
+		if (reachable == null){
+			return null;
+		}
 		return valueFactory.createURI(reachable.getURI().toString());
 	}
 

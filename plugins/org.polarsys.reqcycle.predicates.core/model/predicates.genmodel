@@ -101,5 +101,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference predicates.ecore#//IsTypeOfPredicate/type"/>
     </genClasses>
     <genClasses ecoreClass="predicates.ecore#//IsNullPredicate"/>
+    <genClasses image="false" ecoreClass="predicates.ecore#//IListeningPredicate">
+      <genOperations ecoreOperation="predicates.ecore#//IListeningPredicate/getObjectsToListen"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

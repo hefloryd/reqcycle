@@ -45,7 +45,9 @@ import org.polarsys.reqcycle.uri.IReachableListener;
 import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
+import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Maps;
@@ -243,7 +245,14 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 	}
 
 	protected Reachable getReachable(Object element) throws IReachableHandlerException {
-		return manager.getHandlerFromObject(element).getFromObject(element).getReachable();
+		IObjectHandler handler = manager.getHandlerFromObject(element);
+		if (handler != null) {
+			ReachableObject object = handler.getFromObject(element);
+			if (object != null) {
+				return object.getReachable();
+			}
+		}
+		return null;
 	}
 
 	public static IViewPart createNewView() {

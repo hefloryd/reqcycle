@@ -95,3 +95,8 @@
 /plugins/org.polarsys.reqcycle.xcos/target
 /plugins/org.polarsys.reqcycle.traceability.storage.ui/target
 /plugins/org.polarsys.reqcycle.repository.connector.update.rs/target
+/plugins/org.polarsys.kitalpha.doc.doc2model.emf/target
+/plugins/org.polarsys.reqcycle.repository.connector.update/target
+/plugins/org.polarsys.reqcycle.styling.manager/target
+/plugins/org.polarsys.reqcycle.prefs.ui/target
+/plugins/org.polarsys.kitalpha.doc.doc2model.tikaparsing/target

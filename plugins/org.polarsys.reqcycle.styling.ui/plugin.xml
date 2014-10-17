@@ -169,15 +169,6 @@
        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory
           class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
-          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"
-          uri="http://www.polarsys.org/ReqCycle/MappingModel">
-    </factory>
-    <factory
-          class="org.polarsys.reqcycle.styling.ui.providers.ItemAdapterFactory"
           uri="http://www.polarsys.org/ReqCycle/RequirementSourceConf"
           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

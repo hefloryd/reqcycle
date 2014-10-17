@@ -29,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.ui.editors.ReqCycleEditor;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -77,7 +78,7 @@ public class EditRequirementsHandler extends AbstractHandler {
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					try {
 						URIEditorInput editorInput = new URIEditorInput(eResource.getURI());
-						IDE.openEditor(page, editorInput, "org.eclipse.emf.ecore.presentation.ReflectiveEditorID");
+						IDE.openEditor(page, editorInput, ReqCycleEditor.EDITOR_ID);
 					} catch (PartInitException e) {
 						e.printStackTrace();
 					}

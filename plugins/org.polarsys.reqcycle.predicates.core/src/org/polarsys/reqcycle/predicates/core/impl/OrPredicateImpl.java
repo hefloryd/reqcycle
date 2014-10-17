@@ -14,6 +14,7 @@ package org.polarsys.reqcycle.predicates.core.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.polarsys.reqcycle.predicates.core.PredicatesPackage;
+import org.polarsys.reqcycle.predicates.core.api.IListeningPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.core.api.OrPredicate;
 
@@ -28,6 +29,7 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OrPredicateImpl() {
@@ -36,6 +38,7 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,11 +48,18 @@ public class OrPredicateImpl extends CompositePredicateImpl implements OrPredica
 
 	@Override
 	public boolean match(Object input) {
+		toListen.clear();
+		Boolean result = false;
 		for (IPredicate predicate : this.getPredicates()) {
-			if (predicate.match(input))
-				return true;
+			if (predicate.match(input)) {
+				result = true;
+			}
+			if (predicate instanceof IListeningPredicate) {
+				IListeningPredicate p2 = (IListeningPredicate) predicate;
+				toListen.addAll(p2.getObjectsToListen());
+			}
 		}
-		return false;
+		return result;
 	}
 
 } // OrPredicateImpl

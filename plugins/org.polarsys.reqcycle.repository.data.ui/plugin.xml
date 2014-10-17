@@ -67,5 +67,17 @@
           name="Import Data Model">
     </wizard>
  </extension>
+ <extension
+       point="org.eclipse.ui.editors">
+    <editor
+          class="org.polarsys.reqcycle.repository.data.ui.editors.ReqCycleEditor"
+          contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
+          default="true"
+          extensions="reqcycle"
+          icon="icons/reqcycle32.ico"
+          id="org.polarsys.reqcycle.repository.data.ui.editor"
+          name="ReqCycle Local">
+    </editor>
+ </extension>
  
 </plugin>

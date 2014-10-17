@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,16 +35,19 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.polarsys.reqcycle.repository.connector.ui.Activator;
+import org.polarsys.reqcycle.repository.data.MappingModel.MappingAttribute;
+import org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingAttributeImpl;
+import org.polarsys.reqcycle.repository.data.MappingModel.impl.MappingElementImpl;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
-import org.polarsys.reqcycle.repository.data.util.DataUtil;
 
 public abstract class MappingComposite extends Composite {
 
@@ -103,6 +108,45 @@ public abstract class MappingComposite extends Composite {
 		public Object[] getChildren(Object parentElement) {
 			return null;
 		}
+	};
+
+	public static ILabelProvider labelProvider = new ILabelProvider() {
+
+		@Override
+		public void addListener(ILabelProviderListener listener) {
+		}
+
+		@Override
+		public void dispose() {
+		}
+
+		@Override
+		public boolean isLabelProperty(Object element, String property) {
+			return false;
+		}
+
+		@Override
+		public void removeListener(ILabelProviderListener listener) {
+		}
+
+		@Override
+		public Image getImage(Object element) {
+			return null;
+		}
+
+		@Override
+		public String getText(Object element) {
+			if (element instanceof MappingAttributeImpl) {
+				MappingAttribute att = (MappingAttributeImpl) element;
+				return att.getDescription() + " <--> " + att.getTargetAttribute().getName();
+			}
+			if (element instanceof MappingElementImpl) {
+				MappingElementImpl elt = (MappingElementImpl) element;
+				return elt.getDescription() + " <--> " + elt.getTargetElement().getName();
+			}
+			return element.toString();
+		}
+
 	};
 
 	public MappingComposite(Composite parent, int style, WizardPage page) {
@@ -273,7 +317,7 @@ public abstract class MappingComposite extends Composite {
 	}
 
 	protected IBaseLabelProvider getResultLabelProvider() {
-		return DataUtil.labelProvider;
+		return labelProvider;
 	}
 
 	protected abstract String getResultDetail();

@@ -167,15 +167,16 @@ public class DialogImpactAnalysis extends TitleAreaDialog {
 				}
 
 				// transmit a selected requirements
-				finalMapReqSourcesWithImpactAna.clear();
-				finalMapReqSourcesWithImpactAna = getSelectedRequirementSrc(selections, reqSourceWithImpAnalysis);
-				// save impact analysis of selected requirements sources
-				for (Map.Entry<RequirementSource, ImpactAnalysis> finalMap : finalMapReqSourcesWithImpactAna.entrySet()) {
-					String fileName = "/" + finalMap.getKey().getName() + suffixName;
-					URI destinationPath = URI.createPlatformResourceURI(path.toString() + fileName, true);
-					finalMap.getValue().saveAnalysis(destinationPath);
+				if(path != null){
+					finalMapReqSourcesWithImpactAna.clear();
+					finalMapReqSourcesWithImpactAna = getSelectedRequirementSrc(selections, reqSourceWithImpAnalysis);
+					// save impact analysis of selected requirements sources
+					for (Map.Entry<RequirementSource, ImpactAnalysis> finalMap : finalMapReqSourcesWithImpactAna.entrySet()) {
+						String fileName = "/" + finalMap.getKey().getName() + suffixName;
+						URI destinationPath = URI.createPlatformResourceURI(path.toString() + fileName, true);
+						finalMap.getValue().saveAnalysis(destinationPath);
+					}
 				}
-
 			}
 		});
 

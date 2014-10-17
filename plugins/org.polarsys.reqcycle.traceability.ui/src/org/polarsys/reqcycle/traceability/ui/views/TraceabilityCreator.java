@@ -98,7 +98,7 @@ public class TraceabilityCreator extends ViewPart implements ISelectionListener 
 
 		Form frmCreation = formToolkit.createForm(container);
 		formToolkit.paintBordersFor(frmCreation);
-		frmCreation.setText("Creata a traceability link");
+		frmCreation.setText("Create a traceability link");
 		frmCreation.getBody().setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		Section sctnNewSection = formToolkit.createSection(frmCreation.getBody(), Section.EXPANDED | Section.TITLE_BAR);

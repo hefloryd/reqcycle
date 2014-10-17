@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.actions;
 
+import java.util.Iterator;
+
 import javax.inject.Inject;
 
 import org.eclipse.jface.action.Action;
@@ -52,13 +54,16 @@ public class DeleteRequirementSourceAction extends Action {
 
 		ISelection selection = viewer.getSelection();
 		if (selection instanceof IStructuredSelection) {
-			Object obj = ((IStructuredSelection) selection).getFirstElement();
+			Iterator iterator = ((IStructuredSelection) selection).iterator();
+			boolean response = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Would you like to remove Requirement Source file ?");
+			while (iterator.hasNext()) {
+				Object obj = iterator.next();
 
-			if (obj instanceof RequirementSource) {
-				boolean response = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Would you like to remove Requirement Source file ?");
-				requirementSourceManager.removeRequirementSource((RequirementSource) obj, response);
-			} else if (obj instanceof String && connectorManager.get((String) obj) != null) {
-				requirementSourceManager.removeRequirementSources((String) obj);
+				if (obj instanceof RequirementSource) {
+					requirementSourceManager.removeRequirementSource((RequirementSource) obj, response);
+				} else if (obj instanceof String && connectorManager.get((String) obj) != null) {
+					requirementSourceManager.removeRequirementSources((String) obj);
+				}
 			}
 
 			viewer.refresh();

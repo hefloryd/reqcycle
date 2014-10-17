@@ -289,10 +289,15 @@ public class StyleModelEditorDialog extends TitleAreaDialog implements IDoubleCl
 				};
 			}));
 
-			selectionPredicates.add(((StylingPredicate) caseStyle).getPredicate());
-			comboViewer.setInput(selectionPredicates);
-			if (((StylingPredicate) caseStyle).getPredicate() != null){
-				comboViewer.setSelection(new StructuredSelection(((StylingPredicate) caseStyle).getPredicate()));
+			IPredicate predicate = ((StylingPredicate) caseStyle).getPredicate();
+			if (predicate != null){
+				selectionPredicates.add(predicate);
+			}
+			if (selectionPredicates != null && selectionPredicates.size() > 0){
+				comboViewer.setInput(selectionPredicates);
+			}
+			if (predicate != null){
+				comboViewer.setSelection(new StructuredSelection(predicate));
 			}
 
 		}

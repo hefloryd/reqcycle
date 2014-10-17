@@ -42,7 +42,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="org.polarsys.reqcycle.core.ui.perspective.ReqCyclePerspective"
-            icon="icons/reqcycle128.ico"
+            icon="icons/reqcycle32.ico"
             id="org.polarsys.reqcycle.core.ui.ReqCyclePerspective"
             name="ReqCycle">
       </perspective>

@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface CompositePredicate extends IPredicate {
+public interface CompositePredicate extends IListeningPredicate {
 
 	/**
 	 * Returns the value of the '<em><b>Predicates</b></em>' containment reference list.
