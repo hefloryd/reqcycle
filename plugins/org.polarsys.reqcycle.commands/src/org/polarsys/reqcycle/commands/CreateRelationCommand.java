@@ -62,12 +62,12 @@ public class CreateRelationCommand implements Command {
 		this.target = target;
 	}
 
-	public IProject getHiddenProject() {
-		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("_ReqCycle_");
+	public IProject getDefaultTraceabilityProject() {
+		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("ReqCycle_Transverse_Traceability");
 		if (!p.exists()) {
 			try {
 				p.create(new NullProgressMonitor());
-				p.setHidden(true);
+				p.setHidden(false);
 				BuilderUtil.installBuilder(p);
 			} catch (CoreException e) {
 			}
@@ -101,7 +101,7 @@ public class CreateRelationCommand implements Command {
 			p = getProjectFromReachable(target);
 		}
 		if (p == null) {
-			p = getHiddenProject();
+			p = getDefaultTraceabilityProject();
 		}
 		String projectURI = p.getFullPath().toPortableString() + "/here";
 		List<Reachable> toUpdate = Lists.newArrayList();

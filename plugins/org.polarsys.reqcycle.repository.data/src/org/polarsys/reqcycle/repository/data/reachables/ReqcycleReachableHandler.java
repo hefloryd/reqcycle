@@ -57,8 +57,8 @@ public class ReqcycleReachableHandler extends EMFURIHandler {
 					}
 					break;
 				}
-				return new NullReachableObject();
 			}
+			return new NullReachableObject();
 		}
 		if ("reqcycle".equals(t.getScheme())) {
 			String reqSourceName = URI.decode(t.getHost());

@@ -22,7 +22,7 @@
          point="org.polarsys.reqcycle.types.types">
       <type
             checker="org.polarsys.reqcycle.repository.data.types.ReqcycleTypeChecker"
-            icon="icons/reqcycle128.ico"
+            icon="icons/reqcycle32.ico"
             id="org.polarsys.reqcycle.repository.data.type1"
             label="Requirement">
       </type>

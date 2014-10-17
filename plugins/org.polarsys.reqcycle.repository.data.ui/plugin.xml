@@ -74,7 +74,7 @@
           contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
           default="true"
           extensions="reqcycle"
-          icon="icons/reqcycle128.ico"
+          icon="icons/reqcycle32.ico"
           id="org.polarsys.reqcycle.repository.data.ui.editor"
           name="ReqCycle Local">
     </editor>
