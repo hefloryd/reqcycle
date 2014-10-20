@@ -23,12 +23,10 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.ui.ViewerPane;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain.EditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -43,6 +41,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -53,7 +52,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.utils.configuration.EditingDomainUtils;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -122,17 +121,19 @@ public class ReqCycleEditor extends EcoreEditor {
 		ZigguratInject.inject(this);
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-		// Create the command stack that will notify this editor as commands are executed.
+		// Create the command stack that will notify this editor as commands are
+		// executed.
 		//
-		BasicCommandStack commandStack = new BasicCommandStack();
+		final BasicCommandStack commandStack = new BasicCommandStack();
 
-		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
+		// Add a listener to set the most recent command's affected objects to
+		// be the selection of the viewer with focus.
 		//
 		commandStack.addCommandStackListener(new CommandStackListener() {
 
 			@Override
 			public void commandStackChanged(final EventObject event) {
-				getContainer().getDisplay().asyncExec(new Runnable() {
+				Display.getDefault().asyncExec(new Runnable() {
 
 					@Override
 					public void run() {
@@ -157,24 +158,10 @@ public class ReqCycleEditor extends EcoreEditor {
 			}
 		});
 
-		// Create the editing domain with a special command stack initialized with ReqCycle ResourceSet.
+		// Create the editing domain with a special command stack initialized
+		// with ReqCycle ResourceSet.
 		ResourceSet configurationResourceSet = confManager.getConfigurationResourceSet();
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, configurationResourceSet) {
-			@Override
-			public boolean isReadOnly(Resource resource) {
-				for (EObject e : resource.getContents()) {
-					if (e instanceof RequirementsContainer) {
-						RequirementsContainer container = (RequirementsContainer) e;
-						if (container != null && container.getRequirementSource() != null && container.getRequirementSource().getConnectorId().equals(LOCAL_CONNECTOR_ID)) {
-							return false;
-						}
-					}
-				}
-				return true;
-			}
-		};
-		editingDomainAdapter = new AdapterFactoryEditingDomain.EditingDomainProvider(editingDomain);
-		configurationResourceSet.eAdapters().add(editingDomainAdapter);
+		editingDomain = EditingDomainUtils.getOrCreateEditingDomain(configurationResourceSet);
 	}
 
 	@Override
@@ -209,7 +196,8 @@ public class ReqCycleEditor extends EcoreEditor {
 
 					@Override
 					protected void createTitleBar() {
-						// initialize the title label and call the super method to let this title bar empty and not visible
+						// initialize the title label and call the super method
+						// to let this title bar empty and not visible
 						titleLabel = new CLabel(control, SWT.SHADOW_NONE);
 						super.createTitleBar();
 					}
@@ -285,7 +273,8 @@ public class ReqCycleEditor extends EcoreEditor {
 							// show the corresponding requirement source
 							return inputURI.fragment().equals(((RequirementSource) element).eResource().getURIFragment((RequirementSource) element));
 						}
-						// if there isn't a fragment in the uri -> show all local requirement sources
+						// if there isn't a fragment in the uri -> show all
+						// local requirement sources
 						return true;
 					}
 					// If the requirement source is not a local one -> filter

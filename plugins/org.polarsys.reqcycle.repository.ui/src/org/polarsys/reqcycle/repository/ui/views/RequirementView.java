@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  Copyright (c) 2014 AtoS
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html *
+ *  Contributors:
+ *    Sebastien Lemanceau (AtoS) - initial API and implementation and/or initial documentation
+ *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.views;
 
 import java.util.Collection;
@@ -8,14 +17,12 @@ import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.viewers.Viewer;
@@ -48,6 +55,8 @@ import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
+import org.polarsys.reqcycle.utils.configuration.EditingDomainUtils;
+import org.polarsys.reqcycle.utils.configuration.ReadOnlyAdapterFactory;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Maps;
@@ -137,7 +146,8 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 	public IPropertySheetPage getPropertySheetPage() {
 		ExtendedPropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(readOnlyEditingDomain, ExtendedPropertySheetPage.Decoration.NONE, null);
-		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(new ReflectiveItemProviderAdapterFactory()));
+		AdapterFactoryContentProvider adapterProvider = new AdapterFactoryContentProvider(new ReadOnlyAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		propertySheetPage.setPropertySourceProvider(adapterProvider);
 		return propertySheetPage;
 	}
 
@@ -174,16 +184,9 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 	public void setSources(Collection<RequirementSource> sources) {
 		if (readOnlyEditingDomain == null && !sources.isEmpty()) {
-			ResourceSet rs = sources.iterator().next().eResource().getResourceSet();
+			final ResourceSet rs = sources.iterator().next().eResource().getResourceSet();
 			if (readOnlyEditingDomain == null) {
-				readOnlyEditingDomain = new AdapterFactoryEditingDomain(new ReflectiveItemProviderAdapterFactory(), new BasicCommandStack(), rs) {
-
-					@Override
-					public boolean isReadOnly(Resource resource) {
-						return true;
-					}
-				};
-				rs.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(readOnlyEditingDomain));
+				readOnlyEditingDomain = EditingDomainUtils.getOrCreateEditingDomain(rs);
 			}
 		}
 		unregisterSources();
@@ -214,7 +217,7 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 				@Override
 				public void run() {
-					getCommonViewer().refresh();
+					getCommonViewer().refresh(msg.getNotifier(), true);
 				}
 			});
 		}

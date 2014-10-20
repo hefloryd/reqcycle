@@ -18,6 +18,9 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchListener;
+import org.eclipse.ui.PlatformUI;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.traceability.builder.IBuildingTraceabilityEngine;
 import org.polarsys.reqcycle.traceability.builder.ITraceabilityBuilder;
@@ -33,13 +36,9 @@ import org.polarsys.reqcycle.traceability.model.StopCondition;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.model.scopes.CompositeScope;
 import org.polarsys.reqcycle.traceability.model.scopes.IScope;
-import org.polarsys.reqcycle.traceability.predicates.TraceabilityPredicates;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.functions.URIFunctions;
 import org.polarsys.reqcycle.uri.model.Reachable;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchListener;
-import org.eclipse.ui.PlatformUI;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;

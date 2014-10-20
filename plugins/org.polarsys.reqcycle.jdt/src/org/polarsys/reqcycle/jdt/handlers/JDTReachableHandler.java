@@ -11,6 +11,7 @@ package org.polarsys.reqcycle.jdt.handlers;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.internal.core.JavaProject;
 import org.polarsys.reqcycle.jdt.model.JDTReachableObject;
 import org.polarsys.reqcycle.jdt.utils.JDTUtils;
@@ -36,7 +37,7 @@ public class JDTReachableHandler implements IReachableHandler, IObjectHandler, I
 
 	@Override
 	public boolean handlesReachable(Reachable t) {
-		return t != null && t.getPath() != null && t.getPath().endsWith("java");
+		return t != null && t.getPath() != null && t.getPath().endsWith(".java");
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class JDTReachableHandler implements IReachableHandler, IObjectHandler, I
 				return JavaProject.hasJavaNature(file.getProject());
 			}
 		}
-		return (object instanceof IJavaElement);
+		return (object instanceof IJavaElement) && !(object instanceof IJavaProject);
 	}
 
 	@Override

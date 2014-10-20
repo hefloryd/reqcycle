@@ -57,7 +57,7 @@ public class ReachableManager implements IReachableManager {
 	IExtensionRegistry registry = Platform.getExtensionRegistry();
 	Cache<Object, IObjectHandler> cacheObjects = BUILDER.build();
 	Cache<Reachable, IReachableHandler> cacheReachables = BUILDER.build();
-
+	
 	@PostConstruct
 	public void postConstruct() {
 		for (IConfigurationElement i : registry.getConfigurationElementsFor(Activator.PLUGIN_ID, EXT_POINT_HANDLER)) {
@@ -131,7 +131,7 @@ public class ReachableManager implements IReachableManager {
 	}
 	
 	private IReachableHandler getProxy(final IReachableHandler h) {
-		return new IReachableHandler() {
+		return new CachedReachableHandler(new IReachableHandler() {
 			
 			@Override
 			public boolean handlesReachable(Reachable t) {
@@ -151,7 +151,7 @@ public class ReachableManager implements IReachableManager {
 				}
 				return object;
 			}
-		};
+		});
 	}
 	
 	private IObjectHandler getProxy(final IObjectHandler h) {
@@ -202,6 +202,45 @@ public class ReachableManager implements IReachableManager {
 			throw new IReachableHandlerException();
 		}
 		return get;
+	}
+	
+	private static class CachedReachableHandler implements IReachableHandler {
+		private Cache<Reachable, ReachableObject> cache = CacheBuilder.newBuilder().weakKeys().expireAfterWrite(5, TimeUnit.MINUTES).build();
+		private IReachableHandler handler;
+
+		public CachedReachableHandler(IReachableHandler handler) {
+			this.handler = handler;
+		}
+		
+		@Override
+		public ReachableObject getFromReachable(final Reachable t) {
+			try {
+				if (t == null){
+					return new NullReachableObject();
+				}
+				return cache.get(t, new Callable<ReachableObject>() {
+
+					@Override
+					public ReachableObject call() throws Exception {
+						return handler.getFromReachable(t);
+					}
+					
+				});
+			} catch (ExecutionException e) {
+				return handler.getFromReachable(t);
+			}
+		}
+
+		@Override
+		public boolean handlesReachable(Reachable t) {
+			return handler.handlesReachable(t);
+		}
+
+		@Override
+		public ProxyResolver getProxyResolver() {
+			return handler.getProxyResolver();
+		}
+
 	}
 	
 	private static class CachedObjectHandler implements IObjectHandler {
