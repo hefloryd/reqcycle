@@ -14,8 +14,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
 
-import com.google.common.base.Objects;
-
 public class RelationCreationDescriptor {
 
 	private int type;

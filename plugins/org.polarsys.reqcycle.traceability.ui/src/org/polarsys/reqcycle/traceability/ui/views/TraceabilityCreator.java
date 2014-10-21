@@ -294,11 +294,11 @@ public class TraceabilityCreator extends ViewPart implements ISelectionListener 
 		Menu menu = new Menu(Display.getDefault().getActiveShell());
 		Iterator<RelationCreationDescriptor> iteratorUD = upstreamToDownstreams.iterator();
 		if (iteratorUD.hasNext()) {
-			DropRequirementDelegate.createMenu(menu, "Up To Down", iteratorUD, Lists.newArrayList(source),target);
+			DropRequirementDelegate.createMenu(menu, "Up To Down", iteratorUD, Lists.newArrayList(source),target, RelationCreationDescriptor.UPSTREAM_TO_DOWNSTREAM);
 		}
 		Iterator<RelationCreationDescriptor> iteratorDU = downstreamToUpstream.iterator();
 		if (iteratorDU.hasNext()) {
-			DropRequirementDelegate.createMenu(menu, "Down To Up", iteratorDU, Lists.newArrayList(source),target);
+			DropRequirementDelegate.createMenu(menu, "Down To Up", iteratorDU, Lists.newArrayList(source),target, RelationCreationDescriptor.DOWNSTREAM_TO_UPSTREAM);
 		}
 		menu.setVisible(true);
 	}

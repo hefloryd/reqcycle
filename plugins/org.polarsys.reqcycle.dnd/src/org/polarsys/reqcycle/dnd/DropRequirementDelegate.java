@@ -122,17 +122,17 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		Menu menu = new Menu(Display.getDefault().getActiveShell());
 		Iterator<RelationCreationDescriptor> iteratorUD = upstreamToDownstreams.iterator();
 		if (iteratorUD.hasNext()) {
-			createMenu(menu, "Up To Down", iteratorUD, sourceReachables, targetReachable);
+			createMenu(menu, "Up To Down", iteratorUD, sourceReachables, targetReachable, RelationCreationDescriptor.UPSTREAM_TO_DOWNSTREAM);
 		}
 		Iterator<RelationCreationDescriptor> iteratorDU = downstreamToUpstream.iterator();
 		if (iteratorDU.hasNext()) {
-			createMenu(menu, "Down To Up", iteratorDU, sourceReachables,targetReachable);
+			createMenu(menu, "Down To Up", iteratorDU, sourceReachables,targetReachable, RelationCreationDescriptor.DOWNSTREAM_TO_UPSTREAM);
 		}
 		menu.setVisible(true);
 
 	}
 
-	public static void createMenu(Menu menu, String string, Iterator<RelationCreationDescriptor> iteratorUD, List<Reachable> sourceReachables, Reachable targetReachable) {
+	public static void createMenu(Menu menu, String string, Iterator<RelationCreationDescriptor> iteratorUD, List<Reachable> sourceReachables, Reachable targetReachable, int direction) {
 		MenuItem newItem = new MenuItem(menu, SWT.CASCADE);
 		Menu newMenu = new Menu(menu);
 		newItem.setMenu(newMenu);
@@ -142,7 +142,13 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			MenuItem item = new MenuItem(newMenu, SWT.NONE);
 			final List<CreateRelationCommand> commands = Lists.newArrayList();
 			for (Reachable source : sourceReachables){
-				CreateRelationCommand createRelationCommand = new CreateRelationCommand(desc.getRelation(), source, targetReachable);
+				CreateRelationCommand createRelationCommand = null;
+				if (direction == RelationCreationDescriptor.DOWNSTREAM_TO_UPSTREAM){
+						createRelationCommand = new CreateRelationCommand(desc.getRelation(), source, targetReachable);
+				}
+				else {
+						createRelationCommand = new CreateRelationCommand(desc.getRelation(), targetReachable, source);
+				}
 				ZigguratInject.inject(createRelationCommand);
 				commands.add(createRelationCommand);
 			}
