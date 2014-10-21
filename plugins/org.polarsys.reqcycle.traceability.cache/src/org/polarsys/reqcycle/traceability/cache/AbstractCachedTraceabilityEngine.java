@@ -36,6 +36,7 @@ import org.polarsys.reqcycle.traceability.model.StopCondition;
 import org.polarsys.reqcycle.traceability.model.TType;
 import org.polarsys.reqcycle.traceability.model.scopes.CompositeScope;
 import org.polarsys.reqcycle.traceability.model.scopes.IScope;
+import org.polarsys.reqcycle.traceability.predicates.IsInScopePredicate;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.functions.URIFunctions;
 import org.polarsys.reqcycle.uri.model.Reachable;
@@ -145,7 +146,7 @@ public abstract class AbstractCachedTraceabilityEngine implements IBuildingTrace
 		for (Request request : requests) {
 			// Scope and Filter are used to validate or invalidate paths so
 			// they can be combined
-			Predicate<Pair<Link, Reachable>> requestPredicate = Predicates.alwaysTrue();
+			Predicate<Pair<Link, Reachable>> requestPredicate = new IsInScopePredicate(request.getScope());
 			if (request.getFilter() != null) {
 				requestPredicate = Predicates.and(new FilterPredicate(request.getFilter()), requestPredicate);
 			}

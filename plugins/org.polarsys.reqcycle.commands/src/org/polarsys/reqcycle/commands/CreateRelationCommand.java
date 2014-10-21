@@ -9,6 +9,8 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.commands;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +20,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.polarsys.reqcycle.traceability.builder.BuilderUtil;
 import org.polarsys.reqcycle.traceability.storage.IStorageProvider;
@@ -103,14 +106,18 @@ public class CreateRelationCommand implements Command {
 		if (p == null) {
 			p = getDefaultTraceabilityProject();
 		}
-		String projectURI = p.getFullPath().toPortableString() + "/here";
 		List<Reachable> toUpdate = Lists.newArrayList();
 		// get the storage for the project
 		ITraceabilityStorage traceaStorage = provider.getProjectStorage(p);
+		String originalPath = traceaStorage.getPath();
+		String wsPath = originalPath.replace(ResourcesPlugin.getWorkspace().getRoot().getLocationURI().toString(),"");
+		if (wsPath.equals(originalPath)){
+			wsPath = p.getFullPath().toString();
+		}
 		try {
-			Reachable container = manager.getHandlerFromObject(projectURI).getFromObject(projectURI).getReachable();
-			Object id = new Object[] { container, getNextId() };
-			Reachable tracea = manager.getHandlerFromObject(id).getFromObject(id).getReachable();
+			Reachable container = creator.getReachable(new URI("platform:" + wsPath));
+			Reachable tracea = creator.getReachable(new URI("platform:" + wsPath));
+			tracea.setFragment(getNextId());
 			traceaStorage.startTransaction();
 			// FIX ME
 			// for (TType type : relation.getAgregated()) {
@@ -130,7 +137,7 @@ public class CreateRelationCommand implements Command {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			traceaStorage.rollback();
-		} catch (IReachableHandlerException e) {
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		} finally {
 			traceaStorage.dispose();
