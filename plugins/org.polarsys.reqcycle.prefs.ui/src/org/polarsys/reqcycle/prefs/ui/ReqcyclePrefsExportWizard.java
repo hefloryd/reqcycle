@@ -43,6 +43,8 @@ public class ReqcyclePrefsExportWizard extends Wizard implements IExportWizard {
 
 			@Override
 			public void createControl(Composite parent) {
+				setPageComplete(false);
+				
 				Composite mainComposite = new Composite(parent, SWT.NONE);
 				mainComposite.setLayout(new FillLayout(SWT.HORIZONTAL));
 
@@ -72,12 +74,14 @@ public class ReqcyclePrefsExportWizard extends Wizard implements IExportWizard {
 				btnSaveAs.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						ContainerSelectionDialog d = new ContainerSelectionDialog(getShell(), null, true, "toto");
+						ContainerSelectionDialog d = new ContainerSelectionDialog(getShell(), null, true, "Export preferences to folder :");
 						if (d.open() == ContainerSelectionDialog.OK) {
 							Object[] paths = d.getResult();
 							if (paths.length > 0) {
 								outputPath = (IPath) paths[0];
 								textOutput.setText(outputPath.toString());
+								
+								setPageComplete(true);
 							}
 						}
 					}

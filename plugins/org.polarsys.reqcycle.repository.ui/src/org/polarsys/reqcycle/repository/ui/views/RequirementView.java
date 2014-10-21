@@ -317,7 +317,9 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 					@Override
 					public void run() {
-						RequirementView.this.getCommonViewer().doUpdateItem(get);
+						if (get != null) {
+							RequirementView.this.getCommonViewer().doUpdateItem(get);
+						}
 					}
 				});
 			}

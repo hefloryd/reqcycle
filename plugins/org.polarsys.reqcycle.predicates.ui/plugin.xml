@@ -101,6 +101,7 @@
            locationURI="menu:org.polarsys.reqcycle.core.ui.menu?after=org.polarsys.reqcycle.predicates.ui.menu.start">
         <command
               commandId="org.polarsys.reqcycle.repository.ui.commands.OpenPredicatesEditorCommand"
+              icon="icons/full/obj16/PredicatesModelFile.gif"
               id="org.polarsys.reqcycle.repository.ui.menus.openPredicatesEditorCommand"
               mnemonic="S">
         </command>

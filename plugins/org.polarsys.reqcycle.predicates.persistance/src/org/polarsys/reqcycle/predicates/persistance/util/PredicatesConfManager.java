@@ -13,7 +13,6 @@ package org.polarsys.reqcycle.predicates.persistance.util;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -92,8 +91,8 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 	 * @return The stored predicates.
 	 */
 	protected Collection<IPredicate> getStoredPredicates() {
+		predicates = this.getConf(true);
 		try {
-			predicates = this.getConf(true);
 			if (predicates == null) {
 				predicates = PredicatesConfFactory.eINSTANCE.createPredicatesConf();
 				confManager.saveConfiguration(Collections.singleton(predicates), null, null, PREDICATES_ENTRIES_CONF_ID, null, PREDICATESCONF_EXTENSION);
@@ -106,10 +105,7 @@ public class PredicatesConfManager implements IPredicatesConfManager {
 
 	@Override
 	public Collection<IPredicate> getPredicates(boolean reload) {
-		if (true) {
-			return getStoredPredicates();
-		}
-		return predicates != null ? predicates.getPredicates() : new LinkedList<IPredicate>();
+		return getStoredPredicates();
 	}
 
 	/**
