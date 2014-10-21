@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.internal.core.CompilationUnit;
 import org.polarsys.reqcycle.jdt.model.JDTReachableObject;
@@ -73,7 +74,7 @@ public class JDTUtils {
 		List<String> names = new LinkedList<String>();
 		names.add(element.getElementName());
 		IJavaElement parent = element.getParent();
-		while (parent != null && !(parent instanceof CompilationUnit)) {
+		while (parent != null && !(parent instanceof ICompilationUnit)) {
 			names.add(0, parent.getElementName());
 			parent = parent.getParent();
 		}

@@ -12,6 +12,7 @@ package org.polarsys.reqcycle.jdt.model;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IParent;
 import org.eclipse.jdt.core.ITypeRoot;
@@ -38,7 +39,10 @@ public class JDTReachableObject implements ReachableObject {
 		file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path));
 		if (file != null){
 			IJavaElement element = JavaCore.create(file);
-			if (element instanceof ITypeRoot) {
+			if (element instanceof ICompilationUnit){
+				javaElement = element;
+			}
+			else if (element instanceof ITypeRoot) {
 				ITypeRoot aClass = (ITypeRoot) element;
 				String fragment = t.getFragment();
 				if (fragment != null && fragment.length() > 0) {
