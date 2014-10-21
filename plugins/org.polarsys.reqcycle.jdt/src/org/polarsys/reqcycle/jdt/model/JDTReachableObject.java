@@ -18,7 +18,6 @@ import org.eclipse.jdt.core.ITypeRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.ui.actions.NewWizardAction;
 import org.polarsys.reqcycle.jdt.utils.JDTUtils;
 import org.polarsys.reqcycle.uri.exceptions.VisitableException;
 import org.polarsys.reqcycle.uri.model.IBusinessObject;

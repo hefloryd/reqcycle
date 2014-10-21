@@ -20,6 +20,9 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.polarsys.reqcycle.uri.IReachableListenerManager;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.utils.ReachableUtils;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -27,6 +30,8 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 import com.google.common.collect.Sets;
 
 public class Scopes {
+	static IReachableListenerManager lManager = ZigguratInject.make(IReachableListenerManager.class);
+	static IReachableManager rManager = ZigguratInject.make(IReachableManager.class);
 	static Set<Reachable> WORKSPACE_REACHABLES = null;
 	static {
 		ResourceVisitor visitor = getVisitor();
@@ -45,6 +50,14 @@ public class Scopes {
 									WORKSPACE_REACHABLES.add(ReachableUtils.getReachable(delta.getResource()));
 								} else if (delta.getKind() == IResourceDelta.REMOVED) {
 									WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
+								}
+								Reachable r;
+								try {
+									r = rManager.getHandlerFromObject(delta.getResource()).getFromObject(delta.getResource()).getReachable();
+									if (r!=null){
+										lManager.notifyChanged(new Reachable[]{r});
+									}
+								} catch (IReachableHandlerException e) {
 								}
 							}
 							return true;
