@@ -274,6 +274,9 @@ public class StorageBasedTraceabilityEngine extends AbstractCachedTraceabilityEn
 
 	@Override
 	public void endBuild(Reachable reachable) {
+		if (reachable == null){
+			return ;
+		}
 		super.endBuild(reachable);
 		handleRevision(reachable);
 		String revision = reachable.get(REVISION);

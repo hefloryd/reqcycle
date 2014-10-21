@@ -51,6 +51,13 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 
 	Cache<Reachable, Map<String, Boolean>> cache = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.MINUTES).build();
 
+	/**
+	 * Know the children of a resource listened (the parent ares also listened)
+	 */
+	Multimap<Reachable, Reachable> resourceToChildren = HashMultimap.create();
+	/**
+	 * The binding between some objects listened and dependant ones
+	 */
 	Multimap<Reachable, Reachable> bindings = HashMultimap.create();
 
 	@Override
@@ -75,9 +82,10 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 					@Override
 					public Map<String, Boolean> call() throws Exception {
 						Map<String, Boolean> result = Maps.newHashMap();
-						lManager.addReachableListener(reachable, PredicateEvaluator.this);
+						listen(reachable);
 						return result;
 					}
+
 				});
 				Boolean result = map.get(p.getDisplayName());
 				if (result == null) {
@@ -85,7 +93,7 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 					if (p instanceof IListeningPredicate) {
 						IListeningPredicate listening = (IListeningPredicate) p;
 						for (Reachable toListen : Iterables.transform(listening.getObjectsToListen(), OBJECT2_REACHABLE)) {
-							lManager.addReachableListener(toListen, this);
+							listen(toListen);
 							bindings.put(toListen, r);
 						}
 					}
@@ -101,19 +109,39 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 		return p.match(input);
 	}
 
+	private void listen(final Reachable reachable) {
+		lManager.addReachableListener(reachable, PredicateEvaluator.this);
+		lManager.addReachableListener(reachable.trimFragment(), PredicateEvaluator.this);
+		resourceToChildren.put(reachable.trimFragment(), reachable);
+	}
+
 	@Override
 	public void hasChanged(Reachable[] reachable) {
 		for (Reachable r : reachable) {
-			cache.invalidate(r);
-			Collection<Reachable> fromBinding = bindings.get(r);
-			if (fromBinding != null) {
-				for (Reachable binded : fromBinding) {
-					cache.invalidate(binded);
+			if (r.getFragment() == null || r.getFragment().length() == 0) {
+				Collection<Reachable> list = resourceToChildren.get(r);
+				for (Reachable child : list) {
+					doHasChanged(child);
 				}
-				bindings.removeAll(r);
+				resourceToChildren.removeAll(r);
+				lManager.removeReachableListener(this, r);
+				cache.invalidate(r);
+			} else {
+				doHasChanged(r);
 			}
-			lManager.removeReachableListener(this, r);
 		}
+	}
+
+	private void doHasChanged(Reachable r) {
+		cache.invalidate(r);
+		Collection<Reachable> fromBinding = bindings.get(r);
+		if (fromBinding != null) {
+			for (Reachable binded : fromBinding) {
+				cache.invalidate(binded);
+			}
+			bindings.removeAll(r);
+		}
+		lManager.removeReachableListener(this, r);
 	}
 
 }

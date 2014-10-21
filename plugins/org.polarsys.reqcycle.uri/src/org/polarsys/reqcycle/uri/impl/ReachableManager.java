@@ -146,10 +146,10 @@ public class ReachableManager implements IReachableManager {
 			@Override
 			public ReachableObject getFromReachable(Reachable t) {
 				ReachableObject object = h.getFromReachable(t);
-				if (object == null){
-					return new NullReachableObject();
+				if (object != null){
+					return object;
 				}
-				return object;
+				return new NullReachableObject();
 			}
 		});
 	}
