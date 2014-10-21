@@ -10,11 +10,16 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.data.ui.editors;
 
+import java.io.IOException;
 import java.util.EventObject;
 import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -32,6 +37,7 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -50,7 +56,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.polarsys.reqcycle.core.ILogger;
+import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
+import org.polarsys.reqcycle.repository.data.ui.Activator;
 import org.polarsys.reqcycle.utils.configuration.EditingDomainUtils;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -74,6 +82,9 @@ public class ReqCycleEditor extends EcoreEditor {
 	ILogger logger;
 
 	@Inject
+	IDataManager dataManager;
+
+	@Inject
 	IConfigurationManager confManager;
 
 	EditingDomainProvider editingDomainAdapter;
@@ -90,6 +101,22 @@ public class ReqCycleEditor extends EcoreEditor {
 			URIEditorInput editorInput = new URIEditorInput(uri);
 			IDE.openEditor(page, editorInput, EDITOR_ID);
 		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected boolean handleDirtyConflict() {
+		return false;
+	}
+
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		try {
+			dataManager.save();
+			((BasicCommandStack) editingDomain.getCommandStack()).flush();
+		} catch (IOException e) {
+			ErrorDialog.openError(Display.getDefault().getActiveShell(), "Error", e.getMessage(), new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e));
 			e.printStackTrace();
 		}
 	}
