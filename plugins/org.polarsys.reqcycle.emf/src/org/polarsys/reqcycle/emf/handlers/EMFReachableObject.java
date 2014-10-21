@@ -43,7 +43,7 @@ public class EMFReachableObject implements ReachableObject {
 	@Inject
 	ILogger logger;
 	@Inject
-	IEMFProxyRegistry registry ;
+	IEMFProxyRegistry registry;
 
 	public EMFReachableObject(Reachable t) {
 		this.t = t;
@@ -53,7 +53,6 @@ public class EMFReachableObject implements ReachableObject {
 	public IVisitable getVisitable() throws VisitableException {
 		try {
 			EMFVisitable emfVisitable = doGetVisitable(EMFUtils.getEMFURI(t));
-			ZigguratInject.inject(emfVisitable);
 			return emfVisitable;
 		} catch (RuntimeException e) {
 			if (Activator.getDefault().isDebugging()) {
@@ -84,12 +83,11 @@ public class EMFReachableObject implements ReachableObject {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (IBusinessObject.class.equals(adapter)){
+		if (IBusinessObject.class.equals(adapter)) {
 			URI createURI = URI.createURI(t.toString());
-			if (createURI.isPlatformResource()){
+			if (createURI.isPlatformResource()) {
 				return new IBusinessObject.DefaultBusinessObject(!registry.isProxy(createURI));
-			}
-			else {
+			} else {
 				EObject obj = (EObject) getAdapter(EObject.class);
 				return new IBusinessObject.DefaultBusinessObject(obj != null && !obj.eIsProxy());
 			}
@@ -97,7 +95,7 @@ public class EMFReachableObject implements ReachableObject {
 		if (EObject.class.equals(adapter)) {
 			if (t.getFragment() != null && t.getFragment().length() > 0) {
 				Resource r = (Resource) getAdapter(Resource.class);
-				if (r != null){
+				if (r != null) {
 					return r.getEObject(t.getFragment());
 				}
 			}

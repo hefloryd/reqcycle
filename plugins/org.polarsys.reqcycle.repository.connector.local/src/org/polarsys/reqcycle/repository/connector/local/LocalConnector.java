@@ -41,7 +41,8 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 	}
 
 	@Override
-	public void initializeWithRequirementSource(RequirementSource requirementSource) {
+	public void initializeWithRequirementSource(
+			RequirementSource requirementSource) {
 	}
 
 	@Override
@@ -49,8 +50,11 @@ public class LocalConnector extends Wizard implements IConnectorWizard {
 		return new ICallable() {
 
 			@Override
-			public void fillRequirementSource(RequirementSource source) throws Exception {
-				// RequirementsContainer rc = manager.createRequirementsContainer(URI.createPlatformResourceURI(destination, true));
+			public void fillRequirementSource(RequirementSource source)
+					throws Exception {
+				// RequirementsContainer rc =
+				// manager.createRequirementsContainer(URI.createPlatformResourceURI(destination,
+				// true));
 				// source.setContents(rc);
 
 			}

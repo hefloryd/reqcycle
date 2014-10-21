@@ -49,19 +49,12 @@ public class SelectConnectorPage extends WizardPage {
 	@Inject
 	private IConnectorManager connectorManager;
 
-	// @Inject
-	// private IScopeManager scopeManager;
-
 	@Inject
 	private ILogger logger;
 
 	private TableViewer viewer;
 
 	private Text requirementSourceNameText;
-
-	// private ComboViewer scopeComboViewer;
-	//
-	// private Scope scope;
 
 	private String sourceName;
 
@@ -92,27 +85,10 @@ public class SelectConnectorPage extends WizardPage {
 
 		Label lblRepositoryName = new Label(infoComposite, SWT.NONE);
 		lblRepositoryName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblRepositoryName.setText("Repository Name :");
+		lblRepositoryName.setText("Name (unique) :");
 
 		requirementSourceNameText = new Text(infoComposite, SWT.BORDER);
 		requirementSourceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-
-		// Label lblScope = new Label(infoComposite, SWT.NONE);
-		// lblScope.setText("Scope :");
-
-		// scopeComboViewer = new ComboViewer(infoComposite);
-		// scopeComboViewer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-		// scopeComboViewer.setContentProvider(new ArrayContentProvider());
-		// scopeComboViewer.setLabelProvider(new LabelProvider() {
-		//
-		// @Override
-		// public String getText(Object element) {
-		// return DataUtil.getLabel(element);
-		// }
-		// });
-
-		// FIXME : call data type manager to retrieve scope
-		// scopeComboViewer.setInput(scopeManager.getAllScopes());
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
 		Dialog.applyDialogFont(container);
@@ -123,6 +99,7 @@ public class SelectConnectorPage extends WizardPage {
 	private void hookListeners() {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection selection = event.getSelection();
 				if (selection instanceof IStructuredSelection) {
@@ -142,6 +119,7 @@ public class SelectConnectorPage extends WizardPage {
 
 		viewer.addOpenListener(new IOpenListener() {
 
+			@Override
 			public void open(OpenEvent event) {
 				getWizard().getContainer().updateButtons();
 				if (canFlipToNextPage()) {
@@ -158,26 +136,7 @@ public class SelectConnectorPage extends WizardPage {
 				getWizard().getContainer().updateButtons();
 			}
 		});
-
-		// scopeComboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-		//
-		// @Override
-		// public void selectionChanged(SelectionChangedEvent event) {
-		// ISelection selection = event.getSelection();
-		// if(selection instanceof IStructuredSelection) {
-		// Object fElement = ((IStructuredSelection)selection).getFirstElement();
-		// if(fElement instanceof Scope) {
-		// scope = (Scope) fElement;
-		// getWizard().getContainer().updateButtons();
-		// }
-		// }
-		// }
-		// });
 	}
-
-	// public Scope getScope(){
-	// return scope;
-	// }
 
 	public ConnectorDescriptor getConnectorDescriptor() {
 		return connectorDescriptor;

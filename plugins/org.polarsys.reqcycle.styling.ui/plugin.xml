@@ -164,6 +164,9 @@
    <Picture
          path="regIcons/clear.gif">
    </Picture>
+   <Picture
+         path="regIcons/trash-1.gif">
+   </Picture>
 </extension>
 <extension
        point="org.eclipse.emf.edit.itemProviderAdapterFactories">

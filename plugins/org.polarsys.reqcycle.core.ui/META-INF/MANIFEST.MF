@@ -13,7 +13,10 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.utils.configuration,
  org.polarsys.reqcycle.utils.inject,
  javax.inject,
- org.eclipse.e4.core.services
+ org.eclipse.e4.core.services,
+ org.eclipse.core.resources,
+ org.eclipse.ui.workbench,
+ org.polarsys.reqcycle.prefs.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.core.ui.dialogs

@@ -11,11 +11,10 @@ package org.polarsys.reqcycle.traceability.ui.views;
 
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -32,7 +31,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
@@ -43,11 +41,9 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.wb.swt.ResourceManager;
-import org.polarsys.reqcycle.commands.CreateRelationCommand;
 import org.polarsys.reqcycle.commands.utils.RelationCommandUtils;
 import org.polarsys.reqcycle.commands.utils.RelationCreationDescriptor;
-import org.polarsys.reqcycle.traceability.types.configuration.preferences.dialogs.IconRegistry;
-import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.provider.TypeconfigurationItemProviderAdapterFactory;
+import org.polarsys.reqcycle.dnd.DropRequirementDelegate;
 import org.polarsys.reqcycle.traceability.ui.TraceabilityUtils;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
@@ -58,6 +54,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public class TraceabilityCreator extends ViewPart implements ISelectionListener {
 
@@ -279,15 +276,15 @@ public class TraceabilityCreator extends ViewPart implements ISelectionListener 
 	}
 
 	protected void createTraceability() {
-		final Map<RelationCreationDescriptor, CreateRelationCommand> allCommands = RelationCommandUtils.getAllRelationCommands(Collections.singletonList(source), Collections.singletonList(target));
+		final Set<RelationCreationDescriptor> allCommands = RelationCommandUtils.getAllRelationCommands(Collections.singletonList(source), Collections.singletonList(target));
 
-		Iterable<RelationCreationDescriptor> upstreamToDownstreams = Iterables.filter(allCommands.keySet(), new Predicate<RelationCreationDescriptor>() {
+		Iterable<RelationCreationDescriptor> upstreamToDownstreams = Iterables.filter(allCommands, new Predicate<RelationCreationDescriptor>() {
 
 			public boolean apply(RelationCreationDescriptor desc) {
 				return desc.isUpstreamToDownstream();
 			}
 		});
-		Iterable<RelationCreationDescriptor> downstreamToUpstream = Iterables.filter(allCommands.keySet(), new Predicate<RelationCreationDescriptor>() {
+		Iterable<RelationCreationDescriptor> downstreamToUpstream = Iterables.filter(allCommands, new Predicate<RelationCreationDescriptor>() {
 
 			public boolean apply(RelationCreationDescriptor desc) {
 				return desc.isDownstreamToUpstream();
@@ -297,40 +294,15 @@ public class TraceabilityCreator extends ViewPart implements ISelectionListener 
 		Menu menu = new Menu(Display.getDefault().getActiveShell());
 		Iterator<RelationCreationDescriptor> iteratorUD = upstreamToDownstreams.iterator();
 		if (iteratorUD.hasNext()) {
-			createMenu(menu, "Up To Down", iteratorUD, allCommands);
+			DropRequirementDelegate.createMenu(menu, "Up To Down", iteratorUD, Lists.newArrayList(source),target);
 		}
 		Iterator<RelationCreationDescriptor> iteratorDU = downstreamToUpstream.iterator();
 		if (iteratorDU.hasNext()) {
-			createMenu(menu, "Down To Up", iteratorDU, allCommands);
+			DropRequirementDelegate.createMenu(menu, "Down To Up", iteratorDU, Lists.newArrayList(source),target);
 		}
 		menu.setVisible(true);
 	}
 
-	private void createMenu(Menu menu, String string, Iterator<RelationCreationDescriptor> iteratorUD, Map<RelationCreationDescriptor, CreateRelationCommand> allCommands) {
-		MenuItem newItem = new MenuItem(menu, SWT.CASCADE);
-		Menu newMenu = new Menu(menu);
-		newItem.setMenu(newMenu);
-		newItem.setText(string);
-		for (; iteratorUD.hasNext();) {
-			RelationCreationDescriptor desc = iteratorUD.next();
-			MenuItem item = new MenuItem(newMenu, SWT.NONE);
-			final CreateRelationCommand command = allCommands.get(desc);
-			item.setText(desc.getLabel());
-			if ((desc.getRelation().getIcon() != null) && (desc.getRelation().getIcon().length() > 0)) {
-				item.setImage(IconRegistry.getImage(desc.getRelation().getIcon()));
-			} else {
-				item.setImage(new AdapterFactoryLabelProvider(new TypeconfigurationItemProviderAdapterFactory()).getImage(desc.getRelation()));
-			}
-			item.addSelectionListener(new SelectionAdapter() {
-
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					command.execute();
-				}
-
-			});
-		}
-	}
 
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {

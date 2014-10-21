@@ -12,17 +12,15 @@ package org.polarsys.reqcycle.commands.utils;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Relation;
-import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.Type;
+
+import com.google.common.base.Objects;
 
 public class RelationCreationDescriptor {
 
 	private int type;
 
 	private Relation relation;
-
-	private Reachable source;
-
-	private Reachable target;
 
 	public final static int DOWNSTREAM_TO_UPSTREAM = -1;
 
@@ -32,11 +30,9 @@ public class RelationCreationDescriptor {
 
 	private AdapterFactoryLabelProvider labelProvider;
 
-	public RelationCreationDescriptor(int type, Relation relation, Reachable source, Reachable target) {
+	public RelationCreationDescriptor(int type, Relation relation) {
 		this.type = type;
 		this.relation = relation;
-		this.source = source;
-		this.target = target;
 		ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		labelProvider = new AdapterFactoryLabelProvider(factory);
 	}
@@ -45,12 +41,50 @@ public class RelationCreationDescriptor {
 		return relation;
 	}
 
-	public Reachable getSource() {
-		return source;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((relation == null) ? 0 : relation.hashCode());
+		result = prime * result + type;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RelationCreationDescriptor other = (RelationCreationDescriptor) obj;
+		if (relation == null) {
+			if (other.relation != null)
+				return false;
+		} else if (!relation.equals(other.relation))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+	
+	public Type getSource() {
+		if (isDownstreamToUpstream()){
+			return relation.getDownstreamType();
+		}
+		else {
+			return relation.getUpstreamType();
+		}
 	}
 
-	public Reachable getTarget() {
-		return target;
+	public Type getTarget() {
+		if (isDownstreamToUpstream()){
+			return relation.getUpstreamType();
+		}
+		else {
+			return relation.getDownstreamType();
+		}
 	}
 
 	public String getLabel() {

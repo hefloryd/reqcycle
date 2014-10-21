@@ -19,13 +19,27 @@
                label="ReqCycle"
                mnemonic="M">
           <command
+                commandId="org.polarsys.reqcycle.core.ui.command.importConf"
+                icon="icons/import_wiz-1.gif"
+                label="Import Configuration"
+                style="push">
+          </command>
+          <command
                 commandId="org.polarsys.reqcycle.core.ui.command.exportConf"
+                icon="icons/export_wiz-1.gif"
                 label="Export Configuration"
                 style="push">
           </command>
           <command
                 commandId="org.polarsys.reqcycle.core.ui.command.initConf"
+                icon="icons/thread_obj.gif"
                 label="Initialize Configuration"
+                style="push">
+          </command>
+          <command
+                commandId="org.polarsys.reqcycle.core.ui.command.reqcyclePrefs"
+                icon="icons/thread_view-1.gif"
+                label="ReqCycle Preferences"
                 style="push">
           </command>
       	</menu>
@@ -55,6 +69,11 @@
       </category>
       <command
             categoryId="org.polarsys.reqcycle.core.ui.category"
+            id="org.polarsys.reqcycle.core.ui.command.importConf"
+            name="Import Configuration">
+      </command>
+      <command
+            categoryId="org.polarsys.reqcycle.core.ui.category"
             id="org.polarsys.reqcycle.core.ui.command.exportConf"
             name="Export Configuration">
       </command>
@@ -63,9 +82,17 @@
             id="org.polarsys.reqcycle.core.ui.command.initConf"
             name="Initialize configuration">
       </command>
+      <command
+            id="org.polarsys.reqcycle.core.ui.command.reqcyclePrefs"
+            name="ReqCycle preferences">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
+      <handler
+            class="org.polarsys.reqcycle.core.ui.ImportConfigurationHandler"
+            commandId="org.polarsys.reqcycle.core.ui.command.importConf">
+      </handler>
       <handler
             class="org.polarsys.reqcycle.core.ui.ExportConfigurationHandler"
             commandId="org.polarsys.reqcycle.core.ui.command.exportConf">
@@ -73,6 +100,10 @@
       <handler
             class="org.polarsys.reqcycle.core.ui.InitializeConfigurationHandler"
             commandId="org.polarsys.reqcycle.core.ui.command.initConf">
+      </handler>
+      <handler
+            class="org.polarsys.reqcycle.core.ui.ReqcyclePreferencesHandler"
+            commandId="org.polarsys.reqcycle.core.ui.command.reqcyclePrefs">
       </handler>
    </extension>
    <extension

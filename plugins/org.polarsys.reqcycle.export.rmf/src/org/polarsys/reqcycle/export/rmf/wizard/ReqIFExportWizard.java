@@ -62,9 +62,10 @@ public class ReqIFExportWizard extends Wizard implements IExportWizard {
 		catch (Exception e){
 			if (getContainer().getCurrentPage() instanceof WizardPage) {
 				WizardPage page = (WizardPage) getContainer().getCurrentPage();
-				if (e.getMessage() != null){
+				if (e.toString() != null){
 					page.setErrorMessage(e.getMessage());
 				}
+				e.printStackTrace();
 				return false;
 			}
 		}
