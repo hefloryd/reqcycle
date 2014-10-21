@@ -15,7 +15,6 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -124,8 +123,9 @@ public class ReqCycleEditor extends EcoreEditor {
 		// Create the command stack that will notify this editor as commands are
 		// executed.
 		//
-		final BasicCommandStack commandStack = new BasicCommandStack();
-
+		ResourceSet configurationResourceSet = confManager.getConfigurationResourceSet();
+		editingDomain = EditingDomainUtils.getOrCreateEditingDomain(configurationResourceSet);
+		CommandStack commandStack = editingDomain.getCommandStack();
 		// Add a listener to set the most recent command's affected objects to
 		// be the selection of the viewer with focus.
 		//
@@ -160,8 +160,7 @@ public class ReqCycleEditor extends EcoreEditor {
 
 		// Create the editing domain with a special command stack initialized
 		// with ReqCycle ResourceSet.
-		ResourceSet configurationResourceSet = confManager.getConfigurationResourceSet();
-		editingDomain = EditingDomainUtils.getOrCreateEditingDomain(configurationResourceSet);
+
 	}
 
 	@Override

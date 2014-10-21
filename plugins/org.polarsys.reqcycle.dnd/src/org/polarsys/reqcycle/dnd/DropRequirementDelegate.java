@@ -12,12 +12,16 @@ package org.polarsys.reqcycle.dnd;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -28,6 +32,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.part.IDropActionDelegate;
+import org.polarsys.reqcycle.commands.Command;
 import org.polarsys.reqcycle.commands.CreateRelationCommand;
 import org.polarsys.reqcycle.commands.utils.RelationCommandUtils;
 import org.polarsys.reqcycle.commands.utils.RelationCreationDescriptor;
@@ -43,6 +48,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public class DropRequirementDelegate implements IDropActionDelegate {
 
@@ -100,14 +106,14 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 	}
 
 	public void handleDrop(List<Reachable> sourceReachables, Reachable targetReachable, IResource res) {
-		final Map<RelationCreationDescriptor, CreateRelationCommand> allCommands = RelationCommandUtils.getAllRelationCommands(sourceReachables, Collections.singletonList(targetReachable));
-		Iterable<RelationCreationDescriptor> upstreamToDownstreams = Iterables.filter(allCommands.keySet(), new Predicate<RelationCreationDescriptor>() {
+		final Set<RelationCreationDescriptor> allCommands = RelationCommandUtils.getAllRelationCommands(sourceReachables, Collections.singletonList(targetReachable));
+		Iterable<RelationCreationDescriptor> upstreamToDownstreams = Iterables.filter(allCommands, new Predicate<RelationCreationDescriptor>() {
 
 			public boolean apply(RelationCreationDescriptor desc) {
 				return desc.isUpstreamToDownstream();
 			}
 		});
-		Iterable<RelationCreationDescriptor> downstreamToUpstream = Iterables.filter(allCommands.keySet(), new Predicate<RelationCreationDescriptor>() {
+		Iterable<RelationCreationDescriptor> downstreamToUpstream = Iterables.filter(allCommands, new Predicate<RelationCreationDescriptor>() {
 
 			public boolean apply(RelationCreationDescriptor desc) {
 				return desc.isDownstreamToUpstream();
@@ -116,17 +122,17 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		Menu menu = new Menu(Display.getDefault().getActiveShell());
 		Iterator<RelationCreationDescriptor> iteratorUD = upstreamToDownstreams.iterator();
 		if (iteratorUD.hasNext()) {
-			createMenu(menu, "Up To Down", iteratorUD, allCommands);
+			createMenu(menu, "Up To Down", iteratorUD, sourceReachables, targetReachable);
 		}
 		Iterator<RelationCreationDescriptor> iteratorDU = downstreamToUpstream.iterator();
 		if (iteratorDU.hasNext()) {
-			createMenu(menu, "Down To Up", iteratorDU, allCommands);
+			createMenu(menu, "Down To Up", iteratorDU, sourceReachables,targetReachable);
 		}
 		menu.setVisible(true);
 
 	}
 
-	private void createMenu(Menu menu, String string, Iterator<RelationCreationDescriptor> iteratorUD, Map<RelationCreationDescriptor, CreateRelationCommand> allCommands) {
+	public static void createMenu(Menu menu, String string, Iterator<RelationCreationDescriptor> iteratorUD, List<Reachable> sourceReachables, Reachable targetReachable) {
 		MenuItem newItem = new MenuItem(menu, SWT.CASCADE);
 		Menu newMenu = new Menu(menu);
 		newItem.setMenu(newMenu);
@@ -134,7 +140,12 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 		for (; iteratorUD.hasNext();) {
 			RelationCreationDescriptor desc = iteratorUD.next();
 			MenuItem item = new MenuItem(newMenu, SWT.NONE);
-			final CreateRelationCommand command = allCommands.get(desc);
+			final List<CreateRelationCommand> commands = Lists.newArrayList();
+			for (Reachable source : sourceReachables){
+				CreateRelationCommand createRelationCommand = new CreateRelationCommand(desc.getRelation(), source, targetReachable);
+				ZigguratInject.inject(createRelationCommand);
+				commands.add(createRelationCommand);
+			}
 			item.setText(desc.getLabel());
 			if ((desc.getRelation().getIcon() != null) && (desc.getRelation().getIcon().length() > 0)) {
 				item.setImage(IconRegistry.getImage(desc.getRelation().getIcon()));
@@ -146,7 +157,20 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					command.execute();
+					Job j = new Job("Traceability") {
+						
+						@Override
+						protected IStatus run(IProgressMonitor monitor) {
+							monitor.beginTask("Creation", commands.size());
+							for (Command c : commands){
+								c.execute();
+								monitor.worked(1);
+							}
+							monitor.done();
+							return Status.OK_STATUS;
+						}
+					};
+					j.schedule();
 				}
 
 			});

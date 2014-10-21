@@ -89,12 +89,10 @@ public class ReqDropAdapterAssistant extends CommonDropAdapterAssistant {
 			Iterable<Reachable> reachables = getReachable(LocalSelectionTransfer.getTransfer().getSelection());
 			DropRequirementDelegate req = new DropRequirementDelegate();
 			IFile file = WorkspaceSynchronizer.getFile(((EObject) aTarget).eResource());
-			for (Reachable r : reachables) {
-				try {
-					req.handleDrop(Lists.newArrayList(r), manager.getHandlerFromObject(aTarget).getFromObject(aTarget).getReachable(), file);
-				} catch (IReachableHandlerException e) {
-					e.printStackTrace();
-				}
+			try {
+				req.handleDrop(Lists.newArrayList(reachables), manager.getHandlerFromObject(aTarget).getFromObject(aTarget).getReachable(), file);
+			} catch (IReachableHandlerException e) {
+				e.printStackTrace();
 			}
 		}
 		return null;
