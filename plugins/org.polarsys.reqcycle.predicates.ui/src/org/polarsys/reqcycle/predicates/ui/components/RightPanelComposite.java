@@ -299,7 +299,7 @@ public class RightPanelComposite extends Composite {
 								boolean removed = predicatesConfManager.removePredicate(p);
 								if (removed) {
 									predicatesConfManager.save();
-									tableViewerOfCustomPredicates.remove(p);
+									tableViewerOfCustomPredicates.refresh();
 								} else {
 									MessageDialog.openError(getShell(), "Removal Error", "Unable to remove the predicate : " + p.getDisplayName());
 								}
@@ -400,6 +400,7 @@ public class RightPanelComposite extends Composite {
 					}
 
 				}
+				tableViewerOfCustomPredicates.refresh();
 			}
 		});
 

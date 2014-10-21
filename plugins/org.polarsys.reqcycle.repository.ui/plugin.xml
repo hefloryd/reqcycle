@@ -150,6 +150,30 @@
               tooltip="Refresh view">
         </command>
      </menuContribution>
+     <menuContribution
+           allPopups="false"
+           locationURI="menu:org.polarsys.reqcycle.core.ui.menu">
+        <separator
+              name="org.polarsys.reqcycle.repository.ui.menu.start"
+              visible="true">
+        </separator>
+     </menuContribution>
+     <menuContribution
+           allPopups="false"
+           locationURI="menu:org.polarsys.reqcycle.core.ui.menu?after=org.polarsys.reqcycle.repository.ui.menu.start">
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementsView"
+              icon="icons/open.png"
+              label="Requirements"
+              style="push">
+        </command>
+        <command
+              commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementSources"
+              icon="icons/repositories.gif"
+              label="Requirement Sources"
+              style="push">
+        </command>
+     </menuContribution>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -198,6 +222,17 @@
            id="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
            name="Refresh">
      </command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="org.polarsys.reqcycle.repository.ui.handlers.OpenRequirementsView"
+           commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementsView">
+     </handler>
+     <handler
+           class="org.polarsys.reqcycle.repository.ui.handlers.OpenRequirementSources"
+           commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementSources">
+     </handler>
   </extension>
   <!--<extension
         point="org.eclipse.ui.perspectives">

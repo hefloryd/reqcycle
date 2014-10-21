@@ -55,14 +55,18 @@ public class DeleteRequirementSourceAction extends Action {
 		ISelection selection = viewer.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			Iterator iterator = ((IStructuredSelection) selection).iterator();
-			boolean response = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Would you like to remove Requirement Source file ?");
-			while (iterator.hasNext()) {
-				Object obj = iterator.next();
 
-				if (obj instanceof RequirementSource) {
-					requirementSourceManager.removeRequirementSource((RequirementSource) obj, response);
-				} else if (obj instanceof String && connectorManager.get((String) obj) != null) {
-					requirementSourceManager.removeRequirementSources((String) obj);
+			boolean confirm = MessageDialog.openConfirm(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Confirm the removal of Requirement Source ?");
+			if (confirm) {
+				boolean response = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Remove Requirement Source", "Would you like to remove .reqcycle file ?");
+				while (iterator.hasNext()) {
+					Object obj = iterator.next();
+
+					if (obj instanceof RequirementSource) {
+						requirementSourceManager.removeRequirementSource((RequirementSource) obj, response);
+					} else if (obj instanceof String && connectorManager.get((String) obj) != null) {
+						requirementSourceManager.removeRequirementSources((String) obj);
+					}
 				}
 			}
 

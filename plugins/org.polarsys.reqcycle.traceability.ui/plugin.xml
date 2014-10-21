@@ -37,5 +37,43 @@
             interface="org.polarsys.reqcycle.traceability.ui.services.ILocateService">
       </binding>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.polarsys.reqcycle.core.ui.menu">
+         <separator
+               name="org.polarsys.reqcycle.traceability.ui.menu.start"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.polarsys.reqcycle.core.ui.menu?after=org.polarsys.reqcycle.traceability.ui.menu.start">
+         <command
+               commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityViewer"
+               icon="icons/path.gif"
+               label="Traceability Viewer"
+               style="push">
+         </command>
+         <command
+               commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityCreator"
+               icon="icons/synced-1.gif"
+               label="Traceability Creator"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.polarsys.reqcycle.traceability.ui.handlers.OpenTraceabilityViewer"
+            commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityViewer">
+      </handler>
+      <handler
+            class="org.polarsys.reqcycle.traceability.ui.handlers.OpenTraceabilityCreator"
+            commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityCreator">
+      </handler>
+   </extension>
 
 </plugin>

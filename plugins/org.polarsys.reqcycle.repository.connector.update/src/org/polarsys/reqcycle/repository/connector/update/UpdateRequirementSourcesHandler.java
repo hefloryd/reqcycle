@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.inject.Inject;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -28,6 +30,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Display;
@@ -51,6 +54,8 @@ import org.polarsys.reqcycle.utils.collect.Picker;
 import org.polarsys.reqcycle.utils.collect.exceptions.CannotPickException;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
+import com.google.common.collect.Lists;
+
 public class UpdateRequirementSourcesHandler {
 
 	private static final String FileExtension = "_impact_analysis.xmi";
@@ -71,12 +76,15 @@ public class UpdateRequirementSourcesHandler {
 	// this map contains the final requirements sources selected in window DialogUpdatePage
 	private Map<RequirementSource, ImpactAnalysis> finalMapReqSourcesWithImpactAna;
 
+	@Inject
+	IEventBroker broker;
 
 	/**
 	 * @param requirementSources
 	 */
 	public UpdateRequirementSourcesHandler(Map<RequirementSource, String> requirementSources) {
 		super();
+		ZigguratInject.inject(this);
 		this.InputRequirementSources = requirementSources;
 	}
 	
@@ -216,6 +224,11 @@ public class UpdateRequirementSourcesHandler {
 			// update requirements sources
 			requirementSourceManager.removeRequirementSource(oldrqSources, true);
 			requirementSourceManager.addRequirementSource(reqSource);
+			
+			List<RequirementSource> list = Lists.newArrayList();
+			list.add(oldrqSources);
+			list.add(reqSource);
+			broker.post(IUpdateListener.LISTENER, list);
 		}
 	}
 
