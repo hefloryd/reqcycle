@@ -492,7 +492,14 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 		List<TraceabilityLink> traceabilityLinks = new LinkedList<TraceabilityLink>();
 
 		Iterable<Link> itUp = getLinks(requirement, DIRECTION.UPWARD);
+		addLinks(traceabilityLinks, itUp,"UP");
+		Iterable<Link> itDown = getLinks(requirement, DIRECTION.DOWNWARD);
+		addLinks(traceabilityLinks, itDown,"DOWN");
 
+		return traceabilityLinks;
+	}
+
+	private void addLinks(List<TraceabilityLink> traceabilityLinks, Iterable<Link> itUp, String direction) {
 		if ((itUp != null) && (itUp.iterator() != null)) {
 			Iterator<Link> iterator = itUp.iterator();
 			while (iterator.hasNext()) {
@@ -511,40 +518,12 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 				Set<Reachable> set = link.getTargets();
 				if (set != null && set.size() == 1) {
 					Reachable reachable = Iterables.get(set, 0);
-					traceabilityLink.setLinkDirection("UP");
+					traceabilityLink.setLinkDirection(direction);
 					traceabilityLink.setLinkedElement(TraceabilityUtils.getText(reachable));
 				}
 				traceabilityLinks.add(traceabilityLink);
 			}
 		}
-
-		Iterable<Link> itDown = getLinks(requirement, DIRECTION.DOWNWARD);
-		if ((itDown != null) && (itDown.iterator() != null)) {
-			Iterator<Link> iterator = itDown.iterator();
-			while (iterator.hasNext()) {
-				Link link = iterator.next();
-
-				TraceabilityLink traceabilityLink = ImpactFactory.eINSTANCE.createTraceabilityLink();
-
-				TType kind = link.getKind();
-				StringBuilder builder = new StringBuilder(kind.getLabel());
-				TType superKind = kind.getSuperType();
-				if (superKind != null) {
-					builder.append(String.format(" [Transverse : %s]", superKind.getLabel()));
-				}
-				traceabilityLink.setLinkType(builder.toString());
-
-				Set<Reachable> set = link.getTargets();
-				if (set != null && set.size() == 1) {
-					Reachable reachable = Iterables.get(set, 0);
-					traceabilityLink.setLinkDirection("DOWN");
-					traceabilityLink.setLinkedElement(TraceabilityUtils.getText(reachable));
-				}
-				traceabilityLinks.add(traceabilityLink);
-			}
-		}
-
-		return traceabilityLinks;
 	}
 
 	protected Iterable<Link> getLinks(final Requirement req, final DIRECTION direction) {
@@ -559,7 +538,8 @@ public class ImpactAnalysisImpl extends MinimalEObjectImpl.Container implements 
 				request.setDepth(DEPTH.ONE);
 				request.setDirection(direction);
 				try {
-					request.addSource(manager.getHandlerFromObject(req).getFromObject(req).getReachable());
+					Reachable reachable = manager.getHandlerFromObject(req).getFromObject(req).getReachable();
+					request.addSource(reachable);
 				} catch (IReachableHandlerException e1) {
 					e1.printStackTrace();
 					return new ArrayList<Link>().iterator();

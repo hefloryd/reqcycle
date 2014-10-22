@@ -405,7 +405,8 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 				} else if (selectedType instanceof IRequirementType) {
 					Set<IType> types = new HashSet<IType>();
 					types.addAll(ETypeImpl.eBasicTypes);
-					types.addAll(selectedModel.getTypes());
+					// FIXME in next version references shall be ok
+					// types.addAll(selectedModel.getTypes());
 
 					AddAttributeDialog dialog = new AddAttributeDialog(e.display.getActiveShell(), "Add Attribute", types);
 

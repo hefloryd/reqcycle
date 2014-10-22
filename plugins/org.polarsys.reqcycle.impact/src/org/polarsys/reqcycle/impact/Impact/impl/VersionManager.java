@@ -26,10 +26,12 @@ import org.eclipse.team.core.RepositoryProvider;
 import org.eclipse.team.core.history.IFileHistory;
 import org.eclipse.team.core.history.IFileHistoryProvider;
 import org.eclipse.team.core.history.IFileRevision;
+import org.osgi.resource.dto.RequirementRefDTO;
 import org.polarsys.reqcycle.impact.IVersionManager;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementsContainer;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.util.RequirementSourceDataResourceImpl;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -118,12 +120,7 @@ public class VersionManager implements IVersionManager {
 		RequirementSource source = null;
 		try {
 
-			Resource resource = new XMIResourceImpl(fileURI) {
-				@Override
-				protected boolean useUUIDs() {
-					return true;
-				}
-			};
+			Resource resource = new RequirementSourceDataResourceImpl(fileURI);
 
 			resource.load(inputStream, Collections.emptyMap());
 
