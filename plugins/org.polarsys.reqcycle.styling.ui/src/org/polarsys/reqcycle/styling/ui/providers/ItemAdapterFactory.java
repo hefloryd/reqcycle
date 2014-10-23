@@ -54,8 +54,10 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 				String result = super.getCreateChildText(owner, feature, child, selection);
 				if (child instanceof Requirement){
 					Requirement r = (Requirement) child ;
-					if (r.eClass().getEPackage() != RequirementSourceDataPackage.eINSTANCE){
-						result += " ("+ r.eClass().getEPackage().getName() +  ")";
+					if (r.eClass() != null && r.eClass().getEPackage() != null){
+						if (r.eClass().getEPackage() != RequirementSourceDataPackage.eINSTANCE){
+							result += " ("+ r.eClass().getEPackage().getName() +  ")";
+						}
 					}
 				}
 				return result;
