@@ -21,13 +21,14 @@ import javax.inject.Singleton;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
-import org.polarsys.reqcycle.uri.model.Reachable;
-import org.polarsys.reqcycle.uri.model.ReachableObject;
 import org.eclipse.swt.dnd.DragSourceAdapter;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.ui.part.PluginTransfer;
 import org.eclipse.ui.part.PluginTransferData;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
+import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.uri.model.ReachableObject;
 
 @Singleton
 public class DragRequirementSourceAdapter extends DragSourceAdapter {
@@ -36,9 +37,8 @@ public class DragRequirementSourceAdapter extends DragSourceAdapter {
 
 	private final static String PLUGIN_TRANSFER_ACTION_ID = "org.polarsys.reqcycle.dnd.DropRequirementDelegate";
 
-	/** IObjectHandler */
 	@Inject
-	IObjectHandler objectHandler;
+	IReachableManager manager;
 
 	public DragRequirementSourceAdapter(ISelectionProvider provider) {
 		super();
@@ -54,12 +54,14 @@ public class DragRequirementSourceAdapter extends DragSourceAdapter {
 				List<Reachable> objectURIs = new ArrayList<Reachable>();
 				while (iterator.hasNext()) {
 					Object next = iterator.next();
-					if (objectHandler.handlesObject(next)) {
-						ReachableObject fromObject = objectHandler.getFromObject(next);
-						objectURIs.add(fromObject.getReachable());
-					} else {
-						// if one object is not handled, do not transfer any
-						return;
+					ReachableObject fromObject;
+					try {
+						fromObject = manager.getHandlerFromObject(next).getFromObject(next);
+						if (fromObject.getReachable() != null){
+							objectURIs.add(fromObject.getReachable());
+						}
+					} catch (IReachableHandlerException e) {
+						e.printStackTrace();
 					}
 				}
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();

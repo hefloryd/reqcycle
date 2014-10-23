@@ -69,7 +69,6 @@ public class SesameVisitable implements IVisitable, IAdaptable {
 		final Iterable<Pair<Link, Reachable>> traces = this.storage.getAllTraceability(DIRECTION.UPWARD);
 		for (final Pair<Link, Reachable> x : traces) {
 			final Link link = x.getFirst();
-			// TODO Changer le id du link pour virer le container
 			final SesameContainedLink toVisit = new SesameContainedLink(this.reachable, link);
 			visitor.visit(toVisit, this);
 		}

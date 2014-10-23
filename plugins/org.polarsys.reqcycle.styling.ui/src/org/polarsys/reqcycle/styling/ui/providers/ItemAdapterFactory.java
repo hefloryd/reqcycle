@@ -64,6 +64,11 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 						}
 					}
 				}
+				for (EClass e : eclasses){
+					EPackage p = e.getEPackage();
+					System.out.println();
+					System.out.println(p.getNsURI());
+				}
 				return eclasses;
 			}
 			

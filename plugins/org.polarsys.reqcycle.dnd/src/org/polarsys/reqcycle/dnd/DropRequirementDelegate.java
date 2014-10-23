@@ -42,7 +42,7 @@ import org.polarsys.reqcycle.traceability.types.configuration.typeconfiguration.
 import org.polarsys.reqcycle.types.ITypesManager;
 import org.polarsys.reqcycle.uri.IReachableCreator;
 import org.polarsys.reqcycle.uri.IReachableManager;
-import org.polarsys.reqcycle.uri.model.IObjectHandler;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
@@ -58,8 +58,6 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 
 	ITypesManager typesManager = ZigguratInject.make(ITypesManager.class);
 
-	IObjectHandler objectHandler = ZigguratInject.make(IObjectHandler.class);
-
 	ITypesConfigurationProvider configManager = ZigguratInject.make(ITypesConfigurationProvider.class);
 
 	@Override
@@ -70,13 +68,16 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 			EObject targetEObj = getEObject(target);
 			IFile file = WorkspaceSynchronizer.getFile(targetEObj.eResource());
 			if (file != null) {
-				if (objectHandler.handlesObject(targetEObj)) {
-					{
-						targetReachable = objectHandler.getFromObject(targetEObj).getReachable();
+				try {
+					targetReachable = manager.getHandlerFromObject(targetEObj).getFromObject(targetEObj).getReachable();
+					if (targetReachable != null){
+						byte[] data = (byte[]) source;
+						List<Reachable> reachables = DNDReqCycle.getReachables(data);
+						handleDrop(reachables, targetReachable, file);
 					}
-					byte[] data = (byte[]) source;
-					List<Reachable> reachables = DNDReqCycle.getReachables(data);
-					handleDrop(reachables, targetReachable, file);
+				} catch (IReachableHandlerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

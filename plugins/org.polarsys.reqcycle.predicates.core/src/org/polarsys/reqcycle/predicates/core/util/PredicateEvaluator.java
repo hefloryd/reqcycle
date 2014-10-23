@@ -10,17 +10,22 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.predicates.core.util;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
 import org.polarsys.reqcycle.predicates.core.api.IListeningPredicate;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
+import org.polarsys.reqcycle.uri.Activator;
 import org.polarsys.reqcycle.uri.IReachableListener;
 import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.IReachableManager;
@@ -35,12 +40,16 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 
 @Singleton
 public class PredicateEvaluator implements IPredicateEvaluator, IReachableListener {
 
-	private static final Object2Reachable OBJECT2_REACHABLE = new Object2Reachable();
+	@Inject
+	ILogger logger;
 
+	private static final Object2Reachable OBJECT2_REACHABLE = new Object2Reachable();
+	private static String PREDICEVAL = "PredicateEvaluator ";
 	static {
 		ZigguratInject.inject(OBJECT2_REACHABLE);
 	}
@@ -59,6 +68,8 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 	 * The binding between some objects listened and dependant ones
 	 */
 	Multimap<Reachable, Reachable> bindings = HashMultimap.create();
+
+	private Set<IRefresh> refreshes = Sets.newHashSet();
 
 	@Override
 	public boolean match(IPredicate p, Object input) {
@@ -81,6 +92,9 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 				map = cache.get(r, new Callable<Map<String, Boolean>>() {
 					@Override
 					public Map<String, Boolean> call() throws Exception {
+						if (logger.isDebug(Activator.DEBUG_PATH, Activator.getDefault())) {
+							logger.trace(PREDICEVAL + "cache default for " + reachable.toString());
+						}
 						Map<String, Boolean> result = Maps.newHashMap();
 						listen(reachable);
 						return result;
@@ -117,11 +131,19 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 
 	@Override
 	public void hasChanged(Reachable[] reachable) {
+		Set<Reachable> toRefresh = Sets.newHashSet(Arrays.asList(reachable));
 		for (Reachable r : reachable) {
+			if (logger.isDebug(Activator.DEBUG_PATH, Activator.getDefault())) {
+				logger.trace(PREDICEVAL + "change detected for " + r.toString());
+			}
 			if (r.getFragment() == null || r.getFragment().length() == 0) {
 				Collection<Reachable> list = resourceToChildren.get(r);
 				for (Reachable child : list) {
-					doHasChanged(child);
+					toRefresh.add(child);
+					toRefresh.addAll(doHasChanged(child));
+					if (logger.isDebug(Activator.DEBUG_PATH, Activator.getDefault())) {
+						logger.trace(PREDICEVAL + "child invalidation for " + child.toString());
+					}
 				}
 				resourceToChildren.removeAll(r);
 				lManager.removeReachableListener(this, r);
@@ -130,18 +152,34 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 				doHasChanged(r);
 			}
 		}
+		for (IRefresh r : refreshes) {
+			r.hasChanged(toRefresh.toArray(new Reachable[] {}));
+		}
 	}
 
-	private void doHasChanged(Reachable r) {
+	private Set<Reachable> doHasChanged(Reachable r) {
+		Set<Reachable> toRefresh = Sets.newHashSet(r);
 		cache.invalidate(r);
 		Collection<Reachable> fromBinding = bindings.get(r);
 		if (fromBinding != null) {
 			for (Reachable binded : fromBinding) {
 				cache.invalidate(binded);
+				toRefresh.add(binded);
 			}
 			bindings.removeAll(r);
 		}
 		lManager.removeReachableListener(this, r);
+		return toRefresh;
+	}
+
+	@Override
+	public void addRefresh(IRefresh refresh) {
+		this.refreshes.add(refresh);
+	}
+
+	@Override
+	public void removeRefresh(IRefresh refresh) {
+		this.refreshes.remove(refresh);
 	}
 
 }

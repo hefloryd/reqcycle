@@ -14,6 +14,8 @@ import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.ui.part.PluginTransfer;
 import org.eclipse.ui.part.PluginTransferData;
+import org.polarsys.reqcycle.uri.IReachableManager;
+import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
 import org.polarsys.reqcycle.uri.model.Reachable;
 import org.polarsys.reqcycle.uri.model.ReachableObject;
@@ -23,9 +25,8 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private final static String PLUGIN_TRANSFER_ACTION_ID = "org.polarsys.reqcycle.dnd.DropRequirementDelegate";
 
-	/** IObjectHandler */
 	@Inject
-	IObjectHandler objectHandler;
+	IReachableManager manager;
 
 	public CommonDragAdapterAssistant() {
 		super();
@@ -45,8 +46,8 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			List<Reachable> objectURIs = new ArrayList<Reachable>();
 			while (iterator.hasNext()) {
 				Object next = iterator.next();
-				if (objectHandler.handlesObject(next)) {
-					ReachableObject fromObject = objectHandler.getFromObject(next);
+				if (manager.getHandlerFromObject(next).handlesObject(next)) {
+					ReachableObject fromObject = manager.getHandlerFromObject(next).getFromObject(next);
 					objectURIs.add(fromObject.getReachable());
 				} else {
 					// if one object is not handled, do not transfer any
@@ -80,12 +81,14 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				List<Reachable> objectURIs = new ArrayList<Reachable>();
 				while (iterator.hasNext()) {
 					Object next = iterator.next();
-					if (objectHandler.handlesObject(next)) {
-						ReachableObject fromObject = objectHandler.getFromObject(next);
-						objectURIs.add(fromObject.getReachable());
-					} else {
-						// if one object is not handled, do not transfer any
-						return false;
+					ReachableObject fromObject;
+					try {
+						fromObject = manager.getHandlerFromObject(next).getFromObject(next);
+						if (fromObject.getReachable() != null){
+							objectURIs.add(fromObject.getReachable());
+						}
+					} catch (IReachableHandlerException e) {
+						e.printStackTrace();
 					}
 				}
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();

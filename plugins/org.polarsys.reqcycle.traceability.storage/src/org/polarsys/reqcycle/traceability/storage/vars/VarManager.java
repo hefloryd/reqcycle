@@ -30,6 +30,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class VarManager {
+	private static final String DEFAULT_PATH = ".traceability";
 	IConfigurationManager confManager = ZigguratInject.make(IConfigurationManager.class);
 	private static String EXT_ID = "pathVariable" ;
 	public static String PATTERN_PREF_ID = Activator.PLUGIN_ID + ".pref" ;
@@ -49,25 +50,31 @@ public class VarManager {
 	}
 	
 	public String getPreferencePattern() {
-		Map<String, Object> patternMap = confManager.getSimpleConfiguration(null, null, PATTERN_PREF_ID, true);
-		boolean toSave = false ;
-		if (patternMap == null){
-			patternMap = Maps.newHashMap();
-			patternMap.put(PATTERN_PREF_PATH_ID, ".traceability");
-			toSave = true;
-		}
-		String pattern = (String) patternMap.get(PATTERN_PREF_PATH_ID);
-		if (pattern == null){
-			patternMap.put(PATTERN_PREF_PATH_ID, ".traceability");
-			toSave = true ;
-		}
-		if (toSave){
-			try {
-				confManager.saveSimpleConfiguration(patternMap, null, null, PATTERN_PREF_ID);
-			} catch (IOException e) {
+		try {
+			Map<String, Object> patternMap = confManager.getSimpleConfiguration(null, null, PATTERN_PREF_ID, true);
+			boolean toSave = false ;
+			if (patternMap == null){
+				patternMap = Maps.newHashMap();
+				patternMap.put(PATTERN_PREF_PATH_ID, DEFAULT_PATH);
+				toSave = true;
 			}
+			String pattern = (String) patternMap.get(PATTERN_PREF_PATH_ID);
+			if (pattern == null){
+				patternMap.put(PATTERN_PREF_PATH_ID, DEFAULT_PATH);
+				toSave = true ;
+			}
+			if (toSave){
+				try {
+					confManager.saveSimpleConfiguration(patternMap, null, null, PATTERN_PREF_ID);
+				} catch (IOException e) {
+				}
+			}
+			return pattern;
 		}
-		return pattern;
+		catch (Exception e){
+			e.printStackTrace();
+			return DEFAULT_PATH;
+		}
 	}
 	
 	public void setPreferencePattern(String pattern) {

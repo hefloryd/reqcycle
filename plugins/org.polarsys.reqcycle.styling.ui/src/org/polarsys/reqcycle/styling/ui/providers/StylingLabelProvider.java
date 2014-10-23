@@ -29,9 +29,11 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator;
+import org.polarsys.reqcycle.predicates.core.IPredicateEvaluator.IRefresh;
 import org.polarsys.reqcycle.predicates.core.api.IPredicate;
 import org.polarsys.reqcycle.predicates.ui.providers.PredicatesItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
@@ -49,7 +51,7 @@ import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Lists;
 
-public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvider, EventHandler {
+public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvider, EventHandler, IRefresh {
 
 	@Inject
 	IStylingManager manager;
@@ -69,6 +71,7 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 		super();
 		ZigguratInject.inject(this);
 		broker.subscribe(ITopic.LISTENER, this);
+		predicateEvaluator.addRefresh(this);
 	}
 
 	public void notifyChanged(Object[] objects) {
@@ -270,6 +273,19 @@ public class StylingLabelProvider implements ILabelProvider, IStyledLabelProvide
 		} else if (data instanceof Collection) {
 			notifyChanged(((Collection) data).toArray());
 		}
+	}
+
+	@Override
+	public void hasChanged(final Reachable[] reachables) {
+		// async exec is used to prevent interblocking threads
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				notifyChanged(reachables);
+			}
+		});
+		
 	}
 
 }
