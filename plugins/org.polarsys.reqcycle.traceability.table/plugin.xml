@@ -5,6 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
+            category="org.polarsys.reqcycle.traceability.ui"
             class="org.polarsys.reqcycle.traceability.table.view.TraceabilityTableView"
             id="org.polarsys.reqcycle.traceability.table.partdescriptor.traceability.table"
             name="Traceability Table"

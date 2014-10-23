@@ -7,14 +7,5 @@
             class="org.polarsys.reqcycle.repository.connector.update.JobUpdateReference">
       </startup>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="org.eclipse.reqycle.core.ui.pref.reqcycle"
-            class="org.polarsys.reqcycle.repository.connector.update.preferences.UpdateJobPreferencePage"
-            id="org.polarsys.reqcycle.repository.connector.update.rs.referencejob"
-            name="Reference Sources update">
-      </page>
-   </extension>
 
 </plugin>

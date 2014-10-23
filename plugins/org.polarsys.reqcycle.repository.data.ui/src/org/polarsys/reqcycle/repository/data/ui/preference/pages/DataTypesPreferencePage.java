@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.ui.PlatformUI;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.repository.data.types.IEnumerationType;
@@ -444,7 +445,6 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 	public boolean performOk() {
 		boolean result = super.performOk();
 		if (dirty) {
-			MessageDialog.openWarning(getShell(), "Eclipse Restart", "Please relaunch Eclipse to use newly added Requirements types and attributes");
 			tvModels.refresh();
 			btnAddType.setEnabled(false);
 			btnAddAttribute.setEnabled(false);
@@ -458,6 +458,11 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 				tvAttributes.refresh();
 			}
 			dirty = false;
+
+			boolean res = MessageDialog.openQuestion(getShell(), "Eclipse Restart needed", "A restart of Eclipse is needed to use newly added Requirements types and attributes. Do you want to restart now ?");
+			if (res) {
+				PlatformUI.getWorkbench().restart();
+			}
 		}
 
 		return result;

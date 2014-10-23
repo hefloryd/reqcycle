@@ -72,10 +72,12 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	private Button btnBrowseDestinationFile;
 
-	private Button radioBtnCopyImport;
-	private Button radioBtnReferenceImport;
-	private Label lblMode;
-	private Composite radioBtnComposite;
+	// Desactivate Reference Mode
+	// private Button radioBtnCopyImport;
+	// private Button radioBtnReferenceImport;
+	// private Label lblMode;
+	// private Composite radioBtnComposite;
+
 	private Label lblCopyFile;
 	private DataBindingContext bindingContext;
 
@@ -99,7 +101,7 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 		createModele(compositeContainer, "Model");
 		createScope(compositeContainer, "Scope");
-		createCopyOrRefMode(compositeContainer);
+		// createCopyOrRefMode(compositeContainer);
 		createDestinationFile(compositeContainer);
 		hookListeners();
 		bindingContext = new DataBindingContext();
@@ -164,33 +166,33 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	}
 
-	protected void createCopyOrRefMode(Composite compositeContainer) {
-
-		Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-		lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
-
-		radioBtnComposite = new Composite(compositeContainer, SWT.NONE);
-		radioBtnComposite.setLayout(new GridLayout(5, false));
-		radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
-
-		lblMode = new Label(radioBtnComposite, SWT.None);
-		lblMode.setText("Import Mode :");
-
-		radioBtnCopyImport = new Button(radioBtnComposite, SWT.RADIO);
-		radioBtnCopyImport.setText("Copy");
-		radioBtnCopyImport.setSelection(true);
-
-		radioBtnReferenceImport = new Button(radioBtnComposite, SWT.RADIO);
-		radioBtnReferenceImport.setText("Reference");
-		radioBtnReferenceImport.setEnabled(true);
-		new Label(radioBtnComposite, SWT.NONE);
-
-	}
+	// protected void createCopyOrRefMode(Composite compositeContainer) {
+	//
+	// Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
+	// lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
+	//
+	// radioBtnComposite = new Composite(compositeContainer, SWT.NONE);
+	// radioBtnComposite.setLayout(new GridLayout(5, false));
+	// radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+	//
+	// lblMode = new Label(radioBtnComposite, SWT.None);
+	// lblMode.setText("Import Mode :");
+	//
+	// radioBtnCopyImport = new Button(radioBtnComposite, SWT.RADIO);
+	// radioBtnCopyImport.setText("Copy");
+	// radioBtnCopyImport.setSelection(true);
+	//
+	// radioBtnReferenceImport = new Button(radioBtnComposite, SWT.RADIO);
+	// radioBtnReferenceImport.setText("Reference");
+	// radioBtnReferenceImport.setEnabled(true);
+	// new Label(radioBtnComposite, SWT.NONE);
+	//
+	// }
 
 	protected void hookListeners() {
 		getDataModelSelectionChangedListener();
-		getBtnReferenceImportSelectionListener();
-		getBtnCopyImportSelectionListener();
+		// getBtnReferenceImportSelectionListener();
+		// getBtnCopyImportSelectionListener();
 	}
 
 	protected void createDestinationFile(Composite compositeContainer) {
@@ -217,6 +219,8 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		btnBrowseDestinationFile = new Button(compositeCopy, SWT.NONE);
 		btnBrowseDestinationFile.setText("Browse");
 
+		btnBrowseDestinationFile.setEnabled(true);
+		lblCopyFile.setEnabled(true);
 	}
 
 	protected void getDataModelSelectionChangedListener() {
@@ -260,25 +264,25 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		});
 	}
 
-	protected void getBtnReferenceImportSelectionListener() {
-		radioBtnReferenceImport.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				btnBrowseDestinationFile.setEnabled(false);
-				lblCopyFile.setEnabled(false);
-			}
-		});
-	}
+	// protected void getBtnReferenceImportSelectionListener() {
+	// radioBtnReferenceImport.addSelectionListener(new SelectionAdapter() {
+	// @Override
+	// public void widgetSelected(SelectionEvent e) {
+	// btnBrowseDestinationFile.setEnabled(false);
+	// lblCopyFile.setEnabled(false);
+	// }
+	// });
+	// }
 
-	protected void getBtnCopyImportSelectionListener() {
-		radioBtnCopyImport.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				btnBrowseDestinationFile.setEnabled(true);
-				lblCopyFile.setEnabled(true);
-			}
-		});
-	}
+	// protected void getBtnCopyImportSelectionListener() {
+	// radioBtnCopyImport.addSelectionListener(new SelectionAdapter() {
+	// @Override
+	// public void widgetSelected(SelectionEvent e) {
+	// btnBrowseDestinationFile.setEnabled(true);
+	// lblCopyFile.setEnabled(true);
+	// }
+	// });
+	// }
 
 	protected final DataBindingContext initDataBindings(DataBindingContext bindingContext) {
 
@@ -294,9 +298,9 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		IObservableValue modelPathBeanObserveValue = PojoProperties.value("outputPath").observe(getBean());
 		bindingContext.bindValue(observeTextTxtFileObserveWidget, modelPathBeanObserveValue, null, null);
 		//
-		IObservableValue observeSelectionRadioBtnReferenceImportObserveWidget = WidgetProperties.selection().observe(radioBtnReferenceImport);
-		IObservableValue isReferenceBeanObserveValue = PojoProperties.value("isReference").observe(getBean());
-		bindingContext.bindValue(observeSelectionRadioBtnReferenceImportObserveWidget, isReferenceBeanObserveValue, null, null);
+		// IObservableValue observeSelectionRadioBtnReferenceImportObserveWidget = WidgetProperties.selection().observe(radioBtnReferenceImport);
+		// IObservableValue isReferenceBeanObserveValue = PojoProperties.value("isReference").observe(getBean());
+		// bindingContext.bindValue(observeSelectionRadioBtnReferenceImportObserveWidget, isReferenceBeanObserveValue, null, null);
 		//
 		doSpecificInitDataBindings(bindingContext);
 		return bindingContext;
