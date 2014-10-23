@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.ui.PlatformUI;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
@@ -115,7 +116,11 @@ public class DataModelsPreferencePage extends PreferencePage implements IWorkben
 	@Override
 	public boolean performOk() {
 		dataModelManager.save();
-		return super.performOk();
+		boolean res = MessageDialog.openQuestion(getShell(), "Eclipse Restart needed", "A restart of Eclipse is needed to handle requirement data model changes.\nDo you want to restart now ?");
+		if (res) {
+			PlatformUI.getWorkbench().restart();
+		}
+		return true;
 	}
 
 	@Override
