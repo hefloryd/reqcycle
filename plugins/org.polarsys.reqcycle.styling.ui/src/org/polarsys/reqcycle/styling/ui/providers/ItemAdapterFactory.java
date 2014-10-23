@@ -9,6 +9,7 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.styling.ui.providers;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfPackage;
+import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.RequirementSourceDataPackage;
 import org.polarsys.reqcycle.repository.data.types.IDataModel;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
@@ -46,6 +48,18 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 			public String getText(Object object) {
 				return lp.getText(object);
 			}
+			
+			@Override
+			public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+				String result = super.getCreateChildText(owner, feature, child, selection);
+				if (child instanceof Requirement){
+					Requirement r = (Requirement) child ;
+					if (r.eClass().getEPackage() != RequirementSourceDataPackage.eINSTANCE){
+						result += " ("+ r.eClass().getEPackage().getName() +  ")";
+					}
+				}
+				return result;
+			}
 			@Override
 			protected List<EClass> getAllEClasses(EClass eClass) {
 				List<EClass> eclasses = Lists.newArrayList(super.getAllEClasses(eClass));
@@ -63,11 +77,6 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 							}
 						}
 					}
-				}
-				for (EClass e : eclasses){
-					EPackage p = e.getEPackage();
-					System.out.println();
-					System.out.println(p.getNsURI());
 				}
 				return eclasses;
 			}
