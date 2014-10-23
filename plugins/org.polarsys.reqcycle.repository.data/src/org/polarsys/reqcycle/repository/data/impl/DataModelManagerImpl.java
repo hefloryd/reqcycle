@@ -16,14 +16,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -31,12 +29,8 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
-import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceData.AbstractElement;
-import org.polarsys.reqcycle.repository.data.RequirementSourceData.Requirement;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.data.ScopeConf.ScopeConfFactory;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scopes;
@@ -53,9 +47,7 @@ import org.polarsys.reqcycle.repository.data.types.internal.EnumeratorImpl;
 import org.polarsys.reqcycle.repository.data.types.internal.RequirementTypeImpl;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -77,16 +69,12 @@ public class DataModelManagerImpl implements IDataModelManager {
 
 	protected Scopes scopes;
 
-	@Inject
-	protected IDataManager dataManager;
-
 	/**
 	 * Constructor
 	 */
 	@Inject
-	DataModelManagerImpl(IConfigurationManager confManager, IDataManager dataManager) {
+	DataModelManagerImpl(IConfigurationManager confManager) {
 		this.confManager = confManager;
-		this.dataManager = dataManager;
 
 		initTypes();
 		initScopes();
@@ -325,75 +313,6 @@ public class DataModelManagerImpl implements IDataModelManager {
 			}
 		}
 		return null;
-	}
-
-	private boolean isTypesUsed(Collection<EClass> types) {
-		for (RequirementSource requirementSource : dataManager.getRequirementSources()) {
-			requirementSource = resolveProxy(requirementSource);
-			return isRequirementTypesUsed(requirementSource.getRequirements(), types);
-		}
-		return false;
-	}
-
-	private <T extends EObject> T resolveProxy(T obj) {
-		if (obj.eIsProxy() && obj.eResource() != null) {
-			EObject newObj = EcoreUtil.resolve(obj, obj.eResource().getResourceSet());
-			return (T) newObj;
-		}
-		return obj;
-	}
-
-	private boolean isRequirementTypesUsed(EList<AbstractElement> requirements, Collection<EClass> types) {
-		for (AbstractElement abstractElement : requirements) {
-			abstractElement = resolveProxy(abstractElement);
-			if (types.contains(abstractElement.eClass())) {
-				return true;
-			}
-			if (abstractElement != null && abstractElement.getScopes() != null && !abstractElement.getScopes().isEmpty()) {
-				for (Scope scope : abstractElement.getScopes()) {
-					scope = resolveProxy(scope);
-				}
-			}
-			if (abstractElement instanceof Requirement) {
-				return isRequirementTypesUsed(((Requirement) abstractElement).getChildren(), types);
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean isDataModelUsed(IDataModel dataModel) {
-		Collection<IType> types = dataModel.getTypes();
-		Collection<EClass> eTypes = Collections2.transform(types, new Function<IType, EClass>() {
-
-			@Override
-			public EClass apply(IType type) {
-				EClass eclass = null;
-				if (type instanceof IAdaptable) {
-					eclass = (EClass) ((IAdaptable) type).getAdapter(EClass.class);
-				}
-				return eclass;
-			};
-		});
-
-		if (isTypesUsed(Collections2.filter(eTypes, Predicates.notNull()))) {
-			return true;
-		}
-		String dataModelURI = dataModel.getDataModelURI();
-		Set<RequirementSource> sources = dataManager.getRequirementSources();
-		for (RequirementSource requirementSource : sources) {
-			if (dataModelURI.equals(requirementSource.getDataModelURI())) {
-				return true;
-			}
-		}
-
-		for (Scope scope : getScopes(dataModel)) {
-			EList<AbstractElement> reqs = scope.getRequirements();
-			if (reqs != null && !reqs.isEmpty()) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	@Override

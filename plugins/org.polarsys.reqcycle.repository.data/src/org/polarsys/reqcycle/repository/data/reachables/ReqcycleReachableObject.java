@@ -16,10 +16,13 @@ import org.polarsys.reqcycle.emf.handlers.EMFReachableObject;
 import org.polarsys.reqcycle.emf.utils.EMFUtils;
 import org.polarsys.reqcycle.emf.visitors.EMFVisitable;
 import org.polarsys.reqcycle.uri.model.Reachable;
+import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
+import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class ReqcycleReachableObject extends EMFReachableObject {
 
 	protected Reachable reqcycleReachable;
+	IConfigurationManager manager = ZigguratInject.make(IConfigurationManager.class);
 
 	public ReqcycleReachableObject(Reachable reqcycleReachable, Reachable emfReachable) {
 		super(emfReachable);

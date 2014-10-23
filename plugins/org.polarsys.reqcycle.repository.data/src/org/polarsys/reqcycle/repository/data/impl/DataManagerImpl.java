@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -50,6 +51,7 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.Activator;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.IDataTopics;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSourceConfFactory;
@@ -90,12 +92,14 @@ public class DataManagerImpl implements IDataManager, IResourceChangeListener, I
 	@Inject
 	ILogger logger;
 
+	@Inject
+	IDataModelManager dataModelManager; // unused but necesary for dependency resolution and epackage registrations
+
 	/**
 	 * Constructor
 	 */
-	@Inject
-	DataManagerImpl(IConfigurationManager confManager) {
-		this.confManager = confManager;
+	@PostConstruct
+	void init() {
 
 		Collection<EObject> conf = confManager.getConfiguration(null, IConfigurationManager.Scope.WORKSPACE, SOURCES_CONF_ID, null, null, true);
 
