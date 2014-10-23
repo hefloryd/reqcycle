@@ -248,11 +248,13 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 	}
 
 	protected Reachable getReachable(Object element) throws IReachableHandlerException {
-		IObjectHandler handler = manager.getHandlerFromObject(element);
-		if (handler != null) {
-			ReachableObject object = handler.getFromObject(element);
-			if (object != null) {
-				return object.getReachable();
+		if (element != null) {
+			IObjectHandler handler = manager.getHandlerFromObject(element);
+			if (handler != null) {
+				ReachableObject object = handler.getFromObject(element);
+				if (object != null) {
+					return object.getReachable();
+				}
 			}
 		}
 		return null;
