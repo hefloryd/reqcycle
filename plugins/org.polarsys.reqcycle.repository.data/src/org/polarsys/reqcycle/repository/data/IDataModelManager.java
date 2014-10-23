@@ -170,15 +170,6 @@ public interface IDataModelManager {
 	 */
 	public IAttribute createAttribute(String name, IType type, boolean isMany);
 
-	/**
-	 * Checks if the given data model is used.
-	 * 
-	 * @param dataModel
-	 *            the data model
-	 * @return true id its used
-	 */
-	public boolean isDataModelUsed(IDataModel dataModel);
-
 	public boolean isEmpty(IDataModel dataModel);
 
 	public IRequirementType getType(AbstractElement ae);
