@@ -70,7 +70,7 @@ public class TraceabilityBuilder implements ITraceabilityBuilder {
 								proxyResolver.dispose();
 							}
 							callBack.endBuild(reachable);
-							listener.notifyChanged(new Reachable[] { reachable });
+							// not needed to notify the change as it is managed by Scopes.java
 							if (Activator.getDefault().isDebugging()) {
 								logger.trace(String.format("build for %s ended", t.toString()));
 							}

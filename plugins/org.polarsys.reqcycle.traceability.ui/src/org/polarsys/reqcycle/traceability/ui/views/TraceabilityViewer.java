@@ -269,6 +269,7 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 								e.printStackTrace();
 							} finally {
 								storage.save();
+								storage.dispose();
 							}
 						}
 					}

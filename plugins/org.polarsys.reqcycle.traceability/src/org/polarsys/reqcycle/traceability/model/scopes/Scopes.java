@@ -10,6 +10,8 @@
 package org.polarsys.reqcycle.traceability.model.scopes;
 
 import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -33,6 +35,7 @@ public class Scopes {
 	static IReachableListenerManager lManager = ZigguratInject.make(IReachableListenerManager.class);
 	static IReachableManager rManager = ZigguratInject.make(IReachableManager.class);
 	static Set<Reachable> WORKSPACE_REACHABLES = null;
+	static Executor exec = Executors.newSingleThreadExecutor();
 	static {
 		ResourceVisitor visitor = getVisitor();
 		WORKSPACE_REACHABLES = Sets.newHashSet(visitor.getResult().getReachables());
@@ -51,18 +54,24 @@ public class Scopes {
 								} else if (delta.getKind() == IResourceDelta.REMOVED) {
 									WORKSPACE_REACHABLES.remove(ReachableUtils.getReachable(delta.getResource()));
 								}
-								Reachable r;
 								try {
-									r = rManager.getHandlerFromObject(delta.getResource()).getFromObject(delta.getResource()).getReachable();
+									final Reachable r = rManager.getHandlerFromObject(delta.getResource()).getFromObject(delta.getResource()).getReachable();
 									if (r!=null){
-										lManager.notifyChanged(new Reachable[]{r});
+										// this thread is created to exit the UI job
+										exec.execute(new Runnable() {
+											
+											@Override
+											public void run() {
+												lManager.notifyChanged(new Reachable[]{r});
+											}
+										});
 									}
 								} catch (IReachableHandlerException e) {
 								}
 							}
 							return true;
 						}
-					});
+					},IResourceChangeEvent.POST_CHANGE);
 				} catch (CoreException e) {
 					// reinit the reachables in error case
 					ResourceVisitor visitor = getVisitor();

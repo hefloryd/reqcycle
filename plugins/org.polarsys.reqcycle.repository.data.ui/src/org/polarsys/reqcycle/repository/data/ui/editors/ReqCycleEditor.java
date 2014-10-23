@@ -57,6 +57,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.IDataManager;
+import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ui.Activator;
 import org.polarsys.reqcycle.utils.configuration.EditingDomainUtils;
@@ -83,6 +84,9 @@ public class ReqCycleEditor extends EcoreEditor {
 
 	@Inject
 	IDataManager dataManager;
+
+	@Inject
+	IDataModelManager dataModelManager;
 
 	@Inject
 	IConfigurationManager confManager;
@@ -147,6 +151,7 @@ public class ReqCycleEditor extends EcoreEditor {
 		ZigguratInject.inject(this);
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
 		// Create the command stack that will notify this editor as commands are
 		// executed.
 		//

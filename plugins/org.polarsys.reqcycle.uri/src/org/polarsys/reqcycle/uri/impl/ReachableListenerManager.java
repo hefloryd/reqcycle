@@ -9,6 +9,7 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.uri.impl;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.inject.Singleton;
@@ -26,7 +27,6 @@ public class ReachableListenerManager implements IReachableListenerManager {
 
 	Multimap<Reachable, IReachableListener> mapReachableToListener = HashMultimap.create();
 	Multimap<IReachableListener, Reachable> mapListenerToReachable = HashMultimap.create();
-
 	boolean preventReentrant = false;
 
 	@Override
@@ -53,24 +53,21 @@ public class ReachableListenerManager implements IReachableListenerManager {
 	}
 
 	@Override
-	public synchronized void notifyChanged(Reachable[] reachables) {
-		if (!preventReentrant) {
-			try {
-				preventReentrant = true;
-				Collection<IReachableListener> collection = Sets.newHashSet();
-				for (Reachable r : reachables) {
-					collection.addAll(mapReachableToListener.get(r));
-				}
-				IReachableListener[] array = collection.toArray(new IReachableListener[collection.size()]);
-				for (int i = 0; i < array.length; i++) {
-					array[i].hasChanged(filter(reachables, mapListenerToReachable.get(array[i])));
-				}
-			} catch (RuntimeException e) {
-				throw e;
-			} finally {
-				preventReentrant = false;
+	public synchronized void notifyChanged(final Reachable[] reachables) {
+		if (!preventReentrant){
+			preventReentrant = true;
+			final Collection<IReachableListener> collection = Sets.newHashSet();
+			final Reachable[] copy = Arrays.copyOf(reachables, reachables.length);
+			for (Reachable r : reachables) {
+				collection.addAll(mapReachableToListener.get(r));
+			}
+			IReachableListener[] array = collection.toArray(new IReachableListener[collection.size()]);
+			for (int i = 0; i < array.length; i++) {
+				array[i].hasChanged(filter(copy, mapListenerToReachable.get(array[i])));
 			}
 		}
+		preventReentrant = false;
+
 	}
 
 	private Reachable[] filter(Reachable[] reachables, Collection<Reachable> collection) {

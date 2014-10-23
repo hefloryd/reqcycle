@@ -174,7 +174,10 @@ public class SesameTraceabilityStorage implements ITraceabilityStorage {
 			}
 
 		} catch (final RepositoryException e) {
+			// try one shot if error occurs
+			e.printStackTrace();
 			throw new SesameStorageRuntimeException("Failed to add new relationship", e);
+			
 		} catch (final URISyntaxException e) {
 			throw new SesameStorageRuntimeException("Failed to add new relationship", e);
 		}

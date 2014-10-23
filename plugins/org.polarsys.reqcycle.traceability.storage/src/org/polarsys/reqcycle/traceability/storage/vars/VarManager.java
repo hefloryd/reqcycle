@@ -49,7 +49,7 @@ public class VarManager {
 		return "{" + arg0.getLabel() + "}";
 	}
 	
-	public String getPreferencePattern() {
+	public synchronized String getPreferencePattern() {
 		try {
 			Map<String, Object> patternMap = confManager.getSimpleConfiguration(null, null, PATTERN_PREF_ID, true);
 			boolean toSave = false ;

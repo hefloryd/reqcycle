@@ -144,6 +144,7 @@ public class TraceabilitySynchronizer {
 			storage.addOrUpdateUpwardRelationShip(link.getKind(), link.getId(), resourceReachable, target, sources);
 		}
 		storage.save();
+		// storage.dispose();
 	}
 
 }

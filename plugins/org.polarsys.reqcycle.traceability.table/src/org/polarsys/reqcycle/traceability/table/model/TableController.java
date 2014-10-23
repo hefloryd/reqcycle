@@ -159,6 +159,7 @@ public class TableController {
 			storage.rollback();
 		} finally {
 			storage.save();
+//			storage.dispose();
 			refreshViewerData();
 		}
 	}

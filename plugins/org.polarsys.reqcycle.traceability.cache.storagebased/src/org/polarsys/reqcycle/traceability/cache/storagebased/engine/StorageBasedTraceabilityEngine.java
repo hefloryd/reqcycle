@@ -73,7 +73,7 @@ public class StorageBasedTraceabilityEngine extends AbstractCachedTraceabilityEn
 			logger.trace("Storage is closing");
 		}
 		storage.save();
-		storage.dispose();
+//		storage.dispose();
 		if (isDebugging) {
 			logger.trace("Storage closed, saved : " + getCachePath());
 		}
@@ -113,7 +113,6 @@ public class StorageBasedTraceabilityEngine extends AbstractCachedTraceabilityEn
 	@Override
 	protected Iterator<Pair<Link, Reachable>> doGetOneLevelTraceability(Reachable source, DIRECTION direction, Predicate<Pair<Link, Reachable>> scope) {
 		IPicker picker = new GetTraceabilityPicker(direction, storage, scope);
-		ZigguratInject.inject(picker);
 		Iterable<?> nexts;
 		try {
 			nexts = picker.getNexts(source);

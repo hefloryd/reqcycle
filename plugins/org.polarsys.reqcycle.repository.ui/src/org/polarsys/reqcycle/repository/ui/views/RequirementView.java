@@ -9,9 +9,11 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.ui.views;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -26,6 +28,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerRow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -48,8 +51,6 @@ import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSo
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
 import org.polarsys.reqcycle.repository.ui.RequirementViewDisplayType;
 import org.polarsys.reqcycle.repository.ui.navigator.NavigatorRoot;
-import org.polarsys.reqcycle.uri.IReachableListener;
-import org.polarsys.reqcycle.uri.IReachableListenerManager;
 import org.polarsys.reqcycle.uri.IReachableManager;
 import org.polarsys.reqcycle.uri.exceptions.IReachableHandlerException;
 import org.polarsys.reqcycle.uri.model.IObjectHandler;
@@ -60,6 +61,7 @@ import org.polarsys.reqcycle.utils.configuration.ReadOnlyAdapterFactory;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 public class RequirementView extends CommonNavigator implements EventHandler {
 
@@ -115,6 +117,12 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 						e.printStackTrace();
 					}
 				}
+			}
+
+			@Override
+			protected ViewerRow getViewerRowFromItem(Widget item) {
+				ViewerRow row = super.getViewerRowFromItem(item);
+				return row;
 			}
 
 			@Override
@@ -280,10 +288,9 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 
 	}
 
-	private class ReachableMapper implements ICommonViewerMapper, IReachableListener {
+	private class ReachableMapper implements ICommonViewerMapper {
 
 		Map<Reachable, Item> items = Maps.newHashMap();
-		IReachableListenerManager listenerManager = ZigguratInject.make(IReachableListenerManager.class);
 
 		@Override
 		public void removeFromMap(Object element, Item item) {
@@ -297,30 +304,38 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 					e.printStackTrace();
 				}
 			}
-			listenerManager.removeReachableListener(this, r);
 			items.remove(r);
 		}
 
 		@Override
 		public void objectChanged(Object object) {
-			Reachable r = null;
-			if (object instanceof Reachable) {
-				r = (Reachable) object;
+			Set<Reachable> toRefresh = Sets.newHashSet();
+			if (object instanceof Reachable[]) {
+				toRefresh.addAll(Arrays.asList((Reachable[]) object));
 			} else {
-				try {
-					r = getReachable(object);
-				} catch (IReachableHandlerException e) {
-					e.printStackTrace();
+				if (object instanceof Reachable) {
+					toRefresh.add((Reachable) object);
+				} else {
+					try {
+						Reachable r = getReachable(object);
+						if (r != null) {
+							toRefresh.add(r);
+						}
+					} catch (IReachableHandlerException e) {
+						e.printStackTrace();
+					}
 				}
 			}
-			final Item get = items.get(r);
-			if (get != null) {
+			for (final Reachable r : toRefresh) {
 				Display.getDefault().syncExec(new Runnable() {
 
 					@Override
 					public void run() {
-						if (get != null) {
+						Item get = items.get(r);
+						if (get != null && !get.isDisposed()) {
 							RequirementView.this.getCommonViewer().doUpdateItem(get);
+						} else {
+							RequirementView.this.getCommonViewer().refresh(r, true);
 						}
 					}
 				});
@@ -365,16 +380,9 @@ public class RequirementView extends CommonNavigator implements EventHandler {
 					e.printStackTrace();
 				}
 			}
-			listenerManager.addReachableListener(r, this);
 			items.put(r, item);
 		}
 
-		@Override
-		public void hasChanged(Reachable[] reachable) {
-			for (Reachable r : reachable) {
-				objectChanged(r);
-			}
-		}
 	}
 
 	@Override

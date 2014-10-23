@@ -19,12 +19,15 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -47,43 +50,48 @@ public class UseAsSourceHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection activeMenuSelection = HandlerUtil.getActiveMenuSelection(event);
-		if (activeMenuSelection instanceof IStructuredSelection) {
-			Object firstElement = ((IStructuredSelection) activeMenuSelection).getFirstElement();
-			if (firstElement instanceof IFile) {
-				IFile file = (IFile) firstElement;
-				ResourceSet rs = new ResourceSetImpl();
-				Resource resource = rs.getResource(URI.createURI(file.getFullPath().toString()), true);
-				EList<EObject> contents = resource.getContents();
-				Iterator<EObject> iter = contents.iterator();
-				while (iter.hasNext()) {
-					EObject eObject = iter.next();
-					if (eObject instanceof RequirementsContainer) {
+		try {
+			ISelection activeMenuSelection = HandlerUtil.getActiveMenuSelection(event);
+			if (activeMenuSelection instanceof IStructuredSelection) {
+				Object firstElement = ((IStructuredSelection) activeMenuSelection).getFirstElement();
+				if (firstElement instanceof IFile) {
+					IFile file = (IFile) firstElement;
+					ResourceSet rs = new ResourceSetImpl();
+					Resource resource = rs.getResource(URI.createURI(file.getFullPath().toString()), true);
+					EList<EObject> contents = resource.getContents();
+					Iterator<EObject> iter = contents.iterator();
+					while (iter.hasNext()) {
+						EObject eObject = iter.next();
+						if (eObject instanceof RequirementsContainer) {
 
-						UseAsSourceDialog dialog = new UseAsSourceDialog(HandlerUtil.getActiveShell(event));
-						dialog.init(file.getLocation().removeFileExtension().lastSegment());
+							UseAsSourceDialog dialog = new UseAsSourceDialog(HandlerUtil.getActiveShell(event));
+							dialog.init(file.getLocation().removeFileExtension().lastSegment());
 
-						if (Window.OK == dialog.open()) {
-							RequirementSource source;
-							source = dataManager.createRequirementSource();
-							source.setName(dialog.bean.getSourceName());
-							source.setDataModelURI(dialog.bean.getDataModel().getDataModelURI());
-							source.setDefaultScope(dialog.bean.getScope());
-							source.setConnectorId(LocalConnector.LOCAL_CONNECTOR_ID);
-							source.setContents((RequirementsContainer) eObject);
-							source.setDestinationURI(eObject.eResource().getURI().toString());
+							if (Window.OK == dialog.open()) {
+								RequirementSource source;
+								source = dataManager.createRequirementSource();
+								source.setName(dialog.bean.getSourceName());
+								source.setDataModelURI(dialog.bean.getDataModel().getDataModelURI());
+								source.setDefaultScope(dialog.bean.getScope());
+								source.setConnectorId(LocalConnector.LOCAL_CONNECTOR_ID);
+								source.setContents((RequirementsContainer) eObject);
+								source.setDestinationURI(eObject.eResource().getURI().toString());
 
-							dataManager.addRequirementSource(source);
+								dataManager.addRequirementSource(source);
+							}
 						}
 					}
-				}
-				try {
-					dataManager.save();
-				} catch (IOException e) {
-					// FIXME : Use logger
-					e.printStackTrace();
+					try {
+						dataManager.save();
+					} catch (IOException e) {
+						// FIXME : Use logger
+						e.printStackTrace();
+					}
 				}
 			}
+		} catch (RuntimeException e) {
+			ErrorDialog.openError(HandlerUtil.getActiveShell(event), "error", e.getMessage(), Status.CANCEL_STATUS, IStatus.CANCEL);
+			e.printStackTrace();
 		}
 		return null;
 	}

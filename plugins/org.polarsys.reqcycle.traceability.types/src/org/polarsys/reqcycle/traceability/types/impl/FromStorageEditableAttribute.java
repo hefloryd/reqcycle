@@ -53,7 +53,7 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 			ITraceabilityStorage storage = lazyStorageProvider.getStorage();
 			String propValue = storage.getProperty(reachable, attribute.getName());
 			value = getObjectValue(propValue, attribute.getType());
-			storage.dispose();
+//			storage.dispose();
 		}
 		return value;
 	}
@@ -62,8 +62,9 @@ public class FromStorageEditableAttribute implements EditableAttribute {
 	public void setValue(Object value) {
 		ITraceabilityStorage storage = lazyStorageProvider.getStorage();
 		storage.addUpdateProperty(reachable, attribute.getName(), getStringValue(value, attribute.getType()));
+		storage.commit();
 		storage.save();
-		storage.dispose();
+//		storage.dispose();
 		this.value = value;
 
 	}

@@ -139,7 +139,7 @@ public class CreateRelationCommand implements Command {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		} finally {
-			traceaStorage.dispose();
+			// TO NOT CALL dispose : problems with multi drag and drop
 		}
 		listenerManager.notifyChanged(toUpdate.toArray(new Reachable[] {}));
 	}

@@ -65,7 +65,7 @@ public class AttributesConfigurationBuildingDecoration extends IBuildingDecorati
 	public void endBuild(IBuilderCallBack callBack, Reachable reachable) {
 		if (currentStorage != null) {
 			currentStorage.save();
-			currentStorage.dispose();
+//			currentStorage.dispose();
 			currentStorage = null;
 		}
 		defaultConfiguration = null;

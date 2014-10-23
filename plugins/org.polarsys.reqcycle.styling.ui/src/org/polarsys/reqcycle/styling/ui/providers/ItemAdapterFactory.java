@@ -10,6 +10,7 @@
 package org.polarsys.reqcycle.styling.ui.providers;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -49,6 +50,7 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 				return lp.getText(object);
 			}
 			
+			
 			@Override
 			public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 				String result = super.getCreateChildText(owner, feature, child, selection);
@@ -56,7 +58,9 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 					Requirement r = (Requirement) child ;
 					if (r.eClass() != null && r.eClass().getEPackage() != null){
 						if (r.eClass().getEPackage() != RequirementSourceDataPackage.eINSTANCE){
-							result += " ("+ r.eClass().getEPackage().getName() +  ")";
+							EPackage ePackage = r.eClass().getEPackage();
+							String nsURI = ePackage.getNsURI();
+							result += " ("+ ePackage.getName() +  " v" + nsURI.substring(nsURI.lastIndexOf("/")+1,nsURI.length())+ ")";
 						}
 					}
 				}
@@ -65,6 +69,13 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 			@Override
 			protected List<EClass> getAllEClasses(EClass eClass) {
 				List<EClass> eclasses = Lists.newArrayList(super.getAllEClasses(eClass));
+				Iterator<EClass> i = eclasses.iterator();
+				while (i.hasNext()){
+					EClass e = i.next();
+					if (e.getEAllSuperTypes().contains(RequirementSourceDataPackage.Literals.REQUIREMENT)){
+						i.remove();
+					}
+				}
 				Set<EClass> set = Sets.newHashSet(eclasses);
 				for (IDataModel d : dmM.getCurrentDataModels()){
 					if (d instanceof IAdaptable) {
@@ -80,6 +91,7 @@ public class ItemAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 						}
 					}
 				}
+				
 				return eclasses;
 			}
 			

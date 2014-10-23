@@ -164,20 +164,9 @@ public class DropRequirementDelegate implements IDropActionDelegate {
 
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					Job j = new Job("Traceability") {
-						
-						@Override
-						protected IStatus run(IProgressMonitor monitor) {
-							monitor.beginTask("Creation", commands.size());
-							for (Command c : commands){
-								c.execute();
-								monitor.worked(1);
-							}
-							monitor.done();
-							return Status.OK_STATUS;
-						}
-					};
-					j.schedule();
+					for (Command c : commands){
+						c.execute();
+					}
 				}
 
 			});

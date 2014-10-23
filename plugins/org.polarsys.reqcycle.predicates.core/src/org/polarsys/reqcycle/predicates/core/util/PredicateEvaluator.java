@@ -108,7 +108,9 @@ public class PredicateEvaluator implements IPredicateEvaluator, IReachableListen
 						IListeningPredicate listening = (IListeningPredicate) p;
 						for (Reachable toListen : Iterables.transform(listening.getObjectsToListen(), OBJECT2_REACHABLE)) {
 							listen(toListen);
-							bindings.put(toListen, r);
+							if (!toListen.equals(r)) {
+								bindings.put(toListen, r);
+							}
 						}
 					}
 					map.put(p.getDisplayName(), result);
