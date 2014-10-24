@@ -15,8 +15,8 @@
       label="polarsys reqcycle ocl"
       version="0.8.0.qualifier">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description>
+      ReqCycle feature for ocl
    </description>
 
    <copyright>
