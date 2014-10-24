@@ -66,6 +66,9 @@ public class RMFUtils {
 
 	static IDataManager dataManager = ZigguratInject.make(IDataManager.class);
 
+	public static final String SPECIFICATION_ID = "SpecificationId";
+	public static final String SPECIFICATION_NAME = "SpecificationName";
+
 	public static Collection<SpecType> getReqIFTypes(ResourceSet resourceSet, String fileLocation) {
 		URI uriReqIf = URI.createURI(fileLocation, false);
 		Resource reqIfResource = resourceSet.getResource(uriReqIf, true);
@@ -92,6 +95,20 @@ public class RMFUtils {
 		return null;
 	}
 
+	public static Collection<Specification> getReqIFDocuments(ResourceSet resourceSet, String fileLocation) {
+		URI uriReqIf = URI.createURI(fileLocation, false);
+		Resource reqIfResource = resourceSet.getResource(uriReqIf, true);
+		EList<EObject> contents = reqIfResource.getContents();
+		if (contents.size() > 0) {
+			EObject content = contents.get(0);
+			if (content instanceof ReqIF) {
+				ReqIFContent coreContent = ((ReqIF) content).getCoreContent();
+				return coreContent.getSpecifications();
+			}
+		}
+		return null;
+	}
+
 	public static void fillRequirements(RequirementSource requirementSource, IProgressMonitor progressMonitor, Scope scope) {
 
 		Collection<MappingElement> mapping = requirementSource.getMappings();
@@ -107,45 +124,30 @@ public class RMFUtils {
 			if (eObject instanceof ReqIF) {
 				ReqIF reqIF = (ReqIF) eObject;
 
-				ReqIFContent coreContent = reqIF.getCoreContent();
-				EList<Specification> specifications = coreContent.getSpecifications();
+				Specification specification = getSpecification(reqIF, requirementSource.getProperty(SPECIFICATION_ID), requirementSource.getProperty(SPECIFICATION_NAME));
 
-				for (Specification specification : specifications) {
+				EList<SpecHierarchy> specHierarchies = specification.getChildren();
+				Collection<AbstractElement> children = createChildren(specHierarchies, mapping, scope);
 
-					EList<SpecHierarchy> specHierarchies = specification.getChildren();
-					Collection<AbstractElement> children = createChildren(specHierarchies, mapping, scope);
-
-					// ElementMapping elementMapping =
-					// DataUtil.getElementMapping(mapping,
-					// specification.getType().getIdentifier());
-
-					String id = specification.getLongName();// getID(elementMapping,
-															// specification);
-					String name = specification.getDesc();// getName(elementMapping,
-															// specification);
-
-					AbstractElement section = null;
-					section = dataManager.createSection(id, name, ReqIF10Util.getSpecType(specification).getIdentifier());
-					// section = creator.createSection(id, name,
-					// ReqIF10Util.getSpecType(specification).getIdentifier());
-
-					if (section != null) {
-						dataManager.addElementsToSource(requirementSource, section);
-						// requirementSource.getContents().getRequirements().add(section);
-						// addAttributes(elementMapping,
-						// specification.getValues(), section);
-					}
-
-					if (children != null && !children.isEmpty()) {
-						if (section instanceof Section) {
-							dataManager.addElementsToSection((Section) section, children.toArray(new AbstractElement[children.size()]));
-						} else if (section != null) {
-							logger.error("Specification is not mapped with a Section typed element, children can be missed");
-						}
-					}
+				if (children != null && !children.isEmpty()) {
+					dataManager.addElementsToSource(requirementSource, children.toArray(new AbstractElement[children.size()]));
 				}
 			}
 		}
+	}
+
+	protected static Specification getSpecification(ReqIF reqif, String specificationId, String specificationName) {
+		EList<Specification> specifications = reqif.getCoreContent().getSpecifications();
+		Specification specificationByName = null;
+		for (Specification specification : specifications) {
+			if (specificationId.equals(specification.getIdentifier())) {
+				return specification;
+			}
+			if (specificationName.equals(specification.getLongName())) {
+				specificationByName = specification;
+			}
+		}
+		return specificationByName;
 	}
 
 	protected static Collection<AbstractElement> createChildren(EList<SpecHierarchy> specHierarchies, Collection<MappingElement> mapping, Scope scope) {
@@ -203,7 +205,7 @@ public class RMFUtils {
 				String sourceId = attribute.getSourceId();
 				for (AttributeValue value : element.getValues()) {
 					if (sourceId.equals(ReqIF10Util.getAttributeDefinition(value).getIdentifier())) {
-						return ReqIF10Util.getTheValue(value).toString();
+						return ReqIF10Util.getTheValue(value) == null ? null : ReqIF10Util.getTheValue(value).toString();
 					}
 				}
 			}
