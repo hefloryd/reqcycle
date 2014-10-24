@@ -67,6 +67,7 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 				textInput.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 				if (inputPath != null) {
 					textInput.setText(inputPath.toString());
+					setPageComplete(true);	
 				}
 
 				Button btnBrowse = new Button(topGroup, SWT.NONE);

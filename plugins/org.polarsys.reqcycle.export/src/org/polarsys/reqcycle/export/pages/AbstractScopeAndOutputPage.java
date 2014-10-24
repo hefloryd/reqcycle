@@ -147,10 +147,10 @@ public abstract class AbstractScopeAndOutputPage extends WizardPage {
 				String selectedDirectory = dlg.open();
 				if (selectedDirectory != null) {
 					selectedDirectory = selectedDirectory.replace('\\', '/');
-					if (selectedDirectory.toLowerCase().endsWith("." + getAllowedExtensions()[dlg.getFilterIndex()])) {
+					if (selectedDirectory.toLowerCase().endsWith(getAllowedExtensions()[dlg.getFilterIndex()])) {
 						text.setText(selectedDirectory);
 					} else {
-						text.setText(selectedDirectory + "." + getAllowedExtensions()[dlg.getFilterIndex()]);
+						text.setText(selectedDirectory + getAllowedExtensions()[dlg.getFilterIndex()]);
 					}
 				}
 				controller.setOutputPath(text.getText());

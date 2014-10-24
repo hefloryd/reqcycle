@@ -13,7 +13,7 @@ package org.polarsys.reqcycle.export.xls.wizard;
 import org.polarsys.reqcycle.export.pages.WizardController;
 
 public class ExcelController extends WizardController {
-	public static String[] EXTENSIONS = new String[] { "xls", "csv" };
+	public static String[] EXTENSIONS = new String[] { ".xls", ".csv" };
 
 	String extension;
 

@@ -81,7 +81,7 @@ public class PredicateSelectionPage extends WizardPage {
 		grpPredicate.setLayout(new GridLayout(1, false));
 		grpPredicate.setText("Predicates");
 
-		final CheckboxTableViewer predicateTableViewer = CheckboxTableViewer.newCheckList(grpPredicate, SWT.BORDER | SWT.FULL_SELECTION);
+		final CheckboxTableViewer predicateTableViewer = CheckboxTableViewer.newCheckList(grpPredicate, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		predicateTableViewer.setLabelProvider(new PredicatesTableLabelProvider());
 		predicateTableViewer.setContentProvider(ProviderUtils.getArrayContentProvider());
 		predicateTableViewer.setInput(predicatesConfManager.getPredicates(false));
