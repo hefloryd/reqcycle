@@ -50,6 +50,10 @@ import org.polarsys.reqcycle.repository.data.ui.dialog.AddTypeDialog;
 import org.polarsys.reqcycle.repository.data.ui.dialog.NameDialog;
 import org.polarsys.reqcycle.repository.data.ui.preference.PreferenceUiUtil;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 public class DataTypesPreferencePage extends DataModelsPreferencePage {
 
 	/** Types Viewer Elements */
@@ -406,7 +410,13 @@ public class DataTypesPreferencePage extends DataModelsPreferencePage {
 					Set<IType> types = new HashSet<IType>();
 					types.addAll(ETypeImpl.eBasicTypes);
 					// FIXME in next version references shall be ok
-					// types.addAll(selectedModel.getTypes());
+					types.addAll(Lists.newArrayList(Iterables.filter(selectedModel.getTypes(), new Predicate<IType>() {
+						@Override
+						public boolean apply(IType arg0) {
+							// TODO in the future, disable this filter when references will be allowed
+							return arg0 instanceof IEnumerationType;
+						}
+					})));
 
 					AddAttributeDialog dialog = new AddAttributeDialog(e.display.getActiveShell(), "Add Attribute", types);
 
