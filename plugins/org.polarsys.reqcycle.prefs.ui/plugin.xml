@@ -6,7 +6,7 @@
       <wizard
             category="org.polarsys.reqcycle.core.ui.export"
             class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsExportWizard"
-            icon="icons/reqcycle32.ico"
+            icon="icons/reqcycle.png"
             id="org.polarsys.reqcycle.prefs.ui.export"
             name="preferences">
       </wizard>
@@ -16,7 +16,7 @@
       <wizard
             category="org.polarsys.reqcycle.core.ui.import"
             class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsImportWizard"
-            icon="icons/reqcycle32.ico"
+            icon="icons/reqcycle.png"
             id="org.polarsys.reqcycle.prefs.ui.import"
             name="preferences">
       </wizard>
