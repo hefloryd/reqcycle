@@ -19,8 +19,6 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MediaType;
 import org.apache.tika.parser.AbstractParser;
 import org.apache.tika.parser.ParseContext;
-import org.apache.tika.sax.ContentHandlerDecorator;
-import org.apache.tika.sax.WriteOutContentHandler;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.polarsys.kitalpha.doc.doc2model.tikaparsing.xls.SubRowScore.SubRowFunction;
 import org.xml.sax.ContentHandler;
@@ -140,7 +138,6 @@ public class Doc2ModelExcelParser extends AbstractParser {
 
 	}
 	xhandler.endElement("div");
-	System.out.println("###########################################################");
 }
 
 }

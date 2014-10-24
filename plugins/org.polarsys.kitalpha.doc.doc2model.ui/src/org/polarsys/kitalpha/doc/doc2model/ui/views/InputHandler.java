@@ -40,7 +40,6 @@ public class InputHandler extends AbstractHandler {
 				//Doc2Model<ExcelFile> doc2Model = new Doc2Model<ExcelFile>();
 				Doc2Model<WPFile> doc2Model = new Doc2Model<WPFile>();
 				String fileString = CommonPlugin.asLocalURI(uri).toFileString();
-				System.out.println(doc2Model.getFileType(fileString));
 				Doc2Model<DocumentModel> d2m = new Doc2Model<DocumentModel>();
 				d2m.setContentHandler(Doc2Model.getDefaultContentHandler(fileString));
 				DocumentModel m = d2m.transform(fileString, DocumentModel.class).getDocModel();

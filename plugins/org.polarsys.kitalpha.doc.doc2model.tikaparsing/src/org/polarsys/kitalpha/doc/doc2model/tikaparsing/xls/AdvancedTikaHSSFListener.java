@@ -232,8 +232,6 @@ public class AdvancedTikaHSSFListener implements HSSFListener {
 	private void internalProcessRecord(Record record) throws SAXException,
 	TikaException, IOException {
 
-		// System.out.println(record.getClass().toString());
-
 		switch (record.getSid()) {
 		case BOFRecord.sid: // start of workbook, worksheet etc. records
 			BOFRecord bof = (BOFRecord) record;
@@ -707,7 +705,6 @@ public class AdvancedTikaHSSFListener implements HSSFListener {
 				Table table=findTable(subrow);
 				if(table != null){
 					defineTableElements(table);
-					System.out.println(table.getText());
 					_spreadSheetElements.add(table);
 				}else{
 					_spreadSheetElements.add(subrow);
@@ -783,11 +780,6 @@ public class AdvancedTikaHSSFListener implements HSSFListener {
 			//TODO when no formating exists
 			
 			((SubRowScore) table.getHeader()).setSubRowType(SubRowFunction.Header);
-		}
-		
-		for (SubRow subRow : table) {
-			SubRowScore subrowScore = (SubRowScore) subRow;
-			System.out.println(subrowScore.getRowIndex()+"--"+subrowScore.getScoreHeight()+" "+subrowScore.getScoreWeight()+" "+subrowScore.getScoreFontColor()+" "+subrowScore.getScoreFillColor()+"-->"+subrowScore.getHiearchy());
 		}
 	}
 
