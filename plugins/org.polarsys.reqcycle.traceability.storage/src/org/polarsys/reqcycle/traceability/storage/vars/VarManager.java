@@ -34,10 +34,13 @@ public class VarManager {
 	IConfigurationManager confManager = ZigguratInject.make(IConfigurationManager.class);
 	private static String EXT_ID = "pathVariable" ;
 	public static String PATTERN_PREF_ID = Activator.PLUGIN_ID + ".pref" ;
-	public static String PATTERN_PREF_PATH_ID = PATTERN_PREF_ID +".pattern" ;
+	public static String PATTERN_PREF_PATH_ID = "pattern" ;
 	static Map<String, Variable> ALL_VARS = getAllVars () ;
 	
 	public String transformPattern(String pattern) {
+		if (pattern == null){
+			return DEFAULT_PATH;
+		}
 		for (Variable v : ALL_VARS.values()){
 			String patternFromVar = getPattern(v);
 			pattern = pattern.replace(patternFromVar, v.getValue());
