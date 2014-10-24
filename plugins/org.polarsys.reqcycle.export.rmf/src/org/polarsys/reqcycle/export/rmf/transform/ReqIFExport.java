@@ -13,6 +13,7 @@ package org.polarsys.reqcycle.export.rmf.transform;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -38,6 +39,7 @@ import org.eclipse.rmf.reqif10.SpecHierarchy;
 import org.eclipse.rmf.reqif10.SpecObject;
 import org.eclipse.rmf.reqif10.SpecObjectType;
 import org.eclipse.rmf.reqif10.Specification;
+import org.eclipse.rmf.reqif10.SpecificationType;
 import org.polarsys.reqcycle.export.rmf.page.WizardController;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
@@ -58,7 +60,7 @@ public class ReqIFExport {
 
 	static IDataModelManager modelManager = ZigguratInject.make(IDataModelManager.class);
 
-	private EList<SpecHierarchy> listSpecHierarchy;
+//	private EList<SpecHierarchy> listSpecHierarchy;
 
 	private ReqIF reqif;
 
@@ -71,9 +73,11 @@ public class ReqIFExport {
 	private Map<EDataType, EClass> attDefinitions;
 	private Map<EDataType, EClass> attValues;
 	private Map<EClass, SpecObjectType> specObjectTypes;
-	private Map<EStructuralFeature, AttributeDefinition> attributeDefinitions;
+	private Map<EClass, Map<EStructuralFeature, AttributeDefinition>> attributeDefinitions;
 
-	private SpecObjectType sectionType;
+//	private SpecObjectType sectionType;
+
+	private SpecObjectType reqType;
 
 	public ReqIF transform() {
 
@@ -134,13 +138,19 @@ public class ReqIFExport {
 		attDefinitions.put(EcorePackage.Literals.EDOUBLE, ReqIF10Package.Literals.ATTRIBUTE_DEFINITION_REAL);
 		attValues.put(EcorePackage.Literals.EDOUBLE, ReqIF10Package.Literals.ATTRIBUTE_VALUE_REAL);
 
-		sectionType = ReqIF10Factory.eINSTANCE.createSpecObjectType();
-		sectionType.setLongName("Section");
-		reqif.getCoreContent().getSpecTypes().add(sectionType);
+//		sectionType = ReqIF10Factory.eINSTANCE.createSpecObjectType();
+//		sectionType.setLongName("Section");
+//		handleAttribute(RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__ID, RequirementSourceDataPackage.Literals.SECTION, sectionType);
+//		handleAttribute(RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__TEXT, RequirementSourceDataPackage.Literals.SECTION, sectionType);
+//		reqif.getCoreContent().getSpecTypes().add(sectionType);
 		
-		Specification specification = ReqIF10Factory.eINSTANCE.createSpecification();
-		listSpecHierarchy = specification.getChildren();
-		reqif.getCoreContent().getSpecifications().add(specification);
+		
+
+		reqType = ReqIF10Factory.eINSTANCE.createSpecObjectType();
+		reqType.setLongName("Requirement");
+		handleAttribute(RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__ID, RequirementSourceDataPackage.Literals.REQUIREMENT, reqType);
+		handleAttribute(RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__TEXT, RequirementSourceDataPackage.Literals.REQUIREMENT, reqType);
+		reqif.getCoreContent().getSpecTypes().add(reqType);
 
 		handleTypes(reqResult);
 
@@ -156,12 +166,39 @@ public class ReqIFExport {
 
 		return reqif;
 	}
+	
+	private void handleAttribute(EStructuralFeature newAttribute, EClass classDescriptor, SpecObjectType specType) {
+		if (newAttribute.getEType() instanceof EDataType) {
+			AttributeDefinition attDef = (AttributeDefinition) ReqIF10Factory.eINSTANCE.create(attDefinitions.get(newAttribute.getEType()));
+			Map<EStructuralFeature, AttributeDefinition> map = attributeDefinitions.get(classDescriptor);
+			if (map == null) {
+				map = Maps.newHashMap();
+				attributeDefinitions.put(classDescriptor, map);
+			}
+			map.put(newAttribute, attDef);
+			attDef.setLongName(newAttribute.getName());
+			EStructuralFeature typeFeature = attDef.eClass().getEStructuralFeature("type");
+			attDef.eSet(typeFeature, basicTypesMapping.get(newAttribute.getEType()));
+			specType.getSpecAttributes().add(attDef);
+		}
+	}
 
 	private void handleTypes(Iterator<IRequirementProvider> reqResult) {
 		while (reqResult.hasNext()) {
 			IRequirementProvider iReqProvider = (IRequirementProvider) reqResult.next();
-			if(iReqProvider instanceof RequirementSourceReqProvider){
-				IDataModel dataModel = modelManager.getDataModelByURI(((RequirementSourceReqProvider) iReqProvider).getSource().getDataModelURI());
+			if (iReqProvider instanceof RequirementSourceReqProvider) {
+				RequirementSource source = ((RequirementSourceReqProvider) iReqProvider).getSource();
+				
+				Specification specification = ReqIF10Factory.eINSTANCE.createSpecification();
+				EList<SpecHierarchy> listSpecHierarchy = specification.getChildren();
+				SpecificationType specificationType = ReqIF10Factory.eINSTANCE.createSpecificationType();
+				specification.setType(specificationType);
+				
+				specification.setLongName(source.getName());
+				reqif.getCoreContent().getSpecTypes().add(specificationType);
+				reqif.getCoreContent().getSpecifications().add(specification);
+				
+				IDataModel dataModel = modelManager.getDataModelByURI(source.getDataModelURI());
 				Collection<IType> types = dataModel.getTypes();
 				for (IType iType : types) {
 					if (iType instanceof IRequirementType) {
@@ -171,70 +208,38 @@ public class ReqIFExport {
 						specType.setLongName(iType.getName());
 						for (IAttribute att : ((IRequirementType) iType).getAttributes()) {
 							EStructuralFeature feature = (EStructuralFeature) ((IAdaptable) att).getAdapter(EStructuralFeature.class);
-							
-							if (feature.getEType() instanceof EDataType) {
-								AttributeDefinition attDef = (AttributeDefinition) ReqIF10Factory.eINSTANCE.create(attDefinitions.get(feature.getEType()));
-								attributeDefinitions.put(feature, attDef);
-								attDef.setLongName(att.getName());
-								EStructuralFeature typeFeature = attDef.eClass().getEStructuralFeature("type");
-								attDef.eSet(typeFeature, basicTypesMapping.get(feature.getEType()));
-								specType.getSpecAttributes().add(attDef);
-							}
+							handleAttribute(feature, classDescriptor, specType);
 						}
 						reqif.getCoreContent().getSpecTypes().add(specType);
 					}
 				}
 				
-				handleSpecHierarchy(iReqProvider.getRequirements(), null);
+				
+
+				handleSpecHierarchy(iReqProvider.getRequirements(), null, listSpecHierarchy);
 			}
 		}
 	}
 
-	private void handleSpecHierarchy(EList<AbstractElement> requirements, EList<SpecHierarchy> specHierarchies) {
+	private void handleSpecHierarchy(EList<AbstractElement> requirements, EList<SpecHierarchy> specHierarchies, EList<SpecHierarchy> listSpecHierarchy) {
 		for (AbstractElement abstractElement : requirements) {
 			SpecHierarchy specHierarchy = ReqIF10Factory.eINSTANCE.createSpecHierarchy();
 			SpecObject so = ReqIF10Factory.eINSTANCE.createSpecObject();
-			so.setIdentifier(EcoreUtil.generateUUID());
 			so.setDesc(abstractElement.getText());
-			
-			if (RequirementSourceDataPackage.Literals.SECTION.equals(abstractElement.eClass())) {
-				EClass classDescriptor = abstractElement.eClass();
-				for (EStructuralFeature feature : classDescriptor.getEAllStructuralFeatures()) {
-						if (feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__ID 
-								|| feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__TEXT
-								|| !RequirementSourceDataPackage.eINSTANCE.equals(feature.getEContainingClass().getEPackage())) {
-							AttributeDefinition def = attributeDefinitions.get(feature);
+
+			EClass classDescriptor = abstractElement.eClass();
+			for (EStructuralFeature feature : classDescriptor.getEAllStructuralFeatures()) {
+				if ("scopes".equals(feature.getName())) {
+					// TODO
+				} else {
+					if (feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__ID || feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__TEXT
+							|| !RequirementSourceDataPackage.eINSTANCE.equals(feature.getEContainingClass().getEPackage())) {
+						Map<EStructuralFeature, AttributeDefinition> map = attributeDefinitions.get(classDescriptor);
+						if (map != null) {
+							AttributeDefinition def = map.get(feature);
 							EClass attValClass = attValues.get(feature.getEType());
 							AttributeValue attVal = (AttributeValue) ReqIF10Factory.eINSTANCE.create(attValClass);
-							
-							EStructuralFeature theValueFeature = attVal.eClass().getEStructuralFeature("theValue");
-							attVal.eSet(theValueFeature, convert(abstractElement.eGet(feature)));
-							EStructuralFeature defFeature = attVal.eClass().getEStructuralFeature("definition");
-							attVal.eSet(defFeature, def);
-							so.getValues().add(attVal);
-						}
-				}
-				so.setType(sectionType);
-				
-				/*so.setType(sectionType);
-				AttributeValue create = (AttributeValue) ReqIF10Factory.eINSTANCE.create(attValues.get(EcorePackage.Literals.ESTRING));
-				EStructuralFeature theValueFeature = create.eClass().getEStructuralFeature("id");
-				create.eSet(theValueFeature,((Section)abstractElement).getId());
-				so.getValues().add(create);*/
-				
-			} else {
-				EClass classDescriptor = abstractElement.eClass();
-				for (EStructuralFeature feature : classDescriptor.getEAllStructuralFeatures()) {
-					if ("scopes".equals(feature.getName())) {
-						// TODO
-					} else {
-						if (feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__ID 
-								|| feature == RequirementSourceDataPackage.Literals.ABSTRACT_ELEMENT__TEXT
-								|| !RequirementSourceDataPackage.eINSTANCE.equals(feature.getEContainingClass().getEPackage())) {
-							AttributeDefinition def = attributeDefinitions.get(feature);
-							EClass attValClass = attValues.get(feature.getEType());
-							AttributeValue attVal = (AttributeValue) ReqIF10Factory.eINSTANCE.create(attValClass);
-							
+
 							EStructuralFeature theValueFeature = attVal.eClass().getEStructuralFeature("theValue");
 							attVal.eSet(theValueFeature, convert(abstractElement.eGet(feature)));
 							EStructuralFeature defFeature = attVal.eClass().getEStructuralFeature("definition");
@@ -243,9 +248,16 @@ public class ReqIFExport {
 						}
 					}
 				}
-				so.setType(specObjectTypes.get(classDescriptor));
 			}
-			specHierarchy.setObject(so);
+			if (RequirementSourceDataPackage.Literals.SECTION.equals(abstractElement.eClass())) {
+				specHierarchy.setLongName(abstractElement.getId());
+			} else if (RequirementSourceDataPackage.Literals.REQUIREMENT.equals(abstractElement.eClass())) {
+				so.setType(reqType);
+				specHierarchy.setObject(so);
+			} else {
+				so.setType(specObjectTypes.get(classDescriptor));
+				specHierarchy.setObject(so);
+			}
 			reqif.getCoreContent().getSpecObjects().add(so);
 			if (specHierarchies == null) {
 				listSpecHierarchy.add(specHierarchy);
@@ -254,7 +266,7 @@ public class ReqIFExport {
 			}
 			if (abstractElement instanceof Section && !((Section) abstractElement).getChildren().isEmpty()) {
 
-				handleSpecHierarchy(((Section) abstractElement).getChildren(), specHierarchy.getChildren());
+				handleSpecHierarchy(((Section) abstractElement).getChildren(), specHierarchy.getChildren(), listSpecHierarchy);
 			}
 
 		}

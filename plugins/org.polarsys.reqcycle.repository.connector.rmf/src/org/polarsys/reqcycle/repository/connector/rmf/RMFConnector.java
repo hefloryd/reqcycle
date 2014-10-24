@@ -32,10 +32,10 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.rmf.reqif10.SpecType;
 import org.polarsys.reqcycle.repository.connector.ICallable;
 import org.polarsys.reqcycle.repository.connector.IURIValidatorConnector;
+import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFBean;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFRepositoryMappingPage;
 import org.polarsys.reqcycle.repository.connector.rmf.ui.RMFSettingPage;
 import org.polarsys.reqcycle.repository.connector.ui.wizard.IConnectorWizard;
-import org.polarsys.reqcycle.repository.connector.ui.wizard.pages.AbstractStorageBean;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
 import org.polarsys.reqcycle.repository.data.MappingModel.MappingElement;
@@ -53,7 +53,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 
 	protected RequirementSource initSource;
 
-	protected AbstractStorageBean bean;
+	protected RMFBean bean;
 
 	@Inject
 	IDataModelManager dataTypeManage;
@@ -79,7 +79,7 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 		// if the wizard is initialized with a requirement source (requirement
 		// source edition)
 		// then the mapping page is added instead of settingPage
-		bean = new AbstractStorageBean();
+		bean = new RMFBean();
 		settingPage = new RMFSettingPage(bean);
 
 		addPage(settingPage);
