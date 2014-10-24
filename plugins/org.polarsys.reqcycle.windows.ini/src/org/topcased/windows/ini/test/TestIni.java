@@ -48,8 +48,6 @@ public class TestIni
             
             sd.get("Variable1Name");
             
-            System.out.println(names);
-            
             Ini saver = new Ini();
             Section section = saver.add("Types");
             boolean bool = true;

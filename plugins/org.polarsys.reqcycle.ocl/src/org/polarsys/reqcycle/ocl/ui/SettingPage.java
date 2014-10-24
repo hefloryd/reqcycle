@@ -165,7 +165,6 @@ public class SettingPage extends AbstractSettingPage {
 				// RFa we do not want to restrict to UML files
 				if (o instanceof IFile) {
 					URI uri = URI.createPlatformResourceURI(((IFile) o).getFullPath().toOSString(), true);
-					System.out.println("uri: " + uri);
 					if (EMFUtils.isEMF(uri, false)) {
 						return Status.OK_STATUS;
 					}

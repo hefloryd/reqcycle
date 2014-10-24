@@ -65,8 +65,6 @@ public class InitializeConfigurationHandler extends AbstractHandler {
 					String fileName = entry.getName();
 					File newFile = new File(org.polarsys.reqcycle.utils.configuration.Activator.getDefault().getStateLocation() + File.separator + fileName);
 
-					System.out.println("file unzip : " + newFile.getAbsoluteFile());
-
 					// create all non exists folders
 					// else you will hit FileNotFoundException for compressed folder
 					if (newFile.getParent() != null) {

@@ -124,8 +124,6 @@ public class OCLUtilities {
 	 */
 	public static IStatus isOperationPresent(final IAttribute attribute, BaseResource resource) {
 		String attributeTypeName = attribute.getType().getName();
-		System.out.println("attribute name= " + attribute.getName());
-		System.out.println("attributeTypeName = " + attributeTypeName);
 		if (!mapToOCLPrimitives.containsKey(attributeTypeName)) {
 			return new Status(IStatus.WARNING, ReqcycleOCLPlugin.PLUGIN_ID, "Type " + attributeTypeName + " cannot be used in OCL.");
 		}

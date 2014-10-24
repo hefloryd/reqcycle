@@ -108,8 +108,6 @@ public class TableController {
 				} catch (EngineException e) {
 					e.printStackTrace();
 				}
-				long duration = new Date().getTime() - start;
-				// System.out.println(" duration getLinks " + duration);
 				return new ArrayList<Link>().iterator();
 			}
 		};

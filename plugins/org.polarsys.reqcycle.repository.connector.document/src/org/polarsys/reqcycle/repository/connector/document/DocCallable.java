@@ -93,16 +93,10 @@ public class DocCallable implements ICallable {
 					}
 					if (e instanceof Section){
 						Section section = (Section) e;
-						System.out.println(section.getTitle().getTextContent());
-						if(section.getParent() != null)
-						System.out.println(section.getParent().getTitle().toString());
 						sections.add(section);
 						
 					}
 				}
-				System.out.println("DEBUT DOC");
-				System.out.println(doc);
-				System.out.println("FIN DOC");
 			}		
 		
 		}
