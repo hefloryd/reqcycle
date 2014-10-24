@@ -172,9 +172,11 @@ public class DataUtil {
 	 *            the attribute mapping ID
 	 * @return the attribute mapping found or null
 	 */
-	public static MappingAttribute getAttributeMapping(MappingElement mappingElement, String id) {
+	public static MappingAttribute getAttributeMapping(MappingElement mappingElement, String id, String longName) {
 		for (MappingAttribute attribute : mappingElement.getAttributes()) {
-			if (id.equals(attribute.getSourceId())) {
+			if (id !=null && id.equals(attribute.getSourceId())) {
+				return attribute;
+			} else if (longName != null && longName.equals(attribute.getDescription())) {
 				return attribute;
 			}
 		}
@@ -190,9 +192,11 @@ public class DataUtil {
 	 *            the source element qualifier
 	 * @return the element mapping found or null
 	 */
-	public static MappingElement getElementMapping(Collection<MappingElement> mapping, String qualifier) {
+	public static MappingElement getElementMapping(Collection<MappingElement> mapping, String qualifier, String longName) {
 		for (MappingElement mappingElement : mapping) {
-			if (qualifier.equals(mappingElement.getSourceQualifier())) {
+			if (qualifier != null && qualifier.equals(mappingElement.getSourceQualifier())) {
+				return mappingElement;
+			} else if (longName != null && longName.equals(mappingElement.getDescription())) {
 				return mappingElement;
 			}
 		}

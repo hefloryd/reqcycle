@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.rmf.reqif10.AttributeDefinition;
 import org.eclipse.rmf.reqif10.AttributeValue;
 import org.eclipse.rmf.reqif10.AttributeValueEnumeration;
 import org.eclipse.rmf.reqif10.EnumValue;
@@ -163,11 +164,13 @@ public class RMFUtils {
 			SpecObject specObject = specHierarchy.getObject();
 			if (specObject != null) {
 
-				MappingElement elementMapping = DataUtil.getElementMapping(mapping, ReqIF10Util.getSpecType(specObject).getIdentifier());
+				SpecType specType = ReqIF10Util.getSpecType(specObject);
+				String identifier = specType.getIdentifier();
+				MappingElement elementMapping = DataUtil.getElementMapping(mapping, identifier, specType.getLongName());
 				if (elementMapping != null) {
 					String id = getID(elementMapping, specObject);
 					String name = getName(elementMapping, specObject);
-					createdObject = createElement(mapping, specObject, ReqIF10Util.getSpecType(specObject).getIdentifier(), id, name);
+					createdObject = createElement(mapping, specObject, identifier, specType.getLongName(), id, name);
 					if (scope != null && (createdObject instanceof Requirement)) {
 						createdObject.getScopes().add(scope);
 					}
@@ -204,8 +207,11 @@ public class RMFUtils {
 			if ("text".equalsIgnoreCase(attribute.getTargetAttribute().getName())) {
 				String sourceId = attribute.getSourceId();
 				for (AttributeValue value : element.getValues()) {
-					if (sourceId.equals(ReqIF10Util.getAttributeDefinition(value).getIdentifier())) {
+					AttributeDefinition attributeDefinition = ReqIF10Util.getAttributeDefinition(value);
+					if (sourceId != null && sourceId.equals(attributeDefinition.getIdentifier())) {
 						return ReqIF10Util.getTheValue(value) == null ? null : ReqIF10Util.getTheValue(value).toString();
+					} else if (attribute.getDescription() != null && attribute.getDescription().equals(attributeDefinition.getLongName())) {
+						return ReqIF10Util.getTheValue(value).toString();
 					}
 				}
 			}
@@ -219,7 +225,10 @@ public class RMFUtils {
 			if ("id".equalsIgnoreCase(attribute.getTargetAttribute().getName())) {
 				String sourceId = attribute.getSourceId();
 				for (AttributeValue value : element.getValues()) {
-					if (sourceId.equals(ReqIF10Util.getAttributeDefinition(value).getIdentifier())) {
+					AttributeDefinition attributeDefinition = ReqIF10Util.getAttributeDefinition(value);
+					if (sourceId != null && sourceId.equals(attributeDefinition.getIdentifier())) {
+						return ReqIF10Util.getTheValue(value).toString();
+					} else if (attribute.getDescription() != null && attribute.getDescription().equals(attributeDefinition.getLongName())) {
 						return ReqIF10Util.getTheValue(value).toString();
 					}
 				}
@@ -228,8 +237,8 @@ public class RMFUtils {
 		return "";
 	}
 
-	protected static AbstractElement createElement(Collection<MappingElement> mapping, SpecElementWithAttributes specElement, String sourceQualifier, String id, String name) {
-		MappingElement elementMapping = DataUtil.getElementMapping(mapping, sourceQualifier);
+	protected static AbstractElement createElement(Collection<MappingElement> mapping, SpecElementWithAttributes specElement, String sourceQualifier, String longName, String id, String name) {
+		MappingElement elementMapping = DataUtil.getElementMapping(mapping, sourceQualifier, longName);
 		AbstractElement createdObject = null;
 		if (elementMapping != null) {
 			try {
@@ -250,10 +259,13 @@ public class RMFUtils {
 	protected static void addAttributes(MappingElement elementMapping, Collection<AttributeValue> values, AbstractElement element) {
 		for (AttributeValue attributeValue : values) {
 
-			MappingAttribute attributeMapping = DataUtil.getAttributeMapping(elementMapping, ReqIF10Util.getAttributeDefinition(attributeValue).getIdentifier());
-
-			if (attributeMapping == null || "id".equalsIgnoreCase(attributeMapping.getTargetAttribute().getName()) || "text".equalsIgnoreCase(attributeMapping.getTargetAttribute().getName())) {
-
+			AttributeDefinition attributeDefinition = ReqIF10Util.getAttributeDefinition(attributeValue);
+			MappingAttribute attributeMapping = DataUtil.getAttributeMapping(elementMapping, attributeDefinition.getIdentifier(), attributeDefinition.getLongName());
+			if (attributeMapping == null) {
+				continue;
+			}
+			EAttribute attributeToSet = attributeMapping.getTargetAttribute();
+			if ("id".equalsIgnoreCase(attributeToSet.getName()) || "text".equalsIgnoreCase(attributeToSet.getName())) {
 				continue;
 			}
 
@@ -261,21 +273,25 @@ public class RMFUtils {
 				if (attributeValue instanceof AttributeValueEnumeration) {
 					for (EnumValue enumValue : ((AttributeValueEnumeration) attributeValue).getValues()) {
 						String name = enumValue.getLongName();
-						EAttribute targetAttribute = attributeMapping.getTargetAttribute();
+						EAttribute targetAttribute = attributeToSet;
 						if (targetAttribute.getEAttributeType() instanceof EEnum) {
-
 							EEnumLiteral enumLiteral = ((EEnum) targetAttribute.getEAttributeType()).getEEnumLiteral(name);
-							element.eSet(attributeMapping.getTargetAttribute(), enumLiteral);
+							element.eSet(attributeToSet, enumLiteral);
 							// creator.addAttribute(attributeMapping, element,
 							// enumLiteral);
 						}
 					}
 				}
-				element.eSet(attributeMapping.getTargetAttribute(), ReqIF10Util.getTheValue(attributeValue));
+				Object theValue = ReqIF10Util.getTheValue(attributeValue);
+				if (attributeToSet.getEType().isInstance(theValue)) {
+					element.eSet(attributeToSet, theValue);
+				} else {
+					logger.error("Can't add the attribute " + attributeDefinition.getIdentifier() + " to the element " + element.getText());
+				}
 				// creator.addAttribute(attributeMapping, element,
 				// ReqIF10Util.getTheValue(attributeValue));
 			} catch (Exception e) {
-				logger.error("Can't add the attribute " + ReqIF10Util.getAttributeDefinition(attributeValue).getIdentifier() + " to the element " + element.getText());
+				logger.error("Can't add the attribute " + attributeDefinition.getIdentifier() + " to the element " + element.getText());
 			}
 		}
 	}
