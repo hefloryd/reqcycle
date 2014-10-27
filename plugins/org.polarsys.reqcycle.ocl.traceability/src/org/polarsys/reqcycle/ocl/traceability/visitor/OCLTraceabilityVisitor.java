@@ -7,13 +7,14 @@
  *  Contributors:
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - limited OCL compilation to startup and refresh only
+ *    	- fixed ocl traceability link creation after change in ReqCycle traceability architecture (EMF object instead of UUID)
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.traceability.visitor;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.UUID;
+
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -42,7 +43,7 @@ public class OCLTraceabilityVisitor implements IVisitor {
 	private OCLEvaluator evaluator;
 
 	// -RF- only one initialization at startup (static)
-	// private static IStatus initializationStatus = null;
+	private static IStatus initializationStatus = null;
 
 	@Override
 	public void start(IAdaptable adaptable) {
@@ -55,10 +56,12 @@ public class OCLTraceabilityVisitor implements IVisitor {
 			Resource resource = (Resource) o;
 			URI uri = resource.getURI();
 			if (uri != null && uri.fileExtension() != null && uri.fileExtension().equals("uml")) {
-				IStatus initializationStatus = initializeOCLEvaluator(uri);
+				//IStatus initializationStatus = initializeOCLEvaluator(uri);
 				/*
-				 * if (initializationStatus == null) initializationStatus = initializeOCLEvaluator(uri);
 				 */
+				if (initializationStatus == null) 
+					initializationStatus = initializeOCLEvaluator(uri);
+				 
 
 				if (!initializationStatus.isOK()) {
 					StatusManager.getManager().handle(initializationStatus, StatusManager.LOG);
@@ -114,17 +117,20 @@ public class OCLTraceabilityVisitor implements IVisitor {
 		String operationName = ttype.getOperationName();
 		EOperation traceaOperation = evaluator.getCompiledOperation(operationName, from);
 		if (traceaOperation != null) {
+			
 			Object result = evaluator.evaluateOperation(traceaOperation, from, new Object[0]);
+			
+			
 			if (result instanceof Collection<?>) {
 				for (Object o : ((Collection<?>) result)) {
-					UUID uniqueID = UUID.randomUUID();
-					callBack.newUpwardRelation(uniqueID.toString(), from.eResource(), o, Collections.singletonList(from), ttype);
+					// -RFa" traceability has evolved. UUID uniqueID = UUID.randomUUID();
+					callBack.newUpwardRelation(from, from.eResource(), o, Collections.singletonList(from), ttype);
 				}
 				return Status.OK_STATUS;
 			} else if (result != null) {
 				// Downward relation from "from" to "result" == upward relation from "result" to "from";
-				UUID uniqueID = UUID.randomUUID();
-				callBack.newUpwardRelation(uniqueID.toString(), from.eResource(), result, Collections.singletonList(from), ttype);
+				// -RFa" traceability has evolved. UUID uniqueID = UUID.randomUUID();
+				callBack.newUpwardRelation(from, from.eResource(), result, Collections.singletonList(from), ttype);
 				return Status.OK_STATUS;
 			} else {
 				return new Status(IStatus.ERROR, OCLTraceabilityPlugin.PLUGIN_ID, "Traceability operation -" + traceaOperation.getName() + "- returned null");
@@ -163,5 +169,7 @@ public class OCLTraceabilityVisitor implements IVisitor {
 
 		return Status.OK_STATUS;
 	}
+	
+
 
 }
