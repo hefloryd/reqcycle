@@ -6,6 +6,7 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *  Raphael FAUDOU (Samares Engineering) - fixed bug concerning comparison of destination path (isPageComplete)
  *
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.ui.wizard.pages;
@@ -109,7 +110,8 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		observeBean(bindingContext, this);
 	}
 
-	public static void observeBean(DataBindingContext bindingContext, IChangeListener listener) {
+	public static void observeBean(DataBindingContext bindingContext,
+			IChangeListener listener) {
 		IObservableList list = bindingContext.getValidationStatusProviders();
 		for (Object o : list) {
 			Binding b = (Binding) o;
@@ -117,16 +119,20 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 		}
 	}
 
-	protected void createModele(Composite compositeContainer, String labelTitleModele) {
+	protected void createModele(Composite compositeContainer,
+			String labelTitleModele) {
 
-		Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-		lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
+		Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR
+				| SWT.HORIZONTAL);
+		lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 4, 1));
 		Label lblDataModel = new Label(compositeContainer, SWT.NONE);
 		lblDataModel.setText(labelTitleModele);
 
 		cvDataModel = new ComboViewer(compositeContainer);
 		cDataModel = cvDataModel.getCombo();
-		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		cDataModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 3, 1));
 		cvDataModel.setContentProvider(ArrayContentProvider.getInstance());
 		cvDataModel.setLabelProvider(new LabelProvider() {
 
@@ -142,14 +148,16 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	}
 
-	protected void createScope(Composite compositeContainer, String labelTitleScope) {
+	protected void createScope(Composite compositeContainer,
+			String labelTitleScope) {
 
 		Label lblScope = new Label(compositeContainer, SWT.NONE);
 		lblScope.setText(labelTitleScope);
 
 		cvScope = new ComboViewer(compositeContainer);
 		cScope = cvScope.getCombo();
-		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		cScope.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3,
+				1));
 		cScope.setEnabled(false);
 		cvScope.setContentProvider(ArrayContentProvider.getInstance());
 		cvScope.setLabelProvider(new LabelProvider() {
@@ -168,12 +176,15 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	// protected void createCopyOrRefMode(Composite compositeContainer) {
 	//
-	// Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-	// lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
+	// Label lblSeparatorModele = new Label(compositeContainer, SWT.SEPARATOR |
+	// SWT.HORIZONTAL);
+	// lblSeparatorModele.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+	// false, 4, 1));
 	//
 	// radioBtnComposite = new Composite(compositeContainer, SWT.NONE);
 	// radioBtnComposite.setLayout(new GridLayout(5, false));
-	// radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+	// radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+	// false, 2, 1));
 	//
 	// lblMode = new Label(radioBtnComposite, SWT.None);
 	// lblMode.setText("Import Mode :");
@@ -197,16 +208,21 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	protected void createDestinationFile(Composite compositeContainer) {
 
-		Label lblSeparator = new Label(compositeContainer, SWT.SEPARATOR | SWT.HORIZONTAL);
-		lblSeparator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
+		Label lblSeparator = new Label(compositeContainer, SWT.SEPARATOR
+				| SWT.HORIZONTAL);
+		lblSeparator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 4, 1));
 
-		Composite radioBtnComposite = new Composite(compositeContainer, SWT.NONE);
+		Composite radioBtnComposite = new Composite(compositeContainer,
+				SWT.NONE);
 		radioBtnComposite.setLayout(new GridLayout(1, false));
-		radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 4, 1));
+		radioBtnComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 4, 1));
 
 		Composite compositeCopy = new Composite(radioBtnComposite, SWT.NONE);
 		compositeCopy.setLayout(new GridLayout(3, false));
-		compositeCopy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		compositeCopy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false));
 
 		lblCopyFile = new Label(compositeCopy, SWT.NONE);
 		lblCopyFile.setText("Repository Folder :");
@@ -225,23 +241,26 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 	protected void getDataModelSelectionChangedListener() {
 
-		cvDataModel.addSelectionChangedListener(new ISelectionChangedListener() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				inputScope.clear();
-				cScope.setEnabled(false);
-				ISelection selection = event.getSelection();
-				if (selection instanceof IStructuredSelection) {
-					Object obj = ((IStructuredSelection) selection).getFirstElement();
-					if (obj instanceof IDataModel) {
-						cScope.setEnabled(true);
-						inputScope.addAll(dataManager.getScopes((IDataModel) obj));
+		cvDataModel
+				.addSelectionChangedListener(new ISelectionChangedListener() {
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						inputScope.clear();
+						cScope.setEnabled(false);
+						ISelection selection = event.getSelection();
+						if (selection instanceof IStructuredSelection) {
+							Object obj = ((IStructuredSelection) selection)
+									.getFirstElement();
+							if (obj instanceof IDataModel) {
+								cScope.setEnabled(true);
+								inputScope.addAll(dataManager
+										.getScopes((IDataModel) obj));
 
+							}
+						}
+						cvScope.refresh();
 					}
-				}
-				cvScope.refresh();
-			}
-		});
+				});
 	}
 
 	protected void getDestinationFileSelectionListener() {
@@ -250,13 +269,18 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ContainerSelectionDialog dialog = new ContainerSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), true, "select location for save");
+				ContainerSelectionDialog dialog = new ContainerSelectionDialog(
+						getShell(), ResourcesPlugin.getWorkspace().getRoot(),
+						true, "select location for save");
 				if (Window.OK == dialog.open()) {
 					Object[] result = dialog.getResult();
 					if (result != null && result.length > 0) {
 						if (result[0] instanceof IPath) {
 							IPath path = (IPath) result[0];
-							txtFile.setText(URI.createPlatformResourceURI(path.append(getBean().getFileName()).addFileExtension("reqcycle").toString(), true).toString());
+							txtFile.setText(URI.createPlatformResourceURI(
+									path.append(getBean().getFileName())
+											.addFileExtension("reqcycle")
+											.toString(), true).toString());
 						}
 					}
 				}
@@ -284,23 +308,36 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 	// });
 	// }
 
-	protected final DataBindingContext initDataBindings(DataBindingContext bindingContext) {
+	protected final DataBindingContext initDataBindings(
+			DataBindingContext bindingContext) {
 
-		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties.singleSelection().observe(cvDataModel);
-		IObservableValue dataPackageBeanObserveValue = PojoProperties.value("dataModel").observe(getBean());
-		bindingContext.bindValue(observeSingleSelectionCvDataModel, dataPackageBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvDataModel = ViewerProperties
+				.singleSelection().observe(cvDataModel);
+		IObservableValue dataPackageBeanObserveValue = PojoProperties.value(
+				"dataModel").observe(getBean());
+		bindingContext.bindValue(observeSingleSelectionCvDataModel,
+				dataPackageBeanObserveValue, null, null);
 		//
-		IObservableValue observeSingleSelectionCvScope = ViewerProperties.singleSelection().observe(cvScope);
-		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope").observe(getBean());
-		bindingContext.bindValue(observeSingleSelectionCvScope, scopeBeanObserveValue, null, null);
+		IObservableValue observeSingleSelectionCvScope = ViewerProperties
+				.singleSelection().observe(cvScope);
+		IObservableValue scopeBeanObserveValue = PojoProperties.value("scope")
+				.observe(getBean());
+		bindingContext.bindValue(observeSingleSelectionCvScope,
+				scopeBeanObserveValue, null, null);
 		//
-		IObservableValue observeTextTxtFileObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtFile);
-		IObservableValue modelPathBeanObserveValue = PojoProperties.value("outputPath").observe(getBean());
-		bindingContext.bindValue(observeTextTxtFileObserveWidget, modelPathBeanObserveValue, null, null);
+		IObservableValue observeTextTxtFileObserveWidget = WidgetProperties
+				.text(SWT.Modify).observe(txtFile);
+		IObservableValue modelPathBeanObserveValue = PojoProperties.value(
+				"outputPath").observe(getBean());
+		bindingContext.bindValue(observeTextTxtFileObserveWidget,
+				modelPathBeanObserveValue, null, null);
 		//
-		// IObservableValue observeSelectionRadioBtnReferenceImportObserveWidget = WidgetProperties.selection().observe(radioBtnReferenceImport);
-		// IObservableValue isReferenceBeanObserveValue = PojoProperties.value("isReference").observe(getBean());
-		// bindingContext.bindValue(observeSelectionRadioBtnReferenceImportObserveWidget, isReferenceBeanObserveValue, null, null);
+		// IObservableValue observeSelectionRadioBtnReferenceImportObserveWidget
+		// = WidgetProperties.selection().observe(radioBtnReferenceImport);
+		// IObservableValue isReferenceBeanObserveValue =
+		// PojoProperties.value("isReference").observe(getBean());
+		// bindingContext.bindValue(observeSelectionRadioBtnReferenceImportObserveWidget,
+		// isReferenceBeanObserveValue, null, null);
 		//
 		doSpecificInitDataBindings(bindingContext);
 		return bindingContext;
@@ -327,8 +364,11 @@ public class AbstractSettingPage extends WizardPage implements IChangeListener {
 			result = false;
 		}
 
-		if (!(getBean().getIsReference()) && ((getBean().getOutputPath() == null) || (getBean().getOutputPath() == ""))) {
-			error.append("Choose a destination path\n");
+		// -RFa- fixed bug concerning comparison of empty string
+		if (!(getBean().getIsReference())
+				&& ((getBean().getOutputPath() == null) || "".equals(getBean()
+						.getOutputPath()))) {
+			error.append("Choose a destination path (Repository folder)\n");
 			result = false;
 		}
 

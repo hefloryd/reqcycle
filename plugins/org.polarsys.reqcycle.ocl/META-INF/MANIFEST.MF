@@ -27,7 +27,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.ocl,
  org.polarsys.reqcycle.ocl.ui
-Export-Package: org.polarsys.reqcycle.ocl,
- org.polarsys.reqcycle.ocl.ui
-Export-Package: org.polarsys.reqcycle.ocl,
- org.polarsys.reqcycle.ocl.ui
+
+

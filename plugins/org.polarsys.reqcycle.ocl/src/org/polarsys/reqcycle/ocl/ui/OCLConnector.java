@@ -8,6 +8,7 @@
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage types and align
  * 		connector on other connectors with a destination file
+ * 		- prevent finishing import without storage .reqcycle file (canFinish)
  *    Malick WADE (AtoS) - restructuring connector architecture
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.ui;
@@ -88,12 +89,19 @@ public class OCLConnector extends Wizard implements IConnectorWizard,IURIValidat
 
 	@Override
 	public boolean canFinish() {
-		if (bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty()) {
-			if (bean.getIsReference()) {
+		//for 0.8.0 reference is not managed. We always need to get bean.output path
+		if (bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty() && !bean.getOutputPath().isEmpty()) {
+			 return true;
+		}
+		/* code provisinoned for 0.9.0 release
+		 * if (bean != null && bean.getOclUri() != null && bean.getDataModel() != null && bean.getUri() != null && !bean.getOclUri().isEmpty() && !bean.getUri().isEmpty()) {
+		
+			  if (bean.getIsReference()) {
+			 
 				return true;
 			} else
 				return !bean.getOutputPath().isEmpty();
-		}
+		} */
 		return false;
 	}
 

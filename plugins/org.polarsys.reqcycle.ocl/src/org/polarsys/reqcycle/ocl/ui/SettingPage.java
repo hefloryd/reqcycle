@@ -125,6 +125,10 @@ public class SettingPage extends AbstractSettingPage {
 				}
 			}
 		}
+		// -RFa" ensure that .reqcycle is defined for 0.8.0.
+		/*if ()
+			
+		}*/
 
 		if (!result) {
 			setErrorMessage(msg);

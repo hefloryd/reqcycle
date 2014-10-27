@@ -8,6 +8,7 @@
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage types and align
  * 		connector on other connectors with a destination file
+ * 		- added support for "Int" type
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.utils;
 
@@ -57,6 +58,7 @@ public class OCLUtilities {
 		mapToOCLPrimitives.put("boolean", "Boolean"); //$NON-NLS-1$
 		mapToOCLPrimitives.put("Float", "Real"); //$NON-NLS-1$
 		mapToOCLPrimitives.put("int", "Integer"); //$NON-NLS-1$
+		mapToOCLPrimitives.put("Int", "Integer"); //$NON-NLS-1$
 		mapToOCLPrimitives.put("long", "Integer"); //$NON-NLS-1$
 		mapToOCLPrimitives.put("Long", "Integer"); //$NON-NLS-1$
 		mapToOCLPrimitives.put("Short", "Integer"); //$NON-NLS-1$

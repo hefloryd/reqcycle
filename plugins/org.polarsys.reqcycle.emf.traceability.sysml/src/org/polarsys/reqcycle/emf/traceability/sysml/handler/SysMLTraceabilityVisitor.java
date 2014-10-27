@@ -6,8 +6,8 @@
  * http://www.eclipse.org/legal/epl-v10.html *
  * Contributors:
  *  Tristan Faure (AtoS) - initial API and implementation and/or initial documentation
- *  Raphael Faudou (Samares Engineering) fixed bug on ocl traceability - silent looping exception 
- * if traceability.ocl file not present.
+ *  Raphael Faudou (Samares Engineering) fixed bug on capture of SysML links 
+ *  			fixed bug on "allocate" relationship
  *******************************************************************************/
 package org.polarsys.reqcycle.emf.traceability.sysml.handler;
 
@@ -56,8 +56,9 @@ public class SysMLTraceabilityVisitor implements IVisitor {
 		if (abstraction.getSuppliers().isEmpty())
 			return;
 
-		Object source = abstraction.getClients().get(0);
-		Object target = abstraction.getSuppliers().get(0);
+		// -RFa- inverse source and target (was in wrong direction for upward relation)
+		Object target = abstraction.getClients().get(0);
+		Object source = abstraction.getSuppliers().get(0);
 		TType tType = SysMLTTypeProvider.get(satis.eClass());
 		getCallBack(adaptable).newUpwardRelation(satis, satis.eResource(), source, Collections.singletonList(target), tType);
 	}
