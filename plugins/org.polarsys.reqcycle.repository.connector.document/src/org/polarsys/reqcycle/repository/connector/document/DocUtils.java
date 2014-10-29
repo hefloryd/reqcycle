@@ -6,6 +6,9 @@
  *  http://www.eclipse.org/legal/epl-v10.html *
  *  Contributors:
  *  Malick WADE (AtoS) - initial API and implementation and/or initial documentation
+ *  Raphael Faudou (samares Engineering) - Fixed partially doc Types connector on robustness:
+ * 		When there were bad/partial mappings, a NPE occured and nothing happend after req source finish button was clicked.
+ * 		Now req source is created empty. End user understands he/she has to check mapping.
  *
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.document;
@@ -110,7 +113,14 @@ public class DocUtils {
 				
 				for (Attribute att : reqIn.getAttributesReq()){
 					MappingAttribute mappingAttribute = MappingModelFactory.eINSTANCE.createMappingAttribute();
-					mappingAttribute.setSourceId(att.getRegexAttribute().getExpression());
+					// -RFa- attribute might have no regex attribute...
+					if (att.getRegexAttribute() != null) {
+						mappingAttribute.setSourceId(att.getRegexAttribute().getExpression());
+					}
+					else {
+						// @Fixme
+						System.out.println("warning: attribute " + att.getNameAttribute() + " has no regex ");
+					}
 					mappingAttribute.setDescription(att.getNameAttribute());
 					elementMapping.getAttributes().add(mappingAttribute);
 				}		
