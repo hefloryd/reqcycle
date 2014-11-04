@@ -41,8 +41,16 @@ public class SysMLTraceabilityVisitor implements IVisitor {
 
 	public boolean visit(Allocate satis, IAdaptable adaptable) {
 		Abstraction abstraction = satis.getBase_Abstraction();
+		if (abstraction.getClients().isEmpty()) {
+			return true;
+		}
+		if (abstraction.getSuppliers().isEmpty()) {
+			return true;
+		}
 		if (abstraction != null) {
-			visit(satis, adaptable, abstraction);
+			Object source = abstraction.getSuppliers().get(0);
+			Object target = abstraction.getClients().get(0);
+			newUpwardRelation(satis, adaptable, source, target);
 		}
 		return true;
 	}
@@ -51,14 +59,19 @@ public class SysMLTraceabilityVisitor implements IVisitor {
 
 		// -RFa- abstraction might be orphan or incomplete
 		// we must check clients and suppliers.
-		if (abstraction.getClients().isEmpty())
-			return;
-		if (abstraction.getSuppliers().isEmpty())
-			return;
+		if (abstraction == null || abstraction.getClients().isEmpty() || abstraction.getSuppliers().isEmpty()){
+			return ;
+		}
 
-		// -RFa- inverse source and target (was in wrong direction for upward relation)
-		Object target = abstraction.getClients().get(0);
-		Object source = abstraction.getSuppliers().get(0);
+		Object source = abstraction.getClients().get(0);
+		Object target = abstraction.getSuppliers().get(0);
+		newUpwardRelation(satis, adaptable, source, target);
+	}
+
+	private void newUpwardRelation(EObject satis, IAdaptable adaptable, Object source, Object target) {
+		if (source == null || target == null){
+			return ;
+		}
 		TType tType = SysMLTTypeProvider.get(satis.eClass());
 		getCallBack(adaptable).newUpwardRelation(satis, satis.eResource(), source, Collections.singletonList(target), tType);
 	}
