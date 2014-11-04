@@ -268,8 +268,10 @@ public class TraceabilityViewer extends ViewPart implements ISelectionListener {
 							} catch (NoProjectStorageException e) {
 								e.printStackTrace();
 							} finally {
-								storage.save();
-								storage.dispose();
+								if (storage != null) {
+									storage.save();
+									storage.dispose();
+								}
 							}
 						}
 					}
