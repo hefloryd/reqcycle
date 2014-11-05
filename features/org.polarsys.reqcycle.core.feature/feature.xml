@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.polarsys.reqcycle.core.feature"
-      label="polarsys reqcycle core"
+      label="polarsys reqcycle core (Incubation)"
       version="0.8.0.qualifier">
 
    <description>
@@ -19,7 +19,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-
 
    <plugin
          id="org.polarsys.reqcycle.core"

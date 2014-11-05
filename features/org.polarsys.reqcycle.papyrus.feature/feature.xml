@@ -12,7 +12,7 @@
  -->
 <feature
       id="org.polarsys.reqcycle.papyrus.feature"
-      label="polarsys reqcycle papyrus"
+      label="polarsys reqcycle papyrus (Incubation)"
       version="0.8.0.qualifier">
 
    <description>

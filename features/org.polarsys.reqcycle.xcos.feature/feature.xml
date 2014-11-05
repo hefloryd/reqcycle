@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <feature
       id="org.polarsys.reqcycle.xcos.feature"
-      label="polarsys reqcycle xcos"
+      label="polarsys reqcycle xcos (Incubation)"
       version="0.8.0.qualifier">
 
    <description>

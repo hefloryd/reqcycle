@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Enum Properties Editor
+Bundle-Name: Enum Properties Editor (Incubation)
 Bundle-SymbolicName: org.polarsys.reqcycle.ui.enumpropseditor;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.reqcycle.ui.enumpropseditor.EnumPropsEditorPlugin
