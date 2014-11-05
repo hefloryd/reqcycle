@@ -20,7 +20,6 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-
    <plugin
          id="org.polarsys.reqcycle.core"
          download-size="0"
@@ -50,20 +49,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.polarsys.reqcycle.operations"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.polarsys.reqcycle.operations.requirement"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.polarsys.reqcycle.operations.traceability"
          download-size="0"
          install-size="0"
          version="0.0.0"
