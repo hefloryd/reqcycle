@@ -52,7 +52,6 @@
 		<module>../../plugins/org.polarsys.reqcycle.core</module>
 		<module>../../plugins/org.polarsys.reqcycle.core.ui</module>
 		<module>../../plugins/org.polarsys.reqcycle.emf</module>
-		<module>../../plugins/org.polarsys.reqcycle.glazedlist</module>
 		<module>../../plugins/org.polarsys.reqcycle.operations</module>
 		<module>../../plugins/org.polarsys.reqcycle.operations.requirement</module>
 		<module>../../plugins/org.polarsys.reqcycle.operations.ui</module>
