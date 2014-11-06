@@ -17,9 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.apache.commons.io
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: javax.inject,
- org.apache.commons.io.input;version="2.0.1",
- org.polarsys.reqcycle.traceability.builder
+Import-Package: javax.inject
 Export-Package: org.polarsys.reqcycle.traceability.storage.sesame,
  org.polarsys.reqcycle.traceability.storage.sesame.storage,
  org.polarsys.reqcycle.traceability.storage.sesame.storage.helpers,
