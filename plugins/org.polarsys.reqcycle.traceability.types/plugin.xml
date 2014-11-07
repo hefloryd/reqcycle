@@ -5,8 +5,8 @@
 -->
 
 <plugin>
-   <extension-point id="ttypes" name="Traceability Types" schema="schema/ttypes.exsd"/>
-   <extension-point id="tattributes" name="Traceability Attributes" schema="schema/tattributes.exsd"/>
+   <extension-point id="ttypes" name="%extension-point.name" schema="schema/ttypes.exsd"/>
+   <extension-point id="tattributes" name="%extension-point.name.0" schema="schema/tattributes.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

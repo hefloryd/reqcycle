@@ -7,7 +7,7 @@
             category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
             class="org.polarsys.reqcycle.traceability.storage.ui.prefs.StoragePathPreferencePage"
             id="org.polarsys.reqcycle.traceability.storage.ui.path"
-            name="Path For Traceability Storage">
+            name="%page.name">
       </page>
    </extension>
 

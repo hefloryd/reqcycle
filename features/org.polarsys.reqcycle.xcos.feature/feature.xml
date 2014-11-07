@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.polarsys.reqcycle.xcos.feature"
-      label="polarsys reqcycle xcos (Incubation)"
+      label="%featureName"
       version="0.8.0.qualifier">
 
    <description>
-      ReqCycle feature for xcos
+      %description
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">

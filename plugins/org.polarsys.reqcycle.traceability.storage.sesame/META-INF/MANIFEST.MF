@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Sesame (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.traceability.storage.sesame;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.traceability.storage.sesame.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -14,7 +15,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.core.services,
  org.eclipse.core.resources,
  org.polarsys.reqcycle.traceability.builder,
- org.apache.commons.io
+ org.apache.commons.io,
+ org.apache.log4j;bundle-version="1.2.15"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.inject
@@ -24,6 +26,5 @@ Export-Package: org.polarsys.reqcycle.traceability.storage.sesame,
  org.polarsys.reqcycle.traceability.storage.sesame.storage.internal.beans
 Bundle-ClassPath: lib/openrdf-sesame-2.7.12-onejar.jar,
  .,
- lib/log4j-1.2.16.jar,
  lib/slf4j-api-1.6.4.jar,
  lib/slf4j-log4j12-1.6.4.jar

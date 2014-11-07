@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Stub (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.stub;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.stub.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="ReqCycle Traceability"
+            name="%category.name"
             id="org.polarsys.reqcycle.traceability.ui">
       </category>
       <view
@@ -14,14 +14,14 @@
             class="org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer"
             icon="icons/path.gif"
             id="org.polarsys.reqcycle.traceability.ui.views.TraceabilityViewer"
-            name="TraceabilityViewer">
+            name="%view.name">
       </view>
       <view
             category="org.polarsys.reqcycle.traceability.ui"
             class="org.polarsys.reqcycle.traceability.ui.views.TraceabilityCreator"
             icon="icons/synced-1.gif"
             id="org.polarsys.reqcycle.traceability.ui.views.TraceabilityCreator"
-            name="Traceability Creator"
+            name="%view.name.0"
             restorable="true">
       </view>
       <!--<view
@@ -53,13 +53,13 @@
          <command
                commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityViewer"
                icon="icons/path.gif"
-               label="Traceability Viewer"
+               label="%command.label"
                style="push">
          </command>
          <command
                commandId="org.polarsys.reqcycle.traceability.ui.OpenTraceabilityCreator"
                icon="icons/synced-1.gif"
-               label="Traceability Creator"
+               label="%command.label.0"
                style="push">
          </command>
       </menuContribution>

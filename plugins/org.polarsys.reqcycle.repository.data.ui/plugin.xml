@@ -7,19 +7,19 @@
           category="org.polarsys.reqcycle.repository.data.ui.dataModelPreferencePage"
           class="org.polarsys.reqcycle.repository.data.ui.preference.pages.DataTypesPreferencePage"
           id="org.polarsys.reqcycle.repository.data.ui.typesPreferencePage"
-          name="Requirement Types Preferences">
+          name="%page.name">
     </page>
     <page
           category="org.polarsys.reqcycle.repository.data.ui.dataModelPreferencePage"
           class="org.polarsys.reqcycle.repository.data.ui.preference.pages.ScopesPreferencePage"
           id="org.polarsys.reqcycle.repository.data.ui.scopesPreferencePage"
-          name="Scopes Preferences">
+          name="%page.name.0">
     </page>
     <page
           category="org.eclipse.reqycle.core.ui.pref.reqcycle"
           class="org.polarsys.reqcycle.repository.data.ui.preference.pages.DataModelsPreferencePage"
           id="org.polarsys.reqcycle.repository.data.ui.dataModelPreferencePage"
-          name="Data Models Preferences">
+          name="%page.name.1">
     </page>
  </extension>
  <extension
@@ -56,7 +56,7 @@
     <command
           categoryId="org.polarsys.reqcycle.core.ui.category"
           id="org.polarsys.reqcycle.repository.data.ui.commands.updateMetaModel"
-          name="Update MetaModel">
+          name="%command.name">
     </command>
  </extension>
  <extension
@@ -64,7 +64,7 @@
     <wizard
           class="org.polarsys.reqcycle.repository.data.ui.wizard.ImportDataModel"
           id="org.polarsys.reqcycle.repository.data.ui.import.datamodel"
-          name="Import Data Model">
+          name="%wizard.name">
     </wizard>
  </extension>
  <extension
@@ -76,7 +76,7 @@
           extensions="reqcycle"
           icon="icons/reqcycle.png"
           id="org.polarsys.reqcycle.repository.data.ui.editor"
-          name="ReqCycle Local">
+          name="%editor.name">
     </editor>
  </extension>
  

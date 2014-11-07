@@ -66,7 +66,7 @@
       <perspective
             class="org.polarsys.reqcycle.predicates.ui.perspectives.PredicatesPerspective"
             id="org.polarsys.reqcycle.predicates.ui.perspectives.PredicatesPerspective"
-            name="Predicates">
+            name="%perspective.name">
       </perspective>
    </extension>
    <extension
@@ -85,7 +85,7 @@
      <command
            categoryId="org.polarsys.reqcycle.core.ui.category"
            id="org.polarsys.reqcycle.repository.ui.commands.OpenPredicatesEditorCommand"
-           name="Open Predicates Editor">
+           name="%command.name">
      </command>
   </extension>
   <extension
@@ -103,7 +103,7 @@
               commandId="org.polarsys.reqcycle.repository.ui.commands.OpenPredicatesEditorCommand"
               icon="icons/full/obj16/PredicatesModelFile.gif"
               id="org.polarsys.reqcycle.repository.ui.menus.openPredicatesEditorCommand"
-              mnemonic="S">
+              mnemonic="%command.mnemonic">
         </command>
      </menuContribution>
   </extension>

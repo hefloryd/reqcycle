@@ -30,9 +30,9 @@
    <feature url="features/org.polarsys.reqcycle.xcos.feature_0.8.0.qualifier.jar" id="org.polarsys.reqcycle.xcos.feature" version="0.8.0.qualifier">
       <category name="org.polarsys.reqcycle.updatesite"/>
    </feature>
-   <category-def name="org.polarsys.reqcycle.updatesite" label="Polarsys ReqCycle UpdateSite">
+   <category-def name="org.polarsys.reqcycle.updatesite" label="Polarsys ReqCycle UpdateSite (Incubation)">
       <description>
-         Thoses features integrate the GPM method. This the main feature of the gPM EF and gPM Interop.
+         Thoses features manage requirement import, traceability and export.
       </description>
    </category-def>
 </site>

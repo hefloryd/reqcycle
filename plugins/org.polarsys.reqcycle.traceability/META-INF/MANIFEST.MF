@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Traceability (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.traceability;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.polarsys.reqcycle.traceability.Activator
 Require-Bundle: org.eclipse.ui,

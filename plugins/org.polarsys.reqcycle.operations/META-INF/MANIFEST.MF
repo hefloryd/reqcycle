@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ReqCycle Operations (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.operations;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.operations.Activator
-Bundle-Vendor: Atos
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.polarsys.reqcycle.utils.inject

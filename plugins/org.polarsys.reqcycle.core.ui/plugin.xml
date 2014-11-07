@@ -6,7 +6,7 @@
 		<page
             class="org.polarsys.reqcycle.core.ui.preferences.ReqCyclePreferencePage"
             id="org.eclipse.reqycle.core.ui.pref.reqcycle"
-            name="ReqCycle">
+            name="%page.name">
       	</page>
    </extension>
    
@@ -16,30 +16,30 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
       	<menu
                id="org.polarsys.reqcycle.core.ui.menu"
-               label="ReqCycle"
-               mnemonic="M">
+               label="%menu.label"
+               mnemonic="%menu.mnemonic">
           <command
                 commandId="org.polarsys.reqcycle.core.ui.command.importConf"
                 icon="icons/import_wiz-1.gif"
-                label="Import Configuration"
+                label="%command.label"
                 style="push">
           </command>
           <command
                 commandId="org.polarsys.reqcycle.core.ui.command.exportConf"
                 icon="icons/export_wiz-1.gif"
-                label="Export Configuration"
+                label="%command.label.0"
                 style="push">
           </command>
           <command
                 commandId="org.polarsys.reqcycle.core.ui.command.initConf"
                 icon="icons/thread_obj.gif"
-                label="Initialize Configuration"
+                label="%command.label.1"
                 style="push">
           </command>
           <command
                 commandId="org.polarsys.reqcycle.core.ui.command.reqcyclePrefs"
                 icon="icons/thread_view-1.gif"
-                label="ReqCycle Preferences"
+                label="%command.label.2"
                 style="push">
           </command>
       	</menu>
@@ -48,7 +48,7 @@
             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
         <toolbar
               id="org.polarsys.reqcycle.core.ui.toolbar"
-              label="ReqCycle">
+              label="%toolbar.label">
 		</toolbar>
 	</menuContribution>
     </extension>
@@ -58,33 +58,33 @@
             class="org.polarsys.reqcycle.core.ui.perspective.ReqCyclePerspective"
             icon="icons/reqcycle.png"
             id="org.polarsys.reqcycle.core.ui.ReqCyclePerspective"
-            name="ReqCycle">
+            name="%perspective.name">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <category
             id="org.polarsys.reqcycle.core.ui.category"
-            name="ReqCycle Category">
+            name="%category.name">
       </category>
       <command
             categoryId="org.polarsys.reqcycle.core.ui.category"
             id="org.polarsys.reqcycle.core.ui.command.importConf"
-            name="Import Configuration">
+            name="%command.name">
       </command>
       <command
             categoryId="org.polarsys.reqcycle.core.ui.category"
             id="org.polarsys.reqcycle.core.ui.command.exportConf"
-            name="Export Configuration">
+            name="%command.name.0">
       </command>
       <command
             categoryId="org.polarsys.reqcycle.core.ui.category"
             id="org.polarsys.reqcycle.core.ui.command.initConf"
-            name="Initialize configuration">
+            name="%command.name.1">
       </command>
       <command
             id="org.polarsys.reqcycle.core.ui.command.reqcyclePrefs"
-            name="ReqCycle preferences">
+            name="%command.name.2">
       </command>
    </extension>
    <extension
@@ -110,14 +110,14 @@
          point="org.eclipse.ui.importWizards">
       <category
             id="org.polarsys.reqcycle.core.ui.import"
-            name="ReqCycle">
+            name="%category.name.0">
       </category>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">
       <category
             id="org.polarsys.reqcycle.core.ui.export"
-            name="ReqCycle">
+            name="%category.name.1">
       </category>
    </extension>
     

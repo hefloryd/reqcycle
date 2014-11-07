@@ -10,7 +10,7 @@
          <action
                class="org.polarsys.reqcycle.traceability.builder.ui.handlers.AddBuilderAction"
                id="org.polarsys.reqcycle.traceability.builder.ui.action1"
-               label="Add Traceability Builder"
+               label="%action.label"
                menubarPath="org.eclipse.ui.projectConfigure/additions">
          </action>
       </objectContribution>
@@ -21,13 +21,13 @@
             category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
             class="org.polarsys.reqcycle.traceability.builder.ui.preferences.TraceabilityBuildersPreferencePage"
             id="org.polarsys.reqcycle.traceability.types.ui.tracabuilders"
-            name="Projects to analyse">
+            name="%page.name">
       </page>
       <page
             category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
             class="org.polarsys.reqcycle.traceability.builder.ui.preferences.AnalysersPreferencePage"
             id="org.polarsys.reqcycle.traceability.types.ui.tracabuilders"
-            name="Analysers">
+            name="%page.name.0">
       </page>
    </extension>
    <extension

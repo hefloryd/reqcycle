@@ -15,7 +15,7 @@
             category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
             class="org.polarsys.reqcycle.jdt.traceability.preferences.JDTAnnotationPreferencePage"
             id="org.polarsys.reqcycle.jdt.traceability.annotation"
-            name="Java Annotations">
+            name="%page.name">
       </page>
    </extension>
    <extension

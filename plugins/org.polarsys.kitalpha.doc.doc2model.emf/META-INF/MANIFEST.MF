@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFContentHandler  (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.kitalpha.doc.doc2model.emf;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.polarsys.kitalpha.doc.doc2model.emf.Activator

@@ -32,7 +32,7 @@
          <command
                commandId="org.polarsys.reqcycle.repository.connector.local.editRequirements.command"
                id="org.polarsys.reqcycle.repository.connector.local.editRequirements"
-               label="Edit Requirements"
+               label="%command.label"
                style="push">
                <visibleWhen>
                   <with  variable="selection">
@@ -49,7 +49,7 @@
          <command
                commandId="org.polarsys.reqcycle.repository.connector.local.useSource"
                id="org.polarsys.reqcycle.repository.connector.local.useSource"
-               label="Use as Requirement Source"
+               label="%command.label.0"
                style="push">
          </command>
       </menuContribution>
@@ -58,11 +58,11 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.polarsys.reqcycle.repository.connector.local.editRequirements.command"
-            name="Edit Requirements Command">
+            name="%command.name">
       </command>
       <command
             id="org.polarsys.reqcycle.repository.connector.local.useSource"
-            name="Use as Requirement Source">
+            name="%command.name.0">
       </command>
    </extension>
    <extension

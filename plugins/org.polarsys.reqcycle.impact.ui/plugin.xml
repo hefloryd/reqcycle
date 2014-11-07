@@ -8,7 +8,7 @@
             class="org.polarsys.reqcycle.impact.ui.views.ImpactView"
             icon="icons/open.png"
             id="org.polarsys.reqcycle.impact.ui.views.impact"
-            name="Impact Analysis"
+            name="%view.name"
             restorable="true">
       </view>
    </extension>
@@ -28,7 +28,7 @@
          <command
                commandId="org.polarsys.reqcycle.impact.ui.OpenImpactAnalysis"
                icon="icons/open.png"
-               label="Impact Analysis"
+               label="%command.label"
                style="push">
          </command>
       </menuContribution>

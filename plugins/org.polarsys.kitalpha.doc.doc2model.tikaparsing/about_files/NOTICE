@@ -1,0 +1,10 @@
+Tika-app
+
+Copyright 1999-2007 The Apache Software Foundation
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+The Apache Tika toolkit detects and extracts metadata and text content from various documents - from PPT to CSV to PDF - using existing parser libraries. Tika unifies these parsers under a single interface to allow you to easily parse over a thousand different file types. Tika is useful for search engine indexing, content analysis, 
+translation, and much more. You can find the latest release on the download page.
+

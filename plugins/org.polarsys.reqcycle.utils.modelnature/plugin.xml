@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="modelnature" name="modelnature" schema="schema/modelnature.exsd"/>
+   <extension-point id="modelnature" name="%extension-point.name" schema="schema/modelnature.exsd"/>
    <extension
          point="org.polarsys.reqcycle.utils.inject.binding">
       <binding

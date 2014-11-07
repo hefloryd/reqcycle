@@ -8,7 +8,7 @@
             class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsExportWizard"
             icon="icons/reqcycle.png"
             id="org.polarsys.reqcycle.prefs.ui.export"
-            name="preferences">
+            name="%wizard.name">
       </wizard>
    </extension>
    <extension
@@ -18,7 +18,7 @@
             class="org.polarsys.reqcycle.prefs.ui.ReqcyclePrefsImportWizard"
             icon="icons/reqcycle.png"
             id="org.polarsys.reqcycle.prefs.ui.import"
-            name="preferences">
+            name="%wizard.name.0">
       </wizard>
    </extension>
 

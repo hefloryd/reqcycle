@@ -6,7 +6,7 @@
       <navigatorContent
             activeByDefault="true"
             id="org.polarsys.reqcycle.dnd.papyrus.navigatorContent"
-            name="Drop On Papyrus"
+            name="%navigatorContent.name"
             priority="normal">
          <dropAssistant
                class="org.polarsys.reqcycle.papyrus.dnd.PapyrusDropAdapterAssistant"

@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ReqCycleComponents (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.ui.components;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.ui.components.ReqCycleUIComponentsPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface;visibility:=reexport

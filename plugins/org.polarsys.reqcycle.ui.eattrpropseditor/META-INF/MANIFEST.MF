@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eattrpropseditor (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.reqcycle.ui.eattrpropseditor;singleton:=true
 Bundle-Version: 0.8.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.ui.eattrpropseditor.EAttrPropsEditorPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt;visibility:=reexport,

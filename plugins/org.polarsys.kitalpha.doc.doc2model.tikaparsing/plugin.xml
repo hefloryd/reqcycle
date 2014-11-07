@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="tikaParser" name="Tika Parser" schema="schema/tikaParser.exsd"/>
+   <extension-point id="tikaParser" name="%extension-point.name" schema="schema/tikaParser.exsd"/>
    <extension
          point="org.polarsys.kitalpha.doc.doc2model.core.IParsingFacility">
       <parsingFacility

@@ -5,7 +5,7 @@
 -->
 
 <plugin>
-   <extension-point id="relationpic" name="Relation Picture" schema="schema/relationpic.exsd"/>
+   <extension-point id="relationpic" name="%extension-point.name" schema="schema/relationpic.exsd"/>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.org.polarsys.reqcycle/typeconfiguration/1.0"
@@ -23,25 +23,25 @@
             category="org.eclipse.reqycle.core.ui.pref.reqcycle"
             class="org.polarsys.reqcycle.traceability.types.configuration.preferences.ElementTypeConfigurationPage"
             id="org.polarsys.reqcycle.traceability.types.ui.elementtype"
-            name="Reachable Data">
+            name="%page.name">
       </page>
       <page
             category="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
             class="org.polarsys.reqcycle.traceability.types.configuration.preferences.TraceabilityTypePreferencePage"
             id="org.polarsys.reqcycle.traceability.types.ui.tracatype"
-            name="Traceability Types">
+            name="%page.name.0">
       </page>
       <page
             category="org.eclipse.reqycle.core.ui.pref.reqcycle"
             class="org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
             id="org.polarsys.reqcycle.traceability.types.ui.traceabilityPage"
-            name="Traceability">
+            name="%page.name.1">
       </page>
       <page
             category="org.polarsys.reqcycle.traceability.types.ui.tracatype"
             class="org.polarsys.reqcycle.traceability.types.configuration.preferences.TTypeDecorationPreferencePage"
             id="org.polarsys.reqcycle.traceability.types.ui.tracatype.decoration"
-            name="Label decoration">
+            name="%page.name.2">
       </page>
    </extension>
    <extension
@@ -51,7 +51,7 @@
             locationURI="menu:org.polarsys.reqcycle.core.ui.menu?after=additions">
          <command
                commandId="org.polarsys.reqcycle.traceability.types.ui.predicateEditor"
-               label="Predicate Editor for Traceability Relation"
+               label="%command.label"
                style="push">
          </command>
       </menuContribution>
@@ -60,7 +60,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.polarsys.reqcycle.traceability.types.ui.predicateEditor"
-            name="Predicate Editor for Traceability Relation">
+            name="%command.name">
       </command>
    </extension>
    <extension

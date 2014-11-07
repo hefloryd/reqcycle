@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="stylingpic" name="Styling Picture" schema="schema/stylingpic.exsd"/>
+   <extension-point id="stylingpic" name="%extension-point.name" schema="schema/stylingpic.exsd"/>
    
 <extension
         point="org.eclipse.ui.navigator.navigatorContent">
@@ -10,7 +10,7 @@
            contentProvider="org.polarsys.reqcycle.styling.ui.providers.StylingContentProvider"
            id="org.polarsys.reqcycle.repository.ui.styleNavigatorContent"
            labelProvider="org.polarsys.reqcycle.styling.ui.providers.StylingLabelProvider"
-           name="StyleNavigatorContent"
+           name="%navigatorContent.name"
            priority="high">
         <triggerPoints>
            <or>
@@ -67,9 +67,9 @@
         <command
               commandId="org.polarsys.reqcycle.styling.ui.stylemodel"
               icon="icons/write_obj.gif"
-              label="Change Style"
+              label="%command.label"
               style="push"
-              tooltip="Select style configuration">
+              tooltip="%command.tooltip">
         </command>
      </menuContribution>
   </extension>
@@ -78,7 +78,7 @@
    <command
          defaultHandler="org.polarsys.reqcycle.styling.ui.handler.StyleModelChooserHandler"
          id="org.polarsys.reqcycle.styling.ui.stylemodel"
-         name="Choose Display">
+         name="%command.name">
    </command>
 </extension>
 <extension

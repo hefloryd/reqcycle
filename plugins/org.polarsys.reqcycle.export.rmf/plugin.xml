@@ -8,7 +8,7 @@
             class="org.polarsys.reqcycle.export.rmf.wizard.ReqIFExportWizard"
             icon="icons/export_reqif.gif"
             id="org.polarsys.reqcycle.export.rmf.reqif.wizard"
-            name="ReqIF">
+            name="%wizard.name">
       </wizard>
    </extension>
 

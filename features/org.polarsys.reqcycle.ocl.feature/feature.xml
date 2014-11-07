@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.polarsys.reqcycle.ocl.feature"
-      label="polarsys reqcycle ocl (Incubation)"
+      label="%featureName"
       version="0.8.0.qualifier">
 
    <description>
-      ReqCycle feature for ocl
+      %description
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2013-2014 AtoS and others.
+      Copyright (c) 2013-2014 AtoS and Samares-Engineering
 All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
+are made available under the terms of the Eclipse Public License
+v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>

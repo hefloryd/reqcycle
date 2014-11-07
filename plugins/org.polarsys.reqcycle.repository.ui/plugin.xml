@@ -21,7 +21,7 @@
             class="org.polarsys.reqcycle.repository.ui.views.RequirementView"
             icon="icons/open.png"
             id="org.polarsys.reqcycle.repository.ui.views.requirements"
-            name="Requirements"
+            name="%view.name"
             restorable="true">
       </view>
       <view
@@ -30,7 +30,7 @@
             class="org.polarsys.reqcycle.repository.ui.views.RequirementScopeView"
             icon="icons/open.png"
             id="org.polarsys.reqcycle.repository.ui.views.requirement.scope"
-            name="Requirement Scope"
+            name="%view.name.0"
             restorable="true">
       </view>
    </extension>
@@ -39,7 +39,7 @@
      <wizard
            class="org.polarsys.reqcycle.repository.ui.wizard.NewRequirementSourceWizard"
            id="org.polarsys.reqcycle.repository.NewRequirementSourceWizard"
-           name="Create New Requirement Source">
+           name="%wizard.name">
      </wizard>
   </extension>
   <extension
@@ -48,7 +48,7 @@
            contentProvider="org.polarsys.reqcycle.repository.ui.providers.ParentBeanContentProvider"
            id="org.polarsys.reqcycle.repository.ui.requirementNavigatorContent"
            labelProvider="org.polarsys.reqcycle.repository.ui.providers.ParentBeanLabelProvider"
-           name="RequirementNavigatorContent"
+           name="%navigatorContent.name"
            priority="normal">
         <triggerPoints>
            <instanceof
@@ -90,64 +90,64 @@
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
               icon="icons/insp_sbook.gif"
-              label="Filter Requirements"
+              label="%command.label"
               style="push"
-              tooltip="Filter Requirements by name">
+              tooltip="%command.tooltip">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
               icon="icons/filenav_nav.gif"
-              label="Display requirements only"
+              label="%command.label.0"
               style="push"
-              tooltip="Display requirements only">
+              tooltip="%command.tooltip.0">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
               icon="icons/editFilterList.png"
-              label="Select Predicates Filters"
+              label="%command.label.1"
               style="push"
-              tooltip="Select predicates to use for filtering">
+              tooltip="%command.tooltip.1">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
               icon="icons/class_hi.gif"
-              label="Order requirements by Predicates"
+              label="%command.label.2"
               style="push"
-              tooltip="Order requirements by Predicates">
+              tooltip="%command.tooltip.2">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
               icon="icons/types.gif"
-              label="Order by Scopes"
+              label="%command.label.3"
               style="push"
-              tooltip="Order by Scopes">
+              tooltip="%command.tooltip.3">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
               icon="icons/term_restart-1.gif"
-              label="Suppress filters"
+              label="%command.label.4"
               style="push"
-              tooltip="Suppress filters">
+              tooltip="%command.tooltip.4">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
               icon="icons/editRepoList.png"
-              label="Select Requirement Sources"
+              label="%command.label.5"
               style="push"
-              tooltip="Select requirement sources to filter">
+              tooltip="%command.tooltip.5">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
               icon="icons/newView.gif"
-              label="New Instance"
+              label="%command.label.6"
               style="push">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
               icon="icons/refresh.gif"
-              label="Refresh"
+              label="%command.label.7"
               style="push"
-              tooltip="Refresh view">
+              tooltip="%command.tooltip.6">
         </command>
      </menuContribution>
      <menuContribution
@@ -164,13 +164,13 @@
         <command
               commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementsView"
               icon="icons/open.png"
-              label="Requirements"
+              label="%command.label.8"
               style="push">
         </command>
         <command
               commandId="org.polarsys.reqcycle.repository.ui.OpenRequirementSources"
               icon="icons/repositories.gif"
-              label="Requirement Sources"
+              label="%command.label.9"
               style="push">
         </command>
      </menuContribution>
@@ -180,47 +180,47 @@
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.FilterHandler"
-           name="Filter Requirements">
+           name="%command.name">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.DisplayReqOnlyHandler"
-           name="Display requirements only">
+           name="%command.name.0">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.SelectPredicatesFiltersHandler"
-           name="Select Predicates Filters">
+           name="%command.name.1">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.OrderByPredicatesHandler"
-           name="Order requirements by Predicates">
+           name="%command.name.2">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.OrderByScopesHandler"
-           name="Order by Scopes">
+           name="%command.name.3">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.SuppressFilterHandler"
-           name="Suppress Filters">
+           name="%command.name.4">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.SelectRequirementSourcesHandler"
-           name="Select Requirement Sources">
+           name="%command.name.5">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.NewInstanceHandler"
-           name="New Instance">
+           name="%command.name.6">
      </command>
      <command
            defaultHandler="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
            id="org.polarsys.reqcycle.repository.ui.actions.RefreshHandler"
-           name="Refresh">
+           name="%command.name.7">
      </command>
   </extension>
   <extension

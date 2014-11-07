@@ -8,7 +8,7 @@
             class="org.polarsys.reqcycle.export.xls.wizard.TraceabilityExportWizard"
             icon="icons/toc_open.gif"
             id="org.polarsys.reqcycle.export.xls.wizard"
-            name="xls and csv">
+            name="%wizard.name">
       </wizard>
    </extension>
 

@@ -8,7 +8,7 @@
             category="org.polarsys.reqcycle.traceability.ui"
             class="org.polarsys.reqcycle.traceability.table.view.TraceabilityTableView"
             id="org.polarsys.reqcycle.traceability.table.partdescriptor.traceability.table"
-            name="Traceability Table"
+            name="%view.name"
             restorable="true">
       </view>
    </extension>
@@ -17,7 +17,7 @@
       <command
             defaultHandler="org.polarsys.reqcycle.traceability.table.handlers.DeleteLinkHandler"
             id="org.polarsys.reqcycle.traceability.table.deleteLinkCommand"
-            name="Delete Link Command">
+            name="%command.name">
       </command>
    </extension>
    <extension
@@ -27,7 +27,7 @@
             locationURI="popup:org.polarsys.reqcycle.traceability.table.partdescriptor.traceability.table?after=additions">
          <command
                commandId="org.polarsys.reqcycle.traceability.table.deleteLinkCommand"
-               label="Delete link"
+               label="%command.label"
                style="push">
             <visibleWhen
                   checkEnabled="true">

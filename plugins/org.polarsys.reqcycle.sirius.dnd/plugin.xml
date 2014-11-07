@@ -6,7 +6,7 @@
           <navigatorContent
             activeByDefault="true"
             id="org.polarsys.reqcycle.dnd.sirius.navigatorContent"
-            name="Drop On Sirius"
+            name="%navigatorContent.name"
             priority="normal">
          <dropAssistant
                class="org.polarsys.reqcycle.sirius.dnd.SiriusDropAdapterAssistant"
