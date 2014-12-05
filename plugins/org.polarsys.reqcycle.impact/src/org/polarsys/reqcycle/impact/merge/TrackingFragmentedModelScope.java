@@ -17,7 +17,7 @@ public class TrackingFragmentedModelScope extends FragmentedModelScope implement
 	protected String label;
 
 	public TrackingFragmentedModelScope(Resource resource_p, String label) {
-		super(resource_p, false);
+		super(resource_p);
 		this.label = label;
 	}
 

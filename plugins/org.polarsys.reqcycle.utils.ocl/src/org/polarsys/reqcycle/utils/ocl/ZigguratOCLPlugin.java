@@ -22,10 +22,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefOperationCS;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.polarsys.reqcycle.utils.ocl.impl.OCLEvaluatorImpl;
@@ -79,7 +80,7 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	}
 
 	private static void compileOperation(OCLEvaluator evaluator, DefOperationCS operationCS) throws Exception {
-		org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS classifierContextDecl = operationCS.getClassifierContextDecl();
+		ClassifierContextDeclCS classifierContextDecl = operationCS.getClassifierContextDecl();
 		Element pivot = classifierContextDecl.getPivot();
 
 		String classifierString = pivot.toString();
@@ -105,8 +106,8 @@ public class ZigguratOCLPlugin implements BundleActivator {
 		if (contents.size() == 1) {
 			EObject root = contents.get(0);
 			if (root instanceof CompleteOCLDocumentCS) {
-				EList<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getContexts();
-				for (org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS context : contexts) {
+				EList<ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getContexts();
+				for (ContextDeclCS context : contexts) {
 					if (context instanceof ClassifierContextDeclCS) {
 						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getDefinitions();
 						Iterables.addAll(result, Iterables.filter(definitions, DefOperationCS.class));
