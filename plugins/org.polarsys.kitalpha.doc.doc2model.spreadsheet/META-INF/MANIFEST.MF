@@ -9,7 +9,7 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.polarsys.kitalpha.doc.doc2model.common;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;bundle-version="2.10.0"
+ org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.kitalpha.doc.doc2model.spreadsheet.spreadsheet,

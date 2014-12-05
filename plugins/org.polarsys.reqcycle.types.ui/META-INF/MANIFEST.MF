@@ -8,7 +8,7 @@ Bundle-Activator: org.polarsys.reqcycle.types.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.polarsys.reqcycle.types,
- com.google.guava;bundle-version="15.0.0",
+ com.google.guava,
  org.polarsys.reqcycle.uri
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

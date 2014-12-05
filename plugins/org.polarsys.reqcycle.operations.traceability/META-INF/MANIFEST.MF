@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.operations,
  org.polarsys.reqcycle.traceability,
  org.polarsys.reqcycle.uri,
- com.google.guava;bundle-version="15.0.0",
+ com.google.guava,
  org.polarsys.reqcycle.repository.data,
  org.polarsys.reqcycle.utils.inject,
  org.eclipse.emf.workspace

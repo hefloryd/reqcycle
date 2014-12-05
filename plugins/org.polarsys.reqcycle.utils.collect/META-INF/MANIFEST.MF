@@ -6,7 +6,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.utils.collect.ZigguratCollectPlugin
 Require-Bundle: org.eclipse.core.runtime,
- com.google.guava;bundle-version="15.0.0";visibility:=reexport
+ com.google.guava;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.utils.collect,

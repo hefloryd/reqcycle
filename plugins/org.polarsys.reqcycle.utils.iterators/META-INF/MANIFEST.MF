@@ -7,7 +7,7 @@ Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.utils.iterators.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.guava;bundle-version="15.0.0"
+ com.google.guava
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.utils.iterators.collectors,

@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.apache.commons.lang;visibility:=reexport,
- com.google.guava;bundle-version="15.0.0",
+ com.google.guava,
  org.eclipse.jface;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

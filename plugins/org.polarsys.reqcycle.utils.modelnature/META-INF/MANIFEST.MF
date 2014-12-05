@@ -7,7 +7,7 @@ Bundle-Localization: plugin
 Bundle-Activator: org.polarsys.reqcycle.utils.modelnature.ModelNaturePlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.guava;bundle-version="15.0.0",
+ com.google.guava,
  org.eclipse.emf.ecore,
  org.polarsys.reqcycle.utils.inject;visibility:=reexport,
  org.eclipse.emf.transaction,

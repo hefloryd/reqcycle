@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding.beans,
  org.eclipse.ocl.examples.pivot,
  org.eclipse.ocl.examples.xtext.completeocl,
- com.google.guava;bundle-version="15.0.0",
+ com.google.guava,
  org.polarsys.reqcycle.emf,
  org.eclipse.ui.workbench,
  org.eclipse.ui.ide

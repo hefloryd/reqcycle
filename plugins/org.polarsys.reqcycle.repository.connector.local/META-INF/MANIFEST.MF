@@ -29,7 +29,7 @@ Require-Bundle: org.eclipse.ui,
  com.ibm.icu,
  org.polarsys.reqcycle.repository.connector.ui,
  org.eclipse.emf.transaction,
- org.eclipse.emf.ecore.editor;bundle-version="2.10.0",
+ org.eclipse.emf.ecore.editor,
  org.polarsys.reqcycle.repository.data.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.polarsys.reqcycle.repository.connector.local,
