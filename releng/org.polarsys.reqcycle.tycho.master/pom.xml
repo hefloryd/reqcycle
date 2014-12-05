@@ -28,9 +28,6 @@
 				<platform-eclipse>
 					http://download.eclipse.org/releases/luna/
 				</platform-eclipse>
-				<uml-version>
-					http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/luna
-				</uml-version>
 			</properties>
 		</profile>
 		<profile>
@@ -39,9 +36,6 @@
 				<platform-eclipse>
 					http://download.eclipse.org/releases/kepler/
 				</platform-eclipse>
-				<uml-version>
-					http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/kepler
-				</uml-version>
 			</properties>
 		</profile>
 	</profiles>
@@ -189,29 +183,9 @@
 			<url>http://download.eclipse.org/rmf/updates</url>
 		</repository>
 		<repository>
-			<id>uml</id>
-			<layout>p2</layout>
-			<url>${uml-version}</url>
-		</repository>
-		<repository>
-			<id>diffmerge</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/diffmerge/updates/luna/official</url>
-		</repository>
-		<repository>
 			<id>guava</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/</url>
-		</repository>
-		<repository>
-			<id>ocl</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/releases/</url>
-		</repository>
-		<repository>
-			<id>uml2</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/updates/releases/</url>
 		</repository>
 	</repositories>
 
@@ -229,11 +203,6 @@
 			<id>platform-eclipse</id>
 			<layout>p2</layout>
 			<url>${platform-eclipse}</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>uml2</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/updates/releases/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
