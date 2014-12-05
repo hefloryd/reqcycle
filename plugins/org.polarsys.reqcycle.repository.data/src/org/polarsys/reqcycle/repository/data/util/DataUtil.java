@@ -57,10 +57,12 @@ public class DataUtil {
 	@Inject
 	static ILogger logger;
 
-	protected static ComposedAdapterFactory cAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	protected static ComposedAdapterFactory cAdapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	public static String getLabel(Object obj) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory.adapt(obj, IItemLabelProvider.class);
+		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory
+				.adapt(obj, IItemLabelProvider.class);
 		if (itemLabelProvider != null) {
 			return itemLabelProvider.getText(obj);
 		}
@@ -71,7 +73,8 @@ public class DataUtil {
 	}
 
 	public static Image getImage(Object obj) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory.adapt(obj, IItemLabelProvider.class);
+		IItemLabelProvider itemLabelProvider = (IItemLabelProvider) cAdapterFactory
+				.adapt(obj, IItemLabelProvider.class);
 		if (itemLabelProvider != null) {
 			return null;// Activator.getImageDescriptor(itemLabelProvider.getImage(obj).toString()).createImage();
 		}
@@ -95,7 +98,8 @@ public class DataUtil {
 	public static String getInformation(AbstractElement object) {
 		String result = "";
 
-		EList<EStructuralFeature> structuralFeatures = object.eClass().getEStructuralFeatures();
+		EList<EStructuralFeature> structuralFeatures = object.eClass()
+				.getEStructuralFeatures();
 		if (object.getId() != null && !object.getId().isEmpty()) {
 			result += " id : " + object.getId() + " ";
 		}
@@ -107,12 +111,15 @@ public class DataUtil {
 		}
 
 		for (EStructuralFeature eStructuralFeature : structuralFeatures) {
-			if (!(eStructuralFeature instanceof EReference) && object.eGet(eStructuralFeature) != null) {
-				result += "[ " + eStructuralFeature.getName() + " : " + object.eGet(eStructuralFeature) + "]";
+			if (!(eStructuralFeature instanceof EReference)
+					&& object.eGet(eStructuralFeature) != null) {
+				result += "[ " + eStructuralFeature.getName() + " : "
+						+ object.eGet(eStructuralFeature) + "]";
 			}
 		}
 		if (result.isEmpty()) {
-			result = "Requirement Type : " + object.eClass().getName() + " [ this element doesn't have any attribute ]";
+			result = "Requirement Type : " + object.eClass().getName()
+					+ " [ this element doesn't have any attribute ]";
 		}
 
 		return result;
@@ -137,21 +144,27 @@ public class DataUtil {
 		return joiner.join(getQualifiedPath(element));
 	}
 
-	public static AbstractElement getElement(Resource r, String flattenedQualifiedNamePath) {
-		return getElement(r.getContents(), splitter.splitToList(flattenedQualifiedNamePath));
+	public static AbstractElement getElement(Resource r,
+			String flattenedQualifiedNamePath) {
+		return getElement(r.getContents(),
+				Lists.newArrayList(splitter.split(flattenedQualifiedNamePath)));
 	}
 
-	public static AbstractElement getElement(EObject root, List<String> qualifiedNamePath) {
+	public static AbstractElement getElement(EObject root,
+			List<String> qualifiedNamePath) {
 		return getElement(root.eContents(), qualifiedNamePath);
 	}
 
-	public static AbstractElement getElement(Collection<EObject> roots, List<String> qualifiedNamePath) {
+	public static AbstractElement getElement(Collection<EObject> roots,
+			List<String> qualifiedNamePath) {
 		if (!qualifiedNamePath.isEmpty()) {
 			String firstName = qualifiedNamePath.get(0);
 			for (EObject obj : roots) {
-				if (obj instanceof AbstractElement && firstName.equals(((AbstractElement) obj).getId())) {
+				if (obj instanceof AbstractElement
+						&& firstName.equals(((AbstractElement) obj).getId())) {
 					if (qualifiedNamePath.size() > 1) {
-						ArrayList<String> newQualifiedNamePath = Lists.newArrayList(qualifiedNamePath);
+						ArrayList<String> newQualifiedNamePath = Lists
+								.newArrayList(qualifiedNamePath);
 						newQualifiedNamePath.remove(0);
 						return getElement(obj.eContents(), newQualifiedNamePath);
 					} else {
@@ -172,11 +185,13 @@ public class DataUtil {
 	 *            the attribute mapping ID
 	 * @return the attribute mapping found or null
 	 */
-	public static MappingAttribute getAttributeMapping(MappingElement mappingElement, String id, String longName) {
+	public static MappingAttribute getAttributeMapping(
+			MappingElement mappingElement, String id, String longName) {
 		for (MappingAttribute attribute : mappingElement.getAttributes()) {
-			if (id !=null && id.equals(attribute.getSourceId())) {
+			if (id != null && id.equals(attribute.getSourceId())) {
 				return attribute;
-			} else if (longName != null && longName.equals(attribute.getDescription())) {
+			} else if (longName != null
+					&& longName.equals(attribute.getDescription())) {
 				return attribute;
 			}
 		}
@@ -192,23 +207,29 @@ public class DataUtil {
 	 *            the source element qualifier
 	 * @return the element mapping found or null
 	 */
-	public static MappingElement getElementMapping(Collection<MappingElement> mapping, String qualifier, String longName) {
+	public static MappingElement getElementMapping(
+			Collection<MappingElement> mapping, String qualifier,
+			String longName) {
 		for (MappingElement mappingElement : mapping) {
-			if (qualifier != null && qualifier.equals(mappingElement.getSourceQualifier())) {
+			if (qualifier != null
+					&& qualifier.equals(mappingElement.getSourceQualifier())) {
 				return mappingElement;
-			} else if (longName != null && longName.equals(mappingElement.getDescription())) {
+			} else if (longName != null
+					&& longName.equals(mappingElement.getDescription())) {
 				return mappingElement;
 			}
 		}
 		return null;
 	}
 
-	public static Collection<AbstractElement> getAllContainedElements(EList<AbstractElement> elements) {
+	public static Collection<AbstractElement> getAllContainedElements(
+			EList<AbstractElement> elements) {
 		Collection<AbstractElement> result = new ArrayList<AbstractElement>();
 		result.addAll(elements);
 		for (AbstractElement element : elements) {
 			if (element instanceof Section) {
-				result.addAll(getAllContainedElements(((Section) element).getChildren()));
+				result.addAll(getAllContainedElements(((Section) element)
+						.getChildren()));
 			}
 		}
 		return result;
@@ -219,10 +240,13 @@ public class DataUtil {
 	 * @param modelLocation
 	 * @return
 	 */
-	public static Collection<EClassifier> getTargetEPackage(ResourceSet resourceSet, String modelLocation) {
+	public static Collection<EClassifier> getTargetEPackage(
+			ResourceSet resourceSet, String modelLocation) {
 		// FIXME : check uri creation
-		URI uriAttributeModel = URI.createPlatformPluginURI(modelLocation, false);
-		Resource attributeModelResource = resourceSet.getResource(uriAttributeModel, true);
+		URI uriAttributeModel = URI.createPlatformPluginURI(modelLocation,
+				false);
+		Resource attributeModelResource = resourceSet.getResource(
+				uriAttributeModel, true);
 		EList<EObject> modelContent = attributeModelResource.getContents();
 		if (modelContent.size() > 0) {
 			Collection<EClassifier> result = new ArrayList<EClassifier>();
@@ -230,21 +254,25 @@ public class DataUtil {
 			while (iter.hasNext()) {
 				EObject eObject = iter.next();
 				if (eObject instanceof EPackage) {
-					Collection<EClassifier> filtered = Collections2.filter(((EPackage) eObject).getEClassifiers(), new Predicate<EClassifier>() {
+					Collection<EClassifier> filtered = Collections2.filter(
+							((EPackage) eObject).getEClassifiers(),
+							new Predicate<EClassifier>() {
 
-						@Override
-						public boolean apply(EClassifier arg0) {
-							if (arg0 instanceof EClass) {
-								EList<EClass> superTypes = ((EClass) arg0).getEAllSuperTypes();
-								for (EClassifier superType : superTypes) {
-									if ("AbstractElement".equals(superType.getName())) {
-										return true;
+								@Override
+								public boolean apply(EClassifier arg0) {
+									if (arg0 instanceof EClass) {
+										EList<EClass> superTypes = ((EClass) arg0)
+												.getEAllSuperTypes();
+										for (EClassifier superType : superTypes) {
+											if ("AbstractElement"
+													.equals(superType.getName())) {
+												return true;
+											}
+										}
 									}
+									return false;
 								}
-							}
-							return false;
-						}
-					});
+							});
 					result.addAll(filtered);
 				}
 			}
@@ -254,7 +282,8 @@ public class DataUtil {
 	}
 
 	public static Collection<RequirementSource> getRepositories(Object obj) {
-		if (obj instanceof String && requirementSourceManager.getRequirementSources((String) obj) != null) {
+		if (obj instanceof String
+				&& requirementSourceManager.getRequirementSources((String) obj) != null) {
 			return requirementSourceManager.getRequirementSources((String) obj);
 		}
 		if (obj instanceof RequirementSource) {
