@@ -55,6 +55,8 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 
 	protected RMFBean bean;
 
+	private String lastURI = null;
+
 	@Inject
 	IDataModelManager dataTypeManage;
 
@@ -90,13 +92,16 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 		if (page instanceof RMFSettingPage) {
 			ResourceSet rs = new ResourceSetImpl();
 			if (bean.getUri() != null && !bean.getUri().equals("")) {
-				final Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, bean.getUri());
+				if (mappingPage == null || !bean.getUri().equals(lastURI)) {
+					lastURI = bean.getUri();
+					final Collection<SpecType> specTypes = RMFUtils.getReqIFTypes(rs, bean.getUri());
 
-				if (bean.getDataModel() != null) {
+					if (bean.getDataModel() != null) {
 
-					Collection<IType> eClassifiers = bean.getDataModel().getTypes();
-					mappingPage = createMappingPage(specTypes, eClassifiers);
-					mappingPage.setWizard(this);
+						Collection<IType> eClassifiers = bean.getDataModel().getTypes();
+						mappingPage = createMappingPage(specTypes, eClassifiers);
+						mappingPage.setWizard(this);
+					}
 				}
 			}
 
@@ -125,7 +130,12 @@ public class RMFConnector extends Wizard implements IConnectorWizard, IURIValida
 					@Override
 					public String getText(Object element) {
 						if (element instanceof SpecType) {
-							return ((SpecType) element).getLongName();
+							SpecType st = (SpecType) element;
+							String label = "<no name>";
+							if (st.getLongName() != null) {
+								label = st.getLongName();
+							}
+							return label;
 						}
 						return super.getText(element);
 					}

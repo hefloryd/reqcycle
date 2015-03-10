@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.polarsys.reqcycle.repository.connector.ui.wizard.pages;
 
+import org.eclipse.emf.common.util.URI;
 import org.polarsys.reqcycle.repository.connector.ui.PropertyUtils;
 import org.polarsys.reqcycle.repository.data.RequirementSourceConf.RequirementSource;
 import org.polarsys.reqcycle.repository.data.ScopeConf.Scope;
@@ -52,7 +53,15 @@ public class AbstractStorageBean {
 	}
 
 	public void setUri(String uri) {
-		this.uri = uri;
+		// prevent error with whitespaces
+		URI u = URI.createURI(uri);
+		if (u.isFile()) {
+			this.uri = URI.createFileURI(u.toFileString()).toString();
+		} else if (u.isPlatform()) {
+			this.uri = URI.createPlatformResourceURI(u.toPlatformString(true), false).toString();
+		} else {
+			this.uri = uri;
+		}
 	}
 
 	public String getOutputPath() {
