@@ -35,7 +35,7 @@ public class Generate extends AbstractAcceleoGenerator {
 	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generate";
+	public static final String MODULE_FILE_NAME = "/org/polarsys/reqcycle/export/xls/acceleo/generate";
 
 	/**
 	 * The name of the templates that are to be generated.

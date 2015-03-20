@@ -35,7 +35,7 @@ public class GenerateCSV extends AbstractAcceleoGenerator {
 	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generateCSV";
+	public static final String MODULE_FILE_NAME = "/org/polarsys/reqcycle/export/xls/acceleo/generateCSV";
 
 	/**
 	 * The name of the templates that are to be generated.
