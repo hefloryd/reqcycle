@@ -11,6 +11,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -26,13 +28,17 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.polarsys.reqcycle.utils.configuration.IConfigurationManager;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
 
 public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 
-	protected IConfigurationManager confManager = ZigguratInject.make(IConfigurationManager.class);
+	protected IConfigurationManager confManager = ZigguratInject
+			.make(IConfigurationManager.class);
 
 	protected IPath inputPath;
 
@@ -44,17 +50,19 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 
 			@Override
 			public void createControl(Composite parent) {
-				setPageComplete(false);				
-				
+				setPageComplete(false);
+
 				Composite mainComposite = new Composite(parent, SWT.NONE);
 				mainComposite.setLayout(new FillLayout(SWT.HORIZONTAL));
 
 				Composite topComposite = new Composite(mainComposite, SWT.NONE);
 				topComposite.setLayout(new GridLayout(1, false));
 
-				org.eclipse.swt.widgets.Group topGroup = new org.eclipse.swt.widgets.Group(topComposite, SWT.NONE);
+				org.eclipse.swt.widgets.Group topGroup = new org.eclipse.swt.widgets.Group(
+						topComposite, SWT.NONE);
 				topGroup.setLayout(new GridLayout(3, false));
-				topGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+				topGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+						false, 1, 1));
 				topGroup.setText("Import Information");
 
 				Label lblDestination = new Label(topGroup, SWT.NONE);
@@ -64,10 +72,11 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 				textInput.setEnabled(false);
 				textInput.setEditable(false);
 				textInput.setTouchEnabled(true);
-				textInput.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+				textInput.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+						true, false, 1, 1));
 				if (inputPath != null) {
 					textInput.setText(inputPath.toString());
-					setPageComplete(true);	
+					setPageComplete(true);
 				}
 
 				Button btnBrowse = new Button(topGroup, SWT.NONE);
@@ -76,13 +85,40 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 				btnBrowse.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						ResourceSelectionDialog d = new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "zip selection");
+
+						ElementTreeSelectionDialog d = new ElementTreeSelectionDialog(
+								getShell(), new WorkbenchLabelProvider(),
+								new BaseWorkbenchContentProvider());
+						d.setTitle("Zip selection");
+						d.setMessage("Select a zip file (exported from ReqCycle)");
+						d.setInput(ResourcesPlugin.getWorkspace().getRoot());
+						d.addFilter(new ViewerFilter() {
+							@Override
+							public boolean select(Viewer viewer,
+									Object parentElement, Object element) {
+								if (element instanceof IFile) {
+									IFile f = (IFile) element;
+									if (!f.getFileExtension().equals("zip")) {
+										return false;
+									}
+								}
+								return true;
+							}
+						});
 						int open = d.open();
-						if (open == ResourceSelectionDialog.OK && d.getResult() != null && d.getResult().length > 0) {
-							inputPath = ((IFile) d.getResult()[0]).getFullPath();
+						if (open == ResourceSelectionDialog.OK
+								&& d.getResult() != null
+								&& d.getResult().length > 0
+								&& d.getResult()[0] instanceof IFile) {
+							inputPath = ((IFile) d.getResult()[0])
+									.getFullPath();
 							textInput.setText(inputPath.toString());
-							
+
 							setPageComplete(true);
+						}
+						else{
+							textInput.setText("");
+							setPageComplete(false);
 						}
 					}
 				});
@@ -104,10 +140,12 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 
 	@Override
 	public boolean performFinish() {
-		IPath prefsFolderPath = org.polarsys.reqcycle.utils.configuration.Activator.getDefault().getStateLocation();
+		IPath prefsFolderPath = org.polarsys.reqcycle.utils.configuration.Activator
+				.getDefault().getStateLocation();
 		File prefsFolder = new File(prefsFolderPath.toOSString());
 
-		IFile inputFile = ResourcesPlugin.getWorkspace().getRoot().getFile(inputPath);
+		IFile inputFile = ResourcesPlugin.getWorkspace().getRoot()
+				.getFile(inputPath);
 		if (inputFile != null) {
 			confManager.unload();
 			for (File f : prefsFolder.listFiles()) {
@@ -115,10 +153,13 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 			}
 
 			try {
-				ZipInputStream zipStream = new ZipInputStream(inputFile.getContents());
+				ZipInputStream zipStream = new ZipInputStream(
+						inputFile.getContents());
 				ZipEntry next = zipStream.getNextEntry();
 				while (next != null) {
-					if (includeReqSources || !next.getName().startsWith("org.polarsys.reqcycle.repositories")) {
+					if (includeReqSources
+							|| !next.getName().startsWith(
+									"org.polarsys.reqcycle.repositories")) {
 						File f = new File(prefsFolder, next.getName());
 						FileOutputStream os = new FileOutputStream(f);
 						IOUtils.copy(zipStream, os);
@@ -129,8 +170,12 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			boolean res = MessageDialog.openQuestion(getShell(), "Restart needed", "A restart of Eclipse is needed to validate the imported ReqCycle configuration. Do you want to restart now ?");
+
+			boolean res = MessageDialog
+					.openQuestion(
+							getShell(),
+							"Restart needed",
+							"A restart of Eclipse is needed to validate the imported ReqCycle configuration. Do you want to restart now ?");
 			if (res) {
 				PlatformUI.getWorkbench().restart();
 			}
@@ -142,7 +187,7 @@ public class ReqcyclePrefsImportWizard extends Wizard implements IImportWizard {
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		if (selection.getFirstElement() instanceof IFile) {
-			inputPath = ((IFile)selection.getFirstElement()).getFullPath();
+			inputPath = ((IFile) selection.getFirstElement()).getFullPath();
 		}
 	}
 
