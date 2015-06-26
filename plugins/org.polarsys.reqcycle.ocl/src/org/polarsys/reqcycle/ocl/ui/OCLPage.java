@@ -44,7 +44,8 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.*;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -119,7 +120,7 @@ public class OCLPage extends WizardPage implements IChangeListener, IUpdatablePa
 
 	private Button browseButton;
 
-	private BaseResource resource;
+	private BaseCSResource resource;
 
 	private DataBindingContext bindingContext;
 

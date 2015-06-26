@@ -12,6 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.uri,
  org.polarsys.reqcycle.traceability.builder,
  org.eclipse.ocl.examples.pivot,
- com.google.guava
+ com.google.guava,
+ org.eclipse.ocl.pivot;bundle-version="1.0.0",
+ org.eclipse.ocl.xtext.base;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

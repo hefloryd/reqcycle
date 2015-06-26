@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2013, 2014 AtoS and others
+ *  Copyright (c) 2013, 2015 AtoS and others
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Raphael Faudou (Samares Engineering) - Fixed some bugs in OCL connector to manage types and align
  * 		connector on other connectors with a destination file
  * 		- added support for "Int" type
+ * 		- updated all references to ocl.examples to new packaging in Mars (BaseResource to BaseCSResource, completeocls package...
+ * 
  *******************************************************************************/
 package org.polarsys.reqcycle.ocl.utils;
 
@@ -27,19 +29,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
+
+
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
+import org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS;
+import org.eclipse.ocl.xtext.completeoclcs.DefCS;
+import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.polarsys.reqcycle.ocl.ReqcycleOCLPlugin;
 import org.polarsys.reqcycle.repository.data.types.IAttribute;
 import org.polarsys.reqcycle.repository.data.types.IRequirementType;
@@ -65,11 +68,11 @@ public class OCLUtilities {
 
 	}
 
-	public static BaseResource loadOCLResource(ResourceSet resourceSet, URI oclURI) throws WrappedException {
-		BaseResource xtextResource = null;
+	public static BaseCSResource loadOCLResource(ResourceSet resourceSet, URI oclURI) throws WrappedException {
+		BaseCSResource xtextResource = null;
 		CompleteOCLStandaloneSetup.init();
 		try {
-			xtextResource = (BaseResource) resourceSet.getResource(oclURI, true);
+			xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
 		} catch (WrappedException e) {
 			URI retryURI = null;
 			Throwable cause = e.getCause();
@@ -82,7 +85,7 @@ public class OCLUtilities {
 				}
 			}
 			if (retryURI != null) {
-				xtextResource = (BaseResource) resourceSet.getResource(retryURI, true);
+				xtextResource = (BaseCSResource) resourceSet.getResource(retryURI, true);
 			} else {
 				throw e;
 			}
@@ -92,16 +95,16 @@ public class OCLUtilities {
 		return xtextResource;
 	}
 
-	public static Collection<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS> getOperations(BaseResource resource) {
+	public static Collection<DefOperationCS> getOperations(BaseCSResource resource) {
 		Collection<DefOperationCS> result = Lists.newArrayList();
 		EList<EObject> contents = resource.getContents();
 		if (contents.size() == 1) {
 			EObject root = contents.get(0);
 			if (root instanceof CompleteOCLDocumentCS) {
-				EList<ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getContexts();
+				EList<ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getOwnedContexts();
 				for (ContextDeclCS context : contexts) {
 					if (context instanceof ClassifierContextDeclCS) {
-						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getDefinitions();
+						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getOwnedDefinitions();
 						Iterables.addAll(result, Iterables.filter(definitions, DefOperationCS.class));
 					}
 				}
@@ -113,7 +116,7 @@ public class OCLUtilities {
 	/**
 	 * Checks whether an OCL resource contains an operation allowing to test whether an uml element can be associated to a given data type. The operation should be named "isX" where "X" is the name of the data type.
 	 */
-	public static IStatus isOperationPresent(final IRequirementType type, BaseResource resource) {
+	public static IStatus isOperationPresent(final IRequirementType type, BaseCSResource resource) {
 		if (Iterables.size(getMatchingOperations(type, resource)) > 0) {
 			return Status.OK_STATUS;
 		}
@@ -124,7 +127,7 @@ public class OCLUtilities {
 	/**
 	 * Checks whether an OCL resource contains an operation allowing to retrieve a requirement's attribute of a given data type. The operation should be named "getX" where "X" is the name of the attribute.
 	 */
-	public static IStatus isOperationPresent(final IAttribute attribute, BaseResource resource) {
+	public static IStatus isOperationPresent(final IAttribute attribute, BaseCSResource resource) {
 		String attributeTypeName = attribute.getType().getName();
 		if (!mapToOCLPrimitives.containsKey(attributeTypeName)) {
 			return new Status(IStatus.WARNING, ReqcycleOCLPlugin.PLUGIN_ID, "Type " + attributeTypeName + " cannot be used in OCL.");
@@ -139,7 +142,7 @@ public class OCLUtilities {
 	/**
 	 * Gets operations that could be used to match uml elements to a data type. These operations must have a specific name and signature (no parameter, return boolean).
 	 */
-	public static Iterable<DefOperationCS> getMatchingOperations(final IRequirementType type, BaseResource resource) {
+	public static Iterable<DefOperationCS> getMatchingOperations(final IRequirementType type, BaseCSResource resource) {
 		Collection<DefOperationCS> operations = getOperations(resource);
 		if (operations == null || Iterables.isEmpty(operations)) {
 			return Collections.emptyList();
@@ -149,7 +152,7 @@ public class OCLUtilities {
 			@Override
 			public boolean apply(DefOperationCS arg0) {
 				TypedRefCS operationReturnType = arg0.getOwnedType();
-				if (!arg0.getParameters().isEmpty()) {
+				if (!arg0.getOwnedParameters().isEmpty()) {
 					return false;
 				}
 				if (operationReturnType instanceof PrimitiveTypeRefCS) {
@@ -166,7 +169,7 @@ public class OCLUtilities {
 	/**
 	 * Gets operations that could be used to match uml elements to a data type. These operations must have a specific name and signature (no parameter, return boolean).
 	 */
-	public static Iterable<DefOperationCS> getMatchingOperations(final IAttribute attribute, BaseResource resource) {
+	public static Iterable<DefOperationCS> getMatchingOperations(final IAttribute attribute, BaseCSResource resource) {
 		Collection<DefOperationCS> operations = getOperations(resource);
 		if (operations == null || Iterables.isEmpty(operations)) {
 			return Collections.emptyList();
@@ -176,7 +179,7 @@ public class OCLUtilities {
 			@Override
 			public boolean apply(DefOperationCS arg0) {
 				TypedRefCS operationReturnType = arg0.getOwnedType();
-				if (!arg0.getParameters().isEmpty()) {
+				if (!arg0.getOwnedParameters().isEmpty()) {
 					return false;
 				}
 				if (operationReturnType instanceof PrimitiveTypeRefCS) {

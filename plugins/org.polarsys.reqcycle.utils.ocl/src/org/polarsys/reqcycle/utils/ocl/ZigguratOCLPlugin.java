@@ -7,6 +7,7 @@
  *  Contributors:
  *    Olivier Melois (AtoS) - initial API and implementation and/or initial documentation
  *    Raphael Faudou (Samares Engineering) - adapted code for Luna compliance
+ *    Raphae Faudou (Samares Engineering) - 2015-06 - adapted code for Mars compliance (refactoring of ocl)
  *   
  *******************************************************************************/
 package org.polarsys.reqcycle.utils.ocl;
@@ -20,12 +21,13 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
+import org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS;
+import org.eclipse.ocl.xtext.completeoclcs.DefCS;
+import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.polarsys.reqcycle.utils.ocl.impl.OCLEvaluatorImpl;
@@ -64,11 +66,11 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	}
 
 	public static OCLEvaluator compileOCL(ResourceSet resourceSet, URI oclURI) throws Exception {
-		BaseResource resource = (BaseResource) resourceSet.getResource(oclURI, true);
+		BaseCSResource resource = (BaseCSResource) resourceSet.getResource(oclURI, true);
 		return compileOCL(resource);
 	}
 
-	public static OCLEvaluator compileOCL(BaseResource resource) throws Exception {
+	public static OCLEvaluator compileOCL(BaseCSResource resource) throws Exception {
 		OCLEvaluator evaluator = ZigguratOCLPlugin.createOCLEvaluator();
 
 		Collection<DefOperationCS> operations = getOperations(resource);
@@ -79,7 +81,7 @@ public class ZigguratOCLPlugin implements BundleActivator {
 	}
 
 	private static void compileOperation(OCLEvaluator evaluator, DefOperationCS operationCS) throws Exception {
-		org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS classifierContextDecl = operationCS.getClassifierContextDecl();
+		org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS classifierContextDecl = operationCS.getOwningClassifierContextDecl();
 		Element pivot = classifierContextDecl.getPivot();
 
 		String classifierString = pivot.toString();
@@ -99,16 +101,16 @@ public class ZigguratOCLPlugin implements BundleActivator {
 		}
 	}
 
-	private static Collection<DefOperationCS> getOperations(BaseResource resource) {
+	private static Collection<DefOperationCS> getOperations(BaseCSResource resource) {
 		Collection<DefOperationCS> result = Lists.newArrayList();
 		EList<EObject> contents = resource.getContents();
 		if (contents.size() == 1) {
 			EObject root = contents.get(0);
 			if (root instanceof CompleteOCLDocumentCS) {
-				EList<org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getContexts();
-				for (org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS context : contexts) {
-					if (context instanceof ClassifierContextDeclCS) {
-						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getDefinitions();
+				EList<org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS> contexts = ((CompleteOCLDocumentCS) root).getOwnedContexts();
+				for (org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS context : contexts) {
+					if (context instanceof ContextDeclCS) {
+						EList<DefCS> definitions = ((ClassifierContextDeclCS) context).getOwnedDefinitions();
 						Iterables.addAll(result, Iterables.filter(definitions, DefOperationCS.class));
 					}
 				}

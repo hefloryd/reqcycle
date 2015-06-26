@@ -20,9 +20,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.IModelConstraintProvider;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
