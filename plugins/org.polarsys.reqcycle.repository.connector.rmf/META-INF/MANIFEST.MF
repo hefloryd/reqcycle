@@ -26,7 +26,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.eclipse.ui.ide
+ org.eclipse.ui.ide,
+ org.eclipse.rmf.reqif10.xhtml
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.reqcycle.repository.connector.rmf

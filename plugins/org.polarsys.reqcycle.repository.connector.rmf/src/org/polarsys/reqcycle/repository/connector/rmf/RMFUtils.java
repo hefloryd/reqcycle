@@ -40,7 +40,9 @@ import org.eclipse.rmf.reqif10.SpecObject;
 import org.eclipse.rmf.reqif10.SpecObjectType;
 import org.eclipse.rmf.reqif10.SpecType;
 import org.eclipse.rmf.reqif10.Specification;
+import org.eclipse.rmf.reqif10.XhtmlContent;
 import org.eclipse.rmf.reqif10.common.util.ReqIF10Util;
+import org.eclipse.rmf.reqif10.common.util.ReqIF10XhtmlUtil;
 import org.polarsys.reqcycle.core.ILogger;
 import org.polarsys.reqcycle.repository.data.IDataManager;
 import org.polarsys.reqcycle.repository.data.IDataModelManager;
@@ -55,6 +57,10 @@ import org.polarsys.reqcycle.repository.data.types.IRequirementType;
 import org.polarsys.reqcycle.repository.data.types.internal.RequirementTypeImpl;
 import org.polarsys.reqcycle.repository.data.util.DataUtil;
 import org.polarsys.reqcycle.utils.inject.ZigguratInject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -71,7 +77,7 @@ public class RMFUtils {
 	public static final String SPECIFICATION_NAME = "SpecificationName";
 
 	public static Collection<SpecType> getReqIFTypes(ResourceSet resourceSet, String fileLocation) {
-		URI uriReqIf = URI.createURI(fileLocation, false);
+		URI uriReqIf = getURI(fileLocation);
 		Resource reqIfResource = resourceSet.getResource(uriReqIf, true);
 		EList<EObject> contents = reqIfResource.getContents();
 		if (contents.size() > 0) {
@@ -96,8 +102,18 @@ public class RMFUtils {
 		return null;
 	}
 
+	private static URI getURI(String fileLocation) {
+		URI uriReqIf = URI.createURI(fileLocation, true);
+		if (uriReqIf.isPlatform()) {
+			uriReqIf = URI.createURI(uriReqIf.toPlatformString(true));
+		} else if (uriReqIf.isFile()) {
+			uriReqIf = URI.createURI(uriReqIf.toFileString());
+		}
+		return uriReqIf;
+	}
+
 	public static Collection<Specification> getReqIFDocuments(ResourceSet resourceSet, String fileLocation) {
-		URI uriReqIf = URI.createURI(fileLocation, false);
+		URI uriReqIf = getURI(fileLocation);
 		Resource reqIfResource = resourceSet.getResource(uriReqIf, true);
 		EList<EObject> contents = reqIfResource.getContents();
 		if (contents.size() > 0) {
@@ -209,9 +225,9 @@ public class RMFUtils {
 				for (AttributeValue value : element.getValues()) {
 					AttributeDefinition attributeDefinition = ReqIF10Util.getAttributeDefinition(value);
 					if (sourceId != null && sourceId.equals(attributeDefinition.getIdentifier())) {
-						return ReqIF10Util.getTheValue(value) == null ? null : ReqIF10Util.getTheValue(value).toString();
+						return ReqIF10Util.getTheValue(value) == null ? null : getValue(value);
 					} else if (attribute.getDescription() != null && attribute.getDescription().equals(attributeDefinition.getLongName())) {
-						return ReqIF10Util.getTheValue(value).toString();
+						return getValue(value);
 					}
 				}
 			}
@@ -227,14 +243,39 @@ public class RMFUtils {
 				for (AttributeValue value : element.getValues()) {
 					AttributeDefinition attributeDefinition = ReqIF10Util.getAttributeDefinition(value);
 					if (sourceId != null && sourceId.equals(attributeDefinition.getIdentifier())) {
-						return ReqIF10Util.getTheValue(value).toString();
+						return getValue(value);
 					} else if (attribute.getDescription() != null && attribute.getDescription().equals(attributeDefinition.getLongName())) {
-						return ReqIF10Util.getTheValue(value).toString();
+						return getValue(value);
 					}
 				}
 			}
 		}
 		return "";
+	}
+
+	private static String getValue(AttributeValue value) {
+		Object theValue = ReqIF10Util.getTheValue(value);
+		if (theValue instanceof XhtmlContent) {
+			XhtmlContent content = (XhtmlContent) theValue;
+			Document dom = ReqIF10XhtmlUtil.getXhtmlDom(content);
+			return visit(dom, new StringBuffer("")).toString();
+		}
+		return theValue.toString();
+	}
+
+	private static StringBuffer visit(Node node, StringBuffer string) {
+		// FIXME first hack to unblock people blocked by xhtml
+		if (node instanceof Text) {
+			if (string.length() > 0) {
+				string.append("\n");
+			}
+			string.append(((Text) node).getData());
+		}
+		NodeList childNodes = node.getChildNodes();
+		for (int i = 0; i < childNodes.getLength(); i++) {
+			visit(childNodes.item(i), string);
+		}
+		return string;
 	}
 
 	protected static AbstractElement createElement(Collection<MappingElement> mapping, SpecElementWithAttributes specElement, String sourceQualifier, String longName, String id, String name) {
