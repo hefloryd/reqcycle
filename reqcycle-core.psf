@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.core"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.emf"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.emf.traceability"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.operations"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.operations.requirement"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.predicates.core"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.predicates.persistance"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.repository.connector"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.repository.data"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.stub"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.builder"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.cache"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.cache.emfbased"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.cache.storagebased"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.storage"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.storage.sesame"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.types"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.traceability.types.lifecycle"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.types"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.uri"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.utils.collect"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.utils.configuration"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.utils.inject"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.utils.iterators"/>
+<project reference="1.0,https://github.com/hefloryd/reqcycle.git,experimental,plugins/org.polarsys.reqcycle.utils.modelnature"/>
+</provider>
+</psf>
