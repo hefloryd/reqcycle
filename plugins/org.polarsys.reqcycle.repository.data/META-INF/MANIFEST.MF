@@ -32,7 +32,6 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.reqcycle.traceability.storage,
  org.eclipse.emf.common.ui,
  org.eclipse.emf.edit.ui,
- org.polarsys.reqcycle.traceability.types.ui,
  org.eclipse.jface,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
